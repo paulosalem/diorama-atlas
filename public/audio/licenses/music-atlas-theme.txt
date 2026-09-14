@@ -1,0 +1,72 @@
+Asset: music-atlas-theme
+Retrieved UTC date: 2026-09-14
+Source URL: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300046
+Official download URL: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Dream%20Culture.mp3
+SHA-256 (unmodified official recording): f12cbb52bd4b92bd6cf8a343645567c119627e9cbf98108a3eb6ac2cc275ee46
+ISRC: USUAN1300046
+
+Official individual-track metadata from https://incompetech.com/music/royalty-free/pieces.json:
+{
+  "uuid": "USUAN1300046",
+  "title": "Dream Culture",
+  "filename": "Dream Culture.mp3",
+  "length": "00:03:34",
+  "instruments": "Piano, Percussion",
+  "genre": "5",
+  "bpm": "70",
+  "description": "Dreamy watery piano bits over a tight percussion with some reverse effects to add to the dreamlike state of things.",
+  "feel": "Calming, Relaxed, Uplifting",
+  "uploaded": "2013-11-16",
+  "isrc": "USUAN1300046",
+  "collection": "16",
+  "sheetmusic": null,
+  "video": "https://www.youtube.com/watch?v=dWYS_iQNZys",
+  "itunes": "https://itunes.apple.com/us/album/dream-culture/id941913727?i=941913757",
+  "wav": "",
+  "filmmusicURL": ""
+}
+
+The official individual-track page resolves the supplied ISRC against pieces.json.
+Verbatim attribution template from that page (the title is substituted from its selected track):
+"${escapeHtml(p.title || '')}">► Listen Now</button></div>`;
+                buttonsHtml += `<div> <button type="button" class="js-download" data-url="${mp3Url}">⬇ Download</button></div>`;
+                
+                if (p.video) {
+                    buttonsHtml += `<div><button type="button" class="js-video" data-url="${escapeHtml(encodeURI(p.video))}">⧉ YouTube Video</button></div>`;
+                }
+                if (p.itunes) {
+                    buttonsHtml += `<div><button type="button" class="js-itunes" data-url="${escapeHtml(encodeURI(p.itunes))}">⧉ iTunes Track</button></div>`;
+                }
+
+                // --- Build Main Track HTML ---
+                html = `
+                    <div style="border:1px solid var(--border, #ccc); border-radius: 8px; overflow: hidden;">
+                        <div style="padding: 12px 16px; background-color: color-mix(in srgb, currentColor 5%, transparent); border-bottom: 1px solid var(--border, #ccc);">
+                             <h1 style="font-size: 1.5em; margin: 0;">${escapeHtml(p.title || '(untitled)')}</h1>
+                        </div>
+                        <div style="padding:16px;">
+                            <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+                                <!-- Column A (~67%): description + instruments + license -->
+                                <div style="flex:2 1 420px; min-width:260px;">
+                                    <div style="font-size: 1.1em; line-height: 1.5;">${formatDescription(p.description) || '<span class="dim">No description available.</span>'}</div>
+                                    <div style="margin-top: 1em;"><b>Instruments:</b> ${escapeHtml(p.instruments) || 'n/a'}</div>
+                                    <div style="opacity:.6; font-size:.85em; line-height:1.3; margin-top:1em; padding: .5em; background-color: color-mix(in srgb, currentColor 5%, transparent); border-radius: 4px;">
+                                        <b>Attribution Code</b><br>
+                                        <tt>
+                                            "${escapeHtml(p.title || '')}" Kevin MacLeod (incompetech.com)<br>
+                                            Licensed under Creative Commons: By Attribution 4.0 License<br>
+                                            http://creativecommons.org/licenses/by/4.0/
+
+Rendered attribution for this selected recording:
+"Dream Culture" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/
+
+Composition and recording rights:
+This is the artist's official music recording, licensed on its individual-track page under CC BY 4.0, not merely a public-domain composition. Its ISRC identifies the licensed recording. The official FAQ explicitly distinguishes recordings from public-domain compositions; see incompetech-license-evidence.txt and the adjacent full CC-BY-4.0.txt.
+
+Local edits (updated 2026-09-14):
+Opening excerpt 0-109.714286 s (32 nominal four-beat bars at the catalog tempo, not a score-verified phrase boundary); 25 ms fade-in and 3.428571 s fade-out ending at silence. No tempo or pitch change.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-16.98 LUFS, TP=-0.82 dBTP, LRA=6.10 LU, threshold=-27.22 LUFS, target offset=0.28 LU.
+Post-processing loudness correction: +0.44 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded stereo MP3, 44.1 kHz, 160 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -6.89 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: 4e8d376407b91343a3e3aa454d8754832310d501a27682872efb3353f0fd197e

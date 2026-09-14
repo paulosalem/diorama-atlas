@@ -48,7 +48,12 @@ replacement or production bundler.
   object or architectural feature. **Reset view** restores the first viewpoint.
 - **Return:** select **Back to world** or press `Escape`. The globe remembers its
   orientation for the browser session.
-- Every interior has an optional, locally synthesized ambient soundscape.
+- **Soundscape:** enable recorded place ambience and music independently.
+  Follow each place's musical selection, or keep the shared Atlas theme playing
+  as you explore. Both start off on your first visit. Your sound choices and
+  volumes are remembered in a cookie across places and future visits; audio credits
+  are in the same panel. Hiding the tab pauses playback, and only one Atlas tab
+  plays at a time. If your browser blocks restored playback, select **Resume**.
   **Listen** on a detail uses the separate narration API described below.
 
 Direct links use `/?scene=kissaten`. Add `&inspect=1` for expanded viewing or
@@ -126,6 +131,9 @@ checks on Node 22 and 24 and browser checks on Chromium.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions,
 [architecture](docs/architecture.md) for runtime boundaries, and
 [asset provenance](docs/assets.md) before adding or redistributing media.
+See [soundscape design and extension](docs/soundscapes.md) and
+[audio sources](docs/audio-sources.md) for acquiring, licensing and composing
+additional recordings and music.
 
 ### Matched visual comparisons
 

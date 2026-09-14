@@ -1,0 +1,59 @@
+Asset: room-murmur
+Source title: File:Group discussion 1.ogg
+Creator: ezwa
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Group_discussion_1.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/6/69/Group_discussion_1.ogg
+Source SHA-256: 7cb3f52a7693d99f5b7faddb4197fbec44d678b8485b0a8d3b78bc2a5445e273
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' Group discussion - 1
+:'''Artist''' ezwa
+:'''Original mp3 data''' Length:0:30 minutes (467.8 KB) Format:MP3 Mono 44kHz 128Kbps (CBR)
+:'''User tags''' Human, human voice, People, talking
+:'''Type''' Single Subject, Natural, Human
+:'''PDSounds record number''' 663
+:'''Comment''' A group of people was talking in the room next door.
+}}
+|Date =2008-11-12
+|Author = ezwa
+|Source = http://www.pdsounds.org/audio/download/663/groupdiscussion-1.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/group_discussion_1
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|ezwa}}
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Sounds of noise]]
+[[Category:Discussions]]
+[[Category:Crowds]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 1 s; uses 27 s before circular crossfade.
+FFmpeg filters: highpass=f=100,lowpass=f=280,lowpass=f=280; downmixed to mono before normalization.
+Three equal-weight circular offsets (0, 8, 17 s) obscure separate voices; no generated speech.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-61.05 LUFS, TP=-44.42 dBTP, LRA=2.90 LU, threshold=-71.05 LUFS, target offset=0.08 LU.
+After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.
+Post-processing loudness correction: +0.59 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -6.22 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: ef2c9b853cd105dac1096f02de09387d546e0e6abf99f85b845d9b896776ae9e

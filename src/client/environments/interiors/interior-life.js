@@ -1,15 +1,7 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { createInteriorSoundscape } from "./interior-soundscape.js";
-
-const SOUND_LABELS = {
-  cafe: "café ambience",
-  tavern: "tavern ambience",
-  herbshop: "dispensary ambience",
-  bookshop: "reading room ambience",
-  workshop: "workshop ambience",
-  kitchen: "garden and hearth sounds",
-};
+import { createRecordedSoundscape } from "../shared/recorded-soundscape.js";
+import { getSoundscapeProfile } from "../shared/soundscape-profiles.js";
 
 /** Add evidence of ordinary use after architecture, before static batching. */
 export function addInteriorLife(k, p, type, definition) {
@@ -32,8 +24,7 @@ export function addInteriorLife(k, p, type, definition) {
       28,
     );
   return {
-    soundscape: createInteriorSoundscape(type),
-    soundLabel: SOUND_LABELS[type],
+    soundscape: createRecordedSoundscape(getSoundscapeProfile(type)),
     aoScale: 0.75,
     environmentIntensity:
       type === "kitchen" || type === "workshop" ? 0.28 : 0.26,

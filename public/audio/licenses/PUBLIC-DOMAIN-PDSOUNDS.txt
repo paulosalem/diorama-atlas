@@ -1,0 +1,49 @@
+Public-domain author dedications: PDSounds field recordings
+Evidence retrieved: 2026-09-14
+
+Source:
+https://commons.wikimedia.org/wiki/Template:PD-pdsounds.org
+
+The source states:
+
+"This audio file come from pdsounds.org and has been released into the
+public domain by its author."
+
+It quotes the PDSounds Help page:
+
+"Everyone who logs in may upload his recordings of the world. If you record
+for pdsounds, you must agree to release the audio files you make into the
+public domain.
+This means that everyone can download the sounds and use them at will - use
+them for education, use them to create art, use them for commercial purposes
+too - there are no copyrights, no strings attached to the files."
+
+Original Help URL recorded by Wikimedia Commons:
+http://www.pdsounds.org/help/what_can_i_find_here
+
+Each included file also carries its own named-author dedication:
+https://commons.wikimedia.org/wiki/Template:PD-author
+
+For example, the fountain file page states:
+
+"This work has been released into the public domain by its author, aldor.
+This applies worldwide.
+In some countries this may not be legally possible; if so:
+aldor grants anyone the right to use this work for any purpose, without any
+conditions, unless such conditions are required by law."
+
+Example source:
+https://commons.wikimedia.org/wiki/File:Fountain_in_toulouse.ogg
+
+The original sound creators, not Wikimedia uploader Fæ, are credited.
+Each asset's adjacent evidence text and sources/<id>.json preserve its
+own author, original download link, permission statement, description,
+named-author license declaration, and fetched source-file SHA-256.
+
+These recordings are labelled "Public domain (author dedication)", not CC0.
+No inference is made from a composition's age. They are field and object
+recordings explicitly released by their recording authors.
+
+The current availability of the retired PDSounds site is not guaranteed.
+The retained evidence is Wikimedia Commons' per-file documentation of
+the original dedications, not a claim that the retired site was reachable.

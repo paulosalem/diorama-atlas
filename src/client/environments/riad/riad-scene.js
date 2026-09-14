@@ -5,7 +5,8 @@ import { createRiadMaterials } from "../shared/materials.js";
 import { createRiadDetailMaterials } from "./riad-detail-materials.js";
 import { addRiadCraft } from "./riad-craft.js";
 import { addRiadAtmosphere } from "./riad-atmosphere.js";
-import { createRiadSoundscape } from "./riad-soundscape.js";
+import { createRecordedSoundscape } from "../shared/recorded-soundscape.js";
+import { getSoundscapeProfile } from "../shared/soundscape-profiles.js";
 import { buildRiadRooms } from "./riad-rooms.js";
 
 export const RIAD_VIEWS = {
@@ -1086,7 +1087,7 @@ export function buildRiadEnvironment(definition, renderer) {
     rand,
     range,
   });
-  const soundscape = createRiadSoundscape();
+  const soundscape = createRecordedSoundscape(getSoundscapeProfile("riad"));
   // Slanting warm sun and cool sky separate the courtyard from shaded galleries.
   const sun = new THREE.DirectionalLight(0xffd29c, 5.2);
   sun.position.set(-3, 13, 8);

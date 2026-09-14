@@ -16,7 +16,11 @@ export function getActiveViewer() {
   return activeViewer;
 }
 
-export async function createViewer(app, definition) {
+export async function createViewer(
+  app,
+  definition,
+  { audio: atlasAudio, onNavigate } = {},
+) {
   activeViewer?.dispose();
   const events = new AbortController();
   let disposed = false;
@@ -91,55 +95,35 @@ export async function createViewer(app, definition) {
       app.querySelector("#riadViewLabel").textContent = label;
     },
     onExit: () => {
-      location.href = "/";
+      if (onNavigate) onNavigate("/");
+      else location.href = "/";
     },
   });
   panorama.activate(runtime, definition);
   const audio = new Audio();
-  if (runtime.soundscape) {
-    const soundLabel = runtime.soundLabel ?? "courtyard sounds";
-    const sound = document.createElement("button");
-    sound.id = "ambientSound";
-    const syncSoundControl = () => {
-      if (disposed) return;
-      const active = runtime.soundscape.active;
-      sound.textContent = active ? "Sound on" : "Sound off";
-      sound.setAttribute("aria-pressed", String(active));
-      sound.setAttribute(
-        "aria-label",
-        `${active ? "Mute" : "Turn on"} ${soundLabel}`,
-      );
-    };
-    syncSoundControl();
-    app.querySelector(".riad-actions").prepend(sound);
-    sound.onclick = async () => {
-      sound.disabled = true;
-      try {
-        if (runtime.soundscape.active) runtime.soundscape.stop();
-        else await runtime.soundscape.start();
-        if (document.hidden) runtime.soundscape.stop();
-        syncSoundControl();
-      } catch (error) {
-        console.error(`Could not start ${soundLabel}.`, error);
-        if (!disposed) {
-          sound.textContent = "Sound unavailable";
-          sound.setAttribute("aria-pressed", "false");
-        }
-      } finally {
-        if (!disposed) sound.disabled = false;
+  audio.addEventListener("play", () => atlasAudio?.beginNarration(), {
+    signal: events.signal,
+  });
+  for (const event of ["pause", "ended", "error"])
+    audio.addEventListener(event, () => atlasAudio?.setDucked(false), {
+      signal: events.signal,
+    });
+  const unsubscribeAudio = atlasAudio?.subscribe(() => {
+    if (!atlasAudio.inspection.ownsPlayback && !audio.paused) {
+      audio.pause();
+      app.querySelector("#listenButton").textContent = "Listen";
+    }
+  });
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        audio.pause();
+        app.querySelector("#listenButton").textContent = "Listen";
       }
-    };
-    document.addEventListener(
-      "visibilitychange",
-      () => {
-        if (document.hidden) {
-          runtime.soundscape.stop();
-          syncSoundControl();
-        }
-      },
-      { signal: events.signal },
-    );
-  }
+    },
+    { signal: events.signal },
+  );
   let selected = 0;
   function selectDetail(index) {
     selected = index;
@@ -214,13 +198,16 @@ export async function createViewer(app, definition) {
         b.style.left = `${(projected.x * 0.5 + 0.5) * mount.clientWidth}px`;
         b.style.top = `${(-projected.y * 0.5 + 0.5) * mount.clientHeight}px`;
       });
-    runtime.soundscape?.update(camera);
+    if (atlasAudio) atlasAudio.update(camera);
+    else runtime.soundscape?.update(camera);
     composer.render();
   });
   function dispose() {
     if (disposed) return;
     disposed = true;
     events.abort();
+    unsubscribeAudio?.();
+    atlasAudio?.setDucked(false);
     audio.pause();
     audio.removeAttribute("src");
     audio.load();

@@ -1,0 +1,57 @@
+Asset: wood-work
+Source title: File:Wood and cutlery.ogg
+Creator: thore
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Wood_and_cutlery.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/e/e3/Wood_and_cutlery.ogg
+Source SHA-256: 2af0dfc1e3aeb3334c58c0db73126fa992509bde15902d21efee6485979edbf8
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' wooden cutboard and cutlery
+:'''Artist''' thore
+:'''Original mp3 data''' Length:0:02 minutes (59.23 KB) Format:MP3 Stereo 44kHz 192Kbps (CBR)
+:'''User tags''' Cutlery, Household, Kitchen, Metal, putting down, rattling, Rhythm, wooden
+:'''Type''' Natural
+:'''PDSounds record number''' 376
+:'''Comment''' wooden cutboard with some cutlery put on wooden table. Normalized, very low noise.
+}}
+|Date =2007-11-16
+|Author = thore
+|Source = http://www.pdsounds.org/audio/download/376/wooden+cutboard+on+wooden+table+with+some+cutlery.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/wood_and_cutlery
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|thore}}
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Unidentified sounds]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 0 s; uses the entire source.
+FFmpeg filters: highpass=f=90; downmixed to mono before normalization.
+25 ms start/end fades. Sparse one-shot, not a continuous loop.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-21.52 LUFS, TP=2.11 dBTP, LRA=0.00 LU, threshold=-32.02 LUFS, target offset=4.63 LU.
+Post-processing loudness correction: +1.06 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -26.91 LUFS integrated, -3.39 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+Sparse transient foley intentionally remains below -23 LUFS rather than compressing the attack further to meet an integrated loudness target; true-peak protection takes priority.
+
+Served file SHA-256: 4bdf7d342b592901f50c183cee1cfb15126f5bd1129fbb2f99981276f3edc26a

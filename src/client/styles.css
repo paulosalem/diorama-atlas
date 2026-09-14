@@ -31,6 +31,9 @@ a {
 }
 button:focus-visible,
 a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible,
 canvas:focus-visible {
   outline: 2px solid #e3c287;
   outline-offset: 5px;
@@ -468,7 +471,154 @@ button[aria-pressed="true"] {
   z-index: 5;
   backdrop-filter: blur(12px);
 }
+.soundscape-button.is-playing::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d3bb88;
+  margin-right: 8px;
+}
+.world > .soundscape-button {
+  position: absolute;
+  bottom: 72px;
+  left: 38px;
+  z-index: 4;
+  font-size: 12px;
+  backdrop-filter: blur(16px);
+}
+.soundscape-dialog {
+  color: #eee9dc;
+  background: #14201f;
+  border: 1px solid #bcad883b;
+  border-radius: 20px;
+  box-shadow: 0 30px 120px #0009;
+  width: min(540px, calc(100vw - 28px));
+  max-height: calc(100dvh - 40px);
+  padding: 28px;
+  overflow: auto;
+}
+.soundscape-dialog::backdrop {
+  background: #050e13a6;
+  backdrop-filter: blur(6px);
+}
+.soundscape-heading,
+.soundscape-channel-heading,
+.soundscape-footer,
+.soundscape-volume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.soundscape-eyebrow {
+  color: #c7af7b;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 9px;
+  margin: 0 0 8px;
+}
+.soundscape-dialog h2 {
+  font:
+    normal 28px Georgia,
+    serif;
+  margin: 0;
+}
+.soundscape-dialog h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.soundscape-dialog p {
+  color: #aebbb5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.soundscape-intro {
+  margin: 20px 0;
+}
+.soundscape-dialog button {
+  font-size: 11px;
+  padding: 9px 13px;
+  white-space: nowrap;
+}
+.soundscape-dialog button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.soundscape-channel {
+  padding: 20px 0 14px;
+  border-top: 1px solid #bfc5b421;
+}
+.soundscape-volume,
+.soundscape-mode {
+  font-size: 11px;
+  color: #bdc5bc;
+}
+.soundscape-volume input {
+  flex: 1;
+  min-width: 30px;
+  accent-color: #d3bb88;
+}
+.soundscape-volume output {
+  min-width: 32px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.soundscape-mode {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 16px 0 8px;
+}
+.soundscape-mode select {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: #eee9dc;
+  background: #0d1919;
+  border: 1px solid #ffffff25;
+  border-radius: 7px;
+  padding: 9px;
+}
+.soundscape-status:empty {
+  display: none;
+}
+.soundscape-status.is-error {
+  color: #f3bf9a;
+}
+.soundscape-footer {
+  border-top: 1px solid #bfc5b421;
+  padding-top: 18px;
+  color: #9dadab;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.soundscape-credits {
+  margin-top: 22px;
+  font-size: 11px;
+}
+.soundscape-credits summary {
+  cursor: pointer;
+  color: #c9ba97;
+}
+.soundscape-credits small {
+  display: block;
+  color: #8eaaa1;
+  line-height: 1.6;
+}
 @media (max-width: 650px) {
+  .world > .soundscape-button {
+    left: 22px;
+    bottom: 70px;
+  }
+  .soundscape-dialog {
+    padding: 20px;
+  }
+  .soundscape-dialog h2 {
+    font-size: 24px;
+  }
   .world-header {
     top: 23px;
     left: 22px;

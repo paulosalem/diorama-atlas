@@ -13,6 +13,8 @@ export function geographicPosition(lat, lon, radius = RADIUS) {
   );
 }
 export async function createWorld(app, scenes) {
+  const events = new AbortController();
+  let disposed = false;
   app.innerHTML = `<section class="world" aria-label="Explore the world"><div id="globeCanvas"></div><div class="marker-layer" id="markers"></div><header class="world-header"><a class="brand" href="/" aria-label="Diorama Atlas home"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11"/><ellipse cx="14" cy="14" rx="5" ry="11"/><path d="M3 14h22M5 8h18M5 20h18"/></svg>Diorama Atlas</a><button id="placesButton" aria-expanded="false" aria-controls="placesPanel">Places <span aria-hidden="true">↗</span></button></header><nav id="placesPanel" class="places-panel" aria-label="Places around the world" hidden></nav><div class="world-tools"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetWorld" aria-label="Reset globe view">↺</button></div><footer class="world-footer"><p><span class="desktop-hint">Drag to wander &nbsp;·&nbsp; Scroll to get closer</span><span class="mobile-hint">Drag to explore · Tap a place</span></p><a class="credits" href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noreferrer">Earth imagery · NASA</a></footer><aside id="placePreview" class="preview" aria-label="Place preview" hidden></aside><div id="worldLoading" class="initial-loading" role="status">Opening the world<span></span></div></section>`;
   const world = app.querySelector(".world"),
     mount = app.querySelector("#globeCanvas"),
@@ -263,9 +265,13 @@ export async function createWorld(app, scenes) {
     placesButton.setAttribute("aria-expanded", "false");
     flying = null;
   });
-  window.addEventListener("pointerup", () => {
-    save();
-  });
+  window.addEventListener(
+    "pointerup",
+    () => {
+      save();
+    },
+    { signal: events.signal },
+  );
   renderer.domElement.addEventListener("keydown", (e) => {
     if (
       [
@@ -295,13 +301,17 @@ export async function createWorld(app, scenes) {
       save();
     }
   });
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closePreview();
-      panel.hidden = true;
-      placesButton.setAttribute("aria-expanded", "false");
-    }
-  });
+  window.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.key === "Escape") {
+        closePreview();
+        panel.hidden = true;
+        placesButton.setAttribute("aria-expanded", "false");
+      }
+    },
+    { signal: events.signal },
+  );
   function resize() {
     const w = world.clientWidth,
       h = world.clientHeight;
@@ -314,7 +324,7 @@ export async function createWorld(app, scenes) {
     camera.updateProjectionMatrix();
   }
   resize();
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", resize, { signal: events.signal });
   function tick(now) {
     if (flying) {
       const t = Math.min(
@@ -388,7 +398,10 @@ export async function createWorld(app, scenes) {
   app.querySelector("#worldLoading").remove();
   controls.update();
   renderer.setAnimationLoop(tick);
-  window.addEventListener("pagehide", () => {
+  function dispose() {
+    if (disposed) return;
+    disposed = true;
+    events.abort();
     save();
     clearTimeout(hideTimer);
     renderer.setAnimationLoop(null);
@@ -403,6 +416,7 @@ export async function createWorld(app, scenes) {
     materials.forEach((material) => material.dispose());
     map.dispose();
     renderer.dispose();
-  });
-  return { camera, entries, renderer, controls, geographicPosition };
+  }
+  window.addEventListener("pagehide", dispose, { signal: events.signal });
+  return { camera, entries, renderer, controls, geographicPosition, dispose };
 }

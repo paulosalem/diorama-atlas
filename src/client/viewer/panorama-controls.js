@@ -154,7 +154,11 @@ export function createPanoramaControls({
     details.textContent = show ? "Hide details" : "Show details";
   });
   listen(window, "keydown", (event) => {
-    if (active && event.key === "Escape") {
+    if (
+      active &&
+      event.key === "Escape" &&
+      !document.querySelector("dialog[open]")
+    ) {
       if (onExit) onExit();
       else setExpanded(false);
     }

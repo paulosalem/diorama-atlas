@@ -1,0 +1,58 @@
+Asset: paper-pages
+Source title: File:Turning a page.ogg
+Creator: planish
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Turning_a_page.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/6/6b/Turning_a_page.ogg
+Source SHA-256: e153d4e3ef5ce26eb0448f9333a37c8605269ed0488956a20cc66b13fc39b29f
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' turning a page
+:'''Artist''' planish
+:'''Original mp3 data''' Length:0:03 minutes (56.78 KB) Format:MP3 Mono 44kHz 128Kbps (CBR)
+:'''User tags''' Book, page, Paper, reading, turning
+:'''Type''' Single Subject
+:'''PDSounds record number''' 304
+:'''Comment''' Turning a page in a hard-cover book. Recorded using a Nexxtech headset boom mic. The pitch was lowered by about two semitones, and a low-pass filter applied.
+}}
+|Date =2007-07-05
+|Author = planish
+|Source = http://www.pdsounds.org/audio/download/304/page_turn.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/turning_a_page
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|planish}}
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Sounds relating to paper]]
+[[Category:Pages]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 0 s; uses the entire source.
+FFmpeg filters: highpass=f=100; downmixed to mono before normalization.
+25 ms start/end fades. Sparse one-shot, not a continuous loop.
+Source-author edits before acquisition: pitch lowered about two semitones and low-pass filtered.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-33.05 LUFS, TP=-15.76 dBTP, LRA=0.20 LU, threshold=-46.29 LUFS, target offset=-3.66 LU.
+Post-processing loudness correction: +0.42 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -22.99 LUFS integrated, -5.72 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: 482b4a169836bf6cd645c7fc74e51614fed5e157cb9de3d2a59b72f5f977733e

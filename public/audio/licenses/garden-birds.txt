@@ -1,0 +1,56 @@
+Asset: garden-birds
+Source title: File:Birds singing in garden.ogg
+Creator: ezwa
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Birds_singing_in_garden.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/8/80/Birds_singing_in_garden.ogg
+Source SHA-256: c3a9cbbecb313810e6ca9a0c38743a7548749a0c18fda5659f9d5dc7060bddd8
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' birds singing in garden
+:'''Artist''' ezwa
+:'''Original mp3 data''' Length:0:49 minutes (777.19 KB) Format:MP3 Mono 44kHz 128Kbps (CBR)
+:'''User tags''' Afternoon, Bird, Birdsong, Countryside, singing, Spring, sunny, twittering
+:'''Type''' Single Subject, Natural
+:'''PDSounds record number''' 128
+:'''Comment''' Bird singing on a sunny afternoon. Belgian countryside's garden.
+}}
+|Date =2007-04-18
+|Author = ezwa
+|Source = http://www.pdsounds.org/audio/download/128/bird_sings_in_the_afternoon.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/birds_singing_in_garden
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|ezwa}}
+[[Category:Singing birds]]
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 5 s; uses 29 s before circular crossfade.
+FFmpeg filters: highpass=f=180,lowpass=f=9000; downmixed to mono before normalization.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-39.76 LUFS, TP=-24.94 dBTP, LRA=20.50 LU, threshold=-53.45 LUFS, target offset=0.87 LU.
+After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.
+Post-processing loudness correction: +1.19 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -8.22 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: 3825f53ff5f4b4420b3f388f2e65fa927d0ccec9d25b3b3d7cddbd7ff5dda1dc

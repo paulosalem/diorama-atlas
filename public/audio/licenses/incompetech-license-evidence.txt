@@ -1,0 +1,70 @@
+Incompetech official instrumental recordings — license evidence
+Evidence retrieved: 2026-09-14
+
+Official individual-track pages:
+Dream Culture:
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300046
+Desert City:
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100564
+Local Forecast - Slower:
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300011
+
+The official page loads pieces.json and selects the requested ISRC:
+https://incompetech.com/music/royalty-free/pieces.json
+Per-track source metadata and the exact attribution template are preserved
+in each music asset's license evidence text.
+
+The individual-track template displays:
+"[selected title]" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+Official license selection page:
+https://incompetech.com/music/royalty-free/licenses/
+
+"Creative Commons — Free"
+"No charge. Requires that you credit the music. Select titles, then copy
+and paste the generated credits into your work."
+
+Official FAQ:
+https://incompetech.com/music/royalty-free/faq.html
+
+Relevant verbatim excerpts:
+
+"Do I have to put the credit where people can see it? Yes. Credits change
+from media to media - but in general a credit needs to be placed such that
+a person who wants to know where the music came from should have no
+difficulty in finding it. A reasonable effort may be expended (e.g. clicking
+on a credits option) but the credit should not be obscured."
+
+"Is this music in the Public Domain?
+No. All of this music is copyrighted. Though some of the baroque and
+classical compositions are in the public domain; these recordings are not."
+
+"Can I change your music?
+Yes, you can sing over, chop, splice, compress, lengthen, and add instruments
+to anything you like. You MUST make it clear in the credits which parts are
+yours, and which parts are mine. There is no need to mention if you cut and
+splice."
+
+"What are ISRC Numbers?
+ISRC numbers listed on each track are unique identifiers for that recording."
+
+Rights and attribution:
+These three downloads are the official copyrighted recordings offered
+under CC BY 4.0 by Kevin MacLeod. This is not a claim that a public-domain
+composition frees a separately copyrighted performance. Neither a paid
+Standard License nor a subscription is being used.
+
+The complete legal text is adjacent in CC-BY-4.0.txt, downloaded from:
+https://creativecommons.org/licenses/by/4.0/legalcode.txt
+
+Its grant includes reproducing and Sharing the Licensed Material in whole
+or in part, and producing, reproducing, and Sharing Adapted Material,
+subject to its conditions, including attribution. This permits retaining
+the recordings in a public repository with their credits and license
+notices. No extra prohibition on raw redistribution is applied here.
+
+Keep visible in-app credits, source links, license links, these notices,
+and the per-recording attribution when distributing the application.
+No endorsement by the artist is implied.

@@ -1,0 +1,58 @@
+Asset: cooking-fire
+Source title: File:Dry grass burning in open fireplace.ogg
+Creator: ezwa
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Dry_grass_burning_in_open_fireplace.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/d/d8/Dry_grass_burning_in_open_fireplace.ogg
+Source SHA-256: 0fb9fb4a44fe378ceffb2b80d0cf420e28404e04f5f200b7bc0205eadeebc8d4
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' Dry grass burning in open fireplace
+:'''Artist''' ezwa
+:'''Original mp3 data''' Length:0:25 minutes (701.27 KB) Format:MP3 Mono 44kHz 224Kbps (CBR)
+:'''User tags''' Chimney, Fire, Fireplace, Grass, Open Fireplace
+:'''Type''' Single Subject, Natural, Characteristic
+:'''PDSounds record number''' 303
+:'''Comment''' Burning dry grass from the garden in an old open fireplace.
+}}
+|Date =2007-06-17
+|Author = ezwa
+|Source = http://www.pdsounds.org/audio/download/303/dry_grass_burning_in_open_fireplace.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/dry_grass_burning_in_open_fireplace
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+
+== {{int:license-header}} ==
+{{PD-author|ezwa}}
+
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Sounds of burning]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 2 s; uses 23 s before circular crossfade.
+FFmpeg filters: highpass=f=90,lowpass=f=7000; downmixed to mono before normalization.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-47.22 LUFS, TP=-16.49 dBTP, LRA=1.20 LU, threshold=-57.22 LUFS, target offset=0.19 LU.
+After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.
+Post-processing loudness correction: +0.46 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -3.82 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: 34938abb3c3709f0c9362dbf951416689a4decbea9f7c60887d8b2086580f62e

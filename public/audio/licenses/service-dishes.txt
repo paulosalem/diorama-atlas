@@ -1,0 +1,57 @@
+Asset: service-dishes
+Source title: File:Kitchen tidy up.ogg
+Creator: starlite
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Kitchen_tidy_up.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/e/eb/Kitchen_tidy_up.ogg
+Source SHA-256: cce0ec794ef6acc376ded3052db5df3bcfb79024e2c5e49522c7c73a7fab159b
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' Kitchen Tidy-up
+:'''Artist''' starlite
+:'''Original mp3 data''' Length:0:57 minutes (895.14 KB) Format:MP3 Mono 44kHz 128Kbps (CBR)
+:'''User tags''' clattering, Dishes, Household, Kitchen, kitchen clean-up, Pots and pans
+:'''Type''' Single Subject, Natural, Human
+:'''PDSounds record number''' 545
+:'''Comment''' This is my son putting the clean dishes away! 
+}}
+|Date =2008-05-06
+|Author = starlite
+|Source = http://www.pdsounds.org/audio/download/545/kitchen_tidy_up.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/kitchen_tidy_up
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|starlite}}
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Sounds of cooking]]
+[[Category:Kitchens]]
+[[Category:Cleaning]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 17 s; uses 3.5 s before circular crossfade.
+FFmpeg filters: highpass=f=100,lowpass=f=8000; downmixed to mono before normalization.
+25 ms start/end fades. Sparse one-shot, not a continuous loop.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-39.59 LUFS, TP=-19.74 dBTP, LRA=0.60 LU, threshold=-51.35 LUFS, target offset=-0.16 LU.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.10 LUFS integrated, -4.12 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: a3175a469705926eebc20e6a40936d5a993f33ea5112650ce0f9de8ea7be38c4

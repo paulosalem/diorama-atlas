@@ -46,7 +46,11 @@ these room families.
 The non-riad families share an architectural depth pass and a separate life and
 atmosphere pass. Both run before geometry batching. Connected spaces are actual
 geometry, not background photographs. Animation and audio resources belong to
-their environment and are released with it.
+their environment and are released with it. Recorded ambience shares an audio engine
+under `environments/shared/`; app-level optional music has a separate owner and
+continues across internal navigation. The soundscape panel exposes separate
+channel controls and credits from the bundled audio manifest. See
+[soundscapes](soundscapes.md) for mixing, media provenance and lifecycle details.
 
 Environment builders return a runtime with a scene group, named viewpoints,
 hotspot anchors, an asset-readiness promise, animations, and cleanup. The viewer
@@ -58,7 +62,13 @@ and capture tools. It provides the runtime, camera, renderer, selected-view
 control, animation time, recent frame durations, and idempotent disposal.
 It is not a global browser variable or a server endpoint. Reduced motion freezes
 environment animation time; optional sound requires a user gesture and stops
-when the page becomes hidden.
+when the page becomes hidden. Hidden-page playback does not resume automatically.
+Internal navigation retains the common musical theme but stops outgoing local
+audio before loading the next room, and disposes outgoing visual runtimes.
+A validated one-year cookie preserves enabled channels, volumes and music mode;
+fresh visits without saved consent remain silent. BroadcastChannel ownership
+prevents competing Atlas tabs. Browser-blocked restoration offers Resume without
+discarding the saved choice.
 
 Shared material loading lives under `environments/shared/`, while its original
 texture paths remain under `public/riad/materials/`. Keeping those asset URLs

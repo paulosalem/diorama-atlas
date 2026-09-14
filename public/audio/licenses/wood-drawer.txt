@@ -1,0 +1,46 @@
+Asset: wood-drawer
+Source title: File:Open drawer (Gravity Sound).wav
+Creator: Gravity Sound
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Open_drawer_(Gravity_Sound).wav
+Download URL: https://upload.wikimedia.org/wikipedia/commons/d/d7/Open_drawer_%28Gravity_Sound%29.wav
+Source SHA-256: 3219da76e69b358f6138bebf84f0774ab7991c949d58bcc9a953112413d0aa52
+License: CC BY 4.0
+License URL: https://creativecommons.org/licenses/by/4.0/
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: CC BY 4.0
+AttributionRequired: true
+Copyrighted: True
+
+Source permission statement (HTML removed, entities decoded):
+[2] ,  [3] ,  [4] ,  [5]
+
+Per-file description and author license declaration (verbatim wikitext):
+=={{int:filedesc}}==
+{{Information
+ |description = "''open drawer''" by Gravity Sound
+ |date        = 
+ |source      = [https://drive.google.com/drive/u/0/folders/13bVEtdqLG8cwxCvZ1UEtRHWFwN3JbvQT]
+ |author      = [https://www.gravitysound.studio/ Gravity Sound]
+ |permission  = [https://www.reddit.com/r/Filmmakers/comments/efjmb1/ho_ho_ho_sharing_my_6gb_sound_library_for_free/], [https://web.archive.org/web/20191228085637/https://www.reddit.com/r/Filmmakers/comments/efjmb1/ho_ho_ho_sharing_my_6gb_sound_library_for_free/], [https://www.gravitysound.studio/free-music-sound-effects], [https://web.archive.org/web/20191228085806/https://www.gravitysound.studio/free-music-sound-effects]
+}}
+
+=={{int:license-header}}==
+{{Cc-by-4.0}}
+
+[[Category:Audio files by Gravity Sound]]
+
+Redistribution basis:
+CC BY 4.0 permits reproduction, sharing, and adaptation, including commercial use, with attribution. See adjacent CC-BY-4.0.txt. This is a sound-effect recording, not a musical composition.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 0 s; uses the entire source.
+FFmpeg filters: highpass=f=90; downmixed to mono before normalization.
+25 ms start/end fades. Sparse one-shot, not a continuous loop.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-25.19 LUFS, TP=-3.43 dBTP, LRA=0.00 LU, threshold=-37.87 LUFS, target offset=2.75 LU.
+Post-processing loudness correction: +0.88 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -25.30 LUFS integrated, -3.19 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+Sparse transient foley intentionally remains below -23 LUFS rather than compressing the attack further to meet an integrated loudness target; true-peak protection takes priority.
+
+Served file SHA-256: a1e61b3069e94c19d836d4f2d1b7bdf57d02474d9aa6a0d591453fbac8e71795

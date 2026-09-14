@@ -5,13 +5,19 @@ the included collection works without network downloads or paid generation.
 Existing attribution manifests are preserved rather than replaced with a
 project-wide licensing assumption.
 
-| Asset group              | Source and status                                                                                      | Manifest                                                                                  |
-| ------------------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Earth texture            | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                       | [`public/earth/credits.json`](../public/earth/credits.json)                               |
-| Shared scanned materials | Poly Haven; recorded as CC0 in the imported manifest                                                   | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)           |
-| Interior plastered stone | Poly Haven; recorded as CC0 in the imported manifest                                                   | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json) |
-| Place previews           | Eleven local renders of the current interiors; Marrakech retains its imported generated reference      | [`public/previews/credits.json`](../public/previews/credits.json)                         |
-| Saved scene packages     | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied | `data/scenes/`                                                                            |
+| Asset group                 | Source and status                                                                                             | Manifest                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Earth texture               | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                              | [`public/earth/credits.json`](../public/earth/credits.json)                               |
+| Shared scanned materials    | Poly Haven; recorded as CC0 in the imported manifest                                                          | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)           |
+| Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                          | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json) |
+| Place previews              | Eleven local renders of the current interiors; Marrakech retains its imported generated reference             | [`public/previews/credits.json`](../public/previews/credits.json)                         |
+| Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied        | `data/scenes/`                                                                            |
+| Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0 | [`public/audio/manifest.json`](../public/audio/manifest.json)                             |
+
+Audio credits are also available in the app's **Soundscape** panel. Local license
+evidence, creator/source links, processing notes and file hashes accompany the
+recordings. See [audio acquisition](audio-sources.md) and
+[soundscape composition](soundscapes.md) before extending the library.
 
 The scene packages and preview images are interpretive material, not
 photographic evidence that a particular building exists. Cultural descriptions

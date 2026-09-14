@@ -102,6 +102,25 @@ for (const scene of [...curatedScenes, ...bundledScenes]) {
     await expect(page.locator(".hotspot")).toHaveCount(scene.details.length);
     await page.getByRole("button", { name: "Reset view" }).click();
     await expect(viewpoints.first()).toHaveAttribute("aria-pressed", "true");
+    await page.locator("#soundscapeButton").click();
+    await page
+      .getByRole("button", { name: "Enable ambience", exact: true })
+      .click();
+    await expect(page.locator("#ambientSound")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    await page.getByRole("button", { name: "Close soundscape" }).click();
+    await viewpoints.last().click();
+    await page.locator("#soundscapeButton").click();
+    await page.getByRole("button", { name: "Mute all", exact: true }).click();
+    const audio = await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      return getActiveViewer().runtime.soundscape.inspection;
+    });
+    expect(audio.nodes).toBe(0);
+    expect(audio.contextState).toBe("closed");
     expect(errors).toEqual([]);
   });
 }

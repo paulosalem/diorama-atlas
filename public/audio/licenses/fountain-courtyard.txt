@@ -1,0 +1,58 @@
+Asset: fountain-courtyard
+Source title: File:Fountain in toulouse.ogg
+Creator: aldor
+Retrieved UTC date: 2026-09-14
+Source URL: https://commons.wikimedia.org/wiki/File:Fountain_in_toulouse.ogg
+Download URL: https://upload.wikimedia.org/wikipedia/commons/0/0f/Fountain_in_toulouse.ogg
+Source SHA-256: 480b9da27f02b3b38e533f6a5e85e9992fc17b6139e12c5a0f999df1010b703a
+License: Public domain (author dedication)
+License URL: https://commons.wikimedia.org/wiki/Template:PD-author
+
+Wikimedia Commons per-file license metadata:
+LicenseShortName: Public domain
+AttributionRequired: false
+Copyrighted: False
+
+Source permission statement (HTML removed, entities decoded):
+This audio file come from  pdsounds.org  and has been  released  into the   public domain   by its author. 
+  From the Help page: "Everyone who logs in may upload his recordings of the world.  If you record for pdsounds, you must agree to release the audio files you make into the public domain.  This means that everyone can download the sounds and use them at will - use them for education, use them to create art, use them for commercial purposes too - there are no copyrights, no strings attached to the files."
+
+Per-file description and author license declaration (verbatim wikitext):
+== {{int:filedesc}} ==
+{{Information
+|Description={{en|<br>
+:'''Title''' La Fontaine de la TrinitÃ©
+:'''Artist''' aldor
+:'''Original mp3 data''' Length:1:02 minutes (1.04 MB) Format:MP3 Stereo 44kHz 128Kbps (CBR)
+:'''User tags''' cascatelle, eau, fontaine, Fountain, Toulouse, Water
+:'''Type''' Single Subject, Human
+:'''PDSounds record number''' 579
+:'''Comment''' The fountain of the "Place de la TrinitÃ©", in Toulouse (France)
+}}
+|Date =2008-05-12
+|Author = aldor
+|Source = http://www.pdsounds.org/audio/download/579/2007+12+16+Fontaine+Trinite+Toulouse.mp3
+* PDSounds description: http://www.pdsounds.org/sounds/fountain_in_toulouse
+*Transferred by [[User:Fæ|Fæ]]
+|Permission={{PD-pdsounds.org}}
+}}
+== {{int:license-header}} ==
+{{PD-author|aldor}}
+[[Category:PDsounds.org]]
+[[Category:Sound files uploaded by Fæ]]
+[[Category:Sounds of water]]
+[[Category:Fountains in France]]
+[[Category:Sounds of water in France]]
+
+Redistribution basis:
+The field-recording author expressly dedicated this recording to the public domain through PDSounds. The Commons file page also names the author in its PD-author declaration. This is not a CC0 claim and not an assertion that an old composition makes a modern recording public domain. See adjacent PUBLIC-DOMAIN-PDSOUNDS.txt.
+
+Local edits (updated 2026-09-14):
+Source excerpt begins at 10 s; uses 29 s before circular crossfade.
+FFmpeg filters: highpass=f=90,lowpass=f=7500; downmixed to mono before normalization.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-28.67 LUFS, TP=-2.86 dBTP, LRA=0.80 LU, threshold=-38.67 LUFS, target offset=0.01 LU.
+After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.
+Post-processing loudness correction: +0.51 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.01 LUFS integrated, -3.74 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: 740e746821b76b6c2957eac03131e04710b1cdbf79dcc2c210d142662494d1ec

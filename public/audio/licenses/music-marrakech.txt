@@ -1,0 +1,72 @@
+Asset: music-marrakech
+Retrieved UTC date: 2026-09-14
+Source URL: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100564
+Official download URL: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Desert%20City.mp3
+SHA-256 (unmodified official recording): aeefb582c77059aaf5b10d1e9125d7b19adca07cd841f3654e74aed7da9a3a71
+ISRC: USUAN1100564
+
+Official individual-track metadata from https://incompetech.com/music/royalty-free/pieces.json:
+{
+  "uuid": "3275a18f-706e-43c2-8164-54700df9c8bd",
+  "title": "Desert City",
+  "filename": "Desert City.mp3",
+  "length": "00:01:29",
+  "instruments": "Percussion, Dulcimer",
+  "genre": "25",
+  "bpm": "86",
+  "description": "Middle Eastern atmospheric, sort of chill. This piece is easy to loop.",
+  "feel": "Grooving, Mysterious, Relaxed",
+  "uploaded": "2009-03-08",
+  "isrc": "USUAN1100564",
+  "collection": "46",
+  "sheetmusic": null,
+  "video": null,
+  "itunes": "https://itunes.apple.com/us/album/desert-city/id945492319?i=945492334",
+  "wav": null,
+  "filmmusicURL": "https://incompetech.filmmusic.io/song/3639-desert-city/"
+}
+
+The official individual-track page resolves the supplied ISRC against pieces.json.
+Verbatim attribution template from that page (the title is substituted from its selected track):
+"${escapeHtml(p.title || '')}">► Listen Now</button></div>`;
+                buttonsHtml += `<div> <button type="button" class="js-download" data-url="${mp3Url}">⬇ Download</button></div>`;
+                
+                if (p.video) {
+                    buttonsHtml += `<div><button type="button" class="js-video" data-url="${escapeHtml(encodeURI(p.video))}">⧉ YouTube Video</button></div>`;
+                }
+                if (p.itunes) {
+                    buttonsHtml += `<div><button type="button" class="js-itunes" data-url="${escapeHtml(encodeURI(p.itunes))}">⧉ iTunes Track</button></div>`;
+                }
+
+                // --- Build Main Track HTML ---
+                html = `
+                    <div style="border:1px solid var(--border, #ccc); border-radius: 8px; overflow: hidden;">
+                        <div style="padding: 12px 16px; background-color: color-mix(in srgb, currentColor 5%, transparent); border-bottom: 1px solid var(--border, #ccc);">
+                             <h1 style="font-size: 1.5em; margin: 0;">${escapeHtml(p.title || '(untitled)')}</h1>
+                        </div>
+                        <div style="padding:16px;">
+                            <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+                                <!-- Column A (~67%): description + instruments + license -->
+                                <div style="flex:2 1 420px; min-width:260px;">
+                                    <div style="font-size: 1.1em; line-height: 1.5;">${formatDescription(p.description) || '<span class="dim">No description available.</span>'}</div>
+                                    <div style="margin-top: 1em;"><b>Instruments:</b> ${escapeHtml(p.instruments) || 'n/a'}</div>
+                                    <div style="opacity:.6; font-size:.85em; line-height:1.3; margin-top:1em; padding: .5em; background-color: color-mix(in srgb, currentColor 5%, transparent); border-radius: 4px;">
+                                        <b>Attribution Code</b><br>
+                                        <tt>
+                                            "${escapeHtml(p.title || '')}" Kevin MacLeod (incompetech.com)<br>
+                                            Licensed under Creative Commons: By Attribution 4.0 License<br>
+                                            http://creativecommons.org/licenses/by/4.0/
+
+Rendered attribution for this selected recording:
+"Desert City" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/
+
+Composition and recording rights:
+This is the artist's official music recording, licensed on its individual-track page under CC BY 4.0, not merely a public-domain composition. Its ISRC identifies the licensed recording. The official FAQ explicitly distinguishes recordings from public-domain compositions; see incompetech-license-evidence.txt and the adjacent full CC-BY-4.0.txt.
+
+Local edits (updated 2026-09-14):
+Complete official recording retained in duration; no arrangement, tempo or pitch change.
+Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-12.46 LUFS, TP=0.33 dBTP, LRA=1.90 LU, threshold=-22.46 LUFS, target offset=-0.18 LU.
+Post-processing loudness correction: +0.44 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.
+Re-encoded stereo MP3, 44.1 kHz, 160 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -10.14 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.
+
+Served file SHA-256: bf13aca8a1eece2e50efa6992daf04c89bc0d2604af0b515c28f1e448f80d853
