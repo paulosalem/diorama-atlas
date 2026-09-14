@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atlas · A sense of being there</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='25' fill='%231e2922' stroke='%23d3bd8a' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='12' ry='25' fill='none' stroke='%23d3bd8a' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          15px/1.5 system-ui,
+          sans-serif;
+        color: #ebe6d8;
+        background: #111714;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 32px clamp(16px, 4vw, 64px) 48px;
+      }
+      header,
+      .toolbar,
+      .view-row,
+      footer {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      header {
+        justify-content: space-between;
+        margin-bottom: 26px;
+      }
+      .eyebrow {
+        color: #d3b77b;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin: 0 0 8px;
+      }
+      h1 {
+        font:
+          400 clamp(26px, 3vw, 40px)/1.15 Georgia,
+          serif;
+        margin: 0;
+      }
+      p {
+        color: #b3b8ad;
+      }
+      a {
+        color: #e0c58f;
+        text-underline-offset: 4px;
+      }
+      .toolbar {
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .toolbar > label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .toolbar select {
+        min-width: 0;
+        flex: 1;
+      }
+      select,
+      button {
+        background: #1e2922;
+        color: inherit;
+        border: 1px solid #465045;
+        padding: 11px 14px;
+        border-radius: 8px;
+        font: inherit;
+      }
+      select {
+        max-width: 100%;
+      }
+      button {
+        cursor: pointer;
+        font-size: 13px;
+      }
+      button[aria-pressed="true"] {
+        background: #d3bd8a;
+        color: #1b211b;
+        border-color: #d3bd8a;
+      }
+      :focus-visible {
+        outline: 3px solid #e9cd90;
+        outline-offset: 3px;
+      }
+      .comparison {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        background: #172019;
+      }
+      .comparison img {
+        display: block;
+        width: 100%;
+      }
+      #afterImage {
+        position: absolute;
+        inset: 0;
+        clip-path: inset(0 0 0 50%);
+      }
+      .divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background: #f4e8c8;
+        pointer-events: none;
+      }
+      .image-label {
+        position: absolute;
+        top: 14px;
+        padding: 5px 10px;
+        background: #111a15cf;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+      .before-label {
+        left: 14px;
+      }
+      .after-label {
+        right: 14px;
+      }
+      .slider {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 18px;
+        align-items: center;
+        margin: 18px 0 28px;
+        color: #c6cabc;
+        font-size: 13px;
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: #d3bd8a;
+        cursor: ew-resize;
+      }
+      .connected {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr) minmax(280px, 2fr);
+        gap: 28px;
+        align-items: center;
+        border-top: 1px solid #344137;
+        padding-top: 26px;
+      }
+      .connected h2 {
+        font:
+          400 27px Georgia,
+          serif;
+        margin: 0;
+      }
+      .connected img {
+        width: 100%;
+        border-radius: 8px;
+      }
+      footer {
+        margin-top: 30px;
+        justify-content: space-between;
+        color: #a4ac9e;
+        font-size: 12px;
+      }
+      .error {
+        color: #ffd1bc;
+      }
+      @media (max-width: 650px) {
+        body {
+          padding-top: 20px;
+        }
+        .connected {
+          grid-template-columns: 1fr;
+        }
+        .view-row {
+          gap: 6px;
+        }
+        button {
+          padding: 9px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="eyebrow">Diorama Atlas · continuing the collection</p>
+        <h1>A sense of being there</h1>
+      </div>
+      <a id="worldLink">Explore the living atlas ↗</a>
+    </header>
+    <div class="toolbar">
+      <label
+        >Place
+        <select id="sceneSelect" aria-label="Choose a place"></select
+      ></label>
+      <div class="view-row" id="views" aria-label="Original viewpoints"></div>
+    </div>
+    <div class="comparison" aria-label="Matched before and after views">
+      <img id="beforeImage" alt="" />
+      <img id="afterImage" alt="" />
+      <div class="divider" id="divider"></div>
+      <span class="image-label before-label">Before</span>
+      <span class="image-label after-label">Now</span>
+    </div>
+    <label class="slider"
+      >More now
+      <input
+        id="reveal"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Reveal before and after"
+      />
+      More before</label
+    >
+    <section class="connected">
+      <div>
+        <p class="eyebrow">Beyond the original room</p>
+        <h2 id="passageTitle"></h2>
+        <p>
+          Real thresholds, furnished space and another layer beyond. Enter the
+          live scene to look around and hear its optional ambience.
+        </p>
+        <a id="passageLink">Step through the doorway ↗</a>
+      </div>
+      <a id="passageImageLink"><img id="passageImage" alt="" /></a>
+    </section>
+    <p id="error" class="error" role="alert" hidden></p>
+    <footer>
+      <span
+        >Eleven interiors · original cameras preserved · movement paused for
+        comparison</span
+      ><span>Marrakech remains the reference, unchanged.</span>
+    </footer>
+    <script>
+      const data = /* CAPTURE_DATA */ null;
+      const select = document.getElementById("sceneSelect");
+      const views = document.getElementById("views");
+      const before = document.getElementById("beforeImage");
+      const after = document.getElementById("afterImage");
+      const passage = document.getElementById("passageImage");
+      const error = document.getElementById("error");
+      document.getElementById("worldLink").href = data.appUrl;
+      for (const scene of data.scenes) {
+        const option = new Option(scene.title, scene.id);
+        select.add(option);
+      }
+      for (const image of [before, after, passage]) {
+        image.addEventListener("error", () => {
+          error.textContent = `A comparison image could not be loaded: ${image.getAttribute("src")}`;
+          error.hidden = false;
+        });
+      }
+      function showView(scene, view) {
+        before.src = view.before;
+        after.src = view.after;
+        before.alt = `${scene.title}, ${view.label}, before`;
+        after.alt = `${scene.title}, ${view.label}, now`;
+        for (const button of views.children)
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.key === view.key),
+          );
+      }
+      function showScene() {
+        const scene = data.scenes.find((entry) => entry.id === select.value);
+        views.replaceChildren();
+        for (const view of scene.views) {
+          const button = document.createElement("button");
+          button.textContent = view.label;
+          button.dataset.key = view.key;
+          button.onclick = () => showView(scene, view);
+          views.append(button);
+        }
+        document.getElementById("passageTitle").textContent =
+          scene.passage.label;
+        const url = new URL("/", data.appUrl);
+        url.search = new URLSearchParams({
+          scene: scene.id,
+          view: "passage",
+          inspect: "1",
+        });
+        document.getElementById("passageLink").href = url.href;
+        document.getElementById("passageImageLink").href = url.href;
+        passage.src = scene.passage.file;
+        passage.alt = `${scene.title}: ${scene.passage.label}`;
+        showView(scene, scene.views[0]);
+      }
+      select.onchange = showScene;
+      document.getElementById("reveal").oninput = (event) => {
+        const value = event.target.value;
+        after.style.clipPath = `inset(0 0 0 ${value}%)`;
+        document.getElementById("divider").style.left = `${value}%`;
+      };
+      showScene();
+    </script>
+  </body>
+</html>

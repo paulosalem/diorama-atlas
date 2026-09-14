@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+outputs/
+coverage/
+test-results/
+playwright-report/
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+.codex/
+.playwright-mcp/
+*.log

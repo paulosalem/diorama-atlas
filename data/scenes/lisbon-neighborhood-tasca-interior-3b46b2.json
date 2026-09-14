@@ -1,0 +1,1044 @@
+{
+  "createdAt": "2026-03-12T01:17:59.730Z",
+  "requestPromptHash": "3b46b25111",
+  "pipelineVersion": "generated-recursive-v2",
+  "requestedDepth": 4,
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "lisbon-neighborhood-tasca-interior-3b46b2",
+    "generated": true,
+    "createdAt": "2026-03-12T01:17:59.730Z",
+    "requestPrompt": "A Lisbon neighborhood tasca with tiled walls, chalkboard menu, worn wood counter, small plates, bottles, and the clutter of an everyday lunch rush.",
+    "title": "Lisbon Neighborhood Tasca Interior",
+    "region": "Lisbon, Portugal",
+    "period": "Contemporary 21st Century",
+    "blurb": "A bustling Lisbon neighborhood tasca characterized by its iconic azulejo-tiled walls, a weathered wood counter serving petiscos, chalkboard menus with daily specials, an array of wine and liquor bottles, and the dynamic,",
+    "summary": "This interior tasca scene captures the authentic ambiance of a small traditional Lisbon eatery during a lunch rush. The tiled walls are covered in classic Portuguese azulejo tiles depicting blue and white patterns, while the worn wooden counter displays small plates of petiscos, bottles of local wines and spirits, and everyday clutter like napkins and utensils. The chalkboard menu above presents daily specials in chalk script. The space is divided into functional zones including the counter bar, a few tight patron tables with stools, and shelving filled with jars and bottles, evoking the lively, casual dining culture of Lisbon’s neighborhoods.",
+    "accent": "#003366",
+    "viewer": {
+      "top": "rgba(0, 51, 102, 0.24)",
+      "bottom": "rgba(20, 24, 31, 0.93)",
+      "fog": 1907744,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        -2.5,
+        1.2,
+        1
+      ],
+      "target": [
+        0.7,
+        0.9,
+        0
+      ]
+    },
+    "details": [
+      {
+        "id": "tile",
+        "title": "Azulejo Tile Walls",
+        "body": "The walls are covered with classic Portuguese azulejo tiles, predominantly blue and white, featuring traditional floral or geometric motifs. Azulejos protect walls from moisture and are an aesthetic symbol across Lisbon, reflecting a fusion of Moorish influence and local craftsmanship. In tascas, such tiles provide a cool atmosphere in the warm climate and a",
+        "anchor": "tile",
+        "point": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "counter-bar",
+        "title": "Worn Wood Counter with Petiscos",
+        "body": "The counter is made of aged hardwood with visible scratches and stains from many years of use. On it sit assorted small ceramic petiscos plates filled with olives, chouriço, codfish balls, and other lunchtime staples. Napkin holders, salt shakers, and a half-empty bottle of local red wine clutter the surface, echoing the lively daily lunch rush, where tasca",
+        "anchor": "counter_bar",
+        "point": [
+          0,
+          -0.85,
+          -3.5
+        ]
+      },
+      {
+        "id": "packet-counter",
+        "title": "Chalkboard Menu",
+        "body": "Above the counter hangs a wood-framed chalkboard menu listing that day’s petiscos and drink specials, written in chalk with informal, legible Portuguese script. The customizable nature of chalk allows staff to update offerings quickly based on fresh ingredients and seasonal produce, an important cultural trait of Portuguese casual dining spaces like tascas.",
+        "anchor": "packet_counter",
+        "point": [
+          0.8,
+          0.5,
+          0.01
+        ]
+      },
+      {
+        "id": "bottle-shelf",
+        "title": "Bottled Spirits and Wines",
+        "body": "Shelves behind the counter are stocked with various bottles of Portuguese wines (Vinho Verde, Douro reds), aguardente (local brandy), and soft drinks. Bottle shapes and labels label the regional alcoholic heritage, fostering communal sharing and conviviality during meals. The shelf arrangement is practical yet dense, hinting at the tasca’s regular clientele",
+        "anchor": "bottle_shelf",
+        "point": [
+          0.85,
+          0.25,
+          0
+        ]
+      },
+      {
+        "id": "drawer-wall",
+        "title": "Drawered Storage with Utensils and Linens",
+        "body": "A drawer wall below the counter stores cutlery, napkins, corkscrews, recipe cards, and extra linens. The wood finish is worn but well cared for, reflecting the importance of organization and readiness in a small, fast-paced tasca kitchen environment. This area is a hub of preparation hidden just behind the service bar, illustrating good workflow in the tight",
+        "anchor": "drawer_wall",
+        "point": [
+          0.18,
+          2.08,
+          -4.46
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v2",
+      "art": "cafe",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Hero View",
+          "note": "Photorealistic editorial photo capturing the entire small tasca interior with tiled walls, wood counter, and seating"
+        },
+        {
+          "id": "detail",
+          "label": "Tile Detail",
+          "note": "Close-up showing the intricate blue and white azulejo tiles typical of Lisbon’s traditional tascas"
+        },
+        {
+          "id": "overview",
+          "label": "Counter Clutter",
+          "note": "Detailed photo of the wooden counter layered with small plates (petiscos), bottles, used napkins and utensils, showing signs of active service"
+        }
+      ],
+      "hero": "Photorealistic editorial photograph of a Lisbon tasca interior showing tiled walls and lunch rush details",
+      "mood": "vibrant, authentic, lived-in",
+      "layout": "semi-interior small space with counter bar to one side, small clustered tables near tiled wall, shelving and chalkboard menu above",
+      "palette": [
+        "cool blue tile",
+        "natural wood",
+        "white chalk",
+        "soft terracotta floor",
+        "green plant accents"
+      ],
+      "props": [
+        "small ceramic plates",
+        "wine and spirit bottles",
+        "chalkboard menu",
+        "wooden stools",
+        "napkin holders",
+        "terracotta floor tiles"
+      ],
+      "learning": [
+        "Azulejo tiles are a hallmark of Portuguese interiors, combining art and utility in everyday spaces like tascas.",
+        "The tasca interior centers around a worn wooden counter where patrons eat petiscos (small plates).",
+        "Chalkboard menus are traditional and frequently updated based on fresh, seasonal offerings.",
+        "The seating is informal and dense: small tables and stools encourage sociability and casual dining style typical of Lisbon neighborhoods in"
+      ],
+      "colors": [
+        "#003366",
+        "#ffffff",
+        "#8b5a2b",
+        "#d3c4b8",
+        "#495b3e"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "dense",
+      "cameraBias": "center",
+      "floorMaterial": "terracotta_pavers",
+      "wallMaterial": "plaster_warm",
+      "features": [
+        "storefronts",
+        "counter_bar",
+        "bottle_shelf",
+        "drawer_wall",
+        "hanging_signs",
+        "jar_shelves",
+        "packet_counter"
+      ],
+      "counts": {
+        "tableCount": 3,
+        "chairCount": 8,
+        "shelfCount": 2,
+        "plantCount": 1,
+        "lanternCount": 0,
+        "basketCount": 0,
+        "jarCount": 5,
+        "displayCount": 4
+      },
+      "archetype": "cafe",
+      "detailDepth": 4
+    },
+    "generation": {
+      "pipelineVersion": "generated-recursive-v2",
+      "depth": 4,
+      "recommendedDepth": 4
+    },
+    "referenceAnalysis": {
+      "inventoryModel": "gpt-4.1-mini",
+      "buildModel": "gpt-4.1-mini",
+      "summary": "The scene depicts a small traditional Lisbon tasca interior focused around a worn wooden counter with rustic stools, surrounded by walls covered in detailed blue and white azulejo tiles. The counter is lively and functional, layered with stacks of ceramic plates, bowls of petiscos (small tapas-like dishes), variously-l",
+      "roomLogic": "The room is organized as a compact dining and serving space centering on a long wooden counter with stools for patrons. Behind and around this counter are kitchen utensils and shelves storing plates, bottles, and cooking essentials. The tiled walls act as both decoration and easy",
+      "lightingRead": "Soft natural light enters from the left side window, diffused by sheer curtains providing gentle, ambient illumination. This natural light casts soft shadows and highlights the surface texture of the wooden counter and v",
+      "clutterNotes": [
+        "Stacked ceramic plates of various sizes primarily white with blue patterns",
+        "Multiple glass bottles including wine and spirits with paper and foil caps",
+        "Small bowls containing olives and other petiscos",
+        "Salt and pepper shakers and other small condiment containers",
+        "Napkin holders with paper napkins",
+        "Toothpick container",
+        "Utensil holder with forks, knives, and spoons",
+        "Wicker basket holding oil and vinegar bottles and other condiments"
+      ],
+      "materialObservations": [
+        "The azulejo tiles are glazed ceramic with intricate blue floral and geometric motifs on white backgrounds, exhibiting slight wear and patina.",
+        "The wood materials, mainly on stools and counter, show heavy surface wear with scratches, stains, and matte finish from frequent use.",
+        "Ceramic plates and bowls have a bright white base with blue decorations, some featuring hand-painted style designs typical of Portuguese pottery.",
+        "Glass bottles include a variety of clear, green, and amber glass with cork or metal caps, some with colorful labels that have aged slightly.",
+        "Metal shakers and napkin holders show mild tarnishing but are well maintained, contributing to the utilitarian atmosphere."
+      ],
+      "inventory": [
+        {
+          "label": "Wooden stools",
+          "category": "Seating",
+          "count": 7,
+          "materials": [
+            "wood"
+          ],
+          "zone": "front_center",
+          "detail": "Worn, round top stools with visible scratches and slight shine from use"
+        },
+        {
+          "label": "Worn wooden counter",
+          "category": "Furniture",
+          "count": 1,
+          "materials": [
+            "wood"
+          ],
+          "zone": "front_center",
+          "detail": "Thick plank counter with visible grain, scratches, and stains from prolonged use"
+        },
+        {
+          "label": "Ceramic plates",
+          "category": "Tableware",
+          "count": 15,
+          "materials": [
+            "ceramic"
+          ],
+          "zone": "front_center",
+          "detail": "White and blue decorative plates stacked and laid out for use"
+        },
+        {
+          "label": "Petiscos bowls",
+          "category": "Tableware",
+          "count": 8,
+          "materials": [
+            "ceramic"
+          ],
+          "zone": "front_center",
+          "detail": "Small bowls containing olives, cheese, chorizo, octopus and other traditional Portuguese snacks"
+        },
+        {
+          "label": "Glass bottles",
+          "category": "Containers",
+          "count": 12,
+          "materials": [
+            "glass"
+          ],
+          "zone": "front_center",
+          "detail": "Various wine, olive oil, and spirit bottles, many with corks or foil"
+        },
+        {
+          "label": "Napkin holders",
+          "category": "Tableware accessory",
+          "count": 2,
+          "materials": [
+            "metal",
+            "paper"
+          ],
+          "zone": "front_center",
+          "detail": "Metal dispensers containing paper napkins"
+        },
+        {
+          "label": "Salt and pepper shakers",
+          "category": "Tableware accessory",
+          "count": 3,
+          "materials": [
+            "glass",
+            "metal"
+          ],
+          "zone": "front_center",
+          "detail": "Standard cylindrical shakers"
+        },
+        {
+          "label": "Utensil holders",
+          "category": "Tableware accessory",
+          "count": 1,
+          "materials": [
+            "wood"
+          ],
+          "zone": "front_center",
+          "detail": "Wooden container holding silverware"
+        },
+        {
+          "label": "Potted plants",
+          "category": "Decoration",
+          "count": 2,
+          "materials": [
+            "terracotta",
+            "foliage"
+          ],
+          "zone": "front_left",
+          "detail": "Green leafy plants in traditional terracotta pots"
+        },
+        {
+          "label": "Azulejo tiled walls",
+          "category": "Surface finish",
+          "count": 1,
+          "materials": [
+            "glazed ceramic tile"
+          ],
+          "zone": "back_center",
+          "detail": "Blue and white patterned traditional Portuguese tiles covering the full height of the wall"
+        },
+        {
+          "label": "Chalkboard menus",
+          "category": "Signage",
+          "count": 2,
+          "materials": [
+            "wood",
+            "chalkboard"
+          ],
+          "zone": "back_center",
+          "detail": "Wood framed boards with handwritten menu items in white chalk"
+        },
+        {
+          "label": "Wooden shelves",
+          "category": "Furniture",
+          "count": 2,
+          "materials": [
+            "wood"
+          ],
+          "zone": "back_center",
+          "detail": "Shelves holding plates, glassware, and condiment jars"
+        }
+      ],
+      "anchorObservations": [
+        {
+          "anchor": "tile",
+          "description": "The walls are fully covered in traditional blue and white glazed azulejo tiles with intricate geometric and floral patterns, characteristic of Lisbon heritage.",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "counter_bar",
+          "description": "A long, heavily worn wooden counter with visible scratches and stains acts as the central serving and dining surface, surrounded by rustic wooden stools.",
+          "zone": "front_center"
+        },
+        {
+          "anchor": "packet_counter",
+          "description": "Wood-framed chalkboards display handwritten menus in white chalk with pricing, mounted on the tiled walls above the counter area.",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "bottle_shelf",
+          "description": "Shelves behind the counter are stacked with a mix of wine bottles, spirit bottles, glass jars, and condiment containers, contributing to a dense, used feel.",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "drawer_wall",
+          "description": "Wooden shelving and storage units containing stacks of plates and kitchen utensils, practical and visibly aged for heavy use, are placed behind the counter area",
+          "zone": "back_center"
+        }
+      ]
+    },
+    "buildTree": {
+      "summary": "The scene is a photorealistic depiction of a small traditional Lisbon tasca interior with a focus on the functional zones organized around a worn wooden counter with rustic stools. The tiled walls are clad with detailed blue and white azulejo tiles, and there are distinct presence of shelves stacked with bottles and j-",
+      "depth": 4,
+      "rootLabel": "Lisbon Neighborhood Tasca Interior",
+      "camera": {
+        "position": [
+          -5,
+          2,
+          7
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ]
+      },
+      "nodes": [
+        {
+          "id": "zone-wall",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Azulejo Tile Walls",
+          "builder": "wall_textile",
+          "surfaceRole": "tile",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Full interior walls covered with traditional Portuguese blue and white azulejo tile patterns."
+        },
+        {
+          "id": "zone-counterbar",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Counter Bar Zone",
+          "builder": "counter",
+          "surfaceRole": "counter",
+          "position": [
+            0,
+            -0.85,
+            -3.5
+          ],
+          "rotationY": 0,
+          "scale": [
+            3,
+            1,
+            1.2
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Long worn wooden counter acts as central serving and dining area."
+        },
+        {
+          "id": "zone-tableset",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Patron Seating Zone",
+          "builder": "table",
+          "surfaceRole": "table",
+          "position": [
+            2,
+            0,
+            -1
+          ],
+          "rotationY": 0,
+          "scale": [
+            1.2,
+            1,
+            1
+          ],
+          "quantity": 3,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Cluster of small tables with stools along tiled wall."
+        },
+        {
+          "id": "zone-shelving",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Shelving and Storage Zone",
+          "builder": "shelf",
+          "surfaceRole": "shelf",
+          "position": [
+            -3.2,
+            1.2,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            2,
+            1.2,
+            0.4
+          ],
+          "quantity": 2,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Wooden shelves stacked with plates, bottles, jars and cooking essentials."
+        },
+        {
+          "id": "cluster-stools",
+          "parentId": "zone-counterbar",
+          "depth": 2,
+          "label": "Wooden Stools Cluster",
+          "builder": "stool",
+          "surfaceRole": "seat",
+          "position": [
+            -1.4,
+            -0.85,
+            -3.25
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ],
+          "quantity": 7,
+          "anchor": "counter_bar",
+          "importance": "primary",
+          "notes": "Rustic wooden stools aligned in front of the counter."
+        },
+        {
+          "id": "cluster-plates",
+          "parentId": "zone-counterbar",
+          "depth": 2,
+          "label": "Ceramic Plates Stack",
+          "builder": "table_settings",
+          "surfaceRole": "ceramic",
+          "position": [
+            -0.75,
+            -0.4,
+            -3.4
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.25,
+            0.1,
+            0.25
+          ],
+          "quantity": 15,
+          "anchor": "counter_bar",
+          "importance": "secondary",
+          "notes": "Stacks of white ceramic plates with blue patterns on counter."
+        },
+        {
+          "id": "cluster-petiscos",
+          "parentId": "zone-counterbar",
+          "depth": 2,
+          "label": "Petiscos Bowls Group",
+          "builder": "table_settings",
+          "surfaceRole": "ceramic",
+          "position": [
+            0.3,
+            -0.4,
+            -3.45
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.3,
+            0.15,
+            0.3
+          ],
+          "quantity": 8,
+          "anchor": "counter_bar",
+          "importance": "secondary",
+          "notes": "Small bowls with olives, tapas-like dishes spread on counter."
+        },
+        {
+          "id": "cluster-bottles",
+          "parentId": "zone-counterbar",
+          "depth": 2,
+          "label": "Wine and Spirit Bottles Group",
+          "builder": "bottle_shelf",
+          "surfaceRole": "glass",
+          "position": [
+            1.1,
+            -0.2,
+            -3.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.15,
+            0.5,
+            0.15
+          ],
+          "quantity": 12,
+          "anchor": "counter_bar",
+          "importance": "primary",
+          "notes": "Various glass bottles with wine and spirits arranged on counter."
+        },
+        {
+          "id": "cluster-napkins-utensils",
+          "parentId": "zone-counterbar",
+          "depth": 2,
+          "label": "Napkins and Utensils Cluster",
+          "builder": "table_settings",
+          "surfaceRole": "paper",
+          "position": [
+            0.9,
+            -0.4,
+            -3.55
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.3,
+            0.3,
+            0.3
+          ],
+          "quantity": 3,
+          "anchor": "counter_bar",
+          "importance": "detail",
+          "notes": "Napkin holders, toothpick containers and utensil holders on counter."
+        },
+        {
+          "id": "cluster-plants",
+          "parentId": "zone-wall",
+          "depth": 2,
+          "label": "Potted Plants Cluster",
+          "builder": "plant",
+          "surfaceRole": "plant",
+          "position": [
+            -4.5,
+            0.7,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "quantity": 2,
+          "anchor": "tile",
+          "importance": "secondary",
+          "notes": "Green leafy potted plants in terracotta pots placed on shelves and floor."
+        },
+        {
+          "id": "cluster-chalkboard",
+          "parentId": "zone-wall",
+          "depth": 2,
+          "label": "Chalkboard Menu Signs",
+          "builder": "sign",
+          "surfaceRole": "wood",
+          "position": [
+            0.3,
+            1.7,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            1.2,
+            1,
+            0.1
+          ],
+          "quantity": 2,
+          "anchor": "tile",
+          "importance": "primary",
+          "notes": "Wood-framed chalkboards with handwritten daily special menus above counter."
+        },
+        {
+          "id": "cluster-shelves",
+          "parentId": "zone-shelving",
+          "depth": 3,
+          "label": "Plates and Glass Shelves",
+          "builder": "shelf",
+          "surfaceRole": "shelf",
+          "position": [
+            -3.2,
+            1.3,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            2,
+            0.3,
+            0.35
+          ],
+          "quantity": 1,
+          "anchor": "drawer_wall",
+          "importance": "primary",
+          "notes": "Wooden wall shelf holding stacked plates and glasses."
+        },
+        {
+          "id": "cluster-spices-bottles",
+          "parentId": "zone-shelving",
+          "depth": 3,
+          "label": "Spices and Bottle Shelves",
+          "builder": "shelf",
+          "surfaceRole": "shelf",
+          "position": [
+            -3.75,
+            0.6,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            1.6,
+            0.6,
+            0.35
+          ],
+          "quantity": 1,
+          "anchor": "bottle_shelf",
+          "importance": "primary",
+          "notes": "Wooden shelves carrying bottled spirits, jars, and spices."
+        },
+        {
+          "id": "detail-plate-stack",
+          "parentId": "cluster-plates",
+          "depth": 4,
+          "label": "Individual Ceramic Plates",
+          "builder": "table_settings",
+          "surfaceRole": "ceramic",
+          "position": [
+            -0.75,
+            -0.4,
+            -3.4
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.25,
+            0.1,
+            0.25
+          ],
+          "quantity": 15,
+          "anchor": "counter_bar",
+          "importance": "micro",
+          "notes": "Stacks of plates vary in diameter and height; classic white with blue floral patterns."
+        },
+        {
+          "id": "detail-petisco-bowls",
+          "parentId": "cluster-petiscos",
+          "depth": 4,
+          "label": "Petiscos Small Bowls",
+          "builder": "table_settings",
+          "surfaceRole": "ceramic",
+          "position": [
+            0.3,
+            -0.4,
+            -3.45
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.3,
+            0.15,
+            0.3
+          ],
+          "quantity": 8,
+          "anchor": "counter_bar",
+          "importance": "micro",
+          "notes": "Bowls contain olives, small tapas, and other traditional accompaniments."
+        },
+        {
+          "id": "detail-bottle-collection",
+          "parentId": "cluster-bottles",
+          "depth": 4,
+          "label": "Individual Bottles",
+          "builder": "bottle_shelf",
+          "surfaceRole": "glass",
+          "position": [
+            1.1,
+            -0.2,
+            -3.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.15,
+            0.5,
+            0.15
+          ],
+          "quantity": 12,
+          "anchor": "counter_bar",
+          "importance": "micro",
+          "notes": "Glass bottles featuring wine, spirits with paper and foil caps."
+        },
+        {
+          "id": "detail-chalkboard-menu",
+          "parentId": "cluster-chalkboard",
+          "depth": 4,
+          "label": "Menu Text Detail",
+          "builder": "sign",
+          "surfaceRole": "paper",
+          "position": [
+            0.3,
+            1.7,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            1.15,
+            0.95,
+            0.1
+          ],
+          "quantity": 2,
+          "anchor": "tile",
+          "importance": "micro",
+          "notes": "White chalk handwritten menu text on black surface with daily specials."
+        }
+      ],
+      "surfaceAssignments": [
+        {
+          "id": "azulejo-blue-white-tiles-04f53a338186",
+          "surfaceRole": "tile",
+          "textureLabel": "Azulejo Blue White Tiles",
+          "descriptor": "Traditional Portuguese glazed ceramic tiles with blue floral and geometric patterns on white background",
+          "materialHint": "ceramic glazed tile",
+          "repeat": [
+            6,
+            4
+          ],
+          "imageVersion": "generated-recursive-v2:tile:0bc904f0",
+          "index": 0
+        },
+        {
+          "id": "terracotta-floor-tiles-8ae65b3604bf",
+          "surfaceRole": "floor",
+          "textureLabel": "Terracotta Floor Tiles",
+          "descriptor": "Classic warm terracotta floor tiles with mild wear and patina",
+          "materialHint": "terracotta ceramic",
+          "repeat": [
+            3,
+            4
+          ],
+          "imageVersion": "generated-recursive-v2:floor:fece9579",
+          "index": 1
+        },
+        {
+          "id": "worn-wooden-counter-fbcc21c2c661",
+          "surfaceRole": "counter",
+          "textureLabel": "Worn Wooden Counter",
+          "descriptor": "Heavily worn aged wooden counter surface with scratches, stains and patina",
+          "materialHint": "rough wood",
+          "repeat": [
+            3,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:counter:6732ae92",
+          "index": 2
+        },
+        {
+          "id": "rustic-wooden-furniture-wood-1e1763370b9f",
+          "surfaceRole": "wood",
+          "textureLabel": "Rustic Wooden Furniture Wood",
+          "descriptor": "Natural wood with aged varnish, rough finish on stools, shelves and frames",
+          "materialHint": "wood varnished",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:wood:ee822d52",
+          "index": 3
+        },
+        {
+          "id": "white-and-blue-patterned-ceramics-3bf1241e7196",
+          "surfaceRole": "ceramic",
+          "textureLabel": "White and Blue Patterned Ceramics",
+          "descriptor": "Classic white ceramic plates and bowls with blue floral patterns",
+          "materialHint": "glazed ceramic",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:ceramic:eb4c32b7",
+          "index": 4
+        },
+        {
+          "id": "assorted-glass-bottles-ca97020d5818",
+          "surfaceRole": "glass",
+          "textureLabel": "Assorted Glass Bottles",
+          "descriptor": "Transparent colored glass with varying opacity and label paper textures",
+          "materialHint": "glass with paper labels",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:glass:6c71e4cf",
+          "index": 5
+        },
+        {
+          "id": "chalkboard-surface-and-napkins-42706c74a271",
+          "surfaceRole": "paper",
+          "textureLabel": "Chalkboard Surface and Napkins",
+          "descriptor": "Rough black chalkboard surface with chalk writing; white paper napkins",
+          "materialHint": "chalkboard and paper",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:paper:68ca96e7",
+          "index": 6
+        },
+        {
+          "id": "green-potted-plants-41da6fbf8845",
+          "surfaceRole": "plant",
+          "textureLabel": "Green Potted Plants",
+          "descriptor": "Dense green foliaged plants in terracotta clay pots",
+          "materialHint": "organic plant and clay",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:plant:5ce3ba4e",
+          "index": 7
+        }
+      ],
+      "anchorRefinements": [
+        {
+          "anchor": "counter_bar",
+          "point": [
+            0,
+            -0.85,
+            -3.5
+          ]
+        },
+        {
+          "anchor": "tile",
+          "point": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "textureLibrary": [
+      {
+        "id": "azulejo-blue-white-tiles-04f53a338186",
+        "surfaceRole": "tile",
+        "textureLabel": "Azulejo Blue White Tiles",
+        "descriptor": "Traditional Portuguese glazed ceramic tiles with blue floral and geometric patterns on white background",
+        "materialHint": "ceramic glazed tile",
+        "repeat": [
+          6,
+          4
+        ],
+        "imageVersion": "generated-recursive-v2:tile:0bc904f0",
+        "index": 0,
+        "generatedAt": "2026-03-12T01:20:28.215Z"
+      },
+      {
+        "id": "terracotta-floor-tiles-8ae65b3604bf",
+        "surfaceRole": "floor",
+        "textureLabel": "Terracotta Floor Tiles",
+        "descriptor": "Classic warm terracotta floor tiles with mild wear and patina",
+        "materialHint": "terracotta ceramic",
+        "repeat": [
+          3,
+          4
+        ],
+        "imageVersion": "generated-recursive-v2:floor:fece9579",
+        "index": 1,
+        "generatedAt": "2026-03-12T01:20:34.254Z"
+      },
+      {
+        "id": "worn-wooden-counter-fbcc21c2c661",
+        "surfaceRole": "counter",
+        "textureLabel": "Worn Wooden Counter",
+        "descriptor": "Heavily worn aged wooden counter surface with scratches, stains and patina",
+        "materialHint": "rough wood",
+        "repeat": [
+          3,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:counter:6732ae92",
+        "index": 2,
+        "generatedAt": "2026-03-12T01:20:43.210Z"
+      },
+      {
+        "id": "rustic-wooden-furniture-wood-1e1763370b9f",
+        "surfaceRole": "wood",
+        "textureLabel": "Rustic Wooden Furniture Wood",
+        "descriptor": "Natural wood with aged varnish, rough finish on stools, shelves and frames",
+        "materialHint": "wood varnished",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:wood:ee822d52",
+        "index": 3,
+        "generatedAt": "2026-03-12T01:20:33.206Z"
+      },
+      {
+        "id": "white-and-blue-patterned-ceramics-3bf1241e7196",
+        "surfaceRole": "ceramic",
+        "textureLabel": "White and Blue Patterned Ceramics",
+        "descriptor": "Classic white ceramic plates and bowls with blue floral patterns",
+        "materialHint": "glazed ceramic",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:ceramic:eb4c32b7",
+        "index": 4,
+        "generatedAt": "2026-03-12T01:20:45.763Z"
+      },
+      {
+        "id": "assorted-glass-bottles-ca97020d5818",
+        "surfaceRole": "glass",
+        "textureLabel": "Assorted Glass Bottles",
+        "descriptor": "Transparent colored glass with varying opacity and label paper textures",
+        "materialHint": "glass with paper labels",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:glass:6c71e4cf",
+        "index": 5,
+        "generatedAt": "2026-03-12T01:20:41.302Z"
+      }
+    ],
+    "review": {
+      "status": "completed",
+      "reviewedAt": "2026-03-12T01:32:31.114Z",
+      "model": "gpt-4.1-mini",
+      "summary": "The current render has a slightly more distant and centered camera view compared to the references, which focus more on the detailed counter bar and tiled wall close-up. The density of items on the counter feels somewhat low, lacking the layers of bottles, napkin holders, and small plates seen in references. The tile's",
+      "notes": [
+        "Adjust the camera to a closer and slightly side-angled view to emphasize the counter and tiled wall details as in references.",
+        "Increase the clutter density on the counter to include more bottles, napkin holders, small plates and bowls with olives, and possibly spice jars for richness.",
+        "Refine hotspot placement to focus more on the worn wood counter and tile wall intersection to capture authentic textures and petiscos arrangement."
+      ],
+      "patch": {
+        "alignmentScore": 75,
+        "clutterMultiplier": 1.3,
+        "camera": {
+          "position": [
+            -2.5,
+            1.2,
+            1
+          ],
+          "target": [
+            0.7,
+            0.9,
+            0
+          ]
+        },
+        "detailPoints": [
+          {
+            "anchor": "counter_bar",
+            "point": [
+              0.75,
+              0.15,
+              0
+            ]
+          },
+          {
+            "anchor": "bottle_shelf",
+            "point": [
+              0.85,
+              0.25,
+              0
+            ]
+          },
+          {
+            "anchor": "packet_counter",
+            "point": [
+              0.8,
+              0.5,
+              0.01
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca Interior. Context: Lisbon, Portugal. photorealistic editorial photograph of a Lisbon tasca interior during lunch, showing azulejo tiled walls, worn wood counter with plates and bottles, chalkboard menu, cluttered small space filled with natural daylight Palette cues: cool blue tile, natural wood, white chalk, soft terracotta floor, green plant accents. Key objects: small ceramic plates, wine and spirit bottles, chalkboard menu, wooden stools, napkin holders, terracotta floor tiles. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca Interior. Context: Lisbon, Portugal. photorealistic architectural photography close-up of authentic blue and white Portuguese azulejo tiles on wall Palette cues: cool blue tile, natural wood, white chalk, soft terracotta floor, green plant accents. Key objects: small ceramic plates, wine and spirit bottles, chalkboard menu, wooden stools, napkin holders, terracotta floor tiles. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca Interior. Context: Lisbon, Portugal. photorealistic editorial photograph of a worn wooden bar counter in a Lisbon tasca crowded with small tapas plates, bottles, napkins, utensils during lunch rush Palette cues: cool blue tile, natural wood, white chalk, soft terracotta floor, green plant accents. Key objects: small ceramic plates, wine and spirit bottles, chalkboard menu, wooden stools, napkin holders, terracotta floor tiles. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ]
+}

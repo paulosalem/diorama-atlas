@@ -1,0 +1,75 @@
+{
+  "source": "Local Three.js renders of the versioned atlas environments; no image-generation service was used.",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "reducedMotion": true,
+  "rendered": [
+    {
+      "file": "textile.png",
+      "scene": "textile",
+      "view": "room"
+    },
+    {
+      "file": "kissaten.png",
+      "scene": "kissaten",
+      "view": "room"
+    },
+    {
+      "file": "meyhane.png",
+      "scene": "meyhane",
+      "view": "room"
+    },
+    {
+      "file": "herbshop.png",
+      "scene": "herbshop",
+      "view": "room"
+    },
+    {
+      "file": "1960s-kyoto-kissaten-interior-7d985e.png",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "room"
+    },
+    {
+      "file": "herb-shop-in-hanoi-old-quarter-851851.png",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "room"
+    },
+    {
+      "file": "kerala-backwater-kitchen-courtyard-aadf7c.png",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "room"
+    },
+    {
+      "file": "lisbon-neighborhood-tasca-26f598.png",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "room"
+    },
+    {
+      "file": "lisbon-neighborhood-tasca-interior-3b46b2.png",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "room"
+    },
+    {
+      "file": "lisbon-tasca-interior-3b46b2.png",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "room"
+    },
+    {
+      "file": "traditional-european-bookshop-interior-c-8e7eb4.png",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "room"
+    }
+  ],
+  "unchanged": [
+    {
+      "file": "riad.png",
+      "source": "Imported generated reference image. No independent per-image provenance manifest was supplied."
+    }
+  ],
+  "materials": [
+    "../riad/materials/manifest.json",
+    "../interiors/materials/manifest.json"
+  ]
+}

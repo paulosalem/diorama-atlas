@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+outputs/
+coverage/
+test-results/
+playwright-report/
+.codex/
+.playwright-mcp/
+package-lock.json
+public/
+data/scenes/

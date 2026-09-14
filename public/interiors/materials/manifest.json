@@ -1,0 +1,19 @@
+{
+  "asset": "plastered_stone_wall",
+  "source": "https://polyhaven.com/a/plastered_stone_wall",
+  "license": "CC0",
+  "maps": {
+    "diff": {
+      "path": "/public/interiors/materials/plastered_stone_wall_diff.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_stone_wall/plastered_stone_wall_diff_2k.jpg"
+    },
+    "nor_gl": {
+      "path": "/public/interiors/materials/plastered_stone_wall_nor_gl.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_stone_wall/plastered_stone_wall_nor_gl_2k.jpg"
+    },
+    "rough": {
+      "path": "/public/interiors/materials/plastered_stone_wall_rough.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_stone_wall/plastered_stone_wall_rough_2k.jpg"
+    }
+  }
+}

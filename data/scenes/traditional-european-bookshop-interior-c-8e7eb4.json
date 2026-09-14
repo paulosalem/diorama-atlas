@@ -1,0 +1,1317 @@
+{
+  "createdAt": "2026-03-12T02:29:57.694Z",
+  "requestPromptHash": "8e7eb4d9c8",
+  "pipelineVersion": "generated-recursive-v2",
+  "requestedDepth": 6,
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "traditional-european-bookshop-interior-c-8e7eb4",
+    "generated": true,
+    "createdAt": "2026-03-12T02:29:57.694Z",
+    "requestPrompt": "A crossection of some generic european city",
+    "title": "Traditional European Bookshop Interior Crossover",
+    "region": "Central Europe",
+    "period": "Late 19th Century",
+    "blurb": "A detailed cross-section view of a cozy late 19th-century European bookshop interior, capturing the atmosphere of a bustling literary hub with period-specific furniture, shelving, and cultural artifacts.",
+    "summary": "This bookshop scene is a dense, layered interior typical of a Central European urban setting during the late 1800s. It features dark wood bookshelves laden with leather-bound volumes, a reading desk adorned with period lamps and writing instruments, and a cozy armchair by a window. Architectural details include plastered walls with wooden paneling, stone flooring partially covered with woven rugs, and wrought iron hanging lanterns casting warm light. The room logically divides into browsing shelves, a reading corner, and a transaction counter, richly detailed with fixtures such as book bundles, paper stacks, and vessel-like inkwells.",
+    "accent": "#4b2e2e",
+    "viewer": {
+      "top": "rgba(75, 46, 46, 0.24)",
+      "bottom": "rgba(33, 23, 21, 0.93)",
+      "fog": 2694167,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        1.5,
+        1.2,
+        2
+      ],
+      "target": [
+        0.7,
+        0.55,
+        0.3
+      ]
+    },
+    "details": [
+      {
+        "id": "reading-desk-detail",
+        "title": "19th Century Reading Desk Setup",
+        "body": "This detail focuses on the reading desk, which features a heavily grained mahogany surface with a green leather inlay. A brass oil lamp with cut-glass chimney sits alongside glass inkwells and quill pens, highlighting the transitional writing tech of the era. Additionally, open ledger books and handwritten notes in Gothic script provide historical textuality",
+        "anchor": "reading_desk",
+        "point": [
+          2.5,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "bookshelf-clutter",
+        "title": "Densely Packed Dark Wood Bookshelves",
+        "body": "The dark oak shelving is tightly packed with leather-bound books in deep reds, greens, and browns. Some books lie horizontally showing gilt-edged pages, while others feature faded paper labels. Small stacks of folded pamphlets, early newspapers, and handwritten notebooks inhabit lower shelves. This layering shows both commercial stock and personal reading.",
+        "anchor": "bookshelf",
+        "point": [
+          -1.5,
+          0,
+          1
+        ]
+      },
+      {
+        "id": "armchair-corner",
+        "title": "Comfortable Armchair Reading Nook",
+        "body": "A large, worn leather armchair sits by the mullioned window, framed by heavy drapes. A small side wooden table holds stacked books and a ceramic mug. The chair's creased finish and sagging cushions show use, evoking the intimate atmosphere of private literary enjoyment.",
+        "anchor": "armchair",
+        "point": [
+          0.5,
+          0.45,
+          0.2
+        ]
+      },
+      {
+        "id": "wall-panels-and-frames",
+        "title": "Wall Panelling and Framed Prints",
+        "body": "The walls are covered with dark wood paneling and plaster in muted cream. Framed lithographic prints of contemporary European authors and cityscapes hang along the upper walls. This blend of neoclassical interior finishings with cultural decoration signals the bookshop's civic and intellectual role.",
+        "anchor": "drawer_wall",
+        "point": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "lantern-details",
+        "title": "Period Wrought Iron Hanging Lanterns",
+        "body": "Wrought iron lanterns with tinted glass panels hang from ceiling beams, casting a warm glow with visible candlelight flicker. This lighting technique emphasizes materiality and ambiance before electric illumination, supporting both tasks and mood in the bookshop.",
+        "anchor": "lantern_row",
+        "point": [
+          0,
+          2.2,
+          0
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v2",
+      "art": "bookshop",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Hero Shot",
+          "note": "Interior view of a late 19th century Central European bookshop with layered shelving and warm lighting"
+        },
+        {
+          "id": "detail",
+          "label": "Reading Desk Detail",
+          "note": "Close-up on a reading desk showing brass lamp, ink bottles, quills, leather-bound books, and handwritten notes"
+        },
+        {
+          "id": "overview",
+          "label": "Bookshelf Detail",
+          "note": "Layered bookshelves built from dark wood filled with leather-bound and cloth-bound volumes, some stacked horizontally and others vertically"
+        }
+      ],
+      "hero": "photorealistic editorial photograph capturing the intimate atmosphere of a 19th-century European bookshop interior",
+      "mood": "warm, scholarly, slightly cluttered yet inviting",
+      "layout": "interior segmented into browsing aisles, reading corner, and transaction counter with clear furniture zones and shelving clusters",
+      "palette": [
+        "warm dark wood",
+        "burnt umber",
+        "leather brown",
+        "muted gold",
+        "soft cream"
+      ],
+      "props": [
+        "wooden bookshelves",
+        "leather bound books",
+        "reading desk",
+        "brass lamp",
+        "ink bottles",
+        "quill pen",
+        "armchair",
+        "woven rugs",
+        "plaster walls",
+        "wooden paneling"
+      ],
+      "learning": [
+        "19th-century European bookshops often used dark wood shelving to display their collections densely, emphasizing tactile and visual warmth.",
+        "Reading desks featured writing tools like quill pens and ink bottles reflecting manuscript culture transitioning toward print.",
+        "Armchairs provided a quiet personal space for guests to engage with books, reflecting an era before digital distractions.",
+        "Woven rugs on stone floors softened acoustics and added domestic comfort in commercial interiors of the period; their patterns reveal trade,"
+      ],
+      "colors": [
+        "#4b2e2e",
+        "#8b6d5c",
+        "#c9b798",
+        "#6d4924",
+        "#42312b"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "layered",
+      "cameraBias": "center",
+      "floorMaterial": "stone",
+      "wallMaterial": "paneling_dark",
+      "features": [
+        "bookshelves",
+        "reading_desk",
+        "armchair",
+        "wall_frames",
+        "drawer_wall",
+        "jar_shelves"
+      ],
+      "counts": {
+        "tableCount": 1,
+        "chairCount": 2,
+        "shelfCount": 6,
+        "plantCount": 0,
+        "lanternCount": 3,
+        "basketCount": 0,
+        "jarCount": 3,
+        "displayCount": 0
+      },
+      "archetype": "bookshop",
+      "detailDepth": 6
+    },
+    "generation": {
+      "pipelineVersion": "generated-recursive-v2",
+      "depth": 6,
+      "recommendedDepth": 4
+    },
+    "referenceAnalysis": {
+      "inventoryModel": "gpt-4.1-mini",
+      "buildModel": "gpt-4.1-mini",
+      "summary": "A late 19th century Central European bookshop interior featuring dark wood bookshelves packed with leather and cloth-bound books, many aged with patina and some bundled with string. The room has rich wood paneling and plaster walls with signs of wear. A study area includes a heavy wooden table with scattered parchments",
+      "roomLogic": "The room is organized around dense shelving for browsing and storage, with a reading or writing desk placed near comfortable leather armchairs, forming a cozy work corner. Access to deeper shelf rows is visible through an arched doorway, suggesting a layered space. A ladder leans",
+      "lightingRead": "Warm, inviting lighting comes from brass and glass lamps with soft yellow light, and wall sconces with diffused glass shades, creating a harmonious glow that emphasizes the rich wood and the texture of book spines, while",
+      "clutterNotes": [
+        "Stacks of old books, some tied with string",
+        "Loose handwritten papers and parchment sheets",
+        "Inkwells and quill pens on the reading desk",
+        "Small brass containers and writing implements",
+        "Rolled scrolls and faded handwritten notes"
+      ],
+      "materialObservations": [
+        "Leather on chairs shows patina and wear, typical of frequent use",
+        "Dark stained wood surfaces have worn edges and gloss variation from hand polishing",
+        "Book bindings include different aging styles: cracked leather and worn cloth",
+        "Glass lamp shades have frosted or ribbed textures to soften light",
+        "Parchment and paper notes are yellowed and brittle, indicating age"
+      ],
+      "inventory": [
+        {
+          "label": "Bookshelves",
+          "category": "Furniture",
+          "count": 5,
+          "materials": [
+            "dark stained wood",
+            "leather book bindings",
+            "cloth book bindings"
+          ],
+          "zone": "back_center",
+          "detail": "Tall, layered dark wood shelves densely packed with vertically and horizontally arranged aged books, some tied with string"
+        },
+        {
+          "label": "Leather Armchair",
+          "category": "Furniture",
+          "count": 2,
+          "materials": [
+            "worn leather",
+            "wood frame"
+          ],
+          "zone": "front_left",
+          "detail": "Large, cushioned, tufted vintage brown leather armchairs with nailhead trims placed near desk and shelves"
+        },
+        {
+          "label": "Wooden Ladder",
+          "category": "Furniture",
+          "count": 1,
+          "materials": [
+            "dark stained wood"
+          ],
+          "zone": "front_left",
+          "detail": "Leaning wooden ladder for reaching high shelves"
+        },
+        {
+          "label": "Reading Desk",
+          "category": "Furniture",
+          "count": 1,
+          "materials": [
+            "dark stained wood"
+          ],
+          "zone": "front_center",
+          "detail": "Sturdy wooden writing desk with drawers, showing wear and patina"
+        },
+        {
+          "label": "Desk Lamp (Brass)",
+          "category": "Lighting",
+          "count": 2,
+          "materials": [
+            "brass",
+            "glass"
+          ],
+          "zone": "front_center",
+          "detail": "Antique brass lamp bases with glass shades, one green glass banker's lamp and one opaque ribbed globe shade lamp"
+        },
+        {
+          "label": "Ink Bottles",
+          "category": "Clutter",
+          "count": 3,
+          "materials": [
+            "glass",
+            "metal"
+          ],
+          "zone": "front_center",
+          "detail": "Several glass inkwells, some with brass lids, arranged near parchment and writing tools"
+        },
+        {
+          "label": "Quill Pen",
+          "category": "Clutter",
+          "count": 2,
+          "materials": [
+            "feather"
+          ],
+          "zone": "front_center",
+          "detail": "White quill feather pens resting in ink bottles or lying on papers"
+        },
+        {
+          "label": "Handwritten Papers",
+          "category": "Clutter",
+          "count": 10,
+          "materials": [
+            "aged paper",
+            "parchment"
+          ],
+          "zone": "front_center",
+          "detail": "Various loose, crumpled, and folded handwritten notes spread on the desk"
+        },
+        {
+          "label": "Stacked Books",
+          "category": "Clutter",
+          "count": 8,
+          "materials": [
+            "leather",
+            "cloth"
+          ],
+          "zone": "front_center",
+          "detail": "Stacks of old books piled vertically and horizontally on desk and nearby surfaces"
+        },
+        {
+          "label": "Wall Sconce",
+          "category": "Lighting",
+          "count": 1,
+          "materials": [
+            "metal",
+            "frosted glass"
+          ],
+          "zone": "mid_center",
+          "detail": "Double candle-style wall fixture with frosted glass shades mounted on plaster wall"
+        },
+        {
+          "label": "Rug",
+          "category": "Surface",
+          "count": 1,
+          "materials": [
+            "woven fabric"
+          ],
+          "zone": "front_center",
+          "detail": "Ornate patterned rug with faded warm colors covering wooden floor"
+        },
+        {
+          "label": "Plastered Walls",
+          "category": "Surface",
+          "count": 1,
+          "materials": [
+            "plaster"
+          ],
+          "zone": "mid_center",
+          "detail": "Aged plaster wall surfaces with uneven color and texture"
+        },
+        {
+          "label": "Wood Panelling",
+          "category": "Surface",
+          "count": 1,
+          "materials": [
+            "dark stained wood"
+          ],
+          "zone": "mid_center",
+          "detail": "Decorative wood paneling covering lower wall portion"
+        }
+      ],
+      "anchorObservations": [
+        {
+          "anchor": "reading_desk",
+          "description": "Wooden desk with drawers holding leather-bound books, handwritten parchments, glass ink wells with brass lids, quill pens, and a distinctive green glass bank 'l",
+          "zone": "front_center"
+        },
+        {
+          "anchor": "armchair",
+          "description": "Plush, tufted leather armchair with nailhead trim situated near the reading desk for comfort",
+          "zone": "front_left"
+        },
+        {
+          "anchor": "bookshelf",
+          "description": "Tall, packed dark wood shelving filled with a mixture of leather-bound and cloth-bound volumes, some stacked horizontally or tied with string bundles",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "drawer_wall",
+          "description": "Wood paneling covering the walls with some plaster visible above, highlighting aged interiors",
+          "zone": "mid_center"
+        },
+        {
+          "anchor": "lantern_row",
+          "description": "Wall sconce with a brass base and frosted glass double candle lights on the plaster wall",
+          "zone": "mid_center"
+        }
+      ]
+    },
+    "buildTree": {
+      "summary": "Late 19th century Central European bookshop featuring a richly paneled room with layered dark wood bookshelves, a central reading desk with period writing implements and brass lamps, plush leather armchairs on woven rugs, and wrought iron wall lanterns. The space is segmented into browsing aisles with tall dense books,",
+      "depth": 6,
+      "rootLabel": "Traditional European Bookshop Interior Crossover",
+      "camera": {
+        "position": [
+          0,
+          1.6,
+          -6
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ]
+      },
+      "nodes": [
+        {
+          "id": "zone-1",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Browsing Area",
+          "builder": "zone",
+          "surfaceRole": "floor",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            6,
+            3,
+            5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Main browsing area with tall bookshelves and ladder."
+        },
+        {
+          "id": "zone-2",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Reading Corner",
+          "builder": "zone",
+          "surfaceRole": "floor",
+          "position": [
+            -3.5,
+            0,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            3.5,
+            2.5,
+            3
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Cozy reading space with armchairs and rugs."
+        },
+        {
+          "id": "zone-3",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Transaction & Desk Area",
+          "builder": "zone",
+          "surfaceRole": "floor",
+          "position": [
+            2.5,
+            0,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            3,
+            2.5,
+            3
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Writing desk with study materials and lamps."
+        },
+        {
+          "id": "cluster-1-1",
+          "parentId": "zone-1",
+          "depth": 2,
+          "label": "Bookshelves Cluster A",
+          "builder": "shelf",
+          "surfaceRole": "wood",
+          "position": [
+            -1.5,
+            0,
+            1
+          ],
+          "rotationY": 0,
+          "scale": [
+            3,
+            2.5,
+            0.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Tall dark wood bookshelf filled with vertical and horizontal books."
+        },
+        {
+          "id": "cluster-1-2",
+          "parentId": "zone-1",
+          "depth": 2,
+          "label": "Bookshelves Cluster B",
+          "builder": "shelf",
+          "surfaceRole": "wood",
+          "position": [
+            1.5,
+            0,
+            1
+          ],
+          "rotationY": 0,
+          "scale": [
+            3,
+            2.5,
+            0.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Complementary shelving facing Cluster A."
+        },
+        {
+          "id": "cluster-1-3",
+          "parentId": "zone-1",
+          "depth": 2,
+          "label": "Ladder Cluster",
+          "builder": "stool",
+          "surfaceRole": "wood",
+          "position": [
+            -2.5,
+            0,
+            0.5
+          ],
+          "rotationY": -0.2,
+          "scale": [
+            0.8,
+            1.8,
+            0.3
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Wooden ladder leaning against shelves."
+        },
+        {
+          "id": "cluster-2-1",
+          "parentId": "zone-2",
+          "depth": 2,
+          "label": "Seating Cluster",
+          "builder": "chair",
+          "surfaceRole": "seat",
+          "position": [
+            -3.5,
+            0,
+            0
+          ],
+          "rotationY": 1.57,
+          "scale": [
+            1.5,
+            1.2,
+            1.5
+          ],
+          "quantity": 2,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Leather armchairs arranged for cozy seating, detail varied."
+        },
+        {
+          "id": "cluster-2-2",
+          "parentId": "zone-2",
+          "depth": 2,
+          "label": "Floor Rug",
+          "builder": "floor_rug",
+          "surfaceRole": "textile",
+          "position": [
+            -3.5,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            2.5,
+            0.5,
+            2
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Woven oriental-style rug under armchairs."
+        },
+        {
+          "id": "cluster-3-1",
+          "parentId": "zone-3",
+          "depth": 2,
+          "label": "Reading Desk Cluster",
+          "builder": "table",
+          "surfaceRole": "wood",
+          "position": [
+            2.5,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            2.5,
+            1.2,
+            1.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Heavy wooden writing desk with drawers."
+        },
+        {
+          "id": "cluster-3-2",
+          "parentId": "zone-3",
+          "depth": 2,
+          "label": "Desk Lamp Group",
+          "builder": "lantern",
+          "surfaceRole": "metal",
+          "position": [
+            2.9,
+            0.9,
+            0.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.6,
+            0.4
+          ],
+          "quantity": 2,
+          "anchor": "reading_desk",
+          "importance": "detail",
+          "notes": "Brass lamps with green glass shades on desk."
+        },
+        {
+          "id": "cluster-3-3",
+          "parentId": "zone-3",
+          "depth": 2,
+          "label": "Writing Implements Cluster",
+          "builder": "vessel_group",
+          "surfaceRole": "ceramic",
+          "position": [
+            2.7,
+            0.85,
+            0.5
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "quantity": 3,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Ink bottles and quill holders grouped near papers."
+        },
+        {
+          "id": "cluster-3-4",
+          "parentId": "zone-3",
+          "depth": 2,
+          "label": "Book Stack Cluster",
+          "builder": "book_pile",
+          "surfaceRole": "paper",
+          "position": [
+            3.1,
+            0.85,
+            0.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "quantity": 5,
+          "anchor": "reading_desk",
+          "importance": "detail",
+          "notes": "Stacks of leather-bound and cloth-bound books on desk."
+        },
+        {
+          "id": "cluster-3-5",
+          "parentId": "zone-3",
+          "depth": 2,
+          "label": "Loose Papers Cluster",
+          "builder": "packet_stack",
+          "surfaceRole": "paper",
+          "position": [
+            2.7,
+            0.9,
+            0.9
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.7,
+            0.1,
+            0.5
+          ],
+          "quantity": 10,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Handwritten parchment sheets and loose papers scattered."
+        },
+        {
+          "id": "object-1-1-1",
+          "parentId": "cluster-1-1",
+          "depth": 3,
+          "label": "Books Vertical Group",
+          "builder": "book_pile",
+          "surfaceRole": "paper",
+          "position": [
+            -1.5,
+            1.5,
+            1.1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.25,
+            0.15
+          ],
+          "quantity": 18,
+          "anchor": "bookshelf",
+          "importance": "micro",
+          "notes": "Leather-bound and cloth-bound books arranged vertically in rows."
+        },
+        {
+          "id": "object-1-1-2",
+          "parentId": "cluster-1-1",
+          "depth": 3,
+          "label": "Books Bundled Group",
+          "builder": "bundle_rack",
+          "surfaceRole": "paper",
+          "position": [
+            -1.3,
+            1.2,
+            1.1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.5,
+            0.3,
+            0.3
+          ],
+          "quantity": 6,
+          "anchor": "bookshelf",
+          "importance": "detail",
+          "notes": "Batches of aged papers and books tied with string."
+        },
+        {
+          "id": "object-1-3-1",
+          "parentId": "cluster-1-3",
+          "depth": 3,
+          "label": "Wooden Ladder",
+          "builder": "stool",
+          "surfaceRole": "wood",
+          "position": [
+            -2.7,
+            0,
+            0.5
+          ],
+          "rotationY": -0.2,
+          "scale": [
+            0.8,
+            1.8,
+            0.3
+          ],
+          "quantity": 1,
+          "anchor": "bookshelf",
+          "importance": "detail",
+          "notes": "Leaning vintage ladder for shelf access."
+        },
+        {
+          "id": "object-2-1-1",
+          "parentId": "cluster-2-1",
+          "depth": 3,
+          "label": "Leather Armchair Detailed",
+          "builder": "chair",
+          "surfaceRole": "seat",
+          "position": [
+            -4,
+            0,
+            0.3
+          ],
+          "rotationY": 1.57,
+          "scale": [
+            1.5,
+            1.2,
+            1.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Tufted leather armchair with nailhead trim."
+        },
+        {
+          "id": "object-2-1-2",
+          "parentId": "cluster-2-1",
+          "depth": 3,
+          "label": "Leather Armchair Companion",
+          "builder": "chair",
+          "surfaceRole": "seat",
+          "position": [
+            -3,
+            0,
+            -0.3
+          ],
+          "rotationY": 1.57,
+          "scale": [
+            1.4,
+            1.1,
+            1.4
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Rounded leather armchair slightly smaller."
+        },
+        {
+          "id": "object-3-1-1",
+          "parentId": "cluster-3-1",
+          "depth": 3,
+          "label": "Desk Wood Surface",
+          "builder": "table",
+          "surfaceRole": "wood",
+          "position": [
+            2.5,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            2.5,
+            1.2,
+            1.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Older wood surface with rich patina and wear."
+        },
+        {
+          "id": "object-3-2-1",
+          "parentId": "cluster-3-2",
+          "depth": 3,
+          "label": "Brass Desk Lamp",
+          "builder": "lantern",
+          "surfaceRole": "metal",
+          "position": [
+            2.9,
+            0.9,
+            0.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.6,
+            0.4
+          ],
+          "quantity": 2,
+          "anchor": "reading_desk",
+          "importance": "detail",
+          "notes": "Green glass shade with brass base lamps."
+        },
+        {
+          "id": "object-3-3-1",
+          "parentId": "cluster-3-3",
+          "depth": 3,
+          "label": "Inkwell Trio",
+          "builder": "vessel_group",
+          "surfaceRole": "ceramic",
+          "position": [
+            2.7,
+            0.85,
+            0.5
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.15,
+            0.15,
+            0.15
+          ],
+          "quantity": 3,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Grouped ceramic ink bottles, some with lids."
+        },
+        {
+          "id": "object-3-3-2",
+          "parentId": "cluster-3-3",
+          "depth": 3,
+          "label": "Quill Pens",
+          "builder": "bundle_rack",
+          "surfaceRole": "plant",
+          "position": [
+            2.75,
+            0.9,
+            0.53
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "quantity": 2,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Two feather quills standing in ink bottles."
+        },
+        {
+          "id": "object-3-4-1",
+          "parentId": "cluster-3-4",
+          "depth": 3,
+          "label": "Stacked Books - Leather",
+          "builder": "book_pile",
+          "surfaceRole": "paper",
+          "position": [
+            3,
+            0.85,
+            0.3
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.3,
+            0.4
+          ],
+          "quantity": 3,
+          "anchor": "reading_desk",
+          "importance": "detail",
+          "notes": "Small stacks of thick leather-bound books."
+        },
+        {
+          "id": "object-3-4-2",
+          "parentId": "cluster-3-4",
+          "depth": 3,
+          "label": "Stacked Books - Cloth",
+          "builder": "book_pile",
+          "surfaceRole": "paper",
+          "position": [
+            3.2,
+            0.85,
+            0.2
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.5,
+            0.4,
+            0.5
+          ],
+          "quantity": 2,
+          "anchor": "reading_desk",
+          "importance": "detail",
+          "notes": "Lighter cloth-bound volumes stacked near leather books."
+        },
+        {
+          "id": "object-3-5-1",
+          "parentId": "cluster-3-5",
+          "depth": 3,
+          "label": "Scattered Papers",
+          "builder": "packet_stack",
+          "surfaceRole": "paper",
+          "position": [
+            2.75,
+            0.9,
+            0.9
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.6,
+            0.1,
+            0.5
+          ],
+          "quantity": 6,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Loose parchment and handwritten notes scattered on desk."
+        },
+        {
+          "id": "object-3-5-2",
+          "parentId": "cluster-3-5",
+          "depth": 3,
+          "label": "Rolled Scrolls",
+          "builder": "bundle_rack",
+          "surfaceRole": "paper",
+          "position": [
+            2.65,
+            0.85,
+            1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.3,
+            0.2,
+            0.3
+          ],
+          "quantity": 2,
+          "anchor": "reading_desk",
+          "importance": "micro",
+          "notes": "Tied rolled scrolls at desk corner."
+        },
+        {
+          "id": "surface-1",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Room Surfaces",
+          "builder": "floor_rug",
+          "surfaceRole": "floor",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            6,
+            0.1,
+            5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Stone room floor with large woven carpet areas."
+        },
+        {
+          "id": "surface-2",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Wood Paneling and Walls",
+          "builder": "drawer_cabinet",
+          "surfaceRole": "wood",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            6,
+            3,
+            5
+          ],
+          "quantity": 1,
+          "anchor": "drawer_wall",
+          "importance": "primary",
+          "notes": "Dark wood paneling on lower walls, plaster above with wear signs."
+        },
+        {
+          "id": "surface-3",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Lantern and Wall Lighting",
+          "builder": "lantern",
+          "surfaceRole": "metal",
+          "position": [
+            0,
+            2.2,
+            0
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "quantity": 2,
+          "anchor": "lantern_row",
+          "importance": "detail",
+          "notes": "Wrought iron wall sconces with frosted glass covers."
+        }
+      ],
+      "surfaceAssignments": [
+        {
+          "id": "worn-stone-floor-dbedaf8d4873",
+          "surfaceRole": "floor",
+          "textureLabel": "worn_stone_floor",
+          "descriptor": "Natural worn stone tiles with slight cracks and dirt accumulations",
+          "materialHint": "stone",
+          "repeat": [
+            4,
+            4
+          ],
+          "imageVersion": "generated-recursive-v2:floor:4089b9d9",
+          "index": 0
+        },
+        {
+          "id": "dark-oak-panelling-614e59ca9e4e",
+          "surfaceRole": "wood",
+          "textureLabel": "dark_oak_panelling",
+          "descriptor": "Rich dark oak wood grain with slight worn polish and scratches",
+          "materialHint": "wood",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:wood:78cc9a75",
+          "index": 1
+        },
+        {
+          "id": "aged-paper-book-covers-607b261e1077",
+          "surfaceRole": "paper",
+          "textureLabel": "aged_paper_book_covers",
+          "descriptor": "Leather and cloth-bound book textures with faded gold embossing and stitching",
+          "materialHint": "paper",
+          "repeat": [
+            2,
+            2
+          ],
+          "imageVersion": "generated-recursive-v2:paper:4b520e35",
+          "index": 2
+        },
+        {
+          "id": "aged-brass-metal-d9888c2fb2b7",
+          "surfaceRole": "metal",
+          "textureLabel": "aged_brass_metal",
+          "descriptor": "Brass with warm patina and mild oxidation, including subtle dents",
+          "materialHint": "metal",
+          "repeat": [
+            2,
+            2
+          ],
+          "imageVersion": "generated-recursive-v2:metal:ca44bef8",
+          "index": 3
+        },
+        {
+          "id": "worn-leather-seat-7a04606255ef",
+          "surfaceRole": "seat",
+          "textureLabel": "worn_leather_seat",
+          "descriptor": "Brown aged leather with visible wear, cracks and nailhead trim seams",
+          "materialHint": "leather",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:seat:c65c26e8",
+          "index": 4
+        },
+        {
+          "id": "oriental-woven-rug-f2ae3f6a99cf",
+          "surfaceRole": "textile",
+          "textureLabel": "oriental_woven_rug",
+          "descriptor": "Woven carpet with muted warm color pattern in cream, burnt umber and dark brown",
+          "materialHint": "textile",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:textile:ce125aef",
+          "index": 5
+        }
+      ],
+      "anchorRefinements": [
+        {
+          "anchor": "reading_desk",
+          "point": [
+            2.5,
+            0,
+            0
+          ]
+        },
+        {
+          "anchor": "bookshelf",
+          "point": [
+            -1.5,
+            0,
+            1
+          ]
+        },
+        {
+          "anchor": "drawer_wall",
+          "point": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "anchor": "lantern_row",
+          "point": [
+            0,
+            2.2,
+            0
+          ]
+        }
+      ]
+    },
+    "textureLibrary": [
+      {
+        "id": "worn-stone-floor-dbedaf8d4873",
+        "surfaceRole": "floor",
+        "textureLabel": "worn_stone_floor",
+        "descriptor": "Natural worn stone tiles with slight cracks and dirt accumulations",
+        "materialHint": "stone",
+        "repeat": [
+          4,
+          4
+        ],
+        "imageVersion": "generated-recursive-v2:floor:4089b9d9",
+        "index": 0,
+        "generatedAt": "2026-03-12T02:33:41.594Z"
+      },
+      {
+        "id": "dark-oak-panelling-614e59ca9e4e",
+        "surfaceRole": "wood",
+        "textureLabel": "dark_oak_panelling",
+        "descriptor": "Rich dark oak wood grain with slight worn polish and scratches",
+        "materialHint": "wood",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:wood:78cc9a75",
+        "index": 1,
+        "generatedAt": "2026-03-12T02:33:42.353Z"
+      },
+      {
+        "id": "aged-paper-book-covers-607b261e1077",
+        "surfaceRole": "paper",
+        "textureLabel": "aged_paper_book_covers",
+        "descriptor": "Leather and cloth-bound book textures with faded gold embossing and stitching",
+        "materialHint": "paper",
+        "repeat": [
+          2,
+          2
+        ],
+        "imageVersion": "generated-recursive-v2:paper:4b520e35",
+        "index": 2,
+        "generatedAt": "2026-03-12T02:33:44.181Z"
+      },
+      {
+        "id": "aged-brass-metal-d9888c2fb2b7",
+        "surfaceRole": "metal",
+        "textureLabel": "aged_brass_metal",
+        "descriptor": "Brass with warm patina and mild oxidation, including subtle dents",
+        "materialHint": "metal",
+        "repeat": [
+          2,
+          2
+        ],
+        "imageVersion": "generated-recursive-v2:metal:ca44bef8",
+        "index": 3,
+        "generatedAt": "2026-03-12T02:33:43.435Z"
+      },
+      {
+        "id": "worn-leather-seat-7a04606255ef",
+        "surfaceRole": "seat",
+        "textureLabel": "worn_leather_seat",
+        "descriptor": "Brown aged leather with visible wear, cracks and nailhead trim seams",
+        "materialHint": "leather",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:seat:c65c26e8",
+        "index": 4,
+        "generatedAt": "2026-03-12T02:33:43.508Z"
+      },
+      {
+        "id": "oriental-woven-rug-f2ae3f6a99cf",
+        "surfaceRole": "textile",
+        "textureLabel": "oriental_woven_rug",
+        "descriptor": "Woven carpet with muted warm color pattern in cream, burnt umber and dark brown",
+        "materialHint": "textile",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:textile:ce125aef",
+        "index": 5,
+        "generatedAt": "2026-03-12T02:33:49.321Z"
+      }
+    ],
+    "review": {
+      "status": "completed",
+      "reviewedAt": "2026-03-12T02:34:15.585Z",
+      "model": "gpt-4.1-mini",
+      "summary": "The current 3D render shows a darker, less warm lighting and the camera is farther away from the desk and armchair compared to the reference images. The references have warmer, more focused light on the desk area, rich golden hues, and sharper visual emphasis on the reading desk with detailed desk items. To improve, a",
+      "notes": [
+        "Increase camera closeness to focus more tightly on reading desk and armchair area, capturing more desk details as in references.",
+        "Enhance lighting warmth and intensity especially on desk lamp and papers to emphasize warm, scholarly mood.",
+        "Slightly increase density multiplier of desk clutter and leather books to reflect the layered detail of real books and papers in the references.",
+        "Fine-tune hotspot points on reading_desk to align with key items such as the lamp, open book, quill inkpot, and scattered papers, enhancing interaction spots."
+      ],
+      "patch": {
+        "alignmentScore": 78,
+        "clutterMultiplier": 1.2,
+        "camera": {
+          "position": [
+            1.5,
+            1.2,
+            2
+          ],
+          "target": [
+            0.7,
+            0.55,
+            0.3
+          ]
+        },
+        "detailPoints": [
+          {
+            "anchor": "reading_desk",
+            "point": [
+              0.7,
+              0.55,
+              0.3
+            ]
+          },
+          {
+            "anchor": "armchair",
+            "point": [
+              0.5,
+              0.45,
+              0.2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Traditional European Bookshop Interior Crossover. Context: Central Europe. Photorealistic editorial photograph of a late 19th century European bookshop interior with wooden bookshelves, warm lighting, leather books, armchair and reading desk, showing material textures and period details Palette cues: warm dark wood, burnt umber, leather brown, muted gold, soft cream. Key objects: wooden bookshelves, leather bound books, reading desk, brass lamp, ink bottles, quill pen, armchair, woven rugs, plaster walls, wooden paneling. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Traditional European Bookshop Interior Crossover. Context: Central Europe. Photorealistic architectural photograph of a 19th century European bookshop reading desk with period writing tools, brass lamp, leather books, and scattered notes Palette cues: warm dark wood, burnt umber, leather brown, muted gold, soft cream. Key objects: wooden bookshelves, leather bound books, reading desk, brass lamp, ink bottles, quill pen, armchair, woven rugs, plaster walls, wooden paneling. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Traditional European Bookshop Interior Crossover. Context: Central Europe. Close-up photorealistic photograph of dark wooden bookshelves from a 19th century European bookshop filled densely with leather and cloth bound volumes and paper bundles. Palette cues: warm dark wood, burnt umber, leather brown, muted gold, soft cream. Key objects: wooden bookshelves, leather bound books, reading desk, brass lamp, ink bottles, quill pen, armchair, woven rugs, plaster walls, wooden paneling. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ]
+}

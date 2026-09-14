@@ -1,0 +1,185 @@
+{
+  "createdAt": "2026-03-12T00:02:34.469Z",
+  "requestPromptHash": "aadf7ca2c9",
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "kerala-backwater-kitchen-courtyard-aadf7c",
+    "generated": true,
+    "createdAt": "2026-03-12T00:02:34.469Z",
+    "requestPrompt": "A Kerala backwater kitchen courtyard with brass vessels, spice trays, coconut tools, smoke-dark rafters, and food-prep surfaces layered with everyday detail.",
+    "title": "Kerala Backwater Kitchen Courtyard",
+    "region": "Kerala, South India",
+    "period": "Contemporary traditional",
+    "blurb": "A lively semi-open kitchen courtyard typical of Kerala's backwater homes, featuring brass vessels, spice trays, coconut husking tools, and smoke-darkened rafters. This scene strongly conveys the sensory environment of a",
+    "summary": "This diorama captures the everyday semi-open kitchen courtyard in a traditional Kerala backwater home. It combines locally sourced materials like timber and terracotta with culturally specific artifacts such as the brass uruli pots, spice trays arranged in a tiled nook, and implements used for coconut processing, anchored spatially by the smoke-dark rafters above. Functional surfaces are layered with tools, vessels, and textiles showing daily food-prep rituals.",
+    "accent": "#8b5e3c",
+    "viewer": {
+      "top": "rgba(139, 94, 60, 0.24)",
+      "bottom": "rgba(45, 32, 23, 0.93)",
+      "fog": 3351322,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        -4.1,
+        2.9,
+        5.35
+      ],
+      "target": [
+        0.45,
+        1.12,
+        -1.55
+      ]
+    },
+    "details": [
+      {
+        "id": "1",
+        "title": "Brass Uruli Vessels",
+        "body": "Traditional shallow, wide brass vessels known locally as uruli, prominently used for cooking, heating, and serving in Kerala. Their warm golden patina and evidence of use reflect the historic local metalcraft and copper alloy economy. They sit on wooden shelves and the terracotta floor, creating a strong textural contrast.",
+        "anchor": "counter_bar",
+        "point": [
+          3.24,
+          2.18,
+          1.06
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Spice Tray Niche",
+        "body": "A built-in niche tiled with warm terracotta in the plaster wall holds banana leaf-lined trays filled with turmeric powder, red chili powder, mustard seeds, and dried curry leaves. This practical design keeps essential spices within reach, dryer and away from pests, reflecting Kerala's culinary emphasis on layered spice blends.",
+        "anchor": "drawer_wall",
+        "point": [
+          0.18,
+          2.08,
+          -4.46
+        ]
+      },
+      {
+        "id": "3",
+        "title": "Coconut Husking and Grating Tools",
+        "body": "Wooden tools designed specifically for detaching the coconut husk and grating the fresh kernel are arranged on a low bench next to a clay grinding stone with a brass pestle. This workspace is dedicated to coconut processing, a staple ingredient in Kerala cuisine and daily life.",
+        "anchor": "counter_bar",
+        "point": [
+          3.24,
+          2.18,
+          1.06
+        ]
+      },
+      {
+        "id": "4",
+        "title": "Smoke-Darkened Roof Rafters",
+        "body": "Exposed timber rafters overhead are deeply darkened by centuries of smoke from open woodfires used for cooking. This feature reflects the semi-open nature of traditional Kerala kitchen courtyards, with natural ventilation and historical fuel use.",
+        "anchor": "cedar_screen",
+        "point": [
+          1.24,
+          1.88,
+          -4.72
+        ]
+      },
+      {
+        "id": "5",
+        "title": "Terracotta Paved Floor and Plastered Walls",
+        "body": "The floor is paved with warm terracotta tiles with wear visible in high traffic zones. Walls are smoothly plastered with a lime-based earthy pigment. This natural palette grounds the space in Kerala’s vernacular architectural traditions and climate adaptations.",
+        "anchor": "tile",
+        "point": [
+          1.24,
+          0.16,
+          1.42
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v1",
+      "art": "courtyard",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Hero shot",
+          "note": "Capture the whole courtyard with smoke-dark rafters overhead and brass vessels arranged in the midground, surrounded by the functional layout."
+        },
+        {
+          "id": "detail",
+          "label": "Brass Uruli and Vessels Detail",
+          "note": "Close-up showing the traditional brass pans used for cooking and serving, often clearly aged and polished."
+        },
+        {
+          "id": "overview",
+          "label": "Spice Tray Niche",
+          "note": "The built-in niche with ceramic or terracotta tiles holding spice trays typically with turmeric, chili powder, mustard seeds, and dried curry leaves."
+        }
+      ],
+      "hero": "Photorealistic editorial photograph of a Kerala backwater semi-open kitchen courtyard with traditional brass vessels, spice trays, coconut husking tools and smoke-dark rafters, showing daily food-preparation detail",
+      "mood": "Warm, rustic, and intimate with natural filtered daylight highlighting texture and use-wear",
+      "layout": "A rectangular open-walled courtyard with slatted roof rafters darkened by smoke, a central stone or terracotta food preparation surface, brass vessels arranged on timber shelving and low steps, spice trays inset into a tiled niche in the plastered wall, and a dedicated workstation for coconut husking and grating to one",
+      "palette": [
+        "warm terracotta",
+        "aged brass",
+        "soft plaster beige",
+        "dark wood",
+        "green palm hues"
+      ],
+      "props": [
+        "brass uruli vessels",
+        "wooden coconut husking tools",
+        "banana leaf spice trays",
+        "terracotta floor tiles",
+        "woven palm leaf baskets",
+        "plaited coir mats"
+      ],
+      "learning": [
+        "The uruli is a shallow, wide brass vessel traditionally used in Kerala for cooking and ceremonial purposes, favored for its even heat and l)",
+        "Kerala kitchens feature built-in spice niches tiled with local ceramic or terracotta, used to keep key spices handy and protect them from",
+        "Coconut husking and grating are key daily activities reflected by specialized wooden tools and a dedicated space within the courtyard for"
+      ],
+      "colors": [
+        "#8b5e3c",
+        "#d9b382",
+        "#34312a",
+        "#f6eac2",
+        "#6b4e31"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "layered",
+      "cameraBias": "center",
+      "floorMaterial": "terracotta_pavers",
+      "wallMaterial": "plaster_warm",
+      "features": [
+        "storefronts",
+        "crate_stacks",
+        "fruit_stands",
+        "cedar_screen",
+        "fountain",
+        "arches",
+        "hanging_signs"
+      ],
+      "counts": {
+        "tableCount": 1,
+        "chairCount": 0,
+        "shelfCount": 2,
+        "plantCount": 1,
+        "lanternCount": 0,
+        "basketCount": 3,
+        "jarCount": 5,
+        "displayCount": 2
+      },
+      "archetype": "courtyard"
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Kerala Backwater Kitchen Courtyard. Context: Kerala, South India. Photorealistic editorial photography of a Kerala backwater kitchen courtyard, highlighting smoke-dark rafters, brass uruli pots, spice trays with powdered spices and dried pods, wooden coconut husking tools, terracotta floor and plaster walls with terracotta tiled spice niches. Palette cues: warm terracotta, aged brass, soft plaster beige, dark wood, green palm hues. Key objects: brass uruli vessels, wooden coconut husking tools, banana leaf spice trays, terracotta floor tiles, woven palm leaf baskets, plaited coir mats. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Kerala Backwater Kitchen Courtyard. Context: Kerala, South India. Photorealistic editorial photography of traditional Kerala brass uruli vessels and spice containers, showing patina and signs of daily use, placed on tiered wooden shelving with daylight reflecting from nearby openings. Palette cues: warm terracotta, aged brass, soft plaster beige, dark wood, green palm hues. Key objects: brass uruli vessels, wooden coconut husking tools, banana leaf spice trays, terracotta floor tiles, woven palm leaf baskets, plaited coir mats. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Kerala Backwater Kitchen Courtyard. Context: Kerala, South India. Photorealistic architectural photography focusing on a tiled niche built into a plaster wall, filled with banana leaf lined spice trays containing traditional Kerala spices. Palette cues: warm terracotta, aged brass, soft plaster beige, dark wood, green palm hues. Key objects: brass uruli vessels, wooden coconut husking tools, banana leaf spice trays, terracotta floor tiles, woven palm leaf baskets, plaited coir mats. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ]
+}

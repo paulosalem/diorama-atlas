@@ -1,0 +1,1041 @@
+{
+  "createdAt": "2026-03-12T01:34:24.426Z",
+  "requestPromptHash": "7d985ef97c",
+  "pipelineVersion": "generated-recursive-v2",
+  "requestedDepth": 5,
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "1960s-kyoto-kissaten-interior-7d985e",
+    "generated": true,
+    "createdAt": "2026-03-12T01:34:24.426Z",
+    "requestPrompt": "A 1960s Kyoto kissaten with wood paneling, velvet booths, record shelves, siphon coffee, handwritten menu cards, and desserts on small tables.",
+    "title": "1960s Kyoto Kissaten Interior",
+    "region": "Japan - Kyoto",
+    "period": "1960s Showa Era",
+    "blurb": "A cozy, semi-interior kissaten in Kyoto from the 1960s featuring warm wood paneling, intimate velvet booths, a curated record shelf, siphon coffee brewing stations, handwritten menu cards pinned up, and delicate desserts",
+    "summary": "This diorama recreates a 1960s Kyoto kissaten, an atmospheric tea-and-coffee house, layered with cultural material authenticity. Wood-paneled walls and low velvet booths evoke mid-Showa sophistication, while shelves of vinyl records highlight amiable leisure. Handwritten paper menu cards cluster near the counter bar, reflecting personalized hospitality. The innovative siphon coffee setup anchors a ritual of brewing and serving. Small tables scattered with tiered dessert plates show refined Japanese confectionery culture. Overall, the scene supports detailed zones for brewing, seating, listening, and ordering, ideal for photorealistic architectural editorial photography.",
+    "accent": "#6b4c3b",
+    "viewer": {
+      "top": "rgba(107, 76, 59, 0.24)",
+      "bottom": "rgba(39, 28, 23, 0.93)",
+      "fog": 3022873,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        2.2,
+        1.6,
+        2.8
+      ],
+      "target": [
+        0.4,
+        1,
+        0
+      ]
+    },
+    "details": [
+      {
+        "id": "detail1",
+        "title": "Velvet Booth Seating",
+        "body": "Plush burgundy velvet booths lined along the dark wood-paneled walls providing cozy seating typical of intimate Kyoto kissaten interiors in the 1960s. The textile shows subtle wear from decades of use, imparting authenticity and warmth.",
+        "anchor": "booth",
+        "point": [
+          -4,
+          0,
+          -3
+        ]
+      },
+      {
+        "id": "detail2",
+        "title": "Siphon Coffee Brewing Station",
+        "body": "Glass siphon coffee brewers on brass stands, carefully arranged on a polished wood counter with small gas lights underneath, creating a theatrical and precise coffee-making ritual unique to Japanese kissaten culture.",
+        "anchor": "counter_bar",
+        "point": [
+          3,
+          0,
+          -1
+        ]
+      },
+      {
+        "id": "detail3",
+        "title": "Handwritten Menu Cards",
+        "body": "Delicately pinned handwritten menu cards on cream-colored paper above the counter. These cards list coffee varieties, tea selections, and cakes in elegant Japanese calligraphy, emphasizing the personalized and artisanal nature of the service.",
+        "anchor": "packet_counter",
+        "point": [
+          0.9,
+          0.85,
+          0
+        ]
+      },
+      {
+        "id": "detail4",
+        "title": "Vinyl Record Shelf",
+        "body": "A dark wood wall-mounted shelf filled with 1960s jazz and folk vinyl records, reflecting the musical savant culture of kissaten patrons who often enjoyed listening to records during their visit, contributing to the ambiance.",
+        "anchor": "record_wall",
+        "point": [
+          -2.5,
+          1.6,
+          3
+        ]
+      },
+      {
+        "id": "detail5",
+        "title": "Dessert Tables",
+        "body": "Small wooden tables scattered near the booths hold delicate tiered dessert plates containing traditional Japanese sweets such as yokan and castella, demonstrating the cultural integration of Western and Japanese confectionery.",
+        "anchor": "shared_table",
+        "point": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v2",
+      "art": "cafe",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Booth Corner & Coffee Bar",
+          "note": "Photorealistic editorial photo focusing on velvet booths, wood paneling, and siphon coffee apparatus with handwritten menus in view."
+        },
+        {
+          "id": "detail",
+          "label": "Record Shelf & Menu Cards",
+          "note": "Close-up showing the vinyl record collection and traditional menu cards for drinks and desserts."
+        },
+        {
+          "id": "overview",
+          "label": "Siphon Coffee Station",
+          "note": "Photograph of the physics-inspired siphon coffee makers with glass vessels carefully placed, showing steam and ritual."
+        }
+      ],
+      "hero": "The intimate booth corner with velvet cushions bathed in soft lantern light, adjacent to the siphon coffee bar and hand-lettered menu display.",
+      "mood": "Nostalgic warmth with a touch of refined leisure and handcrafted care.",
+      "layout": "Linear arrangement with wood-paneled walls framing booth seating on one side, the siphon coffee counter aligned opposite, and record shelves behind. Small round dessert tables populate the middle semi-open floor. Zones for brewing, serving, and listening form a layered flow.",
+      "palette": [
+        "warm wood brown",
+        "velvet burgundy",
+        "cream paper",
+        "black metal",
+        "soft amber lighting"
+      ],
+      "props": [
+        "velvet booths",
+        "wood paneling",
+        "siphon coffee apparatus",
+        "handwritten menu cards",
+        "tiered dessert plates",
+        "vinyl records",
+        "paper lanterns",
+        "small round tables",
+        "wooden chairs"
+      ],
+      "learning": [
+        "Kissaten are traditional Japanese coffee houses that flourished during the Showa period, combining Western coffee culture with Japanese sens",
+        "Handwritten menu cards on paper reflect the personalized, artisanal hospitality in Kyoto’s neighborhoods.",
+        "Siphon coffee brewing is a visually poetic and precise method favored in Japan for its clarity and theatricality.",
+        "Velvet booths and wood paneling define the intimate designer aesthetic of 1960s urban kissaten interiors in Kyoto, blending comfort and form"
+      ],
+      "colors": [
+        "#6b4c3b",
+        "#aa7c52",
+        "#4b2e27",
+        "#d9c5b2",
+        "#3e2c24"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "dense",
+      "cameraBias": "center",
+      "floorMaterial": "wood_planks",
+      "wallMaterial": "paneling_dark",
+      "features": [
+        "storefronts",
+        "record_wall",
+        "counter_bar",
+        "bottle_shelf",
+        "packet_counter",
+        "jar_shelves"
+      ],
+      "counts": {
+        "tableCount": 6,
+        "chairCount": 10,
+        "shelfCount": 3,
+        "plantCount": 2,
+        "lanternCount": 4,
+        "basketCount": 0,
+        "jarCount": 6,
+        "displayCount": 3
+      },
+      "archetype": "cafe",
+      "detailDepth": 5
+    },
+    "generation": {
+      "pipelineVersion": "generated-recursive-v2",
+      "depth": 5,
+      "recommendedDepth": 4
+    },
+    "referenceAnalysis": {
+      "inventoryModel": "gpt-4.1-mini",
+      "buildModel": "gpt-4.1-mini",
+      "summary": "The images depict an intimate 1960s Kyoto kissaten interior featuring rich wood-paneled walls and deep burgundy velvet booths. The space centers around the ritual of siphon coffee brewing, evidenced by three glass siphon coffee makers actively heating on the counter bar. Traditional Japanese handwritten menu cards are",
+      "roomLogic": "The room is designed linearly with velvet booths arranged along the wood-paneled walls, small round wooden tables scattered in front, and a counter bar for coffee preparation. Shelving for vinyl records and dinnerware along the back wall informs a cozy, layered dining and leisure",
+      "lightingRead": "Soft amber lighting from traditional paper lanterns and small table lamps creates a warm, nostalgic atmosphere emphasizing the wood grain and velvet texture. The primary light sources are the hanging lanterns, with small",
+      "clutterNotes": [
+        "Stacked porcelain plates and bowls on upper shelves",
+        "Tiered dessert plates with various Japanese sweets and pastries on tables",
+        "Glass jars, cups, sugar bowls, and utensils clustered near the brewinig area",
+        "Collections of vinyl records neatly arranged in wooden shelving",
+        "Handwritten menu cards pinned in clusters above and behind the counter bar"
+      ],
+      "materialObservations": [
+        "Rich dark stained wood used extensively for walls, shelves, tables, and counters",
+        "Velvet upholstery in deep burgundy providing soft tactile contrast",
+        "Glass and brass used for siphon coffee equipment showcasing transparent warm liquids and glowing fuels",
+        "Handmade paper with calligraphic ink for menu cards adding cultural authenticity",
+        "Porcelain dishes in simple cream tones used for serving sweets",
+        "Paper lanterns cast warm amber light, enhancing nostalgic mood"
+      ],
+      "inventory": [
+        {
+          "label": "Velvet Booth Seating",
+          "category": "furniture",
+          "count": 2,
+          "materials": [
+            "velvet fabric",
+            "wood"
+          ],
+          "zone": "front_left",
+          "detail": "Deep burgundy velvet with button tufting and wooden framing around the seats"
+        },
+        {
+          "label": "Wood-paneled Walls",
+          "category": "surface",
+          "count": 1,
+          "materials": [
+            "dark stained wood"
+          ],
+          "zone": "back_center",
+          "detail": "Vertical planks with rich warm brown stain exhibiting fine wood grain texture"
+        },
+        {
+          "label": "Round Wooden Tables",
+          "category": "furniture",
+          "count": 5,
+          "materials": [
+            "wood"
+          ],
+          "zone": "front_center",
+          "detail": "Medium-sized tables with polished dark wooden surfaces"
+        },
+        {
+          "label": "Wooden Dining Chairs",
+          "category": "furniture",
+          "count": 5,
+          "materials": [
+            "wood"
+          ],
+          "zone": "front_center",
+          "detail": "Simple wooden chairs with slightly curved backs and warm wood tone"
+        },
+        {
+          "label": "Siphon Coffee Makers",
+          "category": "equipment",
+          "count": 3,
+          "materials": [
+            "glass",
+            "metal (brass and black)"
+          ],
+          "zone": "mid_right",
+          "detail": "Glass chambers with lower bulbs lit by fuel flames, brewing dark coffee with visible steam"
+        },
+        {
+          "label": "Tiered Dessert Plates",
+          "category": "clutter",
+          "count": 2,
+          "materials": [
+            "metal",
+            "porcelain"
+          ],
+          "zone": "front_center",
+          "detail": "Three-tier silver dessert stands holding assorted traditional Japanese sweets and cakes"
+        },
+        {
+          "label": "Vinyl Records",
+          "category": "clutter",
+          "count": 1,
+          "materials": [
+            "paper",
+            "plastic"
+          ],
+          "zone": "back_center",
+          "detail": "Rows of vintage vinyl record sleeves arranged vertically in wooden shelves"
+        },
+        {
+          "label": "Handwritten Menu Cards",
+          "category": "clutter",
+          "count": 20,
+          "materials": [
+            "paper",
+            "ink"
+          ],
+          "zone": "back_center",
+          "detail": "Rectangular paper cards with Japanese calligraphy pinned on cork or wood boards above the counter"
+        },
+        {
+          "label": "Porcelain Plates and Bowls",
+          "category": "clutter",
+          "count": 15,
+          "materials": [
+            "porcelain"
+          ],
+          "zone": "back_right",
+          "detail": "Stacks of white and cream ceramic dishes organized on shelving near the brewing area"
+        },
+        {
+          "label": "Glassware and Utensils",
+          "category": "clutter",
+          "count": 10,
+          "materials": [
+            "glass",
+            "metal"
+          ],
+          "zone": "mid_right",
+          "detail": "Various glass jars, cups, sugar containers, and stainless steel utensils arranged near the coffee apparatus"
+        },
+        {
+          "label": "Paper Lanterns",
+          "category": "lighting",
+          "count": 3,
+          "materials": [
+            "paper",
+            "metal"
+          ],
+          "zone": "front_center",
+          "detail": "Glowing spherical lanterns with ribbed paper construction suspended from ceiling"
+        },
+        {
+          "label": "Table Lamps",
+          "category": "lighting",
+          "count": 2,
+          "materials": [
+            "fabric",
+            "metal"
+          ],
+          "zone": "back_left",
+          "detail": "Small fabric-shaded lamps emitting warm diffuse light near booth seating"
+        }
+      ],
+      "anchorObservations": [
+        {
+          "anchor": "booth",
+          "description": "Velvet booths with button tufted deep red velvet upholstery arranged along wood-paneled walls",
+          "zone": "front_left"
+        },
+        {
+          "anchor": "counter_bar",
+          "description": "Counter bar featuring three active siphon coffee brewers with glass and metal assemblies and flame heating",
+          "zone": "mid_right"
+        },
+        {
+          "anchor": "packet_counter",
+          "description": "Cluster of handwritten Japanese menu cards pinned prominently above the counter area",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "record_wall",
+          "description": "Wooden shelving holding an extensive collection of vinyl records behind the booth seating area, evoking leisure culture",
+          "zone": "back_center"
+        },
+        {
+          "anchor": "shared_table",
+          "description": "Small round tables topped with tiered plates of traditional Japanese confections and teapots",
+          "zone": "front_center"
+        }
+      ]
+    },
+    "buildTree": {
+      "summary": "A detailed recursive scene build of a 1960s Kyoto kissaten interior, featuring five main zones: Velvet Booth Seating along wood-paneled walls, the Siphon Coffee Brewing Station counter bar, the Vinyl Record and Menu Card display wall, Central Dessert Tables with tiered confections, and Ambient Lighting with paper and a",
+      "depth": 5,
+      "rootLabel": "1960s Kyoto Kissaten Interior",
+      "camera": {
+        "position": [
+          0,
+          2,
+          8
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ]
+      },
+      "nodes": [
+        {
+          "id": "zone-booth",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Velvet Booth Seating Zone",
+          "builder": "booth",
+          "surfaceRole": "seat",
+          "position": [
+            -4,
+            0,
+            -3
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Deep burgundy velvet booths along left wood-paneled wall with button tufting."
+        },
+        {
+          "id": "cluster-booth-table1",
+          "parentId": "zone-booth",
+          "depth": 2,
+          "label": "Booth Seating Cluster Left Front",
+          "builder": "table",
+          "surfaceRole": "table",
+          "position": [
+            -4.5,
+            0.7,
+            -3.5
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.9,
+            0.7,
+            0.9
+          ],
+          "quantity": 1,
+          "anchor": "booth",
+          "importance": "secondary",
+          "notes": "Round wooden table near velvet booths."
+        },
+        {
+          "id": "cluster-booth-cushions1",
+          "parentId": "zone-booth",
+          "depth": 3,
+          "label": "Velvet Cushions Group",
+          "builder": "cushion_group",
+          "surfaceRole": "textile",
+          "position": [
+            -4.3,
+            0.5,
+            -3.1
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "quantity": 2,
+          "anchor": "booth",
+          "importance": "detail",
+          "notes": "Button-tufted velvet cushions on booth seating."
+        },
+        {
+          "id": "cluster-booth-lanterns",
+          "parentId": "zone-booth",
+          "depth": 3,
+          "label": "Paper Lantern Lighting Cluster",
+          "builder": "lantern",
+          "surfaceRole": "paper",
+          "position": [
+            -4,
+            2.3,
+            -3.5
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "quantity": 3,
+          "anchor": "booth",
+          "importance": "detail",
+          "notes": "Glowing warm paper lanterns hanging above booths."
+        },
+        {
+          "id": "zone-counter-bar",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Siphon Coffee Brewing Station Zone",
+          "builder": "counter",
+          "surfaceRole": "counter",
+          "position": [
+            3,
+            0,
+            -1
+          ],
+          "rotationY": 0,
+          "scale": [
+            2.5,
+            1,
+            1
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "primary",
+          "notes": "Counter bar aligned opposite booths with brewing apparatus."
+        },
+        {
+          "id": "cluster-siphon-makers",
+          "parentId": "zone-counter-bar",
+          "depth": 2,
+          "label": "Siphon Coffee Maker Cluster",
+          "builder": "siphon_stand",
+          "surfaceRole": "glass",
+          "position": [
+            3,
+            0.9,
+            -1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.3,
+            0.6,
+            0.3
+          ],
+          "quantity": 3,
+          "anchor": "counter_bar",
+          "importance": "primary",
+          "notes": "Three active siphon coffee makers with glass and heating flames."
+        },
+        {
+          "id": "cluster-coffee-tools",
+          "parentId": "zone-counter-bar",
+          "depth": 3,
+          "label": "Coffee Glassware and Utensils Cluster",
+          "builder": "vessel_group",
+          "surfaceRole": "glass",
+          "position": [
+            3.5,
+            0.8,
+            -0.7
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "quantity": 10,
+          "anchor": "counter_bar",
+          "importance": "detail",
+          "notes": "Glass cups, stirrers, sugar bowls near brewing area."
+        },
+        {
+          "id": "cluster-menu-cards",
+          "parentId": "zone-counter-bar",
+          "depth": 2,
+          "label": "Handwritten Menu Card Cluster",
+          "builder": "packet_stack",
+          "surfaceRole": "paper",
+          "position": [
+            3,
+            1.7,
+            -1.2
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            0.1
+          ],
+          "quantity": 15,
+          "anchor": "counter_bar",
+          "importance": "primary",
+          "notes": "Traditional Japanese menu cards pinned above counter."
+        },
+        {
+          "id": "zone-record-wall",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Vinyl Records and Shelving Zone",
+          "builder": "shelf",
+          "surfaceRole": "wood",
+          "position": [
+            -2.5,
+            1.6,
+            3
+          ],
+          "rotationY": 0,
+          "scale": [
+            5,
+            2,
+            0.5
+          ],
+          "quantity": 1,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Wooden shelving with extensive vinyl record collection and porcelain dishes."
+        },
+        {
+          "id": "cluster-records",
+          "parentId": "zone-record-wall",
+          "depth": 2,
+          "label": "Vinyl Record Collection",
+          "builder": "record_corner",
+          "surfaceRole": "paper",
+          "position": [
+            -2.5,
+            1.5,
+            3.05
+          ],
+          "rotationY": 0,
+          "scale": [
+            4.5,
+            1.5,
+            0.2
+          ],
+          "quantity": 1,
+          "anchor": "record_wall",
+          "importance": "primary",
+          "notes": "Rows of vinyl records filling shelves."
+        },
+        {
+          "id": "cluster-dishes",
+          "parentId": "zone-record-wall",
+          "depth": 3,
+          "label": "Porcelain Plates and Bowls Stack",
+          "builder": "basket",
+          "surfaceRole": "ceramic",
+          "position": [
+            -1.5,
+            1.8,
+            3.1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.8,
+            0.6,
+            0.5
+          ],
+          "quantity": 15,
+          "anchor": "record_wall",
+          "importance": "detail",
+          "notes": "Stacked plates, bowls on upper shelves."
+        },
+        {
+          "id": "zone-dessert-tables",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Shared Dessert Table Zone",
+          "builder": "table",
+          "surfaceRole": "table",
+          "position": [
+            0,
+            0,
+            -1
+          ],
+          "rotationY": 0,
+          "scale": [
+            1.2,
+            0.8,
+            1.2
+          ],
+          "quantity": 5,
+          "anchor": "none",
+          "importance": "secondary",
+          "notes": "Small round wooden tables scattered mid floor area."
+        },
+        {
+          "id": "cluster-dessert-plates",
+          "parentId": "zone-dessert-tables",
+          "depth": 2,
+          "label": "Tiered Dessert Plate Sets",
+          "builder": "cake_plate",
+          "surfaceRole": "ceramic",
+          "position": [
+            0,
+            0.65,
+            -1
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "quantity": 2,
+          "anchor": "shared_table",
+          "importance": "detail",
+          "notes": "Tiered plates with Japanese sweets on tables."
+        },
+        {
+          "id": "cluster-dining-chairs",
+          "parentId": "zone-dessert-tables",
+          "depth": 3,
+          "label": "Wooden Dining Chairs Group",
+          "builder": "chair",
+          "surfaceRole": "wood",
+          "position": [
+            -0.8,
+            0,
+            -1.2
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "quantity": 5,
+          "anchor": "shared_table",
+          "importance": "secondary",
+          "notes": "Wooden chairs arranged around dessert tables."
+        },
+        {
+          "id": "zone-lighting",
+          "parentId": "root",
+          "depth": 1,
+          "label": "Ambient Lighting Zone",
+          "builder": "lantern",
+          "surfaceRole": "paper",
+          "position": [
+            0,
+            2,
+            -2
+          ],
+          "rotationY": 0,
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "quantity": 3,
+          "anchor": "none",
+          "importance": "detail",
+          "notes": "Paper lanterns hanging softly for warm lighting."
+        },
+        {
+          "id": "cluster-table-lamps",
+          "parentId": "zone-lighting",
+          "depth": 2,
+          "label": "Table Lamp Cluster",
+          "builder": "lantern",
+          "surfaceRole": "glass",
+          "position": [
+            -3,
+            1.5,
+            2
+          ],
+          "rotationY": 0,
+          "scale": [
+            0.4,
+            0.8,
+            0.4
+          ],
+          "quantity": 2,
+          "anchor": "none",
+          "importance": "detail",
+          "notes": "Small table lamps on shelves near record wall."
+        }
+      ],
+      "surfaceAssignments": [
+        {
+          "id": "wood-floor-1960s-11b88c2ec536",
+          "surfaceRole": "floor",
+          "textureLabel": "wood_floor_1960s",
+          "descriptor": "polished dark hardwood floor with subtle grain patterns",
+          "materialHint": "wood",
+          "repeat": [
+            3,
+            3
+          ],
+          "imageVersion": "generated-recursive-v2:floor:a30dd0d8",
+          "index": 0
+        },
+        {
+          "id": "wood-paneling-kyoto-a0d17fe6fc7c",
+          "surfaceRole": "wall",
+          "textureLabel": "wood_paneling_kyoto",
+          "descriptor": "vertical rich brown wood panels with slight sheen",
+          "materialHint": "wood",
+          "repeat": [
+            2,
+            2
+          ],
+          "imageVersion": "generated-recursive-v2:wall:7b374853",
+          "index": 1
+        },
+        {
+          "id": "velvet-burgundy-f703e405ecdf",
+          "surfaceRole": "seat",
+          "textureLabel": "velvet_burgundy",
+          "descriptor": "deep burgundy velvet upholstery with button tufting texture",
+          "materialHint": "textile",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:seat:4e3d6feb",
+          "index": 2
+        },
+        {
+          "id": "dark-wood-counter-1c4448369399",
+          "surfaceRole": "counter",
+          "textureLabel": "dark_wood_counter",
+          "descriptor": "worn dark wooden counter surface with gloss finish",
+          "materialHint": "wood",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:counter:c6847790",
+          "index": 3
+        },
+        {
+          "id": "round-wood-table-01415f9fe8e0",
+          "surfaceRole": "table",
+          "textureLabel": "round_wood_table",
+          "descriptor": "medium-tone polished wood grain on round tabletops",
+          "materialHint": "wood",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:table:cfdad919",
+          "index": 4
+        },
+        {
+          "id": "aged-wood-shelves-7ffbc8a2f993",
+          "surfaceRole": "shelf",
+          "textureLabel": "aged_wood_shelves",
+          "descriptor": "dark wood shelving with visible grain and some wear",
+          "materialHint": "wood",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:shelf:b0a17508",
+          "index": 5
+        },
+        {
+          "id": "aged-paper-menu-cards-8c86171a7189",
+          "surfaceRole": "paper",
+          "textureLabel": "aged_paper_menu_cards",
+          "descriptor": "cream toned paper with traditional Japanese calligraphy",
+          "materialHint": "paper",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:paper:1f80643f",
+          "index": 6
+        },
+        {
+          "id": "clear-glass-shiny-1d2e4af829a2",
+          "surfaceRole": "glass",
+          "textureLabel": "clear_glass_shiny",
+          "descriptor": "transparent glass with slight reflections and highlights",
+          "materialHint": "glass",
+          "repeat": [
+            1,
+            1
+          ],
+          "imageVersion": "generated-recursive-v2:glass:b6852f27",
+          "index": 7
+        }
+      ],
+      "anchorRefinements": [
+        {
+          "anchor": "booth",
+          "point": [
+            -4,
+            0,
+            -3
+          ]
+        },
+        {
+          "anchor": "counter_bar",
+          "point": [
+            3,
+            0,
+            -1
+          ]
+        },
+        {
+          "anchor": "record_wall",
+          "point": [
+            -2.5,
+            1.6,
+            3
+          ]
+        },
+        {
+          "anchor": "shared_table",
+          "point": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ]
+    },
+    "textureLibrary": [
+      {
+        "id": "wood-floor-1960s-11b88c2ec536",
+        "surfaceRole": "floor",
+        "textureLabel": "wood_floor_1960s",
+        "descriptor": "polished dark hardwood floor with subtle grain patterns",
+        "materialHint": "wood",
+        "repeat": [
+          3,
+          3
+        ],
+        "imageVersion": "generated-recursive-v2:floor:a30dd0d8",
+        "index": 0,
+        "generatedAt": "2026-03-12T01:38:20.126Z"
+      },
+      {
+        "id": "wood-paneling-kyoto-a0d17fe6fc7c",
+        "surfaceRole": "wall",
+        "textureLabel": "wood_paneling_kyoto",
+        "descriptor": "vertical rich brown wood panels with slight sheen",
+        "materialHint": "wood",
+        "repeat": [
+          2,
+          2
+        ],
+        "imageVersion": "generated-recursive-v2:wall:7b374853",
+        "index": 1,
+        "generatedAt": "2026-03-12T01:38:16.463Z"
+      },
+      {
+        "id": "velvet-burgundy-f703e405ecdf",
+        "surfaceRole": "seat",
+        "textureLabel": "velvet_burgundy",
+        "descriptor": "deep burgundy velvet upholstery with button tufting texture",
+        "materialHint": "textile",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:seat:4e3d6feb",
+        "index": 2,
+        "generatedAt": "2026-03-12T01:38:18.223Z"
+      },
+      {
+        "id": "dark-wood-counter-1c4448369399",
+        "surfaceRole": "counter",
+        "textureLabel": "dark_wood_counter",
+        "descriptor": "worn dark wooden counter surface with gloss finish",
+        "materialHint": "wood",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:counter:c6847790",
+        "index": 3,
+        "generatedAt": "2026-03-12T01:38:18.613Z"
+      },
+      {
+        "id": "round-wood-table-01415f9fe8e0",
+        "surfaceRole": "table",
+        "textureLabel": "round_wood_table",
+        "descriptor": "medium-tone polished wood grain on round tabletops",
+        "materialHint": "wood",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:table:cfdad919",
+        "index": 4,
+        "generatedAt": "2026-03-12T01:38:18.038Z"
+      },
+      {
+        "id": "aged-wood-shelves-7ffbc8a2f993",
+        "surfaceRole": "shelf",
+        "textureLabel": "aged_wood_shelves",
+        "descriptor": "dark wood shelving with visible grain and some wear",
+        "materialHint": "wood",
+        "repeat": [
+          1,
+          1
+        ],
+        "imageVersion": "generated-recursive-v2:shelf:b0a17508",
+        "index": 5,
+        "generatedAt": "2026-03-12T01:38:16.744Z"
+      }
+    ],
+    "review": {
+      "status": "completed",
+      "reviewedAt": "2026-03-12T01:38:44.292Z",
+      "model": "gpt-4.1-mini",
+      "summary": "The current render successfully captures the intimate layout, warm wood tones, and velvet booth seating, matching the references fairly well. However, the camera framing focuses too centrally on the main booth area, missing the dynamic angle that shows the counter bar with siphon coffee apparatus and the handwritten, t",
+      "notes": [
+        "Adjust camera to frame the corner booth seating alongside the counter bar with siphon coffee brewer and handwritten menu cards, similar to the hero reference angle.",
+        "Increase clutter density slightly (about 15%) to enrich scene warmth and visual interest without overcrowding.",
+        "Refine hotspot points to emphasize three main clusters: 1) center of the velvet booth (for seating details), 2) counter bar for siphon coffee apparatus, 3) packet counter for menu,"
+      ],
+      "patch": {
+        "alignmentScore": 86,
+        "clutterMultiplier": 1.15,
+        "camera": {
+          "position": [
+            2.2,
+            1.6,
+            2.8
+          ],
+          "target": [
+            0.4,
+            1,
+            0
+          ]
+        },
+        "detailPoints": [
+          {
+            "anchor": "booth",
+            "point": [
+              0.6,
+              0.85,
+              -0.3
+            ]
+          },
+          {
+            "anchor": "counter_bar",
+            "point": [
+              1,
+              0.75,
+              -0.1
+            ]
+          },
+          {
+            "anchor": "packet_counter",
+            "point": [
+              0.9,
+              0.85,
+              0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: 1960s Kyoto Kissaten Interior. Context: Japan - Kyoto. Photorealistic photograph of a 1960s Kyoto kissaten booth corner showing deep reddish-brown wood paneling, plush velvet booths in warm burgundy under soft orange paper lanterns, an adjacent counter with siphon coffee equipment brewing, and handwritten Japanese menu cards pinned to a cork board behind the bar. Palette cues: warm wood brown, velvet burgundy, cream paper, black metal, soft amber lighting. Key objects: velvet booths, wood paneling, siphon coffee apparatus, handwritten menu cards, tiered dessert plates, vinyl records, paper lanterns, small round tables, wooden chairs. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: 1960s Kyoto Kissaten Interior. Context: Japan - Kyoto. Editorial photograph capturing wooden shelves packed with signed vinyl records typical of the 1960s Japanese city scene, with paper menu cards handwritten in calligraphy pinned above, reflecting the personalized hospitality typical of a Kyoto kissaten. Palette cues: warm wood brown, velvet burgundy, cream paper, black metal, soft amber lighting. Key objects: velvet booths, wood paneling, siphon coffee apparatus, handwritten menu cards, tiered dessert plates, vinyl records, paper lanterns, small round tables, wooden chairs. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: 1960s Kyoto Kissaten Interior. Context: Japan - Kyoto. Photo-realistic architectural shot of a siphon coffee brewer with glass globes, brass stands, and warm steam rising, set against a dark wood paneling backdrop. Palette cues: warm wood brown, velvet burgundy, cream paper, black metal, soft amber lighting. Key objects: velvet booths, wood paneling, siphon coffee apparatus, handwritten menu cards, tiered dessert plates, vinyl records, paper lanterns, small round tables, wooden chairs. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ]
+}

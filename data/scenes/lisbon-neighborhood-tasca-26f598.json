@@ -1,0 +1,188 @@
+{
+  "createdAt": "2026-03-11T23:51:40.852Z",
+  "requestPromptHash": "26f5986540",
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "lisbon-neighborhood-tasca-26f598",
+    "generated": true,
+    "createdAt": "2026-03-11T23:51:40.852Z",
+    "requestPrompt": "A Lisbon neighborhood tasca with tiled walls, chalkboard menu, worn wood counter, small plates, and the clutter of an everyday lunch rush.",
+    "title": "Lisbon Neighborhood Tasca",
+    "region": "Lisbon, Portugal",
+    "period": "Contemporary 21st Century",
+    "blurb": "A cozy Lisbon tasca interior serving classic petiscos, featuring vibrant azulejo-tiled walls, a well-used wooden counter, and the lively clutter typical of a bustling lunch rush in a local eatery.",
+    "summary": "This diorama captures the intimate atmosphere of a traditional Lisbon tasca. Azulejo ceramic tiles line the walls up to chair rail height, showcasing classic blue-and-white patterns that have been kissed by years of smoke and steam. A worn, varnished wooden counter stretches along one wall, cluttered with ceramic plates of pastel de bacalhau, small glasses of vinho verde, and loose chalk marks from the handwritten chalkboard menu above. Natural light filters through a half-open window, illuminating a modest seating area of mismatched wooden chairs and tables, layered with linen tablecloths and the detritus of midday bustle.",
+    "accent": "#1a3d7c",
+    "viewer": {
+      "top": "rgba(26, 61, 124, 0.24)",
+      "bottom": "rgba(24, 26, 35, 0.93)",
+      "fog": 2170404,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        5.5,
+        2.95,
+        4.95
+      ],
+      "target": [
+        -0.92,
+        1.08,
+        -1.28
+      ]
+    },
+    "details": [
+      {
+        "id": "detail1",
+        "title": "Azulejo Tiled Walls",
+        "body": "The walls are clad in traditional Portuguese azulejos — glazed ceramic tiles with intricate blue and white patterns — showcasing century-old motifs. Their glossy glaze bears subtle signs of age: faint steam marks, slight surface cracks, and kitchen stains, grounding the tasca in Lisbon’s artisanal heritage and sense of place.",
+        "anchor": "tile",
+        "point": [
+          1.24,
+          0.16,
+          1.42
+        ]
+      },
+      {
+        "id": "detail2",
+        "title": "Handwritten Chalkboard Menu",
+        "body": "A large chalkboard hangs behind the counter, listing daily petiscos like chouriço assado and pastel de bacalhau in neat, yet smudged chalk script. The presence of faint chalk dust and smears shows the evolving, fresh nature of offerings and the personal touch of the chef’s daily hand.",
+        "anchor": "counter_bar",
+        "point": [
+          3.24,
+          2.18,
+          1.06
+        ]
+      },
+      {
+        "id": "detail3",
+        "title": "Worn Wood Counter",
+        "body": "The long wooden counter, darkened by years of use and candlelight, exhibits scratches, subtle burns, and patches where varnish has worn thin. It holds ceramic plates piled with small dishes and glasses of vinho verde, the surface cluttered yet lovingly maintained, reflecting a working kitchen’s energy.",
+        "anchor": "counter_bar",
+        "point": [
+          3.24,
+          2.18,
+          1.06
+        ]
+      },
+      {
+        "id": "detail4",
+        "title": "Petiscos Serving Vessels",
+        "body": "Small traditional glazed ceramic bowls and plates hold olives, bread, and salted cod fritters, surrounded by glass olive oil cruets and tiny jars carrying toothpicks, demonstrating the material culture of informal Portuguese dining and conviviality.",
+        "anchor": "packet_counter",
+        "point": [
+          -0.82,
+          1.02,
+          1.32
+        ]
+      },
+      {
+        "id": "detail5",
+        "title": "Seating with Linen Tablecloths",
+        "body": "The simple wooden tables and chairs are topped with linen tablecloths bearing wine stains and creases, creating an intimate, worn-in space where locals gather daily, anchoring the social fabric of Lisbon’s neighborhood gastronomy.",
+        "anchor": "shared_table",
+        "point": [
+          -0.16,
+          0.98,
+          -0.12
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v1",
+      "art": "tavern",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Interior view of a Lisbon tasca with azu",
+          "note": "Photorealistic editorial photo capturing dense everyday use textures and vibrant tile patterns on walls next to a busy wooden counter and chalk menu."
+        },
+        {
+          "id": "detail",
+          "label": "Chalkboard menu with Portuguese dishes",
+          "note": "Editorial photograph focusing on a heavily used chalkboard menu listing petiscos and wines in Portuguese, showing chalk dust and smudges."
+        },
+        {
+          "id": "overview",
+          "label": "Azulejo tiled wall with wear",
+          "note": "Photorealistic editorial image showing the pattern and texture variations of glazed ceramic wall tiles with subtle staining and patina from kitchen steam."
+        }
+      ],
+      "hero": "A narrow, sunlit tasca interior with a worn wood counter and azulejo wall tiles, busy lunch rush atmosphere",
+      "mood": "Lively, intimate, slightly chaotic but welcoming",
+      "layout": "Long rectangular room with a counter along one side and small tables for patrons opposite",
+      "palette": [
+        "deep navy blue",
+        "soft white ceramic",
+        "warm dark wood brown",
+        "rustic terracotta",
+        "chalky off-white"
+      ],
+      "props": [
+        "blue and white azulejo ceramic tiles",
+        "worn varnished wood counter",
+        "chalkboard with handwritten menu",
+        "small ceramic petisco plates",
+        "glass jars with toothpicks",
+        "olive oil bottles",
+        "ceramic olive bowls",
+        "rustic wooden chairs",
+        "linen tablecloths",
+        "empty small wine glasses"
+      ],
+      "learning": [
+        "Azulejos are iconic glazed ceramic tiles that decorate many Lisbon interiors, valued for both beauty and durability.",
+        "Tascas are informal Portuguese taverns known for small plates (petiscos) and local wine, serving as social hubs.",
+        "Chalkboard menus are typical for their flexibility and reflect the daily-changing offerings of fresh small dishes.",
+        "Worn wood furniture and layered clutter embody the lived-in feel of long-used neighborhood eateries, showing community and tradition in use."
+      ],
+      "colors": [
+        "#1a3d7c",
+        "#d7ebe8",
+        "#6f5846",
+        "#c13a3a",
+        "#e0d8c3"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "dense",
+      "cameraBias": "center",
+      "floorMaterial": "terracotta_pavers",
+      "wallMaterial": "plaster_warm",
+      "features": [
+        "storefronts",
+        "hanging_signs",
+        "counter_bar",
+        "jar_shelves",
+        "packet_counter"
+      ],
+      "counts": {
+        "tableCount": 4,
+        "chairCount": 8,
+        "shelfCount": 2,
+        "plantCount": 1,
+        "lanternCount": 0,
+        "basketCount": 2,
+        "jarCount": 5,
+        "displayCount": 3
+      },
+      "archetype": "tavern"
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca. Context: Lisbon, Portugal. Photorealistic editorial photograph of the interior of a classic Lisbon neighborhood tasca during lunch rush, showing glossy blue and white azulejo tiled walls, worn dark wood counter covered in small plates and glasses, handwritten chalkboard menu overhead, natural daylight streaming in, dense clutter and textured detail. Palette cues: deep navy blue, soft white ceramic, warm dark wood brown, rustic terracotta, chalky off-white. Key objects: blue and white azulejo ceramic tiles, worn varnished wood counter, chalkboard with handwritten menu, small ceramic petisco plates, glass jars with toothpicks, olive oil bottles, ceramic olive bowls, rustic wooden chairs, linen tablecloths, empty small wine glasses. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca. Context: Lisbon, Portugal. Close-up photorealistic editorial photography of a chalkboard menu in a Lisbon tasca, listing traditional Portuguese petiscos, with smudged white chalk handwriting and faint dust. Palette cues: deep navy blue, soft white ceramic, warm dark wood brown, rustic terracotta, chalky off-white. Key objects: blue and white azulejo ceramic tiles, worn varnished wood counter, chalkboard with handwritten menu, small ceramic petisco plates, glass jars with toothpicks, olive oil bottles, ceramic olive bowls, rustic wooden chairs, linen tablecloths, empty small wine glasses. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Lisbon Neighborhood Tasca. Context: Lisbon, Portugal. Photorealistic close-up editorial photo of blue and white azulejo tiles typical of Lisbon, showing crackled glaze, spots of steam marks, and small chips revealing age. Palette cues: deep navy blue, soft white ceramic, warm dark wood brown, rustic terracotta, chalky off-white. Key objects: blue and white azulejo ceramic tiles, worn varnished wood counter, chalkboard with handwritten menu, small ceramic petisco plates, glass jars with toothpicks, olive oil bottles, ceramic olive bowls, rustic wooden chairs, linen tablecloths, empty small wine glasses. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ]
+}

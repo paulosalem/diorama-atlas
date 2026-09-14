@@ -1,0 +1,52 @@
+[
+  {
+    "asset": "terracotta_floor_tiles",
+    "source": "https://polyhaven.com/a/terracotta_floor_tiles",
+    "license": "CC0",
+    "maps": {
+      "diff": "/public/riad/materials/terracotta_floor_tiles_diff.jpg",
+      "nor_gl": "/public/riad/materials/terracotta_floor_tiles_nor_gl.jpg",
+      "rough": "/public/riad/materials/terracotta_floor_tiles_rough.jpg"
+    }
+  },
+  {
+    "asset": "wood_table_worn",
+    "source": "https://polyhaven.com/a/wood_table_worn",
+    "license": "CC0",
+    "maps": {
+      "diff": "/public/riad/materials/wood_table_worn_diff.jpg",
+      "nor_gl": "/public/riad/materials/wood_table_worn_nor_gl.jpg",
+      "rough": "/public/riad/materials/wood_table_worn_rough.jpg"
+    }
+  },
+  {
+    "asset": "marble_01",
+    "source": "https://polyhaven.com/a/marble_01",
+    "license": "CC0",
+    "maps": {
+      "diff": "/public/riad/materials/marble_01_diff.jpg",
+      "nor_gl": "/public/riad/materials/marble_01_nor_gl.jpg",
+      "rough": "/public/riad/materials/marble_01_rough.jpg"
+    }
+  },
+  {
+    "asset": "clay_plaster",
+    "source": "https://polyhaven.com/a/clay_plaster",
+    "license": "CC0",
+    "maps": {
+      "diff": "/public/riad/materials/clay_plaster_diff.jpg",
+      "nor_gl": "/public/riad/materials/clay_plaster_nor_gl.jpg",
+      "rough": "/public/riad/materials/clay_plaster_rough.jpg"
+    }
+  },
+  {
+    "asset": "plastered_wall_02",
+    "source": "https://polyhaven.com/a/plastered_wall_02",
+    "license": "CC0",
+    "maps": {
+      "diff": "/public/riad/materials/plastered_wall_02_diff.jpg",
+      "nor_gl": "/public/riad/materials/plastered_wall_02_nor_gl.jpg",
+      "rough": "/public/riad/materials/plastered_wall_02_rough.jpg"
+    }
+  }
+]

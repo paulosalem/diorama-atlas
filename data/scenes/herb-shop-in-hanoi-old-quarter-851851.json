@@ -1,0 +1,274 @@
+{
+  "createdAt": "2026-03-12T00:36:12.481Z",
+  "requestPromptHash": "851851fcf6",
+  "model": "gpt-4.1-mini",
+  "scene": {
+    "id": "herb-shop-in-hanoi-old-quarter-851851",
+    "generated": true,
+    "createdAt": "2026-03-12T00:36:12.481Z",
+    "requestPrompt": "A Hanoi old quarter herb shop with dense drawers, bundles, brass scales, jars, folded paper packets, and compressed narrow-room atmosphere.",
+    "title": "Herb Shop in Hanoi Old Quarter",
+    "region": "Vietnam",
+    "period": "Early 20th Century",
+    "blurb": "A narrow, densely packed traditional herb shop in Hanoi's Old Quarter, featuring numerous wooden drawers, hanging herb bundles, brass scales, and neatly folded paper packets of medicinal herbs.",
+    "summary": "This interior scene depicts a typical Vietnamese herbal medicine shop located in the historic Old Quarter of Hanoi. The space is narrow and elongated, with walls lined by wooden cabinetry full of drawers, brass scales on the counter, and bundles of dried herbs hanging overhead. The atmosphere is intimate and compressed, filled with natural materials such as dark polished wood, paper, and brass, illuminated by soft daylight filtering through the front half-open door and a small window towards the back.",
+    "accent": "#5a432a",
+    "viewer": {
+      "top": "rgba(90, 67, 42, 0.24)",
+      "bottom": "rgba(36, 27, 20, 0.93)",
+      "fog": 2826007,
+      "density": 0.028
+    },
+    "camera": {
+      "position": [
+        1.2,
+        1,
+        1.5
+      ],
+      "target": [
+        0.5,
+        0.5,
+        0
+      ]
+    },
+    "details": [
+      {
+        "id": "drawer-wall",
+        "title": "Dense Wooden Drawer Wall",
+        "body": "The elongated walls are lined with dark wooden cabinetry featuring dozens of small drawers, each labeled for different herbs, reflecting typical Vietnamese apothecary storage methods.",
+        "anchor": "drawer_wall",
+        "point": [
+          0.18,
+          2.08,
+          -4.46
+        ]
+      },
+      {
+        "id": "bundle-racks",
+        "title": "Hanging Bundles of Dried Herbs",
+        "body": "Bundles of aromatic herbs are compressed and tied, suspended from ceiling beams to dry, showcasing the traditional preservation technique in Viet herbal shops.",
+        "anchor": "bundle_rack",
+        "point": [
+          0.55,
+          0.8,
+          0.05
+        ]
+      },
+      {
+        "id": "scale-table",
+        "title": "Brass Balancing Scales on Counter",
+        "body": "A pair of brass balance scales rests on a narrow wooden counter near the entrance used for accurately measuring herbal ingredients for prescriptions.",
+        "anchor": "scale_table",
+        "point": [
+          0.52,
+          0.62,
+          0
+        ]
+      },
+      {
+        "id": "jar-shelves",
+        "title": "Ceramic Jars with Medicinal Contents",
+        "body": "A few glazed ceramic jars with cork lids hold powdered or resinous herbal medicines, stored carefully on wooden shelves to keep them dry and protected.",
+        "anchor": "jar_shelf",
+        "point": [
+          4.34,
+          1.86,
+          -2.18
+        ]
+      },
+      {
+        "id": "packet-counter",
+        "title": "Folded Paper Packets Ready for Sale",
+        "body": "Neatly folded paper packets containing measured herbs are stacked near the brass scales, illustrating how herbs were traditionally packaged for customers.",
+        "anchor": "packet_counter",
+        "point": [
+          0.5,
+          0.6,
+          -0.1
+        ]
+      }
+    ],
+    "concept": {
+      "mode": "Generated photorealistic references",
+      "imageVersion": "generated-openai-photo-v1",
+      "art": "shop",
+      "references": [
+        {
+          "id": "hero",
+          "label": "Wooden Drawer Cabinet with Folded Paper",
+          "note": "Showcases traditional Vietnamese herbal storage using numerous small drawers with brass pulls and crisp folded papers containing herbs."
+        },
+        {
+          "id": "detail",
+          "label": "Brass Scale on Counter",
+          "note": "Brass balancing scales often used by herbalists to weigh precise amounts of ingredients."
+        },
+        {
+          "id": "overview",
+          "label": "Bundles of Dried Herbs Hanging",
+          "note": "Herbs hung in bundles to dry and preserve, common in traditional Vietnamese medicinal shops."
+        }
+      ],
+      "hero": "A cramped wooden herbal cabinetry with dense drawers filled with medicinal herbs and folded paper packets.",
+      "mood": "Intimate and warm, with soft diffuse daylight highlighting natural wood grain and brass surfaces, evoking a quiet, focused atmosphere.",
+      "layout": "A narrow rectangular room with cabinetry occupying both longer walls, a small counter near the entrance holding brass scales and folded packets, and dried herb bundles hanging from ceiling beams.",
+      "palette": [
+        "dark_wood",
+        "earthy_beige",
+        "muted_green",
+        "brass_gold",
+        "soft_paper_white"
+      ],
+      "props": [
+        "wooden_drawers",
+        "folded_paper_packets",
+        "herb_bundles",
+        "brass_scales",
+        "ceramic_jars",
+        "woven_baskets"
+      ],
+      "learning": [
+        "Dense cabinetry with small drawers is typical for organizing various herbal ingredients in Vietnamese medicine shops.",
+        "Brass two-pan balance scales have been used historically for precise weighing of medicinal herbs.",
+        "Bundles of dried herbs hung overhead reflect traditional drying and storage methods to maintain herb potency.",
+        "Folded paper packets offer a hygienic, traditional wrapping for prepared herbal blends sold to customers in Vietnam's Old Quarter shops."
+      ],
+      "colors": [
+        "#5a432a",
+        "#8b6e4a",
+        "#ac935d",
+        "#d9c89f",
+        "#3b2d20"
+      ]
+    },
+    "blueprint": {
+      "lighting": "soft_daylight",
+      "density": "dense",
+      "cameraBias": "center",
+      "floorMaterial": "stone",
+      "wallMaterial": "plaster_warm",
+      "features": [
+        "drawer_wall",
+        "bundle_racks",
+        "scale_table",
+        "jar_shelves"
+      ],
+      "counts": {
+        "tableCount": 1,
+        "chairCount": 0,
+        "shelfCount": 2,
+        "plantCount": 0,
+        "lanternCount": 0,
+        "basketCount": 1,
+        "jarCount": 5,
+        "displayCount": 0
+      },
+      "archetype": "shop"
+    },
+    "generation": {
+      "pipelineVersion": "generated-recursive-v2",
+      "depth": 4,
+      "recommendedDepth": 4
+    },
+    "referenceAnalysis": null,
+    "buildTree": {
+      "summary": "",
+      "depth": 4,
+      "rootLabel": "Herb Shop in Hanoi Old Quarter",
+      "camera": {
+        "position": [
+          5.15,
+          2.95,
+          5.1
+        ],
+        "target": [
+          -0.98,
+          1.12,
+          -0.72
+        ]
+      },
+      "nodes": [],
+      "surfaceAssignments": [],
+      "anchorRefinements": []
+    },
+    "textureLibrary": [],
+    "review": {
+      "status": "completed",
+      "reviewedAt": "2026-03-12T01:34:11.355Z",
+      "model": "gpt-4.1-mini",
+      "summary": "The current render has generally captured the main elements but lacks the richness in detail and clutter density seen in the references. The camera is slightly zoomed out and too centered, missing the intimate, compressed feel. The dried herb bundles need to be denser and more varied, hanging closer together and lower.",
+      "notes": [
+        "Camera framing should zoom in slightly and shift focus more towards the center-left corner to highlight the balance scale and stacked packets, enhancing intimacy.",
+        "Increase the density of hanging herb bundles and add more varied heights to better reflect the references.",
+        "Shift the main hotspot points slightly lower and more clustered for bundle_rack to match the dense hanging herbs in the references.",
+        "Adjust scale_table hotspot slightly left to focus on the intricate brass scales detail and their relative position to drawers and packets."
+      ],
+      "patch": {
+        "alignmentScore": 7,
+        "clutterMultiplier": 1.3,
+        "camera": {
+          "position": [
+            1.2,
+            1,
+            1.5
+          ],
+          "target": [
+            0.5,
+            0.5,
+            0
+          ]
+        },
+        "detailPoints": [
+          {
+            "anchor": "bundle_rack",
+            "point": [
+              0.45,
+              0.85,
+              0.1
+            ]
+          },
+          {
+            "anchor": "bundle_rack",
+            "point": [
+              0.55,
+              0.8,
+              0.05
+            ]
+          },
+          {
+            "anchor": "scale_table",
+            "point": [
+              0.52,
+              0.62,
+              0
+            ]
+          },
+          {
+            "anchor": "packet_counter",
+            "point": [
+              0.5,
+              0.6,
+              -0.1
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conceptVariants": [
+    {
+      "id": "hero",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Herb Shop in Hanoi Old Quarter. Context: Vietnam. Photorealistic editorial photo of traditional wooden cabinetry with many drawers in a narrow Vietnamese herb shop filled with folded paper packets. Palette cues: dark_wood, earthy_beige, muted_green, brass_gold, soft_paper_white. Key objects: wooden_drawers, folded_paper_packets, herb_bundles, brass_scales, ceramic_jars, woven_baskets. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "detail",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Herb Shop in Hanoi Old Quarter. Context: Vietnam. Close-up photorealistic architectural photo of brass scale on wooden counter with folded herbal packets in background. Palette cues: dark_wood, earthy_beige, muted_green, brass_gold, soft_paper_white. Key objects: wooden_drawers, folded_paper_packets, herb_bundles, brass_scales, ceramic_jars, woven_baskets. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    },
+    {
+      "id": "overview",
+      "prompt": "Create a photorealistic cultural and architectural reference image. Subject: Herb Shop in Hanoi Old Quarter. Context: Vietnam. Photorealistic editorial photo of compressed bundles of dried herbs hanging from wooden ceiling beams in a Vietnamese shop. Palette cues: dark_wood, earthy_beige, muted_green, brass_gold, soft_paper_white. Key objects: wooden_drawers, folded_paper_packets, herb_bundles, brass_scales, ceramic_jars, woven_baskets. The image must feel like a real place captured by an editorial or architectural photographer. Use believable materials, subtle wear, natural clutter, grounded scale, and realistic lighting. Avoid illustration, collage, CGI gloss, toy-miniature appearance, people, text overlays, watermark, and exaggerated glow."
+    }
+  ],
+  "pipelineVersion": "generated-recursive-v2",
+  "requestedDepth": 4
+}
