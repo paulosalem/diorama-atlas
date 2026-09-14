@@ -51,7 +51,9 @@ export function createSceneNarration({
   const playButton = find("#narrationPlay");
   const events = new AbortController();
   const direction = new THREE.Vector3();
-  const triggers = createNarrationTriggers(views);
+  const triggers = createNarrationTriggers(
+    Object.fromEntries(Object.entries(views).slice(1)),
+  );
   let disposed = false;
   let assets = [];
   let currentKey =
@@ -275,6 +277,7 @@ export function createSceneNarration({
         camera.position.toArray(),
         direction.toArray(),
         now,
+        camera.fov,
       );
       if (key) select(key);
     },

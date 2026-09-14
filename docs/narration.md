@@ -22,7 +22,14 @@ off and saves them. Language is a separate global preference.
 
 Clicking a named view selects its narration. Moving within 1.1 metres of its
 viewpoint and looking toward its subject (direction cosine at least 0.94) for
-1.1 seconds also selects it. A sustained look triggers once, not on every frame.
+1.1 seconds also selects it. The existing look/zoom controls provide another
+route: at 45 degrees field of view or closer, a nearby, same-level subject must
+fill more of the view than its authored framing (footprint ratio at most 0.85)
+and be within a focused gaze cone (direction cosine at least 0.99).
+This lets visitors look into the fountain and zoom closer without clicking its
+viewpoint or requiring unsupported free-walking controls.
+A sustained look triggers once, not on every frame; it never replays the arrival
+paragraph merely because the visitor looks away from a detail.
 Pausing suspends proximity triggers until another deliberate playback/view choice.
 Reduced motion freezes scenery animation, not gaze detection or sound.
 

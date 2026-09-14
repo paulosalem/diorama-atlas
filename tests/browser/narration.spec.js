@@ -113,6 +113,7 @@ test("view buttons and a sustained close look select their own narration", async
     v.camera.position.fromArray(v.runtime.views.cedar.position);
     v.lookAt(v.runtime.views.cedar.target);
   });
+
   await expect
     .poll(async () => (await state(page)).asset)
     .toBe("riad-cedar-en-US");
@@ -129,6 +130,32 @@ test("view buttons and a sustained close look select their own narration", async
     .poll(async () => (await state(page)).asset)
     .toBe("riad-tea-en-US");
   await expect.poll(async () => (await state(page)).state).toBe("playing");
+});
+
+test("looking and zooming with the actual camera controls triggers a focused narration", async ({
+  page,
+}) => {
+  await open(page);
+  await page.locator("#narrationPlay").click();
+  await expect.poll(async () => (await state(page)).state).toBe("playing");
+  const canvas = await page.locator("#canvasMount canvas").boundingBox();
+  const x = canvas.x + canvas.width / 2;
+  const y = canvas.y + canvas.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + 19, y - 50, { steps: 5 });
+  await page.mouse.up();
+  await page.mouse.wheel(0, -950);
+  await expect
+    .poll(async () => (await state(page)).asset)
+    .toBe("riad-fountain-en-US");
+  await expect(page.locator('[data-view="courtyard"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.locator(".narration-text")).toContainText(
+    "water offers relief",
+  );
 });
 
 test("saved narration consent survives blocked autoplay without changing existing sound choices", async ({
