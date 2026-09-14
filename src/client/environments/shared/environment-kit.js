@@ -4,6 +4,10 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createRiadMaterials } from "./materials.js";
 import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
+import { stampSurfaceVariation } from "./surface-variation.js";
+import { createLocalImageTextures } from "./local-image-textures.js";
+import { createPaperProps } from "./paper-props.js";
+import { createPrintMaterials } from "./print-materials.js";
 
 RectAreaLightUniformsLib.init();
 
@@ -27,6 +31,11 @@ export function createEnvironmentKit(
     animated = new Set();
   const animations = [];
   const pending = [];
+  const imageTexture = createLocalImageTextures(renderer, pending, textures);
+  const prints = createPrintMaterials({
+    imageTexture,
+    ownMaterial: (material) => extraMaterials.add(material),
+  });
   for (const map of [
     materials.floor.map,
     materials.floor.normalMap,
@@ -102,6 +111,7 @@ export function createEnvironmentKit(
     mat.bumpMap = map;
     mat.bumpScale = 0.004;
     mat.side = THREE.DoubleSide;
+    mat.userData.patinaProfile = "fabric";
     return mat;
   };
   function mesh(
@@ -795,6 +805,7 @@ export function createEnvironmentKit(
           pieces: [],
         });
       const geo = o.geometry.clone();
+      stampSurfaceVariation(geo, o.matrixWorld);
       geo.applyMatrix4(o.matrixWorld);
       batches.get(key).pieces.push(geo);
       remove.push(o);
@@ -812,6 +823,7 @@ export function createEnvironmentKit(
       geometries.delete(o.geometry);
     });
     let reflection = null;
+    let disposed = false;
     return {
       group,
       animations,
@@ -855,6 +867,8 @@ export function createEnvironmentKit(
         });
       },
       dispose() {
+        if (disposed) return;
+        disposed = true;
         soundscape?.dispose();
         reflection?.texture.dispose();
         reflection?.dispose();
@@ -872,7 +886,7 @@ export function createEnvironmentKit(
       },
     };
   }
-  return {
+  const kit = {
     group,
     m,
     random,
@@ -881,6 +895,8 @@ export function createEnvironmentKit(
     ownMaterial,
     ownGeometry,
     texture,
+    imageTexture,
+    prints,
     textile,
     mesh,
     box,
@@ -912,4 +928,6 @@ export function createEnvironmentKit(
     animations,
     animated,
   };
+  Object.assign(kit, createPaperProps(kit));
+  return kit;
 }

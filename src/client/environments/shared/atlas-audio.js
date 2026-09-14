@@ -206,23 +206,36 @@ export function createAtlasAudio() {
       applySettings();
       notify();
     },
+    setNarrationEnabled(value) {
+      if (typeof value !== "boolean")
+        throw new TypeError("The narration choice must be a boolean.");
+      preferences.narrationEnabled = value;
+      savePreferences();
+      notify();
+    },
     setDucked(value) {
+      if (ducked === value) return;
       ducked = value;
       ambience?.setDucked(value);
       music?.setDucked(value);
+      notify();
     },
     beginNarration() {
       focus.claim();
       ducked = true;
       ambience?.setDucked(true);
       music?.setDucked(true);
+      notify();
     },
     update(camera) {
       ambience?.update(camera);
       music?.update(camera);
     },
     mute() {
-      preferences.ambienceEnabled = preferences.musicEnabled = false;
+      preferences.ambienceEnabled =
+        preferences.musicEnabled =
+        preferences.narrationEnabled =
+          false;
       savePreferences();
       focus.release();
       pauseReason = "";
@@ -237,6 +250,7 @@ export function createAtlasAudio() {
     get snapshot() {
       return {
         ...preferences,
+        narrating: ducked,
         title,
         preferenceError,
         ambience: status(ambience, preferences.ambienceEnabled) ?? {

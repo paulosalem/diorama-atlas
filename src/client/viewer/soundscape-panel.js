@@ -1,10 +1,17 @@
 import { loadAudioLibrary } from "../environments/shared/audio-library.js";
+import { translateError } from "../localization/errors.js";
+import {
+  subscribeLocale,
+  t,
+  translateElement,
+  translateUI,
+} from "../localization/locale.js";
 
 export function createSoundscapePanel(audio) {
   const button = document.createElement("button");
   button.id = "soundscapeButton";
   button.className = "soundscape-button";
-  button.textContent = "Soundscape";
+  translateElement(button, "Soundscape");
   button.setAttribute("aria-haspopup", "dialog");
   const dialog = document.createElement("dialog");
   dialog.className = "soundscape-dialog";
@@ -19,15 +26,19 @@ export function createSoundscapePanel(audio) {
     <section class="soundscape-channel" aria-labelledby="ambienceTitle">
       <div class="soundscape-channel-heading"><h3 id="ambienceTitle">Place ambience</h3><button id="ambientSound" aria-pressed="false">Enable ambience</button></div>
       <p id="ambienceDescription"></p>
-      <label class="soundscape-volume">Volume <input id="ambienceVolume" aria-label="Ambience volume" type="range" min="0" max="100" value="55"><output for="ambienceVolume">55%</output></label>
+      <label class="soundscape-volume"><span data-i18n="Volume">Volume</span> <input id="ambienceVolume" aria-label="Ambience volume" type="range" min="0" max="100" value="55"><output for="ambienceVolume">55%</output></label>
       <p id="ambienceStatus" class="soundscape-status" role="status"></p>
     </section>
     <section class="soundscape-channel" aria-labelledby="musicTitle">
       <div class="soundscape-channel-heading"><h3 id="musicTitle">Music</h3><button id="musicSound" aria-pressed="false">Enable music</button></div>
-      <label class="soundscape-mode">Selection <select id="musicMode"><option value="place">Follow the place</option><option value="theme">Atlas theme everywhere</option></select></label>
+      <label class="soundscape-mode"><span data-i18n="Selection">Selection</span> <select id="musicMode"><option value="place">Follow the place</option><option value="theme">Atlas theme everywhere</option></select></label>
       <p id="musicDescription"></p>
-      <label class="soundscape-volume">Volume <input id="musicVolume" aria-label="Music volume" type="range" min="0" max="100" value="32"><output for="musicVolume">32%</output></label>
+      <label class="soundscape-volume"><span data-i18n="Volume">Volume</span> <input id="musicVolume" aria-label="Music volume" type="range" min="0" max="100" value="32"><output for="musicVolume">32%</output></label>
       <p id="musicStatus" class="soundscape-status" role="status"></p>
+    </section>
+    <section class="soundscape-channel soundscape-narration">
+      <label for="narrationEnabled"><input id="narrationEnabled" type="checkbox" aria-describedby="narrationPreferenceDescription"><span data-i18n="Narrate introductions and views">Narrate introductions and views</span></label>
+      <p id="narrationPreferenceDescription">Hear an introduction when you enter a place and a short description when you change viewpoints. Off until you choose it.</p>
     </section>
     <div class="soundscape-footer"><span>Choices saved on this browser. Only one Atlas tab plays at a time.</span><button id="muteSoundscape">Mute all</button></div>
     <p id="audioPreferenceError" class="soundscape-status is-error" role="alert"></p>
@@ -38,14 +49,27 @@ export function createSoundscapePanel(audio) {
     </details>`;
   document.body.append(dialog);
   const find = (id) => dialog.querySelector(`#${id}`);
+  for (const element of dialog.querySelectorAll(
+    "h2, h3, .soundscape-intro, #closeSoundscape, #musicMode option, .soundscape-footer span, #muteSoundscape, .soundscape-credits > summary, .soundscape-credits > p, #narrationPreferenceDescription",
+  ))
+    translateElement(element, element.textContent);
+  for (const element of dialog.querySelectorAll("[aria-label]"))
+    translateElement(
+      element,
+      element.getAttribute("aria-label"),
+      {},
+      "aria-label",
+    );
   let assets = [];
   let disposed = false;
+  let loadingCredits = false;
+  let creditsError = null;
 
   function channel(kind, status) {
     const control = find(kind === "ambience" ? "ambientSound" : "musicSound");
     const state = status?.state ?? "idle";
     control.disabled = kind === "ambience" && !status;
-    control.textContent =
+    control.textContent = t(
       state === "loading"
         ? "Cancel loading"
         : state === "armed"
@@ -54,13 +78,14 @@ export function createSoundscapePanel(audio) {
             ? `Mute ${kind}`
             : state === "paused"
               ? `Resume ${kind}`
-              : `Enable ${kind}`;
+              : `Enable ${kind}`,
+    );
     control.setAttribute(
       "aria-pressed",
       String(state === "playing" || state === "armed"),
     );
     const message = find(`${kind}Status`);
-    message.textContent =
+    message.textContent = t(
       state === "error"
         ? status.error
         : state === "loading"
@@ -69,41 +94,56 @@ export function createSoundscapePanel(audio) {
             ? status.notice || "Paused. Resume when you are ready."
             : state === "armed"
               ? status.notice
-              : "";
+              : "",
+    );
     message.classList.toggle("is-error", state === "error");
   }
 
   function render() {
     if (disposed) return;
+    translateUI(dialog);
+    translateUI(button);
     const state = audio.snapshot;
-    find("audioPreferenceError").textContent = state.preferenceError;
+    find("audioPreferenceError").textContent = t(state.preferenceError);
     channel("ambience", state.ambience);
     channel("music", state.music);
-    find("ambienceDescription").textContent =
-      state.ambienceLabel ?? "Step inside a place to hear its surroundings.";
+    find("ambienceDescription").textContent = t(
+      state.ambienceLabel ?? "Step inside a place to hear its surroundings.",
+    );
     const track = assets.find((asset) => asset.id === state.musicAsset);
     find("musicDescription").textContent = track
       ? `${track.title} - ${track.creator}`
-      : "A shared, unhurried theme, or music chosen for the place.";
+      : t("A shared, unhurried theme, or music chosen for the place.");
     for (const kind of ["ambience", "music"]) {
       const slider = find(`${kind}Volume`);
       slider.value = Math.round(state[`${kind}Volume`] * 100);
       slider.nextElementSibling.value = `${slider.value}%`;
     }
     find("musicMode").value = state.mode;
-    const playing = [state.ambience, state.music].some(
-      (s) => s?.state === "playing",
-    );
+    find("narrationEnabled").checked = state.narrationEnabled;
+    const playing =
+      state.narrating ||
+      [state.ambience, state.music].some((s) => s?.state === "playing");
     button.classList.toggle("is-playing", playing);
     button.setAttribute(
       "aria-label",
-      playing ? "Soundscape, audio on" : "Soundscape, audio off",
+      t(playing ? "Soundscape, audio on" : "Soundscape, audio off"),
     );
+    if (creditsError)
+      find("audioCredits").textContent = t(
+        "{error} Reopen this panel to retry.",
+        { error: translateError(creditsError) },
+      );
   }
 
   async function credits() {
+    if (loadingCredits) return;
+    loadingCredits = true;
+    creditsError = null;
     const container = find("audioCredits");
-    container.textContent = "Loading credits...";
+    container.replaceChildren(
+      translateElement(document.createElement("p"), "Loading credits..."),
+    );
     try {
       assets = await loadAudioLibrary();
       if (disposed) return;
@@ -116,25 +156,29 @@ export function createSoundscapePanel(audio) {
         title.href = asset.sourceUrl;
         title.target = "_blank";
         title.rel = "noreferrer";
-        title.textContent = asset.title;
+        translateElement(title, asset.title);
         const license = document.createElement("a");
         license.href = asset.licenseUrl;
         license.target = "_blank";
         license.rel = "noreferrer";
-        license.textContent = asset.license;
+        translateElement(license, asset.license);
         entry.append(title, ` - ${asset.creator}. `, license, ".");
         if (asset.edits) {
           const edits = document.createElement("small");
-          edits.textContent =
-            asset.kind === "music"
-              ? "Adapted for Atlas: normalized; some tracks are shortened with fades. "
-              : "Edited for playback: filtering, fades and level adjustment; some recordings are excerpted. ";
+          edits.append(
+            translateElement(
+              document.createElement("span"),
+              asset.kind === "music"
+                ? "Adapted for Atlas: normalized; some tracks are shortened with fades. "
+                : "Edited for playback: filtering, fades and level adjustment; some recordings are excerpted. ",
+            ),
+          );
           if (asset.licenseEvidence) {
             const notes = document.createElement("a");
             notes.href = asset.licenseEvidence;
             notes.target = "_blank";
             notes.rel = "noreferrer";
-            notes.textContent = "Source & processing notes";
+            translateElement(notes, "Source & processing notes");
             edits.append(notes);
           }
           entry.append(edits);
@@ -144,8 +188,10 @@ export function createSoundscapePanel(audio) {
       render();
     } catch (error) {
       console.error("Could not load audio credits.", error);
-      if (!disposed)
-        container.textContent = `${error.message} Reopen this panel to retry.`;
+      creditsError = error;
+      if (!disposed) render();
+    } finally {
+      loadingCredits = false;
     }
   }
 
@@ -165,10 +211,13 @@ export function createSoundscapePanel(audio) {
   find("musicSound").onclick = audio.toggleMusic;
   find("muteSoundscape").onclick = audio.mute;
   find("musicMode").onchange = (event) => audio.setMode(event.target.value);
+  find("narrationEnabled").onchange = (event) =>
+    audio.setNarrationEnabled(event.target.checked);
   for (const kind of ["ambience", "music"])
     find(`${kind}Volume`).oninput = (event) =>
       audio.setVolume(kind, Number(event.target.value) / 100);
   const unsubscribe = audio.subscribe(render);
+  const unsubscribeLocale = subscribeLocale(render);
   render();
   return {
     mount(app) {
@@ -180,6 +229,7 @@ export function createSoundscapePanel(audio) {
     dispose() {
       disposed = true;
       unsubscribe();
+      unsubscribeLocale();
       dialog.remove();
       button.remove();
     },

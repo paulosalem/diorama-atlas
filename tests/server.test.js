@@ -216,8 +216,22 @@ test("HTTP static serving exposes actual browser assets but not repository inter
     ["/index.html", "text/html; charset=utf-8"],
     ["/src/client/main.js", "text/javascript; charset=utf-8"],
     ["/src/client/styles.css", "text/css; charset=utf-8"],
+    ["/public/credits.json", "application/json; charset=utf-8"],
     ["/public/earth/credits.json", "application/json; charset=utf-8"],
     ["/public/previews/riad.png", "image/png"],
+    ["/public/outdoors/references.json", "application/json; charset=utf-8"],
+    [
+      "/public/outdoors/references/bhaktapur-pottery-square-1.jpg",
+      "image/jpeg",
+    ],
+    ["/public/outdoors/generated/botanical-field-notes.png", "image/png"],
+    ["/public/outdoors/materials/stone_diff.jpg", "image/jpeg"],
+    [
+      "/public/outdoors/detail-assets/daylight-pure-sky_2k.hdr",
+      "image/vnd.radiance",
+    ],
+    ["/public/narration/riad-en-US.mp3", "audio/mpeg"],
+    ["/public/audio/music/music-atlas-theme.mp3", "audio/mpeg"],
     [
       "/node_modules/three/build/three.module.js",
       "text/javascript; charset=utf-8",
@@ -228,6 +242,14 @@ test("HTTP static serving exposes actual browser assets but not repository inter
     ],
     [
       "/node_modules/three/examples/jsm/controls/OrbitControls.js",
+      "text/javascript; charset=utf-8",
+    ],
+    [
+      "/node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+      "text/javascript; charset=utf-8",
+    ],
+    [
+      "/node_modules/three/examples/jsm/loaders/HDRLoader.js",
       "text/javascript; charset=utf-8",
     ],
   ];
@@ -244,6 +266,7 @@ test("HTTP static serving exposes actual browser assets but not repository inter
     const head = await client.request(pathname, { method: "HEAD" });
     assert.equal(head.status, 200, pathname);
     assert.equal(head.body.length, 0, pathname);
+    assert.equal(head.headers.get("content-type"), mimeType, pathname);
     assert.equal(
       head.headers.get("content-length"),
       response.headers.get("content-length"),
@@ -274,20 +297,125 @@ test("HTTP static serving exposes actual browser assets but not repository inter
   }
 });
 
+test("outdoor glTF documents and every local buffer and image are served intact", async (t) => {
+  const fixture = await createFixture(t);
+  const client = await fixture.start();
+  for (const pathname of [
+    "/public/outdoors/detail-assets/boulder-01/boulder_01_1k.gltf",
+    "/public/outdoors/detail-assets/planter-pot-clay/planter_pot_clay_2k.gltf",
+  ]) {
+    const response = await client.request(pathname);
+    assert.equal(response.status, 200, pathname);
+    assert.equal(
+      response.headers.get("content-type"),
+      "model/gltf+json; charset=utf-8",
+    );
+    assert.deepEqual(
+      response.body,
+      await fs.readFile(path.join(projectRoot, pathname)),
+    );
+    const documentHead = await client.request(pathname, { method: "HEAD" });
+    assert.equal(documentHead.status, 200, pathname);
+    assert.equal(documentHead.body.length, 0, pathname);
+    assert.equal(
+      Number(documentHead.headers.get("content-length")),
+      response.body.length,
+    );
+    const document = JSON.parse(response.text);
+    assert.equal(document.asset.version, "2.0");
+    const resources = [...document.buffers, ...document.images];
+    assert.ok(resources.length > 0);
+    for (const { uri } of resources) {
+      const resource = new URL(uri, `http://atlas.invalid${pathname}`);
+      assert.equal(resource.origin, "http://atlas.invalid");
+      assert.ok(
+        resource.pathname.startsWith(`${path.posix.dirname(pathname)}/`),
+      );
+      const asset = await client.request(resource.pathname);
+      assert.equal(asset.status, 200, resource.pathname);
+      assert.equal(
+        asset.headers.get("content-type"),
+        resource.pathname.endsWith(".bin")
+          ? "application/octet-stream"
+          : "image/jpeg",
+        resource.pathname,
+      );
+      assert.deepEqual(
+        asset.body,
+        await fs.readFile(path.join(projectRoot, resource.pathname)),
+        resource.pathname,
+      );
+      const head = await client.request(resource.pathname, {
+        method: "HEAD",
+      });
+      assert.equal(head.status, 200, resource.pathname);
+      assert.equal(head.body.length, 0, resource.pathname);
+      assert.equal(
+        Number(head.headers.get("content-length")),
+        asset.body.length,
+        resource.pathname,
+      );
+    }
+  }
+});
+
+test("modern image and media MIME types preserve binary bodies and HEAD headers", async (t) => {
+  const fixture = await createFixture(t);
+  const rootDir = path.join(fixture.directory, "static-root");
+  const publicDir = path.join(rootDir, "public/outdoors");
+  await fs.mkdir(publicDir, { recursive: true });
+  const client = await fixture.start({ rootDir, bundledSceneDir: null });
+  const bytes = Buffer.from([0, 255, 10, 13, 127, 128]);
+  for (const [filename, mimeType] of [
+    ["image.WEBP", "image/webp"],
+    ["sky.HDR", "image/vnd.radiance"],
+    ["model.GLB", "model/gltf-binary"],
+    ["buffer.bin", "application/octet-stream"],
+    ["ambience.OGG", "audio/ogg"],
+    ["ambience.WAV", "audio/wav"],
+  ]) {
+    await fs.writeFile(path.join(publicDir, filename), bytes);
+    const pathname = `/public/outdoors/${filename}`;
+    for (const method of ["GET", "HEAD"]) {
+      const response = await client.request(pathname, { method });
+      assert.equal(response.status, 200, pathname);
+      assert.equal(response.headers.get("content-type"), mimeType, pathname);
+      assert.equal(
+        Number(response.headers.get("content-length")),
+        bytes.length,
+      );
+      assert.deepEqual(
+        response.body,
+        method === "GET" ? bytes : Buffer.alloc(0),
+        pathname,
+      );
+    }
+  }
+});
+
 test("static and asset routes reject symlink escapes, traversal, and malformed encodings", async (t) => {
   const fixture = await createFixture(t);
   const rootDir = path.join(fixture.directory, "static-root");
-  await fs.mkdir(path.join(rootDir, "public"), { recursive: true });
+  await fs.mkdir(path.join(rootDir, "public/outdoors"), { recursive: true });
   await fs.writeFile(path.join(rootDir, "index.html"), "<html>Fixture</html>");
   await fs.writeFile(path.join(rootDir, "package.json"), '{"private":true}');
   await fs.symlink(
     path.join(rootDir, "package.json"),
     path.join(rootDir, "public/escape.json"),
   );
+  await fs.symlink(
+    path.join(rootDir, "package.json"),
+    path.join(rootDir, "public/outdoors/sky.hdr"),
+  );
+  await fs.symlink(rootDir, path.join(rootDir, "public/outdoors/private"));
   const client = await fixture.start({ rootDir, bundledSceneDir: null });
   assert.equal((await client.request("/")).status, 200);
   for (const pathname of [
     "/public/escape.json",
+    "/public/outdoors/sky.hdr",
+    "/public/outdoors/private/package.json",
+    "/public/outdoors/%2e%2e%2f%2e%2e%2fpackage.json",
+    "/public/outdoors/%2eenv",
     "/public/%2e%2e%2fpackage.json",
     "/public/%5c..%5cpackage.json",
     "/public/.env",

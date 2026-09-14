@@ -3,6 +3,7 @@ export const DEFAULT_AUDIO_PREFERENCES = Object.freeze({
   version: 1,
   ambienceEnabled: false,
   musicEnabled: false,
+  narrationEnabled: false,
   ambienceVolume: 0.55,
   musicVolume: 0.32,
   mode: "place",
@@ -14,6 +15,8 @@ export function validateAudioPreferences(value) {
     value.version !== 1 ||
     typeof value.ambienceEnabled !== "boolean" ||
     typeof value.musicEnabled !== "boolean" ||
+    (value.narrationEnabled !== undefined &&
+      typeof value.narrationEnabled !== "boolean") ||
     !["place", "theme"].includes(value.mode) ||
     ![value.ambienceVolume, value.musicVolume].every(
       (volume) => Number.isFinite(volume) && volume >= 0 && volume <= 1,
@@ -23,7 +26,10 @@ export function validateAudioPreferences(value) {
       "The saved sound choices are invalid. Choose your settings again.",
     );
   return Object.fromEntries(
-    Object.keys(DEFAULT_AUDIO_PREFERENCES).map((key) => [key, value[key]]),
+    Object.keys(DEFAULT_AUDIO_PREFERENCES).map((key) => [
+      key,
+      value[key] ?? DEFAULT_AUDIO_PREFERENCES[key],
+    ]),
   );
 }
 

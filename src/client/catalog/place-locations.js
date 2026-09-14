@@ -1,3 +1,5 @@
+import { outdoorLocations } from "./outdoor-catalog.js";
+
 // Geographic settings, not surveyed street addresses. The bookshop is regional.
 export const locations = [
   {
@@ -72,12 +74,18 @@ export const locations = [
     type: "bookshop",
     match: /european|bookshop/i,
   },
+  ...outdoorLocations,
 ];
 export function locateScenes(scenes) {
   return locations
     .map((location) => ({
       ...location,
-      scenes: scenes.filter((s) => location.match.test(`${s.id} ${s.title}`)),
+      scenes: scenes.filter((s) =>
+        location.sceneId
+          ? s.id === location.sceneId
+          : s.environment !== "outdoor" &&
+            location.match.test(`${s.id} ${s.title}`),
+      ),
     }))
     .filter((location) => location.scenes.length);
 }

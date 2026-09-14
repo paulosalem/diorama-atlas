@@ -1,4 +1,8 @@
 import { loadAudioLibrary } from "./audio-library.js";
+import {
+  TranslatableError,
+  translateError,
+} from "../../localization/errors.js";
 
 const between = ([min, max]) => min + Math.random() * (max - min);
 
@@ -7,6 +11,7 @@ export function createRecordedSoundscape(profile) {
   let current = null;
   let state = "idle";
   let errorMessage = "";
+  let errorDetail = null;
   let notice = "";
   let volume = 0.55;
   let ducked = false;
@@ -43,6 +48,7 @@ export function createRecordedSoundscape(profile) {
     if (state !== "disposed") {
       state = nextState;
       errorMessage = "";
+      errorDetail = null;
       notice = message;
       notify();
     }
@@ -134,6 +140,7 @@ export function createRecordedSoundscape(profile) {
       current = session;
       state = "loading";
       errorMessage = "";
+      errorDetail = null;
       notice = "";
       notify();
       // Resume before any fetch/await: browsers require the enabling gesture.
@@ -186,19 +193,25 @@ export function createRecordedSoundscape(profile) {
               async (id) => {
                 const asset = assets.find((entry) => entry.id === id);
                 if (!asset)
-                  throw new Error(`Missing soundscape recording: ${id}.`);
+                  throw new TranslatableError(
+                    "Missing soundscape recording: {id}.",
+                    { id },
+                  );
                 const response = await fetch(asset.file, {
                   signal: session.abort.signal,
                 });
                 if (!response.ok)
-                  throw new Error(
-                    `${asset.title} could not load (${response.status}).`,
+                  throw new TranslatableError(
+                    "{title} could not load ({status}).",
+                    { title: asset.title, status: response.status },
                   );
                 const buffer = await context.decodeAudioData(
                   await response.arrayBuffer(),
                 );
                 if (buffer.duration < 0.1)
-                  throw new Error(`${asset.title} is too short to play.`);
+                  throw new TranslatableError("{title} is too short to play.", {
+                    title: asset.title,
+                  });
                 buffers.set(id, buffer);
               },
             ),
@@ -274,6 +287,10 @@ export function createRecordedSoundscape(profile) {
         error.name === "AbortError"
           ? "Soundscape loading timed out. Try again."
           : error.message;
+      errorDetail =
+        error.name === "AbortError"
+          ? new Error(errorMessage, { cause: error })
+          : error;
       notify();
       throw new Error(errorMessage, { cause: error });
     }
@@ -347,7 +364,13 @@ export function createRecordedSoundscape(profile) {
       return state === "playing";
     },
     get status() {
-      return { state, error: errorMessage, notice, volume, ducked };
+      return {
+        state,
+        error: errorDetail ? translateError(errorDetail) : errorMessage,
+        notice,
+        volume,
+        ducked,
+      };
     },
     get inspection() {
       const buffers = new Set(current?.layers.map((layer) => layer.buffer));

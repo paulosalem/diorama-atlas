@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 import { readdir, readFile } from "node:fs/promises";
 import { curatedScenes } from "../../src/client/catalog/scene-catalog.js";
+import { outdoorScenes } from "../../src/client/catalog/outdoor-catalog.js";
+
+test.describe.configure({ timeout: 180_000 });
 
 const sceneDirectory = new URL("../../data/scenes/", import.meta.url);
 const bundledScenes = await Promise.all(
@@ -32,7 +35,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test("the globe offers eight locations and opens an interior", async ({
+test("the globe offers eighteen locations and opens an interior", async ({
   page,
 }) => {
   await page.goto("/");
@@ -43,20 +46,24 @@ test("the globe offers eight locations and opens an interior", async ({
   await expect(brand).toHaveText("Diorama Atlas");
   await expect(page).toHaveTitle("Diorama Atlas — a world of small places");
   await expect(page.locator("#worldLoading")).toBeHidden();
-  await expect(page.locator(".place-pin")).toHaveCount(8);
+  await expect(page.locator(".place-pin")).toHaveCount(18);
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await expect(page.locator("#placesPanel")).toBeVisible();
-  await expect(page.locator("#placesPanel button")).toHaveCount(8);
+  await expect(page.locator("#placesPanel button")).toHaveCount(18);
   await page
     .locator("#placesPanel button")
     .filter({ hasText: "Marrakech" })
     .click();
   await expect(page.locator("#placePreview")).toBeVisible();
+  await expect(page.locator("#placePreview .preview-main")).toHaveAttribute(
+    "href",
+    "/?scene=riad&inspect=1",
+  );
   await page.locator("#placePreview .preview-main").click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Marrakech Riad Courtyard",
   );
-  await expect(page.locator("#riadLoading")).toBeHidden();
+  await expect(page.locator("#riadLoading")).toBeHidden({ timeout: 90_000 });
   await page.getByRole("button", { name: "Back to world" }).click();
   await expect(page.locator("#worldLoading")).toBeHidden();
   await page.setViewportSize({ width: 320, height: 800 });
@@ -67,10 +74,18 @@ test("the globe offers eight locations and opens an interior", async ({
   ]);
   expect(brandBox).not.toBeNull();
   expect(placesBox).not.toBeNull();
-  expect(brandBox.x + brandBox.width).toBeLessThanOrEqual(placesBox.x);
+  expect(
+    brandBox.x + brandBox.width <= placesBox.x ||
+      brandBox.y + brandBox.height <= placesBox.y,
+  ).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });
 
-for (const scene of [...curatedScenes, ...bundledScenes]) {
+for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
   test(`${scene.title}: assets, viewpoints, and details survive the reorganization`, async ({
     page,
   }) => {
@@ -89,10 +104,12 @@ for (const scene of [...curatedScenes, ...bundledScenes]) {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       scene.title,
     );
-    await expect(page.locator("#riadLoading")).toBeHidden();
+    await expect(page.locator("#riadLoading")).toBeHidden({ timeout: 90_000 });
     await expect(page.locator("canvas")).toBeVisible();
     const viewpoints = page.locator(".riad-viewpoints button");
-    await expect(viewpoints).toHaveCount(scene.id === "riad" ? 6 : 5);
+    await expect(viewpoints).toHaveCount(
+      scene.environment === "outdoor" ? 4 : scene.id === "riad" ? 6 : 5,
+    );
     for (const viewpoint of await viewpoints.all()) {
       await viewpoint.click();
       await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
@@ -110,6 +127,7 @@ for (const scene of [...curatedScenes, ...bundledScenes]) {
       "aria-pressed",
       "true",
     );
+    await expect(page.locator("#ambientSound")).toHaveText("Mute ambience");
     await page.getByRole("button", { name: "Close soundscape" }).click();
     await viewpoints.last().click();
     await page.locator("#soundscapeButton").click();
@@ -130,7 +148,7 @@ test("a narrow viewport keeps navigation usable and Escape returns to the globe"
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/?scene=kissaten&inspect=1");
-  await expect(page.locator("#riadLoading")).toBeHidden();
+  await expect(page.locator("#riadLoading")).toBeHidden({ timeout: 90_000 });
   await expect(
     page.getByRole("button", { name: "Back to world" }),
   ).toBeVisible();

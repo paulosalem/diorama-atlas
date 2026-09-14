@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { configureWaterMaterial } from "./water-flow.js";
 
 // Shared, local, colour-managed material maps. No generation or network service is
 // required when the visitor opens a scene.
@@ -10,6 +11,16 @@ export function createRiadMaterials(renderer) {
   const pending = [];
   function scanned(asset, color, repeat, roughness = 1) {
     const params = { color, roughness };
+    const profile =
+      asset === "clay_plaster"
+        ? "clay"
+        : asset.includes("wood")
+          ? "wood"
+          : asset.includes("floor_tiles")
+            ? "terracotta"
+            : asset.includes("plaster")
+              ? "plaster"
+              : "stone";
     for (const [suffix, slot] of [
       ["diff", "map"],
       ["nor_gl", "normalMap"],
@@ -36,12 +47,16 @@ export function createRiadMaterials(renderer) {
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(...repeat);
         texture.anisotropy = anisotropy;
+        texture.userData.patinaProfile = profile;
+        if (asset === "terracotta_floor_tiles")
+          texture.userData.tileGrid = [9, 9];
         maps.set(key, texture);
         owned.add(texture);
       }
       params[slot] = texture;
     }
     const mat = new THREE.MeshStandardMaterial(params);
+    mat.userData.patinaProfile = profile;
     mat.normalScale.set(0.55, 0.55);
     owned.add(mat);
     return mat;
@@ -231,12 +246,12 @@ export function createRiadMaterials(renderer) {
     dark: plain(0x191c16, 0.88),
     water: new THREE.MeshPhysicalMaterial({
       color: 0x37594c,
-      roughness: 0.075,
-      metalness: 0.65,
+      roughness: 0.095,
+      metalness: 0,
+      ior: 1.333,
       transparent: true,
       opacity: 0.87,
-      clearcoat: 1,
-      clearcoatRoughness: 0.12,
+      clearcoat: 0,
     }),
     glass: new THREE.MeshPhysicalMaterial({
       color: 0xdce9d9,
@@ -250,27 +265,10 @@ export function createRiadMaterials(renderer) {
   owned.add(mats.water);
   owned.add(mats.glass);
   const waterTime = { value: 0 };
-  mats.water.userData.time = waterTime;
-  mats.water.onBeforeCompile = (shader) => {
-    shader.uniforms.waterTime = waterTime;
-    shader.vertexShader = "varying vec3 waterPosition;\n" + shader.vertexShader;
-    shader.vertexShader = shader.vertexShader.replace(
-      "#include <begin_vertex>",
-      "#include <begin_vertex>\nwaterPosition = (modelMatrix * vec4(position, 1.0)).xyz;",
-    );
-    shader.fragmentShader =
-      "uniform float waterTime; varying vec3 waterPosition;\n" +
-      shader.fragmentShader;
-    shader.fragmentShader = shader.fragmentShader.replace(
-      "#include <normal_fragment_maps>",
-      `#include <normal_fragment_maps>
-      float wave = length(waterPosition.xz - vec2(0.0, -0.35));
-      vec2 radial = normalize(waterPosition.xz - vec2(0.0, -0.35) + vec2(.001));
-      vec2 ripples = radial * sin(wave * 42.0 - waterTime * 3.2) * .032;
-      ripples += vec2(sin(waterPosition.x * 26.0 + waterTime), cos(waterPosition.z * 29.0 - waterTime)) * .014;
-      normal = normalize(normal + mat3(viewMatrix) * vec3(ripples.x, 0.0, ripples.y));`,
-    );
-  };
+  configureWaterMaterial(mats.water, {
+    time: waterTime,
+    disturbance: { value: new THREE.Vector4(0, 0, 0.45, 0) },
+  });
   const tileColors = [0x164f4c, 0xcfc8b4, 0x253e42, 0xa2824a, 0x63918a];
   mats.tiles = tileColors.map((color) => {
     const m = new THREE.MeshPhysicalMaterial({
@@ -295,6 +293,14 @@ export function createRiadMaterials(renderer) {
   mats.pot.color.set(0xf2b990);
   mats.bark.bumpMap = micro;
   mats.bark.bumpScale = 0.025;
+  for (const name of ["brass", "bronze"])
+    mats[name].userData.patinaProfile = "metal";
+  mats.grout.userData.patinaProfile = "stone";
+  mats.cream.userData.patinaProfile = "clay";
+  mats.cloth.userData.patinaProfile = "fabric";
+  for (const name of ["leaf", "soil", "bark", "water", "glass", "dark"])
+    mats[name].userData.patinaProfile = "none";
+  for (const tile of mats.tiles) tile.userData.patinaProfile = "tile";
   return {
     ...mats,
     ready: Promise.all(pending),

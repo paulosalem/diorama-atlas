@@ -1,0 +1,398 @@
+{
+  "assets": [
+    {
+      "id": "lotus-botanical-plate",
+      "kind": "printed-art",
+      "title": "Nelumbo nucifera — Flora de Filipinas botanical plate",
+      "author": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "date": "1880–1883? (edition date reported by Commons)",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceImage": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Nelumbo_nucifera_Blanco1.158.jpg",
+      "image": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "dimensions": [1108, 1600],
+      "bytes": 283153,
+      "sha256": "b92c78cdf67ce3b380926f27af6a3d602f4491d8b1559ea1df164687284fd546",
+      "note": "Actual historical botanical book illustration showing pink lotus flowers, leaves and seed heads, with printed caption and archival stamps retained. Commons credits Blanco and identifies the source as Flora de Filipinas, Atlas I; that book credit is not a verified individual illustrator attribution. The Commons source is a cleaned, color-adjusted scan marked public domain; local changes are resizing and JPEG encoding only. Suitable for a plant-study folio or a small botanical book face near gardens or terrace agriculture. It does not claim to be a locally published book or identify any fictional scene."
+    },
+    {
+      "id": "iris-flower-collotype",
+      "kind": "printed-art",
+      "title": "Iris kaempferi — Hand-Coloured Photographs of Flowers",
+      "author": "Ogawa Kazumasa",
+      "date": "1896",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceImage": "https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "image": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "dimensions": [612, 800],
+      "bytes": 101735,
+      "sha256": "6d6bece0db95e72905fd66c3b2f01796f80db13a85f71e010e56197d1d315960",
+      "note": "Actual nineteenth-century hand-colored flower photograph/collotype, not generated botanical art: pale violet irises against a warm brown field with a cream printed border. Commons identifies Ogawa Kazumasa, 1896, and PD-old-70-expired/Public Domain Mark; its source is the Public Domain Review's collection of these flower photographs. The original 612×800 resolution is retained without upscaling. Best for a small flower-book face or modest framed print, not a large close-up poster. Japanese source identity is retained; use as collected artwork, not evidence of another region's native publishing tradition."
+    },
+    {
+      "id": "ceramic-art-plate",
+      "kind": "printed-art",
+      "title": "Saucer with Rich Enameled Ground and Medallion Representing the Goddess Kounin",
+      "author": "Jules Jacquemart",
+      "date": "c. 1877",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://clevelandart.org/art/2003.407",
+      "sourceImage": "https://openaccess-cdn.clevelandart.org/2003.407/2003.407_print.jpg",
+      "metadataSource": "https://openaccess-api.clevelandart.org/api/artworks/?accession_number=2003.407",
+      "credit": "The Cleveland Museum of Art, Gift of John Bonebrake, 2003.407",
+      "image": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "dimensions": [1104, 1600],
+      "bytes": 528917,
+      "sha256": "ba8d5d22adfc82c0f40591c038890dcae02fe35b40f30162ee6090b419e2baac",
+      "note": "Actual etched book plate from History of the Ceramic Art, showing a round decorated saucer with its figural central medallion, not a photograph of a modern vessel. The museum API verifies the exact title, artist, approximate date, accession and CC0 image status. Resized from the museum's print JPEG; original paper margins and signature retained. Suitable for a ceramics-history book or studio study sheet. Preserve its identity as a historical study of Japanese ceramics; do not present the depicted sacred figure as generic local ornament."
+    },
+    {
+      "id": "canal-etching",
+      "kind": "printed-art",
+      "title": "A canal in Venice / Otto.",
+      "author": "Otto Henry Bacher",
+      "date": "1880",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "collectionSource": "https://www.loc.gov/pictures/item/2002719549/",
+      "sourceImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/A_canal_in_Venice_-_Otto._LCCN2002719549.jpg/1920px-A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "image": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "dimensions": [822, 1520],
+      "bytes": 429557,
+      "sha256": "0fa4b7b4cc83fbe5620dd102213c8b5db3e8ddf8d3b9517cef3a4dbf891ac8be",
+      "note": "Actual 1880 etching of a narrow Venetian canal with buildings, reflections and small boats, from the Library of Congress. Commons verifies Bacher as etcher, date and public-domain/PD-old-70-expired status. Resized to a 1600px-long-edge intermediate, then cropped to normalized bounds [0.20, 0.02, 0.84, 0.97] to remove digitization color targets and scanning borders; the central etching and paper margin remain. Suitable for a boatyard sketchbook face or small workshop print. Venice names the historical artwork, not the fictional scene's location."
+    },
+    {
+      "id": "peeling-paint",
+      "kind": "pbr-surface",
+      "title": "Peeling Painted Wall",
+      "author": "Dimitrios Savva",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/peeling_painted_wall",
+      "metadataSource": "https://api.polyhaven.com/files/peeling_painted_wall",
+      "resolution": [2048, 2048],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/peeling-paint_diff_2k.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/peeling-paint_nor_gl_2k.jpg",
+        "rough": "/public/outdoors/detail-assets/peeling-paint_rough_2k.jpg"
+      },
+      "sourceFiles": {
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_diff_2k.jpg",
+          "bytes": 1742944,
+          "md5": "d9dab051d395f410f7644fd8cabe58a4"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_nor_gl_2k.jpg",
+          "bytes": 4067269,
+          "md5": "fa989e75ef10c84a347a841128c58e21"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_rough_2k.jpg",
+          "bytes": 514284,
+          "md5": "9fc58f17b399ed53e96917f58c911ab5"
+        }
+      },
+      "note": "Real photographed/scanned surface with muted coral-red paint, fine cracks and irregular pale exposed patches. Use 2k detail only on near-camera painted wall patches or a small worn panel, not as a replacement for every regional facade. Diffuse is sRGB; OpenGL normal and roughness are linear data. These JPGs are opaque full surface maps, not alpha decals; localized blending needs a separate mask or bounded geometry. The source paint color is visible and should not be mistaken for a neutral wear-only layer. All source bytes and API MD5 checksums verified."
+    },
+    {
+      "id": "worn-plaster",
+      "kind": "pbr-surface",
+      "title": "Worn Plaster Wall",
+      "author": "Dimitrios Savva",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/worn_plaster_wall",
+      "metadataSource": "https://api.polyhaven.com/files/worn_plaster_wall",
+      "resolution": [2048, 2048],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/worn-plaster_diff_2k.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/worn-plaster_nor_gl_2k.jpg",
+        "rough": "/public/outdoors/detail-assets/worn-plaster_rough_2k.jpg"
+      },
+      "sourceFiles": {
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_plaster_wall/worn_plaster_wall_diff_2k.jpg",
+          "bytes": 3096042,
+          "md5": "113c336124507f4b3fc7d440f6fd8346"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_plaster_wall/worn_plaster_wall_nor_gl_2k.jpg",
+          "bytes": 2935964,
+          "md5": "737e4eb8ec9af427c8aafe46675409d9"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_plaster_wall/worn_plaster_wall_rough_2k.jpg",
+          "bytes": 1012956,
+          "md5": "221e1f80b2b21b7ee68636003a8edb1b"
+        }
+      },
+      "note": "Real photographed/scanned gray-beige plaster with irregular missing finish, darker substrate, streaking and a conspicuous vertical seam. Suitable for a small close-up lower-wall wear patch; crop or position the seam deliberately instead of repeating it across unrelated masonry. It does not depict exposed brick courses. 2k is reserved for local damage detail. Diffuse is sRGB; OpenGL normal and roughness are linear data. Opaque JPG surface maps require separate masking for decal-like use. All source bytes and API MD5 checksums verified."
+    },
+    {
+      "id": "weathered-wood",
+      "kind": "pbr-surface",
+      "title": "Wood Peeling Paint Weathered",
+      "author": "Dimitrios Savva (photography); Rob Tuytel (processing)",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/wood_peeling_paint_weathered",
+      "metadataSource": "https://api.polyhaven.com/files/wood_peeling_paint_weathered",
+      "resolution": [2048, 2048],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/weathered-wood_diff_2k.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/weathered-wood_nor_gl_2k.jpg",
+        "rough": "/public/outdoors/detail-assets/weathered-wood_rough_2k.jpg"
+      },
+      "sourceFiles": {
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_peeling_paint_weathered/wood_peeling_paint_weathered_diff_2k.jpg",
+          "bytes": 3287908,
+          "md5": "068bc6219393fa397ea419e8b399b310"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_peeling_paint_weathered/wood_peeling_paint_weathered_nor_gl_2k.jpg",
+          "bytes": 3817729,
+          "md5": "ac0ac16338d9e4f362a7cb87bf24ef3d"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_peeling_paint_weathered/wood_peeling_paint_weathered_rough_2k.jpg",
+          "bytes": 1291885,
+          "md5": "ed178c55f0247322f4a97e44943bd311"
+        }
+      },
+      "note": "Real photographed/scanned timber with dark blue-black paint worn away along warm brown grain. Useful on a close-up boatyard workbench, shutter, worn door or painted wooden panel. Align the visible horizontal grain with the modeled timber; do not scatter it as an orientation-free wall decal. 2k provides local chipped-paint detail without a 4k pack. Diffuse is sRGB; OpenGL normal and roughness are linear data. Opaque JPG surface maps, with source color retained; all source bytes and API MD5 checksums verified."
+    },
+    {
+      "id": "planter-pot-clay",
+      "kind": "3d-model",
+      "title": "Planter Pot Clay",
+      "author": "Amal Kumar",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/planter_pot_clay",
+      "metadataSource": "https://api.polyhaven.com/files/planter_pot_clay",
+      "files": {
+        "gltf": "/public/outdoors/detail-assets/planter-pot-clay/planter_pot_clay_2k.gltf",
+        "geometry": "/public/outdoors/detail-assets/planter-pot-clay/planter_pot_clay.bin",
+        "diff": "/public/outdoors/detail-assets/planter-pot-clay/textures/planter_pot_clay_diff_2k.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/planter-pot-clay/textures/planter_pot_clay_nor_gl_2k.jpg",
+        "arm": "/public/outdoors/detail-assets/planter-pot-clay/textures/planter_pot_clay_arm_2k.jpg"
+      },
+      "sourceFiles": {
+        "gltf": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/2k/planter_pot_clay/planter_pot_clay_2k.gltf",
+          "bytes": 2813,
+          "md5": "aada56568f8bff1b61f9a0fdc69a6082"
+        },
+        "geometry": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/planter_pot_clay/planter_pot_clay.bin",
+          "bytes": 78096,
+          "md5": "93aa55f6378a47c3e2d03eb5b98da8b0"
+        },
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/planter_pot_clay/planter_pot_clay_diff_2k.jpg",
+          "bytes": 2097198,
+          "md5": "24c6aee9f07cee0df6a665cba541bb45"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/planter_pot_clay/planter_pot_clay_nor_gl_2k.jpg",
+          "bytes": 1469255,
+          "md5": "875b7e438c4426f9ad05620cd81da2b4"
+        },
+        "arm": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/planter_pot_clay/planter_pot_clay_arm_2k.jpg",
+          "bytes": 2311213,
+          "md5": "389e1c9bdd359ccd2bd9e8ea0245a0a3"
+        }
+      },
+      "textureResolution": [2048, 2048],
+      "triangles": 3080,
+      "vertices": 1863,
+      "dimensionsMeters": {
+        "width": 0.265997,
+        "height": 0.221870,
+        "depth": 0.263463
+      },
+      "note": "Complete original glTF 2.0 package: one mesh, one double-sided material, local binary geometry and all three local 2k texture dependencies. A realistically weathered, empty terracotta planter with a tapered body, rolled rim, interior and worn pale deposits; no plant is included. Appropriate for one close-up terrace or workshop prop at roughly 27cm wide and 22cm tall. Load files.gltf and preserve its sibling paths; no runtime network or decoder dependency. ARM uses red=ambient occlusion, green=roughness, blue=metalness; the original glTF binds metallic/roughness but does not separately bind ambient occlusion. Poly Haven verifies creator and CC0 rights but does not specify the capture technique in its asset metadata: this is not represented as verified photogrammetry. Source previews and the supplied texture/mesh data were inspected; all five files retain their original API-verified bytes and MD5 hashes."
+    },
+    {
+      "id": "photographic-broadleaf",
+      "kind": "foliage-texture",
+      "title": "Leaf001 - photographic broadleaf",
+      "author": "ambientCG (individual photographer not identified in the asset record)",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://ambientcg.com/a/Leaf001",
+      "metadataSource": "https://ambientcg.com/api/v2/full_json?id=Leaf001&include=downloadData",
+      "rightsSource": "https://docs.ambientcg.com/license/",
+      "credit": "Created using Leaf001 from ambientCG.com, licensed under the Creative Commons CC0 1.0 Universal License.",
+      "resolution": [1024, 1024],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/foliage/broadleaf-cutout.png",
+        "nor_gl": "/public/outdoors/detail-assets/foliage/broadleaf-normal-gl.jpg",
+        "rough": "/public/outdoors/detail-assets/foliage/broadleaf-roughness.jpg",
+        "originalColor": "/public/outdoors/detail-assets/foliage/broadleaf-original-color.jpg",
+        "originalOpacity": "/public/outdoors/detail-assets/foliage/broadleaf-original-opacity.jpg"
+      },
+      "sourcePackage": {
+        "url": "https://ambientcg.com/get?file=Leaf001_1K-JPG.zip",
+        "bytes": 5098282,
+        "sha256": "9f5fbaf05e0f5049bc6d17681ee522ab87e3f642990d91c027643440acecdda8",
+        "members": {
+          "originalColor": "Leaf001_1K-JPG_Color.jpg",
+          "originalOpacity": "Leaf001_1K-JPG_Opacity.jpg",
+          "nor_gl": "Leaf001_1K-JPG_NormalGL.jpg",
+          "rough": "Leaf001_1K-JPG_Roughness.jpg"
+        }
+      },
+      "fileIntegrity": {
+        "diff": { "bytes": 798402, "sha256": "8a84e96c7e03f58d8880d39282dd3ef0cf70b3bacb903d49290ea136eb730b38" },
+        "nor_gl": { "bytes": 1250501, "sha256": "179609efca2bec044706767163243f9e861765f153a529d45a7e7a9c3a33c099" },
+        "rough": { "bytes": 354557, "sha256": "96c12e83ad12ba866eaf65cf6dec7c09dc47db3b36fea42e52d35787bcc88b96" },
+        "originalColor": { "bytes": 567833, "sha256": "98f388b8ec1775666104a6bb4361f0e99123e4e20527e1716553838d7fd78fe2" },
+        "originalOpacity": { "bytes": 52392, "sha256": "857aa2fc78b606d70298608cabe95cea51c07f6a88b09028c1b463d2c3057226" }
+      },
+      "processing": "Original color, opacity, OpenGL normal and roughness archive members are retained byte-for-byte. The cutout PNG copies the decoded original color into RGB and the supplied opacity image, decoded as luminance, into alpha. No segmentation, inferred background removal, recoloring, resizing or generated pixels; the atlas layout is unchanged.",
+      "note": "Actual photographic foliage, not botanical illustration: two side-by-side views of a serrated green broadleaf with clear branching veins, fine surface texture and stem. ambientCG identifies its method as height field photogrammetry. Species and leaf-side identity are not specified. Select one half of the atlas per leaf, using the same UV region for diffuse, normal and roughness; do not map the entire two-leaf sheet onto one leaf. Diffuse RGB is sRGB, while alpha/normal/roughness are linear data. Use the supplied silhouette with alpha testing and curved leaf geometry rather than broad flat rectangular cards. This is not a palm, banana leaf or rice blade. The source JPEG opacity may contain near-zero compression specks; an alpha-test cutoff removes them without changing the preserved originals."
+    },
+    {
+      "id": "photographic-grass-blades",
+      "kind": "foliage-texture",
+      "title": "Grass Medium 02 - photographic blade atlas",
+      "author": "Rico Cilliers",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/grass_medium_02",
+      "metadataSource": "https://api.polyhaven.com/files/grass_medium_02",
+      "resolution": [1024, 1024],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/foliage/grass-cutout.png",
+        "nor_gl": "/public/outdoors/detail-assets/foliage/grass-normal-gl.jpg",
+        "rough": "/public/outdoors/detail-assets/foliage/grass-roughness.jpg",
+        "originalColor": "/public/outdoors/detail-assets/foliage/grass-original-color.png",
+        "originalOpacity": "/public/outdoors/detail-assets/foliage/grass-original-alpha.png"
+      },
+      "sourceFiles": {
+        "originalColor": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/grass_medium_02/grass_medium_02_diff_1k.png",
+          "bytes": 851217,
+          "md5": "55bd011f37a44dc227f690360c492100"
+        },
+        "originalOpacity": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/grass_medium_02/grass_medium_02_alpha_1k.png",
+          "bytes": 110617,
+          "md5": "b231cd6a1b5eb7ae21e7c2e626f8318c"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/grass_medium_02/grass_medium_02_nor_gl_1k.jpg",
+          "bytes": 118146,
+          "md5": "90b4c27b0c0ff058bd37b88bb70784c1"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/grass_medium_02/grass_medium_02_rough_1k.jpg",
+          "bytes": 184910,
+          "md5": "b4eb2ceb1b7287b92f6ccf378965d237"
+        }
+      },
+      "fileIntegrity": {
+        "diff": { "bytes": 273155, "sha256": "cc176d3367e68c0fe14fbf7706235a65ab348e813d7719e5c8845831480a99a9" },
+        "nor_gl": { "bytes": 118146, "sha256": "0b464550366ed72a6cad9c357e19ac4c83fc9adc87272771479138129853b300" },
+        "rough": { "bytes": 184910, "sha256": "1ccf7d18f9c468ab43cb1995db54883ba55493b9d9952a4d5c16c8b9f14608c3" },
+        "originalColor": { "bytes": 851217, "sha256": "5895add2d440b2aabe02cc8b0971b1f64956cf61d89e9a595944a64a38b5521d" },
+        "originalOpacity": { "bytes": 110617, "sha256": "15976877b3dbd22cd496a9549f1eb7d86710846a3631fb87eedbf046519e339f" }
+      },
+      "processing": "Original color PNG, alpha PNG, OpenGL normal JPG and roughness JPG retain their API-verified bytes. The cutout PNG copies decoded original RGB and supplied alpha-map luminance into one RGBA image. No segmentation, inferred background removal, recoloring, resizing or generated pixels; the source atlas layout is preserved.",
+      "note": "Actual photographic grass-blade texture from Poly Haven's Grass Medium 02 model: isolated green and straw-brown blades with lengthwise surface detail, natural bends, curled tips and worn edges. Texture resources only; no grass model was downloaded. Select a single blade's UV region and use the same region on all maps, then fit curved or folded geometry to its silhouette. The whole atlas is not one tuft or one palm frond. Diffuse RGB is sRGB; alpha, OpenGL normal and roughness are linear data. This supplies the requested narrow grass-leaf option; it is not a verified palm leaflet or species-specific rice texture."
+    },
+    {
+      "id": "daylight-pure-sky",
+      "kind": "hdri",
+      "title": "Kloppenheim 03 PureSky",
+      "author": "Greg Zaal (original photography); Jarod Guest (sky edits)",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/kloppenheim_03_puresky",
+      "metadataSource": "https://api.polyhaven.com/files/kloppenheim_03_puresky",
+      "resolution": [2048, 1024],
+      "projection": "Equirectangular, full sphere",
+      "files": {
+        "hdr": "/public/outdoors/detail-assets/daylight-pure-sky_2k.hdr"
+      },
+      "sourceFiles": {
+        "hdr": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloppenheim_03_puresky_2k.hdr",
+          "bytes": 5324445,
+          "md5": "06abf490739e537e9339d619a2a3c941"
+        }
+      },
+      "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
+    },
+    {
+      "id": "shore-boulder",
+      "kind": "3d-model",
+      "title": "Boulder 01",
+      "author": "Rico Cilliers",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/boulder_01",
+      "metadataSource": "https://api.polyhaven.com/files/boulder_01",
+      "files": {
+        "gltf": "/public/outdoors/detail-assets/boulder-01/boulder_01_1k.gltf",
+        "geometry": "/public/outdoors/detail-assets/boulder-01/boulder_01.bin",
+        "diff": "/public/outdoors/detail-assets/boulder-01/textures/boulder_01_diff_1k.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/boulder-01/textures/boulder_01_nor_gl_1k.jpg",
+        "arm": "/public/outdoors/detail-assets/boulder-01/textures/boulder_01_arm_1k.jpg"
+      },
+      "sourceFiles": {
+        "gltf": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/boulder_01/boulder_01_1k.gltf",
+          "bytes": 2773,
+          "md5": "26e2eef4a1f68c9557c65cd375b21d6c"
+        },
+        "geometry": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/boulder_01/boulder_01.bin",
+          "bytes": 2938808,
+          "md5": "27a19fa031d8b4c3a09261f19c444dc5"
+        },
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_diff_1k.jpg",
+          "bytes": 987467,
+          "md5": "25f8a843f13369d56d37f49db05ea8c3"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_nor_gl_1k.jpg",
+          "bytes": 1183552,
+          "md5": "0c4da644d901144b53e4fe2446f3c389"
+        },
+        "arm": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_arm_1k.jpg",
+          "bytes": 659386,
+          "md5": "d632159982cc3121ed3d69b89a122146"
+        }
+      },
+      "textureResolution": [1024, 1024],
+      "triangles": 66122,
+      "vertices": 67042,
+      "meshCount": 1,
+      "materialCount": 1,
+      "packageBytes": 5771986,
+      "dimensionsMeters": {
+        "width": 1.272136,
+        "height": 1.003830,
+        "depth": 1.830334
+      },
+      "boundsMeters": {
+        "min": [-0.748160, -0.073643, -0.948440],
+        "max": [0.523976, 0.930187, 0.881894]
+      },
+      "note": "Actual textured 3D boulder with jagged gray-and-rust facets, natural crevices and an irregular silhouette, not a background photograph or generated blob. Selected instead of rock_boulder_dry, which is a surface texture rather than a model; the explicitly coastal formation candidate exceeded the size budget. Suitable as a generic weathered shoreline rock in the fictional scene, not a claimed Tunisian geological specimen. Complete original glTF 2.0 package with its binary mesh and all three local 1k PBR maps; no external runtime dependencies or compression decoder. Load files.gltf with sibling paths intact and retain its UV-matched textures rather than substituting the existing tiling rock maps. ARM packs red=ambient occlusion, green=roughness, blue=metalness; the original material binds metallic/roughness but not separate ambient occlusion. Metrics are measured from this packaged glTF, not the catalog's different polygon count. Its local minimum Y is about -0.073643m, so use transformed bounds when placing it on the shore. Limit near-camera instances or add integration-side LOD: each copy renders 66,122 triangles. All five source files are unmodified and API-MD5 verified; no preview render is retained."
+    }
+  ]
+}

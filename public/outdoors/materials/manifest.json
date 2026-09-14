@@ -1,0 +1,73 @@
+{
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "provider": "Poly Haven",
+  "providerLicenseUrl": "https://polyhaven.com/license",
+  "verifiedOn": "2026-09-14",
+  "note": "Generic scanned PBR surface references, not scans of the ten represented locations. Diffuse maps use sRGB; OpenGL normals and roughness use linear data. No runtime network dependency.",
+  "materials": [
+    {
+      "slot": "stone",
+      "assetId": "cobblestone_floor_08",
+      "author": "Rob Tuytel",
+      "url": "https://polyhaven.com/a/cobblestone_floor_08",
+      "apiUrl": "https://api.polyhaven.com/files/cobblestone_floor_08",
+      "resolution": "1k",
+      "note": "Cobblestone paving only: contains joints between multiple setts. Use the separate rock slot on individual masonry blocks or bridge stones.",
+      "files": {
+        "diff": { "path": "/public/outdoors/materials/stone_diff.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_diff_1k.jpg", "bytes": 585727, "md5": "bb640125356d18e3ad8515b9d5bfccef" },
+        "nor_gl": { "path": "/public/outdoors/materials/stone_nor_gl.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_nor_gl_1k.jpg", "bytes": 1002410, "md5": "7a90780c7c49a1307e928d4d32c4773c" },
+        "rough": { "path": "/public/outdoors/materials/stone_rough.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_rough_1k.jpg", "bytes": 408718, "md5": "1471921512da4a43e94ec08c32c273f7" }
+      }
+    },
+    {
+      "slot": "rock",
+      "assetId": "rock_boulder_dry",
+      "author": "Dimitrios Savva (photography); Rico Cilliers (processing)",
+      "url": "https://polyhaven.com/a/rock_boulder_dry",
+      "apiUrl": "https://api.polyhaven.com/files/rock_boulder_dry",
+      "resolution": "1k",
+      "note": "Scanned natural dry boulder surface: pale sandy-gray, weathered, pitted and irregularly cracked, without brick courses or cobblestone mortar joints. Suitable as a generic surface on individual modeled stones; not a geological match or site scan of Cusco.",
+      "files": {
+        "diff": { "path": "/public/outdoors/materials/rock_diff.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_diff_1k.jpg", "bytes": 859211, "md5": "da794cd9be3db91e3160cf081109f322" },
+        "nor_gl": { "path": "/public/outdoors/materials/rock_nor_gl.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_nor_gl_1k.jpg", "bytes": 802497, "md5": "6f1c575ceed560ae253f65518cf748e2" },
+        "rough": { "path": "/public/outdoors/materials/rock_rough.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_rough_1k.jpg", "bytes": 668127, "md5": "0c8b15df3e31c15256da5f8e1b0d0759" }
+      }
+    },
+    {
+      "slot": "brick",
+      "assetId": "red_brick_03",
+      "author": "Rob Tuytel",
+      "url": "https://polyhaven.com/a/red_brick_03",
+      "apiUrl": "https://api.polyhaven.com/files/red_brick_03",
+      "resolution": "1k",
+      "files": {
+        "diff": { "path": "/public/outdoors/materials/brick_diff.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_diff_1k.jpg", "bytes": 694500, "md5": "d157c6d6dd774762b4269927a87fe9b5" },
+        "nor_gl": { "path": "/public/outdoors/materials/brick_nor_gl.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_nor_gl_1k.jpg", "bytes": 955430, "md5": "e89ce432d9160edb7c902f901756865f" },
+        "rough": { "path": "/public/outdoors/materials/brick_rough.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_rough_1k.jpg", "bytes": 286623, "md5": "8f16439361c5fe27f9df03be279ce8c9" }
+      }
+    },
+    {
+      "slot": "ground",
+      "assetId": "brown_mud_leaves_01",
+      "author": "Rob Tuytel",
+      "url": "https://polyhaven.com/a/brown_mud_leaves_01",
+      "apiUrl": "https://api.polyhaven.com/files/brown_mud_leaves_01",
+      "resolution": "1k",
+      "files": {
+        "diff": { "path": "/public/outdoors/materials/ground_diff.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_leaves_01/brown_mud_leaves_01_diff_1k.jpg", "bytes": 1206953, "md5": "5340848384f9bb19bfa6e7ac459683d7" },
+        "nor_gl": { "path": "/public/outdoors/materials/ground_nor_gl.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_leaves_01/brown_mud_leaves_01_nor_gl_1k.jpg", "bytes": 1486072, "md5": "3698df51ef8262ddf2248ffca1e73196" },
+        "rough": { "path": "/public/outdoors/materials/ground_rough.jpg", "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_leaves_01/brown_mud_leaves_01_rough_1k.jpg", "bytes": 644332, "md5": "3896f151d1b1de421a61c3c5d9a742b0" }
+      }
+    }
+  ],
+  "sky": {
+    "assetId": "overcast_soil",
+    "author": "Sergej Majboroda",
+    "url": "https://polyhaven.com/a/overcast_soil",
+    "apiUrl": "https://api.polyhaven.com/files/overcast_soil",
+    "resolution": "1k",
+    "note": "Neutral low-contrast overcast outdoor daylight with diffuse illumination. Chosen instead of a golden-hour environment so the scene renderer can control its own directional sun.",
+    "file": { "path": "/public/outdoors/sky.hdr", "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/overcast_soil_1k.hdr", "bytes": 1650749, "md5": "064f43a150b2d956e500dda95d64290f" }
+  }
+}

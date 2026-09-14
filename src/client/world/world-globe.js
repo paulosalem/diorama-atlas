@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { createMiniature } from "./world-miniatures.js";
 import { locateScenes } from "../catalog/place-locations.js";
+import { addAboutButton } from "../viewer/about-atlas.js";
+import { translateElement } from "../localization/locale.js";
 const RADIUS = 2.5;
 export function geographicPosition(lat, lon, radius = RADIUS) {
   const p = (lat * Math.PI) / 180,
@@ -12,7 +14,7 @@ export function geographicPosition(lat, lon, radius = RADIUS) {
     -radius * Math.cos(p) * Math.sin(l),
   );
 }
-export async function createWorld(app, scenes) {
+export async function createWorld(app, scenes, { onNavigate } = {}) {
   const events = new AbortController();
   let disposed = false;
   app.innerHTML = `<section class="world" aria-label="Explore the world"><div id="globeCanvas"></div><div class="marker-layer" id="markers"></div><header class="world-header"><a class="brand" href="/" aria-label="Diorama Atlas home"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11"/><ellipse cx="14" cy="14" rx="5" ry="11"/><path d="M3 14h22M5 8h18M5 20h18"/></svg>Diorama Atlas</a><button id="placesButton" aria-expanded="false" aria-controls="placesPanel">Places <span aria-hidden="true">↗</span></button></header><nav id="placesPanel" class="places-panel" aria-label="Places around the world" hidden></nav><div class="world-tools"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetWorld" aria-label="Reset globe view">↺</button></div><footer class="world-footer"><p><span class="desktop-hint">Drag to wander &nbsp;·&nbsp; Scroll to get closer</span><span class="mobile-hint">Drag to explore · Tap a place</span></p><a class="credits" href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noreferrer">Earth imagery · NASA</a></footer><aside id="placePreview" class="preview" aria-label="Place preview" hidden></aside><div id="worldLoading" class="initial-loading" role="status">Opening the world<span></span></div></section>`;
@@ -22,6 +24,36 @@ export async function createWorld(app, scenes) {
     preview = app.querySelector("#placePreview"),
     panel = app.querySelector("#placesPanel"),
     placesButton = app.querySelector("#placesButton");
+  for (const [element, message] of [
+    [world, "Explore the world"],
+    [app.querySelector(".brand"), "Diorama Atlas home"],
+    [panel, "Places around the world"],
+    [preview, "Place preview"],
+    [app.querySelector("#zoomIn"), "Zoom in"],
+    [app.querySelector("#zoomOut"), "Zoom out"],
+    [app.querySelector("#resetWorld"), "Reset globe view"],
+  ])
+    translateElement(element, message, {}, "aria-label");
+  const placesLabel = document.createElement("span");
+  translateElement(placesLabel, "Places");
+  placesButton.firstChild.replaceWith(placesLabel);
+  translateElement(
+    app.querySelector(".desktop-hint"),
+    "Drag to wander · Scroll to get closer",
+  );
+  translateElement(
+    app.querySelector(".mobile-hint"),
+    "Drag to explore · Tap a place",
+  );
+  translateElement(app.querySelector(".credits"), "Earth imagery · NASA");
+  const loadingLabel = document.createElement("div");
+  translateElement(loadingLabel, "Opening the world");
+  app.querySelector("#worldLoading").firstChild.replaceWith(loadingLabel);
+  const navigation = document.createElement("div");
+  navigation.className = "world-navigation";
+  placesButton.before(navigation);
+  addAboutButton(navigation);
+  navigation.append(placesButton);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -29,9 +61,11 @@ export async function createWorld(app, scenes) {
   renderer.toneMappingExposure = 1.22;
   mount.append(renderer.domElement);
   renderer.domElement.tabIndex = 0;
-  renderer.domElement.setAttribute(
-    "aria-label",
+  translateElement(
+    renderer.domElement,
     "Interactive Earth. Drag or use arrow keys to rotate. Plus and minus zoom.",
+    {},
+    "aria-label",
   );
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
@@ -111,8 +145,10 @@ export async function createWorld(app, scenes) {
     preview.hidden = true;
     entries.forEach((e) => e.button.classList.remove("is-active"));
     active = null;
+    previewPinned = false;
   }
   function scheduleHide() {
+    if (previewPinned || flying) return;
     clearTimeout(hideTimer);
     hideTimer = setTimeout(closePreview, 240);
   }
@@ -122,9 +158,11 @@ export async function createWorld(app, scenes) {
     preview.style.left = `${Math.max(18, Math.min(w - 326, entry.screen.x + 30))}px`;
     preview.style.top = `${Math.max(85, Math.min(h - preview.offsetHeight - 22, entry.screen.y - 90))}px`;
   }
-  function showPreview(entry, index = 0) {
+  let previewPinned = false;
+  function showPreview(entry, index = 0, pinned = false) {
     clearTimeout(hideTimer);
     active = entry;
+    previewPinned = pinned;
     entries.forEach((e) => e.button.classList.toggle("is-active", e === entry));
     const definition = entry.place.scenes[index];
     preview.replaceChildren();
@@ -133,23 +171,69 @@ export async function createWorld(app, scenes) {
     link.href = `/?scene=${encodeURIComponent(definition.id)}&inspect=1`;
     link.addEventListener("click", save);
     const img = document.createElement("img");
-    img.src = `/public/previews/${encodeURIComponent(definition.id)}.png`;
-    img.alt = definition.title;
+    img.src =
+      definition.preview ??
+      `/public/previews/${encodeURIComponent(definition.id)}.png`;
+    translateElement(
+      img,
+      definition.fictional ? "{title} · rendered imagined setting" : "{title}",
+      { title: definition.title },
+      "alt",
+    );
     img.onerror = () => {
       img.onerror = null;
+      if (definition.environment === "outdoor") {
+        img.remove();
+        const notice = document.createElement("p");
+        notice.className = "preview-image-notice";
+        translateElement(
+          notice,
+          "Preview unavailable · Open the 3D environment",
+        );
+        link.prepend(notice);
+        return;
+      }
       img.src = `/api/concepts/${encodeURIComponent(definition.id)}/hero?v=${encodeURIComponent(definition.concept?.imageVersion ?? "openai-photo-v2")}`;
     };
     const copy = document.createElement("div");
     copy.className = "preview-copy";
     const label = document.createElement("p");
     label.className = "preview-place";
-    label.textContent = `${entry.place.name} · ${entry.place.country}`;
+    translateElement(
+      label,
+      entry.place.name === entry.place.country
+        ? "{name}"
+        : "{name} · {country}",
+      { name: entry.place.name, country: entry.place.country },
+    );
     const title = document.createElement("h2");
-    title.textContent = definition.title;
+    translateElement(title, definition.title);
     const enter = document.createElement("span");
     enter.className = "preview-enter";
-    enter.innerHTML = 'Step inside <span aria-hidden="true">↗</span>';
+    const enterLabel = document.createElement("span");
+    translateElement(
+      enterLabel,
+      definition.environment === "outdoor"
+        ? "Explore this place"
+        : "Step inside",
+    );
+    const arrow = document.createElement("span");
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↗";
+    enter.append(enterLabel, " ", arrow);
     copy.append(label, title, enter);
+    if (definition.blurb) {
+      const blurb = document.createElement("p");
+      blurb.className = "preview-blurb";
+      translateElement(blurb, definition.blurb);
+      copy.insertBefore(blurb, enter);
+    }
+    if (definition.fictional) {
+      const kind = document.createElement("p");
+      kind.className = "preview-setting";
+      translateElement(kind, "An imagined regional setting");
+      copy.insertBefore(kind, enter);
+    }
     link.append(img, copy);
     preview.append(link);
     if (entry.place.scenes.length > 1) {
@@ -158,9 +242,9 @@ export async function createWorld(app, scenes) {
       entry.place.scenes.forEach((d, i) => {
         const b = document.createElement("button");
         b.textContent = `${i + 1}`;
-        b.setAttribute("aria-label", d.title);
+        translateElement(b, d.title, {}, "aria-label");
         b.setAttribute("aria-pressed", String(i === index));
-        b.onclick = () => showPreview(entry, i);
+        b.onclick = () => showPreview(entry, i, previewPinned);
         row.append(b);
       });
       preview.append(row);
@@ -168,7 +252,7 @@ export async function createWorld(app, scenes) {
     const close = document.createElement("button");
     close.className = "preview-close";
     close.textContent = "×";
-    close.setAttribute("aria-label", "Close preview");
+    translateElement(close, "Close preview", {}, "aria-label");
     close.onclick = closePreview;
     preview.append(close);
     preview.hidden = false;
@@ -198,37 +282,59 @@ export async function createWorld(app, scenes) {
     scene.add(model);
     const button = document.createElement("button");
     button.className = "place-pin";
-    button.dataset.name = place.name;
+    translateElement(button, place.name, {}, "data-name");
     button.dataset.location = place.id;
-    button.setAttribute(
+    translateElement(
+      button,
+      place.scenes.length === 1
+        ? "{name}: preview {count} place"
+        : "{name}: preview {count} places",
+      { name: place.name, count: place.scenes.length },
       "aria-label",
-      `${place.name}: preview ${place.scenes.length} ${place.scenes.length === 1 ? "place" : "places"}`,
     );
     layer.append(button);
     const entry = { place, position, model, button, screen: { x: 0, y: 0 } };
     entries.push(entry);
     button.addEventListener("pointerenter", (e) => {
-      if (e.pointerType === "mouse") showPreview(entry);
+      if (e.pointerType === "mouse" && !flying && !previewPinned)
+        showPreview(entry);
     });
     button.addEventListener("pointerleave", (e) => {
       if (e.pointerType === "mouse") scheduleHide();
     });
-    button.addEventListener("focus", () => showPreview(entry));
+    button.addEventListener("focus", () => showPreview(entry, 0, true));
     button.addEventListener("click", (e) => {
       if (e.pointerType === "touch") {
-        showPreview(entry);
+        showPreview(entry, 0, true);
         return;
       }
       save();
-      location.href = `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1`;
+      const destination = `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1`;
+      if (onNavigate) onNavigate(destination);
+      else location.href = destination;
     });
     const item = document.createElement("button");
     const name = document.createElement("span");
-    name.textContent = place.name;
+    translateElement(name, place.name);
     const count = document.createElement("small");
-    count.textContent = `${place.scenes.length} ${place.scenes.length === 1 ? "place" : "places"}`;
+    translateElement(
+      count,
+      place.sceneId
+        ? "Outdoors"
+        : place.scenes.length === 1
+          ? "{count} place"
+          : "{count} places",
+      { count: place.scenes.length },
+    );
     item.append(name, count);
     item.dataset.destination = place.id;
+    if (place.geographicScope === "regional")
+      translateElement(
+        item,
+        "{name}: imagined regional outdoor setting",
+        { name: place.name },
+        "aria-label",
+      );
     item.onclick = () => fly(entry);
     panel.append(item);
   }
@@ -350,7 +456,7 @@ export async function createWorld(app, scenes) {
         const e = flying.entry;
         flying = null;
         save();
-        showPreview(e);
+        showPreview(e, 0, true);
       }
     }
     controls.update();
@@ -416,6 +522,7 @@ export async function createWorld(app, scenes) {
     materials.forEach((material) => material.dispose());
     map.dispose();
     renderer.dispose();
+    renderer.forceContextLoss();
   }
   window.addEventListener("pagehide", dispose, { signal: events.signal });
   return { camera, entries, renderer, controls, geographicPosition, dispose };

@@ -1,75 +1,135 @@
 {
-  "source": "Local Three.js renders of the versioned atlas environments; no image-generation service was used.",
+  "source": "Local Three.js renders of the atlas environments; no image-generation service was used to capture these previews.",
   "viewport": {
-    "width": 1280,
-    "height": 900
+    "width": 1440,
+    "height": 1000
   },
   "reducedMotion": true,
+  "capture": {
+    "target": "#canvasMount",
+    "deviceScaleFactor": 1
+  },
+  "checkedAt": "2026-09-14T21:25:08.315Z",
   "rendered": [
+    {
+      "file": "riad.png",
+      "scene": "riad",
+      "view": "courtyard",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1669080,
+      "sha256": "b942b1a7dfd3c0ff53c19e3b7e577c2f12b25350084916de825e61f012a2b416"
+    },
     {
       "file": "textile.png",
       "scene": "textile",
-      "view": "room"
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1520434,
+      "sha256": "0424d909991f0cd78b4f8e64018968156e717302779c823e3592311ab8ec7493"
     },
     {
       "file": "kissaten.png",
       "scene": "kissaten",
-      "view": "room"
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1335359,
+      "sha256": "68a1e95397df7a87fb2b28739c22b87879e7c92ee32052103b893b940c3dc547"
     },
     {
       "file": "meyhane.png",
       "scene": "meyhane",
-      "view": "room"
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1231060,
+      "sha256": "496c7109ce08c7fb406f969b1c0156e286ae6e3a8c9470c219440dab9a80427e"
     },
     {
       "file": "herbshop.png",
       "scene": "herbshop",
-      "view": "room"
-    },
-    {
-      "file": "1960s-kyoto-kissaten-interior-7d985e.png",
-      "scene": "1960s-kyoto-kissaten-interior-7d985e",
-      "view": "room"
-    },
-    {
-      "file": "herb-shop-in-hanoi-old-quarter-851851.png",
-      "scene": "herb-shop-in-hanoi-old-quarter-851851",
-      "view": "room"
-    },
-    {
-      "file": "kerala-backwater-kitchen-courtyard-aadf7c.png",
-      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
-      "view": "room"
-    },
-    {
-      "file": "lisbon-neighborhood-tasca-26f598.png",
-      "scene": "lisbon-neighborhood-tasca-26f598",
-      "view": "room"
-    },
-    {
-      "file": "lisbon-neighborhood-tasca-interior-3b46b2.png",
-      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
-      "view": "room"
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1339157,
+      "sha256": "b77fed6f7a5a271d638e560eba11e14bf07bf12136bbd6fd4cafc814c604bb90"
     },
     {
       "file": "lisbon-tasca-interior-3b46b2.png",
       "scene": "lisbon-tasca-interior-3b46b2",
-      "view": "room"
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1301688,
+      "sha256": "1e1e189793ca1ad952d17dc2ad7f033c83cd34189a761888b3082ac5ec9f7968"
+    },
+    {
+      "file": "lisbon-neighborhood-tasca-26f598.png",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1296921,
+      "sha256": "f022f74fce04f734dc2fbef90ba7135908fe252835ab402b7966e2ab40a1a1e5"
+    },
+    {
+      "file": "kerala-backwater-kitchen-courtyard-aadf7c.png",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1213035,
+      "sha256": "0c47b1df1487dcb3198bcd8c6314902b3484421821740a307092ae08953e56ca"
+    },
+    {
+      "file": "herb-shop-in-hanoi-old-quarter-851851.png",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1346406,
+      "sha256": "2449e1638763577215b1f39bb743fc13eb63bee72320cc90f75bdda3ab094bf0"
+    },
+    {
+      "file": "lisbon-neighborhood-tasca-interior-3b46b2.png",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1329227,
+      "sha256": "95abd1e67e70e528dea7dc132c0b393409c6715bd0d99c629335090d761d147c"
+    },
+    {
+      "file": "1960s-kyoto-kissaten-interior-7d985e.png",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1336679,
+      "sha256": "6e0b7fc99c4787cc5f60886727c3ed08808f8207f9eab0095c86f160e741c6d9"
     },
     {
       "file": "traditional-european-bookshop-interior-c-8e7eb4.png",
       "scene": "traditional-european-bookshop-interior-c-8e7eb4",
-      "view": "room"
-    }
-  ],
-  "unchanged": [
-    {
-      "file": "riad.png",
-      "source": "Imported generated reference image. No independent per-image provenance manifest was supplied."
+      "view": "room",
+      "width": 1392,
+      "height": 860,
+      "bytes": 1489922,
+      "sha256": "9aebfe73e41a3eeae49fc6b3c0c1bb628dc1cec0b43294d74dc04466e4f6ddb7"
     }
   ],
   "materials": [
     "../riad/materials/manifest.json",
     "../interiors/materials/manifest.json"
+  ],
+  "history": [
+    {
+      "note": "The superseded baseline metadata described eleven room renders at a 1280 × 900 browser viewport, plus an imported generated riad reference without independent per-image provenance. That description applies only to the earlier preview set. Every current preview listed above is an actual render, including the riad."
+    },
+    {
+      "note": "During the organized-source migration, twelve previews were restored from the preserved pre-migration final visual assets. Their image hashes matched the arrival captures in the water-and-print review checked at 2026-09-14T17:26:10.452Z. The source migration did not recapture these images or produce a new visual acceptance verdict."
+    }
   ]
 }

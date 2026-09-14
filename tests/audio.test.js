@@ -8,6 +8,7 @@ import {
   musicProfile,
 } from "../src/client/environments/shared/soundscape-profiles.js";
 import { createRecordedSoundscape } from "../src/client/environments/shared/recorded-soundscape.js";
+import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 import { getMimeType } from "../src/server/http.mjs";
 import {
   AUDIO_COOKIE,
@@ -80,6 +81,18 @@ test("every composed sound has a bundled file and redistributable credit", async
       } else assert.equal(layer.mode, "loop");
       if (layer.portalZ !== undefined) assert.ok(layer.position);
     }
+  }
+});
+
+test("every outdoor environment has an explicit recorded sound profile", () => {
+  for (const scene of outdoorScenes) {
+    const profile = getSoundscapeProfile(scene.id);
+    assert.ok(profile.label);
+    assert.ok(profile.layers.length >= 2);
+    assert.equal(
+      musicProfile(profile, "place").layers[0].asset,
+      "music-atlas-theme",
+    );
   }
 });
 
@@ -159,6 +172,9 @@ test("sound preference cookies round-trip with explicit consent and safe attribu
     validateAudioPreferences({ ...preferences, musicVolume: NaN }),
   );
   assert.throws(() =>
+    validateAudioPreferences({ ...preferences, narrationEnabled: "true" }),
+  );
+  assert.throws(() =>
     validateAudioPreferences({ ...preferences, mode: "missing" }),
   );
   assert.throws(
@@ -171,4 +187,20 @@ test("sound preference cookies round-trip with explicit consent and safe attribu
       }),
     /could not be saved/,
   );
+});
+
+test("adding narration preserves existing one-year sound consent and volumes", () => {
+  const existing = {
+    version: 1,
+    ambienceEnabled: true,
+    musicEnabled: true,
+    ambienceVolume: 0.67,
+    musicVolume: 0.23,
+    mode: "theme",
+  };
+  const cookie = `${AUDIO_COOKIE}=${encodeURIComponent(JSON.stringify(existing))}`;
+  assert.deepEqual(readAudioPreferences(cookie), {
+    ...existing,
+    narrationEnabled: false,
+  });
 });

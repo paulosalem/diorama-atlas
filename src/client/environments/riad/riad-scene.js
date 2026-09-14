@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { stampSurfaceVariation } from "../shared/surface-variation.js";
 import { createRiadMaterials } from "../shared/materials.js";
 import { createRiadDetailMaterials } from "./riad-detail-materials.js";
 import { addRiadCraft } from "./riad-craft.js";
@@ -1151,6 +1152,7 @@ export function buildRiadEnvironment(definition, renderer) {
         geometries: [],
       });
     const geo = o.geometry.clone();
+    stampSurfaceVariation(geo, o.matrixWorld);
     geo.applyMatrix4(o.matrixWorld);
     geo.deleteAttribute("uv1");
     batches.get(key).geometries.push(geo);
@@ -1211,7 +1213,7 @@ export function buildRiadEnvironment(definition, renderer) {
     animations,
     hotspots,
     focus,
-    ready: m.ready,
+    ready: Promise.all([m.ready, detail.ready]),
     views: RIAD_VIEWS,
     captureReflections,
     soundscape,

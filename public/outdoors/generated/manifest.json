@@ -1,0 +1,32 @@
+{
+  "kind": "generated-prop-artwork-and-decals",
+  "assets": [
+    {
+      "id": "botanical-field-notes",
+      "kind": "printed-artwork",
+      "image": "/public/outdoors/generated/botanical-field-notes.png",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Create original, exceptionally detailed printable artwork for the cover of a modest botanical field notebook. Full-bleed flat rectangular cover design, viewed perfectly straight on, no perspective and no mockup of a book. A beautiful precise botanical illustration of rice stalks, slender leaves, a small frangipani branch and seed forms on warm ivory paper, fine ink lines and restrained olive watercolor washes. Small legible title FIELD NOTES. Subtle realistic paper fibers, a faint water-ring edge near one corner, selective rubbed printing and a lightly softened corner, mostly well-kept rather than distressed everywhere. Quiet, lovely, believable field-use character. No brands, no copyrighted existing cover, no artist signature, no drop shadow, no CGI appearance, no surrounding tabletop. This will be an image texture on actual 3D book geometry.",
+      "fingerprint": "587be2b44b863394b222719bb7c7731678a897bdd8a3949a6bbba59cc38e0672",
+      "sha256": "75f520188a120dd3b9cfd367dab2a9cdaeb7265661435a908794298c8eaebce3",
+      "generatedAt": "2026-09-14T03:05:36.358Z",
+      "usage": {
+        "input_tokens": 171,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 171
+        },
+        "output_tokens": 5488,
+        "output_tokens_details": {
+          "image_tokens": 5488,
+          "text_tokens": 0
+        },
+        "total_tokens": 5659
+      },
+      "note": "Original AI-generated prop artwork or material decal, not documentary photography of a real location."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+.scene-narration {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 4;
+  right: 16px;
+  bottom: 16px;
+  width: min(370px, calc(100% - 32px));
+  max-height: 42%;
+  overflow: auto;
+  padding: 16px 18px 12px;
+  border: 1px solid #e1ce9c30;
+  border-radius: 13px;
+  color: #eee8d9;
+  background: #10201fe8;
+  box-shadow: 0 10px 36px #0004;
+  backdrop-filter: blur(14px);
+}
+.scene-narration header,
+.narration-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.scene-narration header {
+  justify-content: space-between;
+}
+.narration-eyebrow {
+  margin: 0 0 6px;
+  color: #c9b17e;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.scene-narration h2 {
+  margin: 0;
+  font:
+    normal 20px Georgia,
+    serif;
+}
+.narration-text {
+  min-height: 24px;
+  max-height: 125px;
+  overflow: auto;
+  margin: 12px 0;
+  color: #d0d9d2;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.scene-narration button {
+  padding: 7px 12px;
+  font-size: 11px;
+}
+.scene-narration .narration-minimize {
+  padding: 5px 9px;
+}
+.narration-controls {
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.narration-controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  font-size: 10px;
+  color: #abbab1;
+}
+.narration-controls input {
+  accent-color: #d3bb88;
+}
+.narration-time {
+  color: #c3bea9;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.narration-status {
+  flex-shrink: 0;
+  margin: 8px 0;
+  color: #c5b993;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.narration-status:empty {
+  display: none;
+}
+.narration-disclosure {
+  flex-shrink: 0;
+  display: block;
+  margin-top: 9px;
+  color: #8fa49b;
+  font-size: 9px;
+}
+.scene-narration.is-minimized {
+  width: auto;
+  max-width: calc(100% - 32px);
+}
+.scene-narration.is-minimized header > div,
+.scene-narration.is-minimized .narration-text,
+.scene-narration.is-minimized .narration-controls label,
+.scene-narration.is-minimized .narration-disclosure,
+.scene-narration.is-minimized .narration-status {
+  display: none;
+}
+.scene-narration.is-minimized {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 9px;
+}
+@media (max-width: 650px) {
+  .scene-narration {
+    right: 10px;
+    bottom: 10px;
+    width: min(330px, calc(100% - 20px));
+    max-height: 42%;
+    padding: 10px;
+  }
+  .narration-eyebrow {
+    display: none;
+  }
+  .scene-narration h2 {
+    font-size: 17px;
+  }
+  .narration-text {
+    max-height: 82px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+}

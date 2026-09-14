@@ -33,7 +33,13 @@ export default [
     languageOptions: { globals: globals.node },
   },
   {
-    files: ["tests/browser/**/*.js", "scripts/capture-interiors.mjs"],
+    files: [
+      "tests/browser/**/*.js",
+      "scripts/capture-interiors.mjs",
+      "scripts/capture-patina.mjs",
+      "scripts/check-outdoors.mjs",
+      "scripts/check-water-prints.mjs",
+    ],
     languageOptions: { globals: globals.browser },
   },
 ];

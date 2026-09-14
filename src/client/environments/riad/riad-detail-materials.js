@@ -1,8 +1,16 @@
 import * as THREE from "three";
+import { createLocalImageTextures } from "../shared/local-image-textures.js";
+import { createPrintMaterials } from "../shared/print-materials.js";
 
 // Small-scale craft textures complement the existing scanned material maps.
 export function createRiadDetailMaterials(renderer, base) {
   const resources = new Set();
+  const pending = [];
+  const imageTexture = createLocalImageTextures(renderer, pending, resources);
+  const prints = createPrintMaterials({
+    imageTexture,
+    ownMaterial: (material) => resources.add(material),
+  });
   let seed = 12039;
   const random = () =>
     (seed = (1664525 * seed + 1013904223) >>> 0) / 4294967296;
@@ -217,29 +225,16 @@ export function createRiadDetailMaterials(renderer, base) {
   dampStone.color.set(0xabb4a0);
   dampStone.roughness = 0.36;
   resources.add(dampStone);
-  // Gentle world-scale mottling prevents stretched UVs from making large walls uniform.
-  for (const mat of [base.plaster, base.carved, plasterPatina]) {
-    mat.onBeforeCompile = (shader) => {
-      shader.vertexShader =
-        "varying vec3 patinaPosition;\n" + shader.vertexShader;
-      shader.vertexShader = shader.vertexShader.replace(
-        "#include <begin_vertex>",
-        "#include <begin_vertex>\npatinaPosition=(modelMatrix*vec4(position,1.)).xyz;",
-      );
-      shader.fragmentShader =
-        "varying vec3 patinaPosition;\n" + shader.fragmentShader;
-      shader.fragmentShader = shader.fragmentShader.replace(
-        "#include <color_fragment>",
-        `#include <color_fragment>
-        float cloud=sin(patinaPosition.x*1.9+sin(patinaPosition.y*2.7))*sin(patinaPosition.z*2.3+patinaPosition.y*1.6);
-        float grain=sin(patinaPosition.x*29.+sin(patinaPosition.z*32.))*sin(patinaPosition.y*24.);
-        float damp=exp(-max(0.,patinaPosition.y)*5.);
-        diffuseColor.rgb *= (0.97+cloud*.045+grain*.012) * (1.-damp*.19);`,
-      );
-    };
-    mat.customProgramCacheKey = () => "riad-patina-1";
-  }
+  for (const fabric of [...cushions, linen, rug])
+    fabric.userData.patinaProfile = "fabric";
+  leather.userData.patinaProfile = "leather";
+  ceramic.userData.patinaProfile = "clay";
+  paper.userData.patinaProfile = "none";
   return {
+    prints,
+    get ready() {
+      return Promise.all(pending);
+    },
     paper,
     leather,
     stitch,

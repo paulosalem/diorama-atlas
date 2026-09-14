@@ -1,3 +1,5 @@
+import { TranslatableError } from "../../localization/errors.js";
+
 let library;
 
 export async function loadAudioLibrary() {
@@ -7,7 +9,10 @@ export async function loadAudioLibrary() {
     })
       .then(async (response) => {
         if (!response.ok)
-          throw new Error(`Audio credits could not load (${response.status}).`);
+          throw new TranslatableError(
+            "Audio credits could not load ({status}).",
+            { status: response.status },
+          );
         const manifest = await response.json();
         if (!Array.isArray(manifest.assets))
           throw new Error("The audio library has no asset list.");

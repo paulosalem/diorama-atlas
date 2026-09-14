@@ -3,14 +3,15 @@
 **A world of small places, explored from the inside.**
 
 Diorama Atlas is a local web application for exploring culturally inspired
-interiors. Start with an interactive Earth, choose a place, and step into a
+interiors and outdoor spaces. Start with an interactive Earth, choose a place, and step into a
 full-scale Three.js environment with named viewpoints, close-up detail markers,
 and explanatory text.
 
-The included collection contains **12 places across 8 geographic settings**:
-Marrakech, Oaxaca, Kyoto, Istanbul, Hanoi, Lisbon, Kerala, and an imagined Central
-European bookshop. These are interpretive reconstructions, not surveyed buildings,
-photogrammetry, or authoritative historical records.
+The included collection contains **22 places across 18 geographic settings**:
+12 interiors plus ten imagined outdoor settings inspired by Newar, Central Asian,
+Balinese, Venetian, Bahian, Andean, Swahili, Naxi, Tunisian and Lao traditions.
+These are culturally grounded interpretations, not replicas of landmarks,
+surveyed buildings, photogrammetry, or authoritative historical records.
 
 ## Run locally
 
@@ -46,6 +47,18 @@ replacement or production bundler.
   the Marrakech riad, five in each other interior).
 - **Details:** choose **Show details**, then select a marker to read about an
   object or architectural feature. **Reset view** restores the first viewpoint.
+- **Outdoors:** explore four viewpoints per setting, with closer zoom for small
+  details. **References** shows the credited photographs used as regional style
+  references; map markers indicate regions of inspiration, not street addresses.
+- **About:** browse and search all image, material, model, print and audio credits.
+- **Language:** choose **English (US)** or **Português (Brasil)** globally.
+  Interface text, place descriptions, viewpoints and narration follow the choice
+  without moving your camera or rebuilding the environment.
+- **Narration pilot:** Marrakech has twelve prerecorded tracks: its arrival and
+  five focused views in both languages. A quiet floating panel shows the spoken
+  paragraph and play/pause controls. Playing once enables future entry/view
+  narration; view selection or a sustained close look selects the relevant
+  recording. You can minimize the panel, and **Mute all** disables narration too.
 - **Return:** select **Back to world** or press `Escape`. The globe remembers its
   orientation for the browser session.
 - **Soundscape:** enable recorded place ambience and music independently.
@@ -54,7 +67,9 @@ replacement or production bundler.
   volumes are remembered in a cookie across places and future visits; audio credits
   are in the same panel. Hiding the tab pauses playback, and only one Atlas tab
   plays at a time. If your browser blocks restored playback, select **Resume**.
-  **Listen** on a detail uses the separate narration API described below.
+  Existing detail **Listen** uses browser speech synthesis outdoors and in
+  Portuguese, and the separate narration API described below for English
+  interiors. Marrakech's new entry/view recordings are bundled locally.
 
 Direct links use `/?scene=kissaten`. Add `&inspect=1` for expanded viewing or
 `&view=bar` for a particular viewpoint; viewpoint names vary by environment.
@@ -66,10 +81,11 @@ src/
   client/
     catalog/              Place descriptions and geographic settings
     world/                Globe, markers, and miniature landmarks
-    viewer/               Interior rendering, controls, details, and audio UI
+    viewer/               Rendering, controls, details, references, credits, audio UI
     environments/
       shared/             Geometry helpers and shared material loading
       interiors/          Room families, connected spaces, detail, and soundscapes
+      outdoors/           Ten settings, photographic daylight, foliage, and water
       riad/               Detailed Marrakech environment
     main.js               Browser entry point
     styles.css
@@ -83,7 +99,9 @@ index.html                HTML shell and Three.js import map
 
 Five original place definitions live in the client catalog. Seven saved scene
 packages are versioned under `data/scenes/`, so a fresh checkout has the same
-12-place collection without depending on someone else's cache.
+interior collection without depending on someone else's cache. Ten outdoor
+definitions live in `src/client/catalog/outdoor-catalog.js` and use dedicated
+geometry builders, not generated approximations.
 
 Local generated scenes, reference images, narration, and textures live in
 `.cache/`. Local scenes override bundled scenes with the same ID. **Back up
@@ -121,10 +139,15 @@ npm run check             # ESLint, formatting, and Node regression tests
 npm run format            # Apply the shared formatting conventions
 npx playwright install chromium
 npm run test:browser      # Real browser checks against an isolated local server
+npm run test:outdoors     # All outdoor viewpoints and controls; app on port 4183
+npm run test:water-prints # All 22 places: actual print images and timed water views
+npm run build:credits    # Rebuild consolidated local attribution
 ```
 
-Browser checks run with AI disabled and cover the globe, all 12 interiors and
-their 61 viewpoints, details, mobile-width navigation, and error recovery.
+Browser checks run with AI disabled and cover the globe, all 22 environments and
+their 101 viewpoints, details, audio ownership/preferences, mobile-width navigation,
+and error recovery. The outdoor and water/print scripts write local evidence to
+ignored `outputs/`; set `ATLAS_URL` to target a different running server.
 Test artifacts go to ignored `test-results/`. GitHub Actions runs repository
 checks on Node 22 and 24 and browser checks on Chromium.
 
@@ -134,12 +157,18 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions,
 See [soundscape design and extension](docs/soundscapes.md) and
 [audio sources](docs/audio-sources.md) for acquiring, licensing and composing
 additional recordings and music.
+See [narration](docs/narration.md) and [localization](docs/localization.md) for the
+bilingual pilot, view triggers, generation provenance and global language setting.
+See [outdoor collection and visual refinements](docs/outdoor-collection.md) for
+source photography, scanned daylight/materials, surface patina, natural water,
+image-based printed props, and the limits of the visual realism achieved so far.
 
 ### Matched visual comparisons
 
 The [collection realism pass](docs/collection-realism.md) continues the approved
 Codex work: rooms beyond doors and windows, meaningful signs of use, restrained
-movement, and optional local ambience. Marrakech stays unchanged.
+movement, and optional local ambience. Subsequent atlas-wide work also refines
+Marrakech with surface variation, printed imagery and more natural water.
 
 For a future visual pass, capture its baseline before editing:
 

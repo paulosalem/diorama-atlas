@@ -1,10 +1,27 @@
 import { loadScenes } from "./catalog/scene-catalog.js";
 import { createAtlasAudio } from "./environments/shared/atlas-audio.js";
 import { createSoundscapePanel } from "./viewer/soundscape-panel.js";
+import { createLanguageControl } from "./viewer/language-control.js";
+import { disposeAbout } from "./viewer/about-atlas.js";
+import {
+  subscribeLocale,
+  t,
+  translateElement,
+  translateUI,
+} from "./localization/locale.js";
 
 const app = document.getElementById("app");
 const audio = createAtlasAudio();
 const soundPanel = createSoundscapePanel(audio);
+const languageControl = createLanguageControl();
+const unsubscribeLocale = subscribeLocale(() => {
+  translateUI(document);
+  if (!new URL(location.href).searchParams.has("scene"))
+    document.title = t("Diorama Atlas — a world of small places");
+});
+const initialLoading = app.querySelector(".initial-loading");
+if (initialLoading?.firstChild)
+  initialLoading.firstChild.textContent = t("Opening the world");
 let scenes;
 let active = null;
 let pending = null;
@@ -16,13 +33,16 @@ function showError(error) {
   const panel = document.createElement("div");
   panel.className = "initial-loading";
   const message = document.createElement("p");
-  message.textContent =
-    error.message || "This view could not be loaded. Please try again.";
+  translateElement(
+    message,
+    error.message || "This view could not be loaded. Please try again.",
+  );
   const retry = document.createElement("a");
   retry.href = "/";
-  retry.textContent = "Return to the world";
+  translateElement(retry, "Return to the world");
   panel.append(message, retry);
   app.append(panel);
+  languageControl.mount(app);
 }
 
 async function render() {
@@ -38,7 +58,9 @@ async function render() {
       active = null;
       audio.setDucked(false);
       app.innerHTML =
-        '<div class="initial-loading" role="status">Opening the world<span></span></div>';
+        '<div class="initial-loading" role="status"><div data-i18n="Opening the world"></div><span></span></div>';
+      translateUI(app);
+      languageControl.mount(app);
       try {
         const id = url.searchParams.get("scene");
         if (id) {
@@ -53,11 +75,15 @@ async function render() {
             audio.attachEnvironment(active.runtime, definition.title);
         } else {
           const { createWorld } = await import("./world/world-globe.js");
-          document.title = "Diorama Atlas — a world of small places";
-          active = await createWorld(app, scenes);
+          document.title = t("Diorama Atlas — a world of small places");
+          active = await createWorld(app, scenes, { onNavigate: navigate });
           if (!pending) audio.attachEnvironment(null);
         }
-        if (!pending) soundPanel.mount(app);
+        if (!pending) {
+          soundPanel.mount(app);
+          languageControl.mount(app);
+          translateUI(app);
+        }
       } catch (error) {
         active?.dispose();
         active = null;
@@ -110,6 +136,9 @@ window.addEventListener("pagehide", () => {
   active?.dispose();
   audio.dispose();
   soundPanel.dispose();
+  languageControl.dispose();
+  unsubscribeLocale();
+  disposeAbout();
 });
 
 export function getAtlasAudio() {

@@ -3,6 +3,7 @@ import { createEnvironmentKit } from "../shared/environment-kit.js";
 import { createInteriorProps } from "./interior-props.js";
 import { deepenSurroundings } from "./interior-depth.js";
 import { addInteriorLife } from "./interior-life.js";
+import { printCatalog } from "../shared/print-catalog.js";
 
 function sceneSeed(definition) {
   let n = 32;
@@ -49,9 +50,12 @@ export function buildInteriorEnvironment(definition, renderer) {
                   market: "herbshop",
                 }[definition.blueprint?.archetype] ?? "herbshop");
   const k = createEnvironmentKit(renderer, sceneSeed(definition), {
-      rustic: type === "workshop" || type === "kitchen",
-    }),
-    p = createInteriorProps(k);
+    rustic: type === "workshop" || type === "kitchen",
+  });
+  const p = createInteriorProps(
+    k,
+    type === "tavern" && /lisbon|tasca/.test(text) ? "lisbon" : type,
+  );
   if (type === "workshop" || type === "kitchen") {
     k.m.cedar.color.set(0xddd0ab);
     k.m.cedar.roughnessMap = null;
@@ -200,25 +204,53 @@ function buildCafe(definition, k, p, finish) {
   const sleeves = [0x766c57, 0x544d47, 0x6b5145, 0x444c4b, 0xaaa08a].map((c) =>
     k.material(c, 0.98),
   );
-  for (let row = 0; row < 4; row++)
-    for (let i = 0; i < 72; i++)
-      box(
-        [0.012, 0.315, 0.315],
-        [-1.73 + i * 0.048, 0.55 + row * 0.39 + 0.175, 0.02],
-        sleeves[i % 5],
+  for (let row = 0; row < 4; row++) {
+    const y = 0.55 + row * 0.39 + 0.175,
+      count = [128, 136, 131, 139][row];
+    for (const start of [-1.7, 0.5])
+      for (let i = 0; i < count; i++) {
+        const x = start + i * 0.0085;
+        box([0.006, 0.315, 0.315], [x, y, 0.02], sleeves[i % 5], recordRack, 0);
+        k.mesh(
+          new THREE.PlaneGeometry(0.006, 0.313),
+          k.prints.recordSpine(printCatalog.records[(i + row) % 4].id),
+          [x, y, 0.1785],
+          [0, 0, 0],
+          recordRack,
+        );
+        const artwork = k.prints.record(printCatalog.records[(i + row) % 4].id);
+        for (const side of [-1, 1])
+          k.mesh(
+            new THREE.PlaneGeometry(0.313, 0.313),
+            artwork,
+            [x + side * 0.0038, y, 0.02],
+            [0, (side * Math.PI) / 2, 0],
+            recordRack,
+          );
+      }
+    for (let i = 0; i < 2; i++) {
+      const display = sub(
+        [-0.18 + i * 0.36, y, 0.1],
+        i ? 0.06 : -0.045,
         recordRack,
-        0.001,
       );
-  const sleeve = k.material(0xceaf75, 0.94);
+      display.rotation.x = -0.1;
+      box([0.31, 0.315, 0.008], [0, 0, 0], m.paper, display, 0);
+      k.mesh(
+        new THREE.PlaneGeometry(0.31, 0.315),
+        k.prints.record(printCatalog.records[(row + i) % 4].id),
+        [0, 0, 0.0048],
+        [0, 0, 0],
+        display,
+      );
+    }
+  }
   for (let i = 0; i < 4; i++) {
-    box([0.3, 0.3, 0.012], [-1.7 + i * 0.64, 2.55, -4.06], sleeve);
-    meshDisc(k, [-1.7 + i * 0.64, 2.55, -4.04], 0.11, m.dark);
-    sphere(
-      0.028,
-      [-1.7 + i * 0.64, 2.55, -4.025],
-      m.brass,
-      group,
-      [1, 1, 0.08],
+    box([0.3, 0.3, 0.012], [-1.7 + i * 0.64, 2.55, -4.06], m.paper);
+    k.mesh(
+      new THREE.PlaneGeometry(0.3, 0.3),
+      k.prints.record(printCatalog.records[i].id),
+      [-1.7 + i * 0.64, 2.55, -4.053],
     );
   }
   box([1.32, 0.86, 0.61], [-0.6, 0.43, -3.86], m.cedar);
@@ -245,9 +277,10 @@ function buildCafe(definition, k, p, finish) {
   for (const z of [-2.3, 0.3, 2.9])
     p.pendant([0.1, 3.3, z], vintage ? "green" : "brass");
   p.foliage([-2.64, 0, -3.8], 0.65);
-  p.openBook([-2.02, 0.768, 0.45]);
+  p.openBook([-2.02, 0.739, 0.45]);
   p.cake([-width / 2 + 1.48, 0.748, -2.55]);
   p.cake([-width / 2 + 1.48, 0.748, 3.15]);
+  p.wallPrint([1.3, 2.75, -4.444], { id: "coffee", width: 0.62, height: 0.93 });
   k.lightRoom({
     daylight: true,
     intensity: 2.8,
@@ -444,9 +477,19 @@ function buildTavern(definition, k, p, finish) {
       );
     meshDisc(k, [0, 0.09, 0.078], 0.06, m.dark, oud);
   } else {
-    k.framedText("LISBOA", [-2.2, 2.39, -4.2], 0.55, 0.77);
+    p.wallPrint([2.75, 2.39, -4.244], {
+      id: "wine",
+      width: 0.55,
+      height: 0.825,
+    });
     p.jar([-2.7, 1.35, -4.13], group, 1.25);
   }
+  if (!lisbon)
+    p.wallPrint([2.95, 2.3, -4.244], {
+      id: "table",
+      width: 0.65,
+      height: 0.975,
+    });
   for (const z of [-2.1, 0.6, 3.0]) p.pendant([0.05, 3.42, z]);
   p.foliage([-2.65, 0, 3.65], 0.65);
   if (!lisbon)
@@ -596,9 +639,15 @@ function buildHerbShop(definition, k, p, finish) {
     height: 0.72,
     settings: 0,
   });
-  p.openBook([1.45, 0.77, 2.5]);
+  p.openBook([1.45, 0.719, 2.5]);
   p.chair([1.5, 0, 3.3]);
   p.jar([1.93, 0.77, 2.4], group, 0.85);
+  p.wallPrint([2.442, 2.13, 2.65], {
+    id: "herbs",
+    width: 0.65,
+    height: 0.975,
+    angle: -Math.PI / 2,
+  });
   for (let i = 0; i < 3; i++) {
     const sack = sub([-1.65 + i * 0.45, 0, 2.9]);
     k.cushion([0.37, 0.51, 0.34], [0, 0.27, 0], m.linen, sack);
@@ -696,11 +745,11 @@ function buildBookshop(definition, k, p, finish) {
     height: 0.79,
     settings: 0,
   });
-  p.openBook([-0.18, 0.82, 0.16], table);
+  p.openBook([-0.18, 0.797, 0.16], table);
   for (let j = 0; j < 3; j++)
     for (let i = 0; i < 4; i++)
       p.book(
-        [0.5 + j * 0.19, 0.83 + i * 0.046, -0.25],
+        [0.5 + j * 0.31, 0.819 + i * 0.047, -0.25],
         table,
         0.043,
         0.27,
@@ -754,6 +803,12 @@ function buildBookshop(definition, k, p, finish) {
   for (const z of [-2.3, 0.3, 2.9]) p.lantern([0.1, 3.95, z]);
   for (const x of [-2.35, 2.35])
     k.framedText("TRAVELS\n& LETTERS", [x, 3.82, -4.27], 0.9, 0.25);
+  p.wallPrint([1.8, 2.45, 4.5735], {
+    id: "flowers",
+    width: 0.64,
+    height: 0.96,
+    angle: Math.PI,
+  });
   k.lightRoom({
     daylight: true,
     height: 4,
@@ -990,6 +1045,11 @@ function buildWorkshop(definition, k, p, finish) {
   rod([0.72, 3.02, -4.36], [1.98, 3.02, -4.36], 0.023, m.cedar);
   p.pendant([0, 3.6, -1.1]);
   p.foliage([-3.33, 0, 3.58], 0.7);
+  p.wallPrint([-2.75, 2.25, -4.444], {
+    id: "textile",
+    width: 0.74,
+    height: 1.11,
+  });
   k.lightRoom({
     daylight: true,
     height: 3.65,
@@ -1215,6 +1275,12 @@ function buildKitchen(definition, k, p, finish) {
   );
   rod([-2.45, 0.11, 0.6], [-2.61, 0.5, 0.62], 0.045, m.dark);
   for (const z of [-2.2, 0.8, 3]) p.pendant([1.06, 3.06, z]);
+  p.wallPrint([4.143, 2.0, 2.65], {
+    id: "herbs",
+    width: 0.62,
+    height: 0.93,
+    angle: -Math.PI / 2,
+  });
   k.lightRoom({
     daylight: true,
     height: 3.1,

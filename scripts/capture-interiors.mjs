@@ -2,6 +2,7 @@ import { parseArgs } from "node:util";
 import path from "node:path";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
+import { waitForViewer } from "./helpers/browser-viewer.mjs";
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
 
 const { values } = parseArgs({
@@ -14,7 +15,7 @@ const { values } = parseArgs({
   },
 });
 if (values.help) {
-  console.log(`Capture matched views of the eleven non-riad interiors.
+  console.log(`Capture matched views of all twelve interiors, including Marrakech.
 
 Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --base-url URL       Running local atlas (default http://127.0.0.1:4195)
@@ -50,14 +51,16 @@ const saved = await Promise.all(
     ),
 );
 const scenes = [...curatedScenes, ...saved.map((entry) => entry.scene)].filter(
-  (scene) =>
-    scene.id !== "riad" && (!values.scene || scene.id === values.scene),
+  (scene) => !values.scene || scene.id === values.scene,
 );
 if (!scenes.length) throw new Error("No matching interior.");
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
   channel: "chromium",
-  args: ["--enable-unsafe-swiftshader"],
+  args:
+    process.platform === "darwin"
+      ? ["--use-angle=metal"]
+      : ["--enable-unsafe-swiftshader"],
 });
 const context = await browser.newContext({
   viewport: { width: 1280, height: 900 },
@@ -93,12 +96,7 @@ try {
     await page.goto(
       `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1`,
     );
-    await page
-      .locator("#sceneTitle")
-      .waitFor({ state: "visible", timeout: 90_000 });
-    await page
-      .locator("#riadLoading")
-      .waitFor({ state: "hidden", timeout: 90_000 });
+    await waitForViewer(page);
     await page.evaluate(() => document.fonts.ready);
     const views = [];
     for (const button of await page.locator(".riad-viewpoints button").all()) {
@@ -112,9 +110,10 @@ try {
           ),
       );
       const file = `${definition.id}-${key}.png`;
-      await page
-        .locator("#canvasMount")
-        .screenshot({ path: path.join(output, file) });
+      await page.locator("#canvasMount").screenshot({
+        path: path.join(output, file),
+        style: ".scene-narration { visibility: hidden !important; }",
+      });
       const view = await page.evaluate(async (key) => {
         const { getActiveViewer } =
           await import("/src/client/viewer/panorama-viewer.js");

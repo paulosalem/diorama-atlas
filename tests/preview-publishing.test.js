@@ -1,0 +1,101 @@
+import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
+import { createHash } from "node:crypto";
+import {
+  copyFile,
+  mkdir,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { test } from "node:test";
+import { promisify } from "node:util";
+
+test("preview publishing includes Marrakech and retains unselected capture provenance", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "atlas-preview-publisher-"));
+  try {
+    await Promise.all(
+      ["scripts", "public/previews", "captures"].map((name) =>
+        mkdir(path.join(root, name), { recursive: true }),
+      ),
+    );
+    await copyFile(
+      new URL("../scripts/publish-previews.mjs", import.meta.url),
+      path.join(root, "scripts/publish-previews.mjs"),
+    );
+    const png = Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=",
+      "base64",
+    );
+    await writeFile(path.join(root, "captures/riad-courtyard.png"), png);
+    await writeFile(
+      path.join(root, "captures/capture.json"),
+      JSON.stringify({
+        phase: "after",
+        viewport: { width: 1280, height: 900 },
+        scenes: [
+          {
+            id: "riad",
+            views: [{ key: "courtyard", file: "riad-courtyard.png" }],
+          },
+        ],
+      }),
+    );
+    const prior = {
+      file: "kissaten.png",
+      scene: "kissaten",
+      view: "room",
+      width: 1,
+      height: 1,
+    };
+    await writeFile(
+      path.join(root, "public/previews/credits.json"),
+      JSON.stringify({
+        viewport: { width: 1440, height: 1000 },
+        rendered: [prior],
+        unchanged: [
+          { file: "riad.png", source: "Obsolete imported reference." },
+        ],
+      }),
+    );
+    await promisify(execFile)(process.execPath, [
+      path.join(root, "scripts/publish-previews.mjs"),
+      "--input",
+      path.join(root, "captures/capture.json"),
+    ]);
+    const credits = JSON.parse(
+      await readFile(path.join(root, "public/previews/credits.json"), "utf8"),
+    );
+    assert.equal(credits.unchanged, undefined);
+    assert.equal(credits.rendered.length, 2);
+    assert.deepEqual(
+      credits.rendered.find((entry) => entry.scene === "kissaten"),
+      {
+        ...prior,
+        viewport: { width: 1440, height: 1000 },
+      },
+    );
+    assert.deepEqual(
+      credits.rendered.find((entry) => entry.scene === "riad"),
+      {
+        file: "riad.png",
+        scene: "riad",
+        view: "courtyard",
+        width: 1,
+        height: 1,
+        viewport: { width: 1280, height: 900 },
+        bytes: png.length,
+        sha256: createHash("sha256").update(png).digest("hex"),
+      },
+    );
+    assert.deepEqual(
+      await readFile(path.join(root, "public/previews/riad.png")),
+      png,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

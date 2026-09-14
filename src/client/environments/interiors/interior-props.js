@@ -1,7 +1,8 @@
 import * as THREE from "three";
+import { printThemes } from "../shared/print-catalog.js";
 
 /** Furniture and household objects, sized in metres and assembled from real surfaces. */
-export function createInteriorProps(k) {
+export function createInteriorProps(k, context = "bookshop") {
   const {
     m,
     group,
@@ -16,10 +17,15 @@ export function createInteriorProps(k) {
     cushion,
     mesh,
     material,
-    texture,
     range,
     random,
   } = k;
+  const printTheme = printThemes[context];
+  if (!printTheme)
+    throw new Error(`Unknown interior print context: ${context}`);
+  const prints = k.prints;
+  let bottleNumber = 0,
+    jarNumber = 0;
   const porcelain = material(0xe8e0cd, 0.25),
     tea = material(0x392315, 0.26),
     wine = material(0x344536, 0.23, 0.15);
@@ -29,53 +35,16 @@ export function createInteriorProps(k) {
     0x403a2d, 0x6b3c32, 0x284443, 0x7b6447, 0x263542, 0x4b423a, 0x78654b,
     0x3d4a37,
   ].map((c) => material(c, 0.95));
-  const paperLabel = texture((c, s) => {
-    c.fillStyle = "#d1be98";
-    c.fillRect(0, 0, s, s);
-    c.fillStyle = "#514738";
-    c.font = "80px Georgia";
-    c.textAlign = "center";
-    c.fillText("No. 08", s / 2, s * 0.42);
-    for (let y = s * 0.55; y < s * 0.8; y += 30)
-      c.fillRect(s * 0.2, y, s * 0.6, 4);
-  });
-  const labelMat = material(0xffffff, 1);
-  labelMat.map = paperLabel;
+  upholstery.userData.patinaProfile = "leather";
+  porcelain.userData.patinaProfile = "clay";
+  for (const cover of bookColors) cover.userData.patinaProfile = "leather";
   const glazes = [0xc6c0a0, 0x6c735d, 0xa18454, 0x735441, 0xb5aa84].map((c) => {
     const mat = material(c, 0.38);
     mat.normalMap = m.pot.normalMap;
     mat.normalScale.set(0.12, 0.12);
     return mat;
   });
-  const drawerLabels = Array.from({ length: 12 }, (_, i) => {
-    const mat = material(0xffffff, 0.95);
-    mat.map = texture(
-      (c, s) => {
-        c.fillStyle = "#c4b38f";
-        c.fillRect(0, 0, s, s);
-        c.fillStyle = "#4b4639";
-        c.font = "48px Georgia";
-        c.textAlign = "center";
-        c.fillText(String(i + 1).padStart(2, "0"), s / 2, s * 0.61);
-      },
-      [1, 1],
-      128,
-    );
-    return mat;
-  });
-  const bookLabel = texture((c, s) => {
-    c.clearRect(0, 0, s, s);
-    c.fillStyle = "#c0a776";
-    c.textAlign = "center";
-    c.font = "64px Georgia";
-    c.fillText("COLLECTION", s / 2, s * 0.3);
-    c.font = "42px Georgia";
-    c.fillText("VOLUME  ·  II", s / 2, s * 0.47);
-    c.fillRect(s * 0.2, s * 0.65, s * 0.6, 5);
-  });
-  const spineMat = material(0xffffff, 0.9);
-  spineMat.map = bookLabel;
-  spineMat.alphaTest = 0.4;
+  const drawerLabels = printTheme.labels.map((id) => prints.drawer(id));
   const leather = upholstery;
   const cavityProbes = [];
   function cup(position, parent = group, scale = 1) {
@@ -156,7 +125,12 @@ export function createInteriorProps(k) {
     return g;
   }
   function bottle(position, parent = group, scale = 1, clear = false) {
-    const g = sub(position, range(0, 6.2), parent);
+    const number = bottleNumber++;
+    const g = sub(
+      position,
+      number % 7 === 6 ? range(0.8, 1.6) : range(-0.55, 0.55),
+      parent,
+    );
     g.scale.setScalar(scale);
     lathe(
       [
@@ -174,12 +148,29 @@ export function createInteriorProps(k) {
       32,
     );
     cylinder(0.019, 0.023, [0, 0.322, 0], m.bronze, g);
-    box([0.064, 0.082, 0.004], [0, 0.125, 0.052], labelMat, g, 0.001);
+    const arc = 0.064 / 0.053;
+    mesh(
+      new THREE.CylinderGeometry(
+        0.053,
+        0.053,
+        0.082,
+        24,
+        1,
+        true,
+        -arc / 2,
+        arc,
+      ),
+      prints.label(printTheme.labels[number % printTheme.labels.length]),
+      [0, 0.125, 0],
+      [0, 0, 0],
+      g,
+    );
     return g;
   }
   function jar(position, parent = group, scale = 1, glazed = true) {
     const g = sub(position, range(-0.25, 0.25), parent);
     g.scale.setScalar(scale);
+    const number = jarNumber++;
     const glaze = glazes[Math.floor(random() * glazes.length)];
     lathe(
       [
@@ -206,7 +197,35 @@ export function createInteriorProps(k) {
       g,
     );
     sphere(0.018, [0, 0.285, 0], glazed ? glaze : m.cedar, g);
-    box([0.075, 0.095, 0.003], [0, 0.135, 0.092], labelMat, g, 0.001);
+    const arc = 0.075 / 0.091;
+    const labelGeometry = new THREE.CylinderGeometry(
+      1,
+      1,
+      0.095,
+      24,
+      12,
+      true,
+      -arc / 2,
+      arc,
+    );
+    const points = labelGeometry.attributes.position;
+    for (let i = 0; i < points.count; i++) {
+      const y = points.getY(i) + 0.135;
+      const radius =
+        (y <= 0.11
+          ? 0.086 + ((y - 0.02) / 0.09) * 0.009
+          : 0.095 - ((y - 0.11) / 0.09) * 0.015) + 0.0008;
+      points.setX(i, points.getX(i) * radius);
+      points.setZ(i, points.getZ(i) * radius);
+    }
+    labelGeometry.computeVertexNormals();
+    mesh(
+      labelGeometry,
+      prints.label(printTheme.labels[number % printTheme.labels.length]),
+      [0, 0.135, 0],
+      [0, 0, 0],
+      g,
+    );
     return g;
   }
   function table(
@@ -399,8 +418,10 @@ export function createInteriorProps(k) {
   ) {
     const g = sub(position, range(-0.05, 0.05), parent);
     if (flat) g.rotation.z = Math.PI / 2;
-    const cover = bookColors[Math.floor(random() * bookColors.length)],
+    const edition = Math.floor(random() * bookColors.length),
+      cover = bookColors[edition],
       depth = range(0.15, 0.22);
+    const id = prints.edition(edition);
     box([width, height, depth], [0, height / 2, 0], paper, g, 0);
     for (const x of [-width / 2, width / 2])
       box(
@@ -419,14 +440,27 @@ export function createInteriorProps(k) {
     );
     for (const y of [height * 0.12, height * 0.2, height * 0.82, height * 0.89])
       box([width, 0.002, 0.002], [0, y, depth / 2 + 0.007], m.brass, g, 0);
-    if (width > 0.045)
-      mesh(
-        new THREE.PlaneGeometry(width * 0.7, height * 0.5),
-        spineMat,
-        [0, height * 0.58, depth / 2 + 0.009],
-        [0, 0, 0],
-        g,
-      );
+    mesh(
+      new THREE.PlaneGeometry(width + 0.003, height + 0.006),
+      prints.book(id, "spine"),
+      [0, height / 2, depth / 2 + 0.007],
+      [0, 0, 0],
+      g,
+    );
+    mesh(
+      new THREE.PlaneGeometry(depth + 0.006, height + 0.006),
+      prints.book(id, "front"),
+      [width / 2 + 0.0017, height / 2, 0],
+      [0, Math.PI / 2, 0],
+      g,
+    );
+    mesh(
+      new THREE.PlaneGeometry(depth + 0.006, height + 0.006),
+      prints.book(id, "back"),
+      [-width / 2 - 0.0017, height / 2, 0],
+      [0, -Math.PI / 2, 0],
+      g,
+    );
     return g;
   }
   function drawerCabinet(
@@ -510,9 +544,9 @@ export function createInteriorProps(k) {
             });
         }
         box(
-          [w * 0.35, h * 0.21, 0.005],
+          [w * 0.35, (w * 0.35) / 2.5, 0.005],
           [x, y + h * 0.1, front.position.z + 0.026],
-          drawerLabels[(row * cols + col) % 12],
+          drawerLabels[(row * cols + col) % drawerLabels.length],
           g,
           0.001,
         );
@@ -580,6 +614,7 @@ export function createInteriorProps(k) {
   }
   function openBook(position, parent = group) {
     const g = sub(position, range(-0.2, 0.2), parent);
+    box([0.385, 0.006, 0.279], [0, 0.003, 0], bookColors[0], g, 0.0015);
     for (const side of [-1, 1]) {
       const page = box(
         [0.19, 0.018, 0.27],
@@ -589,15 +624,61 @@ export function createInteriorProps(k) {
         0.002,
       );
       page.rotation.z = -side * 0.13;
-      for (let i = 0; i < 14; i++)
-        box(
-          [0.145, 0.001, 0.001],
-          [side * 0.092, 0.04 + 0.006 * (i % 2), -0.11 + i * 0.016],
-          m.bronze,
-          g,
-          0,
+      const geometry = new THREE.PlaneGeometry(0.185, 0.265, 12, 18),
+        points = geometry.attributes.position;
+      for (let i = 0; i < points.count; i++) {
+        const u = (points.getX(i) + 0.0925) / 0.185;
+        const x = points.getX(i);
+        points.setXYZ(
+          i,
+          side * 0.092 + x,
+          0.023 +
+            0.009 * Math.cos(0.13) +
+            x * Math.sin(-side * 0.13) +
+            0.001 +
+            Math.sin(u * Math.PI) * 0.003,
+          -points.getY(i),
         );
+      }
+      geometry.computeVertexNormals();
+      mesh(
+        geometry,
+        prints.book(printTheme.book, side < 0 ? "page-left" : "page-right"),
+        [0, 0, 0],
+        [0, 0, 0],
+        g,
+      );
     }
+    return g;
+  }
+  function wallPrint(
+    position,
+    {
+      id = printTheme.poster,
+      width = 0.65,
+      height = width * 1.5,
+      angle = 0,
+      parent = group,
+    } = {},
+  ) {
+    const g = sub(position, angle, parent);
+    box(
+      [width + 0.055, height + 0.055, 0.035],
+      [0, 0, -0.019],
+      m.cedar,
+      g,
+      0.004,
+    );
+    const geometry = new THREE.PlaneGeometry(width, height, 10, 14),
+      points = geometry.attributes.position;
+    for (let i = 0; i < points.count; i++)
+      points.setZ(
+        i,
+        0.0015 * Math.sin(points.getY(i) * 19) +
+          0.002 * Math.abs(points.getX(i) / width) ** 4,
+      );
+    geometry.computeVertexNormals();
+    mesh(geometry, prints.poster(id), [0, 0, 0.002], [0, 0, 0], g);
     return g;
   }
   function scale(position, parent = group) {
@@ -825,6 +906,7 @@ export function createInteriorProps(k) {
     hearth,
     cavityProbes,
     openBook,
+    wallPrint,
     scale,
     foliage,
     stool,
@@ -835,5 +917,7 @@ export function createInteriorProps(k) {
     lantern,
     porcelain,
     leather,
+    prints,
+    printTheme,
   };
 }

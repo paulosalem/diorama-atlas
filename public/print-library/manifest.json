@@ -1,0 +1,1298 @@
+{
+  "kind": "image-based-print-library",
+  "note": "Original fictional layouts using real source artwork; not replicas of historical book covers, modern brands or actual businesses.",
+  "assets": [
+    {
+      "id": "book-field-notes-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-field-notes-front.jpg",
+      "title": "FIELD NOTES",
+      "sourceId": "botanical-field-notes",
+      "sourceImage": "/public/outdoors/generated/botanical-field-notes.png",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "sourceAuthor": "Generated with gpt-image-2.5-sunburst-2026-09-08",
+      "sourceLicense": "AI-generated original artwork",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "23052be260a20b9e7fa4222a71b597b756245bab2be3f2f92f0ad4b797f742a8",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-field-notes-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-field-notes-back.jpg",
+      "title": "FIELD NOTES",
+      "sourceId": "botanical-field-notes",
+      "sourceImage": "/public/outdoors/generated/botanical-field-notes.png",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "sourceAuthor": "Generated with gpt-image-2.5-sunburst-2026-09-08",
+      "sourceLicense": "AI-generated original artwork",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "b35790c7dcf3754ce05162227178555d49d65c68a0f099856de988d1cfc0069e",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-field-notes-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-field-notes-spine.jpg",
+      "title": "FIELD NOTES",
+      "sourceId": "botanical-field-notes",
+      "sourceImage": "/public/outdoors/generated/botanical-field-notes.png",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "sourceAuthor": "Generated with gpt-image-2.5-sunburst-2026-09-08",
+      "sourceLicense": "AI-generated original artwork",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "d93dee13a6ac4efe6b7d955303b3bb054aa8d362649eb3686f00105aca020835",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-field-notes-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-field-notes-page-left.jpg",
+      "title": "FIELD NOTES",
+      "sourceId": "botanical-field-notes",
+      "sourceImage": "/public/outdoors/generated/botanical-field-notes.png",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "sourceAuthor": "Generated with gpt-image-2.5-sunburst-2026-09-08",
+      "sourceLicense": "AI-generated original artwork",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "c90dee42f31ab9107d61aa574fad19ec03f7bc67a3f9fc14a68c427eb8218c67",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-field-notes-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-field-notes-page-right.jpg",
+      "title": "FIELD NOTES",
+      "sourceId": "botanical-field-notes",
+      "sourceImage": "/public/outdoors/generated/botanical-field-notes.png",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "sourceAuthor": "Generated with gpt-image-2.5-sunburst-2026-09-08",
+      "sourceLicense": "AI-generated original artwork",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "b096c61e9bd4e27fbb6649f1f6cb3055efb3f03d19b238d16d6be5a775c1fd35",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flora-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-flora-front.jpg",
+      "title": "FLORA",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "875a75ccf43e0d8c50048d71a2f1529e31f52461ce08399bdc9f69c26968e447",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flora-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-flora-back.jpg",
+      "title": "FLORA",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "a398a56c40fb8e9602d17f2e4fdc97ad17e22472755d5a64a50e6fedaaac7189",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flora-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-flora-spine.jpg",
+      "title": "FLORA",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "f46056625c05031662d584d0e8f5a874d01e25173e151250cb7bcc41ec99b483",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flora-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-flora-page-left.jpg",
+      "title": "FLORA",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "1ed046897dd686d21be80e766fc41a662063831bfadc23a47ada1b0d3bd104fd",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flora-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-flora-page-right.jpg",
+      "title": "FLORA",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "ee94d6f61b20e6a070603b822f83fd4990483bf91b0b79e9bb122c6f9efd2e59",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flowers-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-flowers-front.jpg",
+      "title": "FLOWER STUDIES",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "175c0c0e08c5b475908edb29e4242439ed2f84661bf36c88992944c7e1c4ecfe",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flowers-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-flowers-back.jpg",
+      "title": "FLOWER STUDIES",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "7c04e42aa14d02ea9471b3ffe78bc0759faf648e3e181d3f2eb0f784de46057c",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flowers-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-flowers-spine.jpg",
+      "title": "FLOWER STUDIES",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "b1cd5aa40c2c5524b3c427757fe88268b669275026574e689e890beafa9c0099",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flowers-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-flowers-page-left.jpg",
+      "title": "FLOWER STUDIES",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "02e3db406edc1e561e349990500ad1bfacb0b28655404448f07cc57c39d1b823",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-flowers-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-flowers-page-right.jpg",
+      "title": "FLOWER STUDIES",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "aaa71330864ace3c51aac8e4165441455eb1d2b5f41520cd701aaae9ac327f26",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-ceramics-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-ceramics-front.jpg",
+      "title": "CERAMIC ARTS",
+      "sourceId": "ceramic-art-plate",
+      "sourceImage": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "sourceUrl": "https://clevelandart.org/art/2003.407",
+      "sourceAuthor": "Jules Jacquemart",
+      "sourceLicense": "CC0-1.0",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "d44537cb6a9826daede543fe417d97006ec497bf5369554dca64d1b7f46ed28b",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-ceramics-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-ceramics-back.jpg",
+      "title": "CERAMIC ARTS",
+      "sourceId": "ceramic-art-plate",
+      "sourceImage": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "sourceUrl": "https://clevelandart.org/art/2003.407",
+      "sourceAuthor": "Jules Jacquemart",
+      "sourceLicense": "CC0-1.0",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "a27dffc4239d6d2620f4a7b240e7dba78182a8e9c225b33dff3f6ca4af0764e9",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-ceramics-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-ceramics-spine.jpg",
+      "title": "CERAMIC ARTS",
+      "sourceId": "ceramic-art-plate",
+      "sourceImage": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "sourceUrl": "https://clevelandart.org/art/2003.407",
+      "sourceAuthor": "Jules Jacquemart",
+      "sourceLicense": "CC0-1.0",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "0c25bda71dabd2dd9727b756923dbb6651343707f5db50ccb03728cfb3d0f2bf",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-ceramics-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-ceramics-page-left.jpg",
+      "title": "CERAMIC ARTS",
+      "sourceId": "ceramic-art-plate",
+      "sourceImage": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "sourceUrl": "https://clevelandart.org/art/2003.407",
+      "sourceAuthor": "Jules Jacquemart",
+      "sourceLicense": "CC0-1.0",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "4f147d07377cf3e548cd8851b2f8cd393b39357eaede952f2f8ede8435c9b814",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-ceramics-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-ceramics-page-right.jpg",
+      "title": "CERAMIC ARTS",
+      "sourceId": "ceramic-art-plate",
+      "sourceImage": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "sourceUrl": "https://clevelandart.org/art/2003.407",
+      "sourceAuthor": "Jules Jacquemart",
+      "sourceLicense": "CC0-1.0",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "841a63e9073074954e80b3098981aeedaa7e8ffcc1b16844be9474848e133940",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-waterside-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-waterside-front.jpg",
+      "title": "AT THE WATER'S EDGE",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "17948f9ea44f7b32583c4121f77657532fc4ba79b48a2221cfc32c4599eae5fa",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-waterside-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-waterside-back.jpg",
+      "title": "AT THE WATER'S EDGE",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "9319fb99ea6cdf5ef78cfc28616b49dd34011ec40eb94af6a10f17a2ea7d38bd",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-waterside-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-waterside-spine.jpg",
+      "title": "AT THE WATER'S EDGE",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "87d01625ef5ead37ad97ef69d6f88deff2e0c35ef6dbb78ed30d208a4bd4f2fb",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-waterside-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-waterside-page-left.jpg",
+      "title": "AT THE WATER'S EDGE",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "13a8ca2831b61e18973f323a607e4784711b1f8482f7e063402aadaff09de4c2",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-waterside-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-waterside-page-right.jpg",
+      "title": "AT THE WATER'S EDGE",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "aabf7ea6a6c764fabd5c04361f7e273d854968eb68fdd883d0489071aabc5fa3",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-coffee-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-coffee-front.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "984713257f5dcd96233dd7a7c0f69d552d769520e50096a1b9b16e9a584d1a85",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-coffee-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-coffee-back.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "348d192021e7d1991b77f4b75b5b22fc0cabd596f3efac6479fcc632f10f6525",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-coffee-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-coffee-spine.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "f67805b7c6205f05318d5720875e0b0f38e56f09e17d03d68dccb5d82227c744",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-coffee-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-coffee-page-left.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "74298e8ebfd00b8a43fafa7c1efd803e08577de7dfacdc16cf17825af448c64b",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-coffee-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-coffee-page-right.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "44f699a54d61afeaea966024a3f627f8ea8d620ef567f48c52882a0bd3a650be",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-herbarium-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-herbarium-front.jpg",
+      "title": "HERBARIUM",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "59d8e988e48dba988cff4333ab773d3b1a0006b49f87b90dee6f358dc4c610d1",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-herbarium-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-herbarium-back.jpg",
+      "title": "HERBARIUM",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "6e92c97d3551e711e29faaf11578f21763de26a2edb92489c9fc6b6966a08be2",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-herbarium-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-herbarium-spine.jpg",
+      "title": "HERBARIUM",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "33f47c8450653f1d42c28738f6a284993f00f5b486ec680603a4de439068094e",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-herbarium-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-herbarium-page-left.jpg",
+      "title": "HERBARIUM",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "1dc29a240dad935ce4349920e21c5fa8de671e2365f6ae6a92f5d5e7d621e612",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-herbarium-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-herbarium-page-right.jpg",
+      "title": "HERBARIUM",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "fa79ab7f4a9c06b077e8c99e5dfdf524f47b84a769b4fd4de03dba6057492173",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-olive-front",
+      "kind": "book-cover",
+      "image": "/public/print-library/book-olive-front.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "ee268009edd9ff79be81297b7f73593ab0252448e95326d2f7680cf47337ac40",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-olive-back",
+      "kind": "book-back",
+      "image": "/public/print-library/book-olive-back.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "b7ab507fadbf59fb01dce188c709676cd6f3180d8d29975c2f201d5e4d66650e",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-olive-spine",
+      "kind": "book-spine",
+      "image": "/public/print-library/book-olive-spine.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        128,
+        1152
+      ],
+      "sha256": "42956e017e1642d5730cf5e1dd6f19edb643bbf56d1cfafc373e20aed111747f",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-olive-page-left",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-olive-page-left.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "4aa83e88814d363aadc93047d84f6e149ede8703df0780d30af268a04b143199",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "book-olive-page-right",
+      "kind": "illustrated-page",
+      "image": "/public/print-library/book-olive-page-right.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "d3300898c6a19fec91f2fddbae5d828f7416c5fa6263d43fb42e70b1866f1d3c",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-mint",
+      "kind": "container-label",
+      "image": "/public/print-library/label-mint.jpg",
+      "title": "MENTHA",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "2654afb193505d77220d4e3c61ae88463871e1734653d95fc95ceddc95eb69ec",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-mint",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-mint.jpg",
+      "title": "MENTHA",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "bf2190f7395849c5748b1d57a4e2db1442d66e3d6b30c225c53d62b024314317",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-ginger",
+      "kind": "container-label",
+      "image": "/public/print-library/label-ginger.jpg",
+      "title": "ZINGIBER",
+      "sourceId": "ginger",
+      "sourceImage": "/public/print-library/sources/ginger.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zingiber_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-146.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "633f9f5650d6d605eb5f838e8588c84891ffbfbf23f1d03276d7fe8a2c16ab7f",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-ginger",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-ginger.jpg",
+      "title": "ZINGIBER",
+      "sourceId": "ginger",
+      "sourceImage": "/public/print-library/sources/ginger.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zingiber_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-146.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "56abfbaef483ffdaa2e6660a19a18cc92c35a87ba275ba9a5438bb094e81a2e0",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-lotus",
+      "kind": "container-label",
+      "image": "/public/print-library/label-lotus.jpg",
+      "title": "NELUMBO",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "33006ab8079d5a02337fa2a53ffb159de2f14e339d65b6301f9a6545160b8a6f",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-lotus",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-lotus.jpg",
+      "title": "NELUMBO",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "9f6364f5ba9089fcf5a7f3b2c50aa84ea9a36ade627f47946a249e32b8904622",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-coffee",
+      "kind": "container-label",
+      "image": "/public/print-library/label-coffee.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "298c3c0d2a56265125e8d6fb6b5e11e2d50b0a7b69a1bd1957e6e7cc0c0ffd2b",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-coffee",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-coffee.jpg",
+      "title": "COFFEA",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "748e95ef23d0a8230bc7d7a71cf7151d79de55e03ba1d2a2786797e30543e3c6",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-grape",
+      "kind": "container-label",
+      "image": "/public/print-library/label-grape.jpg",
+      "title": "VITIS",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "8f132ef493e7e18a42ec58d1ecd3e9abd64eea1fd2ded847904b9db8645c4288",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-grape",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-grape.jpg",
+      "title": "VITIS",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "4a79245772b4d19775c18510c57595b9776a4dcfa9fda09dac01608a7c9ce5d5",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-wine-pt",
+      "kind": "container-label",
+      "image": "/public/print-library/label-wine-pt.jpg",
+      "title": "VINHO DA CASA",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "4eb57d0003efe25b867d7e9e891ed772420d1e2a37183600455f1e4b8a53fa8c",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-wine-pt",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-wine-pt.jpg",
+      "title": "VINHO DA CASA",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "ae6f6fbabaa7d26ff038c5229d2f3e95720fd31e0c88a7ac4514b067445938ad",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-wine-tr",
+      "kind": "container-label",
+      "image": "/public/print-library/label-wine-tr.jpg",
+      "title": "ÜZÜM",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "6122abd41650bf9c7e9deed80d5270294b98d306413a4ce0be8815b759433eb3",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-wine-tr",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-wine-tr.jpg",
+      "title": "ÜZÜM",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "a11f3f97f261c8c74b43ee05af8e36d36638b9f402c64b214027f2f44329fb59",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-olive",
+      "kind": "container-label",
+      "image": "/public/print-library/label-olive.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "3fea1ca1fc017bebca8dc79042b1096eed6a6a88e417f98bc4699671d8c8bec5",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-olive",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-olive.jpg",
+      "title": "OLEA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "67648c4c83ab082504bfb28e11e642b1f1b3ecce6db7fe44b9a1e14df562b941",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-olive-pt",
+      "kind": "container-label",
+      "image": "/public/print-library/label-olive-pt.jpg",
+      "title": "AZEITONAS",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "cd2021179e58155f9e3213d9bbbf7c211955b94d241f5ea6ffbc5aad5800d530",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-olive-pt",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-olive-pt.jpg",
+      "title": "AZEITONAS",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "2d15483c2d5ca91aa44f2536b05c953577e3eca82beac25640e926e2fe049909",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "label-pigment",
+      "kind": "container-label",
+      "image": "/public/print-library/label-pigment.jpg",
+      "title": "COLOR Y FIBRA",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        384,
+        512
+      ],
+      "sha256": "c6e07cd07bbd2952a78bf05a43e4d84cae772e029483684b7304dc51a18e50d4",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "drawer-pigment",
+      "kind": "drawer-label",
+      "image": "/public/print-library/drawer-pigment.jpg",
+      "title": "COLOR Y FIBRA",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        640,
+        256
+      ],
+      "sha256": "b1514a8d2218c99e205b7427689039412d32aadfc536be890bb1b3ef1c378ec8",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-coffee",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-coffee.jpg",
+      "title": "COFFEE",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "a49beabd104a2b35ae09dc2aad66d9c6ed184e6068f798a527c9e654c88d1929",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-herbs",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-herbs.jpg",
+      "title": "BOTANICAL STUDIES",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "1084f6ba99ce097cec76ceb42c749f2b757585df767cd380aa3d9a59a762ea11",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-wine",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-wine.jpg",
+      "title": "VINHO DA CASA",
+      "sourceId": "grape",
+      "sourceImage": "/public/print-library/sources/grape.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "7eb1ece8afdac3f7df974384c784288bcff90b2f5a38afd71c964c2fc1c6a59a",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-table",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-table.jpg",
+      "title": "SOFRADA",
+      "sourceId": "olive",
+      "sourceImage": "/public/print-library/sources/olive.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "d39c647bad607d0118b39146e158d6b88825d4e32f559fcbf13b64bbb187ae0b",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-textile",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-textile.jpg",
+      "title": "COLOR Y FIBRA",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "8e342a5a09606dd746f4e4567b32e8ea9380a75a83d57eda8ce82f5bbe0e4a18",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-flowers",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-flowers.jpg",
+      "title": "FLOWERS & LEAVES",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "01cf0a45bcd4ad0bccc6efd25f6ae739c4df0537d5d525d2b05154820db81d31",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-tea",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-tea.jpg",
+      "title": "THÉ À LA MENTHE",
+      "sourceId": "mint",
+      "sourceImage": "/public/print-library/sources/mint.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "sourceAuthor": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "sourceLicense": "Public domain (PD-scan; PD-old-70-1923)",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "79370ac59829159fcd2fcdda1823fb4066439d2cd464ceb1d47d4c5d6796749a",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "poster-cafe-bahia",
+      "kind": "wall-print",
+      "image": "/public/print-library/poster-cafe-bahia.jpg",
+      "title": "CAFÉ DO BAIRRO",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        1152
+      ],
+      "sha256": "b2451ad351c0e2cba290076400220da2152268e2a0c383637b35969acd3b7062",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-quiet-hours",
+      "kind": "record-sleeve",
+      "image": "/public/print-library/record-quiet-hours.jpg",
+      "title": "QUIET HOURS",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        768
+      ],
+      "sha256": "e3dca33cd5a8b2f52bfb65203d92e32fb9359c84f5ff5c1fb186e4dc4c31223c",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-spine-quiet-hours",
+      "kind": "record-spine",
+      "image": "/public/print-library/record-spine-quiet-hours.jpg",
+      "title": "QUIET HOURS",
+      "sourceId": "iris-flower-collotype",
+      "sourceImage": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "sourceAuthor": "Ogawa Kazumasa",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        64,
+        1536
+      ],
+      "sha256": "ec132d6ebc01c7b1f0e5fd7c8f153e329db3e219cd29a5efebe361ff6939e7d4",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-after-rain",
+      "kind": "record-sleeve",
+      "image": "/public/print-library/record-after-rain.jpg",
+      "title": "AFTER THE RAIN",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        768
+      ],
+      "sha256": "0d351aac1f0286772a433e8c1d4d6a1c08cab419d7749d9b9aef970ab9ea4ffd",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-spine-after-rain",
+      "kind": "record-spine",
+      "image": "/public/print-library/record-spine-after-rain.jpg",
+      "title": "AFTER THE RAIN",
+      "sourceId": "lotus-botanical-plate",
+      "sourceImage": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "sourceAuthor": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        64,
+        1536
+      ],
+      "sha256": "4f9d7e8137b5c1f33d3e3a41f87df8e14591a5f38fc978b5909dcebf61381b92",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-water-lines",
+      "kind": "record-sleeve",
+      "image": "/public/print-library/record-water-lines.jpg",
+      "title": "WATER LINES",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        768,
+        768
+      ],
+      "sha256": "c4252b002c982abd8350c5525872ed15131860d142cd5ca8b16a1efb86faf9b3",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-spine-water-lines",
+      "kind": "record-spine",
+      "image": "/public/print-library/record-spine-water-lines.jpg",
+      "title": "WATER LINES",
+      "sourceId": "canal-etching",
+      "sourceImage": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "sourceAuthor": "Otto Henry Bacher",
+      "sourceLicense": "Public domain (PDM 1.0)",
+      "dimensions": [
+        64,
+        1536
+      ],
+      "sha256": "e912302c30806bad310328894a0c30b336dd95961dff09ac970d8f8fb98e2b8d",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-late-afternoon",
+      "kind": "record-sleeve",
+      "image": "/public/print-library/record-late-afternoon.jpg",
+      "title": "LATE AFTERNOON",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        768,
+        768
+      ],
+      "sha256": "dee2b4e199f9a247ea0ed8c4f7ef9dee7a0bceca5d33f83799a99700e74da50f",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    },
+    {
+      "id": "record-spine-late-afternoon",
+      "kind": "record-spine",
+      "image": "/public/print-library/record-spine-late-afternoon.jpg",
+      "title": "LATE AFTERNOON",
+      "sourceId": "coffee",
+      "sourceImage": "/public/print-library/sources/coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "sourceAuthor": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "sourceLicense": "Public domain",
+      "dimensions": [
+        64,
+        1536
+      ],
+      "sha256": "4a75ad6bee5b32f4177956b1999b70705fffc13d7bb2b2101b1b696afce2dee7",
+      "note": "Original fictional print layout for Atlas, incorporating the attributed source image. Typography, cropping, paper grain and handling wear were composed locally; no new image-generation API was used."
+    }
+  ]
+}

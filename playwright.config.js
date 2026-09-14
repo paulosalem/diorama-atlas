@@ -20,7 +20,10 @@ export default defineConfig({
         channel: "chromium",
         viewport: { width: 1280, height: 800 },
         launchOptions: {
-          args: ["--enable-unsafe-swiftshader"],
+          args:
+            process.platform === "darwin"
+              ? ["--use-angle=metal"]
+              : ["--enable-unsafe-swiftshader"],
         },
       },
     },

@@ -259,7 +259,7 @@ function buildSecondaryRoom(k, p, type, portalX, rear, shade) {
     box([0.44, 0.024, 0.32], [0.15, 0.835, 0.03], m.linen, work);
   } else if (type === "herbshop") {
     p.scale([-0.28, 0.83, 0], work);
-    p.openBook([0.33, 0.83, 0.04], work);
+    p.openBook([0.33, 0.819, 0.04], work);
     attach(
       origin,
       p.drawerCabinet([-1.38, 0, -1.3], {
@@ -271,8 +271,8 @@ function buildSecondaryRoom(k, p, type, portalX, rear, shade) {
       }),
     );
   } else if (type === "bookshop") {
-    p.openBook([-0.24, 0.83, 0.04], work);
-    p.book([0.33, 0.84, 0], work, 0.05, 0.27, true);
+    p.openBook([-0.24, 0.819, 0.04], work);
+    p.book([0.33, 0.847, 0], work, 0.05, 0.27, true);
     attach(origin, p.chair([-0.52, 0, -1.58], 0.08));
     attach(
       origin,

@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { subscribeLocale, t } from "../localization/locale.js";
 
 /** Eye-height inspection controls shared by all full-scale atlas environments. */
 export function createPanoramaControls({
@@ -24,9 +25,44 @@ export function createPanoramaControls({
     direction = new THREE.Vector3();
   let active = false,
     views = {},
+    minimumFov = 32,
     yaw = 0,
     pitch = 0,
     pinch = 0;
+  let definition = null;
+  let selectedKey = null;
+  function localize() {
+    if (!definition) return;
+    for (const button of viewpoints.querySelectorAll("button"))
+      button.textContent = t(views[button.dataset.view].label);
+    details.textContent = t(
+      viewer.classList.contains("show-riad-details")
+        ? "Hide details"
+        : "Show details",
+    );
+    expand.textContent = t(
+      onExit
+        ? "Back to world"
+        : document.body.classList.contains("riad-expanded")
+          ? "Return to atlas"
+          : "Expand view",
+    );
+    canvas.setAttribute(
+      "aria-label",
+      active
+        ? `${t(definition.title)}. ${t("Drag or use arrow keys to look around; scroll or press plus and minus to zoom.")}`
+        : t("Interactive diorama"),
+    );
+    viewpoints.setAttribute(
+      "aria-label",
+      t("{title} viewpoints", { title: t(definition.title) }),
+    );
+    if (selectedKey)
+      viewer.querySelector("#riadViewLabel").textContent = t(
+        views[selectedKey].label,
+      );
+  }
+  const unsubscribeLocale = subscribeLocale(localize);
   function orient() {
     direction.set(
       Math.sin(yaw) * Math.cos(pitch),
@@ -45,6 +81,7 @@ export function createPanoramaControls({
   function select(key = Object.keys(views)[0]) {
     const view = views[key];
     if (!view) return;
+    selectedKey = key;
     camera.position.fromArray(view.position);
     camera.fov = view.fov ?? 61;
     camera.near = 0.04;
@@ -55,21 +92,19 @@ export function createPanoramaControls({
       .forEach((b) =>
         b.setAttribute("aria-pressed", String(b.dataset.view === key)),
       );
-    onView?.(view.label);
+    onView?.(view.label, key);
   }
   function setExpanded(value) {
     const expanded = active && value;
     document.body.classList.toggle("riad-expanded", expanded);
-    expand.textContent = onExit
-      ? "Back to world"
-      : expanded
-        ? "Return to atlas"
-        : "Expand view";
+    expand.textContent = t(
+      onExit ? "Back to world" : expanded ? "Return to atlas" : "Expand view",
+    );
     expand.setAttribute("aria-pressed", String(expanded));
     requestAnimationFrame(onResize);
   }
   function zoom(amount) {
-    camera.fov = THREE.MathUtils.clamp(camera.fov + amount, 32, 85);
+    camera.fov = THREE.MathUtils.clamp(camera.fov + amount, minimumFov, 85);
     camera.updateProjectionMatrix();
   }
   listen(canvas, "pointerdown", (event) => {
@@ -151,7 +186,7 @@ export function createPanoramaControls({
   listen(details, "click", () => {
     const show = viewer.classList.toggle("show-riad-details");
     details.setAttribute("aria-pressed", String(show));
-    details.textContent = show ? "Hide details" : "Show details";
+    details.textContent = t(show ? "Hide details" : "Show details");
   });
   listen(window, "keydown", (event) => {
     if (
@@ -174,12 +209,15 @@ export function createPanoramaControls({
       active = false;
       pointers.clear();
       events.abort();
+      unsubscribeLocale();
       canvas.classList.remove("is-looking");
       document.body.classList.remove("riad-expanded");
     },
-    activate(runtime, definition) {
+    activate(runtime, sceneDefinition) {
+      definition = sceneDefinition;
       active = Boolean(runtime?.views);
       views = runtime?.views ?? {};
+      minimumFov = definition.environment === "outdoor" ? 18 : 32;
       pointers.clear();
       pinch = 0;
       controls.enabled = !active;
@@ -198,7 +236,7 @@ export function createPanoramaControls({
         const button = document.createElement("button");
         button.type = "button";
         button.dataset.view = key;
-        button.textContent = view.label;
+        button.textContent = t(view.label);
         button.setAttribute("aria-pressed", "false");
         listen(button, "click", () => select(key));
         viewpoints.appendChild(button);
@@ -213,6 +251,7 @@ export function createPanoramaControls({
         camera.near = 0.1;
         camera.updateProjectionMatrix();
       }
+      localize();
     },
   };
 }

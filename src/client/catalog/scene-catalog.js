@@ -1,3 +1,5 @@
+import { outdoorScenes } from "./outdoor-catalog.js";
+
 export const curatedScenes = [
   {
     id: "riad",
@@ -510,5 +512,5 @@ export async function loadScenes() {
   const response = await fetch("/api/generated-scenes");
   if (!response.ok) throw new Error("Your saved places could not be loaded.");
   const payload = await response.json();
-  return [...curatedScenes, ...(payload.scenes ?? [])];
+  return [...curatedScenes, ...(payload.scenes ?? []), ...outdoorScenes];
 }

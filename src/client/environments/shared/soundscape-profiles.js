@@ -15,6 +15,82 @@ const event = (asset, level, position, interval, extra = {}) => ({
 });
 
 export const SOUNDSCAPES = {
+  "newar-potters-square": {
+    label: "Distant courtyard birds and quiet workshop handling",
+    layers: [
+      loop("garden-birds", 0.16, [-5, 5, -5], { refDistance: 5 }),
+      event("wood-work", 0.25, [-3, 0.9, -2], [18, 34]),
+      event("paper-pages", 0.13, [2, 0.8, -3], [27, 45]),
+    ],
+  },
+  "central-asian-madrasa": {
+    label: "Courtyard birds and pages in a shaded study",
+    layers: [
+      loop("garden-birds", 0.19, [6, 5, -6], { refDistance: 6 }),
+      event("paper-pages", 0.26, [-4, 0.9, -3], [20, 38]),
+    ],
+  },
+  "balinese-subak-terraces": {
+    label: "A quiet bird-filled garden and a pavilion tea setting",
+    layers: [
+      loop("garden-birds", 0.32, [-6, 4, -8], { refDistance: 7 }),
+      event("service-dishes", 0.15, [3, 1.1, 1], [29, 48]),
+    ],
+  },
+  "venetian-boatyard": {
+    label: "Timber-work handling and distant courtyard birds",
+    layers: [
+      event("wood-work", 0.35, [-3, 1, -3], [13, 27]),
+      loop("garden-birds", 0.1, [7, 5, -5], { refDistance: 4 }),
+      event("paper-pages", 0.16, [-4, 1, 1], [28, 45]),
+    ],
+  },
+  "bahian-neighborhood-square": {
+    label: "Distant conversation, café dishes and courtyard birds",
+    layers: [
+      loop("room-murmur", 0.2, [-5, 1.5, -4], { cutoff: 2200 }),
+      loop("garden-birds", 0.16, [5, 5, -3], { refDistance: 4 }),
+      event("service-dishes", 0.23, [-3, 1, 1], [18, 32]),
+    ],
+  },
+  "andean-stone-lane": {
+    label: "Quiet garden birds and handling at a workshop doorway",
+    layers: [
+      loop("garden-birds", 0.18, [4, 4, -5], { refDistance: 4 }),
+      event("wood-work", 0.19, [-3, 1, -4], [24, 43]),
+    ],
+  },
+  "swahili-verandah": {
+    label: "A shaded tea setting, turning pages and distant birds",
+    layers: [
+      loop("garden-birds", 0.16, [6, 5, -4], { refDistance: 5 }),
+      event("service-dishes", 0.2, [-2, 0.8, -2], [23, 41]),
+      event("paper-pages", 0.17, [2, 0.8, -1], [29, 47]),
+    ],
+  },
+  "naxi-canal-quarter": {
+    label: "Courtyard birds, paper and quiet tea service",
+    layers: [
+      loop("garden-birds", 0.24, [-5, 4, -6], { refDistance: 5 }),
+      event("paper-pages", 0.2, [3, 0.9, -2], [25, 44]),
+      event("service-dishes", 0.18, [-3, 1, -3], [29, 48]),
+    ],
+  },
+  "tunisian-terrace-cafe": {
+    label: "Low café conversation, cups and distant birds",
+    layers: [
+      loop("room-murmur", 0.17, [-4, 1.5, -3], { cutoff: 2400 }),
+      event("service-dishes", 0.28, [-2, 0.9, -1], [15, 30]),
+      loop("garden-birds", 0.12, [6, 5, -6], { refDistance: 4 }),
+    ],
+  },
+  "lao-temple-court": {
+    label: "Courtyard birds and pages at a shaded reading place",
+    layers: [
+      loop("garden-birds", 0.25, [-6, 5, -7], { refDistance: 6 }),
+      event("paper-pages", 0.16, [3, 0.8, -2], [30, 49]),
+    ],
+  },
   riad: {
     label: "Courtyard fountain, distant birds and tea service",
     music: "music-marrakech",

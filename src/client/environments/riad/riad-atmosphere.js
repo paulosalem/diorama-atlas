@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import { Reflector } from "three/addons/objects/Reflector.js";
+import {
+  WATER_FLOW_GLSL,
+  configureWaterMaterial,
+} from "../shared/water-flow.js";
 
 /** Animated details are separate from the static architecture batches. */
 export function addRiadAtmosphere({
@@ -103,25 +107,66 @@ export function addRiadAtmosphere({
     tp.needsUpdate = true;
     throwGeo.computeVertexNormals();
   });
-  // Actual camera-dependent reflection, distorted by radial and crossing ripples.
+  const waterTime = m.water.userData.time;
+  const disturbance = m.water.userData.disturbance;
+  disturbance.value.set(0, -0.35, 0.45, 1);
+  // Material.clone does not copy shader hooks. The lower basin must share the
+  // upper surface's flow and clock, without taking ownership of either material.
+  group.traverse((object) => {
+    const material = object.material;
+    if (material && material !== m.water && material.userData.time)
+      configureWaterMaterial(material, { time: waterTime, disturbance });
+  });
+  // The planar capture and physical water use the very same surface slopes.
   const shader = {
     uniforms: {
+      ...THREE.UniformsLib.fog,
       color: { value: null },
       tDiffuse: { value: null },
       textureMatrix: { value: null },
-      time,
+      time: waterTime,
+      waterDisturbance: disturbance,
     },
-    vertexShader: `uniform mat4 textureMatrix;varying vec4 mirrorUv;varying vec3 waterWorld;varying vec3 waterView;
-      void main(){mirrorUv=textureMatrix*vec4(position,1.);vec4 p=modelMatrix*vec4(position,1.);waterWorld=p.xyz;waterView=cameraPosition-p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}`,
-    fragmentShader: `uniform sampler2D tDiffuse;uniform float time;varying vec4 mirrorUv;varying vec3 waterWorld;varying vec3 waterView;
-      void main(){vec2 p=waterWorld.xz-vec2(0.,-.35);float r=length(p);vec2 radial=p/max(r,.001);
-      vec2 wave=radial*sin(r*46.-time*3.3)*.0016+vec2(sin(p.x*27.+time*.8),cos(p.y*32.-time*1.1))*.0012;
-      vec2 uv=mirrorUv.xy/mirrorUv.w+wave;
-      vec3 reflected=texture2D(tDiffuse,uv).rgb;
-      float fresnel=pow(1.-abs(normalize(waterView).y),3.);
-      gl_FragColor=vec4(mix(reflected,vec3(.08,.17,.12),.12),.32+fresnel*.5);
+    vertexShader: `
+      uniform mat4 textureMatrix;
+      varying vec4 mirrorUv;
+      varying vec3 waterWorld;
+      #include <common>
+      #include <logdepthbuf_pars_vertex>
+      #include <fog_pars_vertex>
+      void main() {
+        mirrorUv = textureMatrix * vec4(position, 1.0);
+        waterWorld = (modelMatrix * vec4(position, 1.0)).xyz;
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_Position = projectionMatrix * mvPosition;
+        #include <logdepthbuf_vertex>
+        #include <fog_vertex>
+      }`,
+    fragmentShader: `
+      uniform sampler2D tDiffuse;
+      uniform float time;
+      uniform vec4 waterDisturbance;
+      varying vec4 mirrorUv;
+      varying vec3 waterWorld;
+      #include <common>
+      #include <logdepthbuf_pars_fragment>
+      #include <fog_pars_fragment>
+      ${WATER_FLOW_GLSL}
+      void main() {
+        #include <logdepthbuf_fragment>
+        float footprint = waterFootprint(waterWorld.xz);
+        vec3 flow = waterSurface(waterWorld.xz, time, footprint) * .72
+          + waterImpact(waterWorld.xz, time, footprint, waterDisturbance);
+        vec3 normal = normalize(vec3(-flow.y, 1.0, -flow.z));
+        vec2 distortion = (viewMatrix * vec4(normal - vec3(0.0, 1.0, 0.0), 0.0)).xy;
+        vec4 uv = mirrorUv;
+        uv.xy += distortion * .10 * uv.w;
+        vec3 reflected = texture2DProj(tDiffuse, uv).rgb;
+        float fresnel = waterFresnel(normalize(cameraPosition - waterWorld), normal);
+        gl_FragColor = vec4(reflected * vec3(.97, .99, .98), .12 + .88 * fresnel);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
+      #include <fog_fragment>
       }`,
   };
   const mirror = new Reflector(new THREE.CircleGeometry(1.2, 8), {
@@ -133,7 +178,9 @@ export function addRiadAtmosphere({
   });
   mirror.rotation.set(-Math.PI / 2, 0, Math.PI / 8);
   mirror.position.set(0, 0.156, -0.35);
-  mirror.material.uniforms.time = time;
+  mirror.material.uniforms.time = waterTime;
+  mirror.material.uniforms.waterDisturbance = disturbance;
+  mirror.material.fog = true;
   mirror.material.transparent = true;
   mirror.material.depthWrite = false;
   mirror.renderOrder = 2;
@@ -157,10 +204,46 @@ export function addRiadAtmosphere({
     depthWrite: false,
     polygonOffset: true,
     polygonOffsetFactor: -1,
-    uniforms: { time },
-    vertexShader:
-      "varying vec2 p;void main(){p=position.xy;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
-    fragmentShader: `uniform float time;varying vec2 p;void main(){float a=sin(p.x*32.+sin(p.y*13.+time*.7)*2.+time*.8);float b=sin(p.y*29.+sin(p.x*17.-time*.6)*1.7-time*.5);float net=pow(max(0.,1.-abs(a+b)*.65),12.);gl_FragColor=vec4(.64,.82,.48,net*.19);}`,
+    fog: true,
+    uniforms: {
+      ...THREE.UniformsUtils.clone(THREE.UniformsLib.fog),
+      time: waterTime,
+      waterDisturbance: disturbance,
+    },
+    vertexShader: `
+      varying vec2 p;
+      #include <common>
+      #include <fog_pars_vertex>
+      void main() {
+        p = (modelMatrix * vec4(position, 1.0)).xz;
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_Position = projectionMatrix * mvPosition;
+        #include <fog_vertex>
+      }`,
+    fragmentShader: `
+      uniform float time;
+      uniform vec4 waterDisturbance;
+      varying vec2 p;
+      #include <common>
+      #include <fog_pars_fragment>
+      ${WATER_FLOW_GLSL}
+      void main() {
+        float footprint = waterFootprint(p);
+        vec3 flow = waterSurface(p, time, footprint) * .72
+          + waterImpact(p, time, footprint, waterDisturbance);
+        // Screen derivatives recover the surface curvature, so light gathers
+        // beneath the same moving hollows instead of an unrelated sine grid.
+        vec2 px = dFdx(p), py = dFdy(p);
+        vec2 sx = dFdx(flow.yz), sy = dFdy(flow.yz);
+        float determinant = px.x * py.y - px.y * py.x;
+        float curvature = (sx.x * py.y - sy.x * px.y
+          + sy.y * px.x - sx.y * py.x) / (abs(determinant) > 1e-10 ? determinant : 1e-10);
+        float focus = smoothstep(.07, .4, -curvature);
+        gl_FragColor = vec4(.64, .82, .48, focus * .045);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+        #include <fog_fragment>
+      }`,
   });
   owned.push(causticMat);
   const caustics = object(

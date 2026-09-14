@@ -1,3 +1,5 @@
+@import url("./viewer/scene-narration.css");
+
 :root {
   color-scheme: dark;
   font-family:
@@ -471,6 +473,211 @@ button[aria-pressed="true"] {
   z-index: 5;
   backdrop-filter: blur(12px);
 }
+.reference-panel {
+  position: absolute;
+  z-index: 4;
+  top: 14px;
+  right: 14px;
+  bottom: 14px;
+  width: min(390px, calc(100% - 28px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 23px;
+  border: 1px solid #ffffff29;
+  border-radius: 12px;
+  background: #142024f2;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 15px 50px #0005;
+}
+.reference-panel h2 {
+  font:
+    normal 25px Georgia,
+    serif;
+  margin: 7px 0 20px;
+}
+.reference-panel p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #c6ccc8;
+}
+.reference-panel .reference-close {
+  float: right;
+  font-size: 10px;
+  padding: 7px 10px;
+}
+.reference-panel figure {
+  margin: 23px 0;
+}
+.reference-panel img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+}
+.reference-panel figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.reference-panel figcaption a {
+  color: #ddc89f;
+  text-underline-offset: 3px;
+}
+.reference-panel figcaption p {
+  font-size: 10px;
+  margin: 5px 0;
+}
+.reference-panel .reference-period {
+  color: #d4ba88;
+  font-size: 10px;
+}
+.reference-panel .reference-caveat {
+  border-top: 1px solid #ffffff20;
+  padding-top: 15px;
+  color: #a7b4b2;
+  font-size: 10px;
+}
+.preview-image-notice {
+  padding: 24px 18px;
+  font-size: 12px;
+  color: #b9c5c2;
+}
+.preview-setting {
+  font-size: 10px;
+  color: #a7b8b3;
+  margin: 0 0 15px;
+}
+.world-navigation,
+.viewer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.about-atlas {
+  width: min(820px, calc(100vw - 30px));
+  max-height: calc(100dvh - 40px);
+  padding: 28px;
+  border: 1px solid #ffffff26;
+  border-radius: 16px;
+  background: #132329;
+  color: #eae6d9;
+  box-shadow: 0 30px 100px #0008;
+  overscroll-behavior: contain;
+}
+.about-atlas::backdrop {
+  background: #061116b8;
+  backdrop-filter: blur(7px);
+}
+.about-atlas header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.about-atlas h2 {
+  font:
+    normal 32px Georgia,
+    serif;
+  margin: 0;
+}
+.about-atlas header button {
+  padding: 8px 13px;
+  font-size: 11px;
+}
+.about-atlas > p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #bac8c6;
+}
+.about-atlas .about-intro {
+  font-size: 15px;
+  color: #e0dac8;
+  margin-top: 24px;
+}
+.about-atlas label {
+  display: block;
+  font-size: 13px;
+  margin: 28px 0 10px;
+  color: #d9c198;
+}
+.about-atlas input {
+  display: block;
+  width: 100%;
+  color: #eee8db;
+  background: #0d1a20;
+  border: 1px solid #ffffff26;
+  border-radius: 7px;
+  padding: 12px;
+  font: inherit;
+  font-size: 12px;
+}
+.about-atlas input:focus-visible {
+  outline: 2px solid #e3c287;
+  outline-offset: 2px;
+}
+.credit-count {
+  color: #9aacaa;
+  font-size: 10px;
+}
+.credit-list h3 {
+  margin: 28px 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d5bb8c;
+}
+.credit-entry {
+  padding: 15px 0;
+  border-bottom: 1px solid #ffffff13;
+}
+.credit-entry h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.credit-entry p {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #b9c7c4;
+}
+.credit-entry .credit-note {
+  color: #8fa4a3;
+  font-size: 10px;
+}
+.credit-license {
+  display: inline-block;
+  color: #d6c6a9;
+  font-size: 10px;
+  margin: 3px 0;
+}
+.credit-image-link {
+  display: inline-block;
+  margin-left: 14px;
+  font-size: 10px;
+  color: #bfd1c9;
+}
+.is-outdoor .riad-viewpoints {
+  flex-wrap: wrap;
+}
+.is-outdoor .riad-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+@media (max-width: 650px) {
+  .viewer-header {
+    flex-wrap: wrap;
+  }
+  .viewer-header-actions {
+    margin-left: auto;
+  }
+  .about-atlas {
+    padding: 20px;
+  }
+  .is-outdoor .riad-actions {
+    justify-content: space-between;
+    gap: 5px;
+  }
+}
 .soundscape-button.is-playing::before {
   content: "";
   display: inline-block;
@@ -623,6 +830,15 @@ button[aria-pressed="true"] {
     top: 23px;
     left: 22px;
     right: 22px;
+  }
+  .world-header .brand {
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .world-header button {
+    padding: 9px 10px;
+    font-size: 11px;
   }
   .world-footer {
     left: 22px;

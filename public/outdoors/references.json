@@ -1,0 +1,251 @@
+[
+  {
+    "sceneId": "newar-potters-square",
+    "references": [
+      {
+        "label": "Pottery Square: drying pots and surrounding buildings",
+        "url": "https://commons.wikimedia.org/wiki/File:0901_bakhtapur_pots_(3048910023).jpg",
+        "image": "/public/outdoors/references/bhaktapur-pottery-square-1.jpg",
+        "author": "Peretz Partensky",
+        "license": "CC BY-SA 2.0",
+        "date": "2008-09-02",
+        "note": "File-page date, author and license cross-checked. Shows pottery drying and the Genuine Thanka Painting School under construction. Resized photographic preview, not an AI-generated image."
+      },
+      {
+        "label": "Bhaktapur: stone steps and passage off Pottery Square",
+        "url": "https://commons.wikimedia.org/wiki/File:Bhaktapur_(21354174359).jpg",
+        "image": "/public/outdoors/references/bhaktapur-pottery-square-2.jpg",
+        "author": "mebrett",
+        "license": "CC BY 2.0",
+        "date": "2015-09-19",
+        "note": "File-page date, author and license cross-checked. Shows a narrow flight of uneven stone steps between low masonry edges, buildings and vegetation off Pottery Square. Context for the adjoining passage, not evidence of pottery vessels or their arrangement; resized preview."
+      }
+    ],
+    "caveat": "Architectural, material and pottery-working style references for a fictional, anonymous Newar square, not a recreation of Bhaktapur or its exact layout. The first photograph documents drying pots; the second documents an adjoining stepped passage, not a pottery arrangement. Real place names identify the photographic sources only. Source dates describe those photographs, not the fictional scene's date or a single historical condition."
+  },
+  {
+    "sceneId": "central-asian-madrasa",
+    "references": [
+      {
+        "label": "Ulugh Beg Madrasa: northeast courtyard corner",
+        "url": "https://commons.wikimedia.org/wiki/File:Nordostecke_Innenhof_Ulugbek-Madrasa,_Samarkand.jpg",
+        "image": "/public/outdoors/references/samarkand-ulugh-beg-1.jpg",
+        "author": "Doris Ingeborg Lohse",
+        "license": "CC BY-SA 4.0",
+        "date": "2012-10-02",
+        "note": "File-page date, author and license cross-checked. Shows two levels of pointed courtyard arcades, tiled panels, a tree and a slender tower above the corner. Resized photographic preview; proportions are perspective-dependent."
+      },
+      {
+        "label": "Ulugh Beg Madrasa: tiled courtyard portal detail",
+        "url": "https://commons.wikimedia.org/wiki/File:Courtyard_of_Ulugbek_madrasah_2.jpg",
+        "image": "/public/outdoors/references/samarkand-ulugh-beg-2.jpg",
+        "author": "Davide Mauro",
+        "license": "CC BY-SA 4.0",
+        "date": "2017-05-11",
+        "note": "File-page date, author and license cross-checked. An upward, tightly framed view of pointed arches and dense blue patterned tilework; foliage obscures the lower elevation. Not a complete courtyard layout; resized photographic preview."
+      }
+    ],
+    "caveat": "Architectural and material style references for a fictional, anonymous Central Asian madrasa. The photographs inform pointed arcades, tiled surfaces and courtyard vocabulary; they do not identify the scene as Ulugh Beg Madrasa or prescribe its exact layout, dimensions or inscriptions. Real landmark names and dates describe the photographic sources only, not the fictional scene's identity or historical period."
+  },
+  {
+    "sceneId": "balinese-subak-terraces",
+    "references": [
+      {
+        "label": "Jatiluwih: paddy terraces in August",
+        "url": "https://commons.wikimedia.org/wiki/File:Jatiluwih_paddy_fields,_Bali;_August_2014.jpg",
+        "image": "/public/outdoors/references/bali-jatiluwih-1.jpg",
+        "author": "Roberto Faccenda",
+        "license": "CC BY-SA 2.0",
+        "date": "2014-08-30",
+        "note": "File-page date, author and license cross-checked. Shows densely green rice terraces, narrow dividing paths, small field shelters and a distant tree-lined horizon beneath heavy clouds; resized photographic preview."
+      },
+      {
+        "label": "Jatiluwih: flooded rice terraces, seedlings and palms",
+        "url": "https://commons.wikimedia.org/wiki/File:Jatiluwih_rice_terraces_SF0002.jpg",
+        "image": "/public/outdoors/references/bali-jatiluwih-2.jpg",
+        "author": "Stefan Fussan",
+        "license": "CC BY-SA 3.0",
+        "date": "2023-08-24",
+        "note": "Approved file-page attribution; date and license cross-checked. Shows shallow reflective paddies with rows of young rice, raised green banks and palms. This crop and water state differs from the densely green 2014 view; resized photographic preview."
+      }
+    ],
+    "caveat": "Landscape and agricultural style references for fictional, anonymous Balinese subak terraces, not a reconstruction of Jatiluwih or its exact terrain and irrigation layout. The photographs inform terrace banks, rice, water and vegetation while showing different crop states. Real location names and dates identify the photographic sources only; they do not establish the fictional scene's location, date or planting calendar."
+  },
+  {
+    "sceneId": "venetian-boatyard",
+    "references": [
+      {
+        "label": "Squero di San Trovaso: boatyard and waterside buildings",
+        "url": "https://commons.wikimedia.org/wiki/File:Squero_di_San_Trovaso_(Venice)-msu-2021-5474-.jpg",
+        "image": "/public/outdoors/references/venice-san-trovaso-1.jpg",
+        "author": "Matthias Süßen",
+        "license": "CC BY-SA 4.0",
+        "date": "2021-10-05",
+        "note": "Approved file-page attribution; date and license cross-checked. Wide canal-side view of timber sheds, pitched tiled roofs, boats on the yard edge and a pedestrian bridge to the left; resized photographic preview."
+      },
+      {
+        "label": "Squero San Trovaso: older canal-side view",
+        "url": "https://commons.wikimedia.org/wiki/File:Squero_san_trovaso.JPG",
+        "image": "/public/outdoors/references/venice-san-trovaso-2.jpg",
+        "author": "Abxbay",
+        "license": "Public domain (PD-self)",
+        "date": "1999-08-08",
+        "note": "File-page date, author and public-domain dedication cross-checked. Closer view across the water of covered boats, a dark timber shed and the balcony-fronted building behind. Resized photographic preview; public-domain status applies only to this photo."
+      }
+    ],
+    "caveat": "Architectural, material and working-waterfront style references for a fictional, anonymous Venetian boatyard. Timber sheds, tiled roofs and boats inform the regional setting; the scene is not Squero di San Trovaso and does not reproduce its exact layout or working arrangement. Real place names and dates describe the source photographs only, not the fictional scene's identity or period."
+  },
+  {
+    "sceneId": "bahian-neighborhood-square",
+    "references": [
+      {
+        "label": "Largo do Pelourinho: tall red facade and yellow neighbor",
+        "url": "https://commons.wikimedia.org/wiki/File:Largo_do_Pelourinho_Salvador_2019-9736.jpg",
+        "image": "/public/outdoors/references/salvador-pelourinho-1.jpg",
+        "author": "Paul R. Burley",
+        "license": "CC BY-SA 4.0",
+        "date": "2019-10-20",
+        "note": "File-page date, author and license cross-checked. Close street-level view of a tall red facade with white arched window surrounds and narrow balconies, beside a yellow facade; a small strip of paving is visible. Does not establish the square's overall slope or plan; resized preview."
+      },
+      {
+        "label": "Largo do Pelourinho: low red facade and balcony details",
+        "url": "https://commons.wikimedia.org/wiki/File:Largo_do_Pelourinho_Salvador_2019-9756.jpg",
+        "image": "/public/outdoors/references/salvador-pelourinho-2.jpg",
+        "author": "Paul R. Burley",
+        "license": "CC BY-SA 4.0",
+        "date": "2019-10-20",
+        "note": "Photographer, date and license cross-checked in the file page's metadata. Shows a lower red facade between pale-yellow neighbors, with white-framed openings, balcony rails, tiled eaves and a small oval opening. A facade study, not a wide square view; resized preview."
+      },
+      {
+        "label": "Rosário dos Pretos: blue front facade and twin bell towers",
+        "url": "https://commons.wikimedia.org/wiki/File:Igreja_de_Nossa_Senhora_do_Ros%C3%A1rio_dos_Pretos_Salvador_2018-1154.jpg",
+        "image": "/public/outdoors/references/salvador-pelourinho-3.jpg",
+        "author": "Paul R. Burley",
+        "license": "CC BY-SA 4.0",
+        "date": "2018-09-30",
+        "note": "Author, capture date, location and license verified through Wikimedia Commons imageinfo metadata. Shows the church's blue front elevation, twin bell towers, scroll-shaped central pediment and cross, stone-colored surrounds, tall upper windows, dark green doors and iron forecourt fence. Oblique street-level photograph, resized to a maximum 1600px; license: https://creativecommons.org/licenses/by-sa/4.0/."
+      }
+    ],
+    "caveat": "Architectural and material style references for a fictional, anonymous Bahian neighborhood square, not a recreation of Largo do Pelourinho or its exact layout. The first two photographs inform colorful facades and balconies. The Rosário dos Pretos photograph references Bahian baroque architectural vocabulary, not the identity of a modeled church. Real landmark names and dates describe the photographic sources only, not the fictional scene's identity, location or period."
+  },
+  {
+    "sceneId": "andean-stone-lane",
+    "references": [
+      {
+        "label": "Hatun Rumiyoc: stone-lined street at night",
+        "url": "https://commons.wikimedia.org/wiki/File:Hatun_rumiyoc_-_at_night.jpg",
+        "image": "/public/outdoors/references/cusco-hatun-rumiyoc-1.jpg",
+        "author": "AgainErick",
+        "license": "CC BY-SA 4.0",
+        "date": "2006-09-27",
+        "note": "Author, date and license cross-checked in file-page HTML. Low viewpoint along a narrow stone-paved lane between tall fitted-stone walls, lit by warm lamps beneath projecting eaves. Nighttime lighting is not a neutral stone-color reference; resized photographic preview."
+      },
+      {
+        "label": "Hatun Rumiyoc: daylight passage and polygonal stone walls",
+        "url": "https://commons.wikimedia.org/wiki/File:La_piedra_de_los_doce_%C3%A1ngulos,_en_calle_Hatun_Rumiyoc,_Cuzco_04.jpg",
+        "image": "/public/outdoors/references/cusco-hatun-rumiyoc-2.jpg",
+        "author": "Rodolfo pimentel",
+        "license": "CC BY-SA 4.0",
+        "date": "2012",
+        "note": "Photographer and year from the approved researched file page; photo-specific CC BY-SA 4.0 license cross-checked in its HTML metadata. Oblique daylight view down the lane, showing large fitted polygonal blocks, pale upper walls, projecting eaves and pedestrians. Despite the file title, this is not a frontal measured detail of the Twelve-Angled Stone; resized preview."
+      }
+    ],
+    "caveat": "Architectural and material style references for a fictional, anonymous Andean stone lane. Fitted polygonal masonry, narrow passages and projecting eaves inform the scene; it is not Hatun Rumiyoc and does not reproduce that street's exact layout or the Twelve-Angled Stone. Real place names and dates describe the photographic sources only, not the fictional scene's identity or period. Nighttime source lighting does not establish neutral stone colors."
+  },
+  {
+    "sceneId": "swahili-verandah",
+    "references": [
+      {
+        "label": "Old Dispensary: entrance and carved architectural detail",
+        "url": "https://commons.wikimedia.org/wiki/File:Front_entrance_to_the_Old_Dispensary,_Stone_Town.jpg",
+        "image": "/public/outdoors/references/zanzibar-old-dispensary-1.jpg",
+        "author": "Erasmus Kamugisha",
+        "license": "CC BY-SA 4.0",
+        "date": "2021",
+        "note": "Photographer and year from the approved researched file page; photo-specific CC BY-SA 4.0 license cross-checked in its HTML metadata. Monochrome close view of entrance steps, paired door openings, columns and carved brackets beneath a balcony. Evidence for form, not paint colors; resized preview."
+      },
+      {
+        "label": "Old Dispensary: front elevation and carved balconies",
+        "url": "https://commons.wikimedia.org/wiki/File:Front_of_Old_Dispensary_in_Stone_Town.jpg",
+        "image": "/public/outdoors/references/zanzibar-old-dispensary-2.jpg",
+        "author": "Laika ac",
+        "license": "CC BY-SA 2.0",
+        "date": "2013-07-23",
+        "note": "Author, date, license and original Flickr source cross-checked in file-page HTML. Color view of stacked pale-green-and-white balconies, central pointed balcony roofs and ornate cresting; a palm obscures part of the right side and the ground floor is cropped. Resized photographic preview."
+      }
+    ],
+    "caveat": "Architectural and material style references for a fictional, anonymous Swahili-coast verandah. The photographs inform carved timber, shaded balconies, entrance steps and decorative trim; they do not identify the scene as Zanzibar's Old Dispensary or prescribe its exact layout or carving patterns. Real landmark names and dates describe the photographic sources only, not the fictional scene's identity or period. The monochrome source informs form, not paint colors."
+  },
+  {
+    "sceneId": "naxi-canal-quarter",
+    "references": [
+      {
+        "label": "Kegong Square: stone arch bridge and canal-side landing",
+        "url": "https://commons.wikimedia.org/wiki/File:Kegong_Square_canal_1.JPG",
+        "image": "/public/outdoors/references/lijiang-kegong-canal-1.jpg",
+        "author": "© BrokenSphere / Wikimedia Commons",
+        "license": "CC BY-SA 3.0",
+        "date": "2008-05-12",
+        "note": "Author, date, canal description and requested credit line cross-checked in file-page HTML. Shows a low stone arch bridge with solid paneled parapets, a stepped right bank, potted plants and a dark timber balcony building with red lanterns. CC BY-SA selected from the file's multiple licenses; resized preview."
+      },
+      {
+        "label": "Kegong Square: narrow water channel between buildings",
+        "url": "https://commons.wikimedia.org/wiki/File:Kegong_Square_canal_2.JPG",
+        "image": "/public/outdoors/references/lijiang-kegong-canal-2.jpg",
+        "author": "© BrokenSphere / Wikimedia Commons",
+        "license": "CC BY-SA 3.0",
+        "date": "2008",
+        "note": "Photographer and CC BY-SA license cross-checked in file-page metadata; year from the approved researched page. Shows a narrow reflective channel between timber windows on stone foundations and a pale plastered wall. Not a second broad view of the bridge or square; resized preview with requested photographer credit retained."
+      }
+    ],
+    "caveat": "Architectural, material and waterside-landscape style references for a fictional, anonymous Naxi canal quarter. Stone bridges, narrow channels, timber facades and planted edges inform the scene; it is not Kegong Square and does not reproduce its exact watercourse or building layout. Real location names and dates describe the photographic sources only, not the fictional scene's identity, location or historical period."
+  },
+  {
+    "sceneId": "tunisian-terrace-cafe",
+    "references": [
+      {
+        "label": "Café des Délices: terrace above the Bay of Tunis",
+        "url": "https://commons.wikimedia.org/wiki/File:Terrasse_Caf%C3%A9_des_D%C3%A9lices.JPG",
+        "image": "/public/outdoors/references/sidi-bou-said-terrace-1.jpg",
+        "author": "Cimoi",
+        "license": "CC BY-SA 3.0",
+        "date": "2009-04-17",
+        "note": "Author, date and location description cross-checked in file-page HTML. Shows stepped white terrace walls, blue railings and umbrellas, patterned seating and the bay beyond. CC BY-SA selected from the approved file's multiple licenses; resized preview."
+      },
+      {
+        "label": "Café des Délices: terrace seating and parapets",
+        "url": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_des_D%C3%A9lices_terrasse.JPG",
+        "image": "/public/outdoors/references/sidi-bou-said-terrace-2.jpg",
+        "author": "Cimoi",
+        "license": "CC BY-SA 3.0",
+        "date": "2009-04-17",
+        "note": "Date and CC BY-SA license cross-checked in file-page metadata; photographer from the approved researched page. Closer terrace view with patterned bench cushions, round blue tables, a white wall topped by blue metalwork and umbrellas against the bay. Resized photographic preview."
+      }
+    ],
+    "caveat": "Architectural, material and coastal-landscape style references for a fictional, anonymous Tunisian terrace café. White walls, blue metalwork, patterned seating and sea-facing terraces inform the regional setting; the scene is not Café des Délices and does not reproduce its exact layout or coastline. Real place names and dates identify the photographic sources only, not the fictional scene's location, identity or period."
+  },
+  {
+    "sceneId": "lao-temple-court",
+    "references": [
+      {
+        "label": "Wat Xieng Thong: sim and sweeping roof",
+        "url": "https://commons.wikimedia.org/wiki/File:2024-11-04_Sim_of_Wat_Xieng_Thong_1.jpg",
+        "image": "/public/outdoors/references/luang-prabang-wat-xieng-thong-1.jpg",
+        "author": "Alexkom000",
+        "license": "CC BY 4.0",
+        "date": "2024-11-04",
+        "note": "Author, date, license and sim identification cross-checked in file-page HTML. Side view of overlapping dark tiled roof sections with pale edges and green finials; a low boundary and several small white stupas are visible to the right. Resized photographic preview."
+      },
+      {
+        "label": "Wat Xieng Thong: close detail of curved roof tiers",
+        "url": "https://commons.wikimedia.org/wiki/File:Luang_Prabang_-_Wat_Xieng_Thong_ordination_hall_roof.jpg",
+        "image": "/public/outdoors/references/luang-prabang-wat-xieng-thong-2.jpg",
+        "author": "Attila Terbócs",
+        "license": "CC BY-SA 3.0",
+        "date": "2014",
+        "note": "Photo-specific CC BY-SA 3.0 license cross-checked in file-page metadata; photographer and year from the approved researched page. Tightly cropped roof detail showing curved overlapping tiled tiers, pale borders and gold-colored ornament below the eaves. Not a complete hall elevation; resized preview."
+      }
+    ],
+    "caveat": "Architectural and material style references for a fictional, anonymous Lao temple court. Curved overlapping roof tiers, pale roof borders and decorative eaves inform the regional vocabulary; the scene is not Wat Xieng Thong and does not reproduce its exact roof geometry, sacred iconography or compound layout. Real temple names and dates describe the photographic sources only, not the fictional scene's identity, location or historical period."
+  }
+]

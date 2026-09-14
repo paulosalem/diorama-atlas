@@ -1,0 +1,1155 @@
+{
+  "title": "Atlas — imagined places, real traditions",
+  "description": "Original fictional settings informed by regional architecture, materials and everyday life. Map markers indicate regions of inspiration, not the addresses of these imagined places.",
+  "entries": [
+    {
+      "category": "Earth imagery",
+      "title": "Blue Marble Next Generation, August 2004, with topography and bathymetry",
+      "author": "NASA Earth Observatory",
+      "source": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/",
+      "license": "NASA image-use guidelines",
+      "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "note": "Earth texture; geographic orientation is described in the source manifest."
+    },
+    {
+      "category": "Software",
+      "title": "Three.js",
+      "author": "Three.js authors",
+      "source": "https://threejs.org/",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/mrdoob/three.js/blob/dev/LICENSE",
+      "note": "Real-time rendering, geometry, controls and post-processing."
+    },
+    {
+      "category": "Generated concepts",
+      "title": "Historical interior concept imagery",
+      "author": "OpenAI image generation",
+      "source": "https://developers.openai.com/api/docs/guides/image-generation",
+      "license": "AI-generated concept imagery",
+      "note": "Earlier preview collections included generated concept imagery. This is historical provenance, not a description of current previews: all current interior and outdoor thumbnails, including the riad, are actual local 3D renders. Documentary style photographs are credited separately."
+    },
+    {
+      "category": "Rendered previews",
+      "title": "Interior preview renders",
+      "author": "Diorama Atlas — local Three.js rendering",
+      "source": "/public/previews/credits.json",
+      "license": "Atlas-rendered imagery; constituent asset rights credited separately",
+      "usedBy": [
+        "riad",
+        "textile",
+        "kissaten",
+        "meyhane",
+        "herbshop",
+        "lisbon-tasca-interior-3b46b2",
+        "lisbon-neighborhood-tasca-26f598",
+        "kerala-backwater-kitchen-courtyard-aadf7c",
+        "herb-shop-in-hanoi-old-quarter-851851",
+        "lisbon-neighborhood-tasca-interior-3b46b2",
+        "1960s-kyoto-kissaten-interior-7d985e",
+        "traditional-european-bookshop-interior-c-8e7eb4"
+      ],
+      "note": "12 actual canvas captures, including the riad. Browser viewport 1440 × 1000; cropped image dimensions, hashes and capture settings are recorded in the linked manifest. These are not generated reference photographs."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Terracotta Floor Tiles",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/terracotta_floor_tiles",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Wood Table Worn",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/wood_table_worn",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Marble 01",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/marble_01",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Clay Plaster",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/clay_plaster",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Plastered Wall 02",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/plastered_wall_02",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Plastered Stone Wall",
+      "author": "Poly Haven contributors — individual authors on the source page",
+      "source": "https://polyhaven.com/a/plastered_stone_wall",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored material maps used by the atlas environments."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Cobblestone Floor 08",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/cobblestone_floor_08",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "1k photographic surface maps; generic material samples, not scans of the imagined settings."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Rock Boulder Dry",
+      "author": "Dimitrios Savva (photography); Rico Cilliers (processing)",
+      "source": "https://polyhaven.com/a/rock_boulder_dry",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "1k photographic surface maps; generic material samples, not scans of the imagined settings."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Red Brick 03",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/red_brick_03",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "1k photographic surface maps; generic material samples, not scans of the imagined settings."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Brown Mud Leaves 01",
+      "author": "Rob Tuytel",
+      "source": "https://polyhaven.com/a/brown_mud_leaves_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "1k photographic surface maps; generic material samples, not scans of the imagined settings."
+    },
+    {
+      "category": "Lighting",
+      "title": "Overcast Soil",
+      "author": "Sergej Majboroda",
+      "source": "https://polyhaven.com/a/overcast_soil",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Locally stored outdoor HDR environment."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Pottery Square: drying pots and surrounding buildings",
+      "author": "Peretz Partensky",
+      "source": "https://commons.wikimedia.org/wiki/File:0901_bakhtapur_pots_(3048910023).jpg",
+      "license": "CC BY-SA 2.0",
+      "date": "2008-09-02",
+      "image": "/public/outdoors/references/bhaktapur-pottery-square-1.jpg",
+      "usedBy": [
+        "newar-potters-square"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. Shows pottery drying and the Genuine Thanka Painting School under construction. Resized photographic preview, not an AI-generated image."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Bhaktapur: stone steps and passage off Pottery Square",
+      "author": "mebrett",
+      "source": "https://commons.wikimedia.org/wiki/File:Bhaktapur_(21354174359).jpg",
+      "license": "CC BY 2.0",
+      "date": "2015-09-19",
+      "image": "/public/outdoors/references/bhaktapur-pottery-square-2.jpg",
+      "usedBy": [
+        "newar-potters-square"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. Shows a narrow flight of uneven stone steps between low masonry edges, buildings and vegetation off Pottery Square. Context for the adjoining passage, not evidence of pottery vessels or their arrangement; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Ulugh Beg Madrasa: northeast courtyard corner",
+      "author": "Doris Ingeborg Lohse",
+      "source": "https://commons.wikimedia.org/wiki/File:Nordostecke_Innenhof_Ulugbek-Madrasa,_Samarkand.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2012-10-02",
+      "image": "/public/outdoors/references/samarkand-ulugh-beg-1.jpg",
+      "usedBy": [
+        "central-asian-madrasa"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. Shows two levels of pointed courtyard arcades, tiled panels, a tree and a slender tower above the corner. Resized photographic preview; proportions are perspective-dependent."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Ulugh Beg Madrasa: tiled courtyard portal detail",
+      "author": "Davide Mauro",
+      "source": "https://commons.wikimedia.org/wiki/File:Courtyard_of_Ulugbek_madrasah_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2017-05-11",
+      "image": "/public/outdoors/references/samarkand-ulugh-beg-2.jpg",
+      "usedBy": [
+        "central-asian-madrasa"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. An upward, tightly framed view of pointed arches and dense blue patterned tilework; foliage obscures the lower elevation. Not a complete courtyard layout; resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Jatiluwih: paddy terraces in August",
+      "author": "Roberto Faccenda",
+      "source": "https://commons.wikimedia.org/wiki/File:Jatiluwih_paddy_fields,_Bali;_August_2014.jpg",
+      "license": "CC BY-SA 2.0",
+      "date": "2014-08-30",
+      "image": "/public/outdoors/references/bali-jatiluwih-1.jpg",
+      "usedBy": [
+        "balinese-subak-terraces"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. Shows densely green rice terraces, narrow dividing paths, small field shelters and a distant tree-lined horizon beneath heavy clouds; resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Jatiluwih: flooded rice terraces, seedlings and palms",
+      "author": "Stefan Fussan",
+      "source": "https://commons.wikimedia.org/wiki/File:Jatiluwih_rice_terraces_SF0002.jpg",
+      "license": "CC BY-SA 3.0",
+      "date": "2023-08-24",
+      "image": "/public/outdoors/references/bali-jatiluwih-2.jpg",
+      "usedBy": [
+        "balinese-subak-terraces"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Approved file-page attribution; date and license cross-checked. Shows shallow reflective paddies with rows of young rice, raised green banks and palms. This crop and water state differs from the densely green 2014 view; resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Squero di San Trovaso: boatyard and waterside buildings",
+      "author": "Matthias Süßen",
+      "source": "https://commons.wikimedia.org/wiki/File:Squero_di_San_Trovaso_(Venice)-msu-2021-5474-.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2021-10-05",
+      "image": "/public/outdoors/references/venice-san-trovaso-1.jpg",
+      "usedBy": [
+        "venetian-boatyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Approved file-page attribution; date and license cross-checked. Wide canal-side view of timber sheds, pitched tiled roofs, boats on the yard edge and a pedestrian bridge to the left; resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Squero San Trovaso: older canal-side view",
+      "author": "Abxbay",
+      "source": "https://commons.wikimedia.org/wiki/File:Squero_san_trovaso.JPG",
+      "license": "Public domain (PD-self)",
+      "date": "1999-08-08",
+      "image": "/public/outdoors/references/venice-san-trovaso-2.jpg",
+      "usedBy": [
+        "venetian-boatyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and public-domain dedication cross-checked. Closer view across the water of covered boats, a dark timber shed and the balcony-fronted building behind. Resized photographic preview; public-domain status applies only to this photo."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Largo do Pelourinho: tall red facade and yellow neighbor",
+      "author": "Paul R. Burley",
+      "source": "https://commons.wikimedia.org/wiki/File:Largo_do_Pelourinho_Salvador_2019-9736.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2019-10-20",
+      "image": "/public/outdoors/references/salvador-pelourinho-1.jpg",
+      "usedBy": [
+        "bahian-neighborhood-square"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. File-page date, author and license cross-checked. Close street-level view of a tall red facade with white arched window surrounds and narrow balconies, beside a yellow facade; a small strip of paving is visible. Does not establish the square's overall slope or plan; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Largo do Pelourinho: low red facade and balcony details",
+      "author": "Paul R. Burley",
+      "source": "https://commons.wikimedia.org/wiki/File:Largo_do_Pelourinho_Salvador_2019-9756.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2019-10-20",
+      "image": "/public/outdoors/references/salvador-pelourinho-2.jpg",
+      "usedBy": [
+        "bahian-neighborhood-square"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photographer, date and license cross-checked in the file page's metadata. Shows a lower red facade between pale-yellow neighbors, with white-framed openings, balcony rails, tiled eaves and a small oval opening. A facade study, not a wide square view; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Rosário dos Pretos: blue front facade and twin bell towers",
+      "author": "Paul R. Burley",
+      "source": "https://commons.wikimedia.org/wiki/File:Igreja_de_Nossa_Senhora_do_Ros%C3%A1rio_dos_Pretos_Salvador_2018-1154.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2018-09-30",
+      "image": "/public/outdoors/references/salvador-pelourinho-3.jpg",
+      "usedBy": [
+        "bahian-neighborhood-square"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, capture date, location and license verified through Wikimedia Commons imageinfo metadata. Shows the church's blue front elevation, twin bell towers, scroll-shaped central pediment and cross, stone-colored surrounds, tall upper windows, dark green doors and iron forecourt fence. Oblique street-level photograph, resized to a maximum 1600px; license: https://creativecommons.org/licenses/by-sa/4.0/."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Hatun Rumiyoc: stone-lined street at night",
+      "author": "AgainErick",
+      "source": "https://commons.wikimedia.org/wiki/File:Hatun_rumiyoc_-_at_night.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2006-09-27",
+      "image": "/public/outdoors/references/cusco-hatun-rumiyoc-1.jpg",
+      "usedBy": [
+        "andean-stone-lane"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, date and license cross-checked in file-page HTML. Low viewpoint along a narrow stone-paved lane between tall fitted-stone walls, lit by warm lamps beneath projecting eaves. Nighttime lighting is not a neutral stone-color reference; resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Hatun Rumiyoc: daylight passage and polygonal stone walls",
+      "author": "Rodolfo pimentel",
+      "source": "https://commons.wikimedia.org/wiki/File:La_piedra_de_los_doce_%C3%A1ngulos,_en_calle_Hatun_Rumiyoc,_Cuzco_04.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2012",
+      "image": "/public/outdoors/references/cusco-hatun-rumiyoc-2.jpg",
+      "usedBy": [
+        "andean-stone-lane"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photographer and year from the approved researched file page; photo-specific CC BY-SA 4.0 license cross-checked in its HTML metadata. Oblique daylight view down the lane, showing large fitted polygonal blocks, pale upper walls, projecting eaves and pedestrians. Despite the file title, this is not a frontal measured detail of the Twelve-Angled Stone; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Old Dispensary: entrance and carved architectural detail",
+      "author": "Erasmus Kamugisha",
+      "source": "https://commons.wikimedia.org/wiki/File:Front_entrance_to_the_Old_Dispensary,_Stone_Town.jpg",
+      "license": "CC BY-SA 4.0",
+      "date": "2021",
+      "image": "/public/outdoors/references/zanzibar-old-dispensary-1.jpg",
+      "usedBy": [
+        "swahili-verandah"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photographer and year from the approved researched file page; photo-specific CC BY-SA 4.0 license cross-checked in its HTML metadata. Monochrome close view of entrance steps, paired door openings, columns and carved brackets beneath a balcony. Evidence for form, not paint colors; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Old Dispensary: front elevation and carved balconies",
+      "author": "Laika ac",
+      "source": "https://commons.wikimedia.org/wiki/File:Front_of_Old_Dispensary_in_Stone_Town.jpg",
+      "license": "CC BY-SA 2.0",
+      "date": "2013-07-23",
+      "image": "/public/outdoors/references/zanzibar-old-dispensary-2.jpg",
+      "usedBy": [
+        "swahili-verandah"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, date, license and original Flickr source cross-checked in file-page HTML. Color view of stacked pale-green-and-white balconies, central pointed balcony roofs and ornate cresting; a palm obscures part of the right side and the ground floor is cropped. Resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Kegong Square: stone arch bridge and canal-side landing",
+      "author": "© BrokenSphere / Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Kegong_Square_canal_1.JPG",
+      "license": "CC BY-SA 3.0",
+      "date": "2008-05-12",
+      "image": "/public/outdoors/references/lijiang-kegong-canal-1.jpg",
+      "usedBy": [
+        "naxi-canal-quarter"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, date, canal description and requested credit line cross-checked in file-page HTML. Shows a low stone arch bridge with solid paneled parapets, a stepped right bank, potted plants and a dark timber balcony building with red lanterns. CC BY-SA selected from the file's multiple licenses; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Kegong Square: narrow water channel between buildings",
+      "author": "© BrokenSphere / Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Kegong_Square_canal_2.JPG",
+      "license": "CC BY-SA 3.0",
+      "date": "2008",
+      "image": "/public/outdoors/references/lijiang-kegong-canal-2.jpg",
+      "usedBy": [
+        "naxi-canal-quarter"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photographer and CC BY-SA license cross-checked in file-page metadata; year from the approved researched page. Shows a narrow reflective channel between timber windows on stone foundations and a pale plastered wall. Not a second broad view of the bridge or square; resized preview with requested photographer credit retained."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Café des Délices: terrace above the Bay of Tunis",
+      "author": "Cimoi",
+      "source": "https://commons.wikimedia.org/wiki/File:Terrasse_Caf%C3%A9_des_D%C3%A9lices.JPG",
+      "license": "CC BY-SA 3.0",
+      "date": "2009-04-17",
+      "image": "/public/outdoors/references/sidi-bou-said-terrace-1.jpg",
+      "usedBy": [
+        "tunisian-terrace-cafe"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, date and location description cross-checked in file-page HTML. Shows stepped white terrace walls, blue railings and umbrellas, patterned seating and the bay beyond. CC BY-SA selected from the approved file's multiple licenses; resized preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Café des Délices: terrace seating and parapets",
+      "author": "Cimoi",
+      "source": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_des_D%C3%A9lices_terrasse.JPG",
+      "license": "CC BY-SA 3.0",
+      "date": "2009-04-17",
+      "image": "/public/outdoors/references/sidi-bou-said-terrace-2.jpg",
+      "usedBy": [
+        "tunisian-terrace-cafe"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Date and CC BY-SA license cross-checked in file-page metadata; photographer from the approved researched page. Closer terrace view with patterned bench cushions, round blue tables, a white wall topped by blue metalwork and umbrellas against the bay. Resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Wat Xieng Thong: sim and sweeping roof",
+      "author": "Alexkom000",
+      "source": "https://commons.wikimedia.org/wiki/File:2024-11-04_Sim_of_Wat_Xieng_Thong_1.jpg",
+      "license": "CC BY 4.0",
+      "date": "2024-11-04",
+      "image": "/public/outdoors/references/luang-prabang-wat-xieng-thong-1.jpg",
+      "usedBy": [
+        "lao-temple-court"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Author, date, license and sim identification cross-checked in file-page HTML. Side view of overlapping dark tiled roof sections with pale edges and green finials; a low boundary and several small white stupas are visible to the right. Resized photographic preview."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Wat Xieng Thong: close detail of curved roof tiers",
+      "author": "Attila Terbócs",
+      "source": "https://commons.wikimedia.org/wiki/File:Luang_Prabang_-_Wat_Xieng_Thong_ordination_hall_roof.jpg",
+      "license": "CC BY-SA 3.0",
+      "date": "2014",
+      "image": "/public/outdoors/references/luang-prabang-wat-xieng-thong-2.jpg",
+      "usedBy": [
+        "lao-temple-court"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photo-specific CC BY-SA 3.0 license cross-checked in file-page metadata; photographer and year from the approved researched page. Tightly cropped roof detail showing curved overlapping tiled tiers, pale borders and gold-colored ornament below the eaves. Not a complete hall elevation; resized preview."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Nelumbo nucifera — Flora de Filipinas botanical plate",
+      "author": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
+      "source": "https://commons.wikimedia.org/wiki/File:Nelumbo_nucifera_Blanco1.158.jpg",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "image": "/public/outdoors/detail-assets/lotus-botanical-plate.jpg",
+      "date": "1880–1883? (edition date reported by Commons)",
+      "note": "Actual historical botanical book illustration showing pink lotus flowers, leaves and seed heads, with printed caption and archival stamps retained. Commons credits Blanco and identifies the source as Flora de Filipinas, Atlas I; that book credit is not a verified individual illustrator attribution. The Commons source is a cleaned, color-adjusted scan marked public domain; local changes are resizing and JPEG encoding only. Suitable for a plant-study folio or a small botanical book face near gardens or terrace agriculture. It does not claim to be a locally published book or identify any fictional scene."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Iris kaempferi — Hand-Coloured Photographs of Flowers",
+      "author": "Ogawa Kazumasa",
+      "source": "https://commons.wikimedia.org/wiki/File:Iris_kaempferi_Ogawa_Kazumasa_32425996707_b4df7f8fd4_c.jpg",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "image": "/public/outdoors/detail-assets/iris-flower-collotype.jpg",
+      "date": "1896",
+      "note": "Actual nineteenth-century hand-colored flower photograph/collotype, not generated botanical art: pale violet irises against a warm brown field with a cream printed border. Commons identifies Ogawa Kazumasa, 1896, and PD-old-70-expired/Public Domain Mark; its source is the Public Domain Review's collection of these flower photographs. The original 612×800 resolution is retained without upscaling. Best for a small flower-book face or modest framed print, not a large close-up poster. Japanese source identity is retained; use as collected artwork, not evidence of another region's native publishing tradition."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Saucer with Rich Enameled Ground and Medallion Representing the Goddess Kounin",
+      "author": "Jules Jacquemart",
+      "source": "https://clevelandart.org/art/2003.407",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "image": "/public/outdoors/detail-assets/ceramic-art-plate.jpg",
+      "date": "c. 1877",
+      "note": "The Cleveland Museum of Art, Gift of John Bonebrake, 2003.407 · Actual etched book plate from History of the Ceramic Art, showing a round decorated saucer with its figural central medallion, not a photograph of a modern vessel. The museum API verifies the exact title, artist, approximate date, accession and CC0 image status. Resized from the museum's print JPEG; original paper margins and signature retained. Suitable for a ceramics-history book or studio study sheet. Preserve its identity as a historical study of Japanese ceramics; do not present the depicted sacred figure as generic local ornament."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "A canal in Venice / Otto.",
+      "author": "Otto Henry Bacher",
+      "source": "https://commons.wikimedia.org/wiki/File:A_canal_in_Venice_-_Otto._LCCN2002719549.jpg",
+      "license": "Public domain (PDM 1.0)",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "image": "/public/outdoors/detail-assets/canal-etching.jpg",
+      "date": "1880",
+      "note": "Actual 1880 etching of a narrow Venetian canal with buildings, reflections and small boats, from the Library of Congress. Commons verifies Bacher as etcher, date and public-domain/PD-old-70-expired status. Resized to a 1600px-long-edge intermediate, then cropped to normalized bounds [0.20, 0.02, 0.84, 0.97] to remove digitization color targets and scanning borders; the central etching and paper margin remain. Suitable for a boatyard sketchbook face or small workshop print. Venice names the historical artwork, not the fictional scene's location."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Peeling Painted Wall",
+      "author": "Dimitrios Savva",
+      "source": "https://polyhaven.com/a/peeling_painted_wall",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Real photographed/scanned surface with muted coral-red paint, fine cracks and irregular pale exposed patches. Use 2k detail only on near-camera painted wall patches or a small worn panel, not as a replacement for every regional facade. Diffuse is sRGB; OpenGL normal and roughness are linear data. These JPGs are opaque full surface maps, not alpha decals; localized blending needs a separate mask or bounded geometry. The source paint color is visible and should not be mistaken for a neutral wear-only layer. All source bytes and API MD5 checksums verified."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Worn Plaster Wall",
+      "author": "Dimitrios Savva",
+      "source": "https://polyhaven.com/a/worn_plaster_wall",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Real photographed/scanned gray-beige plaster with irregular missing finish, darker substrate, streaking and a conspicuous vertical seam. Suitable for a small close-up lower-wall wear patch; crop or position the seam deliberately instead of repeating it across unrelated masonry. It does not depict exposed brick courses. 2k is reserved for local damage detail. Diffuse is sRGB; OpenGL normal and roughness are linear data. Opaque JPG surface maps require separate masking for decal-like use. All source bytes and API MD5 checksums verified."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Wood Peeling Paint Weathered",
+      "author": "Dimitrios Savva (photography); Rob Tuytel (processing)",
+      "source": "https://polyhaven.com/a/wood_peeling_paint_weathered",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Real photographed/scanned timber with dark blue-black paint worn away along warm brown grain. Useful on a close-up boatyard workbench, shutter, worn door or painted wooden panel. Align the visible horizontal grain with the modeled timber; do not scatter it as an orientation-free wall decal. 2k provides local chipped-paint detail without a 4k pack. Diffuse is sRGB; OpenGL normal and roughness are linear data. Opaque JPG surface maps, with source color retained; all source bytes and API MD5 checksums verified."
+    },
+    {
+      "category": "3D models",
+      "title": "Planter Pot Clay",
+      "author": "Amal Kumar",
+      "source": "https://polyhaven.com/a/planter_pot_clay",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Complete original glTF 2.0 package: one mesh, one double-sided material, local binary geometry and all three local 2k texture dependencies. A realistically weathered, empty terracotta planter with a tapered body, rolled rim, interior and worn pale deposits; no plant is included. Appropriate for one close-up terrace or workshop prop at roughly 27cm wide and 22cm tall. Load files.gltf and preserve its sibling paths; no runtime network or decoder dependency. ARM uses red=ambient occlusion, green=roughness, blue=metalness; the original glTF binds metallic/roughness but does not separately bind ambient occlusion. Poly Haven verifies creator and CC0 rights but does not specify the capture technique in its asset metadata: this is not represented as verified photogrammetry. Source previews and the supplied texture/mesh data were inspected; all five files retain their original API-verified bytes and MD5 hashes."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Leaf001 - photographic broadleaf",
+      "author": "ambientCG (individual photographer not identified in the asset record)",
+      "source": "https://ambientcg.com/a/Leaf001",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Created using Leaf001 from ambientCG.com, licensed under the Creative Commons CC0 1.0 Universal License. · Actual photographic foliage, not botanical illustration: two side-by-side views of a serrated green broadleaf with clear branching veins, fine surface texture and stem. ambientCG identifies its method as height field photogrammetry. Species and leaf-side identity are not specified. Select one half of the atlas per leaf, using the same UV region for diffuse, normal and roughness; do not map the entire two-leaf sheet onto one leaf. Diffuse RGB is sRGB, while alpha/normal/roughness are linear data. Use the supplied silhouette with alpha testing and curved leaf geometry rather than broad flat rectangular cards. This is not a palm, banana leaf or rice blade. The source JPEG opacity may contain near-zero compression specks; an alpha-test cutoff removes them without changing the preserved originals."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Grass Medium 02 - photographic blade atlas",
+      "author": "Rico Cilliers",
+      "source": "https://polyhaven.com/a/grass_medium_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Actual photographic grass-blade texture from Poly Haven's Grass Medium 02 model: isolated green and straw-brown blades with lengthwise surface detail, natural bends, curled tips and worn edges. Texture resources only; no grass model was downloaded. Select a single blade's UV region and use the same region on all maps, then fit curved or folded geometry to its silhouette. The whole atlas is not one tuft or one palm frond. Diffuse RGB is sRGB; alpha, OpenGL normal and roughness are linear data. This supplies the requested narrow grass-leaf option; it is not a verified palm leaflet or species-specific rice texture."
+    },
+    {
+      "category": "Lighting",
+      "title": "Kloppenheim 03 PureSky",
+      "author": "Greg Zaal (original photography); Jarod Guest (sky edits)",
+      "source": "https://polyhaven.com/a/kloppenheim_03_puresky",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
+    },
+    {
+      "category": "3D models",
+      "title": "Boulder 01",
+      "author": "Rico Cilliers",
+      "source": "https://polyhaven.com/a/boulder_01",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Actual textured 3D boulder with jagged gray-and-rust facets, natural crevices and an irregular silhouette, not a background photograph or generated blob. Selected instead of rock_boulder_dry, which is a surface texture rather than a model; the explicitly coastal formation candidate exceeded the size budget. Suitable as a generic weathered shoreline rock in the fictional scene, not a claimed Tunisian geological specimen. Complete original glTF 2.0 package with its binary mesh and all three local 1k PBR maps; no external runtime dependencies or compression decoder. Load files.gltf with sibling paths intact and retain its UV-matched textures rather than substituting the existing tiling rock maps. ARM packs red=ambient occlusion, green=roughness, blue=metalness; the original material binds metallic/roughness but not separate ambient occlusion. Metrics are measured from this packaged glTF, not the catalog's different polygon count. Its local minimum Y is about -0.073643m, so use transformed bounds when placing it on the shore. Limit near-camera instances or add integration-side LOD: each copy renders 66,122 triangles. All five source files are unmodified and API-MD5 verified; no preview render is retained."
+    },
+    {
+      "category": "Generated artwork",
+      "title": "Botanical Field Notes",
+      "author": "Generated with gpt-image-2.5-sunburst-2026-09-08 (OpenAI)",
+      "source": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+      "license": "AI-generated original artwork",
+      "image": "/public/outdoors/generated/botanical-field-notes.png",
+      "date": "2026-09-14",
+      "note": "Original AI-generated prop artwork or material decal, not documentary photography of a real location. Generation model, prompt, quality, usage and image hash are recorded in the local manifest."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Coffea arabica — Köhler's Medizinal-Pflanzen",
+      "author": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "source": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "image": "/public/print-library/sources/coffee.jpg",
+      "note": "Arabica coffee branch with leaves, white flowers, fruits and botanical detail studies on white paper. Historical plate dated 1883–1914 by Commons; its attribution is to the publication, not a separately identified illustrator. Downloaded original 1572 × 2168 px; resized proportionally to 1160 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. The Commons source is already retouched. Commons marks the work public domain under life-plus-70 terms; publication before 1931 also places the historical artwork in the US public domain."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Vitis vinifera — Köhler's Medizinal-Pflanzen, plate 51 (1887)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "image": "/public/print-library/sources/grape.jpg",
+      "note": "Grapevine with a green grape cluster, lobed leaves, curling tendrils and botanical detail studies on warm aged paper. Faithful scan from the Missouri Botanical Garden's Rare Books Collection via BHL, page 303664. Downloaded original 2905 × 4033 px; resized proportionally to 1152 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Olea europaea — Köhler's Medizinal-Pflanzen, plate 109 (1890)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "image": "/public/print-library/sources/olive.jpg",
+      "note": "Flowering olive branches with slender leaves, a dark olive fruit, stone and botanical detail studies on warm aged paper. BHL page 303152, Missouri Botanical Garden, Peter H. Raven Library; this copy reached Commons through BHL's Flickr account. Downloaded original 1426 × 1981 px; resized proportionally to 1152 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923; the file page additionally retains the Flickr CC BY 2.0 tag. This collection relies on the public-domain faithful-scan designation."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Mentha × piperita — Köhler's Medizinal-Pflanzen, plate 67 (1887)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "image": "/public/print-library/sources/mint.jpg",
+      "note": "Peppermint, specifically Mentha × piperita, with serrated leaves, flowering spikes and enlarged botanical detail studies on warm aged paper. Faithful scan from the Missouri Botanical Garden's Rare Books Collection via BHL, page 303700. Downloaded original 2797 × 3967 px; resized proportionally to 1128 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923."
+    },
+    {
+      "category": "Printed artwork",
+      "title": "Zingiber officinale — Köhler's Medizinal-Pflanzen",
+      "author": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "source": "https://commons.wikimedia.org/wiki/File:Zingiber_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-146.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "image": "/public/print-library/sources/ginger.jpg",
+      "note": "Ginger with a detailed segmented rhizome and roots, long green leaves, flowering stems and botanical detail studies on white paper. Historical plate dated 1883–1914 by Commons, sourced there from Internet Archive/BHL; its attribution is to the publication, not a separately identified illustrator. Downloaded original 2776 × 3824 px; resized proportionally to 1162 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Commons marks the work public domain under life-plus-70 terms; publication before 1931 also places the historical artwork in the US public domain."
+    },
+    {
+      "category": "Atlas print design",
+      "title": "Book jackets, labels, illustrated pages and wall prints",
+      "author": "Atlas — original typography and layout",
+      "source": "/public/print-library/manifest.json",
+      "license": "Original layouts incorporating the credited source artworks",
+      "note": "76 local image textures, with source attribution and image hashes in the linked manifest. Layouts were composed locally; no additional image-generation API calls were used."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Courtyard fountain water",
+      "author": "aldor",
+      "source": "https://commons.wikimedia.org/wiki/File:Fountain_in_toulouse.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "fountain-courtyard",
+      "audio": "/public/audio/ambience/fountain-courtyard.mp3",
+      "sha256": "740e746821b76b6c2957eac03131e04710b1cdbf79dcc2c210d142662494d1ec",
+      "attribution": "Fountain in toulouse.ogg — aldor. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 10 s; uses 29 s before circular crossfade.",
+        "FFmpeg filters: highpass=f=90,lowpass=f=7500; downmixed to mono before normalization.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-28.67 LUFS, TP=-2.86 dBTP, LRA=0.80 LU, threshold=-38.67 LUFS, target offset=0.01 LU.",
+        "After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.",
+        "Post-processing loudness correction: +0.51 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.01 LUFS integrated, -3.74 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/fountain-courtyard.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/fountain-courtyard.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Recorded fountain water from Place de la Trinité, Toulouse, France; shared interpretive water ambience, not a Marrakech location recording. Fountain in toulouse.ogg — aldor. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Quiet garden birds",
+      "author": "ezwa",
+      "source": "https://commons.wikimedia.org/wiki/File:Birds_singing_in_garden.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "garden-birds",
+      "audio": "/public/audio/ambience/garden-birds.mp3",
+      "sha256": "3825f53ff5f4b4420b3f388f2e65fa927d0ccec9d25b3b3d7cddbd7ff5dda1dc",
+      "attribution": "Birds singing in garden.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 5 s; uses 29 s before circular crossfade.",
+        "FFmpeg filters: highpass=f=180,lowpass=f=9000; downmixed to mono before normalization.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-39.76 LUFS, TP=-24.94 dBTP, LRA=20.50 LU, threshold=-53.45 LUFS, target offset=0.87 LU.",
+        "After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.",
+        "Post-processing loudness correction: +1.19 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -8.22 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/garden-birds.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/garden-birds.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Real birds in a Belgian countryside garden. A quiet shared garden layer, not a claim about local species in Morocco, Japan, Vietnam, Mexico or India. Birds singing in garden.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Distant indistinct room activity",
+      "author": "ezwa",
+      "source": "https://commons.wikimedia.org/wiki/File:Group_discussion_1.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "room-murmur",
+      "audio": "/public/audio/ambience/room-murmur.mp3",
+      "sha256": "ef2c9b853cd105dac1096f02de09387d546e0e6abf99f85b845d9b896776ae9e",
+      "attribution": "Group discussion 1.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 1 s; uses 27 s before circular crossfade.",
+        "FFmpeg filters: highpass=f=100,lowpass=f=280,lowpass=f=280; downmixed to mono before normalization.",
+        "Three equal-weight circular offsets (0, 8, 17 s) obscure separate voices; no generated speech.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-61.05 LUFS, TP=-44.42 dBTP, LRA=2.90 LU, threshold=-71.05 LUFS, target offset=0.08 LU.",
+        "After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.",
+        "Post-processing loudness correction: +0.59 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -6.22 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/room-murmur.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/room-murmur.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Next-room group recording, strongly filtered and overlaid at three offsets to obscure individual speech. Use very quietly behind service-room activity; no language or locale is asserted. Group discussion 1.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Dishes being put away",
+      "author": "starlite",
+      "source": "https://commons.wikimedia.org/wiki/File:Kitchen_tidy_up.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "service-dishes",
+      "audio": "/public/audio/foley/service-dishes.mp3",
+      "sha256": "a3175a469705926eebc20e6a40936d5a993f33ea5112650ce0f9de8ea7be38c4",
+      "attribution": "Kitchen tidy up.ogg — starlite. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 17 s; uses 3.5 s before circular crossfade.",
+        "FFmpeg filters: highpass=f=100,lowpass=f=8000; downmixed to mono before normalization.",
+        "25 ms start/end fades. Sparse one-shot, not a continuous loop.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-39.59 LUFS, TP=-19.74 dBTP, LRA=0.60 LU, threshold=-51.35 LUFS, target offset=-0.16 LU.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.10 LUFS integrated, -4.12 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/service-dishes.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/service-dishes.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "A brief real dish-handling excerpt for cafe and tavern service. The source documents putting dishes away, not specifically a porcelain cup. Kitchen tidy up.ogg — starlite. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Hardback page turn",
+      "author": "planish",
+      "source": "https://commons.wikimedia.org/wiki/File:Turning_a_page.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "paper-pages",
+      "audio": "/public/audio/foley/paper-pages.mp3",
+      "sha256": "482b4a169836bf6cd645c7fc74e51614fed5e157cb9de3d2a59b72f5f977733e",
+      "attribution": "Turning a page.ogg — planish. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 0 s; uses the entire source.",
+        "FFmpeg filters: highpass=f=100; downmixed to mono before normalization.",
+        "25 ms start/end fades. Sparse one-shot, not a continuous loop.",
+        "Source-author edits before acquisition: pitch lowered about two semitones and low-pass filtered.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-33.05 LUFS, TP=-15.76 dBTP, LRA=0.20 LU, threshold=-46.29 LUFS, target offset=-3.66 LU.",
+        "Post-processing loudness correction: +0.42 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -22.99 LUFS integrated, -5.72 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/paper-pages.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/paper-pages.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Recorded hard-cover page turn, suitable for a reading room or paper handling. The source author already lowered the pitch by about two semitones and applied a low-pass filter. Turning a page.ogg — planish. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Wooden board and utensils",
+      "author": "thore",
+      "source": "https://commons.wikimedia.org/wiki/File:Wood_and_cutlery.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "wood-work",
+      "audio": "/public/audio/foley/wood-work.mp3",
+      "sha256": "4bdf7d342b592901f50c183cee1cfb15126f5bd1129fbb2f99981276f3edc26a",
+      "attribution": "Wood and cutlery.ogg — thore. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 0 s; uses the entire source.",
+        "FFmpeg filters: highpass=f=90; downmixed to mono before normalization.",
+        "25 ms start/end fades. Sparse one-shot, not a continuous loop.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-21.52 LUFS, TP=2.11 dBTP, LRA=0.00 LU, threshold=-32.02 LUFS, target offset=4.63 LU.",
+        "Post-processing loudness correction: +1.06 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -26.91 LUFS integrated, -3.39 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.",
+        "Sparse transient foley intentionally remains below -23 LUFS rather than compressing the attack further to meet an integrated loudness target; true-peak protection takes priority."
+      ],
+      "licenseEvidence": "/public/audio/licenses/wood-work.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/wood-work.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "A wooden cutting board and cutlery set on a wooden table. A shared physical work-surface accent; not an actual loom recording. Wood and cutlery.ogg — thore. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Drawer opening",
+      "author": "Gravity Sound",
+      "source": "https://commons.wikimedia.org/wiki/File:Open_drawer_(Gravity_Sound).wav",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "audioId": "wood-drawer",
+      "audio": "/public/audio/foley/wood-drawer.mp3",
+      "sha256": "a1e61b3069e94c19d836d4f2d1b7bdf57d02474d9aa6a0d591453fbac8e71795",
+      "attribution": "Open drawer (Gravity Sound).wav — Gravity Sound. Licensed under CC BY 4.0. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 0 s; uses the entire source.",
+        "FFmpeg filters: highpass=f=90; downmixed to mono before normalization.",
+        "25 ms start/end fades. Sparse one-shot, not a continuous loop.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-25.19 LUFS, TP=-3.43 dBTP, LRA=0.00 LU, threshold=-37.87 LUFS, target offset=2.75 LU.",
+        "Post-processing loudness correction: +0.88 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -25.30 LUFS integrated, -3.19 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas.",
+        "Sparse transient foley intentionally remains below -23 LUFS rather than compressing the attack further to meet an integrated loudness target; true-peak protection takes priority."
+      ],
+      "licenseEvidence": "/public/audio/licenses/wood-drawer.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/wood-drawer.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Recorded drawer opening for cabinet and dispensary activity. No claim is made about the drawer's material or the scene's location. Open drawer (Gravity Sound).wav — Gravity Sound. Licensed under CC BY 4.0. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Recorded ambience",
+      "title": "Small hearth crackle",
+      "author": "ezwa",
+      "source": "https://commons.wikimedia.org/wiki/File:Dry_grass_burning_in_open_fireplace.ogg",
+      "license": "Public domain (author dedication)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-author",
+      "audioId": "cooking-fire",
+      "audio": "/public/audio/ambience/cooking-fire.mp3",
+      "sha256": "34938abb3c3709f0c9362dbf951416689a4decbea9f7c60887d8b2086580f62e",
+      "attribution": "Dry grass burning in open fireplace.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history.",
+      "edits": [
+        "Source excerpt begins at 2 s; uses 23 s before circular crossfade.",
+        "FFmpeg filters: highpass=f=90,lowpass=f=7000; downmixed to mono before normalization.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected dynamic normalization. First-pass input I=-47.22 LUFS, TP=-16.49 dBTP, LRA=1.20 LU, threshold=-57.22 LUFS, target offset=0.19 LU.",
+        "After normalization: complementary one-second linear tail/head crossfade, rotated middle then seam. Final loop is one second shorter; no synthesized noise.",
+        "Post-processing loudness correction: +0.46 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded mono MP3, 44.1 kHz, 96 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -3.82 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/cooking-fire.txt",
+      "sourceMetadata": "/public/audio/licenses/sources/cooking-fire.json",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Real dry garden grass burning in an open fireplace. A quiet hearth layer for Kerala; not a Kerala field recording or a cooking-pot recording. Dry grass burning in open fireplace.ogg — ezwa. Public-domain author dedication. Edited for Diorama Atlas; see source and edit history. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Music",
+      "title": "Dream Culture",
+      "author": "Kevin MacLeod",
+      "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300046",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "audioId": "music-atlas-theme",
+      "audio": "/public/audio/music/music-atlas-theme.mp3",
+      "sha256": "4e8d376407b91343a3e3aa454d8754832310d501a27682872efb3353f0fd197e",
+      "attribution": "\"Dream Culture\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas.",
+      "edits": [
+        "Opening excerpt 0-109.714286 s (32 nominal four-beat bars at the catalog tempo, not a score-verified phrase boundary); 25 ms fade-in and 3.428571 s fade-out ending at silence. No tempo or pitch change.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-16.98 LUFS, TP=-0.82 dBTP, LRA=6.10 LU, threshold=-27.22 LUFS, target offset=0.28 LU.",
+        "Post-processing loudness correction: +0.44 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded stereo MP3, 44.1 kHz, 160 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -6.89 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/music-atlas-theme.txt",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Kevin MacLeod's calming instrumental piano/percussion recording, selected as a general app theme. Shortened opening excerpt with a gentle musical-length fade; not the complete composition. \"Dream Culture\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Music",
+      "title": "Desert City",
+      "author": "Kevin MacLeod",
+      "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100564",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "audioId": "music-marrakech",
+      "audio": "/public/audio/music/music-marrakech.mp3",
+      "sha256": "bf13aca8a1eece2e50efa6992daf04c89bc0d2604af0b515c28f1e448f80d853",
+      "attribution": "\"Desert City\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas.",
+      "edits": [
+        "Complete official recording retained in duration; no arrangement, tempo or pitch change.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-12.46 LUFS, TP=0.33 dBTP, LRA=1.90 LU, threshold=-22.46 LUFS, target offset=-0.18 LU.",
+        "Post-processing loudness correction: +0.44 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded stereo MP3, 44.1 kHz, 160 kbit/s. Final decoded measurement: -23.00 LUFS integrated, -10.14 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/music-marrakech.txt",
+      "provenance": "/public/audio/manifest.json",
+      "note": "Kevin MacLeod describes this percussion/dulcimer instrumental as 'Middle Eastern atmospheric, sort of chill'. Interpretive scene music, not a claim of Moroccan provenance, traditional repertoire or historical authenticity. \"Desert City\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "Music",
+      "title": "Local Forecast - Slower",
+      "author": "Kevin MacLeod",
+      "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300011",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "audioId": "music-kissaten",
+      "audio": "/public/audio/music/music-kissaten.mp3",
+      "sha256": "194586b1bcd63bfe35d0ba03621dd86b35789c418afe5fdeb8fa7f1a8c72998b",
+      "attribution": "\"Local Forecast - Slower\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas.",
+      "edits": [
+        "Opening excerpt 0-99.740249 s (32 nominal four-beat bars at the catalog tempo, not a score-verified phrase boundary); 25 ms fade-in and 6.233766 s fade-out ending at silence. No tempo or pitch change.",
+        "Two-pass EBU R128 normalization: target -23 LUFS integrated, -4 dBTP (1 dB safety margin below the -3 dBTP delivery ceiling), LRA 11 LU; FFmpeg selected linear normalization. First-pass input I=-10.83 LUFS, TP=0.43 dBTP, LRA=5.20 LU, threshold=-20.97 LUFS, target offset=-0.15 LU.",
+        "Post-processing loudness correction: +0.45 dB, rendered from the lossless intermediate; final MP3 true peak remeasured.",
+        "Re-encoded stereo MP3, 44.1 kHz, 160 kbit/s. Final decoded measurement: -22.99 LUFS integrated, -11.31 dBTP true peak. Original recording rights and attribution retained; normalized/edited by Diorama Atlas."
+      ],
+      "licenseEvidence": "/public/audio/licenses/music-kissaten.txt",
+      "provenance": "/public/audio/manifest.json",
+      "note": "A relaxed modern jazz-hybrid instrumental by Kevin MacLeod for optional cafe listening. Not an authentic historical kissaten recording. Shortened opening excerpt with a gentle musical-length fade; not the complete composition. \"Local Forecast - Slower\" Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/ Normalized and, where noted, excerpted with fades for Diorama Atlas. Processing history, source rights and verified file hashes are retained in the audio manifest."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A courtyard of welcome",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-en-US",
+      "audio": "/public/narration/riad-en-US.mp3",
+      "sha256": "4f1d7da33b1f997bd1765e697818ffac11322f3f0de4cbb84aa34e9b5ac50ff1",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "In Marrakech, a riad turns the home inward, around a courtyard open to the sky. Shade, water, and plants temper the heat and create privacy within the dense streets of the medina. Zellige tilework, carved plaster, and cedar wood carry generations of Moroccan craftsmanship. This imagined courtyard brings those traditions together, revealing how architecture can make everyday life an art of welcome: a place to gather, share mint tea, and find a moment of quiet.",
+      "locale": "en-US",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:40:46.909Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Um pátio de acolhimento",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-pt-BR",
+      "audio": "/public/narration/riad-pt-BR.mp3",
+      "sha256": "ed68219f1e0363513144a8bc0f3a91ee93eaf295b07b5ea60c53009be9ae1d45",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Em Marrakech, o riad organiza a casa em torno de um pátio aberto para o céu. A sombra, a água e as plantas amenizam o calor e criam privacidade entre as ruas estreitas da medina. Os mosaicos de zellige, o gesso entalhado e a madeira de cedro expressam gerações de saber artesanal marroquino. Este pátio imaginado reúne essas tradições e mostra como a arquitetura transforma o cotidiano em acolhimento: um lugar para conversar, compartilhar chá de hortelã e encontrar um instante de tranquilidade.",
+      "locale": "pt-BR",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:40:56.445Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Water at the heart of the home",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-fountain-en-US",
+      "audio": "/public/narration/riad-fountain-en-US.mp3",
+      "sha256": "6d74f8b4362e10487cfa62b4e1712bfb5ae1c26cd58eb9f6b7f5182827ecac48",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "At the center of the courtyard, water offers relief from the heat and a gentle counterpoint to the city outside. Its sound lends intimacy to conversation, while the patterned basin makes skilled craftsmanship part of everyday life.",
+      "locale": "en-US",
+      "view": "fountain",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:46:43.085Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "The art of welcome",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-tea-en-US",
+      "audio": "/public/narration/riad-tea-en-US.mp3",
+      "sha256": "64439c8d2917a007c53c7f25932be7908aad09100dadc4aff4f3f0b35cb1f1eb",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Mint tea makes hospitality tangible. A tray, small glasses, and a shared place to sit turn a pause into conversation. In this shaded alcove, the courtyard becomes a living room, where welcome is expressed through time and attention.",
+      "locale": "en-US",
+      "view": "tea",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:46:47.365Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Craft, light, and privacy",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-cedar-en-US",
+      "audio": "/public/narration/riad-cedar-en-US.mp3",
+      "sha256": "20afd60a7b0266b7b7ad01d933e5892bc17c744e109bd2d928cbb92fd892cb43",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Look at how the cedar screen filters light and views, while carved plaster catches the changing shadows. These surfaces express generations of specialized craftsmanship: beauty is worked into the very elements that give the house privacy and comfort.",
+      "locale": "en-US",
+      "view": "cedar",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:46:52.320Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Beyond the threshold",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-doorway-en-US",
+      "audio": "/public/narration/riad-doorway-en-US.mp3",
+      "sha256": "4a1523f3a5e010bb676eb4dbe84dda60d51ed2f6066950c6880b329edf097d9d",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "The doorway reveals another layer of the house. A riad is not just an ornamental courtyard: rooms and passages gather around its open center, creating a sequence from shared hospitality to quieter domestic space. Here, that relationship is imagined in three dimensions.",
+      "locale": "en-US",
+      "view": "doorway",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:46:55.732Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "The quieter life upstairs",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-upstairs-en-US",
+      "audio": "/public/narration/riad-upstairs-en-US.mp3",
+      "sha256": "2700adffff306066822121d40ed9a2cebeebdd1e2bf4fb1c5c85245c8b749e3c",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "The upper level extends the house beyond its public welcome. Timberwork, textiles, and sheltered rooms suggest the quieter rhythms of domestic life. This imagined arrangement invites us to read the riad as a lived home, not simply a collection of decorative surfaces.",
+      "locale": "en-US",
+      "view": "upstairs",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:46:59.371Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A água no coração da casa",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-fountain-pt-BR",
+      "audio": "/public/narration/riad-fountain-pt-BR.mp3",
+      "sha256": "2f674a421b0a0edaed6c0728822e894722c3e8989e693e4e952abda4b47d40b8",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "No centro do pátio, a água oferece alívio para o calor e um contraponto suave à cidade lá fora. Seu som dá intimidade às conversas, enquanto os padrões da fonte tornam o trabalho artesanal parte da vida cotidiana.",
+      "locale": "pt-BR",
+      "view": "fountain",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:47:02.747Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A arte de acolher",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-tea-pt-BR",
+      "audio": "/public/narration/riad-tea-pt-BR.mp3",
+      "sha256": "4c37a295f9ae58344bba63ff4b2cb276fa7fae62ffce3c113045731a95323f1b",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "O chá de hortelã dá forma à hospitalidade. Uma bandeja, pequenos copos e um lugar para sentar juntos transformam uma pausa em conversa. Neste recanto à sombra, o pátio se torna uma sala de estar, onde acolher é dedicar tempo e atenção.",
+      "locale": "pt-BR",
+      "view": "tea",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:47:07.072Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Artesanato, luz e privacidade",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-cedar-pt-BR",
+      "audio": "/public/narration/riad-cedar-pt-BR.mp3",
+      "sha256": "4169d21789d7c2009a7331432d832817418cdb5ebdbf93e75004406db80c90da",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Observe como a treliça de cedro filtra a luz e os olhares, enquanto o gesso entalhado revela as mudanças da sombra. Essas superfícies expressam gerações de conhecimento artesanal: a beleza faz parte dos próprios elementos que dão privacidade e conforto à casa.",
+      "locale": "pt-BR",
+      "view": "cedar",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:47:10.369Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Além da soleira",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-doorway-pt-BR",
+      "audio": "/public/narration/riad-doorway-pt-BR.mp3",
+      "sha256": "a64fe59f33610dd8e8c1ce1a6f86403a56c5b919ea627647373ed63c605471eb",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "A passagem revela outra camada da casa. Um riad não é apenas um pátio ornamental: cômodos e corredores se organizam ao redor de seu centro aberto, conduzindo dos espaços de acolhimento a ambientes domésticos mais reservados. Aqui, essa relação ganha uma forma imaginada em três dimensões.",
+      "locale": "pt-BR",
+      "view": "doorway",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:47:13.938Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A vida mais tranquila no andar de cima",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "riad-upstairs-pt-BR",
+      "audio": "/public/narration/riad-upstairs-pt-BR.mp3",
+      "sha256": "d3ff96cd3a2b55f0b791de11220c4a841c8329e08f19aea54f3a14e38da85217",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "O andar superior prolonga a casa para além dos espaços de recepção. A madeira, os tecidos e os cômodos abrigados sugerem os ritmos mais tranquilos da vida doméstica. Essa composição imaginada convida a perceber o riad como uma casa vivida, e não apenas como um conjunto de superfícies decorativas.",
+      "locale": "pt-BR",
+      "view": "upstairs",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-09-14T19:47:18.095Z",
+      "usedBy": [
+        "riad"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    }
+  ],
+  "updatedAt": "2026-09-14T21:26:54.245Z"
+}

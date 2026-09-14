@@ -5,6 +5,7 @@ const mimeTypes = {
   ".css": "text/css; charset=utf-8",
   ".glb": "model/gltf-binary",
   ".gltf": "model/gltf+json; charset=utf-8",
+  ".hdr": "image/vnd.radiance",
   ".html": "text/html; charset=utf-8",
   ".ico": "image/x-icon",
   ".jpeg": "image/jpeg",
@@ -18,6 +19,7 @@ const mimeTypes = {
   ".txt": "text/plain; charset=utf-8",
   ".png": "image/png",
   ".svg": "image/svg+xml",
+  ".webp": "image/webp",
   ".woff2": "font/woff2",
 };
 

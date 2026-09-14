@@ -8,14 +8,14 @@ room. Music is a separate choice, never a substitute for environmental detail.
 The observable outcome is that moving between viewpoints changes the direction,
 distance and enclosure of nearby sounds without losing the quiet overall mix.
 
-All twelve bundled interiors use recorded sound. The common palette is composed
-for each architectural family, including generated variants; it is not a claim
+All twenty-two bundled environments use recorded sound. The common palette is composed
+for each architectural family and each outdoor setting, including generated interior variants; it is not a claim
 that the recordings were made in those exact locations. Music is a contemporary,
 interpretive accompaniment, not a historical reconstruction.
 
 ## Controls and consent
 
-**Soundscape** is available on the globe and in every interior. Its panel has
+**Soundscape** is available on the globe and in every environment. Its panel has
 independent ambience and music toggles and volumes, a music selection, **Mute all**,
 and an **About the sound & credits** disclosure.
 
@@ -27,8 +27,8 @@ and an **About the sound & credits** disclosure.
   uninterrupted while navigating the collection.
 - Enabled channels, both volumes and music selection are saved for one year in
   the `atlas-audio-preferences` cookie (`Path=/`, `SameSite=Lax`). Choices follow
-  the visitor between the globe, all interiors, reloads and later browser sessions.
-  On the globe, ambience can be enabled in advance for the next interior.
+  the visitor between the globe, all environments, reloads and later browser sessions.
+  On the globe, ambience can be enabled in advance for the next place.
 - Restoring an enabled choice attempts playback only in the active document.
   If the browser requires another gesture, the channel offers **Resume** and
   explains that the choice is already saved. Browser restrictions do not silently
@@ -42,22 +42,30 @@ and an **About the sound & credits** disclosure.
 - **Mute all** saves both channels as off. Disposal and page hiding only stop
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
 - Detail narration lowers both channels while speech plays. Narration itself
-  remains a separate, explicitly requested API operation. It participates in
+  uses explicitly requested browser speech outdoors or the narration API indoors. It participates in
   playback ownership and stops on tab handover or **Mute all** as well.
 - Audio does not depend on animation time. Reduced motion still permits listening
   and moving between viewpoints, without re-enabling visual animation.
 
 ## Composition
 
-| Environment                 | Recorded layers and placement                                                    | Musical choice                       |
-| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------------ |
-| Marrakech                   | Fountain in the central basin, birds above the courtyard, occasional tea service | Middle Eastern-inspired instrumental |
-| Kyoto cafes                 | Distant room conversation, counter dishes, preparation-room work surfaces        | Quiet jazz                           |
-| Istanbul and Lisbon taverns | Low conversation, service-room dishes, occasional utensils                       | Shared theme                         |
-| Hanoi herb shops            | Paper parcels, wooden drawers, a subdued exterior                                | Shared theme                         |
-| European bookshop           | Pages at the main desk and in the reading room, distant birds                    | Shared theme                         |
-| Oaxaca workshop             | Sparse work-surface and paper handling, courtyard birds                          | Shared theme                         |
-| Kerala kitchen              | A low hearth, utensils, pantry crockery and garden birds                         | Shared theme                         |
+| Environment                 | Recorded layers and placement                                                         | Musical choice                       |
+| --------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------ |
+| Marrakech                   | Fountain in the central basin, birds above the courtyard, occasional tea service      | Middle Eastern-inspired instrumental |
+| Kyoto cafes                 | Distant room conversation, counter dishes, preparation-room work surfaces             | Quiet jazz                           |
+| Istanbul and Lisbon taverns | Low conversation, service-room dishes, occasional utensils                            | Shared theme                         |
+| Hanoi herb shops            | Paper parcels, wooden drawers, a subdued exterior                                     | Shared theme                         |
+| European bookshop           | Pages at the main desk and in the reading room, distant birds                         | Shared theme                         |
+| Oaxaca workshop             | Sparse work-surface and paper handling, courtyard birds                               | Shared theme                         |
+| Kerala kitchen              | A low hearth, utensils, pantry crockery and garden birds                              | Shared theme                         |
+| Outdoor squares and lanes   | Subdued distant birds, sparse workshop handling or café service, selected per setting | Shared theme                         |
+| Outdoor courts and terraces | Subdued birds with occasional pages or tea service at local activity areas            | Shared theme                         |
+
+Outdoor profiles are keyed by the ten exact scene IDs, with no enclosed-room
+portal filtering. They reuse the licensed illustrative palette conservatively;
+they do not claim local bird-species or cultural performance authenticity.
+No fountain recording is presented as ocean surf or canal water. More specific
+outdoor field recordings remain a future acquisition, not synthesized placeholders.
 
 This is an intentionally small shared palette, not an exhaustive ethnographic
 sound library. For greater specificity, replace a layer with verified local

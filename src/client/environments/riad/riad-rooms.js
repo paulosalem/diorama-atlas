@@ -175,15 +175,40 @@ export function buildRiadRooms({
   function books(parent, xyz, count = 9) {
     const shelf = subgroup(xyz, 0, parent);
     box([0.9, 0.06, 0.25], [0, 0, 0], wood, 0.005, shelf);
-    for (let i = 0; i < count; i++)
+    for (let i = 0; i < count; i++) {
+      const height = 0.19 + ((i * 7) % 5) * 0.012;
+      const book = subgroup([-0.36 + i * 0.082, 0.033, 0.016], 0, shelf);
+      book.rotation.z = i % 4 === 0 ? 0.045 : 0;
+      const edition = detail.prints.edition(i);
       box(
-        [0.058, 0.19 + (i % 3) * 0.025, 0.145],
-        [-0.36 + i * 0.082, 0.13, 0.016],
-        detail.cushions[i % 4],
+        [0.058, height, 0.145],
+        [0, height / 2, 0],
+        detail.paper,
         0.002,
-        shelf,
-        [0, 0, i % 4 === 0 ? 0.07 : 0],
+        book,
       );
+      object(
+        new THREE.PlaneGeometry(0.06, height + 0.003),
+        detail.prints.book(edition, "spine"),
+        [0, height / 2, 0.074],
+        [0, 0, 0],
+        book,
+      );
+      object(
+        new THREE.PlaneGeometry(0.148, height + 0.003),
+        detail.prints.book(edition, "front"),
+        [0.03, height / 2, 0],
+        [0, Math.PI / 2, 0],
+        book,
+      );
+      object(
+        new THREE.PlaneGeometry(0.148, height + 0.003),
+        detail.prints.book(edition, "back"),
+        [-0.03, height / 2, 0],
+        [0, -Math.PI / 2, 0],
+        book,
+      );
+    }
   }
   function lamp(parent, xyz, intensity = 1.8) {
     const holder = subgroup(xyz, 0, parent);

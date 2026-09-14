@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createRecordedSoundscape } from "../shared/recorded-soundscape.js";
 import { getSoundscapeProfile } from "../shared/soundscape-profiles.js";
+import { configureWaterMaterial } from "../shared/water-flow.js";
 
 /** Add evidence of ordinary use after architecture, before static batching. */
 export function addInteriorLife(k, p, type, definition) {
@@ -14,7 +15,7 @@ export function addInteriorLife(k, p, type, definition) {
     kitchen: addKitchen,
   };
   if (!builders[type]) throw new RangeError(`Unknown interior family: ${type}`);
-  const life = createDetails(k, type);
+  const life = createDetails(k, p, type);
   builders[type](k, p, life, definition);
   animateLeaves(k);
   if (type !== "workshop" && type !== "herbshop")
@@ -33,7 +34,7 @@ export function addInteriorLife(k, p, type, definition) {
   };
 }
 
-function createDetails(k, type) {
+function createDetails(k, p, type) {
   const { m, group, sub, mesh, sphere, ring, rod, tube, range } = k;
   const cloth = k.textile(
     type === "cafe"
@@ -157,30 +158,8 @@ function createDetails(k, type) {
     } = {},
   ) {
     const stack = sub(position, angle, parent);
-    stack.name = "Working papers";
-    const writing = k.material(0xffffff, 0.98);
-    writing.side = THREE.DoubleSide;
-    writing.map = k.texture(
-      (context, size) => {
-        context.fillStyle = "#d5c6a4";
-        context.fillRect(0, 0, size, size);
-        context.fillStyle = "#625b4c";
-        context.font = "22px Georgia";
-        context.fillText(heading, size * 0.12, size * 0.16);
-        for (let row = 0; row < 10; row++) {
-          const y = size * (0.26 + row * 0.055);
-          for (let word = 0; word < 3; word++)
-            context.fillRect(
-              size * (0.12 + word * 0.24),
-              y,
-              size * range(0.12, 0.19),
-              1.3,
-            );
-        }
-      },
-      [1, 1],
-      256,
-    );
+    stack.name = `${heading} working papers`;
+    const writing = p.prints.book(p.printTheme.sheet, "page-right");
     for (let n = 0; n < count; n++) {
       const geometry = new THREE.PlaneGeometry(width, length, 8, 12);
       const vertices = geometry.attributes.position;
@@ -725,40 +704,16 @@ function animateCanal(k) {
   if (!surface)
     throw new Error("The kitchen requires its connected garden canal.");
   const material = surface.material;
-  const compile = material.onBeforeCompile;
-  const time = { value: 0 };
-  const strength = { value: 0 };
   material.name = "Living backwater canal";
-  material.onBeforeCompile = (shader, renderer) => {
-    compile.call(material, shader, renderer);
-    shader.uniforms.interiorCanalTime = time;
-    shader.uniforms.interiorCanalStrength = strength;
-    shader.vertexShader =
-      "varying vec2 interiorCanalPosition;\n" + shader.vertexShader;
-    shader.vertexShader = shader.vertexShader.replace(
-      "#include <begin_vertex>",
-      "#include <begin_vertex>\ninteriorCanalPosition = (modelMatrix * vec4(position, 1.)).xz;",
-    );
-    shader.fragmentShader =
-      `
-      varying vec2 interiorCanalPosition;
-      uniform float interiorCanalTime;
-      uniform float interiorCanalStrength;
-    ` + shader.fragmentShader;
-    shader.fragmentShader = shader.fragmentShader.replace(
-      "#include <normal_fragment_maps>",
-      `#include <normal_fragment_maps>
-        vec2 ripple = vec2(
-          sin(interiorCanalPosition.y * 10. + interiorCanalTime * .45),
-          cos(interiorCanalPosition.x * 15. + interiorCanalPosition.y * 2. - interiorCanalTime * .36)
-        ) * interiorCanalStrength;
-        normal = normalize(normal + mat3(viewMatrix) * vec3(ripple.x, 0., ripple.y));`,
-    );
-  };
-  material.customProgramCacheKey = () => "interior-canal-ripples-1";
+  material.metalness = 0;
+  material.userData.patinaProfile = "none";
+  const time = k.m.water.userData.time;
+  configureWaterMaterial(material, {
+    time,
+    disturbance: k.m.water.userData.disturbance,
+  });
   k.animations.push((_, elapsed) => {
     time.value = elapsed;
-    strength.value = 0.012;
   });
 }
 

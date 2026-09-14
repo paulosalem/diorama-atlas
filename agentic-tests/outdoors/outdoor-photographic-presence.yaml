@@ -1,0 +1,108 @@
+id: outdoor-photographic-presence
+title: Every imagined outdoor setting looks and feels like a photographed real place
+target: src/client/environments/outdoors
+severity: critical
+tags: [outdoors, realism, atmosphere, visual, release]
+mechanism: playwright
+
+isolation:
+  mutates: true
+  strategy: ephemeral
+  exclusive: true
+  setup: |
+    test -n "$ATLAS_REVIEW_URL"
+    mkdir -p "$SCRATCH/evidence"
+    curl --fail --silent --show-error "$ATLAS_REVIEW_URL/api/generated-scenes" > "$SCRATCH/health.json"
+  teardown: |
+    test -d "$SCRATCH/evidence"
+
+preconditions:
+  - The supplied Atlas server is responsive.
+  - The supplied server runs an independent snapshot created by scripts/snapshot-outdoor-review.mjs, using its canonical src/server/index.mjs and local cache.
+  - The snapshot's read-only source and copied dependencies are unchanged for the entire review pass.
+
+task: |
+  You are an exacting environment artist and photographer encountering Atlas
+  as a visitor. Inspect all ten fictional outdoor settings as real places to
+  inhabit, not as programming demonstrations or replicas of named landmarks.
+
+  The settings are Newar Potters' Square, Central Asian Madrasa Courtyard,
+  Balinese Subak Terraces, Venetian Boatyard Canal, Bahian Neighborhood Square,
+  Andean Stone Lane, Swahili Coastal Verandah, Naxi Canal Quarter, Tunisian
+  Terrace Cafe, and Lao Temple Court.
+
+  Explore each setting's arrival view, every other available viewpoint,
+  surroundings in all directions, and close-up surfaces. Consult the attributed
+  photographic style references where useful, but do not mistake those source
+  photographs for the actual 3D environment being evaluated.
+
+  Judge the whole experience on every pass: photographic appearance, convincing
+  physical construction, material detail, light, atmosphere, regional character,
+  subtle wear, and plausible small signs of use. Real places contain localized
+  imperfections and a little ordinary disorder, not uniform grunge or
+  mechanically perfect repetition. Books, posters or other printed objects
+  should contain actual image artwork where such objects are present.
+
+  Report each rubric item separately for EACH of the ten settings as pass, fail,
+  or blocked. Include all observed problems, not merely a fixed small quota.
+  Distinguish observed defects from uncertain interpretations. Give an overall
+  photographic-read verdict for each setting; successful loading, large geometry
+  counts or attractive stylization are not evidence of photographic realism.
+
+expect:
+  - id: complete-inspection
+    must: Each setting has been inspected from every preset viewpoint and around the visitor.
+    evidence: A per-setting view inventory with fresh wide, close-up and look-behind screenshots, captured URLs and a contact sheet.
+  - id: physical-construction
+    must: Visible forms read as plausibly constructed physical objects at human scale.
+    evidence: Per-setting screenshots identifying joints, thicknesses, contacts and any impossible, floating, intersecting or conspicuously primitive forms.
+  - id: material-specificity
+    must: Close surfaces have convincing material-specific visual detail rather than uniform color or conspicuous texture repetition.
+    evidence: Per-setting close-up crops with findings on grain, pores, glaze, cloth, metal, foliage or other visible materials.
+  - id: situated-wear
+    must: Visible wear is selectively situated where exposure or use would plausibly cause it.
+    evidence: Per-setting examples or counterexamples of chipped or repaired paving, worn thresholds, plaster damage, paint wear, dampness or handling marks.
+  - id: printed-imagery
+    must: Visible books, posters and similar printed props contain coherent actual image artwork rather than empty colored placeholders.
+    evidence: Close screenshots of printed props in each setting, or explicit evidence-based notation that none are present.
+  - id: photographic-light
+    must: Illumination has the exposure, shadow relationships and color behavior of a plausible photograph.
+    evidence: Per-setting full-view and shaded-detail screenshots identifying clipped regions, unexplained glow, missing contact shadows, dead lighting or implausible reflections.
+  - id: continuous-surroundings
+    must: Looking around maintains the sense of being inside a continuous place.
+    evidence: Per-setting rear and side screenshots documenting any cutoff ground, sky gaps below buildings, exposed scene edges, blocked viewpoints or disconnected surroundings.
+  - id: regional-presence
+    must: The setting conveys a coherent regional building and material tradition without depending on a recognizable landmark replica.
+    evidence: Per-setting notes tied to visible architectural and everyday details, including any contradictory, generic or unsupported motifs.
+  - id: lived-in-atmosphere
+    must: The setting feels like a lovely, believable place with plausible everyday use rather than an empty showroom or arbitrary clutter.
+    evidence: Per-setting scenes of use, small irregularities, planting, work or hospitality, with specific reasons the composition supports or undermines presence.
+  - id: photographic-read
+    must: The actual rendered setting could credibly be mistaken for a photograph at normal viewing size.
+    evidence: An explicit pass, fail or blocked verdict for each setting supported by full-resolution rendered screenshots and the strongest visual reasons for that judgement.
+
+must_not:
+  - Modify application source, user data or any file outside the supplied evidence directory.
+  - Call image-generation or other paid APIs during the review.
+  - Treat source-reference photographs or generated concept images as rendered-environment evidence.
+  - Hide a visible realism defect behind triangle counts, functional success or author intent.
+  - Record an uncertain or inaccessible criterion as a pass.
+  - Ignore browser console errors that affect the experience.
+  - Leave a review-owned browser running after collecting evidence.
+
+notes: |
+  This is a deliberately strict visual acceptance test. Its first execution
+  should establish whether it discriminates actual rendering defects; preserve
+  any failure evidence. Run three complete additional passes with fixes between
+  them, rather than calling three screenshots of the same unchanged view three
+  inspections. Human approval remains separate from the agent's verdict.
+  The coordinator starts and stops a server on an immutable app snapshot.
+  For render diagnostics, dynamically import getActiveViewer from
+  /src/client/viewer/panorama-viewer.js inside an async page.evaluate or
+  page.waitForFunction callback. Use the controller's selectView(key) and
+  lookAt(point); do not expect a window-global viewer or a panorama property.
+  The global Soundscape panel controls optional recorded audio through
+  getAtlasAudio from /src/client/main.js. Never enable a separate synthesizer.
+  The reviewer closes its own browser in a finally block. TMPDIR and every
+  tool artifact must remain inside SCRATCH; do not use shared browser tools
+  that automatically write snapshots into the application workspace.

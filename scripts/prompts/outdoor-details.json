@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "botanical-field-notes",
+      "kind": "printed-artwork",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Create original, exceptionally detailed printable artwork for the cover of a modest botanical field notebook. Full-bleed flat rectangular cover design, viewed perfectly straight on, no perspective and no mockup of a book. A beautiful precise botanical illustration of rice stalks, slender leaves, a small frangipani branch and seed forms on warm ivory paper, fine ink lines and restrained olive watercolor washes. Small legible title FIELD NOTES. Subtle realistic paper fibers, a faint water-ring edge near one corner, selective rubbed printing and a lightly softened corner, mostly well-kept rather than distressed everywhere. Quiet, lovely, believable field-use character. No brands, no copyrighted existing cover, no artist signature, no drop shadow, no CGI appearance, no surrounding tabletop. This will be an image texture on actual 3D book geometry."
+    },
+    {
+      "id": "pottery-workshop-sheet",
+      "kind": "printed-artwork",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Create original flat printable wall-sheet artwork for an anonymous traditional pottery workshop. Perfectly straight-on full-bleed page, no perspective, no surrounding wall. A small documentary-style photographic image of handmade unglazed terracotta vessels with nuanced clay colors, accompanied by elegant black-ink profile drawings of different vessel rims and cross-sections, restrained pencil working marks, a tiny ochre pigment swatch. Warm off-white ordinary paper with visible fibers, two restrained handling smudges at lower edges and one old pinhole. The only prominent text is CLAY & FORM in small modest lettering. It should feel like a lovingly used workshop reference, not a fashionable advertisement. Photographically tangible paper and printing, intricate real image content, no brand, no recognizable real workshop, no signature, no meaningless pseudo-writing."
+    },
+    {
+      "id": "boat-workshop-sheet",
+      "kind": "printed-artwork",
+      "size": "1536x1024",
+      "background": "opaque",
+      "prompt": "Original horizontal printable boatbuilding study sheet for an anonymous Venetian lagoon workshop. Orthographic flat full-bleed page with no perspective or surrounding surface. A finely drawn, plausible long wooden rowing-boat profile, hull rib studies, a small actual-looking photographic wood-grain and hand-tool vignette, and a few neat pencil construction marks. Muted blue-black ink on aged ivory paper, locally uneven ink density, slight fold lines, one faded coffee ring partly cropped at the lower right, fine paper fibers. Small clear heading BARCHE IN LEGNO. No claimed measured dimensions, brand, real named boatyard, existing copyrighted drawing, watermark, or fake dense text. This is illustrative workshop artwork for an actual 3D paper prop; do not draw a 3D paper mockup."
+    },
+    {
+      "id": "neighborhood-cafe-poster",
+      "kind": "printed-artwork",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Design original, beautiful modest neighborhood cafe poster artwork appropriate to a fictional Bahian neighborhood. Full-bleed vertical printable artwork, straight-on flat image, no wall or frame. Main image is a lovely photographic still life of a small cup of dark coffee, a simple slice of homemade cake on a ceramic saucer, and a little magenta bougainvillea sprig, in warm natural side light. Restrained warm cream and faded teal printed border. Clear Portuguese headline CAFE E CONVERSA, with correct accent on CAFE. The paper has a few realistic faded patches, light edge handling marks and one soft fold but is otherwise cared for. A welcoming everyday local feeling rather than a polished corporate advertisement. No brands, named business, recognizable actual location, signature, watermark, gibberish, or CGI rendering."
+    },
+    {
+      "id": "coastal-tea-poster",
+      "kind": "printed-artwork",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Original printable artwork for a small anonymous Tunisian coastal tea cafe. Perfectly flat straight-on full-bleed vertical page; no surrounding wall, frame or perspective. A richly detailed photographic still life: two small clear glasses of mint tea, fresh mint leaves with visible veins, a well-used silver tray and a few almonds beside a whitewashed edge, with soft cobalt blue reflected light. A restrained simple blue ornamental border and the small correctly spelled French heading THE A LA MENTHE with correct French accents. Warm slightly fibrous paper, gently sun-faded ink at the very top and small handling wear concentrated at one lower corner, not blanket grime. Intimate and hospitable, believable local printed ephemera, not a glossy luxury resort advertisement. No brand, real cafe identity, signature or watermark."
+    },
+    {
+      "id": "highland-garden-print",
+      "kind": "printed-artwork",
+      "size": "1024x1536",
+      "background": "opaque",
+      "prompt": "Create an original, photographically tangible printed illustration for a small notebook or domestic wall print in an imagined Andean neighborhood. Straight-on flat full-bleed page, no frame, wall, mockup or perspective. A carefully observed watercolor-and-ink study of red geraniums growing from a simple weathered terracotta pot beside warm stone, with a small fragment of understated woven cloth. Quiet natural colors, fine plant and ceramic detail, warm cream paper with visible fibers, restrained scuffed edges and one light old crease. Small heading JARDIN in simple tasteful type with the proper Spanish accent. Original image, no sacred motifs, no copied traditional insignia, no brand, existing artist style, signature, gibberish or watermark."
+    },
+    {
+      "id": "limewash-repair-decal",
+      "kind": "surface-decal",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "A photorealistic isolated surface-wear decal for a 3D limewashed plaster wall, on a genuinely transparent background. An irregular, asymmetrical small area of thin ivory limewash flaking away to reveal warm pale beige mineral plaster underneath, with fine feathered fracture edges, a few barely curled paint flakes, tiny pores and one discreet old repair boundary. Most of the square must be transparent; the wear occupies an organically shaped area near the center, fading in broken islands toward the edges. Flat neutral orthographic lighting with no cast shadow, no perspective, no surrounding wall, no vignette. Physically small realistic wear rather than dramatic ruin, no black comic outlines, no repeating pattern, no text."
+    },
+    {
+      "id": "damp-mineral-decal",
+      "kind": "surface-decal",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "Photorealistic isolated subtle damp-mineral staining decal for an outdoor plaster or stone base, on genuinely transparent background. A restrained asymmetrical patch of faint gray-brown water migration, a little mineral efflorescence, sparse moss-green traces near a low edge, and delicate irregular tide lines that fade naturally into transparency. Nonuniform distribution with large empty transparent areas. Macro-level pore and grain detail, flat neutral diffuse orthographic lighting, no cast shadows, no perspective, no wall mockup, no dramatic rot, no uniform grunge, no black outlines, no text. Intended for selective placement near one drain or planter, not for coating an entire building."
+    }
+  ]
+}

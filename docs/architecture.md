@@ -17,7 +17,7 @@ Browser: index.html -> src/client/main.js
   |
   +-- no scene query: world globe + place previews
   |
-  +-- ?scene=<id>: viewer -> riad or interior-family builder
+  +-- ?scene=<id>: viewer -> outdoor, riad or interior-family builder
                              |
                              +-- shared geometry/material helpers
                              +-- local public/ material maps
@@ -30,13 +30,25 @@ Node: src/server/index.mjs -> createAtlasServer()
 
 ## Browser boundaries
 
-`catalog/` contains the original five place definitions, saved-place loading, and
-geographic matching. `world/` renders Earth and miniature landmarks, places
+`catalog/` contains the original five place definitions, ten fictional outdoor
+settings, saved-place loading, and geographic matching. `world/` renders Earth and miniature landmarks, places
 interactive markers, and remembers camera orientation in session storage.
 
-`viewer/` owns the interior renderer, camera controls, postprocessing, details,
-narration controls, and navigation. It chooses the dedicated riad builder only
-for `scene.id === "riad"`; other places use `environments/interiors/`.
+`viewer/` owns rendering, camera controls, postprocessing, details, references,
+consolidated credits, narration controls, and navigation. Outdoor definitions use
+`environments/outdoors/`; otherwise it chooses the dedicated riad builder for
+`scene.id === "riad"` and `environments/interiors/` for the remaining places.
+
+`localization/` owns the global en-US/pt-BR preference and presentation dictionaries.
+Subscriptions update text in place without replacing original definitions,
+rebuilding geometry, or disturbing camera and audio state. Original definitions
+remain unchanged because the family dispatcher depends on their source fields.
+
+Marrakech's `scene-narration.js` panel reuses the viewer's single narration audio
+element. Local prerecorded clips are chosen by global language and named view;
+`narration-triggers.js` also requires physical proximity and sustained gaze.
+The shared audio controller coordinates consent, ownership, ducking and mute.
+This pilot does not silently add paid requests when entering other scenes.
 
 The interior dispatcher selects a cafe, tavern, herb shop, bookshop, workshop, or
 kitchen using the definition's title, request, and blueprint. Generated content
@@ -56,10 +68,23 @@ Environment builders return a runtime with a scene group, named viewpoints,
 hotspot anchors, an asset-readiness promise, animations, and cleanup. The viewer
 waits for materials and owns the render loop. Environment-specific resources are
 disposed on navigation; the browser entry handles page-history restoration.
+The first published frame waits for image/model readiness and material-specific
+surface patina. Both environment builders stamp deterministic per-object seeds
+before batching; shared scan sampling preserves world scale and avoids repetitive
+surfaces. Artwork, transparency, foliage and luminous surfaces are protected
+from inappropriate aging.
+
+Outdoor rendering uses a local photographic PureSky environment, aligned sunlight,
+AgX tone mapping and restrained ambient occlusion without decorative bloom.
+Shared water flow drives multiscale motion and planar reflections; each water
+path retains its own capture/disposal contract. Image-based books, curved labels,
+illustrated pages and contextual prints share the local print catalog and
+readiness-aware image loader. All geometry and public asset URLs survive the
+organized-layout integration, including each setting's original viewpoints.
 
 `getActiveViewer()` exports the current viewer controller for local inspection
 and capture tools. It provides the runtime, camera, renderer, selected-view
-control, animation time, recent frame durations, and idempotent disposal.
+control (`selectView` and `lookAt`), animation time, recent frame durations, and idempotent disposal.
 It is not a global browser variable or a server endpoint. Reduced motion freezes
 environment animation time; optional sound requires a user gesture and stops
 when the page becomes hidden. Hidden-page playback does not resume automatically.
@@ -73,6 +98,10 @@ discarding the saved choice.
 Shared material loading lives under `environments/shared/`, while its original
 texture paths remain under `public/riad/materials/`. Keeping those asset URLs
 stable avoids changing imported provenance manifests or render behavior.
+Additional scans, photographic references, daylight and models live under
+`public/outdoors/`; print images and source provenance live under
+`public/print-library/`. `scripts/build-credits.mjs` combines those manifests and
+recorded-audio credits for the About dialog.
 
 ## Server boundaries
 

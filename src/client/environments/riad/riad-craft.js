@@ -283,11 +283,20 @@ export function addRiadCraft({
           i,
           side * (0.006 + u * 0.146),
           0.014 + page * 0.002 + Math.sin(u * Math.PI) * 0.013,
-          pos.getY(i),
+          -pos.getY(i),
         );
+        if (side < 0) geo.attributes.uv.setX(i, 1 - u);
       }
       geo.computeVertexNormals();
-      object(geo, detail.paper, [0, 0, 0], [0, 0, 0], book);
+      object(
+        geo,
+        page === 3
+          ? detail.prints.book("flora", side < 0 ? "page-left" : "page-right")
+          : detail.paper,
+        [0, 0, 0],
+        [0, 0, 0],
+        book,
+      );
     }
   box(
     [0.014, 0.002, 0.11],

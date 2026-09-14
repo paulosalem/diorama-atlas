@@ -1,0 +1,59 @@
+{
+  "assets": [
+    {
+      "id": "coffee",
+      "title": "Coffea arabica — Köhler's Medizinal-Pflanzen",
+      "author": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-189.jpg",
+      "image": "/public/print-library/sources/coffee.jpg",
+      "sha256": "a2b3948600dcc0d1f148b5325b731570bf5f0fedca10321d63e23b899272342f",
+      "note": "Arabica coffee branch with leaves, white flowers, fruits and botanical detail studies on white paper. Historical plate dated 1883–1914 by Commons; its attribution is to the publication, not a separately identified illustrator. Downloaded original 1572 × 2168 px; resized proportionally to 1160 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. The Commons source is already retouched. Commons marks the work public domain under life-plus-70 terms; publication before 1931 also places the historical artwork in the US public domain."
+    },
+    {
+      "id": "grape",
+      "title": "Vitis vinifera — Köhler's Medizinal-Pflanzen, plate 51 (1887)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_51)_BHL303664.jpg",
+      "image": "/public/print-library/sources/grape.jpg",
+      "sha256": "fab41c9dd9fd85e90de708f8f3fa90a9896b74f47f317e08502685124ff41a5c",
+      "note": "Grapevine with a green grape cluster, lobed leaves, curling tendrils and botanical detail studies on warm aged paper. Faithful scan from the Missouri Botanical Garden's Rare Books Collection via BHL, page 303664. Downloaded original 2905 × 4033 px; resized proportionally to 1152 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923."
+    },
+    {
+      "id": "olive",
+      "title": "Olea europaea — Köhler's Medizinal-Pflanzen, plate 109 (1890)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_109)_(8232783218).jpg",
+      "image": "/public/print-library/sources/olive.jpg",
+      "sha256": "5c1c92592b01e1a54e278c21d14c06d656830b050aec047179babd436c3e171a",
+      "note": "Flowering olive branches with slender leaves, a dark olive fruit, stone and botanical detail studies on warm aged paper. BHL page 303152, Missouri Botanical Garden, Peter H. Raven Library; this copy reached Commons through BHL's Flickr account. Downloaded original 1426 × 1981 px; resized proportionally to 1152 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923; the file page additionally retains the Flickr CC BY 2.0 tag. This collection relies on the public-domain faithful-scan designation."
+    },
+    {
+      "id": "mint",
+      "title": "Mentha × piperita — Köhler's Medizinal-Pflanzen, plate 67 (1887)",
+      "author": "Brandt, Wilhelm; Gürke, M.; Köhler, F. E.; Pabst, G.; Schellenberg, G.; Vogtherr, Max. (Biodiversity Heritage Library catalog attribution)",
+      "license": "Public domain (PD-scan; PD-old-70-1923)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-scan",
+      "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6hler%27s_Medizinal-Pflanzen_in_naturgetreuen_Abbildungen_mit_kurz_erl%C3%A4uterndem_Texte_(Plate_67)_BHL303700.jpg",
+      "image": "/public/print-library/sources/mint.jpg",
+      "sha256": "96b85920db1e80e250f91993fb99ee3af1c200e6e5760ba69706946995c8c429",
+      "note": "Peppermint, specifically Mentha × piperita, with serrated leaves, flowering spikes and enlarged botanical detail studies on warm aged paper. Faithful scan from the Missouri Botanical Garden's Rare Books Collection via BHL, page 303700. Downloaded original 2797 × 3967 px; resized proportionally to 1128 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Catalog attribution covers the publication's contributors rather than a separately identified plate illustrator. Commons explicitly applies PD-scan with PD-old-70-1923."
+    },
+    {
+      "id": "ginger",
+      "title": "Zingiber officinale — Köhler's Medizinal-Pflanzen",
+      "author": "Franz Eugen Köhler (attribution on the Wikimedia Commons file page)",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Zingiber_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-146.jpg",
+      "image": "/public/print-library/sources/ginger.jpg",
+      "sha256": "73aad11eb242d8389f8d3c4af300ee3bde8d72354a01e322abc1713d2e9c5de7",
+      "note": "Ginger with a detailed segmented rhizome and roots, long green leaves, flowering stems and botanical detail studies on white paper. Historical plate dated 1883–1914 by Commons, sourced there from Internet Archive/BHL; its attribution is to the publication, not a separately identified illustrator. Downloaded original 2776 × 3824 px; resized proportionally to 1162 × 1600 px and JPEG-encoded at quality 91, without cropping or color adjustment. Commons marks the work public domain under life-plus-70 terms; publication before 1931 also places the historical artwork in the US public domain."
+    }
+  ]
+}

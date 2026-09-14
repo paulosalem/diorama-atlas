@@ -32,6 +32,9 @@ changes, and do not hand-edit it.
 The original five definitions are in `src/client/catalog/scene-catalog.js`.
 Additional bundled places use the existing saved-package format in `data/scenes/`.
 The API merges those packages with local saved scenes by ID.
+Outdoor definitions instead live in `src/client/catalog/outdoor-catalog.js`,
+with dedicated builders in `src/client/environments/outdoors/`. Preserve their
+fictional-setting disclosure, regional markers, and accurate photographic sources.
 
 Provide a unique ID, title, geographic context, explanatory text, detail points,
 and a matching `public/previews/<scene-id>.png`. Check the geographic match rules
@@ -43,6 +46,16 @@ definition. A new room family needs a builder, four primary viewpoints plus a
 connected-space viewpoint, hotspot anchors, material readiness, and resource
 cleanup. Do not assume a generated
 scene definition creates bespoke geometry automatically.
+Outdoor runtimes provide four spatially distinct viewpoints and the same
+readiness/disposal contract. Use the shared recorded soundscape infrastructure
+and global controller, never a second player or application shell.
+
+Shared surface variation is applied before batching and surface patina after
+asset readiness. Preserve shader hook composition and artwork protection.
+Printed props use the local print catalog and image-material loader; update
+their manifests and `npm run build:credits` when changing imagery. Use
+`npm run test:outdoors` and `npm run test:water-prints` for affected visual work,
+and inspect matched captures rather than treating geometry counts as realism.
 
 Update the collection assertions and browser scenarios when intentionally
 changing the bundled collection. Inspect the actual rendered result, not just
