@@ -6,7 +6,7 @@
   right: 16px;
   bottom: 16px;
   width: min(370px, calc(100% - 32px));
-  max-height: 42%;
+  max-height: min(calc(100% - 32px), max(42%, 220px));
   overflow: auto;
   padding: 16px 18px 12px;
   border: 1px solid #e1ce9c30;
@@ -15,6 +15,9 @@
   background: #10201fe8;
   box-shadow: 0 10px 36px #0004;
   backdrop-filter: blur(14px);
+}
+.scene-narration[hidden] {
+  display: none;
 }
 .scene-narration header,
 .narration-controls {
@@ -115,7 +118,7 @@
     right: 10px;
     bottom: 10px;
     width: min(330px, calc(100% - 20px));
-    max-height: 42%;
+    max-height: min(calc(100% - 20px), max(42%, 220px));
     padding: 10px;
   }
   .narration-eyebrow {
@@ -128,5 +131,19 @@
     max-height: 82px;
     font-size: 11px;
     line-height: 1.55;
+  }
+}
+@media (max-height: 500px) {
+  .scene-narration {
+    padding: 10px;
+  }
+  .narration-eyebrow {
+    display: none;
+  }
+  .scene-narration h2 {
+    font-size: 17px;
+  }
+  .narration-text {
+    margin: 8px 0;
   }
 }

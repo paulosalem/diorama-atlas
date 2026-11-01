@@ -159,6 +159,10 @@ export async function createViewer(
       app.querySelector("#riadViewLabel").textContent = t(label);
       narration?.select(key);
     },
+    onDetails: (show) => {
+      stopNarration();
+      narration?.setDetailsVisible(show);
+    },
     onExit: () => {
       if (onNavigate) onNavigate("/");
       else location.href = "/";
@@ -383,7 +387,7 @@ export async function createViewer(
     resetButton.disabled = false;
     toolbar.inert = false;
     viewer.setAttribute("aria-busy", "false");
-    if (definition.id === "riad" && atlasAudio) {
+    if (atlasAudio) {
       narration = createSceneNarration({
         viewer,
         sceneId: definition.id,

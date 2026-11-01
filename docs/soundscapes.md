@@ -39,11 +39,13 @@ and an **About the sound & credits** disclosure.
   audio in another tab stops the previous tab's ambience and music, even if both
   embedded panes report that they are visible. The older tab explains where its
   playback went. A handover does not disable the shared saved preferences.
-- **Mute all** saves both channels as off. Disposal and page hiding only stop
+- **Mute all** saves ambience, music and narration as off. Disposal and page hiding only stop
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
-- Detail narration lowers both channels while speech plays. Narration itself
-  uses explicitly requested browser speech outdoors or the narration API indoors. It participates in
-  playback ownership and stops on tab handover or **Mute all** as well.
+- All 22 bundled scenes have [prerecorded bilingual guided narration](narration.md).
+  It shares one player with detail narration and lowers ambience and music while
+  speech plays. Additional object-detail narration uses explicitly requested
+  browser speech outdoors or the narration API indoors. Both modes participate
+  in playback ownership and stop on tab handover or **Mute all**.
 - Audio does not depend on animation time. Reduced motion still permits listening
   and moving between viewpoints, without re-enabling visual animation.
 

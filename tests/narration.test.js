@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
 import { test } from "node:test";
 import { createNarrationTriggers } from "../src/client/viewer/narration-triggers.js";
+import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
+import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 
-test("Marrakech has verified prerecorded English and Portuguese for all six views", async () => {
+test("every bundled scene has immutable bilingual recordings matching its written scripts", async () => {
   const manifest = JSON.parse(
     await readFile(
       new URL("../public/narration/manifest.json", import.meta.url),
@@ -12,10 +15,36 @@ test("Marrakech has verified prerecorded English and Portuguese for all six view
     ),
   );
   assert.equal(manifest.version, 1);
-  assert.equal(manifest.assets.length, 12);
+  const recipes = JSON.parse(
+    await readFile(
+      new URL("../scripts/prompts/opening-narration.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  const directory = new URL("../data/scenes/", import.meta.url);
+  const saved = await Promise.all(
+    (await readdir(directory))
+      .filter((file) => file.endsWith(".json"))
+      .map(
+        async (file) =>
+          JSON.parse(await readFile(new URL(file, directory), "utf8")).scene,
+      ),
+  );
+  const scenes = [...curatedScenes, ...saved, ...outdoorScenes];
+  assert.equal(manifest.assets.length, recipes.assets.length);
+  assert.equal(manifest.assets.length, 202);
+  assert.equal(
+    new Set(manifest.assets.map((asset) => asset.id)).size,
+    manifest.assets.length,
+  );
+  assert.equal(
+    new Set(recipes.assets.map((asset) => asset.id)).size,
+    recipes.assets.length,
+  );
   const keys = new Set();
   for (const asset of manifest.assets) {
-    assert.equal(asset.scene, "riad");
+    const scene = scenes.find((scene) => scene.id === asset.scene);
+    assert.ok(scene, asset.scene);
     assert.ok(["en-US", "pt-BR"].includes(asset.locale));
     assert.ok(asset.text.length > 100);
     assert.ok(asset.text.length < 750);
@@ -29,18 +58,106 @@ test("Marrakech has verified prerecorded English and Portuguese for all six view
       createHash("sha256").update(bytes).digest("hex"),
       asset.sha256,
     );
-    keys.add(`${asset.view ?? "courtyard"}/${asset.locale}`);
+    const recipe = recipes.assets.find((recipe) => recipe.id === asset.id);
+    assert.ok(recipe, asset.id);
+    for (const [key, value] of Object.entries(recipe))
+      assert.deepEqual(asset[key], value, `${asset.id}/${key}`);
+    const request = {
+      model: asset.model,
+      voice: asset.voice,
+      input: recipe.text,
+      instructions: recipe.instructions ?? recipes.instructions[recipe.locale],
+      response_format: "mp3",
+      speed: 1,
+    };
+    assert.equal(
+      createHash("sha256")
+        .update(JSON.stringify({ recipe, request }))
+        .digest("hex"),
+      asset.fingerprint,
+      `${asset.id}: changed generation inputs`,
+    );
+    const key = `${asset.scene}/${asset.view ?? "intro"}/${asset.locale}`;
+    assert.ok(!keys.has(key), `Duplicate narration: ${key}`);
+    keys.add(key);
   }
-  for (const view of [
-    "courtyard",
-    "fountain",
-    "tea",
-    "cedar",
-    "doorway",
-    "upstairs",
-  ])
-    for (const locale of ["en-US", "pt-BR"])
-      assert.ok(keys.has(`${view}/${locale}`), `${view}/${locale}`);
+  for (const scene of scenes) {
+    const assets = manifest.assets.filter((asset) => asset.scene === scene.id);
+    const views = new Set(assets.map((asset) => asset.view ?? "intro"));
+    assert.equal(
+      views.size,
+      scene.id === "riad" ? 6 : scene.environment === "outdoor" ? 4 : 5,
+      scene.id,
+    );
+    assert.ok(views.has("intro"), `${scene.id}: missing arrival`);
+    for (const view of views)
+      for (const locale of ["en-US", "pt-BR"])
+        assert.ok(
+          keys.has(`${scene.id}/${view}/${locale}`),
+          `${scene.id}/${view}/${locale}`,
+        );
+  }
+  const files = await readdir(new URL("../public/narration/", import.meta.url));
+  assert.deepEqual(
+    files.filter((file) => file.endsWith(".mp3")).sort(),
+    manifest.assets.map((asset) => asset.file.split("/").at(-1)).sort(),
+  );
+  assert.ok(
+    !files.some((file) => file.endsWith(".partial")),
+    "Unfinished audio writes",
+  );
+});
+
+test("the generation command validates selections and reuses recordings without credentials", () => {
+  const run = (...args) =>
+    spawnSync(
+      process.execPath,
+      [
+        "scripts/generate-opening-narration.mjs",
+        "--model",
+        "gpt-4o-mini-tts",
+        "--voice",
+        "cedar",
+        ...args,
+      ],
+      { encoding: "utf8", env: { ...process.env, OPENAI_API_KEY: "" } },
+    );
+  const result = run(
+    "--scene",
+    "textile",
+    "--scene",
+    "newar-potters-square",
+    "--all-views",
+    "--locale",
+    "en-US",
+    "--locale",
+    "pt-BR",
+    "--dry-run",
+  );
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stderr, /18 selected; 18 cached; 0 new/);
+  const cached = run("--scene", "riad", "--locale", "en-US");
+  assert.equal(cached.status, 0, cached.stderr);
+  assert.match(cached.stderr, /1 selected; 1 cached; 0 new/);
+  for (const args of [
+    ["--scene", "missing", "--locale", "en-US", "--all-views"],
+    ["--scene", "riad", "--locale", "fr-FR"],
+    [
+      "--scene",
+      "riad",
+      "--locale",
+      "en-US",
+      "--all-views",
+      "--view",
+      "fountain",
+    ],
+    ["--scene", "riad", "--locale", "en-US", "--concurrency", "0"],
+    ["--scene", "riad", "--locale", "en-US", "--concurrency", "5"],
+  ]) {
+    const invalid = run(...args, "--dry-run");
+    assert.notEqual(invalid.status, 0, args.join(" "));
+    assert.doesNotMatch(invalid.stderr, /Recording .* with/);
+  }
 });
 
 test("proximity narration requires both a close position and sustained gaze", () => {

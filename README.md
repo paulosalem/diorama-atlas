@@ -54,11 +54,14 @@ replacement or production bundler.
 - **Language:** choose **English (US)** or **Português (Brasil)** globally.
   Interface text, place descriptions, viewpoints and narration follow the choice
   without moving your camera or rebuilding the environment.
-- **Narration pilot:** Marrakech has twelve prerecorded tracks: its arrival and
-  five focused views in both languages. A quiet floating panel shows the spoken
+- **Narration:** all 22 places have prerecorded arrivals and focused-view
+  explanations in both languages: 202 recordings across 101 views.
+  A quiet floating panel shows the spoken
   paragraph and play/pause controls. Playing once enables future entry/view
   narration; view selection or a sustained close look selects the relevant
   recording. You can minimize the panel, and **Mute all** disables narration too.
+  **Show details** pauses the guide and replaces its panel with the object caption;
+  closing details restores the guide without restarting it.
 - **Return:** select **Back to world** or press `Escape`. The globe remembers its
   orientation for the browser session.
 - **Soundscape:** enable recorded place ambience and music independently.
@@ -69,7 +72,7 @@ replacement or production bundler.
   plays at a time. If your browser blocks restored playback, select **Resume**.
   Existing detail **Listen** uses browser speech synthesis outdoors and in
   Portuguese, and the separate narration API described below for English
-  interiors. Marrakech's new entry/view recordings are bundled locally.
+  interiors. All included entry/view recordings are bundled locally.
 
 Direct links use `/?scene=kissaten`. Add `&inspect=1` for expanded viewing or
 `&view=bar` for a particular viewpoint; viewpoint names vary by environment.
@@ -141,6 +144,7 @@ npx playwright install chromium
 npm run test:browser      # Real browser checks against an isolated local server
 npm run test:outdoors     # All outdoor viewpoints and controls; app on port 4183
 npm run test:water-prints # All 22 places: actual print images and timed water views
+node scripts/check-narration.mjs # All bilingual views, actual playback, audio signal checks and captures
 npm run build:credits    # Rebuild consolidated local attribution
 ```
 
@@ -158,7 +162,7 @@ See [soundscape design and extension](docs/soundscapes.md) and
 [audio sources](docs/audio-sources.md) for acquiring, licensing and composing
 additional recordings and music.
 See [narration](docs/narration.md) and [localization](docs/localization.md) for the
-bilingual pilot, view triggers, generation provenance and global language setting.
+bilingual collection, view triggers, generation provenance and global language setting.
 See [outdoor collection and visual refinements](docs/outdoor-collection.md) for
 source photography, scanned daylight/materials, surface patina, natural water,
 image-based printed props, and the limits of the visual realism achieved so far.

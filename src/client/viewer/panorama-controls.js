@@ -9,6 +9,7 @@ export function createPanoramaControls({
   viewer,
   onResize,
   onView,
+  onDetails,
   onExit,
 }) {
   const events = new AbortController();
@@ -187,6 +188,7 @@ export function createPanoramaControls({
     const show = viewer.classList.toggle("show-riad-details");
     details.setAttribute("aria-pressed", String(show));
     details.textContent = t(show ? "Hide details" : "Show details");
+    onDetails?.(show);
   });
   listen(window, "keydown", (event) => {
     if (

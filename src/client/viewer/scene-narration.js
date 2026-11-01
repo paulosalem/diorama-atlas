@@ -12,15 +12,28 @@ async function loadNarrationLibrary() {
         const manifest = await response.json();
         if (manifest.version !== 1 || !Array.isArray(manifest.assets))
           throw new Error("Invalid narration manifest.");
+        const ids = new Set();
+        const keys = new Set();
         for (const asset of manifest.assets) {
+          const key = `${asset.scene}/${asset.view ?? "intro"}/${asset.locale}`;
           if (
+            typeof asset.id !== "string" ||
+            typeof asset.scene !== "string" ||
+            !asset.scene.trim() ||
+            (asset.view !== undefined &&
+              (typeof asset.view !== "string" || !asset.view.trim())) ||
             !["en-US", "pt-BR"].includes(asset.locale) ||
             !/^\/public\/narration\/[a-zA-Z0-9-]+\.mp3$/.test(asset.file) ||
             typeof asset.text !== "string" ||
             !asset.text.trim() ||
-            typeof asset.title !== "string"
+            typeof asset.title !== "string" ||
+            !asset.title.trim() ||
+            ids.has(asset.id) ||
+            keys.has(key)
           )
             throw new Error(`Invalid narration asset: ${asset.id}`);
+          ids.add(asset.id);
+          keys.add(key);
         }
         return manifest.assets;
       })
@@ -64,19 +77,23 @@ export function createSceneNarration({
   let request = 0;
   let minimized = false;
   let pausedByUser = false;
+  let detailsVisible = false;
   let enabled = atlasAudio.snapshot.narrationEnabled;
   triggers.select(currentKey);
 
   const ownsMedia = () => track && audio.getAttribute("src") === track.file;
   function render() {
     if (disposed) return;
+    panel.hidden = detailsVisible;
     panel.lang = locale;
     panel.dataset.state = state;
     find(".narration-eyebrow").textContent = t("A sense of place");
     find("#narrationTitle").textContent = track?.title ?? t("Place narration");
     const transcript = find(".narration-text");
-    if (transcript.textContent !== (track?.text ?? ""))
+    if (transcript.textContent !== (track?.text ?? "")) {
       transcript.textContent = track?.text ?? "";
+      transcript.scrollTop = 0;
+    }
     playButton.disabled = state === "loading";
     playButton.textContent = t(
       state === "playing"
@@ -124,11 +141,11 @@ export function createSceneNarration({
   function stop() {
     request++;
     if (ownsMedia()) stopNarration();
-    if (state !== "loading" && state !== "error") state = "paused";
+    if (!["loading", "error", "unavailable"].includes(state)) state = "paused";
     render();
   }
   async function play(automatic = false) {
-    if (disposed || !track || document.hidden) return;
+    if (disposed || !track || document.hidden || detailsVisible) return;
     if (
       automatic &&
       (!atlasAudio.snapshot.narrationEnabled ||
@@ -165,6 +182,7 @@ export function createSceneNarration({
     render();
   }
   function select(key, { automatic = true } = {}) {
+    if (state === "unavailable") return;
     currentKey = views[key] ? key : Object.keys(views)[0];
     triggers.select(currentKey);
     request++;
@@ -195,8 +213,11 @@ export function createSceneNarration({
         (asset) => asset.scene === sceneId,
       );
       if (disposed) return;
-      if (!assets.length)
-        throw new Error(`Missing scene narration: ${sceneId}`);
+      if (!assets.length) {
+        state = "unavailable";
+        panel.remove();
+        return;
+      }
       select(currentKey);
     } catch (error) {
       if (disposed) return;
@@ -263,11 +284,17 @@ export function createSceneNarration({
   void load();
   return {
     select,
+    setDetailsVisible(value) {
+      detailsVisible = value;
+      if (value) stop();
+      else render();
+    },
     update(now) {
       if (
         disposed ||
         !assets.length ||
         document.hidden ||
+        detailsVisible ||
         pausedByUser ||
         document.querySelector("dialog[open]")
       )

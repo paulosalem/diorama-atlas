@@ -260,7 +260,7 @@ test("central credits retain all eleven audio recordings and their source proven
   }
 });
 
-test("central credits distinguish twelve AI-voiced narrations from licensed recordings", async () => {
+test("central credits preserve every AI-voiced narration separately from licensed recordings", async () => {
   const [credits, narration] = await Promise.all([
     readFile(new URL("../public/credits.json", import.meta.url), "utf8").then(
       JSON.parse,
@@ -273,20 +273,25 @@ test("central credits distinguish twelve AI-voiced narrations from licensed reco
   const entries = credits.entries.filter(
     (entry) => entry.category === "AI-generated narration",
   );
-  assert.equal(narration.assets.length, 12);
   assert.equal(
     entries.length,
-    12,
+    narration.assets.length,
     "Shared source URLs must not collapse distinct narration tracks.",
   );
-  assert.equal(new Set(entries.map((entry) => entry.narrationId)).size, 12);
+  assert.equal(
+    new Set(entries.map((entry) => entry.narrationId)).size,
+    narration.assets.length,
+  );
   for (const locale of ["en-US", "pt-BR"]) {
     assert.deepEqual(
       narration.assets
         .filter((asset) => asset.locale === locale)
-        .map((asset) => asset.view ?? "intro")
+        .map((asset) => `${asset.scene}/${asset.view ?? "intro"}`)
         .sort(),
-      ["intro", "fountain", "tea", "cedar", "doorway", "upstairs"].sort(),
+      narration.assets
+        .filter((asset) => asset.locale !== locale)
+        .map((asset) => `${asset.scene}/${asset.view ?? "intro"}`)
+        .sort(),
     );
   }
   for (const asset of narration.assets) {
@@ -323,7 +328,7 @@ test("central credits distinguish twelve AI-voiced narrations from licensed reco
     ])
       assert.equal(entry[field], asset[field], `${asset.id}/${field}`);
     assert.equal(entry.audio, asset.file);
-    assert.deepEqual(entry.usedBy, ["riad"]);
+    assert.deepEqual(entry.usedBy, [asset.scene]);
     assert.equal(entry.provenance, "/public/narration/manifest.json");
     assert.ok(entry.note.includes(asset.model));
     assert.ok(entry.note.includes(asset.voice));

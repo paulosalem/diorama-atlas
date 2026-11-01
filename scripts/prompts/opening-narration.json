@@ -101,6 +101,1558 @@
       "locale": "pt-BR",
       "title": "A vida mais tranquila no andar de cima",
       "text": "O andar superior prolonga a casa para além dos espaços de recepção. A madeira, os tecidos e os cômodos abrigados sugerem os ritmos mais tranquilos da vida doméstica. Essa composição imaginada convida a perceber o riad como uma casa vivida, e não apenas como um conjunto de superfícies decorativas."
+    },
+    {
+      "id": "textile-en-US",
+      "scene": "textile",
+      "locale": "en-US",
+      "title": "Color held in the hands",
+      "text": "In Oaxaca, textile traditions connect skilled hands with the land, family workshops, and changing markets. Wool, plant dyes, and cochineal become cloth through patient preparation and weaving. This imagined workshop brings a loom, drying skeins, and a dye room into one working space. It celebrates living knowledge, passed on and reinvented by makers, rather than treating regional patterns as anonymous decoration.",
+      "references": ["https://tenidoamano.com/"]
+    },
+    {
+      "id": "textile-pt-BR",
+      "scene": "textile",
+      "locale": "pt-BR",
+      "title": "A cor nas mãos",
+      "text": "Em Oaxaca, as tradições têxteis unem o trabalho das mãos à terra, às oficinas familiares e às mudanças do comércio. A lã, os corantes vegetais e a cochonilha se transformam em tecido com preparo cuidadoso e tecelagem. Esta oficina imaginada reúne um tear, meadas secando e uma sala de tingimento. É uma homenagem ao conhecimento vivo, transmitido e reinventado por quem trabalha, não a padrões regionais tratados como simples decoração.",
+      "references": ["https://tenidoamano.com/"]
+    },
+    {
+      "id": "textile-loom-en-US",
+      "scene": "textile",
+      "view": "loom",
+      "locale": "en-US",
+      "title": "A rhythm of tension and thread",
+      "text": "The loom holds the warp under tension while the weft crosses it, row by row. Worn timber and loose fibers suggest the repeated movements behind finished cloth. Here, beauty begins in a practical relationship between the maker's body, the tool, and the thread."
+    },
+    {
+      "id": "textile-loom-pt-BR",
+      "scene": "textile",
+      "view": "loom",
+      "locale": "pt-BR",
+      "title": "O ritmo dos fios",
+      "text": "O tear mantém os fios da urdidura esticados enquanto a trama os atravessa, carreira após carreira. A madeira marcada e as fibras soltas sugerem os movimentos repetidos que dão origem ao tecido. Aqui, a beleza nasce da relação entre o corpo de quem tece, a ferramenta e o fio."
+    },
+    {
+      "id": "textile-dyes-en-US",
+      "scene": "textile",
+      "view": "dyes",
+      "locale": "en-US",
+      "title": "Color before cloth",
+      "text": "Before a color reaches the loom, it must be prepared and tested. Cochineal and indigo belong to rich histories of dye knowledge in Mexico. The bowls and samples on this imagined table invite us to notice experimentation, not just the brilliance of a finished textile."
+    },
+    {
+      "id": "textile-dyes-pt-BR",
+      "scene": "textile",
+      "view": "dyes",
+      "locale": "pt-BR",
+      "title": "A cor antes do tecido",
+      "text": "Antes de chegar ao tear, uma cor precisa ser preparada e testada. A cochonilha e o índigo fazem parte de uma longa história de conhecimentos sobre tingimento no México. As tigelas e amostras desta mesa imaginada convidam a observar a experimentação, além da beleza do tecido pronto."
+    },
+    {
+      "id": "textile-yarn-en-US",
+      "scene": "textile",
+      "view": "yarn",
+      "locale": "en-US",
+      "title": "An unfinished palette",
+      "text": "Hanging skeins keep color visible before it becomes pattern. Slight differences in shade and the soft irregularity of the fibers give each bundle a material character. These are working supplies: waiting to be wound, selected, and woven into something that does not yet exist."
+    },
+    {
+      "id": "textile-yarn-pt-BR",
+      "scene": "textile",
+      "view": "yarn",
+      "locale": "pt-BR",
+      "title": "Uma paleta em processo",
+      "text": "As meadas penduradas deixam a cor à vista antes de ela se transformar em padrão. Pequenas diferenças de tom e a irregularidade delicada das fibras dão caráter a cada conjunto. São materiais de trabalho, à espera de serem enrolados, escolhidos e tecidos em algo que ainda não existe."
+    },
+    {
+      "id": "textile-passage-en-US",
+      "scene": "textile",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "Beyond the loom",
+      "text": "The doorway leads into the quieter work of preparation. Vessels, drying textiles, and tools extend the workshop beyond its display of finished color. This connected room makes the labor behind the main space visible: sorting, soaking, handling, and putting things ready for another day."
+    },
+    {
+      "id": "textile-passage-pt-BR",
+      "scene": "textile",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Além do tear",
+      "text": "A passagem leva ao trabalho mais reservado da preparação. Recipientes, tecidos secando e ferramentas prolongam a oficina para além das peças prontas. Esta sala conectada torna visível o trabalho que sustenta o espaço principal: separar, deixar de molho, manusear e preparar tudo para outro dia."
+    },
+    {
+      "id": "kissaten-en-US",
+      "scene": "kissaten",
+      "locale": "en-US",
+      "title": "A room for listening",
+      "text": "A Japanese kissaten offers more than a cup of coffee. In a jazz-focused room, records and careful brewing can make attention itself a shared pleasure. This imagined Kyoto café brings together timber, small tables, a siphon bar, and a record collection. It evokes a place to slow down and listen, without suggesting that every kissaten follows the same customs.",
+      "references": [
+        "https://www.nationalgeographic.com/culture/article/japanese-jazz-kissa-cafe"
+      ]
+    },
+    {
+      "id": "kissaten-pt-BR",
+      "scene": "kissaten",
+      "locale": "pt-BR",
+      "title": "Um lugar para escutar",
+      "text": "Um kissaten japonês oferece mais do que uma xícara de café. Em uma casa dedicada ao jazz, os discos e o preparo cuidadoso podem transformar a atenção em prazer compartilhado. Este café imaginado de Kyoto reúne madeira, pequenas mesas, um balcão com cafeteiras de sifão e uma coleção de discos. Evoca um lugar para desacelerar e escutar, sem sugerir que todos os kissaten tenham os mesmos costumes.",
+      "references": [
+        "https://www.nationalgeographic.com/culture/article/japanese-jazz-kissa-cafe"
+      ]
+    },
+    {
+      "id": "kissaten-coffee-en-US",
+      "scene": "kissaten",
+      "view": "coffee",
+      "locale": "en-US",
+      "title": "Time measured in a cup",
+      "text": "Glass siphons make brewing visible: heat, water, and timing become part of the encounter. Cups and utensils gather within easy reach, while small traces of preparation keep the bar from feeling ceremonial. Care here is a repeated daily practice, not a performance reserved for visitors."
+    },
+    {
+      "id": "kissaten-coffee-pt-BR",
+      "scene": "kissaten",
+      "view": "coffee",
+      "locale": "pt-BR",
+      "title": "O tempo de uma xícara",
+      "text": "As cafeteiras de sifão deixam o preparo à vista: calor, água e tempo fazem parte do encontro. Xícaras e utensílios ficam ao alcance das mãos, e pequenos vestígios do trabalho dão naturalidade ao balcão. O cuidado é uma prática diária, não uma apresentação reservada aos visitantes."
+    },
+    {
+      "id": "kissaten-records-en-US",
+      "scene": "kissaten",
+      "view": "records",
+      "locale": "en-US",
+      "title": "A collection meant to be heard",
+      "text": "Record sleeves, shelves, and a turntable turn music into a physical presence. Choosing and turning a record asks for a different kind of attention from an endless playlist. This listening corner suggests a host sharing a collection, one selection at a time."
+    },
+    {
+      "id": "kissaten-records-pt-BR",
+      "scene": "kissaten",
+      "view": "records",
+      "locale": "pt-BR",
+      "title": "Uma coleção para ouvir",
+      "text": "Capas, estantes e um toca-discos dão presença física à música. Escolher e virar um disco pede uma atenção diferente daquela de uma lista sem fim. Este canto de escuta sugere alguém compartilhando sua coleção, uma escolha de cada vez."
+    },
+    {
+      "id": "kissaten-booth-en-US",
+      "scene": "kissaten",
+      "view": "booth",
+      "locale": "en-US",
+      "title": "A small pause beside the window",
+      "text": "The window booth sits between the street and the deeper room. Filtered daylight, a soft seat, and a small table make a modest setting for lingering. Outside life remains visible, but the café offers another pace, measured by a drink and the length of a record."
+    },
+    {
+      "id": "kissaten-booth-pt-BR",
+      "scene": "kissaten",
+      "view": "booth",
+      "locale": "pt-BR",
+      "title": "Uma pausa junto à janela",
+      "text": "O assento junto à janela fica entre a rua e o interior do salão. A luz filtrada, o estofado e a pequena mesa criam um lugar simples onde vale a pena demorar. A vida lá fora continua visível, mas o café oferece outro ritmo, marcado por uma bebida e pela duração de um disco."
+    },
+    {
+      "id": "kissaten-passage-en-US",
+      "scene": "kissaten",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "The work behind the welcome",
+      "text": "Behind the bar, the café continues into a preparation room. Stored cups, working surfaces, and a cloth suggest the less visible tasks that make an unhurried visit possible. Hospitality depends on this ordinary work just as much as on the music and the polished counter."
+    },
+    {
+      "id": "kissaten-passage-pt-BR",
+      "scene": "kissaten",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "O trabalho por trás do acolhimento",
+      "text": "Atrás do balcão, o café continua em uma sala de preparo. Xícaras guardadas, superfícies de trabalho e um pano sugerem as tarefas menos visíveis que permitem uma visita sem pressa. O acolhimento depende desse trabalho cotidiano tanto quanto da música e do balcão bem cuidado."
+    },
+    {
+      "id": "meyhane-en-US",
+      "scene": "meyhane",
+      "locale": "en-US",
+      "title": "A table that makes room for conversation",
+      "text": "Istanbul's meyhane tradition brings small dishes and conversation around a shared table. Its history belongs to the city's many communities, not to one unchanging way of dining. This imagined tavern gathers worn timber, tiled walls, bottles, and partly cleared plates. The cultural value lies in the time people make for one another, and in the everyday labor that keeps a neighborhood table welcoming.",
+      "references": [
+        "https://www.kocorestaurant.com/en/post/kadikoy-multicultural-culinary-heritage"
+      ]
+    },
+    {
+      "id": "meyhane-pt-BR",
+      "scene": "meyhane",
+      "locale": "pt-BR",
+      "title": "Uma mesa para a conversa",
+      "text": "A tradição dos meyhanes de Istambul reúne pequenas porções e conversa em torno da mesa. Sua história pertence às muitas comunidades da cidade, não a uma única maneira de comer. Esta taverna imaginada combina madeira marcada pelo uso, azulejos, garrafas e pratos parcialmente recolhidos. Seu valor cultural está no tempo dedicado ao encontro e no trabalho cotidiano que mantém uma mesa de bairro acolhedora.",
+      "references": [
+        "https://www.kocorestaurant.com/en/post/kadikoy-multicultural-culinary-heritage"
+      ]
+    },
+    {
+      "id": "meyhane-table-en-US",
+      "scene": "meyhane",
+      "view": "table",
+      "locale": "en-US",
+      "title": "Many dishes, one gathering",
+      "text": "Small plates spread the meal across the table rather than placing one complete course before each diner. Bread, glasses, and signs of clearing suggest a gathering in progress. This arrangement makes sharing visible, while leaving the stories and conversation to our imagination."
+    },
+    {
+      "id": "meyhane-table-pt-BR",
+      "scene": "meyhane",
+      "view": "table",
+      "locale": "pt-BR",
+      "title": "Muitos pratos, um encontro",
+      "text": "As pequenas porções distribuem a refeição pela mesa, em vez de colocar um prato completo diante de cada pessoa. Pão, copos e sinais de arrumação sugerem um encontro em andamento. A composição torna a partilha visível e deixa as histórias e a conversa por conta da imaginação."
+    },
+    {
+      "id": "meyhane-bar-en-US",
+      "scene": "meyhane",
+      "view": "bar",
+      "locale": "en-US",
+      "title": "The counter between two rhythms",
+      "text": "The bar connects the slow rhythm of a meal with the quicker work of serving it. Bottles, glassware, and a handled wooden edge describe repeated use. It is a working boundary, where a room's welcome is assembled through many small, practiced movements."
+    },
+    {
+      "id": "meyhane-bar-pt-BR",
+      "scene": "meyhane",
+      "view": "bar",
+      "locale": "pt-BR",
+      "title": "O balcão entre dois ritmos",
+      "text": "O balcão liga o ritmo tranquilo da refeição ao trabalho mais rápido de servir. Garrafas, copos e a borda de madeira marcada pelas mãos revelam o uso repetido. É uma fronteira de trabalho, onde o acolhimento ganha forma em muitos movimentos pequenos e conhecidos."
+    },
+    {
+      "id": "meyhane-tiles-en-US",
+      "scene": "meyhane",
+      "view": "tiles",
+      "locale": "en-US",
+      "title": "A patterned working surface",
+      "text": "Tiles bring light and pattern to the room, but they also form a surface that can be wiped and maintained. Joints and small differences in finish keep the wall tangible. The decoration belongs to this imagined interior; it is not a copy of a documented historic panel."
+    },
+    {
+      "id": "meyhane-tiles-pt-BR",
+      "scene": "meyhane",
+      "view": "tiles",
+      "locale": "pt-BR",
+      "title": "Uma superfície de uso e desenho",
+      "text": "Os azulejos trazem luz e desenho ao salão, mas também formam uma superfície fácil de limpar e conservar. As juntas e as pequenas diferenças de acabamento dão presença à parede. A decoração pertence a este interior imaginado; não reproduz um painel histórico específico."
+    },
+    {
+      "id": "meyhane-passage-en-US",
+      "scene": "meyhane",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "After one table, before the next",
+      "text": "The service room reveals the other half of a shared meal. Crockery, bread, and cloths wait between preparation and clearing. Through this open passage, the tavern reads as a place sustained by work, rather than a dining room arranged only to be admired."
+    },
+    {
+      "id": "meyhane-passage-pt-BR",
+      "scene": "meyhane",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Entre uma mesa e outra",
+      "text": "A sala de serviço revela a outra metade de uma refeição compartilhada. Louça, pão e panos aguardam entre o preparo e a arrumação. Por esta passagem aberta, a taverna aparece como um lugar sustentado pelo trabalho, e não como um salão organizado apenas para ser admirado."
+    },
+    {
+      "id": "herbshop-en-US",
+      "scene": "herbshop",
+      "locale": "en-US",
+      "title": "Knowledge arranged within reach",
+      "text": "Hanoi's old trading streets include a long tradition of herbal shops, where drawers, scales, and paper packets organize specialized knowledge. This imagined shop explores that material culture through a narrow room and a connected dispensary. It is a study of work, memory, and neighborhood exchange, not a recommendation to use any ingredient or a claim about medical effectiveness.",
+      "references": [
+        "https://en.vietnamplus.vn/the-ancient-practice-of-oriental-medicine-in-the-hanoi-old-quarter-post288388.vnp"
+      ]
+    },
+    {
+      "id": "herbshop-pt-BR",
+      "scene": "herbshop",
+      "locale": "pt-BR",
+      "title": "Conhecimento ao alcance das mãos",
+      "text": "As antigas ruas comerciais de Hanói incluem uma longa tradição de lojas de ervas, onde gavetas, balanças e pacotes de papel organizam conhecimentos especializados. Esta loja imaginada explora essa cultura material em um cômodo estreito ligado a uma sala de preparo. É um estudo do trabalho, da memória e das trocas do bairro, não uma indicação de uso de ingredientes nem uma afirmação de eficácia médica.",
+      "references": [
+        "https://en.vietnamplus.vn/the-ancient-practice-of-oriental-medicine-in-the-hanoi-old-quarter-post288388.vnp"
+      ]
+    },
+    {
+      "id": "herbshop-scale-en-US",
+      "scene": "herbshop",
+      "view": "scale",
+      "locale": "en-US",
+      "title": "The care of measuring",
+      "text": "The brass scale gives the counter a precise center. Its pans, small weights, and nearby paper suggest a sequence of selecting, weighing, and wrapping. The scene shows the tools of a traditional trade without identifying a preparation or offering a dose."
+    },
+    {
+      "id": "herbshop-scale-pt-BR",
+      "scene": "herbshop",
+      "view": "scale",
+      "locale": "pt-BR",
+      "title": "O cuidado de medir",
+      "text": "A balança de latão dá ao balcão um centro de precisão. Seus pratos, pequenos pesos e papéis próximos sugerem uma sequência de escolher, pesar e embrulhar. A cena apresenta as ferramentas de um ofício tradicional, sem identificar uma preparação nem oferecer dosagens."
+    },
+    {
+      "id": "herbshop-drawers-en-US",
+      "scene": "herbshop",
+      "view": "drawers",
+      "locale": "en-US",
+      "title": "A wall of remembered places",
+      "text": "Many small drawers turn a limited wall into a working archive. Handles polished by touch and an open compartment suggest how knowledge becomes familiar through repeated use. Their labels organize this imagined shop; they are not instructions for identifying or taking herbs."
+    },
+    {
+      "id": "herbshop-drawers-pt-BR",
+      "scene": "herbshop",
+      "view": "drawers",
+      "locale": "pt-BR",
+      "title": "Uma parede de lugares conhecidos",
+      "text": "As pequenas gavetas transformam uma parede limitada em um arquivo de trabalho. Puxadores polidos pelo toque e um compartimento aberto sugerem a familiaridade que nasce do uso repetido. As etiquetas organizam esta loja imaginada; não são instruções para identificar ou consumir ervas."
+    },
+    {
+      "id": "herbshop-herbs-en-US",
+      "scene": "herbshop",
+      "view": "herbs",
+      "locale": "en-US",
+      "title": "Paper, ceramic, and dried leaves",
+      "text": "Bundles, jars, and folded packets give stored materials different forms. Their textures reveal sorting and handling rather than a uniform display. Looking closely brings attention to the containers and the labor of keeping a compact workplace legible, not to supposed remedies."
+    },
+    {
+      "id": "herbshop-herbs-pt-BR",
+      "scene": "herbshop",
+      "view": "herbs",
+      "locale": "pt-BR",
+      "title": "Papel, cerâmica e folhas secas",
+      "text": "Feixes, potes e pacotes dobrados dão formas diferentes aos materiais guardados. Suas texturas revelam separação e manuseio, em vez de uma exposição uniforme. O olhar de perto destaca os recipientes e o trabalho de manter um espaço pequeno organizado, não supostos tratamentos."
+    },
+    {
+      "id": "herbshop-passage-en-US",
+      "scene": "herbshop",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "Behind the shop counter",
+      "text": "The back room continues the shop's sequence from storage to preparation. Parcels and tools suggest work taking place away from the street-facing counter. The open doorway makes that relationship visible, giving the narrow interior a deeper life beyond its dense wall of drawers."
+    },
+    {
+      "id": "herbshop-passage-pt-BR",
+      "scene": "herbshop",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Atrás do balcão da loja",
+      "text": "A sala dos fundos prolonga o percurso entre guardar e preparar. Pacotes e ferramentas sugerem tarefas realizadas longe do balcão voltado para a rua. A porta aberta torna essa relação visível e dá ao interior estreito uma vida que continua além da parede de gavetas."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-en-US",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "locale": "en-US",
+      "title": "Coffee and the sound of another era",
+      "text": "This imagined Kyoto kissaten looks toward the coffeehouse culture of the nineteen sixties. Dark timber, upholstered seats, and records suggest a room where modern urban life found a slower rhythm. The scene is not a reconstruction of a particular café. It brings attention to the care of brewing and listening, and to the personal character that can make a modest public room feel familiar.",
+      "references": [
+        "https://www.nationalgeographic.com/culture/article/japanese-jazz-kissa-cafe"
+      ]
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-pt-BR",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "locale": "pt-BR",
+      "title": "Café e o som de outra época",
+      "text": "Este kissaten imaginado de Kyoto se inspira na cultura dos cafés dos anos mil novecentos e sessenta. Madeira escura, assentos estofados e discos sugerem um ambiente onde a vida urbana encontrava um ritmo mais lento. Não é a reconstrução de um café específico. A cena destaca o cuidado de preparar e escutar, e o caráter pessoal que pode tornar familiar um pequeno espaço público.",
+      "references": [
+        "https://www.nationalgeographic.com/culture/article/japanese-jazz-kissa-cafe"
+      ]
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-coffee-en-US",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "coffee",
+      "locale": "en-US",
+      "title": "The quiet theater of brewing",
+      "text": "The siphon bar places glass vessels and cups in a sequence of use. Brewing becomes something a visitor can watch without interrupting. A few marks on the working surface keep this careful arrangement human: precision coexists with the traces of cups already served."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-coffee-pt-BR",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "coffee",
+      "locale": "pt-BR",
+      "title": "O discreto espetáculo do preparo",
+      "text": "O balcão organiza recipientes de vidro e xícaras em uma sequência de uso. O preparo se torna algo que a pessoa pode acompanhar sem interromper. Algumas marcas na superfície mantêm humano esse arranjo cuidadoso: a precisão convive com os vestígios das xícaras já servidas."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-records-en-US",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "records",
+      "locale": "en-US",
+      "title": "Listening as a destination",
+      "text": "In a listening café, the record collection is a reason to enter, not simply a backdrop. Sleeves and equipment give choices a visible history. This corner recalls the pleasure of encountering music through someone else's careful selection, in the company of other listeners."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-records-pt-BR",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "records",
+      "locale": "pt-BR",
+      "title": "Escutar como destino",
+      "text": "Em um café de escuta, a coleção de discos é um motivo para entrar, não apenas um cenário. Capas e equipamentos dão uma história visível às escolhas. Este canto lembra o prazer de conhecer música pela seleção cuidadosa de outra pessoa, na companhia de quem também veio ouvir."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-booth-en-US",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "booth",
+      "locale": "en-US",
+      "title": "A seat with its own small world",
+      "text": "The booth makes a pocket of intimacy within the shared café. Upholstery, filtered window light, and a close table bring the room down to the scale of one visit. It suggests comfort built from familiar materials rather than from grandeur."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-booth-pt-BR",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "booth",
+      "locale": "pt-BR",
+      "title": "Um assento com seu pequeno mundo",
+      "text": "O banco estofado cria um recanto de intimidade dentro do café compartilhado. O tecido, a luz filtrada da janela e a mesa próxima trazem o ambiente para a escala de uma visita. O conforto nasce de materiais familiares, não da grandiosidade."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-passage-en-US",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "The café continues out of sight",
+      "text": "Beyond the counter, a small preparation room holds the practical side of this atmosphere. Cups must be washed, supplies stored, and surfaces readied again. The passage connects the composed public room to the repeated work that allows it to remain composed."
+    },
+    {
+      "id": "1960s-kyoto-kissaten-interior-7d985e-passage-pt-BR",
+      "scene": "1960s-kyoto-kissaten-interior-7d985e",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "O café continua fora de vista",
+      "text": "Além do balcão, uma pequena sala de preparo guarda o lado prático dessa atmosfera. É preciso lavar xícaras, guardar materiais e deixar as superfícies prontas outra vez. A passagem liga o salão tranquilo ao trabalho repetido que permite conservar essa tranquilidade."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-en-US",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "locale": "en-US",
+      "title": "A narrow room, a long memory",
+      "text": "Traditional herbal commerce is part of the history of Hanoi's Old Quarter. In this imagined shop, a narrow frontage opens into shelves, drawers, weighing tools, and a deeper workroom. The arrangement shows how specialized trades give character to neighborhood streets. Its ingredients and labels are illustrative: the scene offers cultural context, not medical advice or a claim that a remedy works.",
+      "references": [
+        "https://en.vietnamplus.vn/the-ancient-practice-of-oriental-medicine-in-the-hanoi-old-quarter-post288388.vnp"
+      ]
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-pt-BR",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "locale": "pt-BR",
+      "title": "Um espaço estreito, uma longa memória",
+      "text": "O comércio tradicional de ervas faz parte da história do Bairro Antigo de Hanói. Nesta loja imaginada, uma fachada estreita leva a estantes, gavetas, instrumentos de pesagem e uma sala de trabalho ao fundo. A organização mostra como os ofícios especializados dão caráter às ruas. Os ingredientes e rótulos são ilustrativos: a cena oferece contexto cultural, não orientação médica nem garantias sobre tratamentos.",
+      "references": [
+        "https://en.vietnamplus.vn/the-ancient-practice-of-oriental-medicine-in-the-hanoi-old-quarter-post288388.vnp"
+      ]
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-scale-en-US",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "scale",
+      "locale": "en-US",
+      "title": "A counter organized by touch",
+      "text": "The scale, weights, and folded paper bring the working process close to the visitor. Their placement suggests a practiced order learned through use. We are looking at a material history of measurement and exchange, not a demonstration of how to prepare a medicine."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-scale-pt-BR",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "scale",
+      "locale": "pt-BR",
+      "title": "Um balcão organizado pelo uso",
+      "text": "A balança, os pesos e o papel dobrado aproximam o processo de trabalho do visitante. A disposição sugere uma ordem aprendida pela prática. O que vemos é uma história material da medição e das trocas, não uma demonstração de como preparar um medicamento."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-drawers-en-US",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "drawers",
+      "locale": "en-US",
+      "title": "Storage at the scale of the hand",
+      "text": "Small compartments make the most of the shop's limited space. Each handle marks a repeated act of reaching and returning. An open drawer reveals actual depth, reminding us that the patterned cabinet is a working piece of furniture, not just an ornamental wall."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-drawers-pt-BR",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "drawers",
+      "locale": "pt-BR",
+      "title": "Guardar na escala da mão",
+      "text": "Os pequenos compartimentos aproveitam o espaço limitado da loja. Cada puxador marca o gesto repetido de buscar e devolver. Uma gaveta aberta revela profundidade real e lembra que o conjunto é um móvel de trabalho, não apenas uma parede ornamental."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-herbs-en-US",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "herbs",
+      "locale": "en-US",
+      "title": "The texture of a specialized trade",
+      "text": "Ceramic jars stand beside bundles and paper parcels, each with a different way of holding its contents. Uneven leaves and folded edges give this corner a sense of handling. The cultural story is in the organization and care of the trade, not in promises of healing."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-herbs-pt-BR",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "herbs",
+      "locale": "pt-BR",
+      "title": "A textura de um ofício",
+      "text": "Potes de cerâmica ficam ao lado de feixes e embrulhos de papel, cada um com sua maneira de guardar. Folhas irregulares e bordas dobradas dão a este canto sinais de manuseio. A história cultural está na organização e no cuidado do ofício, não em promessas de cura."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-passage-en-US",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "From the street to the workroom",
+      "text": "The passage draws the eye beyond the public counter to a smaller preparation space. Supplies continue around the corner, giving the shop a life outside the first view. This imagined depth evokes the close relationship between storefront and daily work in a compact urban building."
+    },
+    {
+      "id": "herb-shop-in-hanoi-old-quarter-851851-passage-pt-BR",
+      "scene": "herb-shop-in-hanoi-old-quarter-851851",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Da rua à sala de trabalho",
+      "text": "A passagem conduz o olhar para além do balcão, até uma área menor de preparo. Os materiais continuam depois da esquina e dão à loja uma vida fora da primeira vista. Essa profundidade imaginada evoca a proximidade entre a fachada comercial e o trabalho diário em uma construção urbana compacta."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-en-US",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "locale": "en-US",
+      "title": "A kitchen between house and garden",
+      "text": "In Kerala's backwater landscapes, domestic life is closely connected with water, cultivated gardens, and a humid climate. This imagined kitchen brings cooking vessels, spices, and a shaded verandah around an open working court. It does not stand for every Kerala home. It asks us to notice how food preparation, shelter, and the surrounding landscape can shape one another in everyday life.",
+      "references": [
+        "https://www.keralatourism.org/faq/25-facts-about-kerala-the-land-of-coconuts-and-backwaters"
+      ]
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-pt-BR",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "locale": "pt-BR",
+      "title": "Uma cozinha entre casa e jardim",
+      "text": "Nas paisagens de canais de Kerala, a vida doméstica mantém uma relação próxima com a água, os jardins cultivados e o clima úmido. Esta cozinha imaginada reúne recipientes, especiarias e uma varanda sombreada em torno de um pátio de trabalho. Ela não representa todas as casas de Kerala. Convida a perceber como o preparo dos alimentos, o abrigo e a paisagem podem se moldar mutuamente no cotidiano.",
+      "references": [
+        "https://www.keralatourism.org/faq/25-facts-about-kerala-the-land-of-coconuts-and-backwaters"
+      ]
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-hearth-en-US",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "hearth",
+      "locale": "en-US",
+      "title": "Heat leaves a history",
+      "text": "The clay hearth has a real mouth for fuel and a surface shaped around cooking vessels. Darkened areas and a low glow suggest repeated use rather than a newly arranged display. Heat changes materials, leaving a quiet record of meals prepared here in the imagined household."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-hearth-pt-BR",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "hearth",
+      "locale": "pt-BR",
+      "title": "O calor deixa uma história",
+      "text": "O fogão de barro tem uma abertura para o combustível e uma superfície organizada em torno das panelas. As áreas escurecidas e o brilho baixo sugerem uso repetido, não uma exposição recém-montada. O calor transforma os materiais e deixa um registro discreto das refeições desta casa imaginada."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-spices-en-US",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "spices",
+      "locale": "en-US",
+      "title": "Ingredients before the meal",
+      "text": "Spice trays and utensils bring the kitchen down to the scale of preparation. Kerala's long involvement in spice cultivation and exchange is part of the wider context, but here the focus is domestic: sorting ingredients, measuring by experience, and keeping useful things close at hand."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-spices-pt-BR",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "spices",
+      "locale": "pt-BR",
+      "title": "Os ingredientes antes da refeição",
+      "text": "As bandejas de especiarias e os utensílios aproximam a cozinha da escala do preparo. A longa história de cultivo e comércio de especiarias em Kerala faz parte do contexto, mas aqui o foco é doméstico: separar ingredientes, medir pela experiência e manter por perto o que é útil."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-verandah-en-US",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "verandah",
+      "locale": "en-US",
+      "title": "Shade beside the water",
+      "text": "The verandah is neither fully indoors nor fully outside. Timber posts and a projecting roof shelter a view of planting and the canal. This layered edge lets the kitchen remain connected to its surroundings, with darker shade giving way to bright leaves and moving water."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-verandah-pt-BR",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "verandah",
+      "locale": "pt-BR",
+      "title": "Sombra junto à água",
+      "text": "A varanda não é inteiramente interior nem exterior. Pilares de madeira e um telhado projetado abrigam a vista das plantas e do canal. Essa borda em camadas mantém a cozinha ligada ao entorno, com a sombra mais escura dando lugar às folhas iluminadas e à água em movimento."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-passage-en-US",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A household that continues",
+      "text": "The pantry passage links storage, preparation, and the deeper garden. Vessels and working surfaces carry the kitchen's practical life beyond the hearth. The view reminds us that a household is a network of connected tasks and spaces, not a single picturesque room."
+    },
+    {
+      "id": "kerala-backwater-kitchen-courtyard-aadf7c-passage-pt-BR",
+      "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Uma casa que continua",
+      "text": "A passagem da despensa liga o armazenamento, o preparo e o jardim mais ao fundo. Recipientes e bancadas levam a vida prática da cozinha para além do fogão. A vista lembra que uma casa é uma rede de tarefas e espaços conectados, não apenas um cômodo pitoresco."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-en-US",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "locale": "en-US",
+      "title": "A neighborhood held in books",
+      "text": "A small bookshop can be both a place of trade and a place where ideas linger. This imagined European interior gathers crowded shelves, a reading table, printed pages, and a quieter room beyond. It belongs to no single city or historic shop. Its cultural value is in the everyday passage of books between people: choosing, reading, discussing, and caring for objects that carry other lives."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-pt-BR",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "locale": "pt-BR",
+      "title": "Um bairro entre livros",
+      "text": "Uma pequena livraria pode ser um lugar de comércio e também um espaço onde as ideias permanecem. Este interior europeu imaginado reúne estantes cheias, uma mesa de leitura, páginas impressas e uma sala mais tranquila ao fundo. Não pertence a uma cidade ou livraria histórica específica. Seu valor cultural está na circulação cotidiana dos livros: escolher, ler, conversar e cuidar de objetos que carregam outras vidas."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-desk-en-US",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "desk",
+      "locale": "en-US",
+      "title": "Reading leaves small traces",
+      "text": "An open book, loose paper, and objects within reach suggest someone has only just stepped away. The table gives reading a physical setting: room for a page, a note, and a pause. Its quiet disorder is part of use, not a collection arranged behind glass."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-desk-pt-BR",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "desk",
+      "locale": "pt-BR",
+      "title": "A leitura deixa pequenos vestígios",
+      "text": "Um livro aberto, papéis soltos e objetos ao alcance sugerem que alguém acabou de se afastar. A mesa dá à leitura um lugar físico: espaço para uma página, uma anotação e uma pausa. Sua discreta desordem faz parte do uso, não de uma coleção protegida por vidro."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-shelves-en-US",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "shelves",
+      "locale": "en-US",
+      "title": "A wall of individual objects",
+      "text": "Unequal spines, paper edges, and leaning volumes interrupt the order of the shelves. Each book occupies space differently, carrying the marks of its materials and handling. Looking closely changes the wall from a colored pattern into a collection of things waiting to be opened."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-shelves-pt-BR",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "shelves",
+      "locale": "pt-BR",
+      "title": "Uma parede de objetos singulares",
+      "text": "Lombadas desiguais, bordas de papel e volumes inclinados interrompem a ordem das estantes. Cada livro ocupa o espaço de um jeito, com marcas dos materiais e do manuseio. De perto, a parede deixa de ser um padrão de cores e se torna uma coleção de objetos à espera de serem abertos."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-window-en-US",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "window",
+      "locale": "en-US",
+      "title": "The street at the edge of a page",
+      "text": "Window light brings the street into the reading space without dissolving its quiet. The deep frame gives the opening a physical threshold, with another layer of the neighborhood beyond. A bookshop belongs to public life even when the act of reading feels private."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-window-pt-BR",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "window",
+      "locale": "pt-BR",
+      "title": "A rua à margem da página",
+      "text": "A luz da janela traz a rua para o espaço de leitura sem desfazer sua calma. O caixilho profundo dá corpo à abertura, com outra camada do bairro do lado de fora. Uma livraria faz parte da vida pública mesmo quando ler parece um gesto particular."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-passage-en-US",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A quieter room beyond",
+      "text": "Through the doorway, books and a place to sit continue into a more sheltered room. Binding materials and small working details suggest that caring for books accompanies selling them. This passage turns the shop into a sequence of encounters, from browsing to a longer stay."
+    },
+    {
+      "id": "traditional-european-bookshop-interior-c-8e7eb4-passage-pt-BR",
+      "scene": "traditional-european-bookshop-interior-c-8e7eb4",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Uma sala mais tranquila ao fundo",
+      "text": "Pela porta, os livros e um lugar para sentar continuam em uma sala mais reservada. Materiais de encadernação e pequenos detalhes de trabalho sugerem que cuidar dos livros acompanha sua venda. A passagem transforma a livraria em uma sequência de encontros, da curiosidade inicial a uma visita mais demorada."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-en-US",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "locale": "en-US",
+      "title": "An ordinary table in Lisbon",
+      "text": "A Lisbon tasca finds much of its character in everyday meals rather than ceremony. A short menu, tiled walls, and a counter worn by use can hold a neighborhood's repeated encounters. This imagined interior brings those elements together without copying a particular restaurant. Its welcome rests on practical things: food served, tables cleared, and room made for another conversation.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-pt-BR",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "locale": "pt-BR",
+      "title": "Uma mesa cotidiana em Lisboa",
+      "text": "Uma tasca de Lisboa encontra muito de seu caráter nas refeições do dia a dia, não na cerimônia. Um cardápio curto, paredes de azulejos e um balcão marcado pelo uso acolhem os encontros repetidos do bairro. Este interior imaginado reúne esses elementos sem copiar um restaurante específico. Seu acolhimento depende de coisas práticas: servir a comida, arrumar as mesas e abrir espaço para outra conversa.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-table-en-US",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "table",
+      "locale": "en-US",
+      "title": "The traces of lunch",
+      "text": "Plates, bread, and glasses make the table feel occupied even in the absence of people. A few crumbs and a cloth tell us where attention has already passed. This is the scale of the tasca's everyday sociability: a meal close enough for conversation."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-table-pt-BR",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "table",
+      "locale": "pt-BR",
+      "title": "Os vestígios do almoço",
+      "text": "Pratos, pão e copos fazem a mesa parecer ocupada mesmo sem pessoas. Algumas migalhas e um pano indicam por onde o cuidado já passou. Essa é a escala da convivência cotidiana da tasca: uma refeição próxima o bastante para a conversa."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-bar-en-US",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "bar",
+      "locale": "en-US",
+      "title": "A counter shaped by service",
+      "text": "Bottles and glassware gather above a wooden counter whose edges show handling. The arrangement joins storage, serving, and a place to pause. Nothing needs to be monumental: the room's identity comes from useful objects finding familiar positions over time."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-bar-pt-BR",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "bar",
+      "locale": "pt-BR",
+      "title": "Um balcão moldado pelo serviço",
+      "text": "Garrafas e copos se reúnem sobre um balcão de madeira cujas bordas revelam manuseio. A composição junta armazenamento, serviço e um lugar para parar. Nada precisa ser monumental: a identidade do ambiente nasce de objetos úteis que encontram posições familiares ao longo do tempo."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-tiles-en-US",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "tiles",
+      "locale": "en-US",
+      "title": "Pattern that belongs to the room",
+      "text": "The tiled wall catches light in small, uneven reflections. Repeated motifs are held together by joints, corners, and the practical height of the cladding. Here, ornament is part of a working interior, with the modeled pattern offered as an interpretation rather than a historic reproduction."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-tiles-pt-BR",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "tiles",
+      "locale": "pt-BR",
+      "title": "Um desenho que pertence ao ambiente",
+      "text": "A parede de azulejos recebe a luz em reflexos pequenos e desiguais. Os motivos repetidos se organizam pelas juntas, pelos cantos e pela altura prática do revestimento. Aqui, o ornamento faz parte de um interior de trabalho, e o desenho é uma interpretação, não uma reprodução histórica."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-passage-en-US",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "The room that supports the meal",
+      "text": "The service passage opens onto stored crockery and preparation surfaces. It reveals the movement that the dining room depends on: things coming out clean and ready, then returning to be put in order. The tasca's familiar atmosphere is sustained by that repeated cycle."
+    },
+    {
+      "id": "lisbon-tasca-interior-3b46b2-passage-pt-BR",
+      "scene": "lisbon-tasca-interior-3b46b2",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "A sala que sustenta a refeição",
+      "text": "A passagem de serviço se abre para a louça guardada e as superfícies de preparo. Revela o movimento do qual o salão depende: objetos saem limpos e prontos, depois voltam para ser colocados em ordem. A atmosfera familiar da tasca se sustenta nesse ciclo repetido."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-en-US",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "locale": "en-US",
+      "title": "The neighborhood at lunchtime",
+      "text": "A tasca can give a Lisbon neighborhood a place to return to without planning an occasion. This imagined dining room is shaped around that ordinary welcome: compact tables, a working bar, tiled walls, and a service room beyond. Its small signs of use suggest a lunch already underway. The cultural story is not luxury, but the continuity of familiar food and repeated encounters.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "locale": "pt-BR",
+      "title": "O bairro na hora do almoço",
+      "text": "Uma tasca pode oferecer ao bairro de Lisboa um lugar ao qual voltar sem precisar de uma ocasião especial. Este salão imaginado se organiza em torno desse acolhimento cotidiano: mesas pequenas, um balcão de trabalho, azulejos e uma sala de serviço ao fundo. Os sinais de uso sugerem um almoço em andamento. A história cultural não está no luxo, mas na continuidade da comida familiar e dos encontros repetidos.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-table-en-US",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "table",
+      "locale": "en-US",
+      "title": "A meal between arrivals",
+      "text": "The partly cleared table holds a moment between one course and the next. Small plates and used surfaces suggest company without inventing particular diners. In a neighborhood dining room, this modest overlap of serving, eating, and clearing is much of the atmosphere."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-table-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "table",
+      "locale": "pt-BR",
+      "title": "Uma refeição entre chegadas",
+      "text": "A mesa parcialmente arrumada guarda um instante entre uma etapa da refeição e a seguinte. Pratos pequenos e superfícies usadas sugerem companhia sem inventar clientes específicos. Em um restaurante de bairro, essa mistura de servir, comer e recolher é boa parte da atmosfera."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-bar-en-US",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "bar",
+      "locale": "en-US",
+      "title": "Where the room is kept moving",
+      "text": "The bar concentrates bottles, utensils, and the work of serving into a compact edge. Its materials show different kinds of wear: glass catches light, while wood softens under repeated handling. The contrast tells a quieter story than a perfectly polished display."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-bar-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "bar",
+      "locale": "pt-BR",
+      "title": "Onde o salão se mantém em movimento",
+      "text": "O balcão concentra garrafas, utensílios e o serviço em uma faixa compacta. Seus materiais mostram marcas diferentes: o vidro reflete a luz, enquanto a madeira ganha suavidade com o toque repetido. O contraste conta uma história mais discreta do que uma exposição perfeitamente polida."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-tiles-en-US",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "tiles",
+      "locale": "en-US",
+      "title": "The wall at dining height",
+      "text": "The tile pattern gives the room continuity behind tables and chairs. Seen close up, the joints and changes in sheen bring it back to individual pieces. A durable, cleanable wall can also hold visual memory, becoming part of how a familiar place is recognized."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-tiles-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "tiles",
+      "locale": "pt-BR",
+      "title": "A parede na altura da refeição",
+      "text": "O padrão dos azulejos dá continuidade ao ambiente por trás de mesas e cadeiras. De perto, as juntas e as diferenças de brilho devolvem a atenção a cada peça. Uma parede durável e fácil de limpar também pode guardar memória visual e ajudar a reconhecer um lugar familiar."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-passage-en-US",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A pause behind the service",
+      "text": "The room beyond the doorway gives plates and supplies somewhere to wait. It separates the visitor's meal from some of the work that supports it without making that work disappear. The open passage turns a small dining room into part of a functioning place."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-26f598-passage-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-26f598",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Uma pausa atrás do serviço",
+      "text": "A sala além da porta oferece um lugar de espera para pratos e materiais. Separa a refeição do visitante de parte do trabalho que a sustenta, sem fazer esse trabalho desaparecer. A passagem aberta transforma o pequeno salão em parte de um lugar que funciona."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-en-US",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "locale": "en-US",
+      "title": "Familiar things, a shared room",
+      "text": "This fictional Lisbon tasca studies the way ordinary objects build a sense of belonging. Bottles above a worn counter, tiled walls, and small tables suggest a place used repeatedly, not arranged for a single grand visit. A neighborhood restaurant carries culture through daily habits: preparing food, making space for regulars and newcomers, and keeping conversation close to the meal.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "locale": "pt-BR",
+      "title": "Coisas familiares, um espaço compartilhado",
+      "text": "Esta tasca fictícia de Lisboa observa como objetos comuns criam um sentimento de pertencimento. Garrafas sobre um balcão gasto, azulejos e pequenas mesas sugerem uso repetido, não um cenário para uma única visita especial. Um restaurante de bairro transmite cultura pelos hábitos diários: preparar comida, acolher clientes antigos e novos e manter a conversa perto da refeição.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/chafarica-restaurante"
+      ]
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-table-en-US",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "table",
+      "locale": "en-US",
+      "title": "Close enough to share",
+      "text": "The table gathers different materials at the scale of the hand: ceramic, glass, cloth, and bread. Their slightly unsettled arrangement suggests a meal rather than a still life. This is an imagined invitation to notice how a shared room becomes personal for a while."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-table-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "table",
+      "locale": "pt-BR",
+      "title": "Perto o bastante para compartilhar",
+      "text": "A mesa reúne materiais na escala da mão: cerâmica, vidro, tecido e pão. A disposição ligeiramente irregular sugere uma refeição, não uma natureza-morta. É um convite imaginado a perceber como um espaço compartilhado pode se tornar pessoal por algum tempo."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-bar-en-US",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "bar",
+      "locale": "en-US",
+      "title": "Useful objects, familiar positions",
+      "text": "Labels, bottles, and glassware make the counter a place of choices as well as work. Slightly worn surfaces keep those objects connected to repeated service. The scene finds character in their relationships, rather than treating every bottle as an isolated ornament."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-bar-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "bar",
+      "locale": "pt-BR",
+      "title": "Objetos úteis, posições familiares",
+      "text": "Rótulos, garrafas e copos fazem do balcão um lugar de escolhas e de trabalho. As superfícies levemente gastas ligam esses objetos ao serviço repetido. A cena encontra caráter nas relações entre eles, em vez de tratar cada garrafa como um ornamento isolado."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-tiles-en-US",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "tiles",
+      "locale": "en-US",
+      "title": "Light across the glaze",
+      "text": "Light moves differently across glazed tile, plaster, and timber. That difference makes the wall more than a flat band of color. The patterned surface belongs to an invented restaurant, but its construction invites the close attention we give to real, well-used interiors."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-tiles-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "tiles",
+      "locale": "pt-BR",
+      "title": "A luz sobre o esmalte",
+      "text": "A luz se comporta de modo diferente sobre o azulejo esmaltado, o reboco e a madeira. Essa diferença faz da parede algo além de uma faixa de cor. A superfície pertence a um restaurante inventado, mas sua construção convida ao olhar atento que dedicamos a interiores reais e bem usados."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-passage-en-US",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "The daily work of keeping a place",
+      "text": "The rear doorway opens onto the practical life of the tasca. Stored dishes and working materials suggest preparation continuing beyond the dining room. This deeper space makes the room feel inhabited by routines, even when the people carrying them out are left to the imagination."
+    },
+    {
+      "id": "lisbon-neighborhood-tasca-interior-3b46b2-passage-pt-BR",
+      "scene": "lisbon-neighborhood-tasca-interior-3b46b2",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "O trabalho diário de manter um lugar",
+      "text": "A porta dos fundos se abre para a vida prática da tasca. Louças guardadas e materiais de trabalho sugerem que o preparo continua além do salão. Esse espaço mais profundo faz o ambiente parecer habitado por rotinas, mesmo quando as pessoas que as realizam ficam por conta da imaginação."
+    },
+    {
+      "id": "newar-potters-square-en-US",
+      "scene": "newar-potters-square",
+      "locale": "en-US",
+      "title": "A square made by everyday work",
+      "text": "In the Kathmandu Valley, Newar urban traditions bring brick, carved timber, shrines, and shared spaces into close relationship. This anonymous pottery quarter imagines earthenware drying between working doorways and narrow passages. It is not a copy of a real square. Its cultural character comes from the meeting of skilled making and neighborhood life, where architecture provides room for both work and gathering.",
+      "references": ["https://whc.unesco.org/en/list/121/"]
+    },
+    {
+      "id": "newar-potters-square-pt-BR",
+      "scene": "newar-potters-square",
+      "locale": "pt-BR",
+      "title": "Uma praça feita pelo trabalho cotidiano",
+      "text": "No vale de Katmandu, as tradições urbanas newar aproximam tijolos, madeira entalhada, santuários e espaços compartilhados. Este bairro anônimo de ceramistas imagina peças de barro secando entre portas de trabalho e passagens estreitas. Não é uma cópia de uma praça real. Seu caráter cultural nasce do encontro entre o saber artesanal e a vida do bairro, com arquitetura que abre espaço para trabalhar e conviver.",
+      "references": ["https://whc.unesco.org/en/list/121/"]
+    },
+    {
+      "id": "newar-potters-square-pottery-en-US",
+      "scene": "newar-potters-square",
+      "view": "pottery",
+      "locale": "en-US",
+      "title": "Clay at the scale of the hand",
+      "text": "Open rims, rounded shoulders, and small differences in drying color make these vessels feel like stages in a process. The bench belongs to an imagined workshop, but the relationship is practical: clay is shaped, handled, and set aside before it becomes something ready to use."
+    },
+    {
+      "id": "newar-potters-square-pottery-pt-BR",
+      "scene": "newar-potters-square",
+      "view": "pottery",
+      "locale": "pt-BR",
+      "title": "O barro na escala da mão",
+      "text": "Bordas abertas, formas arredondadas e pequenas diferenças de cor na secagem fazem os recipientes parecer etapas de um processo. A bancada pertence a uma oficina imaginada, mas a relação é prática: o barro é moldado, manuseado e deixado em espera antes de se tornar um objeto pronto para uso."
+    },
+    {
+      "id": "newar-potters-square-windows-en-US",
+      "scene": "newar-potters-square",
+      "view": "windows",
+      "locale": "en-US",
+      "title": "Timber between light and privacy",
+      "text": "The carved window projects and recedes in layers rather than sitting flat on the brickwork. Small openings filter views and daylight, while the frame gives the wall depth. Its design interprets Newar timber craftsmanship without borrowing the identity of a particular house."
+    },
+    {
+      "id": "newar-potters-square-windows-pt-BR",
+      "scene": "newar-potters-square",
+      "view": "windows",
+      "locale": "pt-BR",
+      "title": "Madeira entre luz e privacidade",
+      "text": "A janela entalhada avança e recua em camadas, em vez de ficar achatada sobre os tijolos. Pequenas aberturas filtram a luz e os olhares, enquanto o caixilho dá profundidade à parede. O desenho interpreta o trabalho newar em madeira sem copiar a identidade de uma casa específica."
+    },
+    {
+      "id": "newar-potters-square-shrine-en-US",
+      "scene": "newar-potters-square",
+      "view": "shrine",
+      "locale": "en-US",
+      "title": "A threshold in the shared square",
+      "text": "Steps and a small shrine give this corner a different rhythm from the pottery work nearby. In the valley's urban traditions, religious and everyday spaces often stand close together. This invented setting suggests that proximity without claiming to reproduce a particular shrine or ritual."
+    },
+    {
+      "id": "newar-potters-square-shrine-pt-BR",
+      "scene": "newar-potters-square",
+      "view": "shrine",
+      "locale": "pt-BR",
+      "title": "Um limiar na praça compartilhada",
+      "text": "Os degraus e o pequeno santuário dão a este canto um ritmo diferente do trabalho com cerâmica ao lado. Nas tradições urbanas do vale, espaços religiosos e cotidianos muitas vezes ficam próximos. Este lugar inventado sugere essa proximidade sem reproduzir um santuário ou ritual específico."
+    },
+    {
+      "id": "central-asian-madrasa-en-US",
+      "scene": "central-asian-madrasa",
+      "locale": "en-US",
+      "title": "Learning around an open court",
+      "text": "Central Asian madrasas belong to a long history of Islamic learning and urban life. Their courtyards bring open sky into relationship with shaded galleries and rooms beyond. This fictional ensemble draws on the brickwork and glazed ornament of Uzbekistan without reproducing a named monument. Its beauty comes from structure, proportion, and the contrast between sunlit gathering space and sheltered study.",
+      "references": ["https://whc.unesco.org/en/list/602/"]
+    },
+    {
+      "id": "central-asian-madrasa-pt-BR",
+      "scene": "central-asian-madrasa",
+      "locale": "pt-BR",
+      "title": "Aprender em torno de um pátio",
+      "text": "As madraças da Ásia Central fazem parte de uma longa história de ensino islâmico e vida urbana. Seus pátios aproximam o céu aberto das galerias sombreadas e das salas ao redor. Este conjunto fictício se inspira nos tijolos e na cerâmica esmaltada do Uzbequistão sem reproduzir um monumento específico. Sua beleza nasce da estrutura, da proporção e do contraste entre o encontro ao sol e o estudo abrigado.",
+      "references": ["https://whc.unesco.org/en/list/602/"]
+    },
+    {
+      "id": "central-asian-madrasa-arcade-en-US",
+      "scene": "central-asian-madrasa",
+      "view": "arcade",
+      "locale": "en-US",
+      "title": "Shade with architectural depth",
+      "text": "The pointed opening leads into a gallery with thickness, shadow, and another threshold beyond. Walking around a court need not mean remaining exposed to its sun. Here, circulation becomes a sheltered sequence, connecting the shared center with more enclosed rooms."
+    },
+    {
+      "id": "central-asian-madrasa-arcade-pt-BR",
+      "scene": "central-asian-madrasa",
+      "view": "arcade",
+      "locale": "pt-BR",
+      "title": "Sombra com profundidade",
+      "text": "A abertura em arco leva a uma galeria com espessura, sombra e outro limiar mais adiante. Circular ao redor do pátio não precisa significar ficar exposto ao sol. Aqui, o percurso se torna uma sequência abrigada, ligando o centro compartilhado às salas mais fechadas."
+    },
+    {
+      "id": "central-asian-madrasa-ceramics-en-US",
+      "scene": "central-asian-madrasa",
+      "view": "ceramics",
+      "locale": "en-US",
+      "title": "Geometry held in glaze",
+      "text": "Blue and turquoise borders organize the larger wall into readable parts. Changes in glaze and the joints between pieces keep the pattern material, not merely graphic. These invented geometric designs acknowledge a ceramic tradition without presenting fabricated lettering as an authentic inscription."
+    },
+    {
+      "id": "central-asian-madrasa-ceramics-pt-BR",
+      "scene": "central-asian-madrasa",
+      "view": "ceramics",
+      "locale": "pt-BR",
+      "title": "Geometria no esmalte",
+      "text": "Bordas azuis e turquesa organizam a parede em partes que o olhar consegue acompanhar. Diferenças no esmalte e juntas entre as peças dão materialidade ao padrão. Os desenhos geométricos inventados reconhecem uma tradição cerâmica sem apresentar letras fabricadas como uma inscrição autêntica."
+    },
+    {
+      "id": "central-asian-madrasa-gallery-en-US",
+      "scene": "central-asian-madrasa",
+      "view": "gallery",
+      "locale": "en-US",
+      "title": "A place to linger with a page",
+      "text": "The shaded alcove offers a smaller scale within the large courtyard. A place to sit and reading materials suggest attention rather than spectacle. This imagined corner connects the architecture of learning with an ordinary bodily need: somewhere sheltered to remain for a while."
+    },
+    {
+      "id": "central-asian-madrasa-gallery-pt-BR",
+      "scene": "central-asian-madrasa",
+      "view": "gallery",
+      "locale": "pt-BR",
+      "title": "Um lugar para demorar com uma página",
+      "text": "O recanto sombreado oferece uma escala menor dentro do grande pátio. Um lugar para sentar e materiais de leitura sugerem atenção, não espetáculo. Este canto imaginado liga a arquitetura do ensino a uma necessidade simples do corpo: ter abrigo para permanecer por algum tempo."
+    },
+    {
+      "id": "balinese-subak-terraces-en-US",
+      "scene": "balinese-subak-terraces",
+      "locale": "en-US",
+      "title": "A landscape made through cooperation",
+      "text": "In Bali, subak is more than a way to irrigate rice. It joins farming communities, shared responsibilities, and water-temple traditions in the care of a living landscape. This imagined hillside follows those relationships through terraces, channels, and narrow paths. It is not a map of a real irrigation system. The beauty of the fields rests on cultivation and cooperation, not on scenery alone.",
+      "references": ["https://whc.unesco.org/en/list/1194/"]
+    },
+    {
+      "id": "balinese-subak-terraces-pt-BR",
+      "scene": "balinese-subak-terraces",
+      "locale": "pt-BR",
+      "title": "Uma paisagem construída pela cooperação",
+      "text": "Em Bali, o subak é mais do que uma forma de irrigar o arroz. Ele reúne comunidades agrícolas, responsabilidades compartilhadas e tradições ligadas aos templos da água no cuidado de uma paisagem viva. Esta encosta imaginada acompanha essas relações em terraços, canais e caminhos estreitos. Não é o mapa de um sistema real. A beleza dos campos depende do cultivo e da cooperação, não apenas da vista.",
+      "references": ["https://whc.unesco.org/en/list/1194/"]
+    },
+    {
+      "id": "balinese-subak-terraces-rice-en-US",
+      "scene": "balinese-subak-terraces",
+      "view": "rice",
+      "locale": "en-US",
+      "title": "Water around each growing plant",
+      "text": "At walking height, the hillside becomes leaves, wet soil, and shallow water. Uneven clumps interrupt the broader planting rhythm. The narrow bank is both a boundary and a route, reminding us that the apparent pattern is a field people must tend."
+    },
+    {
+      "id": "balinese-subak-terraces-rice-pt-BR",
+      "scene": "balinese-subak-terraces",
+      "view": "rice",
+      "locale": "pt-BR",
+      "title": "Água ao redor de cada planta",
+      "text": "Na altura de quem caminha, a encosta se transforma em folhas, terra úmida e água rasa. Touceiras desiguais interrompem o ritmo maior do plantio. A borda estreita é limite e caminho, lembrando que o desenho aparente é um campo que precisa de cuidado."
+    },
+    {
+      "id": "balinese-subak-terraces-contours-en-US",
+      "scene": "balinese-subak-terraces",
+      "view": "contours",
+      "locale": "en-US",
+      "title": "Following the land, sharing the water",
+      "text": "The terraces follow the slope in uneven bands rather than forming a perfect staircase. Each level belongs to a wider water landscape. Beyond what this model can show, subak depends on agreements and temple relationships that connect the decisions of individual farmers."
+    },
+    {
+      "id": "balinese-subak-terraces-contours-pt-BR",
+      "scene": "balinese-subak-terraces",
+      "view": "contours",
+      "locale": "pt-BR",
+      "title": "Acompanhar a terra, compartilhar a água",
+      "text": "Os terraços acompanham a encosta em faixas irregulares, não em uma escadaria perfeita. Cada nível pertence a uma paisagem mais ampla de água. Além do que o modelo mostra, o subak depende de acordos e relações com os templos que conectam as decisões de cada agricultor."
+    },
+    {
+      "id": "balinese-subak-terraces-shelter-en-US",
+      "scene": "balinese-subak-terraces",
+      "view": "shelter",
+      "locale": "en-US",
+      "title": "A pause within a working landscape",
+      "text": "The field shelter offers shade without separating its occupants from the crop. Simple supports and a place to rest make the wide view human in scale. This is an imagined pause in agricultural work, not an empty landscape waiting only for an admirer."
+    },
+    {
+      "id": "balinese-subak-terraces-shelter-pt-BR",
+      "scene": "balinese-subak-terraces",
+      "view": "shelter",
+      "locale": "pt-BR",
+      "title": "Uma pausa na paisagem de trabalho",
+      "text": "O abrigo oferece sombra sem separar as pessoas da plantação. Apoios simples e um lugar para descansar trazem a vista ampla para a escala humana. É uma pausa imaginada no trabalho agrícola, não uma paisagem vazia à espera de quem a admire."
+    },
+    {
+      "id": "venetian-boatyard-en-US",
+      "scene": "venetian-boatyard",
+      "locale": "en-US",
+      "title": "Keeping a water city moving",
+      "text": "A Venetian squero is a place for building and repairing boats, where skilled work meets the edge of the lagoon. This anonymous yard gathers timber sheds, curved hulls, ropes, and a slipway beside the canal. It does not recreate a particular address. It reveals a practical side of Venice's cultural landscape: the knowledge and maintenance that keep a city connected to water.",
+      "references": ["https://whc.unesco.org/en/list/394/"]
+    },
+    {
+      "id": "venetian-boatyard-pt-BR",
+      "scene": "venetian-boatyard",
+      "locale": "pt-BR",
+      "title": "Manter uma cidade sobre a água",
+      "text": "Um squero veneziano é um lugar de construção e reparo de barcos, onde o trabalho especializado encontra a borda da lagoa. Este estaleiro anônimo reúne galpões de madeira, cascos curvos, cordas e uma rampa junto ao canal. Não recria um endereço específico. Revela um lado prático da paisagem cultural de Veneza: o conhecimento e a manutenção que mantêm a cidade ligada à água.",
+      "references": ["https://whc.unesco.org/en/list/394/"]
+    },
+    {
+      "id": "venetian-boatyard-gondola-en-US",
+      "scene": "venetian-boatyard",
+      "view": "gondola",
+      "locale": "en-US",
+      "title": "A curve made for water",
+      "text": "The raised prow and metal fitting make the boat's outline immediately recognizable. Closer inspection reveals separate wooden surfaces and the relationship between hull and interior. This vessel is an interpretation, inviting attention to boatbuilding rather than claiming the measurements of a surveyed gondola."
+    },
+    {
+      "id": "venetian-boatyard-gondola-pt-BR",
+      "scene": "venetian-boatyard",
+      "view": "gondola",
+      "locale": "pt-BR",
+      "title": "Uma curva feita para a água",
+      "text": "A proa elevada e a peça de metal tornam a silhueta do barco reconhecível. De perto, aparecem as superfícies de madeira e a relação entre o casco e o interior. A embarcação é uma interpretação que destaca a construção naval, sem reivindicar as medidas de uma gôndola real."
+    },
+    {
+      "id": "venetian-boatyard-workshop-en-US",
+      "scene": "venetian-boatyard",
+      "view": "workshop",
+      "locale": "en-US",
+      "title": "Repair is part of the tradition",
+      "text": "An oar, timber pieces, and working tools suggest care between journeys. A wooden boat is not finished once and for all: surfaces and fittings need attention. This corner gives maintenance its place in the cultural story, beside the more familiar beauty of boats on the canal."
+    },
+    {
+      "id": "venetian-boatyard-workshop-pt-BR",
+      "scene": "venetian-boatyard",
+      "view": "workshop",
+      "locale": "pt-BR",
+      "title": "Reparar faz parte da tradição",
+      "text": "Um remo, pedaços de madeira e ferramentas sugerem cuidado entre as viagens. Um barco de madeira não fica pronto para sempre: superfícies e peças precisam de atenção. Este canto dá à manutenção seu lugar na história cultural, ao lado da beleza mais conhecida dos barcos no canal."
+    },
+    {
+      "id": "venetian-boatyard-canal-en-US",
+      "scene": "venetian-boatyard",
+      "view": "canal",
+      "locale": "en-US",
+      "title": "The working edge of the canal",
+      "text": "The slipway carries the yard down toward water, joining two kinds of movement. Stone near the waterline shows a different history from dry timber above. Reflections make the boundary restless, but the relationship is practical: this is where a vessel leaves support on land."
+    },
+    {
+      "id": "venetian-boatyard-canal-pt-BR",
+      "scene": "venetian-boatyard",
+      "view": "canal",
+      "locale": "pt-BR",
+      "title": "A borda de trabalho do canal",
+      "text": "A rampa leva o estaleiro até a água e une dois tipos de movimento. A pedra perto da linha d'água mostra uma história diferente da madeira seca acima. Os reflexos tornam a borda inquieta, mas a relação é prática: é onde a embarcação deixa o apoio em terra."
+    },
+    {
+      "id": "bahian-neighborhood-square-en-US",
+      "scene": "bahian-neighborhood-square",
+      "locale": "en-US",
+      "title": "A praça for everyday life",
+      "text": "Bahia's cultural life is shaped by African, Indigenous, and European histories, including the violence of colonialism and the persistence of living communities. This fictional neighborhood square is not a replica of Salvador. Painted houses, a modest chapel, and a café gather around worn paving. The scene looks beyond colorful façades toward the thresholds and shared spaces where neighborhood life unfolds.",
+      "references": ["https://whc.unesco.org/en/list/309/"]
+    },
+    {
+      "id": "bahian-neighborhood-square-pt-BR",
+      "scene": "bahian-neighborhood-square",
+      "locale": "pt-BR",
+      "title": "Uma praça para a vida cotidiana",
+      "text": "A vida cultural da Bahia é marcada por histórias africanas, indígenas e europeias, incluindo a violência colonial e a persistência de comunidades vivas. Esta praça de bairro fictícia não é uma réplica de Salvador. Casas pintadas, uma capela modesta e um café se reúnem em torno do calçamento gasto. A cena olha além das fachadas coloridas para as soleiras e os espaços de convivência onde a vida do bairro acontece.",
+      "references": ["https://whc.unesco.org/en/list/309/"]
+    },
+    {
+      "id": "bahian-neighborhood-square-chapel-en-US",
+      "scene": "bahian-neighborhood-square",
+      "view": "chapel",
+      "locale": "en-US",
+      "title": "One gathering place among many",
+      "text": "The small chapel gives this square a recognizable focus at neighborhood scale. Its doorway faces the same shared ground as the surrounding homes. It represents one strand of a much broader religious landscape in Bahia, not a claim that one building can stand for all its traditions."
+    },
+    {
+      "id": "bahian-neighborhood-square-chapel-pt-BR",
+      "scene": "bahian-neighborhood-square",
+      "view": "chapel",
+      "locale": "pt-BR",
+      "title": "Um lugar de encontro entre muitos",
+      "text": "A pequena capela dá à praça um ponto de referência na escala do bairro. Sua porta se volta para o mesmo espaço compartilhado pelas casas. Ela representa uma vertente de uma paisagem religiosa muito mais ampla na Bahia, não a ideia de que um único edifício possa representar todas as tradições."
+    },
+    {
+      "id": "bahian-neighborhood-square-facades-en-US",
+      "scene": "bahian-neighborhood-square",
+      "view": "facades",
+      "locale": "en-US",
+      "title": "Color shaped by construction",
+      "text": "Shutters, balcony rails, and deep window surrounds give the painted walls their rhythm. Color sits on surfaces with thickness, wear, and repairs. These invented houses are meant to be read as places people might use, rather than as a row of decorative fronts."
+    },
+    {
+      "id": "bahian-neighborhood-square-facades-pt-BR",
+      "scene": "bahian-neighborhood-square",
+      "view": "facades",
+      "locale": "pt-BR",
+      "title": "A cor moldada pela construção",
+      "text": "Venezianas, grades de varanda e contornos profundos das janelas dão ritmo às paredes pintadas. A cor está sobre superfícies com espessura, desgaste e reparos. As casas inventadas são lugares que poderiam ser usados, não apenas uma fileira de frentes decorativas."
+    },
+    {
+      "id": "bahian-neighborhood-square-paving-en-US",
+      "scene": "bahian-neighborhood-square",
+      "view": "paving",
+      "locale": "en-US",
+      "title": "The square beneath our feet",
+      "text": "Uneven stones follow the slope, gathering small changes of light and shadow. Their joints make drainage and walking part of the same surface. Looking down reveals another layer of the neighborhood's character: the ground that supports its everyday encounters."
+    },
+    {
+      "id": "bahian-neighborhood-square-paving-pt-BR",
+      "scene": "bahian-neighborhood-square",
+      "view": "paving",
+      "locale": "pt-BR",
+      "title": "A praça sob os pés",
+      "text": "As pedras desiguais acompanham a inclinação e recebem pequenas mudanças de luz e sombra. Suas juntas fazem da drenagem e da caminhada partes de uma mesma superfície. Olhar para baixo revela outra camada do caráter do bairro: o chão que sustenta os encontros cotidianos."
+    },
+    {
+      "id": "andean-stone-lane-en-US",
+      "scene": "andean-stone-lane",
+      "locale": "en-US",
+      "title": "A street of visible layers",
+      "text": "In the Andean highlands, fitted stone construction and later building traditions can meet within the same street. This anonymous lane draws on that layered history, with irregular masonry below plaster and timber. It copies neither a celebrated wall nor a particular block. Its narrow passage invites us to read architecture as accumulated change, while recognizing that colonial transformation was not a neutral process.",
+      "references": ["https://whc.unesco.org/en/list/273/"]
+    },
+    {
+      "id": "andean-stone-lane-pt-BR",
+      "scene": "andean-stone-lane",
+      "locale": "pt-BR",
+      "title": "Uma rua de camadas visíveis",
+      "text": "Nas terras altas dos Andes, a construção em pedras ajustadas e tradições posteriores podem se encontrar na mesma rua. Esta viela anônima se inspira nessa história em camadas, com alvenaria irregular sob reboco e madeira. Não copia uma parede célebre nem um quarteirão específico. A passagem estreita convida a ler a arquitetura como transformação acumulada, reconhecendo que as mudanças coloniais não foram um processo neutro.",
+      "references": ["https://whc.unesco.org/en/list/273/"]
+    },
+    {
+      "id": "andean-stone-lane-stone-en-US",
+      "scene": "andean-stone-lane",
+      "view": "stone",
+      "locale": "en-US",
+      "title": "Stone meeting stone",
+      "text": "The wall's character comes first from the shape of its blocks and the way their edges meet. Fine grain and worn corners add another scale of detail. These invented stones echo fitted masonry without copying a famous example or claiming that all Andean walls were built alike."
+    },
+    {
+      "id": "andean-stone-lane-stone-pt-BR",
+      "scene": "andean-stone-lane",
+      "view": "stone",
+      "locale": "pt-BR",
+      "title": "Pedra encontrando pedra",
+      "text": "O caráter da parede começa na forma dos blocos e no encontro entre suas bordas. O grão fino e os cantos gastos acrescentam outra escala de detalhe. As pedras inventadas evocam a alvenaria ajustada sem copiar um exemplo famoso nem sugerir que todas as paredes andinas sejam iguais."
+    },
+    {
+      "id": "andean-stone-lane-passage-en-US",
+      "scene": "andean-stone-lane",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A turn beyond the first view",
+      "text": "The steps lead sideways into another part of the neighborhood. Near walls hide some of what lies ahead, so the passage is discovered through layers rather than seen all at once. That partial visibility gives a narrow street depth and a sense of continuing life."
+    },
+    {
+      "id": "andean-stone-lane-passage-pt-BR",
+      "scene": "andean-stone-lane",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Uma curva além da primeira vista",
+      "text": "Os degraus levam de lado a outra parte do bairro. As paredes próximas escondem parte do percurso, que se revela em camadas, não de uma só vez. Essa visibilidade parcial dá profundidade à rua estreita e a sensação de que a vida continua adiante."
+    },
+    {
+      "id": "andean-stone-lane-balconies-en-US",
+      "scene": "andean-stone-lane",
+      "view": "balconies",
+      "locale": "en-US",
+      "title": "A lived edge above the lane",
+      "text": "Timber and plaster introduce a different construction rhythm above the fitted stone. A planted doorway brings the scale back to daily care. The contrast is left visible, allowing the invented street to suggest adaptation and occupation rather than a single, frozen historical moment."
+    },
+    {
+      "id": "andean-stone-lane-balconies-pt-BR",
+      "scene": "andean-stone-lane",
+      "view": "balconies",
+      "locale": "pt-BR",
+      "title": "Uma borda habitada sobre a viela",
+      "text": "A madeira e o reboco trazem outro ritmo de construção acima das pedras ajustadas. Uma entrada com plantas devolve a escala ao cuidado cotidiano. O contraste permanece visível e permite que a rua inventada sugira adaptação e uso, não um único momento histórico congelado."
+    },
+    {
+      "id": "swahili-verandah-en-US",
+      "scene": "swahili-verandah",
+      "locale": "en-US",
+      "title": "An African coast connected by the ocean",
+      "text": "Swahili coastal architecture grows from East African urban traditions and centuries of Indian Ocean exchange. Carved doors, limewashed walls, and shaded verandahs hold those histories in material form. This imagined trading house is not a copy of a Zanzibar landmark. It brings attention to local craftsmanship and everyday shelter, while remembering that maritime connections included unequal power as well as cultural exchange.",
+      "references": ["https://whc.unesco.org/en/list/173/"]
+    },
+    {
+      "id": "swahili-verandah-pt-BR",
+      "scene": "swahili-verandah",
+      "locale": "pt-BR",
+      "title": "Uma costa africana ligada pelo oceano",
+      "text": "A arquitetura costeira suaíli nasce de tradições urbanas da África Oriental e de séculos de relações pelo Oceano Índico. Portas entalhadas, paredes caiadas e varandas sombreadas guardam essas histórias nos materiais. Esta casa comercial imaginada não copia um monumento de Zanzibar. Destaca o trabalho artesanal local e o abrigo cotidiano, lembrando que as conexões marítimas envolveram desigualdades de poder, além de trocas culturais.",
+      "references": ["https://whc.unesco.org/en/list/173/"]
+    },
+    {
+      "id": "swahili-verandah-entrance-en-US",
+      "scene": "swahili-verandah",
+      "view": "entrance",
+      "locale": "en-US",
+      "title": "A doorway with depth and presence",
+      "text": "The carved timber door sits within a layered approach of steps, wall, and shade. Its frame gives a public face to a more private interior. This invented design celebrates the skill of coastal woodworkers without assigning undocumented meanings to individual motifs."
+    },
+    {
+      "id": "swahili-verandah-entrance-pt-BR",
+      "scene": "swahili-verandah",
+      "view": "entrance",
+      "locale": "pt-BR",
+      "title": "Uma porta com profundidade e presença",
+      "text": "A porta de madeira entalhada faz parte de uma aproximação em camadas de degraus, parede e sombra. Seu contorno dá uma face pública a um interior mais reservado. O desenho inventado valoriza o trabalho dos artesãos da costa sem atribuir significados não documentados a cada motivo."
+    },
+    {
+      "id": "swahili-verandah-balconies-en-US",
+      "scene": "swahili-verandah",
+      "view": "balconies",
+      "locale": "en-US",
+      "title": "Timber that shapes the shade",
+      "text": "Small rails, brackets, and turned elements combine into a deep gallery. Their value is not only decorative: projecting timberwork changes how bright coastal light reaches the rooms. Seen from below, the overlapping parts reveal the construction behind the silhouette."
+    },
+    {
+      "id": "swahili-verandah-balconies-pt-BR",
+      "scene": "swahili-verandah",
+      "view": "balconies",
+      "locale": "pt-BR",
+      "title": "Madeira que desenha a sombra",
+      "text": "Grades, suportes e pequenas peças torneadas formam uma galeria profunda. Seu valor não é apenas decorativo: a projeção da madeira muda a maneira como a luz forte da costa chega aos cômodos. Vista de baixo, a sobreposição revela a construção por trás da silhueta."
+    },
+    {
+      "id": "swahili-verandah-coastal-en-US",
+      "scene": "swahili-verandah",
+      "view": "coastal",
+      "locale": "en-US",
+      "title": "Work in the sheltered street edge",
+      "text": "Rope and baskets bring the grander frontage down to the scale of ordinary handling. The shaded corner suggests sorting, carrying, and a pause from the coastal sun. This modest working arrangement helps the building belong to a neighborhood rather than stand apart as a monument."
+    },
+    {
+      "id": "swahili-verandah-coastal-pt-BR",
+      "scene": "swahili-verandah",
+      "view": "coastal",
+      "locale": "pt-BR",
+      "title": "Trabalho na borda abrigada da rua",
+      "text": "Cordas e cestos trazem a fachada imponente para a escala do manuseio cotidiano. O canto sombreado sugere separar, carregar e fazer uma pausa do sol costeiro. Esse arranjo simples ajuda o edifício a pertencer a um bairro, em vez de ficar isolado como monumento."
+    },
+    {
+      "id": "naxi-canal-quarter-en-US",
+      "scene": "naxi-canal-quarter",
+      "locale": "en-US",
+      "title": "A neighborhood organized around water",
+      "text": "In Yunnan, towns associated with Naxi culture bring waterways into close contact with bridges, lanes, and timber homes. Their architecture also reflects exchange with neighboring communities. This fictional canal quarter draws on those relationships without copying Lijiang's streets. Water is not simply a decorative foreground: it helps us understand the paths, thresholds, and shared edges of an inhabited neighborhood.",
+      "references": ["https://whc.unesco.org/en/list/811/"]
+    },
+    {
+      "id": "naxi-canal-quarter-pt-BR",
+      "scene": "naxi-canal-quarter",
+      "locale": "pt-BR",
+      "title": "Um bairro organizado em torno da água",
+      "text": "Em Yunnan, cidades associadas à cultura naxi aproximam canais, pontes, vielas e casas de madeira. Sua arquitetura também reflete trocas com comunidades vizinhas. Este bairro fictício se inspira nessas relações sem copiar as ruas de Lijiang. A água não é apenas um primeiro plano decorativo: ajuda a compreender os caminhos, as entradas e as bordas compartilhadas de um lugar habitado.",
+      "references": ["https://whc.unesco.org/en/list/811/"]
+    },
+    {
+      "id": "naxi-canal-quarter-bridge-en-US",
+      "scene": "naxi-canal-quarter",
+      "view": "bridge",
+      "locale": "en-US",
+      "title": "A small crossing with a large role",
+      "text": "The bridge changes the canal from a dividing line into a connection. Its worn stone rises between nearby fronts, offering another view along the water. This imagined crossing belongs to the scale of daily errands, where a few steps can link different parts of a neighborhood."
+    },
+    {
+      "id": "naxi-canal-quarter-bridge-pt-BR",
+      "scene": "naxi-canal-quarter",
+      "view": "bridge",
+      "locale": "pt-BR",
+      "title": "Uma pequena travessia com grande papel",
+      "text": "A ponte transforma o canal de linha divisória em conexão. A pedra gasta se eleva entre as fachadas próximas e oferece outra vista ao longo da água. Essa travessia imaginada pertence à escala das tarefas diárias, em que poucos passos ligam diferentes partes do bairro."
+    },
+    {
+      "id": "naxi-canal-quarter-stream-en-US",
+      "scene": "naxi-canal-quarter",
+      "view": "stream",
+      "locale": "en-US",
+      "title": "Reading the moving surface",
+      "text": "At the canal edge, reflections break across shallow changes in the moving water. Damp masonry and the height of the banks make the channel feel constructed and maintained. The scene suggests a lived water system, not a claim that this fictional stream is safe to drink from."
+    },
+    {
+      "id": "naxi-canal-quarter-stream-pt-BR",
+      "scene": "naxi-canal-quarter",
+      "view": "stream",
+      "locale": "pt-BR",
+      "title": "Observar a superfície em movimento",
+      "text": "Na borda do canal, os reflexos se desfazem nas pequenas mudanças da água em movimento. A alvenaria úmida e a altura das margens dão ao canal um caráter construído e cuidado. A cena sugere um sistema de água habitado, sem afirmar que seja própria para beber."
+    },
+    {
+      "id": "naxi-canal-quarter-lattice-en-US",
+      "scene": "naxi-canal-quarter",
+      "view": "lattice",
+      "locale": "en-US",
+      "title": "A pause at the timber threshold",
+      "text": "A tea bench and a recessed doorway make a small social edge between house and lane. Timber screens filter the view into the interior without removing its depth. This invented corner finds atmosphere in a place to sit and in the everyday care of familiar objects."
+    },
+    {
+      "id": "naxi-canal-quarter-lattice-pt-BR",
+      "scene": "naxi-canal-quarter",
+      "view": "lattice",
+      "locale": "pt-BR",
+      "title": "Uma pausa junto à entrada de madeira",
+      "text": "Um banco para o chá e uma porta recuada criam uma pequena borda de convivência entre casa e viela. As treliças filtram a vista do interior sem apagar sua profundidade. Este canto inventado encontra atmosfera em um lugar para sentar e no cuidado diário com objetos familiares."
+    },
+    {
+      "id": "tunisian-terrace-cafe-en-US",
+      "scene": "tunisian-terrace-cafe",
+      "locale": "en-US",
+      "title": "A café between shade and sea",
+      "text": "This anonymous Tunisian terrace imagines a café shaped by coastal light, a sloping site, and the pleasure of sitting together. Pale walls, blue joinery, woven seating, and tea service form a setting rather than a replica of a famous view. Its cultural atmosphere comes from an ordinary pause: finding shade, sharing a drink, and letting the wider landscape remain part of the conversation."
+    },
+    {
+      "id": "tunisian-terrace-cafe-pt-BR",
+      "scene": "tunisian-terrace-cafe",
+      "locale": "pt-BR",
+      "title": "Um café entre sombra e mar",
+      "text": "Esta varanda anônima da Tunísia imagina um café moldado pela luz costeira, pelo terreno inclinado e pelo prazer de sentar em companhia. Paredes claras, madeira azul, assentos trançados e um serviço de chá formam um ambiente, não a réplica de uma vista famosa. Sua atmosfera cultural nasce de uma pausa comum: encontrar sombra, compartilhar uma bebida e deixar a paisagem participar da conversa."
+    },
+    {
+      "id": "tunisian-terrace-cafe-tea-en-US",
+      "scene": "tunisian-terrace-cafe",
+      "view": "tea",
+      "locale": "en-US",
+      "title": "A table small enough for conversation",
+      "text": "Glasses, a tray, and mint bring the broad coastal view back to the scale of a drink. The worn tabletop and woven seat make the pause feel ordinary rather than staged. This particular service is imagined, not presented as the only way tea is enjoyed in Tunisia."
+    },
+    {
+      "id": "tunisian-terrace-cafe-tea-pt-BR",
+      "scene": "tunisian-terrace-cafe",
+      "view": "tea",
+      "locale": "pt-BR",
+      "title": "Uma mesa na escala da conversa",
+      "text": "Copos, uma bandeja e hortelã trazem a ampla vista da costa de volta à escala de uma bebida. A mesa marcada e o assento trançado dão naturalidade à pausa. Este serviço foi imaginado e não representa a única maneira de tomar chá na Tunísia."
+    },
+    {
+      "id": "tunisian-terrace-cafe-steps-en-US",
+      "scene": "tunisian-terrace-cafe",
+      "view": "steps",
+      "locale": "en-US",
+      "title": "Following the slope through the café",
+      "text": "The steps connect terraces at different heights, turning the hillside into a sequence of places to pause. Blue edges, plaster, and worn treads catch the light differently. Movement through this café is part of its composition, not a passage hidden behind a scenic façade."
+    },
+    {
+      "id": "tunisian-terrace-cafe-steps-pt-BR",
+      "scene": "tunisian-terrace-cafe",
+      "view": "steps",
+      "locale": "pt-BR",
+      "title": "Acompanhar a encosta pelo café",
+      "text": "Os degraus ligam terraços em alturas diferentes e transformam a encosta em uma sequência de lugares para parar. Bordas azuis, reboco e pisos gastos recebem a luz de modos distintos. O movimento pelo café faz parte da composição, não fica escondido atrás de uma fachada cênica."
+    },
+    {
+      "id": "tunisian-terrace-cafe-outlook-en-US",
+      "scene": "tunisian-terrace-cafe",
+      "view": "outlook",
+      "locale": "en-US",
+      "title": "The horizon beyond the railing",
+      "text": "The railing holds a close, human scale against the wide bay. Beyond it, moving water changes the light without settling into a fixed pattern. The terrace remains a place within a coastal landscape, with its quiet atmosphere borrowed from both shelter and openness."
+    },
+    {
+      "id": "tunisian-terrace-cafe-outlook-pt-BR",
+      "scene": "tunisian-terrace-cafe",
+      "view": "outlook",
+      "locale": "pt-BR",
+      "title": "O horizonte além da grade",
+      "text": "A grade mantém uma escala próxima e humana diante da baía ampla. Além dela, a água em movimento muda a luz sem se fixar em um padrão. O terraço continua sendo parte da paisagem costeira, com uma calma que vem tanto do abrigo quanto da abertura."
+    },
+    {
+      "id": "lao-temple-court-en-US",
+      "scene": "lao-temple-court",
+      "locale": "en-US",
+      "title": "A temple court cared for each day",
+      "text": "Lao Buddhist temple compounds connect religious life with skilled building, gardens, and the daily work of care. This fictional court draws on northern Lao traditions without reproducing a named monastery. Sweeping roofs, a timber portico, and a gardener's corner share the same ground. The scene invites quiet attention to a living setting, not a claim to show every practice or the meaning of every ornament.",
+      "references": ["https://whc.unesco.org/en/list/479/"]
+    },
+    {
+      "id": "lao-temple-court-pt-BR",
+      "scene": "lao-temple-court",
+      "locale": "pt-BR",
+      "title": "Um pátio de templo cuidado a cada dia",
+      "text": "Os conjuntos de templos budistas do Laos ligam a vida religiosa à construção artesanal, aos jardins e ao cuidado cotidiano. Este pátio fictício se inspira em tradições do norte do país sem reproduzir um mosteiro específico. Telhados alongados, um pórtico de madeira e o canto do jardineiro compartilham o mesmo chão. A cena convida a observar com calma um lugar vivo, sem representar todas as práticas ou explicar cada ornamento.",
+      "references": ["https://whc.unesco.org/en/list/479/"]
+    },
+    {
+      "id": "lao-temple-court-roof-en-US",
+      "scene": "lao-temple-court",
+      "view": "roof",
+      "locale": "en-US",
+      "title": "The shelter of sweeping eaves",
+      "text": "The roof descends in broad layers, giving the temple a strong silhouette and a deep edge of shade. Individual tiles and timber supports make that outline a construction rather than a single smooth shape. Its proportions interpret a regional vocabulary without tracing a particular monument."
+    },
+    {
+      "id": "lao-temple-court-roof-pt-BR",
+      "scene": "lao-temple-court",
+      "view": "roof",
+      "locale": "pt-BR",
+      "title": "O abrigo dos beirais alongados",
+      "text": "O telhado desce em camadas amplas e dá ao templo uma silhueta marcante e uma faixa profunda de sombra. Telhas e apoios de madeira fazem desse contorno uma construção, não uma forma lisa. As proporções interpretam uma linguagem regional sem copiar um monumento específico."
+    },
+    {
+      "id": "lao-temple-court-portico-en-US",
+      "scene": "lao-temple-court",
+      "view": "portico",
+      "locale": "en-US",
+      "title": "Light at a careful threshold",
+      "text": "Gilded details catch the daylight while the timber portico leads toward a darker interior. The contrast gives the threshold presence without needing to fill it with spectacle. The ornament here is an artistic interpretation, not a substitute for understanding a temple's religious images and practices."
+    },
+    {
+      "id": "lao-temple-court-portico-pt-BR",
+      "scene": "lao-temple-court",
+      "view": "portico",
+      "locale": "pt-BR",
+      "title": "Luz em um limiar cuidadoso",
+      "text": "Detalhes dourados recebem a luz enquanto o pórtico de madeira conduz a um interior mais escuro. O contraste dá presença à entrada sem transformá-la em espetáculo. O ornamento é uma interpretação artística, não um substituto para compreender as imagens e práticas religiosas de um templo."
+    },
+    {
+      "id": "lao-temple-court-pavilion-en-US",
+      "scene": "lao-temple-court",
+      "view": "pavilion",
+      "locale": "en-US",
+      "title": "The ordinary care of a sacred place",
+      "text": "A notebook, water jar, and gardening materials suggest the work of tending the court. Leaves and soil bring a different scale beside the temple's formal architecture. This invented corner honors maintenance as part of the atmosphere, without presenting the gardener's objects as ritual equipment."
+    },
+    {
+      "id": "lao-temple-court-pavilion-pt-BR",
+      "scene": "lao-temple-court",
+      "view": "pavilion",
+      "locale": "pt-BR",
+      "title": "O cuidado cotidiano de um lugar sagrado",
+      "text": "Um caderno, um pote de água e materiais de jardinagem sugerem o trabalho de cuidar do pátio. Folhas e terra trazem outra escala ao lado da arquitetura formal do templo. Este canto inventado valoriza a manutenção como parte da atmosfera, sem apresentar os objetos do jardineiro como instrumentos rituais."
     }
   ]
 }

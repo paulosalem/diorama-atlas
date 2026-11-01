@@ -44,11 +44,15 @@ Subscriptions update text in place without replacing original definitions,
 rebuilding geometry, or disturbing camera and audio state. Original definitions
 remain unchanged because the family dispatcher depends on their source fields.
 
-Marrakech's `scene-narration.js` panel reuses the viewer's single narration audio
+The collection-wide `scene-narration.js` panel reuses the viewer's single narration audio
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-This pilot does not silently add paid requests when entering other scenes.
+All 22 bundled scenes have complete bilingual entry/view coverage in the local
+manifest. Additional custom scenes without recordings retain detail controls
+without a guided panel; supported scenes report malformed or missing tracks.
+Opening object details pauses and replaces the guided panel, avoiding competing
+captions on compact screens. Playback never creates paid generation requests.
 
 The interior dispatcher selects a cafe, tavern, herb shop, bookshop, workshop, or
 kitchen using the definition's title, request, and blueprint. Generated content

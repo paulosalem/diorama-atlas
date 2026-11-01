@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { curatedScenes } from "../../src/client/catalog/scene-catalog.js";
 
 test.describe.configure({ timeout: 180_000 });
 test.use({ locale: "en-US", reducedMotion: "reduce" });
@@ -11,13 +12,44 @@ async function state(page) {
   });
 }
 
-async function open(page) {
-  await page.goto("/?scene=riad&inspect=1");
+async function open(page, scene = "riad", view) {
+  await page.goto(`/?scene=${scene}&inspect=1${view ? `&view=${view}` : ""}`);
   await expect(page.locator(".scene-narration")).toHaveAttribute(
     "data-state",
     /ready|playing|blocked/,
     { timeout: 120_000 },
   );
+}
+
+async function expectUnclippedControl(page, selector, panel) {
+  const control = page.locator(selector);
+  await expect(control).toBeVisible();
+  expect(
+    await control.evaluate((element, panel) => {
+      const rect = element.getBoundingClientRect();
+      const inside = [
+        element.closest(panel),
+        document.querySelector("#canvasMount"),
+      ].every((container) => {
+        const bounds = container.getBoundingClientRect();
+        return (
+          rect.left >= bounds.left &&
+          rect.right <= bounds.right &&
+          rect.top >= bounds.top &&
+          rect.bottom <= bounds.bottom
+        );
+      });
+      return (
+        inside &&
+        element.contains(
+          document.elementFromPoint(
+            rect.x + rect.width / 2,
+            rect.y + rect.height / 2,
+          ),
+        )
+      );
+    }, panel),
+  ).toBe(true);
 }
 
 test.beforeEach(async ({ page }) => {
@@ -30,6 +62,7 @@ test.beforeEach(async ({ page }) => {
     else
       throw new Error(`Unexpected paid API request: ${route.request().url()}`);
   });
+
   await page.addInitScript(() => {
     const NativeAudio = window.Audio;
     window.narrationElements = [];
@@ -42,6 +75,170 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
+for (const [scene, initialView, target] of [
+  ["textile", "loom", "yarn"],
+  ["newar-potters-square", "arrival", "pottery"],
+]) {
+  test(`${scene}: ordinary look and zoom select a localized focused narration`, async ({
+    page,
+  }) => {
+    await open(page, scene, initialView);
+    await page.locator("#atlasLanguage").selectOption("pt-BR");
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    const movement = await page.evaluate(async (key) => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      const { Vector3 } = await import("three");
+      const v = getActiveViewer();
+      const direction = v.camera.getWorldDirection(new Vector3());
+      const toward = new Vector3(...v.runtime.views[key].target)
+        .sub(v.camera.position)
+        .normalize();
+      const yaw =
+        Math.atan2(toward.x, -toward.z) - Math.atan2(direction.x, -direction.z);
+      return {
+        x: -Math.atan2(Math.sin(yaw), Math.cos(yaw)) / 0.0033,
+        y: (Math.asin(toward.y) - Math.asin(direction.y)) / 0.0033,
+        position: v.camera.position.toArray(),
+      };
+    }, target);
+    const canvas = await page.locator("#canvasMount canvas").boundingBox();
+    const x = canvas.x + canvas.width / 2;
+    const y = canvas.y + canvas.height / 3;
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x + movement.x, y + movement.y, { steps: 8 });
+    await page.mouse.up();
+    await page.mouse.wheel(0, -1800);
+    await expect
+      .poll(async () => (await state(page)).asset)
+      .toBe(`${scene}-${target}-pt-BR`);
+    await expect(page.locator(`[data-view="${initialView}"]`)).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(
+      await page.evaluate(async () =>
+        (await import("/src/client/viewer/panorama-viewer.js"))
+          .getActiveViewer()
+          .camera.position.toArray(),
+      ),
+    ).toEqual(movement.position);
+  });
+}
+
+for (const viewport of [
+  { width: 320, height: 800 },
+  { width: 390, height: 844 },
+  { width: 844, height: 390 },
+]) {
+  test(`narration and detail captions stay usable at ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await open(page, "textile");
+    await page.locator("#atlasLanguage").selectOption("pt-BR");
+    await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
+    await expectUnclippedControl(
+      page,
+      ".narration-minimize",
+      ".scene-narration",
+    );
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.locator("#riadDetails").click();
+    await expect(page.locator(".scene-narration")).toBeHidden();
+    await expect(page.locator(".riad-detail-caption")).toBeVisible();
+    await expect.poll(async () => (await state(page)).state).toBe("paused");
+    await expectUnclippedControl(page, "#listenButton", ".riad-detail-caption");
+    await page.locator('[data-view="dyes"]').click();
+    expect((await state(page)).state).toBe("ready");
+    expect(
+      await page.evaluate(() =>
+        window.narrationElements.every((a) => a.paused),
+      ),
+    ).toBe(true);
+    await page.locator("#riadDetails").click();
+    await expect(page.locator(".scene-narration")).toBeVisible();
+    await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.locator(".narration-minimize").click();
+    await expect(page.locator(".narration-text")).toBeHidden();
+    await expect(page.locator("#narrationPlay")).toBeVisible();
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("paused");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    const [panel, canvas] = await Promise.all([
+      page.locator(".scene-narration").boundingBox(),
+      page.locator("#canvasMount").boundingBox(),
+    ]);
+    expect(panel.x).toBeGreaterThanOrEqual(canvas.x);
+    expect(panel.x + panel.width).toBeLessThanOrEqual(canvas.x + canvas.width);
+  });
+}
+
+test("a failed manifest can be retried without losing the rendered scene", async ({
+  page,
+}) => {
+  let first = true;
+  await page.route("**/public/narration/manifest.json", async (route) => {
+    if (first) {
+      first = false;
+      await route.fulfill({ status: 503, body: "Temporarily unavailable" });
+    } else await route.continue();
+  });
+  await page.goto("/?scene=textile&inspect=1");
+  await expect(page.locator(".scene-narration")).toHaveAttribute(
+    "data-state",
+    "error",
+    { timeout: 120_000 },
+  );
+  await expect(page.locator("#viewer")).toHaveAttribute("aria-busy", "false");
+  await page.locator("#narrationPlay").click();
+  await expect(page.locator(".scene-narration")).toHaveAttribute(
+    "data-state",
+    "ready",
+  );
+  await expect(page.locator(".narration-text")).toContainText("In Oaxaca");
+});
+
+test("an unrecorded custom scene stays usable without a broken narration panel", async ({
+  page,
+}) => {
+  const scene = {
+    ...curatedScenes.find((scene) => scene.id === "kissaten"),
+    id: "unrecorded-kyoto",
+    generated: true,
+  };
+  await page.route("**/api/generated-scenes", (route) =>
+    route.fulfill({ json: { scenes: [scene] } }),
+  );
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  await page.goto("/?scene=unrecorded-kyoto&inspect=1");
+  await expect(page.locator("#viewer")).toHaveAttribute("aria-busy", "false", {
+    timeout: 120_000,
+  });
+  await expect.poll(async () => (await state(page)).state).toBe("unavailable");
+  await expect(page.locator(".scene-narration")).toHaveCount(0);
+  await page.locator("#atlasLanguage").selectOption("pt-BR");
+  await page.locator('[data-view="coffee"]').click();
+  expect((await state(page)).state).toBe("unavailable");
+  await expect(page.locator('[data-view="coffee"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  expect(errors).toEqual([]);
+});
 test("the floating narration is opt-in, bilingual and shares one actual player", async ({
   page,
 }) => {

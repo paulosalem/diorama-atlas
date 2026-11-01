@@ -19,7 +19,8 @@ project-wide licensing assumption.
 | Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied        | `data/scenes/`                                                                                  |
 | Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0 | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
-The Marrakech narration pilot adds twelve original AI-voiced recordings, with
+The collection includes 202 original AI-voiced recordings (66.94 MB), covering
+all 101 viewpoints of the 22 bundled scenes in English and Portuguese, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field

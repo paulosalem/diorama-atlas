@@ -16,6 +16,12 @@ const bundledScenes = await Promise.all(
       return saved.scene;
     }),
 );
+const narrations = JSON.parse(
+  await readFile(
+    new URL("../../public/narration/manifest.json", import.meta.url),
+    "utf8",
+  ),
+).assets;
 
 test.beforeEach(async ({ page }) => {
   // A browser regression must never trigger a paid generation request.
@@ -110,9 +116,31 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
     await expect(viewpoints).toHaveCount(
       scene.environment === "outdoor" ? 4 : scene.id === "riad" ? 6 : 5,
     );
-    for (const viewpoint of await viewpoints.all()) {
-      await viewpoint.click();
-      await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator(".scene-narration")).toHaveAttribute(
+      "data-state",
+      "ready",
+    );
+    const firstKey = await viewpoints.first().getAttribute("data-view");
+    for (const locale of ["pt-BR", "en-US"]) {
+      await page.locator("#atlasLanguage").selectOption(locale);
+      for (const viewpoint of await viewpoints.all()) {
+        const key = await viewpoint.getAttribute("data-view");
+        const narration = narrations.find(
+          (asset) =>
+            asset.scene === scene.id &&
+            asset.locale === locale &&
+            (asset.view ?? firstKey) === key,
+        );
+        expect(narration, `${scene.id}/${key}/${locale}`).toBeDefined();
+        await viewpoint.click();
+        await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
+        await expect(page.locator(".narration-text")).toHaveText(
+          narration.text,
+        );
+        await expect(page.locator("#narrationTitle")).toHaveText(
+          narration.title,
+        );
+      }
     }
     await page.getByRole("button", { name: "Show details" }).click();
     await expect(page.locator("#viewer")).toHaveClass(/show-riad-details/);

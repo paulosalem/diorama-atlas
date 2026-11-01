@@ -39,6 +39,7 @@ export default [
       "scripts/capture-patina.mjs",
       "scripts/check-outdoors.mjs",
       "scripts/check-water-prints.mjs",
+      "scripts/check-narration.mjs",
     ],
     languageOptions: { globals: globals.browser },
   },
