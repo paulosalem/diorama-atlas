@@ -1,4 +1,5 @@
 import { outdoorScenes } from "./outdoor-catalog.js";
+import { sitePath, staticHosting } from "../site.js";
 
 export const curatedScenes = [
   {
@@ -509,7 +510,9 @@ export const curatedScenes = [
 ];
 
 export async function loadScenes() {
-  const response = await fetch("/api/generated-scenes");
+  const response = await fetch(
+    sitePath(staticHosting ? "/public/scenes.json" : "/api/generated-scenes"),
+  );
   if (!response.ok) throw new Error("Your saved places could not be loaded.");
   const payload = await response.json();
   return [...curatedScenes, ...(payload.scenes ?? []), ...outdoorScenes];

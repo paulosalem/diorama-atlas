@@ -2,10 +2,17 @@
 
 ## Runtime
 
-Diorama Atlas is a single local Node HTTP process plus a browser application.
-There is no frontend framework, database, or build pipeline. The two runtime
+Diorama Atlas runs as a static browser application on GitHub Pages or with a
+local Node HTTP process for optional generation and persistence.
+There is no frontend framework, database, or production bundler. The two runtime
 dependencies are Three.js for rendering and the OpenAI SDK for optional server
 operations.
+
+`scripts/build-pages.mjs` exports an allowlisted static site and the bundled
+scene catalog. `site.js` resolves asset/navigation paths beneath the deployment
+directory and reads the static hosting marker in the exported HTML. The local
+edition retains its API catalog and generation routes. See
+[deployment](deployment.md) for publication boundaries and verification.
 
 ```text
 Browser: index.html -> src/client/main.js

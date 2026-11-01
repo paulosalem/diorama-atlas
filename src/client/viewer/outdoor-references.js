@@ -1,4 +1,5 @@
 import { translateElement } from "../localization/locale.js";
+import { sitePath } from "../site.js";
 
 export function addOutdoorReferences(viewer, definition) {
   const button = document.createElement("button");
@@ -65,7 +66,9 @@ export function addOutdoorReferences(viewer, definition) {
       ),
     );
     try {
-      const response = await fetch("/public/outdoors/references.json");
+      const response = await fetch(
+        sitePath("/public/outdoors/references.json"),
+      );
       if (!response.ok)
         throw new Error("Photographic sources could not be loaded.");
       const entries = await response.json();
@@ -79,7 +82,7 @@ export function addOutdoorReferences(viewer, definition) {
         const figure = document.createElement("figure");
         if (reference.image) {
           const image = document.createElement("img");
-          image.src = reference.image;
+          image.src = sitePath(reference.image);
           translateElement(image, reference.note || reference.label, {}, "alt");
           image.loading = "lazy";
           image.addEventListener(

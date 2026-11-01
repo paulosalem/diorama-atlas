@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { sitePath } from "../../site.js";
 
 /** Local image assets share readiness, color management and lifetime with their scene. */
 export function createLocalImageTextures(renderer, pending, resources) {
@@ -23,7 +24,7 @@ export function createLocalImageTextures(renderer, pending, resources) {
           reject = no;
         }),
       );
-      const texture = loader.load(url, resolve, undefined, () =>
+      const texture = loader.load(sitePath(url), resolve, undefined, () =>
         reject(new Error(`Image asset could not be loaded: ${url}`)),
       );
       texture.colorSpace = data ? THREE.NoColorSpace : THREE.SRGBColorSpace;

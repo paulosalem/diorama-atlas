@@ -1,11 +1,12 @@
 import * as THREE from "three";
+import { sitePath } from "../site.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createNarrationTriggers } from "./narration-triggers.js";
 
 let library;
 async function loadNarrationLibrary() {
   if (!library) {
-    library = fetch("/public/narration/manifest.json")
+    library = fetch(sitePath("/public/narration/manifest.json"))
       .then(async (response) => {
         if (!response.ok)
           throw new Error(`Narration manifest: HTTP ${response.status}`);
@@ -35,7 +36,10 @@ async function loadNarrationLibrary() {
           ids.add(asset.id);
           keys.add(key);
         }
-        return manifest.assets;
+        return manifest.assets.map((asset) => ({
+          ...asset,
+          file: sitePath(asset.file),
+        }));
       })
       .catch((error) => {
         library = null;

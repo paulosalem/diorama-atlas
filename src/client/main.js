@@ -1,4 +1,5 @@
 import { loadScenes } from "./catalog/scene-catalog.js";
+import { siteBase, sitePath } from "./site.js";
 import { createAtlasAudio } from "./environments/shared/atlas-audio.js";
 import { createSoundscapePanel } from "./viewer/soundscape-panel.js";
 import { createLanguageControl } from "./viewer/language-control.js";
@@ -38,7 +39,7 @@ function showError(error) {
     error.message || "This view could not be loaded. Please try again.",
   );
   const retry = document.createElement("a");
-  retry.href = "/";
+  retry.href = sitePath("/");
   translateElement(retry, "Return to the world");
   panel.append(message, retry);
   app.append(panel);
@@ -125,7 +126,7 @@ app.addEventListener("click", (event) => {
   )
     return;
   const url = new URL(link.href);
-  if (url.origin !== location.origin || url.pathname !== "/") return;
+  if (url.origin !== location.origin || url.pathname !== siteBase) return;
   event.preventDefault();
   navigate(url.href);
 });

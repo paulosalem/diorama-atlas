@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { sitePath } from "../../site.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { createEnvironmentKit } from "../shared/environment-kit.js";
 import { createRecordedSoundscape } from "../shared/recorded-soundscape.js";
@@ -90,7 +91,7 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
     if (!modelTemplates.has(url)) {
       modelTemplates.set(
         url,
-        modelLoader.loadAsync(url).then((gltf) => {
+        modelLoader.loadAsync(sitePath(url)).then((gltf) => {
           const resources = new Set(),
             modelImages = new Set();
           gltf.scene.traverse((object) => {
@@ -173,7 +174,7 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
         }),
       );
       const map = loader.load(
-        `/public/outdoors/materials/${slot}_${suffix}.jpg`,
+        sitePath(`/public/outdoors/materials/${slot}_${suffix}.jpg`),
         resolve,
         undefined,
         () =>

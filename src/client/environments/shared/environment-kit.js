@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { sitePath } from "../../site.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createRiadMaterials } from "./materials.js";
@@ -338,7 +339,9 @@ export function createEnvironmentKit(
         }),
       );
       const map = loader.load(
-        `/public/interiors/materials/plastered_stone_wall_${suffix}.jpg`,
+        sitePath(
+          `/public/interiors/materials/plastered_stone_wall_${suffix}.jpg`,
+        ),
         resolve,
         undefined,
         reject,

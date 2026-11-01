@@ -1,9 +1,10 @@
 import * as THREE from "three";
+import { sitePath } from "../../site.js";
 import { HDRLoader } from "three/addons/loaders/HDRLoader.js";
 
 export async function loadOutdoorDaylight(generator) {
   const texture = await new HDRLoader().loadAsync(
-    "/public/outdoors/detail-assets/daylight-pure-sky_2k.hdr",
+    sitePath("/public/outdoors/detail-assets/daylight-pure-sky_2k.hdr"),
   );
   texture.mapping = THREE.EquirectangularReflectionMapping;
   const { data, width, height } = texture.image;

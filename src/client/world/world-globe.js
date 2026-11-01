@@ -4,6 +4,7 @@ import { createMiniature } from "./world-miniatures.js";
 import { locateScenes } from "../catalog/place-locations.js";
 import { addAboutButton } from "../viewer/about-atlas.js";
 import { translateElement } from "../localization/locale.js";
+import { sitePath, staticHosting } from "../site.js";
 const RADIUS = 2.5;
 export function geographicPosition(lat, lon, radius = RADIUS) {
   const p = (lat * Math.PI) / 180,
@@ -24,6 +25,7 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
     preview = app.querySelector("#placePreview"),
     panel = app.querySelector("#placesPanel"),
     placesButton = app.querySelector("#placesButton");
+  app.querySelector(".brand").href = sitePath("/");
   for (const [element, message] of [
     [world, "Explore the world"],
     [app.querySelector(".brand"), "Diorama Atlas home"],
@@ -101,7 +103,7 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
   fill.position.set(4, -1, 2);
   camera.add(fill);
   const map = await new THREE.TextureLoader().loadAsync(
-    "/public/earth/blue-marble.jpg",
+    sitePath("/public/earth/blue-marble.jpg"),
   );
   map.colorSpace = THREE.SRGBColorSpace;
   map.anisotropy = Math.min(16, renderer.capabilities.getMaxAnisotropy());
@@ -168,12 +170,15 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
     preview.replaceChildren();
     const link = document.createElement("a");
     link.className = "preview-main";
-    link.href = `/?scene=${encodeURIComponent(definition.id)}&inspect=1`;
+    link.href = sitePath(
+      `/?scene=${encodeURIComponent(definition.id)}&inspect=1`,
+    );
     link.addEventListener("click", save);
     const img = document.createElement("img");
-    img.src =
+    img.src = sitePath(
       definition.preview ??
-      `/public/previews/${encodeURIComponent(definition.id)}.png`;
+        `/public/previews/${encodeURIComponent(definition.id)}.png`,
+    );
     translateElement(
       img,
       definition.fictional ? "{title} · rendered imagined setting" : "{title}",
@@ -182,7 +187,7 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
     );
     img.onerror = () => {
       img.onerror = null;
-      if (definition.environment === "outdoor") {
+      if (staticHosting || definition.environment === "outdoor") {
         img.remove();
         const notice = document.createElement("p");
         notice.className = "preview-image-notice";
@@ -193,7 +198,9 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
         link.prepend(notice);
         return;
       }
-      img.src = `/api/concepts/${encodeURIComponent(definition.id)}/hero?v=${encodeURIComponent(definition.concept?.imageVersion ?? "openai-photo-v2")}`;
+      img.src = sitePath(
+        `/api/concepts/${encodeURIComponent(definition.id)}/hero?v=${encodeURIComponent(definition.concept?.imageVersion ?? "openai-photo-v2")}`,
+      );
     };
     const copy = document.createElement("div");
     copy.className = "preview-copy";
@@ -309,7 +316,9 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
         return;
       }
       save();
-      const destination = `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1`;
+      const destination = sitePath(
+        `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1`,
+      );
       if (onNavigate) onNavigate(destination);
       else location.href = destination;
     });

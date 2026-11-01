@@ -2,7 +2,7 @@
 
 **A world of small places, explored from the inside.**
 
-Diorama Atlas is a local web application for exploring culturally inspired
+Diorama Atlas is a web application for exploring culturally inspired
 interiors and outdoor spaces. Start with an interactive Earth, choose a place, and step into a
 full-scale Three.js environment with named viewpoints, close-up detail markers,
 and explanatory text.
@@ -12,6 +12,13 @@ The included collection contains **22 places across 18 geographic settings**:
 Balinese, Venetian, Bahian, Andean, Swahili, Naxi, Tunisian and Lao traditions.
 These are culturally grounded interpretations, not replicas of landmarks,
 surveyed buildings, photogrammetry, or authoritative historical records.
+
+**Live site:** https://paulosalem.github.io/diorama-atlas/
+
+The GitHub Pages edition includes the entire collection, both narration
+languages, soundscapes, photographs and credits. It needs no API key.
+The repository stays private; only the static browser application and its
+approved assets are published. See [deployment](docs/deployment.md).
 
 ## Run locally
 
@@ -70,9 +77,10 @@ replacement or production bundler.
   volumes are remembered in a cookie across places and future visits; audio credits
   are in the same panel. Hiding the tab pauses playback, and only one Atlas tab
   plays at a time. If your browser blocks restored playback, select **Resume**.
-  Existing detail **Listen** uses browser speech synthesis outdoors and in
-  Portuguese, and the separate narration API described below for English
-  interiors. All included entry/view recordings are bundled locally.
+  On GitHub Pages, additional object-detail **Listen** uses browser speech in
+  both languages. The local server uses browser speech outdoors and in Portuguese,
+  and the separate narration API described below for English interiors.
+  All included entry/view recordings are prerecorded in both editions.
 
 Direct links use `/?scene=kissaten`. Add `&inspect=1` for expanded viewing or
 `&view=bar` for a particular viewpoint; viewpoint names vary by environment.

@@ -1,10 +1,11 @@
 import { TranslatableError } from "../../localization/errors.js";
+import { sitePath } from "../../site.js";
 
 let library;
 
 export async function loadAudioLibrary() {
   if (!library) {
-    library = fetch("/public/audio/manifest.json", {
+    library = fetch(sitePath("/public/audio/manifest.json"), {
       signal: AbortSignal.timeout(20_000),
     })
       .then(async (response) => {
@@ -33,7 +34,13 @@ export async function loadAudioLibrary() {
             );
           ids.add(asset.id);
         }
-        return manifest.assets;
+        return manifest.assets.map((asset) => ({
+          ...asset,
+          file: sitePath(asset.file),
+          ...(asset.licenseEvidence
+            ? { licenseEvidence: sitePath(asset.licenseEvidence) }
+            : {}),
+        }));
       })
       .catch((error) => {
         library = null;

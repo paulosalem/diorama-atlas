@@ -36,9 +36,10 @@ The scene packages and preview images are interpretive material, not
 photographic evidence that a particular building exists. Cultural descriptions
 have not been independently fact-checked as part of repository organization.
 
-Before public distribution, review the relevant source terms, confirm generated
-image rights and provenance, and choose an explicit project license. This
-repository does not currently declare one.
+The Pages export retains the source terms and generated-asset provenance above.
+It does not grant a new project-wide open-source license. Original application
+content remains reserved; third-party assets retain their individual licenses.
+Unverified imported models are excluded from public deployment.
 
 The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
@@ -53,10 +54,9 @@ under ignored `.cache/`. Saved scene JSON may be valuable user work: back it up
 before deleting that directory.
 
 The import also contained seven unused binary models with no accompanying
-attribution manifest. These are not versioned runtime assets; preserved local
-copies may remain in `public/atlas-models/` or historical review directories.
-No active browser module loads them. Establish provenance before introducing
-them into the runtime or committing them.
+attribution manifest. Preserved copies exist in `public/atlas-models/`, but no
+active browser module loads them and the Pages exporter does not publish them.
+Establish provenance before introducing them into the runtime or deployment.
 
 Old screenshots, review galleries, dependency folders, and agent session logs were
 not promoted into repository source. The original project and its Codex checkpoint

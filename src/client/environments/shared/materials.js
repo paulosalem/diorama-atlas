@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { sitePath } from "../../site.js";
 import { configureWaterMaterial } from "./water-flow.js";
 
 // Shared, local, colour-managed material maps. No generation or network service is
@@ -37,7 +38,7 @@ export function createRiadMaterials(renderer) {
           }),
         );
         texture = loader.load(
-          `/public/riad/materials/${asset}_${suffix}.jpg`,
+          sitePath(`/public/riad/materials/${asset}_${suffix}.jpg`),
           resolve,
           undefined,
           reject,

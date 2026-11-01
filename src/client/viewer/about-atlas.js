@@ -4,6 +4,8 @@ import {
   translateElement,
 } from "../localization/locale.js";
 
+import { sitePath, staticHosting } from "../site.js";
+
 let dialog;
 let opener;
 let unsubscribeLocale;
@@ -11,7 +13,7 @@ let unsubscribeLocale;
 function externalLink(label, href) {
   const link = document.createElement("a");
   link.textContent = label;
-  link.href = href;
+  link.href = sitePath(href);
   link.target = "_blank";
   link.rel = "noreferrer";
   return link;
@@ -41,6 +43,14 @@ async function showAbout(button) {
   translateElement(
     intro,
     "Imagined places, real traditions. Original environments for looking closely, wandering slowly and discovering the character of everyday materials.",
+  );
+  const author = document.createElement("p");
+  author.className = "about-author";
+  author.append(
+    translateElement(document.createElement("span"), "Created by"),
+    " ",
+    externalLink("Dr. Paulo Salem", "https://www.paulosalem.com/"),
+    ".",
   );
   const disclosure = document.createElement("p");
   translateElement(
@@ -72,12 +82,20 @@ async function showAbout(button) {
   current.append(
     header,
     intro,
+    author,
     disclosure,
     narrationDisclosure,
     label,
     search,
     content,
   );
+  if (staticHosting)
+    narrationDisclosure.after(
+      translateElement(
+        document.createElement("p"),
+        "This public edition includes all bundled places and prerecorded narration. Additional object-detail speech uses your browser's voices; creating new places requires the local server.",
+      ),
+    );
   current.addEventListener("close", () => opener?.focus());
   current.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -89,7 +107,7 @@ async function showAbout(button) {
   document.body.append(current);
   current.showModal();
   try {
-    const response = await fetch("/public/credits.json");
+    const response = await fetch(sitePath("/public/credits.json"));
     if (!response.ok)
       throw new Error("The attribution catalogue could not be loaded.");
     const credits = await response.json();

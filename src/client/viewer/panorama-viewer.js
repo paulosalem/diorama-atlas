@@ -18,6 +18,7 @@ import {
 import { applySurfacePatina } from "../environments/shared/surface-patina.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createSceneNarration } from "./scene-narration.js";
+import { sitePath, staticHosting } from "../site.js";
 
 let activeViewer = null;
 
@@ -164,8 +165,8 @@ export async function createViewer(
       narration?.setDetailsVisible(show);
     },
     onExit: () => {
-      if (onNavigate) onNavigate("/");
-      else location.href = "/";
+      if (onNavigate) onNavigate(sitePath("/"));
+      else location.href = sitePath("/");
     },
   });
   panorama.activate(runtime, definition);
@@ -250,7 +251,7 @@ export async function createViewer(
     panorama.select();
   };
   app.querySelector("#listenButton").onclick = async () => {
-    if (outdoor || getLocale() === "pt-BR") {
+    if (staticHosting || outdoor || getLocale() === "pt-BR") {
       if (!window.speechSynthesis) {
         setListenState("Speech unavailable");
         return;
@@ -282,7 +283,9 @@ export async function createViewer(
       return;
     }
     setListenState("Loading…");
-    audio.src = `/api/narration/${encodeURIComponent(definition.id)}/${encodeURIComponent(definition.details[selected].id)}`;
+    audio.src = sitePath(
+      `/api/narration/${encodeURIComponent(definition.id)}/${encodeURIComponent(definition.details[selected].id)}`,
+    );
     try {
       await audio.play();
       setListenState("Pause");

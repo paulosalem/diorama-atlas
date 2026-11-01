@@ -5,6 +5,7 @@ export default [
   {
     ignores: [
       "node_modules/**",
+      "dist/**",
       ".cache/**",
       "outputs/**",
       "coverage/**",
@@ -35,6 +36,7 @@ export default [
   {
     files: [
       "tests/browser/**/*.js",
+      "tests/pages/**/*.js",
       "scripts/capture-interiors.mjs",
       "scripts/capture-patina.mjs",
       "scripts/check-outdoors.mjs",

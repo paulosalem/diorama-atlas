@@ -53,6 +53,10 @@ Navigation, page hiding, another tab claiming playback and **Mute all** cancel
 the outgoing voice. Language changes stop the old recording before starting the
 new one. No playback path calls a paid provider or downloads remote audio.
 
+The GitHub Pages edition serves these same prerecorded files beneath its
+project path. Additional object-detail Listen uses browser speech in both
+languages because the static host has no narration API.
+
 ## Source and generation
 
 `scripts/prompts/opening-narration.json` is the original text and direction.

@@ -1,5 +1,8 @@
 export const uiPtBR = Object.freeze({
   "Diorama Atlas": "Diorama Atlas",
+  "Created by": "Criado por",
+  "This public edition includes all bundled places and prerecorded narration. Additional object-detail speech uses your browser's voices; creating new places requires the local server.":
+    "Esta edição pública inclui todos os lugares da coleção e as narrações pré-gravadas. A fala adicional sobre os objetos usa as vozes do navegador; criar novos lugares exige o servidor local.",
   "Diorama Atlas — a world of small places":
     "Diorama Atlas — um mundo de pequenos lugares",
   Language: "Idioma",
