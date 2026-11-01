@@ -17,6 +17,15 @@ The repository's **Settings → Pages → Build and deployment** source is
 **GitHub Actions**. The `github-pages` environment tracks deployments.
 A failed check does not replace the last published site.
 
+The full-detail browser jobs run on the Apple Silicon `macos-15` runner with
+Chromium's Metal backend. A shared preflight records the actual WebGL renderer
+and rejects software rendering in CI before loading the collection. The
+standard Linux runner's software GPU stalls these scenes, even at a much lower
+pixel ratio; reducing the published geometry or materials is not a solution.
+Node checks and the deployment job remain on Linux. Browser jobs stop at the
+first failure and have a 20-minute bound; failed traces and Pages scene captures
+are retained as workflow artifacts for seven days.
+
 ## Build and preview
 
 ```sh

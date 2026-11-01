@@ -3,6 +3,8 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/pages",
   workers: 1,
+  globalSetup: "./scripts/helpers/browser-setup.mjs",
+  maxFailures: process.env.CI ? 1 : 0,
   timeout: 180_000,
   expect: { timeout: 30_000 },
   outputDir: "test-results/pages",
@@ -19,6 +21,7 @@ export default defineConfig({
           : ["--enable-unsafe-swiftshader"],
     },
     screenshot: "only-on-failure",
+    trace: { mode: "retain-on-failure", screenshots: false },
   },
   webServer: {
     command: "npm run build:pages && npm run preview:pages",

@@ -4,6 +4,8 @@ export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: false,
   workers: 1,
+  globalSetup: "./scripts/helpers/browser-setup.mjs",
+  maxFailures: process.env.CI ? 1 : 0,
   timeout: 90_000,
   expect: { timeout: 30_000 },
   outputDir: "test-results/browser",
