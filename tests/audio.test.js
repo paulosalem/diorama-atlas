@@ -132,6 +132,13 @@ test("unused soundscapes allocate no browser resources and dispose idempotently"
   assert.equal(soundscape.inspection.nodes, 0);
 });
 
+test("new sound choices default on without inventing saved playback consent", () => {
+  assert.equal(readAudioPreferences("unrelated=value"), null);
+  assert.equal(DEFAULT_AUDIO_PREFERENCES.ambienceEnabled, true);
+  assert.equal(DEFAULT_AUDIO_PREFERENCES.musicEnabled, true);
+  assert.equal(DEFAULT_AUDIO_PREFERENCES.narrationEnabled, false);
+});
+
 test("sound preference cookies round-trip with explicit consent and safe attributes", () => {
   let stored = "";
   let header = "";
@@ -144,10 +151,6 @@ test("sound preference cookies round-trip with explicit consent and safe attribu
       stored = value.split(";")[0];
     },
   };
-  assert.deepEqual(
-    readAudioPreferences("unrelated=value"),
-    DEFAULT_AUDIO_PREFERENCES,
-  );
   const preferences = {
     ...DEFAULT_AUDIO_PREFERENCES,
     ambienceEnabled: true,
@@ -203,4 +206,24 @@ test("adding narration preserves existing one-year sound consent and volumes", (
     ...existing,
     narrationEnabled: false,
   });
+});
+
+test("new defaults preserve previously saved muted and mixed channel choices", () => {
+  for (const ambienceEnabled of [false, true]) {
+    for (const musicEnabled of [false, true]) {
+      const existing = {
+        version: 1,
+        ambienceEnabled,
+        musicEnabled,
+        ambienceVolume: 0.67,
+        musicVolume: 0.23,
+        mode: "theme",
+      };
+      const cookie = `${AUDIO_COOKIE}=${encodeURIComponent(JSON.stringify(existing))}`;
+      assert.deepEqual(readAudioPreferences(cookie), {
+        ...existing,
+        narrationEnabled: false,
+      });
+    }
+  }
 });

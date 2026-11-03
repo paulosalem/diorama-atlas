@@ -125,6 +125,46 @@
 .is-miniature .riad-actions {
   margin-left: auto;
 }
+@media (max-height: 500px) and (min-width: 701px) {
+  .viewer:has(.scene-experience) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 12px;
+  }
+  .viewer:has(.scene-experience) .viewer-header {
+    min-width: 0;
+  }
+  .scene-experience {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .scene-versions-label,
+  .scene-experience-hint {
+    display: none;
+  }
+  .viewer:has(.scene-experience) .canvas-mount,
+  .viewer:has(.scene-experience) .riad-toolbar {
+    grid-column: 1 / -1;
+  }
+  .viewer:has(.scene-experience) .riad-toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .viewer:has(.scene-experience) .riad-viewpoints {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .viewer:has(.scene-experience) .riad-viewpoints button {
+    flex-shrink: 0;
+  }
+  .viewer:has(.scene-experience) .riad-actions {
+    margin-left: auto;
+  }
+}
 @media (max-width: 700px) {
   .scene-experience {
     flex-direction: column;

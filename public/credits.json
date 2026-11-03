@@ -615,6 +615,15 @@
       "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
     },
     {
+      "category": "Lighting",
+      "title": "Kloofendal 43d Clear (Pure Sky)",
+      "author": "Greg Zaal",
+      "source": "https://polyhaven.com/a/kloofendal_43d_clear_puresky",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Photographic clear blue sky with a high sun and light horizon haze, photographed in South Africa, not the Douro. The full panorama was decoded and inspected; its lower hemisphere is a softened sky continuation, not a photographed river or landscape. The original HDR is unchanged. Terrain, buildings and water remain modeled; sun direction and reflections follow the selected sky. Tone mapping was used only for local inspection."
+    },
+    {
       "category": "3D models",
       "title": "Boulder 01",
       "author": "Rico Cilliers",
@@ -5752,7 +5761,197 @@
       ],
       "provenance": "/public/narration/manifest.json",
       "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A landscape made through work",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-en-US",
+      "audio": "/public/narration/douro-vineyard-en-US.mp3",
+      "sha256": "54c2c68e8bbd8d160629c91a3d6f700faa67b2bf802745eeb774d34432a793dc",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "In Portugal's Douro Valley, the vineyard is both a cultivated landscape and a record of human effort. Generations have shaped steep slopes into terraces, tending vines and maintaining the stone that holds the soil. Paths connect the fields to quintas, the farm complexes where cultivation meets the work of making wine. This imagined vineyard brings those relationships together: fruit close at hand, a shaded working doorway, and the river valley beyond. It is an invitation to see the patient labor within the view.",
+      "locale": "en-US",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:30:58.446Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Reading the trained vine",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-vines-en-US",
+      "audio": "/public/narration/douro-vineyard-vines-en-US.mp3",
+      "sha256": "9dcfa0e0063883aa2222db9c6da0cf0c3367f42ac0d4a38d3fcaf357a150191c",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Look beneath the leaves. An older trunk gives way to younger canes, held along supports so the plant can be tended. Small grape bunches hang below the canopy, where their scale becomes clear beside the leaves and wires. Pruning, training and harvesting are different parts of a continuing relationship with the vine. These plants suggest the harvest season without claiming an identified grape variety.",
+      "locale": "en-US",
+      "view": "vines",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:03.095Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "The stone beneath the view",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-terraces-en-US",
+      "audio": "/public/narration/douro-vineyard-terraces-en-US.mp3",
+      "sha256": "fe23c0ab70ea6d0513f6610c2f26f2a1b48f1b9e0099fcf4faa6f667ef0859d7",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "The terraces make a steep hillside workable. Schist walls hold the ground, while narrow stairs connect one level to the next. The Douro contains different terrace forms, shaped by changing techniques and by the rebuilding of vineyards over time. Here, the layered stone and open path bring that larger history down to the scale of a footstep. Their order depends on continuing care, not on the landscape standing still.",
+      "locale": "en-US",
+      "view": "terraces",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:06.922Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Beyond the working doorway",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-quinta-en-US",
+      "audio": "/public/narration/douro-vineyard-quinta-en-US.mp3",
+      "sha256": "2bd7d1f77c23be8a3f29b27273d74423f8aef86b2902592953db7c3f9190f8a7",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "The open doorway connects the bright vineyard to a cooler room. Crates, pruning tools, a notebook and a water jug suggest the small tasks and pauses that sustain a working day. The thick walls and tiled roof belong to an architectural vocabulary found around the Douro, but this modest quinta is invented. Its value here is the relationship it reveals: the beautiful hillside is also somebody's place of work.",
+      "locale": "en-US",
+      "view": "quinta",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:12.203Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for en-US. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Uma paisagem construída pelo trabalho",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-pt-BR",
+      "audio": "/public/narration/douro-vineyard-pt-BR.mp3",
+      "sha256": "75b64e5d2ed78644bbfb1e1d9e1d27a9fedf010717c14f39c7b018f0713a8359",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "No vale do Douro, em Portugal, a vinha é uma paisagem cultivada e também um registro do esforço humano. Gerações transformaram encostas íngremes em terraços, cuidando das videiras e conservando as pedras que sustentam o solo. Caminhos ligam os campos às quintas, conjuntos rurais onde o cultivo encontra o trabalho de produzir vinho. Esta vinha imaginada reúne essas relações: os frutos ao alcance do olhar, uma porta de trabalho à sombra e o vale do rio ao fundo. É um convite a perceber o trabalho paciente dentro da paisagem.",
+      "locale": "pt-BR",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:19.218Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Ler a videira conduzida",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-vines-pt-BR",
+      "audio": "/public/narration/douro-vineyard-vines-pt-BR.mp3",
+      "sha256": "4b425b0b9f3952cc449366dff7f859fc55bb257c67868bca9443d2b549b9ae36",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Observe por baixo das folhas. Do tronco mais antigo saem ramos jovens, conduzidos pelos suportes para facilitar os cuidados com a planta. Pequenos cachos pendem sob a folhagem, e sua escala fica clara ao lado das folhas e dos arames. Podar, conduzir e colher são partes diferentes de uma relação contínua com a videira. Estas plantas sugerem a época da colheita sem representar uma variedade de uva identificada.",
+      "locale": "pt-BR",
+      "view": "vines",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:24.406Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "A pedra que sustenta a paisagem",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-terraces-pt-BR",
+      "audio": "/public/narration/douro-vineyard-terraces-pt-BR.mp3",
+      "sha256": "fd301d7f986d6d8de637add351147740e96187641ef5985df82b6a5c747fd185",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "Os terraços tornam possível trabalhar em uma encosta íngreme. Muros de xisto sustentam o terreno, enquanto escadas estreitas ligam um nível ao seguinte. O Douro reúne diferentes formas de terraços, moldadas pelas mudanças técnicas e pela reconstrução das vinhas ao longo do tempo. Aqui, as camadas de pedra e o caminho aberto aproximam essa história da escala de um passo. Essa organização depende de cuidados contínuos, não de uma paisagem parada no tempo.",
+      "locale": "pt-BR",
+      "view": "terraces",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:30.364Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
+    },
+    {
+      "category": "AI-generated narration",
+      "title": "Além da porta de trabalho",
+      "author": "Original Atlas narration; AI-generated voice by OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "license": "Original Atlas narration; generated voice subject to OpenAI terms",
+      "licenseUrl": "https://openai.com/policies/terms-of-use/",
+      "termsUrl": "https://openai.com/policies/terms-of-use/",
+      "narrationId": "douro-vineyard-quinta-pt-BR",
+      "audio": "/public/narration/douro-vineyard-quinta-pt-BR.mp3",
+      "sha256": "f1911608291b21b4e503f0aef85ffe13b8f51612903f68871c542039eae3554e",
+      "model": "gpt-4o-mini-tts",
+      "voice": "cedar",
+      "text": "A porta aberta liga a vinha iluminada a um cômodo mais fresco. Caixas, ferramentas de poda, um caderno e uma jarra de água sugerem as pequenas tarefas e pausas que sustentam um dia de trabalho. As paredes espessas e o telhado de telhas fazem parte de uma linguagem arquitetônica encontrada no Douro, mas esta quinta modesta é inventada. O que importa aqui é a relação revelada: a bela encosta também é um lugar de trabalho.",
+      "locale": "pt-BR",
+      "view": "quinta",
+      "disclosure": "AI-generated voice, not a human recording.",
+      "generatedAt": "2026-11-03T00:31:35.722Z",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "provenance": "/public/narration/manifest.json",
+      "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
     }
   ],
-  "updatedAt": "2026-11-01T14:50:14.513Z"
+  "updatedAt": "2026-11-03T00:33:50.864Z"
 }

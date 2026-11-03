@@ -49,6 +49,8 @@ test("same-tab scene changes release the previous ambience before the next place
   });
   await page.locator("#closeSoundscape").click();
   await page.getByRole("button", { name: "Back to world" }).click();
+  await expect(page.locator("#placesButton")).toBeVisible();
+  await expect(page.locator("#worldLoading")).toBeHidden();
   await page.locator("#placesButton").click();
   await expect
     .poll(() =>
@@ -144,7 +146,6 @@ test("sound choices are stored in a persistent cookie and restored after reopeni
     "true",
   );
   await page.locator("#musicMode").selectOption("theme");
-  await page.locator("#musicSound").click();
   await expect(page.locator("#musicSound")).toHaveAttribute(
     "aria-pressed",
     "true",
@@ -347,14 +348,35 @@ test("blocked automatic playback keeps saved consent and offers a working Resume
   expect((await audioState(page)).snapshot.musicEnabled).toBe(true);
 });
 
-test("enabling ambience on the globe arms it for every place", async ({
+test("first-visit music and ambience are enabled but wait for playback consent", async ({
   page,
+  context,
 }) => {
+  const recordings = [];
+  page.on("request", (request) => {
+    if (/\.(mp3|ogg|wav)$/.test(request.url())) recordings.push(request.url());
+  });
   await page.goto("/");
   await page.locator("#soundscapeButton").click();
-  await page.locator("#ambientSound").click();
-  await expect(page.locator("#ambienceStatus")).toContainText(
-    "starts when you enter a place",
+  expect((await audioState(page)).snapshot).toMatchObject({
+    ambienceEnabled: true,
+    musicEnabled: true,
+    narrationEnabled: false,
+    ambience: { state: "armed" },
+    music: { state: "paused" },
+  });
+  expect((await audioState(page)).inspection.music.contextState).toBe("closed");
+  expect(recordings).toEqual([]);
+  expect(
+    (await context.cookies()).some(
+      (cookie) => cookie.name === "atlas-audio-preferences",
+    ),
+  ).toBe(false);
+  await expect(page.locator("#ambientSound")).toHaveText("Disable ambience");
+  await page.locator("#musicSound").click();
+  await expect(page.locator("#musicSound")).toHaveAttribute(
+    "aria-pressed",
+    "true",
   );
   await page.locator("#closeSoundscape").click();
   await page.locator("#placesButton").click();
@@ -365,6 +387,10 @@ test("enabling ambience on the globe arms it for every place", async ({
   await page.locator("#placePreview .preview-main").click();
   await page.locator("#soundscapeButton").click();
   await expect(page.locator("#ambientSound")).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.locator("#musicSound")).toHaveAttribute(
     "aria-pressed",
     "true",
   );

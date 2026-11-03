@@ -84,7 +84,7 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
       const x = -840 + (column / columns) * 1680;
       p.push(...point(x, d));
       uv.push(x / 3, d / 3);
-      color.set(woodland(x, d) ? 0x758265 : 0xc9bba0);
+      color.set(woodland(x, d) ? 0x699947 : 0xa5ad71);
       color.multiplyScalar(0.82 + noise(x * 0.065, d * 0.07) * 0.3);
       colors.push(color.r, color.g, color.b);
       if (row < rows && column < columns) {
@@ -107,7 +107,7 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
   ground.setIndex(index);
   ground.computeVertexNormals();
   const soil = k.ownMaterial(earth.clone());
-  soil.color.set(0x82755c);
+  soil.color.set(0x9c906a);
   soil.vertexColors = true;
   soil.normalScale.set(0.32, 0.32);
   soil.userData.metresPerRepeat = 3.6;
@@ -157,9 +157,9 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
         spacing = k.range(2.7, 3.5),
         phase = k.range(0, 2),
         pigment = new THREE.Color().setHSL(
-          k.range(0.15, 0.2),
-          k.range(0.14, 0.23),
-          k.range(0.67, 0.86),
+          k.range(0.2, 0.25),
+          k.range(0.28, 0.43),
+          k.range(0.68, 0.86),
         );
       for (let row = near + phase; row < near + 50; row += spacing) {
         for (let x = left + 4; x < end - 3; x += 1.25) {
@@ -173,7 +173,7 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
           planting.push({
             position,
             rotation: [k.range(-0.1, 0.1), k.range(-0.35, 0.35), 0],
-            scale: [k.range(0.85, 1.14), k.range(0.8, 1.18), 0.9],
+            scale: [k.range(1.2, 1.5), k.range(1, 1.3), 1.5],
             color: pigment.clone().multiplyScalar(k.range(0.82, 1.14)),
           });
           if (Math.round((row - near) / spacing) % 3 === 0) {
@@ -224,7 +224,9 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
             ],
             scale: [spread * 0.65, spread * 0.65, spread * 0.65],
             rotation: [k.range(-0.3, 0.3), k.range(0, 6.28), 0],
-            color: new THREE.Color(0xa6af8b).multiplyScalar(k.range(0.7, 1.12)),
+            color: new THREE.Color(0xb4ca87).multiplyScalar(
+              k.range(0.76, 1.12),
+            ),
           });
       }
       // Keep other seeded planting unchanged while clearing the whole crown.
@@ -238,7 +240,7 @@ export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
         treeLeaves.length = firstLeaf;
       }
     }
-  const vineCluster = leafCluster(k, 22, 0.31),
+  const vineCluster = leafCluster(k, 44, 0.42),
     treeCluster = leafCluster(k, 18, 0.34);
   k.instanceCells(vineCluster, foliage, planting, {
     shadow: false,

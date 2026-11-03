@@ -257,15 +257,13 @@ try {
       };
     });
     assert.equal(
-      audioBefore.snapshot.ambienceEnabled,
-      false,
-      "Ambience must remain opt-in.",
+      audioBefore.inspection.ambience.contextState,
+      "closed",
+      "Ambience must wait for explicit playback.",
     );
     assert.equal(audioBefore.inspection.ambience.sources, 0);
     await page.locator("#soundscapeButton").click();
-    await page
-      .getByRole("button", { name: "Enable ambience", exact: true })
-      .click();
+    await page.locator("#ambientSound").click();
     await page
       .getByRole("button", { name: "Mute ambience", exact: true })
       .waitFor({ timeout: 30_000 });

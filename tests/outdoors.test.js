@@ -4,6 +4,12 @@ import { lstat, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { createHash, randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
+import * as THREE from "three";
+import { HDRLoader } from "three/addons/loaders/HDRLoader.js";
+import {
+  loadOutdoorDaylight,
+  applyOutdoorDaylight,
+} from "../src/client/environments/outdoors/outdoor-daylight.js";
 import {
   outdoorScenes,
   outdoorDraftScenes,
@@ -15,6 +21,62 @@ import { outdoorBuilders } from "../src/client/environments/outdoors/outdoor-sce
 import { createMiniature } from "../src/client/world/world-miniatures.js";
 
 const registeredScenes = [...outdoorScenes, ...outdoorDraftScenes];
+
+test("daylight profiles preserve the collection baseline and align the selected sky with its sun", async (t) => {
+  const paths = [];
+  t.mock.method(HDRLoader.prototype, "loadAsync", async (path) => {
+    paths.push(path);
+    const data = new Float32Array(4 * 4 * 4).fill(0.1);
+    data.set([10, 10, 10, 1], 8);
+    const texture = new THREE.DataTexture(data, 4, 4);
+    texture.type = THREE.FloatType;
+    return texture;
+  });
+  const generator = { fromEquirectangular: (texture) => ({ texture }) };
+  for (const [profile, file, gain, intensity] of [
+    [undefined, "daylight-pure-sky_2k.hdr", 1.55, 1],
+    ["broken-clouds", "daylight-pure-sky_2k.hdr", 1.55, 1],
+    ["summer", "daylight-summer-sky_2k.hdr", 1.35, 1.25],
+  ]) {
+    const daylight = await loadOutdoorDaylight(generator, profile);
+    assert.equal(paths.at(-1), `/public/outdoors/detail-assets/${file}`);
+    assert.equal(daylight.exposureGain, gain);
+    assert.equal(daylight.intensity, intensity);
+    const scene = new THREE.Scene(),
+      sun = new THREE.DirectionalLight();
+    sun.position.set(12, 21, 18);
+    sun.target.position.set(0, 1, 0);
+    const direction = sun.position.clone().sub(sun.target.position),
+      azimuth = Math.atan2(direction.z, direction.x);
+    applyOutdoorDaylight(scene, { sun }, daylight);
+    const actual = sun.position.clone().sub(sun.target.position);
+    assert.ok(Math.abs(Math.atan2(actual.z, actual.x) - azimuth) < 1e-12);
+    assert.ok(
+      Math.abs(Math.asin(actual.y / actual.length()) - daylight.sunElevation) <
+        1e-12,
+    );
+    assert.ok(Math.abs(actual.length() - direction.length()) < 1e-12);
+    assert.equal(scene.background, daylight.texture);
+    assert.equal(scene.backgroundIntensity, intensity);
+    assert.deepEqual(scene.environmentRotation, scene.backgroundRotation);
+    daylight.texture.dispose();
+  }
+  for (const profile of ["unknown", "__proto__", "constructor"])
+    await assert.rejects(
+      loadOutdoorDaylight(generator, profile),
+      /Unknown outdoor daylight profile/,
+    );
+  assert.equal(paths.length, 3);
+  assert.ok(
+    outdoorScenes
+      .filter((scene) => scene.id !== "douro-vineyard")
+      .every((scene) => scene.daylight === undefined),
+  );
+  assert.equal(
+    outdoorScenes.find((scene) => scene.id === "douro-vineyard").daylight,
+    "summer",
+  );
+});
 
 test("all released and explicitly staged outdoor settings have distinct builders and four details", () => {
   assert.equal(outdoorScenes.length, 11);
@@ -502,86 +564,113 @@ test("review snapshots copy canonical source and dependencies without author-wor
   }
 });
 
-test("realism reports preserve three failed photographic reviews and their original findings", async () => {
-  const directory = resolve("outputs", `realism-verification-${randomUUID()}`);
-  const rubric = await readFile(
-    new URL(
-      "../agentic-tests/outdoors/outdoor-photographic-presence.yaml",
-      import.meta.url,
-    ),
-    "utf8",
-  );
-  const criteria = [...rubric.matchAll(/^ {2}- id: ([a-z-]+)$/gm)].map(
-    (match) => match[1],
-  );
-  assert.equal(criteria.length, 10);
-  const inputs = new Map();
-  try {
-    for (const pass of [1, 2, 3]) {
-      const path = resolve(directory, `pass-${pass}`, "results.json");
-      const findings = {
-        settings: Object.fromEntries(
-          outdoorScenes.map((scene) => [
-            scene.id,
-            {
-              rubric: Object.fromEntries(
-                criteria.map((criterion) => [
-                  criterion,
-                  {
-                    verdict:
-                      criterion === "photographic-read" ? "fail" : "pass",
-                    finding: `Original finding ${pass}/${scene.id}/${criterion}`,
-                  },
-                ]),
-              ),
-              overallPhotographicRead: "fail",
-              overallReason: `Original photographic limitation ${pass}/${scene.id}`,
-              viewInventory: {
-                presetWides: [`screens/${scene.id}__view-arrival.png`],
+for (const reviewedScenes of [
+  outdoorScenes.filter((scene) => scene.id !== "douro-vineyard"),
+  outdoorScenes,
+])
+  test(`realism reports preserve three failed photographic reviews for ${reviewedScenes.length} settings`, async () => {
+    const directory = resolve(
+      "outputs",
+      `realism-verification-${randomUUID()}`,
+    );
+    const rubric = await readFile(
+      new URL(
+        "../agentic-tests/outdoors/outdoor-photographic-presence.yaml",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    const criteria = [...rubric.matchAll(/^ {2}- id: ([a-z-]+)$/gm)].map(
+      (match) => match[1],
+    );
+    assert.equal(criteria.length, 10);
+    const inputs = new Map();
+    try {
+      for (const pass of [1, 2, 3]) {
+        const path = resolve(directory, `pass-${pass}`, "results.json");
+        const findings = {
+          settings: Object.fromEntries(
+            reviewedScenes.map((scene) => [
+              scene.id,
+              {
+                rubric: Object.fromEntries(
+                  criteria.map((criterion) => [
+                    criterion,
+                    {
+                      verdict:
+                        criterion === "photographic-read" ? "fail" : "pass",
+                      finding: `Original finding ${pass}/${scene.id}/${criterion}`,
+                    },
+                  ]),
+                ),
+                overallPhotographicRead: "fail",
+                overallReason: `Original photographic limitation ${pass}/${scene.id}`,
+                viewInventory: {
+                  presetWides: [`screens/${scene.id}__view-arrival.png`],
+                },
               },
-            },
-          ]),
-        ),
-      };
-      await mkdir(dirname(path), { recursive: true });
-      const content = JSON.stringify(findings);
-      inputs.set(path, content);
-      await writeFile(path, content);
-    }
-    await writeFile(resolve(directory, "post-review-repair.json"), "{}");
-    execFileSync(
-      process.execPath,
-      ["scripts/build-realism-report.mjs", directory],
-      {
-        encoding: "utf8",
-        stdio: "pipe",
-      },
-    );
-    const summary = JSON.parse(
-      await readFile(resolve(directory, "summary.json"), "utf8"),
-    );
-    assert.equal(summary.inspections, outdoorScenes.length * 3);
-    assert.equal(summary.criterionJudgements, outdoorScenes.length * 30);
-    assert.equal(summary.finalPhotographicPasses, 0);
-    for (const scene of summary.settings) {
-      assert.equal(scene.passes.length, 3);
-      for (const pass of scene.passes) {
-        assert.equal(pass.photographicRead, "fail");
-        assert.equal(
-          pass.reason,
-          `Original photographic limitation ${pass.pass}/${scene.id}`,
-        );
+            ]),
+          ),
+        };
+        await mkdir(dirname(path), { recursive: true });
+        const content = JSON.stringify(findings);
+        inputs.set(path, content);
+        await writeFile(path, content);
       }
+      await writeFile(resolve(directory, "post-review-repair.json"), "{}");
+      execFileSync(
+        process.execPath,
+        ["scripts/build-realism-report.mjs", directory],
+        {
+          encoding: "utf8",
+          stdio: "pipe",
+        },
+      );
+      const summary = JSON.parse(
+        await readFile(resolve(directory, "summary.json"), "utf8"),
+      );
+      assert.equal(summary.inspections, reviewedScenes.length * 3);
+      assert.equal(
+        summary.criterionJudgements,
+        reviewedScenes.length * 3 * criteria.length,
+      );
+      assert.equal(summary.finalPhotographicPasses, 0);
+      for (const scene of summary.settings) {
+        assert.equal(scene.passes.length, 3);
+        for (const pass of scene.passes) {
+          assert.equal(pass.photographicRead, "fail");
+          assert.equal(
+            pass.reason,
+            `Original photographic limitation ${pass.pass}/${scene.id}`,
+          );
+        }
+      }
+      for (const [path, content] of inputs)
+        assert.equal(await readFile(path, "utf8"), content);
+      const report = await readFile(resolve(directory, "index.html"), "utf8");
+      assert.ok(
+        report.includes(
+          `Final photographic-read result: 0/${reviewedScenes.length} pass`,
+        ),
+      );
+      assert.match(report, /Original review verdicts are preserved/);
+      const changedPath = resolve(directory, "pass-3", "results.json");
+      const changed = JSON.parse(inputs.get(changedPath));
+      delete changed.settings[reviewedScenes[0].id];
+      await writeFile(changedPath, JSON.stringify(changed));
+      assert.throws(
+        () =>
+          execFileSync(
+            process.execPath,
+            ["scripts/build-realism-report.mjs", directory],
+            { stdio: "pipe" },
+          ),
+        /same nonempty set/,
+      );
+    } finally {
+      await rm(directory, { recursive: true, force: true });
     }
-    for (const [path, content] of inputs)
-      assert.equal(await readFile(path, "utf8"), content);
-    const report = await readFile(resolve(directory, "index.html"), "utf8");
-    assert.match(report, /Final photographic-read result: 0\/11 pass/);
-    assert.match(report, /Original review verdicts are preserved/);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
-});
+  });
 
 test("all twelve interior previews have accurate rendered-capture provenance, including the riad", async () => {
   const [previews, credits] = await Promise.all([

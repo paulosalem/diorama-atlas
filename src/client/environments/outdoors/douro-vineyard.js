@@ -11,6 +11,7 @@ import { schistGeometry } from "./vineyard-stone.js";
 import { buildVineyardYard } from "./vineyard-yard.js";
 import { buildVineyardLife, vineyardYardView } from "./vineyard-life.js";
 import { buildRiversideRailway } from "./riverside-railway.js";
+import { addVineyardGroundcover } from "./vineyard-garden.js";
 
 const bend = (x) => 1.4 * Math.sin(x * 0.072) + 0.0008 * x * x;
 const edge = (row, x) =>
@@ -49,15 +50,15 @@ function strip(
 
 export function buildDouroVineyard(definition, renderer) {
   const k = createOutdoorKit(renderer, 41387, {
-    sunPosition: [-18, 21, 13],
-    sunColor: 0xffe5bd,
-    sunIntensity: 3.3,
-    skyColor: 0xc4d4dd,
-    ambientIntensity: 0.5,
-    exposure: 0.92,
-    fogDensity: 0.0014,
+    sunPosition: [12, 21, 18],
+    sunColor: 0xffe2ad,
+    sunIntensity: 4.6,
+    skyColor: 0xb9d8ec,
+    ambientIntensity: 0.6,
+    exposure: 1.03,
+    fogDensity: 0.00065,
   });
-  const earth = k.material(0x827762, 1);
+  const earth = k.material(0x9b8968, 1);
   earth.map = k.imageTexture(
     "/public/outdoors/detail-assets/douro/soil-diff.jpg",
     { repeat: true },
@@ -277,7 +278,7 @@ export function buildDouroVineyard(definition, renderer) {
   });
   k.instances(
     new THREE.ConeGeometry(1, 1, 3).translate(0, 0.5, 0),
-    k.material(0x9f9665, 1),
+    k.material(0x788b42, 1),
     grass,
     {
       shadow: false,
@@ -298,7 +299,7 @@ export function buildDouroVineyard(definition, renderer) {
     width: 1500,
     depth: 260,
     position: [0, -27, -166],
-    color: 0x526a65,
+    color: 0x3e7979,
   });
   water.children[0].material.uniforms.waterScale.value = 1.8;
   strip(
@@ -334,12 +335,13 @@ export function buildDouroVineyard(definition, renderer) {
     ...railwayBounds,
   });
   const counts = vines.finish();
+  const groundcover = addVineyardGroundcover(k, { edge, level });
   const runtime = k.finish(
     definition,
     {
       ...structuredClone(vineyardViews),
-      yard: structuredClone(vineyardYardView),
-      railway: railway.view,
+      yard: { ...structuredClone(vineyardYardView), narration: false },
+      railway: { ...railway.view, narration: false },
     },
     {
       vines: [5.1, 0.85, 0.9],
@@ -350,6 +352,13 @@ export function buildDouroVineyard(definition, renderer) {
     {
       depthProbes: [
         life.barrowProbe,
+        {
+          id: "drinking-cup",
+          kind: "cavity",
+          origin: [-10.29, 1, 0.5],
+          direction: [0, -1, 0],
+          minDistance: 0.14,
+        },
         {
           id: "quinta-door",
           kind: "doorway",
@@ -376,6 +385,7 @@ export function buildDouroVineyard(definition, renderer) {
   );
   runtime.vineyard = {
     ...counts,
+    groundcover,
     landscape,
     terraces: 11,
     quinta,

@@ -26,10 +26,23 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   });
   await page.goto("/?scene=douro-vineyard&inspect=1");
   await waitForViewer(page, { timeout: 180_000 });
+  await expect(page.locator(".scene-narration")).toHaveAttribute(
+    "data-state",
+    "ready",
+  );
+  await expect(page.locator("#narrationTitle")).toHaveText(
+    "A landscape made through work",
+  );
   await expect(
     page.getByRole("link", { name: "Landscape", exact: true }),
   ).toHaveAttribute("aria-current", "true");
   await page.screenshot({ path: info.outputPath("landscape-arrival.png") });
+  await page.locator('[data-view="yard"]').click();
+  await expect(page.locator(".scene-narration")).toBeHidden();
+  await page.locator('[data-view="railway"]').click();
+  await expect(page.locator(".scene-narration")).toBeHidden();
+  await page.locator('[data-view="arrival"]').click();
+  await expect(page.locator(".scene-narration")).toBeVisible();
   await page.locator('[data-view="yard"]').click();
   await page.screenshot({ path: info.outputPath("landscape-yard.png") });
   await page.evaluate(async () => {
@@ -47,7 +60,8 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   const initial = await inspection(page);
   expect(initial.finiteGeometry).toBe(true);
   expect(initial.paused).toBe(true);
-  expect(initial.audio.state).toBe("idle");
+  expect(initial.audio.state).not.toBe("playing");
+  expect(initial.audio.contextState).not.toBe("running");
   expect(initial.narration).toBe("idle");
   expect(initial.camera.mode).toBe("orbit");
   await page.screenshot({ path: info.outputPath("miniature-whole.png") });

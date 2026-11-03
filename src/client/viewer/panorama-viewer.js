@@ -94,7 +94,7 @@ export async function createViewer(
   let environment, daylight;
   try {
     if (outdoor) {
-      daylight = await loadOutdoorDaylight(generator);
+      daylight = await loadOutdoorDaylight(generator, definition.daylight);
       environment = daylight.environment;
     } else {
       const room = new RoomEnvironment();
@@ -158,7 +158,8 @@ export async function createViewer(
     scene.fog = new THREE.FogExp2(runtime.fog.color, runtime.fog.density);
   renderer.toneMappingExposure =
     (runtime.exposure ?? 0.94) * (daylight?.exposureGain ?? 1);
-  scene.environmentIntensity = runtime.environmentIntensity ?? 0.36;
+  scene.environmentIntensity =
+    (runtime.environmentIntensity ?? 0.36) * (daylight?.intensity ?? 1);
   function resize() {
     const w = mount.clientWidth,
       h = mount.clientHeight;

@@ -100,11 +100,21 @@ test.describe("high-density displays", () => {
 test("the vineyard has finite instanced geometry, open doors, supported steps and real cavities", async ({
   page,
 }, testInfo) => {
-  const errors = [];
+  const errors = [],
+    skies = [];
+  page.on("request", (request) => {
+    if (request.url().endsWith(".hdr"))
+      skies.push(new URL(request.url()).pathname);
+  });
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/?scene=douro-vineyard&inspect=1");
   await waitForViewer(page);
-  await expect(page.locator("#sceneRegion")).toContainText("Douro Valley");
+  expect(skies).toEqual([
+    "/public/outdoors/detail-assets/daylight-summer-sky_2k.hdr",
+  ]);
+  await expect(page.locator("#sceneRegion")).toHaveText(
+    "An imagined vineyard · Douro Valley, Portugal",
+  );
   const measured = await page.evaluate(async () => {
     const THREE = await import("three");
     const { getActiveViewer } =
@@ -224,6 +234,10 @@ test("the vineyard has finite instanced geometry, open doors, supported steps an
   expect(measured.clothMinimum).toBeGreaterThanOrEqual(0.8285);
   expect(measured.clothMinimum).toBeLessThan(0.83);
   expect(measured.instances).toBeGreaterThan(0);
+  expect(measured.counts.groundcover).toBeGreaterThan(10000);
+  expect(measured.counts.vines).toBe(1548);
+  expect(measured.counts.leaves).toBe(78174);
+  expect(measured.counts.berries).toBeGreaterThan(69432);
   expect(measured.partitions.length).toBeGreaterThan(0);
   for (const partition of measured.partitions) {
     expect(partition.actual).toBe(partition.expected);
@@ -245,7 +259,12 @@ test("the vineyard has finite instanced geometry, open doors, supported steps an
     for (const distance of stair.supports)
       expect(distance).toBeCloseTo(0.25, 2);
   }
-  expect(measured.cavities).toHaveLength(3);
+  expect(measured.cavities.map(({ id }) => id).sort()).toEqual([
+    "drinking-cup",
+    "empty-crate",
+    "water-jug",
+    "wheelbarrow",
+  ]);
   for (const distance of measured.tableSupports)
     expect(distance).toBeCloseTo(0.2725, 3);
   for (const cavity of measured.cavities) {
@@ -308,7 +327,9 @@ test("the vineyard supports both languages, compact controls, sound consent and 
   expect(audioRequests).toEqual([]);
   await page.locator("#atlasLanguage").selectOption("pt-BR");
   await expect(page.locator("#sceneTitle")).toHaveText("Vinha no Douro");
-  await expect(page.locator("#sceneRegion")).toContainText("Vale do Douro");
+  await expect(page.locator("#sceneRegion")).not.toContainText(
+    "Prévia local em desenvolvimento",
+  );
   await page.getByRole("button", { name: "Referências", exact: true }).click();
   await expect(page.locator("#outdoorReferences figure")).toHaveCount(4);
   await expect(page.locator("#outdoorReferences")).toContainText("socalcos");
@@ -323,12 +344,25 @@ test("the vineyard supports both languages, compact controls, sound consent and 
     "href",
     /creativecommons.org/,
   );
+  await page.locator("#creditSearch").fill("A landscape made through work");
+  await expect(page.locator(".credit-entry")).toHaveCount(1);
+  await expect(page.locator(".credit-license")).toHaveAttribute(
+    "href",
+    "https://openai.com/policies/terms-of-use/",
+  );
   await page.locator("#creditSearch").fill("folha verde");
   await expect(page.locator(".credit-entry")).toHaveCount(1);
   await expect(page.locator(".credit-note")).toContainText("Marrocos");
   await expect(page.locator(".credit-license")).toHaveAttribute(
     "href",
     "https://creativecommons.org/licenses/by-sa/4.0/",
+  );
+  await page.locator("#creditSearch").fill("Kloofendal");
+  await expect(page.locator(".credit-entry")).toHaveCount(1);
+  await expect(page.locator(".credit-note")).toContainText("África do Sul");
+  await expect(page.locator(".credit-license")).toHaveAttribute(
+    "href",
+    "https://creativecommons.org/publicdomain/zero/1.0/",
   );
   await page.keyboard.press("Escape");
   await page.locator("#atlasLanguage").selectOption("en-US");

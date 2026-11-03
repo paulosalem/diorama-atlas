@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { buildVineyardCrate } from "./vineyard-crate.js";
+import { addQuintaPlanters } from "./vineyard-garden.js";
 
 function roofTile() {
   const p = [],
@@ -50,9 +51,10 @@ export function buildVineyardQuinta(k, vines, { roofColor = 0xb47756 } = {}) {
   lime.bumpScale = 0.003;
   lime.userData.metresPerRepeat = 0.8;
   const timber = k.ownMaterial(k.m.cedar.clone());
-  timber.color.set(0x746147);
+  timber.color.set(0xb79a70);
+  timber.roughness = 0.74;
   const green = k.ownMaterial(k.m.cedar.clone());
-  green.color.set(0x40594a);
+  green.color.set(0x52764c);
   const stone = k.ownMaterial(k.m.stone.clone());
   stone.color.set(0xaca18c);
   const tile = k.ownMaterial(k.m.terracotta.clone());
@@ -103,11 +105,12 @@ export function buildVineyardQuinta(k, vines, { roofColor = 0xb47756 } = {}) {
     );
   }
   k.box([6.8, 0.18, 6.2], [0, -0.055, -2.9], stone, g, 0);
-  const floorTones = [0xbcb39f, 0xaaa592, 0xc2b6a2, 0xb2aa99, 0xa6a18e].map(
+  const floorTones = [0xd5c8ae, 0xc3b89e, 0xd8c9ae, 0xcac0a6, 0xbdb69e].map(
     (color) => {
       const material = k.ownMaterial(stone.clone());
       material.color.set(color);
-      material.normalScale.set(0.2, 0.2);
+      material.normalScale.set(0.14, 0.14);
+      material.userData.diffuseDetailMode = "tinted-grain";
       material.userData.metresPerRepeat = 0.85;
       return material;
     },
@@ -390,6 +393,52 @@ export function buildVineyardQuinta(k, vines, { roofColor = 0xb47756 } = {}) {
     );
   }
   k.sphere(0.007, [0.13, 0.843, 0.08], k.m.brass, table);
+  const cup = k.sub([-0.59, 0.828, 0.1], 0.3, table);
+  k.lathe(
+    [
+      [0, 0],
+      [0.034, 0],
+      [0.043, 0.089],
+      [0.039, 0.091],
+      [0.03, 0.009],
+      [0, 0.009],
+    ],
+    [0, 0, 0],
+    k.m.cream,
+    cup,
+    32,
+  );
+  k.tube(
+    [
+      [0.037, 0.072, 0],
+      [0.069, 0.071, 0],
+      [0.067, 0.026, 0],
+      [0.035, 0.025, 0],
+    ],
+    0.005,
+    k.m.cream,
+    cup,
+  );
+  const chair = k.sub([-0.57, 0.061, -1.18], Math.PI / 2, g);
+  for (const x of [-0.18, 0.18])
+    for (const z of [-0.17, 0.17]) {
+      k.box([0.038, 0.42, 0.038], [x, 0.21, z], timber, chair, 0.003);
+      if (z > 0)
+        k.box([0.035, 0.45, 0.035], [x, 0.635, z], timber, chair, 0.003);
+    }
+  for (let board = 0; board < 4; board++)
+    k.box(
+      [0.405, 0.026, 0.091],
+      [0, 0.428, -0.15 + board * 0.1],
+      timber,
+      chair,
+      0.003,
+    );
+  for (const y of [0.63, 0.76, 0.85])
+    k.box([0.4, 0.052, 0.026], [0, y, 0.17], timber, chair, 0.004);
+  for (const x of [-0.18, 0.18])
+    k.rod([x, 0.19, -0.17], [x, 0.19, 0.17], 0.012, timber, chair);
+  k.rod([-0.18, 0.2, 0], [0.18, 0.2, 0], 0.012, timber, chair);
   k.poster([-1.8, 1.89, -5.558], {
     width: 0.52,
     height: 0.35,
@@ -486,6 +535,7 @@ export function buildVineyardQuinta(k, vines, { roofColor = 0xb47756 } = {}) {
   const fill = new THREE.HemisphereLight(0xe0dbc5, 0x655941, 0.25);
   fill.position.set(-7, 2, -1);
   k.group.add(fill);
+  addQuintaPlanters(k, g);
   return {
     door: [-6.65, 1.15, 1.6],
     work: [-9.7, 0.85, 0.4],

@@ -131,7 +131,7 @@ export function createVineyardVines(k) {
       shootCurve(branch < 3 ? -1 : 1, branch % 3, habit),
     ),
   );
-  const leaf = k.material(0xffffff, 0.86);
+  const leaf = k.material(0xd3f5b5, 0.72);
   leaf.side = THREE.DoubleSide;
   leaf.name = "Photographic grape leaves with palmate veins";
   leaf.userData.patinaProfile = "none";
@@ -142,6 +142,8 @@ export function createVineyardVines(k) {
   );
   leaf.alphaTest = 0.4;
   leaf.alphaToCoverage = true;
+  leaf.bumpMap = leaf.map;
+  leaf.bumpScale = 0.0007;
   const time = { value: 0 };
   leaf.onBeforeCompile = function (shader) {
     shader.uniforms.vineTime = time;
@@ -168,6 +170,7 @@ export function createVineyardVines(k) {
   autumn.map = k.imageTexture(
     "/public/outdoors/detail-assets/douro/leaf-autumn.png",
   );
+  autumn.bumpMap = autumn.map;
   autumn.userData.leafAnchor = [0.5, 0.1];
   autumn.onBeforeCompile = leaf.onBeforeCompile;
   autumn.customProgramCacheKey = leaf.customProgramCacheKey;
@@ -199,7 +202,7 @@ export function createVineyardVines(k) {
   const stake = k.ownMaterial(k.m.cedar.clone());
   stake.color.set(0x8b8067);
   const greens = [
-    0xffffff, 0xf2e9c7, 0xe4edce, 0xd9dfbd, 0xf4edda, 0xe0d4c3, 0xf1edce,
+    0xffffff, 0xe7f5bf, 0xe4f0ce, 0xc9e3ac, 0xf1f5cc, 0xd4eabb, 0xe3f4bf,
   ];
   const purples = [0x34313f, 0x3e354a, 0x494256, 0x3d3e54, 0x514359];
   function stem(start, end, radius = 0.0016) {
@@ -270,7 +273,7 @@ export function createVineyardVines(k) {
       tip.applyMatrix4(transform);
       stem(root, tip);
       const size = k.range(0.14, 0.23) * scale;
-      leaves[k.random() < 0.2 ? 1 : 0][detail ? "near" : "far"].push({
+      leaves[k.random() < 0.025 ? 1 : 0][detail ? "near" : "far"].push({
         position: tip.toArray(),
         rotation: [
           k.range(-1.25, 1.1),

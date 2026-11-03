@@ -439,6 +439,30 @@
       "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
     },
     {
+      "id": "daylight-summer-sky",
+      "kind": "hdri",
+      "title": "Kloofendal 43d Clear (Pure Sky)",
+      "author": "Greg Zaal",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseEvidence": "https://polyhaven.com/license",
+      "source": "https://polyhaven.com/a/kloofendal_43d_clear_puresky",
+      "metadataSource": "https://api.polyhaven.com/files/kloofendal_43d_clear_puresky",
+      "retrievedAt": "2026-11-02",
+      "resolution": [2048, 1024],
+      "projection": "Equirectangular, full sphere",
+      "files": {"hdr": "/public/outdoors/detail-assets/daylight-summer-sky_2k.hdr"},
+      "sourceFiles": {
+        "hdr": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_43d_clear_puresky_2k.hdr",
+          "bytes": 4624289,
+          "md5": "62f7cb7b1dac5a90a5bbde728606773b",
+          "sha256": "462a3cc63bfcd9fe0299137a0f33f4ade84e237f4cb6115fe46f5ab400693fe6"
+        }
+      },
+      "note": "Photographic clear blue sky with a high sun and light horizon haze, photographed in South Africa, not the Douro. The full panorama was decoded and inspected; its lower hemisphere is a softened sky continuation, not a photographed river or landscape. The original HDR is unchanged. Terrain, buildings and water remain modeled; sun direction and reflections follow the selected sky. Tone mapping was used only for local inspection."
+    },
+    {
       "id": "shore-boulder",
       "kind": "3d-model",
       "title": "Boulder 01",

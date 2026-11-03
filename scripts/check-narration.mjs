@@ -157,7 +157,9 @@ try {
       ...initial,
       playback: [],
     };
-    const keys = Object.keys(initial.views);
+    const keys = Object.keys(initial.views).filter(
+      (key) => initial.views[key].narration !== false,
+    );
     const sceneAssets = assets.filter((asset) => asset.scene === scene.id);
     assert.equal(sceneAssets.length, keys.length * 2, scene.id);
     for (const locale of ["en-US", "pt-BR"]) {

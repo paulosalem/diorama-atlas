@@ -1,11 +1,16 @@
-# Collection realism: continuing the Codex work
+# Collection realism: design and implementation record
+
+This records the interior collection's connected-space realism pass and its
+original constraints. For all new work, use the current
+[quality standard](diorama-standard.md), [philosophy](philosophy.md) and
+[scene briefs](scenes/README.md). Historical evidence and failed findings remain
+historical; this document is not a fresh certification of visual quality.
 
 ## Intent
 
-Continue the September 13 Codex conversation associated with the original
-`Documents/New project` workspace, rather than redesigning the atlas. The user
-approved the detailed Marrakech courtyard, then its revised doors and windows,
-and requested the same treatment for every other diorama.
+Carry forward the approved Marrakech courtyard, including its revised doors and
+windows, rather than redesigning the Atlas. The collection pass extended that
+level of care to every other interior.
 
 The moment to serve: a visitor enters any place from the globe and feels that
 it is part of a larger, inhabited setting rather than a furnished display box.

@@ -1,8 +1,8 @@
 export const AUDIO_COOKIE = "atlas-audio-preferences";
 export const DEFAULT_AUDIO_PREFERENCES = Object.freeze({
   version: 1,
-  ambienceEnabled: false,
-  musicEnabled: false,
+  ambienceEnabled: true,
+  musicEnabled: true,
   narrationEnabled: false,
   ambienceVolume: 0.55,
   musicVolume: 0.32,
@@ -39,7 +39,7 @@ export function readAudioPreferences(cookie = document.cookie) {
     .map((part) => part.trim())
     .find((part) => part.startsWith(`${AUDIO_COOKIE}=`))
     ?.slice(AUDIO_COOKIE.length + 1);
-  if (encoded === undefined) return { ...DEFAULT_AUDIO_PREFERENCES };
+  if (encoded === undefined) return null;
   return validateAudioPreferences(JSON.parse(decodeURIComponent(encoded)));
 }
 

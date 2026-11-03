@@ -69,7 +69,11 @@ export function createSceneNarration({
   const events = new AbortController();
   const direction = new THREE.Vector3();
   const triggers = createNarrationTriggers(
-    Object.fromEntries(Object.entries(views).slice(1)),
+    Object.fromEntries(
+      Object.entries(views)
+        .slice(1)
+        .filter(([, view]) => view.narration !== false),
+    ),
   );
   let disposed = false;
   let assets = [];
@@ -88,7 +92,7 @@ export function createSceneNarration({
   const ownsMedia = () => track && audio.getAttribute("src") === track.file;
   function render() {
     if (disposed) return;
-    panel.hidden = detailsVisible;
+    panel.hidden = detailsVisible || views[currentKey]?.narration === false;
     panel.lang = locale;
     panel.dataset.state = state;
     find(".narration-eyebrow").textContent = t("A sense of place");
@@ -191,6 +195,12 @@ export function createSceneNarration({
     triggers.select(currentKey);
     request++;
     if (ownsMedia()) stopNarration();
+    if (views[currentKey].narration === false) {
+      track = null;
+      state = "unavailable-view";
+      render();
+      return;
+    }
     track =
       assets.find(
         (asset) =>

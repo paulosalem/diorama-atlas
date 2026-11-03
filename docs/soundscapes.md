@@ -8,7 +8,7 @@ room. Music is a separate choice, never a substitute for environmental detail.
 The observable outcome is that moving between viewpoints changes the direction,
 distance and enclosure of nearby sounds without losing the quiet overall mix.
 
-All twenty-two bundled environments use recorded sound. The common palette is composed
+All twenty-three bundled environments use recorded sound. The common palette is composed
 for each architectural family and each outdoor setting, including generated interior variants; it is not a claim
 that the recordings were made in those exact locations. Music is a contemporary,
 interpretive accompaniment, not a historical reconstruction.
@@ -19,8 +19,12 @@ interpretive accompaniment, not a historical reconstruction.
 independent ambience and music toggles and volumes, a music selection, **Mute all**,
 and an **About the sound & credits** disclosure.
 
-- Both channels start off on a first visit. No recording is requested or decoded
-  without an enabled choice, including consent restored from the preference cookie.
+- Both channels default to enabled on a first visit, but playback still waits
+  for an explicit **Resume**. Default settings are not saved consent: no audio
+  context is created and no recording is requested or decoded until the visitor
+  starts playback or an enabled choice is restored from the preference cookie.
+  Existing saved mute choices and volumes are preserved; narration remains off
+  until selected separately.
   Opening the panel only requests the small credit manifest.
 - **Follow the place** uses the selected local track where available and the
   shared Atlas theme elsewhere. **Atlas theme everywhere** keeps the common theme
@@ -41,7 +45,7 @@ and an **About the sound & credits** disclosure.
   playback went. A handover does not disable the shared saved preferences.
 - **Mute all** saves ambience, music and narration as off. Disposal and page hiding only stop
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
-- All 22 bundled scenes have [prerecorded bilingual guided narration](narration.md).
+- All 23 bundled scenes have [prerecorded bilingual guided narration](narration.md).
   It shares one player with detail narration and lowers ambience and music while
   speech plays. Additional object-detail narration uses explicitly requested
   browser speech outdoors or the narration API indoors. Both modes participate

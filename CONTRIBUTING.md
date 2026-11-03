@@ -1,5 +1,12 @@
 # Contributing
 
+Begin with the [project philosophy](docs/philosophy.md),
+[diorama quality standard](docs/diorama-standard.md) and the relevant
+[scene brief](docs/scenes/README.md). The concise
+[README](README.md) is the visitor-facing introduction;
+[development](docs/development.md) contains setup, tooling and operational detail.
+Repository [agent skills](docs/agent-skills.md) make recurring procedures reusable.
+
 ## Local workflow
 
 1. Use the Node version in `.nvmrc` and run `npm ci`.
@@ -28,6 +35,12 @@ changes, and do not hand-edit it.
 - Generated output belongs in ignored `outputs/` or `.cache/`, not beside source.
 
 ## Adding or changing a place
+
+Create or revise `docs/scenes/<scene-id>.md` first. State the cultural purpose,
+anonymous setting, distinctive composition, actual viewpoint keys, material and
+atmospheric direction, references, implementation entry points and boundaries
+on interpretation. Add its link to the collection index; keep related variants
+distinct rather than merging them as apparent duplicates.
 
 The original five definitions are in `src/client/catalog/scene-catalog.js`.
 Additional bundled places use the existing saved-package format in `data/scenes/`.
@@ -60,6 +73,25 @@ and inspect matched captures rather than treating geometry counts as realism.
 Update the collection assertions and browser scenarios when intentionally
 changing the bundled collection. Inspect the actual rendered result, not just
 successful HTTP responses.
+
+Before completion, verify the scene's regional marker, preview, references,
+credits, all details/views, en-US/pt-BR interface text and guided recordings,
+audio lifecycle, reduced motion, compact layouts and static project-path loading.
+Follow the matched baseline and human-review requirements in the quality standard.
+
+## Documentation and releases
+
+Keep the README short, inviting and focused on cultural enrichment and visiting.
+Put procedures in dedicated guides and link them through `docs/README.md`.
+Scene briefs describe the existing implementation and identify intended
+directions as such; do not promote reference aspirations to claims of fidelity.
+
+The package and lockfile already identify version `1.0.0`; display it as
+`v1.0.0` in release documentation. Keep them aligned for later releases.
+Commits, tags, pushes, repository visibility, licenses and releases require
+explicit authorization. Preparing documentation does not authorize publication.
+Before making the source repository public, review asset rights and Git history;
+removing a file from the current tree does not remove earlier committed copies.
 
 ## Tests and privacy
 

@@ -1,7 +1,7 @@
 const places = [
   {
     id: "douro-vineyard",
-    narration: "browser",
+    daylight: "summer",
     versions: [
       {
         id: "landscape",

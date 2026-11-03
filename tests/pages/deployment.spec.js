@@ -63,6 +63,16 @@ test("the public artifact contains the collection but no private/server files", 
   expect(await index.text()).toContain('name="atlas-hosting" content="static"');
 });
 
+test("static hosting rejects unfinished local previews", async ({ page }) => {
+  await page.goto("?scene=unfinished-outdoor&inspect=1&draft=1");
+  await expect(
+    page.getByText(
+      "Unfinished places are only available on the local development server.",
+    ),
+  ).toBeVisible();
+  await expect(page.locator("canvas")).toHaveCount(0);
+});
+
 test("the globe, preview and return navigation remain inside the project path", async ({
   page,
   baseURL,
@@ -126,10 +136,23 @@ for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
     expect(recordings).toEqual([]);
     const views = page.locator("[data-view]");
     const first = await views.first().getAttribute("data-view");
+    const unrecordedViews = await page.evaluate(async (base) => {
+      const { getActiveViewer } = await import(
+        `${base}src/client/viewer/panorama-viewer.js`
+      );
+      return Object.entries(getActiveViewer().runtime.views)
+        .filter(([, view]) => view.narration === false)
+        .map(([key]) => key);
+    }, baseURL);
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const view of await views.all()) {
         const key = await view.getAttribute("data-view");
+        await view.click();
+        if (unrecordedViews.includes(key)) {
+          await expect(panel).toBeHidden();
+          continue;
+        }
         const asset = narration.find(
           (asset) =>
             asset.scene === scene.id &&
@@ -137,7 +160,6 @@ for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
             (asset.view ?? first) === key,
         );
         expect(asset).toBeDefined();
-        await view.click();
         await expect(page.locator(".narration-text")).toHaveText(asset.text);
       }
     }
@@ -203,7 +225,23 @@ test("static references, credits, soundscapes and English detail speech need no 
   await expect(
     page.getByRole("link", { name: "Dr. Paulo Salem", exact: true }),
   ).toHaveAttribute("href", "https://www.paulosalem.com/");
-  await expect(page.locator(".credit-entry")).toHaveCount(268);
+  await expect(page.locator(".credit-entry")).toHaveCount(284);
+  await page.locator("#creditSearch").fill("Kloofendal");
+  await expect(page.locator(".credit-entry")).toHaveCount(1);
+  await expect(page.locator(".credit-note")).toContainText("South Africa");
+  await expect(page.locator(".credit-license")).toHaveAttribute(
+    "href",
+    "https://creativecommons.org/publicdomain/zero/1.0/",
+  );
+  const skyResponse = await page.request.get(
+    new URL("public/outdoors/detail-assets/daylight-summer-sky_2k.hdr", baseURL)
+      .href,
+  );
+  expect(skyResponse.ok()).toBe(true);
+  const skyBytes = await skyResponse.body();
+  expect(skyBytes.length).toBe(4624289);
+  expect(skyBytes.subarray(0, 30).toString()).toMatch(/#\?(RADIANCE|RGBE)/);
+  await page.locator("#creditSearch").fill("");
   expect(
     await page.locator(".credit-image-link").first().getAttribute("href"),
   ).toMatch(/^\/diorama-atlas\/public\//);
@@ -213,12 +251,28 @@ test("static references, credits, soundscapes and English detail speech need no 
   await expect(page.locator(".about-author")).toHaveText(
     "Criado por Dr. Paulo Salem.",
   );
+  await page.locator("#creditSearch").fill("folha verde");
+  await expect(page.locator(".credit-entry")).toHaveCount(1);
+  await expect(page.locator(".credit-note")).toContainText("Marrocos");
+  await expect(page.locator(".credit-license")).toHaveAttribute(
+    "href",
+    "https://creativecommons.org/licenses/by-sa/4.0/",
+  );
+  await expect(
+    page.getByRole("link", { name: "Estudo de folha verde de videira" }),
+  ).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+  expect(
+    await page.evaluate(async (url) => {
+      const image = new Image();
+      image.src = url;
+      await image.decode();
+      return [image.naturalWidth, image.naturalHeight];
+    }, new URL("public/outdoors/detail-assets/douro/leaf-green-detail.png", baseURL).href),
+  ).toEqual([512, 512]);
   await page.keyboard.press("Escape");
   await page.locator("#atlasLanguage").selectOption("en-US");
   await page.locator("#soundscapeButton").click();
-  await page
-    .getByRole("button", { name: "Enable ambience", exact: true })
-    .click();
+  await page.locator("#ambientSound").click();
   await expect(page.locator("#ambientSound")).toHaveText("Mute ambience");
   await page.getByRole("button", { name: "Mute all", exact: true }).click();
   await page.getByRole("button", { name: "Close soundscape" }).click();

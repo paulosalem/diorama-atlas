@@ -1,8 +1,9 @@
 # Static deployment
 
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
-Its source repository remains private. GitHub Pages serves the complete
-23-scene collection, 202 prerecorded narration passages, local soundscapes,
+The [source repository](https://github.com/paulosalem/diorama-atlas) is maintained
+separately from the static export. GitHub Pages serves the complete
+23-scene collection, 210 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
 ## Publish
@@ -22,8 +23,11 @@ Chromium's Metal backend. A shared preflight records the actual WebGL renderer
 and rejects software rendering in CI before loading the collection. The
 standard Linux runner's software GPU stalls these scenes, even at a much lower
 pixel ratio; reducing the published geometry or materials is not a solution.
-Node checks and the deployment job remain on Linux. Browser jobs stop at the
-first failure and have a 20-minute bound; failed traces and Pages scene captures
+Node checks and the deployment job remain on Linux. Local-server CI checks are
+split into two complete, nonoverlapping shards on separate GPU runners, with one
+browser worker per runner. Browser jobs stop at the first failure and have a
+20-minute bound; the sharded test step stops at 18 minutes to leave time for
+failure artifacts. Failed traces and Pages scene captures
 are retained as workflow artifacts for seven days.
 
 ## Build and preview
@@ -57,8 +61,10 @@ definitions, not their storage envelopes or local cache overrides.
 The builder refuses source directories, symlinks and unowned nonempty output
 directories. Its allowlist publishes `src/client/`, the used public asset
 groups, the minimum Three.js and Babylon.js distributions and their licenses. It excludes
-server source, OpenAI dependencies, credentials, caches, screenshots, repository
-metadata and the unused `public/atlas-models/` files without verified provenance.
+server source, OpenAI dependencies, credentials, caches, review screenshots and
+repository metadata. Unused models were also removed from the current
+source tree; historical copies remain outside the export allowlist, with
+[verified source attribution](history/asset-provenance.md).
 Original application content has no new open-source license grant; third-party
 assets retain their individual terms and attribution.
 
@@ -81,6 +87,8 @@ new scenes, generate concept images, synthesize new recordings, serve local
 caches, or accept user writes. Those optional capabilities remain available
 through the local server. No backend failure is disguised as a working API.
 
-Audio remains opt-in. Locale and audio choices are saved per browser origin,
+Music and ambience default to enabled, with first-time playback requiring an
+explicit **Resume**. Saved mute choices are preserved, and narration remains
+opt-in. Locale and audio choices are saved per browser origin,
 so visitors to the public site start with their own settings rather than
 inheriting preferences from `localhost`.

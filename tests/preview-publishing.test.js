@@ -51,11 +51,20 @@ test("preview publishing includes Marrakech and retains unselected capture prove
       width: 1,
       height: 1,
     };
+    const draft = {
+      file: "/public/outdoors/previews/unfinished-landscape.png",
+      scene: "unfinished-landscape",
+      view: "arrival",
+      viewport: { width: 1280, height: 900 },
+    };
+    const outdoor = { ...draft, scene: "released-landscape" };
     await writeFile(
       path.join(root, "public/previews/credits.json"),
       JSON.stringify({
         viewport: { width: 1440, height: 1000 },
         rendered: [prior],
+        outdoors: [outdoor],
+        drafts: [draft],
         unchanged: [
           { file: "riad.png", source: "Obsolete imported reference." },
         ],
@@ -70,6 +79,8 @@ test("preview publishing includes Marrakech and retains unselected capture prove
       await readFile(path.join(root, "public/previews/credits.json"), "utf8"),
     );
     assert.equal(credits.unchanged, undefined);
+    assert.deepEqual(credits.drafts, [draft]);
+    assert.deepEqual(credits.outdoors, [outdoor]);
     assert.equal(credits.rendered.length, 2);
     assert.deepEqual(
       credits.rendered.find((entry) => entry.scene === "kissaten"),

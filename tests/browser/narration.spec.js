@@ -78,6 +78,7 @@ test.beforeEach(async ({ page }) => {
 for (const [scene, initialView, target] of [
   ["textile", "loom", "yarn"],
   ["newar-potters-square", "arrival", "pottery"],
+  ["douro-vineyard", "arrival", "vines"],
 ]) {
   test(`${scene}: ordinary look and zoom select a localized focused narration`, async ({
     page,
@@ -128,60 +129,70 @@ for (const [scene, initialView, target] of [
   });
 }
 
-for (const viewport of [
-  { width: 320, height: 800 },
-  { width: 390, height: 844 },
-  { width: 844, height: 390 },
-]) {
-  test(`narration and detail captions stay usable at ${viewport.width}x${viewport.height}`, async ({
-    page,
-  }) => {
-    await page.setViewportSize(viewport);
-    await open(page, "textile");
-    await page.locator("#atlasLanguage").selectOption("pt-BR");
-    await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
-    await expectUnclippedControl(
+for (const [scene, detailView] of [
+  ["textile", "dyes"],
+  ["douro-vineyard", "quinta"],
+])
+  for (const viewport of [
+    { width: 320, height: 800 },
+    { width: 390, height: 844 },
+    { width: 844, height: 390 },
+  ]) {
+    test(`${scene}: narration and detail captions stay usable at ${viewport.width}x${viewport.height}`, async ({
       page,
-      ".narration-minimize",
-      ".scene-narration",
-    );
-    await page.locator("#narrationPlay").click();
-    await expect.poll(async () => (await state(page)).state).toBe("playing");
-    await page.locator("#riadDetails").click();
-    await expect(page.locator(".scene-narration")).toBeHidden();
-    await expect(page.locator(".riad-detail-caption")).toBeVisible();
-    await expect.poll(async () => (await state(page)).state).toBe("paused");
-    await expectUnclippedControl(page, "#listenButton", ".riad-detail-caption");
-    await page.locator('[data-view="dyes"]').click();
-    expect((await state(page)).state).toBe("ready");
-    expect(
-      await page.evaluate(() =>
-        window.narrationElements.every((a) => a.paused),
-      ),
-    ).toBe(true);
-    await page.locator("#riadDetails").click();
-    await expect(page.locator(".scene-narration")).toBeVisible();
-    await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
-    await page.locator("#narrationPlay").click();
-    await expect.poll(async () => (await state(page)).state).toBe("playing");
-    await page.locator(".narration-minimize").click();
-    await expect(page.locator(".narration-text")).toBeHidden();
-    await expect(page.locator("#narrationPlay")).toBeVisible();
-    await page.locator("#narrationPlay").click();
-    await expect.poll(async () => (await state(page)).state).toBe("paused");
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBe(true);
-    const [panel, canvas] = await Promise.all([
-      page.locator(".scene-narration").boundingBox(),
-      page.locator("#canvasMount").boundingBox(),
-    ]);
-    expect(panel.x).toBeGreaterThanOrEqual(canvas.x);
-    expect(panel.x + panel.width).toBeLessThanOrEqual(canvas.x + canvas.width);
-  });
-}
+    }) => {
+      await page.setViewportSize(viewport);
+      await open(page, scene);
+      await page.locator("#atlasLanguage").selectOption("pt-BR");
+      await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
+      await expectUnclippedControl(
+        page,
+        ".narration-minimize",
+        ".scene-narration",
+      );
+      await page.locator("#narrationPlay").click();
+      await expect.poll(async () => (await state(page)).state).toBe("playing");
+      await page.locator("#riadDetails").click();
+      await expect(page.locator(".scene-narration")).toBeHidden();
+      await expect(page.locator(".riad-detail-caption")).toBeVisible();
+      await expect.poll(async () => (await state(page)).state).toBe("paused");
+      await expectUnclippedControl(
+        page,
+        "#listenButton",
+        ".riad-detail-caption",
+      );
+      await page.locator(`[data-view="${detailView}"]`).click();
+      expect((await state(page)).state).toBe("ready");
+      expect(
+        await page.evaluate(() =>
+          window.narrationElements.every((a) => a.paused),
+        ),
+      ).toBe(true);
+      await page.locator("#riadDetails").click();
+      await expect(page.locator(".scene-narration")).toBeVisible();
+      await expectUnclippedControl(page, "#narrationPlay", ".scene-narration");
+      await page.locator("#narrationPlay").click();
+      await expect.poll(async () => (await state(page)).state).toBe("playing");
+      await page.locator(".narration-minimize").click();
+      await expect(page.locator(".narration-text")).toBeHidden();
+      await expect(page.locator("#narrationPlay")).toBeVisible();
+      await page.locator("#narrationPlay").click();
+      await expect.poll(async () => (await state(page)).state).toBe("paused");
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      ).toBe(true);
+      const [panel, canvas] = await Promise.all([
+        page.locator(".scene-narration").boundingBox(),
+        page.locator("#canvasMount").boundingBox(),
+      ]);
+      expect(panel.x).toBeGreaterThanOrEqual(canvas.x);
+      expect(panel.x + panel.width).toBeLessThanOrEqual(
+        canvas.x + canvas.width,
+      );
+    });
+  }
 
 test("a failed manifest can be retried without losing the rendered scene", async ({
   page,

@@ -2,9 +2,28 @@ import * as THREE from "three";
 import { sitePath } from "../../site.js";
 import { HDRLoader } from "three/addons/loaders/HDRLoader.js";
 
-export async function loadOutdoorDaylight(generator) {
+const profiles = {
+  "broken-clouds": {
+    file: "daylight-pure-sky_2k.hdr",
+    exposureGain: 1.55,
+    intensity: 1,
+  },
+  summer: {
+    file: "daylight-summer-sky_2k.hdr",
+    exposureGain: 1.35,
+    intensity: 1.25,
+  },
+};
+
+export async function loadOutdoorDaylight(
+  generator,
+  profile = "broken-clouds",
+) {
+  const settings = profiles[profile];
+  if (!Object.hasOwn(profiles, profile))
+    throw new Error(`Unknown outdoor daylight profile: ${profile}`);
   const texture = await new HDRLoader().loadAsync(
-    sitePath("/public/outdoors/detail-assets/daylight-pure-sky_2k.hdr"),
+    sitePath(`/public/outdoors/detail-assets/${settings.file}`),
   );
   texture.mapping = THREE.EquirectangularReflectionMapping;
   const { data, width, height } = texture.image;
@@ -37,7 +56,8 @@ export async function loadOutdoorDaylight(generator) {
       texture,
       environment: generator.fromEquirectangular(texture),
       // AgX calibration for this HDRI; the scene's own exposure remains an adjustment.
-      exposureGain: 1.55,
+      exposureGain: settings.exposureGain,
+      intensity: settings.intensity,
       sunAzimuth: ((sunX + 0.5) / width - 0.5) * Math.PI * 2,
       sunElevation: (0.5 - (sunY + 0.5) / height) * Math.PI,
     };
@@ -53,7 +73,7 @@ export function applyOutdoorDaylight(scene, runtime, daylight) {
   const azimuth = Math.atan2(direction.z, direction.x);
   const distance = Math.max(20, direction.length());
   scene.background = daylight.texture;
-  scene.backgroundIntensity = 1;
+  scene.backgroundIntensity = daylight.intensity;
   scene.backgroundRotation.y = daylight.sunAzimuth - azimuth;
   scene.environmentRotation.copy(scene.backgroundRotation);
   sun.position

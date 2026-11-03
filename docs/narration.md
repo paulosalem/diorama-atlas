@@ -1,10 +1,10 @@
 # Narration
 
-All **22 bundled dioramas** have original, prerecorded cultural explanations
+All **23 bundled dioramas** have original, prerecorded cultural explanations
 in **en-US** and **pt-BR**, using OpenAI's `gpt-4o-mini-tts` model and `cedar`
-voice. The collection contains **202 recordings for 101 views**, totaling
-66.94 MB: six views in Marrakech, five in each of the other eleven interiors,
-and four in each of the ten outdoor settings. Each arrival introduces the
+voice. The collection contains **210 recordings for 105 views**, totaling
+70.92 MB: six views in Marrakech, five in each of the other eleven interiors,
+and four in each of the eleven outdoor settings. Each arrival introduces the
 place's cultural value; focused views discuss the visible architecture,
 materials, work, or connected space. The voice is explicitly disclosed as
 AI-generated. No new images or replacement environments were generated for
@@ -40,7 +40,7 @@ and be within a focused gaze cone (direction cosine at least 0.99).
 This lets visitors look toward a subject and zoom closer without clicking its
 viewpoint or requiring unsupported free-walking controls. The collection checks
 include real mouse-look and wheel input in Marrakech, the Oaxaca workshop,
-and the Newar square, not only camera positions injected by tests.
+the Newar square and the Douro vineyard, not only camera positions injected by tests.
 A sustained look triggers once, not on every frame; it never replays the arrival
 paragraph merely because the visitor looks away from a detail.
 Pausing suspends proximity triggers until another deliberate playback/view choice.

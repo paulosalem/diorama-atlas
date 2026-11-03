@@ -201,6 +201,7 @@ try {
           "../interiors/materials/manifest.json",
         ],
         history: previousPreviewCredits.history ?? [],
+        drafts: previousPreviewCredits.drafts ?? [],
       },
       null,
       2,

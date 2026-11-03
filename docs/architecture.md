@@ -65,10 +65,12 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-The original 22 scenes have complete bilingual entry/view coverage in the local
-manifest. Douro explicitly declares browser narration: Landscape retains its
-detail speech; Miniature narrates each view on request. Both use the same global
-audio ownership, ducking and mute mechanism. Additional custom scenes without recordings retain detail controls
+All 23 bundled scenes retain their original bilingual entry/view recordings.
+Douro's Landscape retains its four recorded views; its additional yard and
+railway views explicitly omit the recorded guide rather than pretending a clip
+exists. Miniature narrates all eleven views with requested browser speech.
+Both use the shared audio ownership, ducking and mute mechanism.
+Additional custom scenes without recordings retain detail controls
 without a guided panel; supported scenes report malformed or missing tracks.
 Opening object details pauses and replaces the guided panel, avoiding competing
 captions on compact screens. Playback never creates paid generation requests.

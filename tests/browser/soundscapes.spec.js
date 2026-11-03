@@ -120,7 +120,7 @@ test("looping stays bounded and spatial audio follows the camera without a frame
   });
 });
 
-test("recordings are opt-in, audible, independently mixed, credited and released", async ({
+test("default-on channels wait for explicit playback, then mix independently and release", async ({
   page,
 }) => {
   const audioRequests = [];
@@ -131,14 +131,24 @@ test("recordings are opt-in, audible, independently mixed, credited and released
   await panel(page, "riad");
   expect(audioRequests).toEqual([]);
   expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
+  expect(
+    await page.evaluate(
+      async () =>
+        (await import("/src/client/main.js")).getAtlasAudio().snapshot,
+    ),
+  ).toMatchObject({
+    ambienceEnabled: true,
+    musicEnabled: true,
+    narrationEnabled: false,
+  });
   await page
-    .getByRole("button", { name: "Enable ambience", exact: true })
+    .getByRole("button", { name: "Resume ambience", exact: true })
     .click();
   await expect(page.locator("#ambientSound")).toHaveAttribute(
     "aria-pressed",
     "true",
   );
-  await page.getByRole("button", { name: "Enable music", exact: true }).click();
+  await page.getByRole("button", { name: "Resume music", exact: true }).click();
   await expect(page.locator("#musicSound")).toHaveAttribute(
     "aria-pressed",
     "true",
@@ -194,9 +204,10 @@ test("the shared theme survives internal navigation and reload preserves choices
   page,
 }) => {
   await panel(page);
-  await expect(page.locator("#ambientSound")).toHaveText("Enable ambience");
+  await expect(page.locator("#ambientSound")).toHaveText("Disable ambience");
+  await page.locator("#ambientSound").click();
   await page.locator("#musicMode").selectOption("theme");
-  await page.getByRole("button", { name: "Enable music", exact: true }).click();
+  await page.getByRole("button", { name: "Resume music", exact: true }).click();
   await expect(page.locator("#musicSound")).toHaveAttribute(
     "aria-pressed",
     "true",

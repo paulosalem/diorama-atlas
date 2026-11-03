@@ -159,7 +159,7 @@ the independent rubric as described in [the agentic suite](../agentic-tests/READ
 
 ## Atlas-wide surface patina
 
-The later surface update applies to all 22 atlas entries, including the existing
+The earlier collection-wide surface update covered the then-current 22 atlas entries, including the existing
 interiors. `src/client/environments/shared/surface-patina.js` uses distinct mineral, timber, ceramic, metal,
 textile and leather treatments: localized fractures, finish loss, uneven fading,
 handling marks and changes in roughness. Transparent surfaces, foliage and

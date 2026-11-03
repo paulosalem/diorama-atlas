@@ -22,6 +22,8 @@ export const douroPtBR = Object.freeze({
     "Esta experiência não está disponível para este lugar.",
   "The miniature assets could not be loaded. Please reload or return to the world.":
     "Não foi possível carregar os arquivos da miniatura. Recarregue ou volte ao mundo.",
+  "Photographic clear blue sky with a high sun and light horizon haze, photographed in South Africa, not the Douro. The full panorama was decoded and inspected; its lower hemisphere is a softened sky continuation, not a photographed river or landscape. The original HDR is unchanged. Terrain, buildings and water remain modeled; sun direction and reflections follow the selected sky. Tone mapping was used only for local inspection.":
+    "Céu azul limpo com sol alto e leve névoa no horizonte, fotografado na África do Sul, não no Douro. O panorama completo foi decodificado e examinado; seu hemisfério inferior é uma continuação suavizada do céu, não uma fotografia de rio ou paisagem. O HDR original permanece inalterado. Terreno, edifícios e água continuam modelados; a direção do sol e os reflexos acompanham o céu escolhido. O mapeamento de tons foi usado apenas na inspeção local.",
   "Photographic foliage": "Folhagem fotográfica",
   "Green grape-leaf study": "Estudo de folha verde de videira",
   "Bonnjalal00; cutout by Diorama Atlas":

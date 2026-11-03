@@ -12,6 +12,7 @@ export function createAtlasAudio() {
   let music = null;
   let title = "Around the world";
   let preferences = { ...DEFAULT_AUDIO_PREFERENCES };
+  let hasSavedPreferences = false;
   let preferenceError = "";
   let pauseReason = "";
   let ducked = false;
@@ -27,7 +28,9 @@ export function createAtlasAudio() {
 
   function readPreferences() {
     try {
-      preferences = readAudioPreferences();
+      const saved = readAudioPreferences();
+      preferences = saved ?? { ...DEFAULT_AUDIO_PREFERENCES };
+      hasSavedPreferences = saved !== null;
       preferenceError = "";
     } catch (error) {
       console.error("Could not read saved sound choices.", error);
@@ -50,6 +53,7 @@ export function createAtlasAudio() {
   function savePreferences() {
     try {
       saveAudioPreferences(preferences);
+      hasSavedPreferences = true;
       preferenceError = "";
       focus.publishPreferences();
     } catch (error) {
@@ -142,7 +146,10 @@ export function createAtlasAudio() {
         ...value,
         state: "paused",
         notice:
-          pauseReason || "Your choice is saved. Resume when you are ready.",
+          pauseReason ||
+          (hasSavedPreferences
+            ? "Your choice is saved. Resume when you are ready."
+            : "Paused. Resume when you are ready."),
       };
     }
     return value;
@@ -158,7 +165,8 @@ export function createAtlasAudio() {
       attached = true;
       if (ambience) unsubscribeAmbience = ambience.subscribe(notify);
       applySettings();
-      if (focus.owned || document.hasFocus()) resume(true);
+      if (focus.owned || (hasSavedPreferences && document.hasFocus()))
+        resume(true);
       notify();
     },
     toggleAmbience() {
@@ -256,7 +264,9 @@ export function createAtlasAudio() {
         ambience: status(ambience, preferences.ambienceEnabled) ?? {
           state: preferences.ambienceEnabled ? "armed" : "idle",
           notice: preferences.ambienceEnabled
-            ? "Saved. Ambience starts when you enter a place."
+            ? hasSavedPreferences
+              ? "Saved. Ambience starts when you enter a place."
+              : "Step inside a place to hear its surroundings."
             : "",
         },
         ambienceLabel: ambience?.profile.label,
