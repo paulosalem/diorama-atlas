@@ -148,9 +148,7 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
     await page.getByRole("button", { name: "Reset view" }).click();
     await expect(viewpoints.first()).toHaveAttribute("aria-pressed", "true");
     await page.locator("#soundscapeButton").click();
-    await page
-      .getByRole("button", { name: "Enable ambience", exact: true })
-      .click();
+    await page.locator("#ambientSound").click();
     await expect(page.locator("#ambientSound")).toHaveAttribute(
       "aria-pressed",
       "true",

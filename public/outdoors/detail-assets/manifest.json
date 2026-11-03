@@ -1,6 +1,110 @@
 {
   "assets": [
     {
+      "id": "grape-leaf-photograph",
+      "kind": "photographic-foliage",
+      "title": "Green grape-leaf study",
+      "author": "Bonnjalal00; cutout by Diorama Atlas",
+      "date": "2026-04-08",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:%D8%A3%D9%88%D8%B1%D8%A7%D9%82_%D9%83%D8%B1%D9%85%D8%A9_%D8%A7%D9%84%D8%B9%D9%86%D8%A8_Vitis_vinifera.jpg",
+      "sourceImage": "/public/outdoors/detail-assets/douro/grape-leaf-reference.jpg",
+      "sourceSha256": "bf195bd667a0174f2eac4068ea940d7c95c559be4fc602050c11e00137188811",
+      "retrieved": "2026-11-01",
+      "sourceResolution": [8160,6120],
+      "resolution": [512,512],
+      "files": {"green":"/public/outdoors/detail-assets/douro/leaf-green-detail.png"},
+      "fileIntegrity": {
+        "green": {"bytes":335349,"sha256":"16d36feee0c11e1c86d68e6f5f9dd7477551f0fc27076105c997991f87940510"}
+      },
+      "processing": {
+        "coordinateSpace": [1280,960],
+        "crop": [160,70,1080,850],
+        "polygon": [[177,447],[225,411],[235,367],[304,394],[286,334],[376,352],[344,290],[416,322],[378,257],[339,240],[411,222],[361,186],[448,196],[420,157],[456,156],[460,133],[500,155],[493,118],[556,151],[571,112],[600,139],[637,84],[653,119],[686,103],[697,156],[745,153],[779,123],[792,89],[815,135],[856,96],[863,122],[917,100],[901,143],[961,134],[925,166],[982,177],[945,207],[1009,235],[958,263],[998,282],[968,307],[1012,317],[969,341],[1021,354],[973,385],[984,405],[924,415],[904,439],[853,450],[810,430],[792,453],[820,479],[852,477],[929,496],[985,512],[1033,547],[991,555],[1057,606],[1044,627],[1012,610],[1065,662],[1035,677],[990,644],[1030,706],[1006,707],[949,684],[964,744],[939,759],[906,736],[892,779],[862,770],[838,794],[806,775],[800,752],[777,793],[748,811],[725,826],[718,784],[691,823],[668,831],[666,804],[626,835],[592,824],[572,809],[519,817],[497,799],[488,766],[513,749],[479,747],[501,720],[474,707],[503,666],[519,648],[496,632],[473,649],[435,633],[421,647],[391,610],[368,636],[358,618],[332,620],[323,590],[304,581],[304,569],[269,573],[278,548],[250,537],[276,514],[237,521],[249,491],[218,497],[228,481],[188,484],[218,467],[177,447]],
+        "rotationClockwise": 90,
+        "resampling": "Pillow Lanczos to 512x512 RGBA",
+        "anchorUv": [0.513,0.31],
+        "edgeMask": "After resampling, discard non-green pixels (G < R*1.045 or G < B*1.05) only within an 81-pixel eroded-mask boundary; preserve interior veins and specular details.",
+        "colorAdjustment": "None; original green pigment retained."
+      },
+      "note": "Grape foliage photographed in Morocco, used only as a botanical surface reference; it does not identify a Douro cultivar. The full-resolution original is preserved. A masked, rotated crop retains the photographed green pigment, veins and moisture; modeled surfaces supply curvature. The derivative remains CC BY-SA 4.0."
+    },
+    {
+      "id": "douro-grape-leaves",
+      "kind": "photographic-foliage",
+      "title": "Douro grape leaf cutouts",
+      "author": "Rosino; cutout and color adaptation by Diorama Atlas",
+      "date": "2010-10-02",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Douro_wine_grapes_ripe_for_the_harvest.jpg",
+      "sourceImage": "/public/outdoors/references/douro-grapes.jpg",
+      "sourceSha256": "c88fbbb52aee7f220c4dbfa5df3f324d8ed8cc7775fff4634b9db8f281943559",
+      "retrieved": "2026-11-01",
+      "resolution": [256,256],
+      "files": {
+        "autumn": "/public/outdoors/detail-assets/douro/leaf-autumn.png",
+        "green": "/public/outdoors/detail-assets/douro/leaf-green.png"
+      },
+      "fileIntegrity": {
+        "autumn": {
+          "bytes": 117787,
+          "sha256": "b60b72842e38815fea86a9969b1036d27bdd256c9099d1a1525ef90221aaf18a"
+        },
+        "green": {
+          "bytes": 113365,
+          "sha256": "ee84103d817167149bdbb9fc3fc142272d23ee6f538bb269602d0fa3698d6da1"
+        }
+      },
+      "processing": {
+        "sourceCropPixels": [625,215,780,365],
+        "maskCoordinateScale": 4,
+        "maskPolygon": [[295,174],[383,165],[391,146],[420,164],[431,186],[475,179],[483,203],[500,208],[471,234],[468,251],[496,277],[504,303],[488,327],[506,349],[491,375],[477,389],[465,417],[442,405],[422,435],[397,417],[387,449],[360,437],[340,475],[320,475],[296,491],[276,480],[260,475],[243,486],[221,463],[208,475],[186,450],[167,449],[177,416],[159,408],[159,383],[174,345],[153,334],[138,350],[111,331],[109,308],[96,302],[102,286],[87,279],[113,250],[126,214],[160,199],[183,186],[192,165],[217,163],[249,182],[267,162]],
+        "maskedCropPixels": [20,34,130,126],
+        "maskExclusions": [[[213,438],[234,441],[241,475],[220,479],[207,464]]],
+        "rotationDegrees": 180,
+        "resampling": "Pillow Lanczos to 256x256 RGBA",
+        "greenHSV": {"hueDegrees":"74 + 19 * sourceSaturation","saturation":"min(0.65, sourceSaturation * 0.8 + 0.12)","value":"unchanged"}
+      },
+      "note": "A small grape leaf extracted from Rosino's licensed Douro photograph, with its photographed veins and surface variation retained. The 110×92-pixel masked source is rotated and resampled, not a new high-resolution scan. The autumn cutout retains source color; the green version is an explicitly recolored adaptation. Both derivatives remain CC BY-SA 2.0 and are used on curved individual leaves, not as a landscape backdrop. They do not identify a grape variety."
+    },
+    {
+      "id": "douro-stony-ground",
+      "kind": "pbr-surface",
+      "title": "Rocky Terrain 02",
+      "author": "Amal Kumar",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://polyhaven.com/a/rocky_terrain_02",
+      "metadataSource": "https://api.polyhaven.com/info/rocky_terrain_02",
+      "retrieved": "2026-11-01",
+      "resolution": [2048, 2048],
+      "files": {
+        "diff": "/public/outdoors/detail-assets/douro/soil-diff.jpg",
+        "nor_gl": "/public/outdoors/detail-assets/douro/soil-nor_gl.jpg",
+        "rough": "/public/outdoors/detail-assets/douro/soil-rough.jpg"
+      },
+      "sourceFiles": {
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_terrain_02/rocky_terrain_02_diff_2k.jpg",
+          "bytes": 3232826,
+          "sha256": "9b042fe0618ffbc3650592456d7d8d265ba9a1cb5ce802f5f1d86b7ee79508a1"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_terrain_02/rocky_terrain_02_nor_gl_2k.jpg",
+          "bytes": 4149208,
+          "sha256": "556ed903180a9431b253fc1c334c769dc4615c5c0f4ef1cedf20533ae8409ce8"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_terrain_02/rocky_terrain_02_rough_2k.jpg",
+          "bytes": 1589303,
+          "sha256": "89f3c7b9e467160a821cbac32a1fdfd75f13cb87c9deeb22099d16677a711126"
+        }
+      },
+      "note": "Generic scanned stony ground, not a Douro geological survey. Original channels retained. The renderer uses the shared luminance-normalized pigment treatment to reduce the source's green groundcover coloration toward dry vineyard soil, with physical-scale grain, OpenGL normals and roughness."
+    },
+    {
       "id": "lotus-botanical-plate",
       "kind": "printed-art",
       "title": "Nelumbo nucifera — Flora de Filipinas botanical plate",
@@ -333,6 +437,30 @@
         }
       },
       "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
+    },
+    {
+      "id": "daylight-summer-sky",
+      "kind": "hdri",
+      "title": "Kloofendal 43d Clear (Pure Sky)",
+      "author": "Greg Zaal",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseEvidence": "https://polyhaven.com/license",
+      "source": "https://polyhaven.com/a/kloofendal_43d_clear_puresky",
+      "metadataSource": "https://api.polyhaven.com/files/kloofendal_43d_clear_puresky",
+      "retrievedAt": "2026-11-02",
+      "resolution": [2048, 1024],
+      "projection": "Equirectangular, full sphere",
+      "files": {"hdr": "/public/outdoors/detail-assets/daylight-summer-sky_2k.hdr"},
+      "sourceFiles": {
+        "hdr": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_43d_clear_puresky_2k.hdr",
+          "bytes": 4624289,
+          "md5": "62f7cb7b1dac5a90a5bbde728606773b",
+          "sha256": "462a3cc63bfcd9fe0299137a0f33f4ade84e237f4cb6115fe46f5ab400693fe6"
+        }
+      },
+      "note": "Photographic clear blue sky with a high sun and light horizon haze, photographed in South Africa, not the Douro. The full panorama was decoded and inspected; its lower hemisphere is a softened sky continuation, not a photographed river or landscape. The original HDR is unchanged. Terrain, buildings and water remain modeled; sun direction and reflections follow the selected sky. Tone mapping was used only for local inspection."
     },
     {
       "id": "shore-boulder",

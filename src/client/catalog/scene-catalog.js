@@ -1,4 +1,4 @@
-import { outdoorScenes } from "./outdoor-catalog.js";
+import { outdoorDraftScenes, outdoorScenes } from "./outdoor-catalog.js";
 import { sitePath, staticHosting } from "../site.js";
 
 export const curatedScenes = [
@@ -509,11 +509,20 @@ export const curatedScenes = [
   },
 ];
 
-export async function loadScenes() {
+export async function loadScenes({ includeDrafts = false } = {}) {
+  if (includeDrafts && staticHosting)
+    throw new Error(
+      "Unfinished places are only available on the local development server.",
+    );
   const response = await fetch(
     sitePath(staticHosting ? "/public/scenes.json" : "/api/generated-scenes"),
   );
   if (!response.ok) throw new Error("Your saved places could not be loaded.");
   const payload = await response.json();
-  return [...curatedScenes, ...(payload.scenes ?? []), ...outdoorScenes];
+  return [
+    ...curatedScenes,
+    ...(payload.scenes ?? []),
+    ...outdoorScenes,
+    ...(includeDrafts ? outdoorDraftScenes : []),
+  ];
 }

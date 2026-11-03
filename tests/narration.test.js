@@ -5,7 +5,10 @@ import { spawnSync } from "node:child_process";
 import { test } from "node:test";
 import { createNarrationTriggers } from "../src/client/viewer/narration-triggers.js";
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
-import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
+import {
+  outdoorDraftScenes,
+  outdoorScenes,
+} from "../src/client/catalog/outdoor-catalog.js";
 
 test("every bundled scene has immutable bilingual recordings matching its written scripts", async () => {
   const manifest = JSON.parse(
@@ -31,7 +34,17 @@ test("every bundled scene has immutable bilingual recordings matching its writte
       ),
   );
   const scenes = [...curatedScenes, ...saved, ...outdoorScenes];
-  assert.equal(manifest.assets.length, recipes.assets.length);
+  const bundledRecipes = recipes.assets.filter((asset) =>
+    scenes.some((scene) => scene.id === asset.scene),
+  );
+  assert.equal(manifest.assets.length, bundledRecipes.length);
+  for (const recipe of recipes.assets)
+    assert.ok(
+      [...scenes, ...outdoorDraftScenes].some(
+        (scene) => scene.id === recipe.scene,
+      ),
+      `${recipe.id}: recipe must belong to a bundled scene or an explicit local draft`,
+    );
   assert.equal(manifest.assets.length, 202);
   assert.equal(
     new Set(manifest.assets.map((asset) => asset.id)).size,
@@ -96,6 +109,26 @@ test("every bundled scene has immutable bilingual recordings matching its writte
           keys.has(`${scene.id}/${view}/${locale}`),
           `${scene.id}/${view}/${locale}`,
         );
+    for (const scene of outdoorDraftScenes) {
+      const drafts = recipes.assets.filter((asset) => asset.scene === scene.id);
+      assert.equal(
+        drafts.length,
+        8,
+        `${scene.id}: four bilingual draft passages`,
+      );
+      const views = new Set(drafts.map((asset) => asset.view ?? "intro"));
+      assert.equal(views.size, 4);
+      assert.ok(views.has("intro"));
+      for (const view of views)
+        for (const locale of ["en-US", "pt-BR"])
+          assert.equal(
+            drafts.filter(
+              (asset) =>
+                (asset.view ?? "intro") === view && asset.locale === locale,
+            ).length,
+            1,
+          );
+    }
   }
   const files = await readdir(new URL("../public/narration/", import.meta.url));
   assert.deepEqual(

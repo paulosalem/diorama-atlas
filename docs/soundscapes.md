@@ -19,8 +19,12 @@ interpretive accompaniment, not a historical reconstruction.
 independent ambience and music toggles and volumes, a music selection, **Mute all**,
 and an **About the sound & credits** disclosure.
 
-- Both channels start off on a first visit. No recording is requested or decoded
-  without an enabled choice, including consent restored from the preference cookie.
+- Both channels default to enabled on a first visit, but playback still waits
+  for an explicit **Resume**. Default settings are not saved consent: no audio
+  context is created and no recording is requested or decoded until the visitor
+  starts playback or an enabled choice is restored from the preference cookie.
+  Existing saved mute choices and volumes are preserved; narration remains off
+  until selected separately.
   Opening the panel only requests the small credit manifest.
 - **Follow the place** uses the selected local track where available and the
   shared Atlas theme elsewhere. **Atlas theme everywhere** keeps the common theme

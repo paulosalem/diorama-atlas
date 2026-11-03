@@ -1,7 +1,8 @@
 # Static deployment
 
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
-Its source repository remains private. GitHub Pages serves the complete
+The [source repository](https://github.com/paulosalem/diorama-atlas) is maintained
+separately from the static export. GitHub Pages serves the complete
 22-scene collection, 202 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
@@ -47,8 +48,10 @@ definitions, not their storage envelopes or local cache overrides.
 The builder refuses source directories, symlinks and unowned nonempty output
 directories. Its allowlist publishes `src/client/`, the used public asset
 groups, the minimum Three.js module distribution and its license. It excludes
-server source, OpenAI dependencies, credentials, caches, screenshots, repository
-metadata and the unused `public/atlas-models/` files without verified provenance.
+server source, OpenAI dependencies, credentials, caches, review screenshots and
+repository metadata. Unused models were also removed from the current
+source tree; historical copies remain outside the export allowlist, with
+[verified source attribution](history/asset-provenance.md).
 Original application content has no new open-source license grant; third-party
 assets retain their individual terms and attribution.
 
@@ -68,6 +71,8 @@ new scenes, generate concept images, synthesize new recordings, serve local
 caches, or accept user writes. Those optional capabilities remain available
 through the local server. No backend failure is disguised as a working API.
 
-Audio remains opt-in. Locale and audio choices are saved per browser origin,
+Music and ambience default to enabled, with first-time playback requiring an
+explicit **Resume**. Saved mute choices are preserved, and narration remains
+opt-in. Locale and audio choices are saved per browser origin,
 so visitors to the public site start with their own settings rather than
 inheriting preferences from `localhost`.

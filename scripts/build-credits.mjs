@@ -121,6 +121,7 @@ for (const scene of photographs)
       author: photo.author,
       source: photo.url,
       license: photo.license,
+      licenseUrl: photo.licenseUrl,
       date: photo.date,
       image: photo.image,
       usedBy: [scene.sceneId],
@@ -131,13 +132,15 @@ for (const scene of photographs)
 for (const asset of details?.assets ?? [])
   entries.push({
     category:
-      asset.kind === "hdri"
-        ? "Lighting"
-        : asset.kind === "3d-model"
-          ? "3D models"
-          : asset.kind === "texture" || asset.files
-            ? "Scanned materials"
-            : "Printed artwork",
+      asset.kind === "photographic-foliage"
+        ? "Photographic foliage"
+        : asset.kind === "hdri"
+          ? "Lighting"
+          : asset.kind === "3d-model"
+            ? "3D models"
+            : asset.kind === "texture" || asset.files
+              ? "Scanned materials"
+              : "Printed artwork",
     title: asset.title ?? title(asset.id),
     author: asset.author,
     source: asset.source,

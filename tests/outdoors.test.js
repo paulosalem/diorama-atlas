@@ -4,8 +4,15 @@ import { lstat, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { createHash, randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
+import * as THREE from "three";
+import { HDRLoader } from "three/addons/loaders/HDRLoader.js";
+import {
+  loadOutdoorDaylight,
+  applyOutdoorDaylight,
+} from "../src/client/environments/outdoors/outdoor-daylight.js";
 import {
   outdoorScenes,
+  outdoorDraftScenes,
   outdoorLocations,
 } from "../src/client/catalog/outdoor-catalog.js";
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
@@ -13,14 +20,68 @@ import { locateScenes } from "../src/client/catalog/place-locations.js";
 import { outdoorBuilders } from "../src/client/environments/outdoors/outdoor-scenes.js";
 import { createMiniature } from "../src/client/world/world-miniatures.js";
 
-test("all ten imagined outdoor settings have distinct builders and four details", () => {
+const registeredScenes = [...outdoorScenes, ...outdoorDraftScenes];
+
+test("daylight profiles preserve the collection baseline and align the selected sky with its sun", async (t) => {
+  const paths = [];
+  t.mock.method(HDRLoader.prototype, "loadAsync", async (path) => {
+    paths.push(path);
+    const data = new Float32Array(4 * 4 * 4).fill(0.1);
+    data.set([10, 10, 10, 1], 8);
+    const texture = new THREE.DataTexture(data, 4, 4);
+    texture.type = THREE.FloatType;
+    return texture;
+  });
+  const generator = { fromEquirectangular: (texture) => ({ texture }) };
+  for (const [profile, file, gain, intensity] of [
+    [undefined, "daylight-pure-sky_2k.hdr", 1.55, 1],
+    ["broken-clouds", "daylight-pure-sky_2k.hdr", 1.55, 1],
+    ["summer", "daylight-summer-sky_2k.hdr", 1.35, 1.25],
+  ]) {
+    const daylight = await loadOutdoorDaylight(generator, profile);
+    assert.equal(paths.at(-1), `/public/outdoors/detail-assets/${file}`);
+    assert.equal(daylight.exposureGain, gain);
+    assert.equal(daylight.intensity, intensity);
+    const scene = new THREE.Scene(),
+      sun = new THREE.DirectionalLight();
+    sun.position.set(12, 21, 18);
+    sun.target.position.set(0, 1, 0);
+    const direction = sun.position.clone().sub(sun.target.position),
+      azimuth = Math.atan2(direction.z, direction.x);
+    applyOutdoorDaylight(scene, { sun }, daylight);
+    const actual = sun.position.clone().sub(sun.target.position);
+    assert.ok(Math.abs(Math.atan2(actual.z, actual.x) - azimuth) < 1e-12);
+    assert.ok(
+      Math.abs(Math.asin(actual.y / actual.length()) - daylight.sunElevation) <
+        1e-12,
+    );
+    assert.ok(Math.abs(actual.length() - direction.length()) < 1e-12);
+    assert.equal(scene.background, daylight.texture);
+    assert.equal(scene.backgroundIntensity, intensity);
+    assert.deepEqual(scene.environmentRotation, scene.backgroundRotation);
+    daylight.texture.dispose();
+  }
+  for (const profile of ["unknown", "__proto__", "constructor"])
+    await assert.rejects(
+      loadOutdoorDaylight(generator, profile),
+      /Unknown outdoor daylight profile/,
+    );
+  assert.equal(paths.length, 3);
+  assert.ok(outdoorScenes.every((scene) => scene.daylight === undefined));
+  assert.equal(
+    outdoorDraftScenes.find((scene) => scene.id === "douro-vineyard").daylight,
+    "summer",
+  );
+});
+
+test("all released and explicitly staged outdoor settings have distinct builders and four details", () => {
   assert.equal(outdoorScenes.length, 10);
   assert.equal(new Set(outdoorScenes.map((scene) => scene.id)).size, 10);
   assert.deepEqual(
     Object.keys(outdoorBuilders).sort(),
-    outdoorScenes.map((scene) => scene.id).sort(),
+    registeredScenes.map((scene) => scene.id).sort(),
   );
-  for (const scene of outdoorScenes) {
+  for (const scene of registeredScenes) {
     assert.equal(scene.environment, "outdoor");
     assert.equal(scene.fictional, true);
     assert.equal(scene.referenceRole, "style");
@@ -37,7 +98,9 @@ test("all ten imagined outdoor settings have distinct builders and four details"
 test("map coordinates describe regional inspiration, never a fictional street address", () => {
   for (const location of outdoorLocations) {
     assert.equal(location.geographicScope, "regional");
-    const scene = outdoorScenes.find((entry) => entry.id === location.sceneId);
+    const scene = registeredScenes.find(
+      (entry) => entry.id === location.sceneId,
+    );
     assert.ok(scene.region.startsWith("An imagined"));
     assert.doesNotMatch(
       `${scene.title} ${scene.id}`,
@@ -82,12 +145,12 @@ test("every imagined setting retains at least two attributed style-reference pho
       new URL("../public/outdoors/references.json", import.meta.url),
     ),
   );
-  assert.equal(references.length, 10);
-  for (const scene of outdoorScenes) {
+  assert.equal(references.length, registeredScenes.length);
+  for (const scene of registeredScenes) {
     const entry = references.find((item) => item.sceneId === scene.id);
     assert.ok(entry, scene.id);
-    assert.match(entry.caveat, /style/i);
-    assert.match(entry.caveat, /fictional|imagined/i);
+    assert.match(entry.caveat, /style|regional references/i);
+    assert.match(entry.caveat, /fictional|imagined|anonymous/i);
     assert.ok(entry.references.length >= 2, scene.id);
     for (const reference of entry.references) {
       assert.ok(
@@ -105,6 +168,19 @@ test("every imagined setting retains at least two attributed style-reference pho
           new URL(`..${reference.image}`, import.meta.url),
         );
         assert.ok(image.size > 1000);
+        if (reference.sha256) {
+          const bytes = await readFile(
+            new URL(`..${reference.image}`, import.meta.url),
+          );
+          assert.equal(bytes.length, reference.bytes);
+          assert.equal(
+            createHash("sha256").update(bytes).digest("hex"),
+            reference.sha256,
+          );
+          assert.ok(
+            reference.licenseUrl.startsWith("https://creativecommons.org/"),
+          );
+        }
       }
     }
   }
@@ -181,6 +257,17 @@ test("downloaded detail assets and generated artwork retain their verified bytes
   );
   const files = [];
   for (const asset of details.assets) {
+    if (asset.sourceSha256) {
+      assert.ok(asset.sourceImage.startsWith("/public/"));
+      const source = await readFile(
+        new URL(`..${asset.sourceImage}`, import.meta.url),
+      );
+      assert.equal(
+        createHash("sha256").update(source).digest("hex"),
+        asset.sourceSha256,
+        asset.id,
+      );
+    }
     if (asset.image) files.push({ path: asset.image, ...asset });
     for (const [key, path] of Object.entries(asset.files ?? {})) {
       const integrity = asset.fileIntegrity?.[key] ?? asset.sourceFiles?.[key];

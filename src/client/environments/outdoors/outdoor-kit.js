@@ -8,6 +8,7 @@ import { createOutdoorWater } from "./outdoor-water.js";
 import { configureOutdoorMaterialScale } from "./outdoor-material-scale.js";
 import { createOutdoorTree } from "./outdoor-foliage.js";
 import { addOutdoorWearPatch } from "./outdoor-weathering.js";
+import { createFoliageImpostor } from "./outdoor-foliage-impostor.js";
 
 export function outdoorView(label, position, target, fov = 60) {
   return { label, position, target, fov };
@@ -18,6 +19,8 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
   const k = createEnvironmentKit(renderer, seed);
   const owned = new Set(),
     pending = [],
+    preparations = [],
+    impostorTargets = [],
     reflectors = [],
     geometries = new Set();
   const imageBitmaps = new Set();
@@ -212,6 +215,91 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
     mat.userData.metresPerRepeat = mat === k.m.cedar ? 1.2 : 2;
   k.geometries = geometries;
 
+  k.instances = (geometry, material, entries, { shadow = true } = {}) => {
+    geometries.add(geometry);
+    const mesh = new THREE.InstancedMesh(geometry, material, entries.length);
+    const transform = new THREE.Object3D();
+    const color = new THREE.Color();
+    entries.forEach((entry, index) => {
+      transform.position.set(...entry.position);
+      transform.rotation.set(...(entry.rotation ?? [0, 0, 0]));
+      transform.scale.set(...(entry.scale ?? [1, 1, 1]));
+      transform.updateMatrix();
+      mesh.setMatrixAt(index, transform.matrix);
+      if (entry.color !== undefined)
+        mesh.setColorAt(index, color.set(entry.color));
+    });
+    mesh.castShadow = shadow;
+    mesh.receiveShadow = true;
+    mesh.computeBoundingSphere();
+    k.group.add(mesh);
+    return mesh;
+  };
+
+  k.instanceCells = (
+    geometry,
+    material,
+    entries,
+    {
+      cellSize = 96,
+      shadow = true,
+      farGeometry,
+      farMaterial = material,
+      farDistance,
+    } = {},
+  ) => {
+    if (!Number.isFinite(cellSize) || cellSize <= 0)
+      throw new Error("Instance cells require a positive finite size.");
+    geometries.add(geometry);
+    if (farGeometry) {
+      if (!Number.isFinite(farDistance) || farDistance <= cellSize)
+        throw new Error(
+          "A distant instance level must start beyond its cell size.",
+        );
+      geometries.add(farGeometry);
+    }
+    const cells = new Map();
+    for (const entry of entries) {
+      const key = `${Math.floor(entry.position[0] / cellSize)},${Math.floor(entry.position[2] / cellSize)}`;
+      if (!cells.has(key)) cells.set(key, []);
+      cells.get(key).push(entry);
+    }
+    const group = k.sub([0, 0, 0]);
+    group.userData.instancePartition = { entries: entries.length, cellSize };
+    for (const cell of cells.values()) {
+      const near = k.instances(geometry, material, cell, { shadow });
+      if (!farGeometry) {
+        group.add(near);
+        continue;
+      }
+      const far = k.instances(farGeometry, farMaterial, cell, { shadow });
+      const lod = new THREE.LOD();
+      lod.position.copy(near.boundingSphere.center);
+      near.position.copy(lod.position).negate();
+      far.position.copy(near.position);
+      lod.addLevel(near, 0);
+      lod.addLevel(far, farDistance, 0.12);
+      group.add(lod);
+    }
+    return group;
+  };
+
+  k.foliageImpostor = (geometry, material) => {
+    const impostor = createFoliageImpostor(
+      renderer,
+      geometry,
+      material,
+      k.group.children.filter((object) => object.isLight),
+    );
+    geometries.add(impostor.geometry);
+    owned.add(impostor.material);
+    owned.add(impostor.target);
+    owned.add(impostor.target.texture);
+    impostorTargets.push(impostor.target);
+    preparations.push(impostor.prepare);
+    return { farGeometry: impostor.geometry, farMaterial: impostor.material };
+  };
+
   k.box = (
     size,
     position,
@@ -398,9 +486,11 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
     };
     runtime.outdoor = true;
     runtime.sun = sun;
+    runtime.impostorTargets = impostorTargets;
     runtime.aoScale = 0.75;
     runtime.ready = Promise.all([runtime.ready, ...pending]).then(() => {
       if (disposed) return;
+      preparations.forEach((prepare) => prepare());
       refreshMaterials.forEach((refresh) => refresh());
     });
 

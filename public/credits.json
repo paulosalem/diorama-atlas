@@ -151,6 +151,62 @@
     },
     {
       "category": "Style-reference photography",
+      "title": "Douro: irregular vineyard terraces",
+      "author": "Rosino",
+      "source": "https://commons.wikimedia.org/wiki/File:Terraced_vineyards_of_the_Douro.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "date": "2010-10-02",
+      "image": "/public/outdoors/references/douro-terraces.jpg",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Commons imageinfo and its Flickr review identify Rosino and CC BY-SA 2.0. Inspected photograph: irregular stone-supported contours, bare working ground and separate vine rows. Commons 1920px derivative retained without further changes."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Douro: grapes, vine training and stone wall",
+      "author": "Rosino",
+      "source": "https://commons.wikimedia.org/wiki/File:Douro_wine_grapes_ripe_for_the_harvest.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "date": "2010-10-02",
+      "image": "/public/outdoors/references/douro-grapes.jpg",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Commons metadata verifies the photographer, date and license. Inspected photograph: dark grape bunches, palmate leaves, trained canes, posts, wires and layered wall stones. Also used as a small working reference print in the fictional quinta. Commons 1920px derivative retained; the photo remains CC BY-SA 2.0."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Douro: river and cultivated hills near Régua",
+      "author": "Yiwenli0203",
+      "source": "https://commons.wikimedia.org/wiki/File:Terraced_vineyards_along_the_Douro_river.jpg",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "date": "2025-10-03",
+      "image": "/public/outdoors/references/douro-river.jpg",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Commons metadata records the creator's CC0 dedication. Inspected photograph: river, groves, cultivated slopes and atmospheric distance. Also used on an illustrated notebook, not as a geometric backdrop. Commons 1920px derivative retained."
+    },
+    {
+      "category": "Style-reference photography",
+      "title": "Douro: limewashed quinta and tiled roof",
+      "author": "Sanjorgepinho",
+      "source": "https://commons.wikimedia.org/wiki/File:Quinta_da_Formigosa,_Chanceleiros,_Covas_do_Douro,_Sabrosa.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "date": "2022-03-09",
+      "image": "/public/outdoors/references/douro-quinta.jpg",
+      "usedBy": [
+        "douro-vineyard"
+      ],
+      "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Commons metadata verifies creator, date and license. Inspected photograph: limewash, layered red roof tiles and selective base weathering. Reference for construction only; the modeled building does not copy this estate's name, gate, inscription or plan. Commons 1920px derivative retained."
+    },
+    {
+      "category": "Style-reference photography",
       "title": "Pottery Square: drying pots and surrounding buildings",
       "author": "Peretz Partensky",
       "source": "https://commons.wikimedia.org/wiki/File:0901_bakhtapur_pots_(3048910023).jpg",
@@ -423,6 +479,35 @@
       "note": "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. Photo-specific CC BY-SA 3.0 license cross-checked in file-page metadata; photographer and year from the approved researched page. Tightly cropped roof detail showing curved overlapping tiled tiers, pale borders and gold-colored ornament below the eaves. Not a complete hall elevation; resized preview."
     },
     {
+      "category": "Photographic foliage",
+      "title": "Green grape-leaf study",
+      "author": "Bonnjalal00; cutout by Diorama Atlas",
+      "source": "https://commons.wikimedia.org/wiki/File:%D8%A3%D9%88%D8%B1%D8%A7%D9%82_%D9%83%D8%B1%D9%85%D8%A9_%D8%A7%D9%84%D8%B9%D9%86%D8%A8_Vitis_vinifera.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "date": "2026-04-08",
+      "note": "Grape foliage photographed in Morocco, used only as a botanical surface reference; it does not identify a Douro cultivar. The full-resolution original is preserved. A masked, rotated crop retains the photographed green pigment, veins and moisture; modeled surfaces supply curvature. The derivative remains CC BY-SA 4.0."
+    },
+    {
+      "category": "Photographic foliage",
+      "title": "Douro grape leaf cutouts",
+      "author": "Rosino; cutout and color adaptation by Diorama Atlas",
+      "source": "https://commons.wikimedia.org/wiki/File:Douro_wine_grapes_ripe_for_the_harvest.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "date": "2010-10-02",
+      "note": "A small grape leaf extracted from Rosino's licensed Douro photograph, with its photographed veins and surface variation retained. The 110×92-pixel masked source is rotated and resampled, not a new high-resolution scan. The autumn cutout retains source color; the green version is an explicitly recolored adaptation. Both derivatives remain CC BY-SA 2.0 and are used on curved individual leaves, not as a landscape backdrop. They do not identify a grape variety."
+    },
+    {
+      "category": "Scanned materials",
+      "title": "Rocky Terrain 02",
+      "author": "Amal Kumar",
+      "source": "https://polyhaven.com/a/rocky_terrain_02",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Generic scanned stony ground, not a Douro geological survey. Original channels retained. The renderer uses the shared luminance-normalized pigment treatment to reduce the source's green groundcover coloration toward dry vineyard soil, with physical-scale grain, OpenGL normals and roughness."
+    },
+    {
       "category": "Printed artwork",
       "title": "Nelumbo nucifera — Flora de Filipinas botanical plate",
       "author": "Francisco Manuel Blanco (O.S.A.), credited by Wikimedia Commons; individual plate illustrator not identified",
@@ -528,6 +613,15 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "note": "Photographic midday pure sky with blue openings, broken high white clouds and neutral daylight, not a sunset or landmark panorama. The complete decoded panorama was tone-mapped for inspection: no houses, buildings, terrain or recognizable landmarks were visible. Poly Haven's credited sky edits remove the original ground; the lower hemisphere is a softened continuation of sky colors, not a photographic sea or ground surface. Use as a visible sky/background option while keeping the existing overcast_soil lighting baseline and actual 3D terrain/buildings. Favor the upper hemisphere above the modeled horizon; align sky rotation with scene lighting as appropriate. The original Radiance RGBE HDR is unmodified, with API byte count and MD5 verified; tone mapping was inspection-only and no generated sky pixels or preview files are distributed."
+    },
+    {
+      "category": "Lighting",
+      "title": "Kloofendal 43d Clear (Pure Sky)",
+      "author": "Greg Zaal",
+      "source": "https://polyhaven.com/a/kloofendal_43d_clear_puresky",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Photographic clear blue sky with a high sun and light horizon haze, photographed in South Africa, not the Douro. The full panorama was decoded and inspected; its lower hemisphere is a softened sky continuation, not a photographed river or landscape. The original HDR is unchanged. Terrain, buildings and water remain modeled; sun direction and reflections follow the selected sky. Tone mapping was used only for local inspection."
     },
     {
       "category": "3D models",
@@ -5669,5 +5763,5 @@
       "note": "AI-generated voice, not a human recording. Generated with gpt-4o-mini-tts, voice cedar, for pt-BR. Original Atlas narration, not a human field recording. No Creative Commons or public-domain grant is asserted; see the linked OpenAI terms for generated output."
     }
   ],
-  "updatedAt": "2026-10-31T14:12:52.588Z"
+  "updatedAt": "2026-11-02T01:22:52.439Z"
 }

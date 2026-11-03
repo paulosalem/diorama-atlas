@@ -104,7 +104,9 @@ function navigate(path) {
 }
 
 try {
-  scenes = await loadScenes();
+  scenes = await loadScenes({
+    includeDrafts: new URLSearchParams(location.search).get("draft") === "1",
+  });
   await render();
 } catch (error) {
   showError(error);

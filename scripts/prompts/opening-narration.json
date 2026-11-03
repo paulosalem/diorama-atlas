@@ -5,6 +5,70 @@
   },
   "assets": [
     {
+      "id": "douro-vineyard-en-US",
+      "scene": "douro-vineyard",
+      "locale": "en-US",
+      "title": "A landscape made through work",
+      "text": "In Portugal's Douro Valley, the vineyard is both a cultivated landscape and a record of human effort. Generations have shaped steep slopes into terraces, tending vines and maintaining the stone that holds the soil. Paths connect the fields to quintas, the farm complexes where cultivation meets the work of making wine. This imagined vineyard brings those relationships together: fruit close at hand, a shaded working doorway, and the river valley beyond. It is an invitation to see the patient labor within the view.",
+      "references": ["https://whc.unesco.org/en/list/1046/"]
+    },
+    {
+      "id": "douro-vineyard-pt-BR",
+      "scene": "douro-vineyard",
+      "locale": "pt-BR",
+      "title": "Uma paisagem construída pelo trabalho",
+      "text": "No vale do Douro, em Portugal, a vinha é uma paisagem cultivada e também um registro do esforço humano. Gerações transformaram encostas íngremes em terraços, cuidando das videiras e conservando as pedras que sustentam o solo. Caminhos ligam os campos às quintas, conjuntos rurais onde o cultivo encontra o trabalho de produzir vinho. Esta vinha imaginada reúne essas relações: os frutos ao alcance do olhar, uma porta de trabalho à sombra e o vale do rio ao fundo. É um convite a perceber o trabalho paciente dentro da paisagem.",
+      "references": ["https://whc.unesco.org/en/list/1046/"]
+    },
+    {
+      "id": "douro-vineyard-vines-en-US",
+      "scene": "douro-vineyard",
+      "view": "vines",
+      "locale": "en-US",
+      "title": "Reading the trained vine",
+      "text": "Look beneath the leaves. An older trunk gives way to younger canes, held along supports so the plant can be tended. Small grape bunches hang below the canopy, where their scale becomes clear beside the leaves and wires. Pruning, training and harvesting are different parts of a continuing relationship with the vine. These plants suggest the harvest season without claiming an identified grape variety."
+    },
+    {
+      "id": "douro-vineyard-vines-pt-BR",
+      "scene": "douro-vineyard",
+      "view": "vines",
+      "locale": "pt-BR",
+      "title": "Ler a videira conduzida",
+      "text": "Observe por baixo das folhas. Do tronco mais antigo saem ramos jovens, conduzidos pelos suportes para facilitar os cuidados com a planta. Pequenos cachos pendem sob a folhagem, e sua escala fica clara ao lado das folhas e dos arames. Podar, conduzir e colher são partes diferentes de uma relação contínua com a videira. Estas plantas sugerem a época da colheita sem representar uma variedade de uva identificada."
+    },
+    {
+      "id": "douro-vineyard-terraces-en-US",
+      "scene": "douro-vineyard",
+      "view": "terraces",
+      "locale": "en-US",
+      "title": "The stone beneath the view",
+      "text": "The terraces make a steep hillside workable. Schist walls hold the ground, while narrow stairs connect one level to the next. The Douro contains different terrace forms, shaped by changing techniques and by the rebuilding of vineyards over time. Here, the layered stone and open path bring that larger history down to the scale of a footstep. Their order depends on continuing care, not on the landscape standing still."
+    },
+    {
+      "id": "douro-vineyard-terraces-pt-BR",
+      "scene": "douro-vineyard",
+      "view": "terraces",
+      "locale": "pt-BR",
+      "title": "A pedra que sustenta a paisagem",
+      "text": "Os terraços tornam possível trabalhar em uma encosta íngreme. Muros de xisto sustentam o terreno, enquanto escadas estreitas ligam um nível ao seguinte. O Douro reúne diferentes formas de terraços, moldadas pelas mudanças técnicas e pela reconstrução das vinhas ao longo do tempo. Aqui, as camadas de pedra e o caminho aberto aproximam essa história da escala de um passo. Essa organização depende de cuidados contínuos, não de uma paisagem parada no tempo."
+    },
+    {
+      "id": "douro-vineyard-quinta-en-US",
+      "scene": "douro-vineyard",
+      "view": "quinta",
+      "locale": "en-US",
+      "title": "Beyond the working doorway",
+      "text": "The open doorway connects the bright vineyard to a cooler room. Crates, pruning tools, a notebook and a water jug suggest the small tasks and pauses that sustain a working day. The thick walls and tiled roof belong to an architectural vocabulary found around the Douro, but this modest quinta is invented. Its value here is the relationship it reveals: the beautiful hillside is also somebody's place of work."
+    },
+    {
+      "id": "douro-vineyard-quinta-pt-BR",
+      "scene": "douro-vineyard",
+      "view": "quinta",
+      "locale": "pt-BR",
+      "title": "Além da porta de trabalho",
+      "text": "A porta aberta liga a vinha iluminada a um cômodo mais fresco. Caixas, ferramentas de poda, um caderno e uma jarra de água sugerem as pequenas tarefas e pausas que sustentam um dia de trabalho. As paredes espessas e o telhado de telhas fazem parte de uma linguagem arquitetônica encontrada no Douro, mas esta quinta modesta é inventada. O que importa aqui é a relação revelada: a bela encosta também é um lugar de trabalho."
+    },
+    {
       "id": "riad-en-US",
       "scene": "riad",
       "locale": "en-US",

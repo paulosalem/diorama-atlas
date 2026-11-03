@@ -1,5 +1,47 @@
 const places = [
   {
+    id: "douro-vineyard",
+    draft: true,
+    daylight: "summer",
+    location: "douro",
+    title: "Douro Vineyard",
+    name: "Douro Valley",
+    country: "Portugal",
+    lat: 41.17,
+    lon: -7.55,
+    miniature: "vineyard",
+    ambience: "rural",
+    region: "An imagined vineyard · Douro Valley, Portugal",
+    accent: "#929360",
+    blurb:
+      "Schist terraces, laden vines and a quiet working quinta above a winding river valley.",
+    summary:
+      "An anonymous vineyard inspired by the Douro's cultivated hillsides. Dry-stone terraces, trained vines, paths and a modest quinta reveal the work behind the landscape. The farm, river bend and buildings are invented, not a replica of a named estate. Different terrace forms reflect changing agricultural practices; this scene interprets those relationships without claiming a surveyed historical layout or an identified grape variety.",
+    period: "Regional interpretation · A working Douro vineyard near harvest",
+    details: [
+      [
+        "vines",
+        "The trained vine",
+        "Twisted trunks, supporting wires, palmate leaves and small grape bunches make cultivation visible. Pruning and training organize growth so the fruit can be tended and gathered. The modeled plants suggest a harvest season, not a verified grape variety.",
+      ],
+      [
+        "schist",
+        "Stone that holds a hillside",
+        "Schist walls support narrow terraces and require continuing care. Their layered stone, dry joints and small stairs connect the shape of the hill to work at human scale. These authored walls are not a copy of a documented estate.",
+      ],
+      [
+        "quinta",
+        "A working threshold",
+        "The open doorway connects the vineyard to a shaded sorting and tool room. Crates, pruning tools and a notebook suggest ordinary work rather than a staged wine display. The fictional quinta borrows regional construction principles, not a real business's identity.",
+      ],
+      [
+        "valley",
+        "A cultivated river landscape",
+        "The Douro landscape combines vines, farm buildings, paths, scrub and water. Its terraces evolved with techniques and economic conditions; their beauty also records sustained labor. The river and opposing slopes here are modeled interpretations, not a geographic survey.",
+      ],
+    ],
+  },
+  {
     id: "newar-potters-square",
     location: "kathmandu-valley",
     title: "Newar Potters' Square",
@@ -401,7 +443,7 @@ const places = [
   },
 ];
 
-export const outdoorScenes = places.map((place) => ({
+const scenes = places.map((place) => ({
   ...place,
   environment: "outdoor",
   fictional: true,
@@ -414,6 +456,9 @@ export const outdoorScenes = places.map((place) => ({
     point: [0, 1, 0],
   })),
 }));
+
+export const outdoorScenes = scenes.filter((scene) => !scene.draft);
+export const outdoorDraftScenes = scenes.filter((scene) => scene.draft);
 
 export const outdoorLocations = places.map((place) => ({
   id: place.location,

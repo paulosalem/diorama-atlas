@@ -10,8 +10,10 @@ import {
 } from "./outdoor-architecture.js";
 import { buildSubakTerraces, buildNaxiCanal } from "./outdoor-landscapes.js";
 import { buildBahianSquare, buildTunisianCafe } from "./outdoor-coasts.js";
+import { buildDouroVineyard } from "./douro-vineyard.js";
 
 export const outdoorBuilders = {
+  "douro-vineyard": buildDouroVineyard,
   "newar-potters-square": buildNewarPottersSquare,
   "central-asian-madrasa": buildMadrasaCourtyard,
   "balinese-subak-terraces": buildSubakTerraces,

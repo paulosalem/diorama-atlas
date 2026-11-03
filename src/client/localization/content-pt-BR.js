@@ -1,4 +1,7 @@
+import { douroPtBR } from "./douro-pt-BR.js";
+
 export const contentPtBR = Object.freeze({
+  ...douroPtBR,
   "Marrakech Riad Courtyard": "Pátio de um riad em Marrakech",
   "Marrakech medina domestic courtyard":
     "Pátio doméstico na medina de Marrakech",

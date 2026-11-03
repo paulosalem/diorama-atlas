@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { test } from "node:test";
 import {
@@ -10,7 +11,10 @@ import {
   locateScenes,
 } from "../src/client/catalog/place-locations.js";
 import { geographicPosition } from "../src/client/world/world-globe.js";
-import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
+import {
+  outdoorDraftScenes,
+  outdoorScenes,
+} from "../src/client/catalog/outdoor-catalog.js";
 
 const root = new URL("../", import.meta.url);
 const sceneDirectory = new URL("data/scenes/", root);
@@ -58,8 +62,8 @@ test("the integrated collection contains twenty-two distinct, complete places", 
   }
 });
 
-test("every bundled place has a local preview, independent of AI caches", async () => {
-  for (const scene of allScenes) {
+test("every bundled place and explicit draft has a local preview, independent of AI caches", async () => {
+  for (const scene of [...allScenes, ...outdoorDraftScenes]) {
     const preview = new URL(
       scene.preview?.slice(1) ?? `public/previews/${scene.id}.png`,
       root,
@@ -69,6 +73,64 @@ test("every bundled place has a local preview, independent of AI caches", async 
       (await readFile(preview)).subarray(0, 8),
       Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     );
+  }
+});
+
+test("unfinished preview captures have separate, verifiable provenance", async () => {
+  const manifest = JSON.parse(
+    await readFile(new URL("public/previews/credits.json", root), "utf8"),
+  );
+  assert.equal(manifest.drafts.length, outdoorDraftScenes.length);
+  for (const preview of manifest.drafts) {
+    const scene = outdoorDraftScenes.find(
+      (scene) => scene.id === preview.scene,
+    );
+    assert.ok(scene, preview.scene);
+    assert.equal(scene.preview, preview.file);
+    const bytes = await readFile(new URL(preview.file.slice(1), root));
+    assert.equal(bytes.length, preview.bytes);
+    assert.equal(
+      createHash("sha256").update(bytes).digest("hex"),
+      preview.sha256,
+    );
+    assert.equal(bytes.readUInt32BE(16), preview.width);
+    assert.equal(bytes.readUInt32BE(20), preview.height);
+    assert.equal(preview.reducedMotion, true);
+  }
+});
+
+test("every bundled place has an indexed brief with its narrated viewpoint keys", async () => {
+  const index = await readFile(new URL("docs/scenes/README.md", root), "utf8");
+  const { assets } = JSON.parse(
+    await readFile(new URL("public/narration/manifest.json", root), "utf8"),
+  );
+  for (const scene of allScenes) {
+    const brief = await readFile(
+      new URL(`docs/scenes/${scene.id}.md`, root),
+      "utf8",
+    );
+    assert.ok(brief.startsWith(`# ${scene.title}\n`), scene.id);
+    assert.ok(index.includes(`(${scene.id}.md)`), scene.id);
+    assert.ok(brief.includes(`?scene=${scene.id}&inspect=1`), scene.id);
+    const section = brief.match(
+      /## View sequence\s+([\s\S]*?)(?=\n## |$)/,
+    )?.[1];
+    assert.ok(section, `${scene.id}: missing viewpoint sequence`);
+    const views = [...section.matchAll(/`([a-z-]+)`/g)].map(
+      (match) => match[1],
+    );
+    const first =
+      scene.id === "riad"
+        ? "courtyard"
+        : scene.environment === "outdoor"
+          ? "arrival"
+          : "room";
+    const narrated = assets
+      .filter((asset) => asset.scene === scene.id && asset.locale === "en-US")
+      .map((asset) => asset.view ?? first);
+    assert.equal(views[0], first, scene.id);
+    assert.equal(new Set(views).size, views.length, scene.id);
+    assert.deepEqual(new Set(views), new Set(narrated), scene.id);
   }
 });
 
@@ -120,4 +182,20 @@ test("catalog loading reports server failures instead of hiding missing places",
     async () => new Response("", { status: 500 }),
   );
   await assert.rejects(loadScenes, /saved places could not be loaded/);
+});
+
+test("unfinished outdoor places require explicit local preview opt-in", async (t) => {
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async () => new Response(JSON.stringify({ scenes: [] })),
+  );
+  const released = await loadScenes();
+  const preview = await loadScenes({ includeDrafts: true });
+  assert.ok(outdoorDraftScenes.length > 0);
+  for (const scene of outdoorDraftScenes) {
+    assert.equal(scene.draft, true);
+    assert.ok(!released.some((entry) => entry.id === scene.id));
+    assert.ok(preview.some((entry) => entry.id === scene.id));
+  }
 });

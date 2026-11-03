@@ -51,7 +51,6 @@ test("outdoor navigation releases local sound but retains the same theme player"
   );
   await expect(page.locator("#ambientSound")).toHaveText("Mute ambience");
   await page.locator("#musicMode").selectOption("theme");
-  await page.locator("#musicSound").click();
   await expect(page.locator("#musicSound")).toHaveAttribute(
     "aria-pressed",
     "true",

@@ -44,7 +44,12 @@ export async function createViewer(
   viewer.setAttribute("aria-busy", "true");
   toolbar.inert = true;
   app.querySelector("#sceneTitle").textContent = t(definition.title);
-  app.querySelector("#sceneRegion").textContent = t(definition.region);
+  const regionLabel = () =>
+    [
+      t(definition.region),
+      ...(definition.draft ? [t("Unfinished local preview")] : []),
+    ].join(" · ");
+  app.querySelector("#sceneRegion").textContent = regionLabel();
   app.querySelector("#riadLoading").textContent = t("Preparing the space…");
   const headerActions = document.createElement("div");
   headerActions.className = "viewer-header-actions";
@@ -72,7 +77,7 @@ export async function createViewer(
   let environment, daylight;
   try {
     if (outdoor) {
-      daylight = await loadOutdoorDaylight(generator);
+      daylight = await loadOutdoorDaylight(generator, definition.daylight);
       environment = daylight.environment;
     } else {
       const room = new RoomEnvironment();
@@ -136,7 +141,8 @@ export async function createViewer(
     scene.fog = new THREE.FogExp2(runtime.fog.color, runtime.fog.density);
   renderer.toneMappingExposure =
     (runtime.exposure ?? 0.94) * (daylight?.exposureGain ?? 1);
-  scene.environmentIntensity = runtime.environmentIntensity ?? 0.36;
+  scene.environmentIntensity =
+    (runtime.environmentIntensity ?? 0.36) * (daylight?.intensity ?? 1);
   function resize() {
     const w = mount.clientWidth,
       h = mount.clientHeight;
@@ -228,7 +234,7 @@ export async function createViewer(
     if (narration?.snapshot.state !== "playing") stopNarration();
     document.title = `${t(definition.title)} · Diorama Atlas`;
     app.querySelector("#sceneTitle").textContent = t(definition.title);
-    app.querySelector("#sceneRegion").textContent = t(definition.region);
+    app.querySelector("#sceneRegion").textContent = regionLabel();
     resetButton.textContent = t("Reset view");
     app.querySelector("#riadLoading").textContent = t("Preparing the space…");
     app.querySelector("#riadDetailTitle").textContent = t(

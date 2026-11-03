@@ -1,5 +1,18 @@
 # Agent instructions
 
+## Project direction
+
+Read [the philosophy](docs/philosophy.md), [quality contract](docs/diorama-standard.md)
+and the affected [scene briefs](docs/scenes/README.md) before scene work.
+Use the repository's [agent skills](docs/agent-skills.md) for creation, visual
+review, asset curation, bilingual narration and publication. Their linked
+quality requirements are mandatory, not optional context.
+
+Maintain the v1.0.0 project as a complete, provider-free public explorer:
+approved runtime assets are bundled, English and Portuguese cover the entire
+interface, and dedicated scene briefs remain aligned with the catalog.
+Keep research/review outputs out of source and preserve unique local work.
+
 ## Mandatory diorama quality standard
 
 **Every diorama MUST ALWAYS receive the deep level of detail, connected
@@ -70,7 +83,7 @@ Marrakech's visual motifs into unrelated places.
 - Measure performance against a comparable baseline. Optimize implementation
   rather than silently removing the required detail or atmosphere.
 - Run `npm run check` and `npm run test:browser` for relevant source changes.
-  Use the capture and comparison tools documented in [README.md](README.md).
+  Use the capture and comparison tools in the [development guide](docs/development.md).
   A successful build or test alone does not establish visual quality.
 - Do not declare a diorama complete until this standard is implemented and
   inspected. Present the running result for human judgement; do not claim

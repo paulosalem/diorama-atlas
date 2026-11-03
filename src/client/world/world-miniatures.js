@@ -46,7 +46,24 @@ export function createMiniature(type) {
     new THREE.MeshStandardMaterial({ color: 0xcfb989, roughness: 0.75 }),
     [0, 0.01, 0],
   );
-  if (type === "terraces") {
+  if (type === "vineyard") {
+    for (let row = 0; row < 4; row++) {
+      box([1.2, 0.13, 0.23], [0, 0.12 + row * 0.12, 0.48 - row * 0.28], cream);
+      for (let x = -0.47; x < 0.5; x += 0.18)
+        box(
+          [0.12, 0.11, 0.1],
+          [x, 0.23 + row * 0.12, 0.46 - row * 0.28],
+          green,
+        );
+    }
+    box([0.36, 0.29, 0.27], [-0.28, 0.67, -0.34], cream);
+    add(
+      new THREE.ConeGeometry(0.3, 0.15, 4),
+      roof,
+      [-0.28, 0.88, -0.34],
+      [0, Math.PI / 4, 0],
+    );
+  } else if (type === "terraces") {
     for (let i = 0; i < 5; i++) {
       const r = 0.75 - i * 0.105;
       const field = add(
