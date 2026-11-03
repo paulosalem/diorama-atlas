@@ -1,6 +1,6 @@
 # Documentation
 
-Diorama Atlas v1.0.0 is a self-contained collection of 22 imagined cultural
+Diorama Atlas v1.0.0 is a self-contained collection of 23 imagined cultural
 environments. [Visit the public Atlas](https://paulosalem.github.io/diorama-atlas/)
 or follow the guides below.
 

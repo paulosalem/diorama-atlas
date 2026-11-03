@@ -31,11 +31,11 @@ const allScenes = [
   ...outdoorScenes,
 ];
 
-test("the integrated collection contains twenty-two distinct, complete places", () => {
+test("the integrated collection contains twenty-three distinct, complete places", () => {
   assert.equal(curatedScenes.length, 5);
   assert.equal(bundledPackages.length, 7);
-  assert.equal(outdoorScenes.length, 10);
-  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 22);
+  assert.equal(outdoorScenes.length, 11);
+  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 23);
   for (const scene of allScenes) {
     assert.match(scene.id, /^[a-z0-9-]+$/);
     for (const field of ["title", "region", "blurb", "summary"]) {
@@ -76,15 +76,19 @@ test("every bundled place and explicit draft has a local preview, independent of
   }
 });
 
-test("unfinished preview captures have separate, verifiable provenance", async () => {
+test("published outdoor captures and local drafts have separate, verifiable provenance", async () => {
   const manifest = JSON.parse(
     await readFile(new URL("public/previews/credits.json", root), "utf8"),
   );
   assert.equal(manifest.drafts.length, outdoorDraftScenes.length);
-  for (const preview of manifest.drafts) {
-    const scene = outdoorDraftScenes.find(
-      (scene) => scene.id === preview.scene,
-    );
+  assert.ok(
+    manifest.outdoors.some((preview) => preview.scene === "douro-vineyard"),
+  );
+  for (const preview of [...manifest.outdoors, ...manifest.drafts]) {
+    const catalog = manifest.drafts.includes(preview)
+      ? outdoorDraftScenes
+      : outdoorScenes;
+    const scene = catalog.find((scene) => scene.id === preview.scene);
     assert.ok(scene, preview.scene);
     assert.equal(scene.preview, preview.file);
     const bytes = await readFile(new URL(preview.file.slice(1), root));
@@ -134,9 +138,9 @@ test("every bundled place has an indexed brief with its narrated viewpoint keys"
   }
 });
 
-test("every place belongs to exactly one of the eighteen geographic settings", () => {
+test("every place belongs to exactly one of the nineteen geographic settings", () => {
   const places = locateScenes(allScenes);
-  assert.equal(places.length, 18);
+  assert.equal(places.length, 19);
   const locatedIds = places.flatMap((place) =>
     place.scenes.map((scene) => scene.id),
   );
@@ -185,6 +189,9 @@ test("catalog loading reports server failures instead of hiding missing places",
 });
 
 test("unfinished outdoor places require explicit local preview opt-in", async (t) => {
+  const draft = { ...outdoorScenes[0], id: "unfinished-outdoor", draft: true };
+  outdoorDraftScenes.push(draft);
+  t.after(() => outdoorDraftScenes.pop());
   t.mock.method(
     globalThis,
     "fetch",

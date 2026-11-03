@@ -67,16 +67,20 @@ test("daylight profiles preserve the collection baseline and align the selected 
       /Unknown outdoor daylight profile/,
     );
   assert.equal(paths.length, 3);
-  assert.ok(outdoorScenes.every((scene) => scene.daylight === undefined));
+  assert.ok(
+    outdoorScenes
+      .filter((scene) => scene.id !== "douro-vineyard")
+      .every((scene) => scene.daylight === undefined),
+  );
   assert.equal(
-    outdoorDraftScenes.find((scene) => scene.id === "douro-vineyard").daylight,
+    outdoorScenes.find((scene) => scene.id === "douro-vineyard").daylight,
     "summer",
   );
 });
 
 test("all released and explicitly staged outdoor settings have distinct builders and four details", () => {
-  assert.equal(outdoorScenes.length, 10);
-  assert.equal(new Set(outdoorScenes.map((scene) => scene.id)).size, 10);
+  assert.equal(outdoorScenes.length, 11);
+  assert.equal(new Set(outdoorScenes.map((scene) => scene.id)).size, 11);
   assert.deepEqual(
     Object.keys(outdoorBuilders).sort(),
     registeredScenes.map((scene) => scene.id).sort(),
@@ -118,7 +122,7 @@ test("outdoors are mapped once and never leak into an indoor location", () => {
     assert.equal(matches.length, 1, scene.id);
     assert.equal(matches[0].sceneId, scene.id);
   }
-  assert.equal(places.filter((place) => place.sceneId).length, 10);
+  assert.equal(places.filter((place) => place.sceneId).length, 11);
   for (const place of places.filter((place) => !place.sceneId))
     assert.ok(place.scenes.every((scene) => scene.environment !== "outdoor"));
 });
@@ -560,86 +564,113 @@ test("review snapshots copy canonical source and dependencies without author-wor
   }
 });
 
-test("realism reports preserve three failed photographic reviews and their original findings", async () => {
-  const directory = resolve("outputs", `realism-verification-${randomUUID()}`);
-  const rubric = await readFile(
-    new URL(
-      "../agentic-tests/outdoors/outdoor-photographic-presence.yaml",
-      import.meta.url,
-    ),
-    "utf8",
-  );
-  const criteria = [...rubric.matchAll(/^ {2}- id: ([a-z-]+)$/gm)].map(
-    (match) => match[1],
-  );
-  assert.equal(criteria.length, 10);
-  const inputs = new Map();
-  try {
-    for (const pass of [1, 2, 3]) {
-      const path = resolve(directory, `pass-${pass}`, "results.json");
-      const findings = {
-        settings: Object.fromEntries(
-          outdoorScenes.map((scene) => [
-            scene.id,
-            {
-              rubric: Object.fromEntries(
-                criteria.map((criterion) => [
-                  criterion,
-                  {
-                    verdict:
-                      criterion === "photographic-read" ? "fail" : "pass",
-                    finding: `Original finding ${pass}/${scene.id}/${criterion}`,
-                  },
-                ]),
-              ),
-              overallPhotographicRead: "fail",
-              overallReason: `Original photographic limitation ${pass}/${scene.id}`,
-              viewInventory: {
-                presetWides: [`screens/${scene.id}__view-arrival.png`],
+for (const reviewedScenes of [
+  outdoorScenes.filter((scene) => scene.id !== "douro-vineyard"),
+  outdoorScenes,
+])
+  test(`realism reports preserve three failed photographic reviews for ${reviewedScenes.length} settings`, async () => {
+    const directory = resolve(
+      "outputs",
+      `realism-verification-${randomUUID()}`,
+    );
+    const rubric = await readFile(
+      new URL(
+        "../agentic-tests/outdoors/outdoor-photographic-presence.yaml",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    const criteria = [...rubric.matchAll(/^ {2}- id: ([a-z-]+)$/gm)].map(
+      (match) => match[1],
+    );
+    assert.equal(criteria.length, 10);
+    const inputs = new Map();
+    try {
+      for (const pass of [1, 2, 3]) {
+        const path = resolve(directory, `pass-${pass}`, "results.json");
+        const findings = {
+          settings: Object.fromEntries(
+            reviewedScenes.map((scene) => [
+              scene.id,
+              {
+                rubric: Object.fromEntries(
+                  criteria.map((criterion) => [
+                    criterion,
+                    {
+                      verdict:
+                        criterion === "photographic-read" ? "fail" : "pass",
+                      finding: `Original finding ${pass}/${scene.id}/${criterion}`,
+                    },
+                  ]),
+                ),
+                overallPhotographicRead: "fail",
+                overallReason: `Original photographic limitation ${pass}/${scene.id}`,
+                viewInventory: {
+                  presetWides: [`screens/${scene.id}__view-arrival.png`],
+                },
               },
-            },
-          ]),
-        ),
-      };
-      await mkdir(dirname(path), { recursive: true });
-      const content = JSON.stringify(findings);
-      inputs.set(path, content);
-      await writeFile(path, content);
-    }
-    await writeFile(resolve(directory, "post-review-repair.json"), "{}");
-    execFileSync(
-      process.execPath,
-      ["scripts/build-realism-report.mjs", directory],
-      {
-        encoding: "utf8",
-        stdio: "pipe",
-      },
-    );
-    const summary = JSON.parse(
-      await readFile(resolve(directory, "summary.json"), "utf8"),
-    );
-    assert.equal(summary.inspections, 30);
-    assert.equal(summary.criterionJudgements, 300);
-    assert.equal(summary.finalPhotographicPasses, 0);
-    for (const scene of summary.settings) {
-      assert.equal(scene.passes.length, 3);
-      for (const pass of scene.passes) {
-        assert.equal(pass.photographicRead, "fail");
-        assert.equal(
-          pass.reason,
-          `Original photographic limitation ${pass.pass}/${scene.id}`,
-        );
+            ]),
+          ),
+        };
+        await mkdir(dirname(path), { recursive: true });
+        const content = JSON.stringify(findings);
+        inputs.set(path, content);
+        await writeFile(path, content);
       }
+      await writeFile(resolve(directory, "post-review-repair.json"), "{}");
+      execFileSync(
+        process.execPath,
+        ["scripts/build-realism-report.mjs", directory],
+        {
+          encoding: "utf8",
+          stdio: "pipe",
+        },
+      );
+      const summary = JSON.parse(
+        await readFile(resolve(directory, "summary.json"), "utf8"),
+      );
+      assert.equal(summary.inspections, reviewedScenes.length * 3);
+      assert.equal(
+        summary.criterionJudgements,
+        reviewedScenes.length * 3 * criteria.length,
+      );
+      assert.equal(summary.finalPhotographicPasses, 0);
+      for (const scene of summary.settings) {
+        assert.equal(scene.passes.length, 3);
+        for (const pass of scene.passes) {
+          assert.equal(pass.photographicRead, "fail");
+          assert.equal(
+            pass.reason,
+            `Original photographic limitation ${pass.pass}/${scene.id}`,
+          );
+        }
+      }
+      for (const [path, content] of inputs)
+        assert.equal(await readFile(path, "utf8"), content);
+      const report = await readFile(resolve(directory, "index.html"), "utf8");
+      assert.ok(
+        report.includes(
+          `Final photographic-read result: 0/${reviewedScenes.length} pass`,
+        ),
+      );
+      assert.match(report, /Original review verdicts are preserved/);
+      const changedPath = resolve(directory, "pass-3", "results.json");
+      const changed = JSON.parse(inputs.get(changedPath));
+      delete changed.settings[reviewedScenes[0].id];
+      await writeFile(changedPath, JSON.stringify(changed));
+      assert.throws(
+        () =>
+          execFileSync(
+            process.execPath,
+            ["scripts/build-realism-report.mjs", directory],
+            { stdio: "pipe" },
+          ),
+        /same nonempty set/,
+      );
+    } finally {
+      await rm(directory, { recursive: true, force: true });
     }
-    for (const [path, content] of inputs)
-      assert.equal(await readFile(path, "utf8"), content);
-    const report = await readFile(resolve(directory, "index.html"), "utf8");
-    assert.match(report, /Final photographic-read result: 0\/10 pass/);
-    assert.match(report, /Original review verdicts are preserved/);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
-});
+  });
 
 test("all twelve interior previews have accurate rendered-capture provenance, including the riad", async () => {
   const [previews, credits] = await Promise.all([

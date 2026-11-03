@@ -58,7 +58,7 @@ test.describe("high-density displays", () => {
     page,
     browser,
   }, testInfo) => {
-    await page.goto("/?scene=douro-vineyard&inspect=1&draft=1");
+    await page.goto("/?scene=douro-vineyard&inspect=1");
     await waitForViewer(page);
     const dense = await measureFoliagePixels(page);
     await page.evaluate(async () => {
@@ -107,13 +107,13 @@ test("the vineyard has finite instanced geometry, open doors, supported steps an
       skies.push(new URL(request.url()).pathname);
   });
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/?scene=douro-vineyard&inspect=1&draft=1");
+  await page.goto("/?scene=douro-vineyard&inspect=1");
   await waitForViewer(page);
   expect(skies).toEqual([
     "/public/outdoors/detail-assets/daylight-summer-sky_2k.hdr",
   ]);
-  await expect(page.locator("#sceneRegion")).toContainText(
-    "Unfinished local preview",
+  await expect(page.locator("#sceneRegion")).toHaveText(
+    "An imagined vineyard · Douro Valley, Portugal",
   );
   const measured = await page.evaluate(async () => {
     const THREE = await import("three");
@@ -303,7 +303,7 @@ test("the vineyard has finite instanced geometry, open doors, supported steps an
   expect(errors).toEqual([]);
 });
 
-test("the local preview supports both languages, compact controls, sound consent and full disposal", async ({
+test("the vineyard supports both languages, compact controls, sound consent and full disposal", async ({
   page,
 }, testInfo) => {
   const failures = [],
@@ -317,12 +317,12 @@ test("the local preview supports both languages, compact controls, sound consent
     if (/\/public\/(?:audio|narration)\/.*\.mp3$/.test(request.url()))
       audioRequests.push(request.url());
   });
-  await page.goto("/?scene=douro-vineyard&inspect=1&draft=1");
+  await page.goto("/?scene=douro-vineyard&inspect=1");
   await waitForViewer(page);
   expect(audioRequests).toEqual([]);
   await page.locator("#atlasLanguage").selectOption("pt-BR");
   await expect(page.locator("#sceneTitle")).toHaveText("Vinha no Douro");
-  await expect(page.locator("#sceneRegion")).toContainText(
+  await expect(page.locator("#sceneRegion")).not.toContainText(
     "Prévia local em desenvolvimento",
   );
   await page.getByRole("button", { name: "Referências", exact: true }).click();
@@ -338,6 +338,12 @@ test("the local preview supports both languages, compact controls, sound consent
   await expect(page.locator(".credit-license").first()).toHaveAttribute(
     "href",
     /creativecommons.org/,
+  );
+  await page.locator("#creditSearch").fill("A landscape made through work");
+  await expect(page.locator(".credit-entry")).toHaveCount(1);
+  await expect(page.locator(".credit-license")).toHaveAttribute(
+    "href",
+    "https://openai.com/policies/terms-of-use/",
   );
   await page.locator("#creditSearch").fill("folha verde");
   await expect(page.locator(".credit-entry")).toHaveCount(1);

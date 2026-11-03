@@ -45,7 +45,7 @@ test("every bundled scene has immutable bilingual recordings matching its writte
       ),
       `${recipe.id}: recipe must belong to a bundled scene or an explicit local draft`,
     );
-  assert.equal(manifest.assets.length, 202);
+  assert.equal(manifest.assets.length, 210);
   assert.equal(
     new Set(manifest.assets.map((asset) => asset.id)).size,
     manifest.assets.length,

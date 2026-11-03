@@ -1,7 +1,6 @@
 const places = [
   {
     id: "douro-vineyard",
-    draft: true,
     daylight: "summer",
     location: "douro",
     title: "Douro Vineyard",

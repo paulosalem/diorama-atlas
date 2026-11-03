@@ -55,8 +55,8 @@ keys. English and Portuguese use the same scene IDs and links.
 
 ## What the public edition includes
 
-All 22 bundled scenes, material imagery, references, music, ambience and
-202 guided recordings are served as static files. Additional object-detail
+All 23 bundled scenes, material imagery, references, music, ambience and
+210 guided recordings are served as static files. Additional object-detail
 **Listen** uses the browser's speech service, whose voices vary by device.
 The public edition cannot create scenes or generate recordings; those optional
 tools belong to the [local development environment](development.md).

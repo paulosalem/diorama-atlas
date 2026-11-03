@@ -10,17 +10,17 @@ how we understand the world—and the places we call our own.
 
 **[Enter the Atlas →](https://paulosalem.github.io/diorama-atlas/)**
 
-**v1.0.0 · 22 dioramas · 18 geographic settings · English & Brazilian Portuguese**
+**v1.0.0 · 23 dioramas · 19 geographic settings · English & Brazilian Portuguese**
 
 [![Rendered Marrakech courtyard with carved arches, citrus trees, a fountain and a doorway into the home.](public/previews/riad.png)](https://paulosalem.github.io/diorama-atlas/?scene=riad&inspect=1)
 
 ## A little closer
 
 Move from a Kyoto listening café to a Newar pottery square, from an Oaxacan loom
-to a Balinese hillside. Look through doorways, study worn timber and printed
+to a Balinese hillside or a sunlit Douro vineyard. Look through doorways, study worn timber and printed
 pages, follow a guided voice, or linger with the sounds of a place.
 
-The collection offers **101 viewpoints and 202 prerecorded passages** in two
+The collection offers **105 viewpoints and 210 prerecorded passages** in two
 languages, alongside close-up details, gentle movement, music and local ambience.
 Everything needed to visit is included: **no account, installation or API key**.
 Use a modern browser with WebGL 2 and hardware acceleration.

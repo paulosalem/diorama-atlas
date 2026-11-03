@@ -95,6 +95,7 @@ await writeFile(
       capture: { target: "#canvasMount", deviceScaleFactor: 1 },
       checkedAt: new Date().toISOString(),
       rendered: [...rendered.values()],
+      outdoors: previous.outdoors ?? [],
       drafts: previous.drafts ?? [],
       materials: [
         "../riad/materials/manifest.json",

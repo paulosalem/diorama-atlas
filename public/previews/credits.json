@@ -10,7 +10,8 @@
     "deviceScaleFactor": 1
   },
   "checkedAt": "2026-09-14T21:25:08.315Z",
-  "drafts": [
+  "drafts": [],
+  "outdoors": [
     {
       "scene": "douro-vineyard",
       "file": "/public/outdoors/previews/douro-vineyard.png",
@@ -25,7 +26,7 @@
       "reducedMotion": true,
       "target": "#canvasMount",
       "camera": {"position":[7.8,1.72,-1.3],"target":[-3,-4.5,-18],"fov":64},
-      "note": "Actual Chromium/Metal render of an unfinished local preview. This capture is not approval of visual quality or promotion to the bundled collection. Constituent photograph and material rights remain in the outdoor reference and detail manifests."
+      "note": "Actual Chromium/Metal arrival render, retained unchanged when the vineyard joined the bundled collection. Constituent photograph and material rights remain in the outdoor reference and detail manifests."
     }
   ],
   "rendered": [

@@ -41,7 +41,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test("the globe offers eighteen locations and opens an interior", async ({
+test("the globe offers nineteen locations and opens an interior", async ({
   page,
 }) => {
   await page.goto("/");
@@ -52,10 +52,10 @@ test("the globe offers eighteen locations and opens an interior", async ({
   await expect(brand).toHaveText("Diorama Atlas");
   await expect(page).toHaveTitle("Diorama Atlas — a world of small places");
   await expect(page.locator("#worldLoading")).toBeHidden();
-  await expect(page.locator(".place-pin")).toHaveCount(18);
+  await expect(page.locator(".place-pin")).toHaveCount(19);
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await expect(page.locator("#placesPanel")).toBeVisible();
-  await expect(page.locator("#placesPanel button")).toHaveCount(18);
+  await expect(page.locator("#placesPanel button")).toHaveCount(19);
   await page
     .locator("#placesPanel button")
     .filter({ hasText: "Marrakech" })

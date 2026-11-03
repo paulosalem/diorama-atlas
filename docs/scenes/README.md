@@ -1,6 +1,6 @@
 # The collection
 
-**22 imagined places, 18 geographic settings, 101 viewpoints.** Each brief
+**23 imagined places, 19 geographic settings, 105 viewpoints.** Each brief
 records cultural intent, composition, material and atmospheric priorities,
 actual view keys and implementation entry points. The brief guides development;
 it is not evidence that an invented building exists.
@@ -28,25 +28,19 @@ before changing it. Preserve distinct saved variants and approved cameras.
 
 ## Outdoor places
 
-| Brief                                                       | What to notice                                    | Visit                                                                                          |
-| ----------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| [Newar Potters' Square](newar-potters-square.md)            | Clay work and connected neighborhood thresholds   | [Open](https://paulosalem.github.io/diorama-atlas/?scene=newar-potters-square&inspect=1)       |
-| [Central Asian Madrasa Courtyard](central-asian-madrasa.md) | Shade, learning and ordered ceramic ornament      | [Open](https://paulosalem.github.io/diorama-atlas/?scene=central-asian-madrasa&inspect=1)      |
-| [Balinese Subak Terraces](balinese-subak-terraces.md)       | A cultivated landscape of shared water            | [Open](https://paulosalem.github.io/diorama-atlas/?scene=balinese-subak-terraces&inspect=1)    |
-| [Venetian Boatyard Canal](venetian-boatyard.md)             | Wooden vessels at the working edge of the lagoon  | [Open](https://paulosalem.github.io/diorama-atlas/?scene=venetian-boatyard&inspect=1)          |
-| [Bahian Neighborhood Square](bahian-neighborhood-square.md) | A sloping praça and everyday street life          | [Open](https://paulosalem.github.io/diorama-atlas/?scene=bahian-neighborhood-square&inspect=1) |
-| [Andean Stone Lane](andean-stone-lane.md)                   | Fitted masonry and later urban layers             | [Open](https://paulosalem.github.io/diorama-atlas/?scene=andean-stone-lane&inspect=1)          |
-| [Swahili Coastal Verandah](swahili-verandah.md)             | Shade, carved timber and Indian Ocean connections | [Open](https://paulosalem.github.io/diorama-atlas/?scene=swahili-verandah&inspect=1)           |
-| [Naxi Canal Quarter](naxi-canal-quarter.md)                 | Waterways woven into the neighborhood             | [Open](https://paulosalem.github.io/diorama-atlas/?scene=naxi-canal-quarter&inspect=1)         |
-| [Tunisian Terrace Café](tunisian-terrace-cafe.md)           | Tea, coastal light and an outdoor room            | [Open](https://paulosalem.github.io/diorama-atlas/?scene=tunisian-terrace-cafe&inspect=1)      |
-| [Lao Temple Court](lao-temple-court.md)                     | Layered roofs and a calm precinct                 | [Open](https://paulosalem.github.io/diorama-atlas/?scene=lao-temple-court&inspect=1)           |
-
-## In development
-
-[Douro Vineyard](douro-vineyard.md) is an **unfinished local preview**, not part
-of the public collection. Its four viewpoints and bilingual scripts are being
-refined; eight recordings await paid-generation approval. See its brief for the
-local address and remaining quality gates.
+| Brief                                                       | What to notice                                      | Visit                                                                                          |
+| ----------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [Newar Potters' Square](newar-potters-square.md)            | Clay work and connected neighborhood thresholds     | [Open](https://paulosalem.github.io/diorama-atlas/?scene=newar-potters-square&inspect=1)       |
+| [Central Asian Madrasa Courtyard](central-asian-madrasa.md) | Shade, learning and ordered ceramic ornament        | [Open](https://paulosalem.github.io/diorama-atlas/?scene=central-asian-madrasa&inspect=1)      |
+| [Balinese Subak Terraces](balinese-subak-terraces.md)       | A cultivated landscape of shared water              | [Open](https://paulosalem.github.io/diorama-atlas/?scene=balinese-subak-terraces&inspect=1)    |
+| [Venetian Boatyard Canal](venetian-boatyard.md)             | Wooden vessels at the working edge of the lagoon    | [Open](https://paulosalem.github.io/diorama-atlas/?scene=venetian-boatyard&inspect=1)          |
+| [Bahian Neighborhood Square](bahian-neighborhood-square.md) | A sloping praça and everyday street life            | [Open](https://paulosalem.github.io/diorama-atlas/?scene=bahian-neighborhood-square&inspect=1) |
+| [Andean Stone Lane](andean-stone-lane.md)                   | Fitted masonry and later urban layers               | [Open](https://paulosalem.github.io/diorama-atlas/?scene=andean-stone-lane&inspect=1)          |
+| [Swahili Coastal Verandah](swahili-verandah.md)             | Shade, carved timber and Indian Ocean connections   | [Open](https://paulosalem.github.io/diorama-atlas/?scene=swahili-verandah&inspect=1)           |
+| [Naxi Canal Quarter](naxi-canal-quarter.md)                 | Waterways woven into the neighborhood               | [Open](https://paulosalem.github.io/diorama-atlas/?scene=naxi-canal-quarter&inspect=1)         |
+| [Tunisian Terrace Café](tunisian-terrace-cafe.md)           | Tea, coastal light and an outdoor room              | [Open](https://paulosalem.github.io/diorama-atlas/?scene=tunisian-terrace-cafe&inspect=1)      |
+| [Lao Temple Court](lao-temple-court.md)                     | Layered roofs and a calm precinct                   | [Open](https://paulosalem.github.io/diorama-atlas/?scene=lao-temple-court&inspect=1)           |
+| [Douro Vineyard](douro-vineyard.md)                         | Trained vines, schist terraces and a working quinta | [Open](https://paulosalem.github.io/diorama-atlas/?scene=douro-vineyard&inspect=1)             |
 
 ## Reading and maintaining a brief
 

@@ -55,7 +55,7 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 22 bundled scenes have complete bilingual entry/view coverage in the local
+All 23 bundled scenes have complete bilingual entry/view coverage in the local
 manifest. Additional custom scenes without recordings retain detail controls
 without a guided panel; supported scenes report malformed or missing tracks.
 Opening object details pauses and replaces the guided panel, avoiding competing

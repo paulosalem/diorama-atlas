@@ -2,10 +2,9 @@
 
 **Scene:** `douro-vineyard` · **Region:** Douro Valley, Portugal
 
-**Status:** unfinished local preview; not included in the released collection.
-[Open locally](http://127.0.0.1:4183/?scene=douro-vineyard&inspect=1&draft=1).
-The catalog's explicit `draft` flag keeps this work out of ordinary navigation
-and Pages. Remove it only after every quality gate below is met.
+**Visit:** [Open the vineyard](https://paulosalem.github.io/diorama-atlas/?scene=douro-vineyard&inspect=1).
+Included in the globe and public collection, with four viewpoints and eight
+prerecorded English/Brazilian Portuguese passages.
 
 ## Cultural intention
 
@@ -80,13 +79,17 @@ Inspect all four views, the reverse view, ground contact, open containers,
 daylight, full bilingual narration, reduced motion, shared audio and disposal.
 Compare performance with the existing terraced landscape under matched settings.
 
-## Completion gates
+## Narration and review
 
-Eight English/Brazilian Portuguese narration recipes are written, but their
-recordings require explicit paid-generation approval. No provider call has
-been made. The vineyard must also receive final visual approval. It remains
-a real-time interpretation, not a verified photographic reconstruction.
-Recordings and that review are promotion gates, not optional enhancements.
+The eight English/Brazilian Portuguese passages use the collection's
+`gpt-4o-mini-tts` model and `cedar` voice, generated with explicit authorization.
+Exact scripts, request fingerprints and recording hashes are preserved in the
+narration manifest. Visitors can listen to the arrival, vines, terraces and
+quinta in either language without a provider connection.
+
+Voice character, pronunciation, pacing and the artistic interpretation remain
+subject to human listening and visual judgment. This is a real-time
+interpretation, not a verified photographic reconstruction.
 
 Implementation: `src/client/environments/outdoors/douro-vineyard.js`,
 `vineyard-vines.js`, `vineyard-landscape.js`, `vineyard-garden.js` and `vineyard-quinta.js`. The four licensed photographs and
@@ -122,7 +125,8 @@ Fixed-size render-target viewports keep the baked pixels identical at standard
 and high display densities. The browser checks verify that identity, both LOD
 transitions, complete instance counts and render-target disposal.
 
-The recording selection can be inspected without credentials or spending:
+The recording selection and cached checksums can be inspected without
+credentials or spending:
 
 ```sh
 node scripts/generate-opening-narration.mjs --scene douro-vineyard --all-views \

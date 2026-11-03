@@ -8,7 +8,7 @@ room. Music is a separate choice, never a substitute for environmental detail.
 The observable outcome is that moving between viewpoints changes the direction,
 distance and enclosure of nearby sounds without losing the quiet overall mix.
 
-All twenty-two bundled environments use recorded sound. The common palette is composed
+All twenty-three bundled environments use recorded sound. The common palette is composed
 for each architectural family and each outdoor setting, including generated interior variants; it is not a claim
 that the recordings were made in those exact locations. Music is a contemporary,
 interpretive accompaniment, not a historical reconstruction.
@@ -45,7 +45,7 @@ and an **About the sound & credits** disclosure.
   playback went. A handover does not disable the shared saved preferences.
 - **Mute all** saves ambience, music and narration as off. Disposal and page hiding only stop
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
-- All 22 bundled scenes have [prerecorded bilingual guided narration](narration.md).
+- All 23 bundled scenes have [prerecorded bilingual guided narration](narration.md).
   It shares one player with detail narration and lowers ambience and music while
   speech plays. Additional object-detail narration uses explicitly requested
   browser speech outdoors or the narration API indoors. Both modes participate

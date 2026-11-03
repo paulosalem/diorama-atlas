@@ -5,9 +5,9 @@
 The first named edition of Diorama Atlas: an invitation to explore cultural
 life through small, inhabited spaces.
 
-- 22 imagined dioramas across 18 geographic settings: twelve interiors and
-  ten outdoor environments, with connected spaces and 101 viewpoints.
-- Global English and Brazilian Portuguese, with 202 prerecorded guided
+- 23 imagined dioramas across 19 geographic settings: twelve interiors and
+  eleven outdoor environments, with connected spaces and 105 viewpoints.
+- Global English and Brazilian Portuguese, with 210 prerecorded guided
   passages, focused-view narration and a floating transcript.
 - Recorded ambience and music, independent mixing, saved choices, narration
   ducking, and one-tab playback ownership.
@@ -18,9 +18,10 @@ life through small, inhabited spaces.
 - Obsolete root captures and unused models removed from the current source tree
   after preserving hash-verified local copies; historical model rights verified
   against their original Khronos sources.
-- A sunny Douro vineyard study, explicitly staged as a local draft. It is not
-  counted among the 22 released dioramas: its eight bilingual recordings and
-  final artistic approval remain outstanding.
+- A sunny Douro vineyard: green trained vines, schist terraces, a modeled river
+  valley and a furnished working quinta, with four views and eight bilingual
+  recordings. The anonymous regional interpretation is included in the globe
+  and public collection.
 
 Music and ambience default to enabled preferences; first-time playback still
 requires explicit Resume, and existing saved mute choices are retained.

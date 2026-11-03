@@ -48,8 +48,8 @@ The bundled app needs no key, database or generated cache. See
 | `scripts/`, `tests/`                 | Maintenance, captures and regression checks                     |
 | `docs/`, `.github/skills/`           | Human and agent development guidance                            |
 
-Five original definitions, seven saved interiors and ten outdoor definitions
-form the 22-scene collection. Preserve unique IDs and saved-package provenance.
+Five original definitions, seven saved interiors and eleven outdoor definitions
+form the 23-scene collection. Preserve unique IDs and saved-package provenance.
 
 Unfinished outdoor entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
@@ -120,6 +120,10 @@ Serve the generated comparison directory separately: the application does not
 expose `outputs/`. See [outdoor review](outdoor-collection.md),
 [narration verification](narration.md) and the
 [agentic review rubric](../agentic-tests/README.md) for specialized checks.
+
+The three-pass realism report uses the scene IDs recorded in its input files,
+not the size of today's catalog. All passes must cover the same nonempty set.
+This keeps historical reviews reproducible when the collection grows.
 
 ## Optional generation
 

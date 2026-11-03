@@ -64,7 +64,7 @@ test("the public artifact contains the collection but no private/server files", 
 });
 
 test("static hosting rejects unfinished local previews", async ({ page }) => {
-  await page.goto("?scene=douro-vineyard&inspect=1&draft=1");
+  await page.goto("?scene=unfinished-outdoor&inspect=1&draft=1");
   await expect(
     page.getByText(
       "Unfinished places are only available on the local development server.",
@@ -79,7 +79,7 @@ test("the globe, preview and return navigation remain inside the project path", 
 }) => {
   await page.goto("./");
   await expect(page.locator("#worldLoading")).toBeHidden({ timeout: 120_000 });
-  await expect(page.locator(".place-pin")).toHaveCount(18);
+  await expect(page.locator(".place-pin")).toHaveCount(19);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -213,7 +213,7 @@ test("static references, credits, soundscapes and English detail speech need no 
   await expect(
     page.getByRole("link", { name: "Dr. Paulo Salem", exact: true }),
   ).toHaveAttribute("href", "https://www.paulosalem.com/");
-  await expect(page.locator(".credit-entry")).toHaveCount(276);
+  await expect(page.locator(".credit-entry")).toHaveCount(284);
   await page.locator("#creditSearch").fill("Kloofendal");
   await expect(page.locator(".credit-entry")).toHaveCount(1);
   await expect(page.locator(".credit-note")).toContainText("South Africa");
