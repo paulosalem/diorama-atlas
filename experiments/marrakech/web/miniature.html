@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Douro, in miniature</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./miniature.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- THESIS: A real landscape made holdable, not a distant vista in a frame.
+    OWN-WORLD: Sage studio light, schist, vine green, worn timber and sunlit limewash.
+    STORY: Turn the whole piece, discover its geological sides, then enter its inhabited details.
+    FIRST VIEWPORT: The floating section leads; a quiet story sits beside it and named views below.
+    FORM: User-pinned miniature object; the atlas's existing material world and eye-level views survive. -->
+    <header class="masthead">
+      <div>
+        <h1 id="title">Douro, in miniature</h1>
+        <p id="subtitle">A little piece of Portugal</p>
+      </div>
+      <div class="preferences">
+        <button id="sound" type="button" aria-pressed="false" disabled>
+          Enable nature sounds
+        </button>
+        <button id="motion" type="button" aria-pressed="false" disabled>
+          Pause movement
+        </button>
+        <label
+          ><span id="languageLabel" class="visually-hidden">Language</span>
+          <select id="language" aria-labelledby="languageLabel">
+            <option value="en-US">English</option>
+            <option value="pt-BR">Português</option>
+          </select>
+        </label>
+      </div>
+    </header>
+    <main>
+      <div class="experience">
+        <section class="stage" aria-label="Interactive miniature">
+          <canvas
+            id="miniature"
+            tabindex="0"
+            aria-label="Douro miniature. Drag to rotate; use arrow keys when focused."
+          ></canvas>
+          <div class="loading" id="loading" role="status">
+            <p id="loadingText">Preparing your little corner of the Douro…</p>
+            <button id="reload" type="button" hidden>Reload</button>
+          </div>
+          <div class="camera-tools" aria-label="Camera controls">
+            <button id="home" type="button" disabled>Whole miniature</button>
+            <button id="reset" type="button" disabled>Reset view</button>
+            <button id="zoomOut" type="button" aria-label="Zoom out" disabled>
+              −
+            </button>
+            <button id="zoomIn" type="button" aria-label="Zoom in" disabled>
+              +
+            </button>
+          </div>
+          <p id="gesture" class="gesture"></p>
+        </section>
+        <aside class="story">
+          <h2 id="storyTitle"></h2>
+          <details id="storyDetails" open>
+            <summary id="readLabel">About this view</summary>
+            <p id="storyText"></p>
+          </details>
+          <button id="narration" type="button" aria-pressed="false" disabled>
+            Listen to this view
+          </button>
+          <p id="voiceNote" class="voice-note"></p>
+          <p id="notice" role="status"></p>
+          <p class="interpretation" id="interpretation"></p>
+        </aside>
+      </div>
+      <nav id="viewpoints" aria-label="Explore the miniature"></nav>
+    </main>
+    <footer>
+      <a id="comparison" href="/lab/?scene=douro">Original comparison</a>
+      <a id="atlas" href="/?scene=douro-vineyard&amp;inspect=1&amp;draft=1"
+        >Open the original Douro</a
+      >
+      <a id="credits" href="/public/credits.json" target="_blank" rel="noopener"
+        >Asset credits</a
+      >
+      <span>Babylon.js</span>
+    </footer>
+    <script type="module">
+      import("./miniature.js").catch((error) => {
+        console.error("Miniature modules could not load:", error);
+        document.querySelector("#loadingText").textContent =
+          "The miniature could not start. Check the local server, then reload.";
+        document.querySelector("#loading").classList.add("error");
+        const reload = document.querySelector("#reload");
+        reload.hidden = false;
+        reload.onclick = () => location.reload();
+      });
+    </script>
+  </body>
+</html>

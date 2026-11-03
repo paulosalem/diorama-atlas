@@ -10,6 +10,7 @@ import {
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { prepareDioramas } from "./prepare-dioramas.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const markerName = ".atlas-pages-build.json";
@@ -20,6 +21,7 @@ const publishedDirectories = [
   "public/interiors",
   "public/narration",
   "public/outdoors",
+  "public/dioramas",
   "public/previews",
   "public/print-library",
   "public/riad",
@@ -30,6 +32,10 @@ const publishedFiles = [
   "node_modules/three/build/three.module.js",
   "node_modules/three/build/three.core.js",
   "node_modules/three/LICENSE",
+  "node_modules/babylonjs/babylon.js",
+  "node_modules/babylonjs/license.md",
+  "node_modules/babylonjs-loaders/babylonjs.loaders.min.js",
+  "node_modules/babylonjs-loaders/license.md",
 ];
 
 export async function buildPages(outputDir = path.join(root, "dist")) {
@@ -46,6 +52,7 @@ export async function buildPages(outputDir = path.join(root, "dist")) {
     throw new Error(
       "The Pages output must be a dedicated build directory inside the repository.",
     );
+  await prepareDioramas();
   try {
     const stat = await lstat(output);
     if (!stat.isDirectory() || stat.isSymbolicLink())
@@ -143,7 +150,7 @@ if (
   if (values.help) {
     console.log(`Build the server-free Atlas for GitHub Pages or another static host.
 Usage: node scripts/build-pages.mjs [--output-dir dist]
-Copies only the browser source, approved asset directories and Three.js runtime.
+Prepares native dioramas, then copies browser source, approved assets and renderer runtimes.
 Exports bundled scene definitions, not private envelopes, caches or server source.
 The result works at the domain root or a project subdirectory without rewriting assets.
 An existing output directory must carry this builder's ownership marker.

@@ -18,7 +18,8 @@ const { values } = parseArgs({
 if (values.help) {
   console.log(`Verify bundled narration against every actual runtime view.
 Usage: node scripts/check-narration.mjs [--base-url URL] [--output-dir PATH] [--scene ID ...]
-The default selects the entire bundled collection. Explicit scene IDs select a subset.
+The default selects all prerecorded scenes. Explicit scene IDs select a subset.
+Browser-speech scenes are checked through their viewer tests, not MP3 decoding.
 Uses isolated browser preferences, blocks paid API requests, decodes every selected
 MP3, and exercises actual playback, both languages, view buttons, and disposal.
 Writes report.json and rendered screenshots under the output directory.
@@ -40,8 +41,16 @@ for (const id of values.scene ?? [])
     collection.some((scene) => scene.id === id),
     `Unknown scene ${id}`,
   );
+for (const id of values.scene ?? [])
+  assert.notEqual(
+    collection.find((scene) => scene.id === id).narration,
+    "browser",
+    `${id} uses browser speech, not prerecorded narration.`,
+  );
 const scenes = collection.filter(
-  (scene) => !values.scene || values.scene.includes(scene.id),
+  (scene) =>
+    scene.narration !== "browser" &&
+    (!values.scene || values.scene.includes(scene.id)),
 );
 const manifest = JSON.parse(
   await readFile(new URL("../public/narration/manifest.json", import.meta.url)),

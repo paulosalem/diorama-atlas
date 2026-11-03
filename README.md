@@ -4,12 +4,13 @@
 
 Diorama Atlas is a web application for exploring culturally inspired
 interiors and outdoor spaces. Start with an interactive Earth, choose a place, and step into a
-full-scale Three.js environment with named viewpoints, close-up detail markers,
-and explanatory text.
+full-scale environment with named viewpoints, close-up detail markers,
+and explanatory text. The Douro also offers a native Babylon.js miniature you
+can turn in your hands.
 
-The included collection contains **22 places across 18 geographic settings**:
-12 interiors plus ten imagined outdoor settings inspired by Newar, Central Asian,
-Balinese, Venetian, Bahian, Andean, Swahili, Naxi, Tunisian and Lao traditions.
+The included collection contains **23 places across 19 geographic settings**:
+12 interiors plus eleven imagined outdoor settings inspired by Newar, Central Asian,
+Balinese, Venetian, Bahian, Andean, Swahili, Naxi, Tunisian, Lao and Portuguese traditions.
 These are culturally grounded interpretations, not replicas of landmarks,
 surveyed buildings, photogrammetry, or authoritative historical records.
 
@@ -30,11 +31,14 @@ with WebGL 2 support and hardware acceleration is recommended.
 nvm use
 
 npm ci
+npx playwright install chromium
 npm start
 ```
 
-Open **http://127.0.0.1:4183**. No API key, database, or build step is needed to
-explore the included collection. The server listens on loopback only.
+Open **http://127.0.0.1:4183**. No API key or database is needed.
+Startup prepares the native miniature from local authored geometry and licensed
+materials, then reuses that export until its inputs change. The first preparation
+takes longer and requires Playwright Chromium. The server listens on loopback only.
 
 ```sh
 npm run dev        # Restart the server when its imported source changes
@@ -54,14 +58,18 @@ replacement or production bundler.
   the Marrakech riad, five in each other interior).
 - **Details:** choose **Show details**, then select a marker to read about an
   object or architectural feature. **Reset view** restores the first viewpoint.
-- **Outdoors:** explore four viewpoints per setting, with closer zoom for small
+- **Outdoors:** explore named viewpoints, with closer zoom for small
   details. **References** shows the credited photographs used as regional style
   references; map markers indicate regions of inspiration, not street addresses.
+- **Douro:** one destination, two experiences. **Landscape** explores the grounded
+  valley; **Miniature** reveals two floating geological slices, with orbit/zoom
+  controls and close viewpoints. Both include the working yard and a riverside
+  railway with an imagined regional railcar. Original eye-level views are retained.
 - **About:** browse and search all image, material, model, print and audio credits.
 - **Language:** choose **English (US)** or **Português (Brasil)** globally.
   Interface text, place descriptions, viewpoints and narration follow the choice
   without moving your camera or rebuilding the environment.
-- **Narration:** all 22 places have prerecorded arrivals and focused-view
+- **Narration:** the original 22 places have prerecorded arrivals and focused-view
   explanations in both languages: 202 recordings across 101 views.
   A quiet floating panel shows the spoken
   paragraph and play/pause controls. Playing once enables future entry/view
@@ -69,6 +77,9 @@ replacement or production bundler.
   recording. You can minimize the panel, and **Mute all** disables narration too.
   **Show details** pauses the guide and replaces its panel with the object caption;
   closing details restores the guide without restarting it.
+  Douro uses explicitly requested browser speech in both languages: **Listen**
+  in Landscape's details, or **Listen to this view** in Miniature. Voices depend
+  on the visitor's device; no provider request or recording is implied.
 - **Return:** select **Back to world** or press `Escape`. The globe remembers its
   orientation for the browser session.
 - **Soundscape:** enable recorded place ambience and music independently.
@@ -96,7 +107,7 @@ src/
     environments/
       shared/             Geometry helpers and shared material loading
       interiors/          Room families, connected spaces, detail, and soundscapes
-      outdoors/           Ten settings, photographic daylight, foliage, and water
+      outdoors/           Eleven settings, photographic daylight, foliage, and water
       riad/               Detailed Marrakech environment
     main.js               Browser entry point
     styles.css
@@ -110,7 +121,7 @@ index.html                HTML shell and Three.js import map
 
 Five original place definitions live in the client catalog. Seven saved scene
 packages are versioned under `data/scenes/`, so a fresh checkout has the same
-interior collection without depending on someone else's cache. Ten outdoor
+interior collection without depending on someone else's cache. Eleven outdoor
 definitions live in `src/client/catalog/outdoor-catalog.js` and use dedicated
 geometry builders, not generated approximations.
 
@@ -145,13 +156,25 @@ it to the internet or treat it as deployment-ready.
 
 ## Development
 
+An isolated [browser engine study](experiments/marrakech/README.md) compares
+Marrakech and the Douro Valley in the current renderer,
+native Babylon.js, PlayCanvas and Unity Web builds.
+It has its own server and generated comparison assets. The main app shares its
+native renderer/export modules, but the four-engine comparison remains isolated.
+The study also retains a standalone
+[holdable Babylon Douro miniature](experiments/marrakech/README.md#the-holdable-douro-miniature):
+two floating riverbank sections with planted hills, geological sides, a detailed
+harvest corner, retained eye-level views, optional nature sounds and browser narration.
+For normal visits use the integrated **Miniature** experience instead; it needs
+only the root app, not the experimental server.
+
 ```sh
 npm run check             # ESLint, formatting, and Node regression tests
 npm run format            # Apply the shared formatting conventions
 npx playwright install chromium
 npm run test:browser      # Real browser checks against an isolated local server
 npm run test:outdoors     # All outdoor viewpoints and controls; app on port 4183
-npm run test:water-prints # All 22 places: actual print images and timed water views
+npm run test:water-prints # Collection-wide print images and timed water views
 node scripts/check-narration.mjs # All bilingual views, actual playback, audio signal checks and captures
 npm run build:credits    # Rebuild consolidated local attribution
 ```

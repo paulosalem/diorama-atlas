@@ -7,7 +7,7 @@ import { createNarrationTriggers } from "../src/client/viewer/narration-triggers
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
 import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 
-test("every bundled scene has immutable bilingual recordings matching its written scripts", async () => {
+test("every prerecorded scene has immutable bilingual recordings matching its written scripts", async () => {
   const manifest = JSON.parse(
     await readFile(
       new URL("../public/narration/manifest.json", import.meta.url),
@@ -83,6 +83,16 @@ test("every bundled scene has immutable bilingual recordings matching its writte
   }
   for (const scene of scenes) {
     const assets = manifest.assets.filter((asset) => asset.scene === scene.id);
+    if (scene.narration === "browser") {
+      assert.equal(
+        assets.length,
+        0,
+        "Browser narration must not imply a recording",
+      );
+      assert.equal(scene.environment, "outdoor");
+      assert(scene.details.every(({ body }) => body.trim().length > 0));
+      continue;
+    }
     const views = new Set(assets.map((asset) => asset.view ?? "intro"));
     assert.equal(
       views.size,

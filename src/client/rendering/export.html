@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Prepare native dioramas</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p>Local geometry export. No provider requests.</p>
+    <script type="module">
+      import { exportScene } from "./export-scene.js";
+      import { douroMiniature } from "../catalog/scene-versions.js";
+      window.exportDiorama = () => exportScene(douroMiniature);
+    </script>
+  </body>
+</html>

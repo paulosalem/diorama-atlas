@@ -1,0 +1,166 @@
+.scene-experience {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.scene-versions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.scene-versions-label {
+  color: #b6c4b8;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.scene-versions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid #536050;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+}
+.scene-versions a:hover {
+  background: #2b382d;
+}
+.scene-versions a[aria-current="true"] {
+  color: #17241b;
+  background: #d3bb88;
+  border-color: #d3bb88;
+}
+.scene-experience-hint {
+  color: #bdc9bc;
+  font-size: 12px;
+  margin: 0;
+}
+.miniature-stage {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  background: #c2cfbf;
+  color: #203d31;
+}
+.miniature-renderer {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+.miniature-story {
+  align-self: center;
+  max-height: 100%;
+  overflow: auto;
+  padding: 24px 24px 24px 8px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.miniature-story h2 {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: normal;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.miniature-story summary {
+  cursor: pointer;
+}
+.miniature-story p {
+  margin: 10px 0 16px;
+}
+.miniature-story small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.miniature-story button {
+  background: #203d31;
+  color: #f0f3e7;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 14px;
+}
+.miniature-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  pointer-events: none;
+}
+.miniature-controls button {
+  pointer-events: auto;
+  background: #edf0e3;
+  color: #203d31;
+  border: 1px solid #7e917c;
+  border-radius: 6px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+.miniature-controls p {
+  display: table;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #edf0e3ed;
+  font-size: 10px;
+  margin: 6px 0 0;
+}
+.is-miniature .riad-toolbar {
+  flex-wrap: wrap;
+}
+.viewer.is-miniature .riad-viewpoints {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: 0;
+}
+.is-miniature .riad-viewpoints button {
+  flex-shrink: 0;
+}
+.is-miniature .riad-actions {
+  margin-left: auto;
+}
+@media (max-width: 700px) {
+  .scene-experience {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .scene-versions a {
+    min-height: 44px;
+  }
+  .miniature-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(200px, 1fr) auto;
+    overflow: auto;
+  }
+  .miniature-story {
+    padding: 12px 16px;
+    max-height: 200px;
+  }
+  .miniature-story h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .miniature-story small {
+    display: inline-block;
+    max-width: 140px;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+  }
+  .miniature-story button {
+    margin-top: 8px;
+  }
+  .miniature-controls p {
+    max-width: 290px;
+    line-height: 1.4;
+  }
+  .viewer.is-miniature .riad-viewpoints {
+    width: 100%;
+  }
+}

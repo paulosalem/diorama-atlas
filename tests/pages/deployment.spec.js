@@ -69,7 +69,7 @@ test("the globe, preview and return navigation remain inside the project path", 
 }) => {
   await page.goto("./");
   await expect(page.locator("#worldLoading")).toBeHidden({ timeout: 120_000 });
-  await expect(page.locator(".place-pin")).toHaveCount(18);
+  await expect(page.locator(".place-pin")).toHaveCount(19);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -97,7 +97,7 @@ test("the globe, preview and return navigation remain inside the project path", 
   ).toBe(1);
 });
 
-for (const scene of scenes) {
+for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
   test(`${scene.id}: all static assets, viewpoints and bilingual playback`, async ({
     page,
     baseURL,

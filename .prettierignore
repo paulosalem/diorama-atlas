@@ -9,3 +9,6 @@ playwright-report/
 package-lock.json
 public/
 data/scenes/
+experiments/**/node_modules/
+experiments/**/assets/
+experiments/**/unity/

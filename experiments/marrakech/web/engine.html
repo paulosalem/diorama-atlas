@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marrakech native renderer</title>
+    <link rel="stylesheet" href="./study.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body class="engine-page">
+    <canvas
+      id="scene"
+      tabindex="0"
+      aria-label="Marrakech, drag to look around"
+    ></canvas>
+    <div class="engine-status" role="status">Preparing native renderer…</div>
+    <script type="module" src="./engine.js"></script>
+  </body>
+</html>

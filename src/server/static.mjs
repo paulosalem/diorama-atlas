@@ -13,6 +13,8 @@ const browserFiles = new Set([
   "/index.html",
   "/node_modules/three/build/three.module.js",
   "/node_modules/three/build/three.core.js",
+  "/node_modules/babylonjs/babylon.js",
+  "/node_modules/babylonjs-loaders/babylonjs.loaders.min.js",
 ]);
 
 function staticLocation(rootDir, pathname) {

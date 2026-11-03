@@ -2,6 +2,7 @@ node_modules/
 dist/
 .cache/
 outputs/
+public/dioramas/
 coverage/
 test-results/
 playwright-report/

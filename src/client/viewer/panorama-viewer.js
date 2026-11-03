@@ -19,6 +19,8 @@ import { applySurfacePatina } from "../environments/shared/surface-patina.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createSceneNarration } from "./scene-narration.js";
 import { sitePath, staticHosting } from "../site.js";
+import { resolveSceneVersion } from "../catalog/scene-versions.js";
+import { mountSceneVersions } from "./scene-versions.js";
 
 let activeViewer = null;
 
@@ -29,9 +31,23 @@ export function getActiveViewer() {
 export async function createViewer(
   app,
   definition,
-  { audio: atlasAudio, onNavigate } = {},
+  { audio: atlasAudio, onNavigate, version: requestedVersion, signal } = {},
 ) {
   activeViewer?.dispose();
+  const version = resolveSceneVersion(definition, requestedVersion);
+  if (version?.renderer === "babylon") {
+    const { createMiniatureViewer } = await import("./miniature-viewer.js");
+    activeViewer = await createMiniatureViewer(app, definition, {
+      audio: atlasAudio,
+      onNavigate,
+      version,
+      signal,
+      onDispose: () => {
+        activeViewer = null;
+      },
+    });
+    return activeViewer;
+  }
   const events = new AbortController();
   let disposed = false;
   let narration = null;
@@ -44,7 +60,12 @@ export async function createViewer(
   viewer.setAttribute("aria-busy", "true");
   toolbar.inert = true;
   app.querySelector("#sceneTitle").textContent = t(definition.title);
-  app.querySelector("#sceneRegion").textContent = t(definition.region);
+  const regionLabel = () =>
+    [
+      t(definition.region),
+      ...(definition.draft ? [t("Unfinished local preview")] : []),
+    ].join(" · ");
+  app.querySelector("#sceneRegion").textContent = regionLabel();
   app.querySelector("#riadLoading").textContent = t("Preparing the space…");
   const headerActions = document.createElement("div");
   headerActions.className = "viewer-header-actions";
@@ -54,6 +75,7 @@ export async function createViewer(
   resetButton.before(headerActions);
   addAboutButton(headerActions);
   headerActions.append(resetButton);
+  const disposeVersions = mountSceneVersions(viewer, definition, version);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
@@ -228,7 +250,7 @@ export async function createViewer(
     if (narration?.snapshot.state !== "playing") stopNarration();
     document.title = `${t(definition.title)} · Diorama Atlas`;
     app.querySelector("#sceneTitle").textContent = t(definition.title);
-    app.querySelector("#sceneRegion").textContent = t(definition.region);
+    app.querySelector("#sceneRegion").textContent = regionLabel();
     resetButton.textContent = t("Reset view");
     app.querySelector("#riadLoading").textContent = t("Preparing the space…");
     app.querySelector("#riadDetailTitle").textContent = t(
@@ -337,6 +359,7 @@ export async function createViewer(
     if (disposed) return;
     disposed = true;
     events.abort();
+    disposeVersions();
     unsubscribeAudio?.();
     unsubscribeLocale();
     narration?.dispose();
@@ -390,7 +413,7 @@ export async function createViewer(
     resetButton.disabled = false;
     toolbar.inert = false;
     viewer.setAttribute("aria-busy", "false");
-    if (atlasAudio) {
+    if (atlasAudio && definition.narration !== "browser") {
       narration = createSceneNarration({
         viewer,
         sceneId: definition.id,

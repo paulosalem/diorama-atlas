@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marrakech · Engine study</title>
+    <link rel="stylesheet" href="./study.css" />
+  </head>
+  <body>
+    <!-- THESIS: Compare one inhabited place, not four unrelated demos.
+    OWN-WORLD: Inherit the atlas's dark surround and quiet brass controls.
+    STORY: Choose a viewpoint, compare engines, enter one at full size.
+    FIRST VIEWPORT: Four live windows with one shared viewpoint toolbar.
+    FORM: User-specified four-way study; no new atlas navigation. -->
+    <header>
+      <div>
+        <h1>Marrakech, four ways</h1>
+        <p id="description">
+          The same place. Four rendering engines. An isolated study.
+        </p>
+      </div>
+      <div class="actions">
+        <label for="scene">Place</label>
+        <select id="scene"></select>
+        <button id="motion" aria-pressed="false">Pause motion</button>
+        <button id="sound" aria-pressed="false">Enable courtyard sound</button>
+      </div>
+    </header>
+    <nav id="views" aria-label="Matched viewpoints"></nav>
+    <p id="notice" role="status">
+      Loading the scene manifest. Native builds can take a moment to prepare.
+    </p>
+    <main id="panes"></main>
+    <footer>
+      <p>
+        Original geometry and cameras are shared; lighting and effects are
+        engine-specific. Drag inside a native view to look around. Select a
+        viewpoint to restore matching cameras.
+      </p>
+      <p>
+        Four simultaneous engines share your GPU. Use
+        <strong>Open alone</strong> for an undivided performance judgement.
+        <a href="/public/audio/manifest.json" target="_blank" rel="noopener"
+          >Sound credits</a
+        >
+      </p>
+    </footer>
+    <script type="module" src="./study.js"></script>
+  </body>
+</html>

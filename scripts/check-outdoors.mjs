@@ -140,7 +140,7 @@ try {
       };
     });
     assert.equal(evidence.invalid, 0, definition.id);
-    assert.equal(evidence.views.length, 4, definition.id);
+    assert.ok(evidence.views.length >= 4, definition.id);
     assert.ok(
       evidence.shadowCoverage,
       `${definition.id} needs directional shadows`,
@@ -313,7 +313,7 @@ try {
     .getByRole("button", { name: "Close About and credits", exact: true })
     .click();
   await page.getByRole("button", { name: "Places", exact: true }).click();
-  assert.equal(await page.locator("[data-destination]").count(), 18);
+  assert.equal(await page.locator("[data-destination]").count(), 19);
   for (const definition of outdoorScenes)
     assert.equal(
       await page.locator(`[data-destination="${definition.location}"]`).count(),

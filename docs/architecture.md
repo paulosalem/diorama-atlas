@@ -4,9 +4,9 @@
 
 Diorama Atlas runs as a static browser application on GitHub Pages or with a
 local Node HTTP process for optional generation and persistence.
-There is no frontend framework, database, or production bundler. The two runtime
-dependencies are Three.js for rendering and the OpenAI SDK for optional server
-operations.
+There is no frontend framework, database, or production bundler. Three.js renders
+the globe and full-scale environments; Babylon.js and its glTF loader render the
+Douro miniature. The OpenAI SDK is used only for optional server operations.
 
 `scripts/build-pages.mjs` exports an allowlisted static site and the bundled
 scene catalog. `site.js` resolves asset/navigation paths beneath the deployment
@@ -37,7 +37,7 @@ Node: src/server/index.mjs -> createAtlasServer()
 
 ## Browser boundaries
 
-`catalog/` contains the original five place definitions, ten fictional outdoor
+`catalog/` contains the original five place definitions, eleven fictional outdoor
 settings, saved-place loading, and geographic matching. `world/` renders Earth and miniature landmarks, places
 interactive markers, and remembers camera orientation in session storage.
 
@@ -45,6 +45,16 @@ interactive markers, and remembers camera orientation in session storage.
 consolidated credits, narration controls, and navigation. Outdoor definitions use
 `environments/outdoors/`; otherwise it chooses the dedicated riad builder for
 `scene.id === "riad"` and `environments/interiors/` for the remaining places.
+
+Douro's `versions` describe Landscape and Miniature within one catalog entry.
+`?scene=douro-vineyard&version=miniature` selects the native viewer; the default
+remains Landscape. Version links preserve the visit and deployment path but clear
+incompatible viewpoint IDs. `rendering/` owns the shared Babylon runtime and
+local glTF exporter, also reused by the isolated engine experiments. No iframe
+or experimental server is involved in the main app. `prepare:dioramas` builds
+ignored native assets from shared authored geometry, hashes export inputs and
+reuses unchanged output. The Pages builder includes those assets and the exact
+Babylon runtime distributions.
 
 `localization/` owns the global en-US/pt-BR preference and presentation dictionaries.
 Subscriptions update text in place without replacing original definitions,
@@ -55,8 +65,10 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 22 bundled scenes have complete bilingual entry/view coverage in the local
-manifest. Additional custom scenes without recordings retain detail controls
+The original 22 scenes have complete bilingual entry/view coverage in the local
+manifest. Douro explicitly declares browser narration: Landscape retains its
+detail speech; Miniature narrates each view on request. Both use the same global
+audio ownership, ducking and mute mechanism. Additional custom scenes without recordings retain detail controls
 without a guided panel; supported scenes report malformed or missing tracks.
 Opening object details pauses and replaces the guided panel, avoiding competing
 captions on compact screens. Playback never creates paid generation requests.

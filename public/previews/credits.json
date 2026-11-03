@@ -10,6 +10,24 @@
     "deviceScaleFactor": 1
   },
   "checkedAt": "2026-09-14T21:25:08.315Z",
+  "drafts": [
+    {
+      "scene": "douro-vineyard",
+      "file": "/public/outdoors/previews/douro-vineyard.png",
+      "view": "arrival",
+      "width": 1232,
+      "height": 760,
+      "bytes": 1381784,
+      "sha256": "285a5730192fd6f7864b5aac1771d829ae0d037065939dd3f7c0f5a3313c077c",
+      "recordedAt": "2026-11-01T15:32:30.900Z",
+      "viewport": {"width":1280,"height":900},
+      "deviceScaleFactor": 1,
+      "reducedMotion": true,
+      "target": "#canvasMount",
+      "camera": {"position":[7.8,1.72,-1.3],"target":[-3,-4.5,-18],"fov":64},
+      "note": "Actual Chromium/Metal render of an unfinished local preview. This capture is not approval of visual quality or promotion to the bundled collection. Constituent photograph and material rights remain in the outdoor reference and detail manifests."
+    }
+  ],
   "rendered": [
     {
       "file": "riad.png",

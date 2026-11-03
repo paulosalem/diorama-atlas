@@ -1,7 +1,7 @@
 const configured = new WeakSet();
 const grainGains = new WeakMap();
 
-function scannedGrainGain(image) {
+export function scannedGrainGain(image) {
   if (!grainGains.has(image)) {
     const canvas = document.createElement("canvas");
     canvas.width = canvas.height = 32;

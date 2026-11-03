@@ -1,5 +1,67 @@
 [
   {
+    "sceneId": "douro-vineyard",
+    "references": [
+      {
+        "label": "Douro: irregular vineyard terraces",
+        "url": "https://commons.wikimedia.org/wiki/File:Terraced_vineyards_of_the_Douro.jpg",
+        "image": "/public/outdoors/references/douro-terraces.jpg",
+        "sourceImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Terraced_vineyards_of_the_Douro.jpg/1920px-Terraced_vineyards_of_the_Douro.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "author": "Rosino",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "date": "2010-10-02",
+        "retrieved": "2026-11-01",
+        "bytes": 1456681,
+        "sha256": "1a78934ea470a40013e8b032821e09f2379dfdeba59d1e20abef2b925765522b",
+        "note": "Commons imageinfo and its Flickr review identify Rosino and CC BY-SA 2.0. Inspected photograph: irregular stone-supported contours, bare working ground and separate vine rows. Commons 1920px derivative retained without further changes."
+      },
+      {
+        "label": "Douro: grapes, vine training and stone wall",
+        "url": "https://commons.wikimedia.org/wiki/File:Douro_wine_grapes_ripe_for_the_harvest.jpg",
+        "image": "/public/outdoors/references/douro-grapes.jpg",
+        "sourceImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Douro_wine_grapes_ripe_for_the_harvest.jpg/1920px-Douro_wine_grapes_ripe_for_the_harvest.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "author": "Rosino",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "date": "2010-10-02",
+        "retrieved": "2026-11-01",
+        "bytes": 1205083,
+        "sha256": "c88fbbb52aee7f220c4dbfa5df3f324d8ed8cc7775fff4634b9db8f281943559",
+        "note": "Commons metadata verifies the photographer, date and license. Inspected photograph: dark grape bunches, palmate leaves, trained canes, posts, wires and layered wall stones. Also used as a small working reference print in the fictional quinta. Commons 1920px derivative retained; the photo remains CC BY-SA 2.0."
+      },
+      {
+        "label": "Douro: river and cultivated hills near Régua",
+        "url": "https://commons.wikimedia.org/wiki/File:Terraced_vineyards_along_the_Douro_river.jpg",
+        "image": "/public/outdoors/references/douro-river.jpg",
+        "sourceImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Terraced_vineyards_along_the_Douro_river.jpg/1920px-Terraced_vineyards_along_the_Douro_river.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "author": "Yiwenli0203",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "date": "2025-10-03",
+        "retrieved": "2026-11-01",
+        "bytes": 748665,
+        "sha256": "48b6e077e438e8e741fa1d7b815e0861bb6fe22e9a211d77f8850b47f8c82e6b",
+        "note": "Commons metadata records the creator's CC0 dedication. Inspected photograph: river, groves, cultivated slopes and atmospheric distance. Also used on an illustrated notebook, not as a geometric backdrop. Commons 1920px derivative retained."
+      },
+      {
+        "label": "Douro: limewashed quinta and tiled roof",
+        "url": "https://commons.wikimedia.org/wiki/File:Quinta_da_Formigosa,_Chanceleiros,_Covas_do_Douro,_Sabrosa.jpg",
+        "image": "/public/outdoors/references/douro-quinta.jpg",
+        "sourceImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Quinta_da_Formigosa%2C_Chanceleiros%2C_Covas_do_Douro%2C_Sabrosa.jpg/1920px-Quinta_da_Formigosa%2C_Chanceleiros%2C_Covas_do_Douro%2C_Sabrosa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "author": "Sanjorgepinho",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "date": "2022-03-09",
+        "retrieved": "2026-11-01",
+        "bytes": 607540,
+        "sha256": "e834e520b759cb1002fd20f32ec4f2e52df12768d37c3eff14722516e64b7ebd",
+        "note": "Commons metadata verifies creator, date and license. Inspected photograph: limewash, layered red roof tiles and selective base weathering. Reference for construction only; the modeled building does not copy this estate's name, gate, inscription or plan. Commons 1920px derivative retained."
+      }
+    ],
+    "caveat": "Regional references for an anonymous Douro vineyard, not a reconstruction of an estate or an identified grape variety. Names and dates describe the actual photographs. Their seasons differ; the modeled harvest setting and valley are original interpretations."
+  },
+  {
     "sceneId": "newar-potters-square",
     "references": [
       {

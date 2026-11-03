@@ -27,11 +27,11 @@ const allScenes = [
   ...outdoorScenes,
 ];
 
-test("the integrated collection contains twenty-two distinct, complete places", () => {
+test("the integrated collection contains twenty-three distinct, complete places", () => {
   assert.equal(curatedScenes.length, 5);
   assert.equal(bundledPackages.length, 7);
-  assert.equal(outdoorScenes.length, 10);
-  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 22);
+  assert.equal(outdoorScenes.length, 11);
+  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 23);
   for (const scene of allScenes) {
     assert.match(scene.id, /^[a-z0-9-]+$/);
     for (const field of ["title", "region", "blurb", "summary"]) {
@@ -72,9 +72,9 @@ test("every bundled place has a local preview, independent of AI caches", async 
   }
 });
 
-test("every place belongs to exactly one of the eighteen geographic settings", () => {
+test("every place belongs to exactly one of the nineteen geographic settings", () => {
   const places = locateScenes(allScenes);
-  assert.equal(places.length, 18);
+  assert.equal(places.length, 19);
   const locatedIds = places.flatMap((place) =>
     place.scenes.map((scene) => scene.id),
   );
@@ -120,4 +120,25 @@ test("catalog loading reports server failures instead of hiding missing places",
     async () => new Response("", { status: 500 }),
   );
   await assert.rejects(loadScenes, /saved places could not be loaded/);
+});
+
+test("Douro is one released place with landscape and miniature experiences", async (t) => {
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async () => new Response(JSON.stringify({ scenes: [] })),
+  );
+  const released = await loadScenes();
+  const douro = released.filter((scene) => scene.id === "douro-vineyard");
+  assert.equal(douro.length, 1);
+  assert(!douro[0].draft);
+  assert.deepEqual(
+    douro[0].versions.map(({ id, renderer }) => [id, renderer]),
+    [
+      ["landscape", "three"],
+      ["miniature", "babylon"],
+    ],
+  );
+  const withDrafts = await loadScenes({ includeDrafts: true });
+  assert.deepEqual(withDrafts, released);
 });

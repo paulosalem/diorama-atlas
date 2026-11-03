@@ -5,19 +5,19 @@ the included collection works without network downloads or paid generation.
 Existing attribution manifests are preserved rather than replaced with a
 project-wide licensing assumption.
 
-| Asset group                 | Source and status                                                                                             | Manifest                                                                                        |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Earth texture               | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                              | [`public/earth/credits.json`](../public/earth/credits.json)                                     |
-| Shared scanned materials    | Poly Haven; recorded as CC0 in the imported manifest                                                          | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)                 |
-| Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                          | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json)       |
-| Place previews              | Local renders of all current interiors, including Marrakech; outdoor thumbnails are also actual renders       | [`public/previews/credits.json`](../public/previews/credits.json)                               |
-| Outdoor photographs         | Twenty-one credited regional style references; these do not depict the fictional modeled settings             | [`public/outdoors/references.json`](../public/outdoors/references.json)                         |
-| Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                               | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)         |
-| Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json) |
-| Generated cover artwork     | One explicitly requested Image 2.5 Field Notes cover, with prompt/model/usage evidence                        | [`public/outdoors/generated/manifest.json`](../public/outdoors/generated/manifest.json)         |
-| Printed objects             | Original fictional layouts composed locally from licensed real artwork; five additional botanical sources     | [`public/print-library/manifest.json`](../public/print-library/manifest.json)                   |
-| Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied        | `data/scenes/`                                                                                  |
-| Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0 | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
+| Asset group                 | Source and status                                                                                                                         | Manifest                                                                                        |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Earth texture               | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                                                          | [`public/earth/credits.json`](../public/earth/credits.json)                                     |
+| Shared scanned materials    | Poly Haven; recorded as CC0 in the imported manifest                                                                                      | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)                 |
+| Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                                                      | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json)       |
+| Place previews              | Local renders of all current interiors, including Marrakech; outdoor thumbnails are also actual renders                                   | [`public/previews/credits.json`](../public/previews/credits.json)                               |
+| Outdoor photographs         | Twenty-five credited regional style references, including four for the unfinished Douro study; none depicts the fictional modeled setting | [`public/outdoors/references.json`](../public/outdoors/references.json)                         |
+| Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                                                           | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)         |
+| Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                                            | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json) |
+| Generated cover artwork     | One explicitly requested Image 2.5 Field Notes cover, with prompt/model/usage evidence                                                    | [`public/outdoors/generated/manifest.json`](../public/outdoors/generated/manifest.json)         |
+| Printed objects             | Original fictional layouts composed locally from licensed real artwork; five additional botanical sources                                 | [`public/print-library/manifest.json`](../public/print-library/manifest.json)                   |
+| Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                                    | `data/scenes/`                                                                                  |
+| Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                             | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
 The collection includes 202 original AI-voiced recordings (66.94 MB), covering
 all 101 viewpoints of the 22 bundled scenes in English and Portuguese, with
@@ -25,6 +25,16 @@ exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field
 recordings or human performances. See [narration](narration.md).
+
+The [Douro draft](scenes/douro-vineyard.md) adds four inspected Commons
+photographs, a generic CC0 ground scan, two small photographic grape-leaf
+cutouts and a higher-resolution green leaf. The green leaf's original photograph
+was taken in Morocco and is a botanical surface reference, not evidence of a
+Douro cultivar. Its full-resolution original, mask, processing and hashes are
+preserved under CC BY-SA 4.0; the earlier cutouts retain CC BY-SA 2.0.
+These are photographs and adapted textures, not newly generated images or
+measured botanical scans. Its eight
+written narration recipes have not been recorded and are not counted above.
 
 All categories are searchable in **About**, generated from their provenance
 manifests with `npm run build:credits`. Audio credits are also available in the app's **Soundscape** panel. Local license
@@ -39,7 +49,7 @@ have not been independently fact-checked as part of repository organization.
 The Pages export retains the source terms and generated-asset provenance above.
 It does not grant a new project-wide open-source license. Original application
 content remains reserved; third-party assets retain their individual licenses.
-Unverified imported models are excluded from public deployment.
+Unverified imported models are excluded from source and public deployment.
 
 The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
@@ -53,11 +63,14 @@ Local generated reference images, audio, textures, and new saved scenes remain
 under ignored `.cache/`. Saved scene JSON may be valuable user work: back it up
 before deleting that directory.
 
-The import also contained seven unused binary models with no accompanying
-attribution manifest. Preserved copies exist in `public/atlas-models/`, but no
-active browser module loads them and the Pages exporter does not publish them.
-Establish provenance before introducing them into the runtime or deployment.
+The v1.0.0 cleanup removed twenty obsolete root screenshots and seven unused
+binary models with no accompanying attribution manifest from the current source
+tree. Exact copies and a SHA-256 manifest were preserved locally under ignored
+`outputs/repository-cleanup-v1.0.0/`; that archive is neither a runtime dependency
+nor part of the public export. No active browser module used the removed models.
 
-Old screenshots, review galleries, dependency folders, and agent session logs were
-not promoted into repository source. The original project and its Codex checkpoint
-were left untouched.
+This cleanup does not rewrite Git history. Historical commits can still contain
+the unverified imports; review their rights and repository history before making
+source public. Establish provenance before reintroducing any such model.
+Review galleries, dependency folders and agent logs remain local artifacts.
+Unique generated scenes and the original reference workspace were left untouched.

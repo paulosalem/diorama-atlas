@@ -2,7 +2,7 @@
 
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
 Its source repository remains private. GitHub Pages serves the complete
-22-scene collection, 202 prerecorded narration passages, local soundscapes,
+23-scene collection, 202 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
 ## Publish
@@ -30,12 +30,22 @@ are retained as workflow artifacts for seven days.
 
 ```sh
 npm ci
+npx playwright install chromium
 npm run build:pages
 npm run preview:pages
 # Open http://127.0.0.1:4196/diorama-atlas/
 
 npm run test:pages
 ```
+
+`npm run prepare:dioramas` exports the native Douro miniature to the ignored
+`public/dioramas/` directory using a temporary, provider-disabled local server.
+It preserves authored geometry, material masks, thin instances and animation.
+`npm start`, `npm run dev` and the Pages builder run this preparation automatically.
+Use `npm run prepare:dioramas -- --force` to rebuild unchanged inputs. Export
+downloads must finish before the source-digest manifest is written; a failed
+export is not treated as ready. Raw `node src/server/index.mjs` deliberately
+bypasses preparation, so prepare first when using that entry point.
 
 The export is portable to a domain root or another project subdirectory.
 The HTML shell uses relative module URLs; `src/client/site.js` resolves runtime
@@ -46,7 +56,7 @@ definitions, not their storage envelopes or local cache overrides.
 `build:pages -- --output-dir outputs/pages/site` selects another output directory.
 The builder refuses source directories, symlinks and unowned nonempty output
 directories. Its allowlist publishes `src/client/`, the used public asset
-groups, the minimum Three.js module distribution and its license. It excludes
+groups, the minimum Three.js and Babylon.js distributions and their licenses. It excludes
 server source, OpenAI dependencies, credentials, caches, screenshots, repository
 metadata and the unused `public/atlas-models/` files without verified provenance.
 Original application content has no new open-source license grant; third-party
@@ -62,6 +72,9 @@ playback, consent, disposal, globe navigation, credits, references and sound.
 All bundled guided narration is identical. Additional object-detail speech uses
 the visitor's browser speech service in either language; available voices vary
 by device, and unsupported speech produces an explicit unavailable state.
+Douro's Landscape details and Miniature view stories use this opt-in browser
+speech rather than prerecorded narration. Both experiences work under the
+project subdirectory without any `/lab/` or local-server dependencies.
 
 GitHub Pages cannot run Node or paid generation endpoints. It does not create
 new scenes, generate concept images, synthesize new recordings, serve local

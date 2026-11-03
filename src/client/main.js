@@ -27,6 +27,7 @@ let scenes;
 let active = null;
 let pending = null;
 let rendering = false;
+let preparation;
 
 function showError(error) {
   console.error(error);
@@ -48,12 +49,19 @@ function showError(error) {
 
 async function render() {
   pending = new URL(location.href);
-  if (rendering) return;
+  if (rendering) {
+    preparation?.abort();
+    return;
+  }
   rendering = true;
   try {
     while (pending) {
       const url = pending;
       pending = null;
+      preparation = new AbortController();
+      const focusVersion = Boolean(
+        document.activeElement?.closest(".scene-versions"),
+      );
       audio.leaveEnvironment();
       active?.dispose();
       active = null;
@@ -71,6 +79,8 @@ async function render() {
           active = await createViewer(app, definition, {
             audio,
             onNavigate: navigate,
+            version: url.searchParams.get("version"),
+            signal: preparation.signal,
           });
           if (!pending)
             audio.attachEnvironment(active.runtime, definition.title);
@@ -84,12 +94,14 @@ async function render() {
           soundPanel.mount(app);
           languageControl.mount(app);
           translateUI(app);
+          if (focusVersion)
+            app.querySelector('.scene-versions [aria-current="true"]')?.focus();
         }
       } catch (error) {
         active?.dispose();
         active = null;
         audio.attachEnvironment(null);
-        showError(error);
+        if (!pending) showError(error);
       }
     }
   } finally {
@@ -104,7 +116,9 @@ function navigate(path) {
 }
 
 try {
-  scenes = await loadScenes();
+  scenes = await loadScenes({
+    includeDrafts: new URLSearchParams(location.search).get("draft") === "1",
+  });
   await render();
 } catch (error) {
   showError(error);
