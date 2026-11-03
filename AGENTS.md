@@ -4,8 +4,8 @@
 
 Read [the philosophy](docs/philosophy.md), [quality contract](docs/diorama-standard.md)
 and the affected [scene briefs](docs/scenes/README.md) before scene work.
-Use the repository's [agent skills](docs/agent-skills.md) for creation, visual
-review, asset curation, bilingual narration and publication. Their linked
+Use the repository's [agent skills](docs/agent-skills.md) for creation, repeated
+realism improvement, visual review, asset curation, bilingual narration and publication. Their linked
 quality requirements are mandatory, not optional context.
 
 Maintain the v1.0.0 project as a complete, provider-free public explorer:
@@ -31,6 +31,18 @@ Carry forward the approved approach while preserving each place's own cultural
 setting, architecture, materials, and everyday activities. Do not copy
 Marrakech's visual motifs into unrelated places.
 
+Use [create-diorama](.github/skills/create-diorama/SKILL.md) for new scenes and
+[/improve-diorama-realism](.github/skills/improve-diorama-realism/SKILL.md) for
+one scene, selected scenes, a family or the full collection. Previous approval
+and completed passes establish a floor, never "realistic enough." Each new
+invocation must seek and demonstrate further meaningful improvement without
+blindly adding clutter, damage, polygons or effects.
+
+For creation, plan cultural references, spatial depth, construction, material
+variation, life, light, motion, sound and close-view evidence together before
+building. A generated description does not supply geometry its family builder
+cannot construct. Do not postpone these obligations to a later enhancement.
+
 ### Required spatial depth
 
 - Build real openings with wall thickness, recessed frames, reveals, thresholds,
@@ -51,6 +63,16 @@ Marrakech's visual motifs into unrelated places.
 - Use physically plausible scale, proportions, construction, and material
   response. Include tactile surfaces, fine geometric detail, restrained wear,
   varied finish, and believable imperfections.
+- Refine primitive shapes with real geometric complexity where needed: taper,
+  changing cross-sections, chipped edges, fissures and fine relief. Use enough
+  polygons to capture the observed form; a textured box is not a finished wood
+  stick, and subdivision without shape change is not added realism. Seek new
+  close-up or oblique photographic references when existing images lack detail.
+- Distinguish natural variation from neglect. Break repeated grain, identical
+  pieces and regular discoloration while preserving joints, ornament and the
+  maintenance condition. Cared-for timber and stone are not uniform.
+- Give visible books, pages, labels, sleeves and appropriate wall prints real
+  image content, physical paper and conforming labels, not plain color patches.
 - Add culturally and functionally specific signs of ordinary use: preparation
   materials, tools, partly used objects, rumpled textiles, loose papers, crumbs,
   fibres, or similar evidence appropriate to the setting. Small, meaningful
@@ -60,11 +82,20 @@ Marrakech's visual motifs into unrelated places.
   shadows, and appropriate reflections. Avoid uniformly lit display rooms.
 - Include restrained, motivated movement such as foliage, textiles, water,
   steam, embers, or working objects. Respect reduced-motion preferences.
+- Make water, reflections and localized disturbance one irregular coherent
+  flow appropriate to the setting. Keep banks, crossings and open hulls clear;
+  do not conceal defects with duplicate water surfaces.
+- Build living terrain with connected plants, varied ground cover and worn
+  routes. Anchor asynchronous leaf/cloth motion; maintain support and contact
+  for objects, textiles and infrastructure.
 - Provide context-appropriate local ambient sound. It must remain silent until
   explicitly enabled, support muting, stop when the page is hidden, and release
   its resources on disposal. Never autoplay it.
 - Keep the composition calm and legible. Realism comes from coherent physical
   relationships and evidence of use, not merely adding more objects.
+- Preserve unobtrusive bilingual explanations, all useful views and global
+  language/audio choices. New detail must remain inspectable on close views
+  and usable on compact screens, not only attractive in an arrival screenshot.
 
 ### Required implementation and verification
 
