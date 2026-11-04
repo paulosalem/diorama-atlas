@@ -93,7 +93,7 @@ async function showAbout(button) {
     narrationDisclosure.after(
       translateElement(
         document.createElement("p"),
-        "This public edition includes all bundled places and prerecorded narration. Additional object-detail speech uses your browser's voices; creating new places requires the local server.",
+        "This public edition includes all bundled places and prerecorded narration for guided visits, object details and Miniatures. Creating new places requires the local server.",
       ),
     );
   current.addEventListener("close", () => opener?.focus());

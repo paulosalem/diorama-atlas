@@ -1,7 +1,11 @@
 @import url("./viewer/scene-narration.css");
 @import url("./viewer/scene-versions.css");
+@import url("./viewer/fullscreen.css");
 
 :root {
+  --app-height: calc(
+    100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+  );
   color-scheme: dark;
   font-family:
     Inter,
@@ -84,7 +88,7 @@ button[aria-pressed="true"] {
   }
 }
 .world {
-  height: 100dvh;
+  height: var(--app-height);
   background: radial-gradient(
     ellipse at 50% 48%,
     #203641 0,
@@ -357,7 +361,7 @@ button[aria-pressed="true"] {
 }
 /* Immersive destination: no landing-page content is retained behind the viewer. */
 .viewer {
-  height: 100dvh;
+  height: var(--app-height);
   display: flex;
   flex-direction: column;
   padding: 18px 24px 14px;

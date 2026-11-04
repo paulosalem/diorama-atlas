@@ -15,6 +15,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const markerName = ".atlas-pages-build.json";
 const publishedDirectories = [
   "src/client",
+  "public/app-icons",
   "public/audio",
   "public/earth",
   "public/interiors",
@@ -26,6 +27,7 @@ const publishedDirectories = [
   "node_modules/three/examples/jsm",
 ];
 const publishedFiles = [
+  "public/app.webmanifest",
   "public/credits.json",
   "node_modules/three/build/three.module.js",
   "node_modules/three/build/three.core.js",

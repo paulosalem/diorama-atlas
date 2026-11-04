@@ -76,6 +76,36 @@ test("static hosting rejects unfinished local previews", async ({ page }) => {
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 
+test("Home Screen metadata and icons resolve within the project path", async ({
+  request,
+  baseURL,
+}) => {
+  const response = await request.get("public/app.webmanifest");
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toMatch(
+    /^application\/manifest\+json/,
+  );
+  const manifest = await response.json();
+  expect(manifest.display).toBe("standalone");
+  for (const key of ["start_url", "scope"])
+    expect(new URL(manifest[key], response.url()).href).toBe(baseURL);
+  const start = new URL(manifest.start_url, response.url());
+  expect((manifest.id ? new URL(manifest.id, start.origin) : start).href).toBe(
+    baseURL,
+  );
+  for (const icon of manifest.icons) {
+    const url = new URL(icon.src, response.url()).href;
+    expect(url.startsWith(`${baseURL}public/app-icons/`)).toBe(true);
+    const image = await request.get(url);
+    expect(image.ok()).toBe(true);
+    expect(image.headers()["content-type"]).toBe("image/png");
+  }
+  expect((await request.get("public/app-icons/atlas-180.png")).ok()).toBe(true);
+  const html = await (await request.get("./")).text();
+  expect(html).toContain('rel="manifest" href="./public/app.webmanifest"');
+  expect(html).toContain('name="apple-mobile-web-app-capable" content="yes"');
+});
+
 test("the Three.js Miniature loads directly beneath a project path", async ({
   page,
   baseURL,
@@ -125,7 +155,16 @@ test("the globe, preview and return navigation remain inside the project path", 
   baseURL,
 }) => {
   await page.goto("./");
+  await expect(page.locator(".world")).toBeVisible();
   await expect(page.locator("#worldLoading")).toBeHidden({ timeout: 120_000 });
+  await page.locator("#fullscreenButton").click();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.fullscreenElement === document.documentElement,
+      ),
+    )
+    .toBe(true);
   await expect(page.locator(".place-pin")).toHaveCount(19);
   await page.locator("#placesButton").click();
   await page
@@ -147,6 +186,11 @@ test("the globe, preview and return navigation remain inside the project path", 
   await page.locator("#riadExpand").click();
   await expect(page.locator("#worldLoading")).toBeHidden();
   await expect(page).toHaveURL(baseURL);
+  await expect(page.locator("#fullscreenButton")).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await page.locator("#fullscreenButton").click();
   expect(
     await page.evaluate(
       () => performance.getEntriesByType("navigation").length,

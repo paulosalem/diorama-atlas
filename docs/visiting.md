@@ -15,6 +15,28 @@ zoom. Named viewpoint buttons move you between authored positions; this is not
 a free-walking game. **Reset view** returns to the arrival framing.
 **Back to world** returns to the globe, preserving its orientation.
 
+## Use the whole screen
+
+The **Full screen** control in the header hides the browser bars where supported,
+on desktop, iPad and Android. On compact screens it uses an expanding-corners
+icon. It opens the whole Atlas, so navigation, sound settings and dialogs remain
+available. Choose **Exit full screen**, or use the browser's Escape key or exit
+gesture, to return. Entering fullscreen always requires your tap or click.
+
+If the browser does not allow fullscreen, the same control explains how to open
+Atlas as a Home Screen app. In Safari, use **Share → Add to Home Screen** and
+enable **Open as Web App** if offered. On Android or desktop, use the browser's
+**Install app** or **Add to Home screen** menu when available. Launch the new icon
+to open without the normal address and navigation bars; system indicators may
+remain. Installation does not download the collection for offline use.
+
+Fullscreen requests are feature-detected, not inferred from a device name.
+Restricted embedded browsers can refuse them; open the site in a full browser
+or use the Home Screen option. Browser and device settings still control whether
+these modes are available.
+
+## Explore the details
+
 Each interior offers a connected-space view as well as the main room and
 details. Outdoors, four viewpoints reveal the setting at walking scale.
 **Show details** exposes object annotations. **References** on outdoor scenes
@@ -34,8 +56,8 @@ the pieces back together. Choosing an interior detail opens the shell
 automatically; closing from a detail returns to the whole-object view.
 Reduced-motion preferences make the same change immediately.
 
-**Listen to this view** reads the accompanying passage using your browser's
-voice. It remains silent until selected, stops when you change views or hide
+**Listen to this view** plays an OpenAI recording of the accompanying passage.
+It remains silent until selected, stops when you change views or hide
 the page, and shares the Soundscape mute controls.
 
 ## Listen and read
@@ -78,8 +100,8 @@ shell. For example:
 ## What the public edition includes
 
 All 23 bundled scenes, material imagery, references, music, ambience and
-210 guided recordings are served as static files. Additional object-detail
-**Listen** uses the browser's speech service, whose voices vary by device.
+476 OpenAI recordings are served as static files. Guided visits, Miniatures
+and object-detail **Listen** use these recordings in both languages.
 The public edition cannot create scenes or generate recordings; those optional
 tools belong to the [local development environment](development.md).
 

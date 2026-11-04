@@ -3,6 +3,7 @@ import { siteBase, sitePath } from "./site.js";
 import { createAtlasAudio } from "./environments/shared/atlas-audio.js";
 import { createSoundscapePanel } from "./viewer/soundscape-panel.js";
 import { createLanguageControl } from "./viewer/language-control.js";
+import { createFullscreenControl } from "./viewer/fullscreen-control.js";
 import { disposeAbout } from "./viewer/about-atlas.js";
 import {
   subscribeLocale,
@@ -15,6 +16,7 @@ const app = document.getElementById("app");
 const audio = createAtlasAudio();
 const soundPanel = createSoundscapePanel(audio);
 const languageControl = createLanguageControl();
+const fullscreenControl = createFullscreenControl();
 const unsubscribeLocale = subscribeLocale(() => {
   translateUI(document);
   if (!new URL(location.href).searchParams.has("scene"))
@@ -45,6 +47,7 @@ function showError(error) {
   panel.append(message, retry);
   app.append(panel);
   languageControl.mount(app);
+  fullscreenControl.mount(app);
 }
 
 async function render() {
@@ -70,6 +73,7 @@ async function render() {
         '<div class="initial-loading" role="status"><div data-i18n="Opening the world"></div><span></span></div>';
       translateUI(app);
       languageControl.mount(app);
+      fullscreenControl.mount(app);
       try {
         const id = url.searchParams.get("scene");
         if (id) {
@@ -93,6 +97,7 @@ async function render() {
         if (!pending) {
           soundPanel.mount(app);
           languageControl.mount(app);
+          fullscreenControl.mount(app);
           translateUI(app);
           if (focusVersion)
             app.querySelector('.scene-versions [aria-current="true"]')?.focus();
@@ -152,6 +157,7 @@ window.addEventListener("pagehide", () => {
   audio.dispose();
   soundPanel.dispose();
   languageControl.dispose();
+  fullscreenControl.dispose();
   unsubscribeLocale();
   disposeAbout();
 });
