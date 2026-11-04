@@ -164,13 +164,19 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   await page.locator("#resetViewButton").click();
   await page.locator("#miniatureCanvas").focus();
   await page.keyboard.press("ArrowRight", { delay: 250 });
-  expect((await inspection(page)).camera.position).not.toEqual(before.position);
+  const turnedPosition = (await inspection(page)).camera.position;
+  expect(
+    Math.hypot(...turnedPosition.map((value, i) => value - before.position[i])),
+  ).toBeGreaterThan(0.01);
   await page.locator("#resetViewButton").click();
   await page.locator("#atlasLanguage").selectOption("pt-BR");
   await expect(
     page.getByRole("link", { name: "Miniatura", exact: true }),
   ).toHaveAttribute("aria-current", "true");
-  expect((await inspection(page)).camera.position).toEqual(before.position);
+  const resetPosition = (await inspection(page)).camera.position;
+  expect(resetPosition).toHaveLength(before.position.length);
+  for (let i = 0; i < before.position.length; i++)
+    expect(resetPosition[i]).toBeCloseTo(before.position[i], 10);
   await page.locator("#atlasLanguage").selectOption("en-US");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.waitForTimeout(500);
