@@ -32,6 +32,15 @@ The visitor should understand why objects are near one another. Add a new tool
 only when its role and scale are credible. Do not invent meanings for motifs or
 turn the workshop into a generic souvenir display.
 
+The refinement adds shaped timber and joint pegs, ratchets and pawls, pulley
+supports, eyed heddles and a recessed boat shuttle containing a wound bobbin.
+Hanging skeins loop over their support and vary in length and fullness. Wet yarn
+at a dye bowl and winding spools connect preparation to weaving without filling
+the walking route. The inspected open-licensed photograph
+[Telar en Oaxaca](https://commons.wikimedia.org/wiki/File:Telar_en_Oaxaca.jpg)
+(Huitzillopochtli, CC BY-SA 4.0) informed thread tension and heddle construction;
+it is a reference, not a copied workshop layout or a bundled runtime image.
+
 [Definition](../../src/client/catalog/scene-catalog.js) ·
 [Workshop builder](../../src/client/environments/interiors/interior-scenes.js) ·
 [Connected spaces](../../src/client/environments/interiors/interior-depth.js)

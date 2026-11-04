@@ -4,13 +4,13 @@ import {
   extendPatinaGraph,
   patinaHlsl,
 } from "../experiments/marrakech/native-patina.mjs";
-import { babylonPatina } from "../src/client/rendering/patina.js";
+import { babylonPatina } from "../experiments/marrakech/web/rendering/patina.js";
 import { surfacePatinaProfiles } from "../src/client/environments/shared/surface-patina.js";
 import { getStudy, studies } from "../experiments/marrakech/web/scenes.js";
 import {
   decodeInstanceGroups,
   loadInstances,
-} from "../src/client/rendering/instances.js";
+} from "../experiments/marrakech/web/rendering/instances.js";
 import {
   extendInstanceGraph,
   instanceHlsl,

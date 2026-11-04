@@ -13,7 +13,6 @@ export default defineConfig({
     viewport: { width: 1280, height: 900 },
     locale: "en-US",
     reducedMotion: "reduce",
-    channel: "chromium",
     launchOptions: {
       args:
         process.platform === "darwin"

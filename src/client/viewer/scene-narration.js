@@ -1,53 +1,7 @@
 import * as THREE from "three";
-import { sitePath } from "../site.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createNarrationTriggers } from "./narration-triggers.js";
-
-let library;
-async function loadNarrationLibrary() {
-  if (!library) {
-    library = fetch(sitePath("/public/narration/manifest.json"))
-      .then(async (response) => {
-        if (!response.ok)
-          throw new Error(`Narration manifest: HTTP ${response.status}`);
-        const manifest = await response.json();
-        if (manifest.version !== 1 || !Array.isArray(manifest.assets))
-          throw new Error("Invalid narration manifest.");
-        const ids = new Set();
-        const keys = new Set();
-        for (const asset of manifest.assets) {
-          const key = `${asset.scene}/${asset.view ?? "intro"}/${asset.locale}`;
-          if (
-            typeof asset.id !== "string" ||
-            typeof asset.scene !== "string" ||
-            !asset.scene.trim() ||
-            (asset.view !== undefined &&
-              (typeof asset.view !== "string" || !asset.view.trim())) ||
-            !["en-US", "pt-BR"].includes(asset.locale) ||
-            !/^\/public\/narration\/[a-zA-Z0-9-]+\.mp3$/.test(asset.file) ||
-            typeof asset.text !== "string" ||
-            !asset.text.trim() ||
-            typeof asset.title !== "string" ||
-            !asset.title.trim() ||
-            ids.has(asset.id) ||
-            keys.has(key)
-          )
-            throw new Error(`Invalid narration asset: ${asset.id}`);
-          ids.add(asset.id);
-          keys.add(key);
-        }
-        return manifest.assets.map((asset) => ({
-          ...asset,
-          file: sitePath(asset.file),
-        }));
-      })
-      .catch((error) => {
-        library = null;
-        throw error;
-      });
-  }
-  return library;
-}
+import { isSceneNarration, loadNarrationLibrary } from "./narration-library.js";
 
 export function createSceneNarration({
   viewer,
@@ -224,7 +178,7 @@ export function createSceneNarration({
     render();
     try {
       assets = (await loadNarrationLibrary()).filter(
-        (asset) => asset.scene === sceneId,
+        (asset) => asset.scene === sceneId && isSceneNarration(asset),
       );
       if (disposed) return;
       if (!assets.length) {

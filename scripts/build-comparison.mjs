@@ -10,7 +10,7 @@ const { values } = parseArgs({
   },
 });
 if (values.help) {
-  console.log(`Build a local before/after gallery from interior captures.
+  console.log(`Build a local before/after gallery from diorama captures.
 
 Usage: node scripts/build-comparison.mjs [options]
   --input-dir PATH    Directory containing before/ and after/ capture.json
@@ -33,7 +33,9 @@ if (JSON.stringify(before.viewport) !== JSON.stringify(after.viewport)) {
 }
 const scenes = [];
 for (const original of before.scenes) {
-  const current = after.scenes.find((scene) => scene.id === original.id);
+  const current = after.scenes.find(
+    (scene) => scene.id === original.id && scene.version === original.version,
+  );
   if (!current) throw new Error(`Missing after capture for ${original.id}.`);
   const views = [];
   for (const view of current.views) {
@@ -63,13 +65,13 @@ for (const original of before.scenes) {
     throw new Error(`${original.id}: expected all original views.`);
   }
   const passage = current.views.find((view) => view.key === "passage");
-  if (!passage)
-    throw new Error(`${original.id}: missing connected-space view.`);
   scenes.push({
+    key: original.version ? `${original.id}:${original.version}` : original.id,
     id: original.id,
+    ...(original.version ? { version: original.version } : {}),
     title: original.title,
     views,
-    passage: { ...passage, file: `after/${passage.file}` },
+    passage: passage ? { ...passage, file: `after/${passage.file}` } : null,
   });
 }
 const template = await readFile(

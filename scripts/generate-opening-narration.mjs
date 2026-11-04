@@ -1,13 +1,16 @@
 import OpenAI from "openai";
+import { Stream } from "openai/core/streaming";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, stat, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { narrationBudget } from "./helpers/narration-budget.mjs";
 
 const { values } = parseArgs({
   options: {
     scene: { type: "string", multiple: true },
+    "all-scenes": { type: "boolean" },
     locale: { type: "string", multiple: true },
     view: { type: "string", multiple: true },
     "all-views": { type: "boolean" },
@@ -15,6 +18,8 @@ const { values } = parseArgs({
     concurrency: { type: "string", default: "1" },
     model: { type: "string" },
     voice: { type: "string" },
+    "max-cost-usd": { type: "string" },
+    "budget-file": { type: "string" },
     help: { type: "boolean" },
   },
 });
@@ -23,18 +28,23 @@ if (values.help) {
 Usage: node scripts/generate-opening-narration.mjs --scene ID --locale LOCALE --model MODEL --voice VOICE
 Repeat --locale for bilingual recordings; repeat --view for named views (default: intro).
 Repeat --scene to select several places; --all-views selects every written view.
+--all-scenes selects every scene in the recipe library instead of --scene.
 --dry-run validates the selection and cache without requesting or writing audio.
 --concurrency N bounds simultaneous requests (1–4, default 1); one writer checkpoints the manifest.
 Matching recordings are verified and reused.
 New generation requires OPENAI_API_KEY; playback never needs a key or a paid request.
-Example: zsh -lic 'node scripts/generate-opening-narration.mjs --scene riad --locale en-US --locale pt-BR --model gpt-4o-mini-tts --voice cedar'
+Paid requests also require --max-cost-usd N --budget-file PATH.
+The durable budget retains unresolved requests and records returned token usage.
+Example: zsh -lic 'node scripts/generate-opening-narration.mjs --scene riad --locale en-US --locale pt-BR --model gpt-4o-mini-tts --voice cedar --max-cost-usd 20 --budget-file outputs/narration-budget.json'
 Example: node scripts/generate-opening-narration.mjs --scene textile --scene kissaten --all-views --locale en-US --locale pt-BR --model gpt-4o-mini-tts --voice cedar --dry-run
 Progress goes to stderr; successful asset records go to stdout.`);
   process.exit(0);
 }
-for (const option of ["scene", "model", "voice"]) {
+for (const option of ["model", "voice"]) {
   if (!values[option]) throw new Error(`--${option} is required.`);
 }
+if (Boolean(values.scene?.length) === Boolean(values["all-scenes"]))
+  throw new Error("Choose --scene or --all-scenes.");
 if (!values.locale?.length)
   throw new Error("At least one --locale is required.");
 if (values["all-views"] && values.view)
@@ -50,11 +60,14 @@ const recipes = JSON.parse(
     "utf8",
   ),
 );
-const jobs = [...new Set(values.scene)].flatMap((scene) =>
+const selectedScenes = values["all-scenes"]
+  ? recipes.assets.map((asset) => asset.scene)
+  : values.scene;
+const jobs = [...new Set(selectedScenes)].flatMap((scene) =>
   [...new Set(values.locale)].flatMap((locale) => {
     const views = values["all-views"]
       ? recipes.assets
-          .filter((asset) => asset.scene === scene)
+          .filter((asset) => asset.scene === scene && asset.locale === locale)
           .map((asset) => asset.view ?? "intro")
       : (values.view ?? ["intro"]);
     if (!views.length) throw new Error(`No narration is written for ${scene}.`);
@@ -130,11 +143,18 @@ console.error(
   `${jobs.length} selected; ${jobs.length - pending.length} cached; ${pending.length} new recordings (${pending.reduce((sum, job) => sum + job.recipe.text.length, 0)} text characters).`,
 );
 if (values["dry-run"] || !pending.length) process.exit(0);
+if (!values["max-cost-usd"] || !values["budget-file"])
+  throw new Error("Paid generation requires --max-cost-usd and --budget-file.");
 if (!process.env.OPENAI_API_KEY)
   throw new Error(
     "OPENAI_API_KEY is not exported; use the configured zsh environment.",
   );
 await mkdir(directory, { recursive: true });
+const budget = await narrationBudget(
+  resolve(values["budget-file"]),
+  Number(values["max-cost-usd"]),
+  values.model,
+);
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
   maxRetries: 0,
@@ -142,24 +162,62 @@ const client = new OpenAI({
 });
 let saveQueue = Promise.resolve();
 async function record({ recipe, request, fingerprint, file }) {
+  const reservation = await budget.reserve(recipe.id);
   console.error(`Recording ${recipe.id} with ${values.model}/${values.voice}`);
-  let response;
+  let response, bytes, usage, costUsd;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 120000);
   try {
-    response = await client.audio.speech.create(request);
+    response = await client.audio.speech.create(
+      { ...request, stream_format: "sse" },
+      { signal: controller.signal },
+    );
+    if (!response.headers.get("content-type")?.startsWith("text/event-stream"))
+      throw new Error(
+        "Speech generation did not return its usage-bearing stream.",
+      );
+    const chunks = [];
+    let done = false;
+    for await (const event of Stream.fromSSEResponse(
+      response,
+      controller,
+      client,
+    )) {
+      if (done) throw new Error("Speech data arrived after completion.");
+      if (
+        event.type === "speech.audio.delta" &&
+        typeof event.audio === "string"
+      ) {
+        chunks.push(Buffer.from(event.audio, "base64"));
+      } else if (event.type === "speech.audio.done") {
+        usage = event.usage;
+        done = true;
+      } else {
+        throw new Error(`Unexpected speech event: ${event.type}`);
+      }
+    }
+    if (!done)
+      throw new Error("Speech generation ended before its final usage event.");
+    costUsd = await budget.settle(
+      reservation,
+      usage,
+      response.headers.get("x-request-id"),
+    );
+    bytes = Buffer.concat(chunks);
   } catch (error) {
+    const detail = error instanceof OpenAI.APIError ? undefined : error.message;
     console.error(
       `Speech generation failed for ${recipe.id}: HTTP ${error.status ?? "unavailable"}, ${error.code ?? error.name}.`,
+      detail ?? "",
     );
     throw new Error(`Recording failed: ${recipe.id}`, {
       // eslint-disable-next-line preserve-caught-error -- Provider errors may contain credential-bearing request metadata.
-      cause: { status: error.status, type: error.code ?? error.name },
+      cause: { status: error.status, type: error.code ?? error.name, detail },
     });
+  } finally {
+    clearTimeout(timeout);
+    controller.abort();
   }
-  if (!response.headers.get("content-type")?.startsWith("audio/"))
-    throw new Error(
-      `Speech generation returned a non-audio response for ${recipe.id}.`,
-    );
-  const bytes = Buffer.from(await response.arrayBuffer());
   if (bytes.length < 1024)
     throw new Error(`Empty or truncated recording for ${recipe.id}.`);
   await writeFile(`${file}.partial`, bytes, { flag: "wx" });
@@ -174,6 +232,8 @@ async function record({ recipe, request, fingerprint, file }) {
     speed: 1,
     generatedAt: new Date().toISOString(),
     requestId: response.headers.get("x-request-id"),
+    usage,
+    costUsd,
     fingerprint,
     sha256: hash(bytes),
     bytes: bytes.length,
@@ -192,21 +252,30 @@ async function record({ recipe, request, fingerprint, file }) {
   });
   await saveQueue;
   console.log(
-    JSON.stringify({ id: asset.id, file: asset.file, bytes: asset.bytes }),
+    JSON.stringify({
+      id: asset.id,
+      file: asset.file,
+      bytes: asset.bytes,
+      costUsd,
+    }),
   );
 }
 let next = 0;
 let failure = null;
-await Promise.all(
-  Array.from({ length: Math.min(concurrency, pending.length) }, async () => {
-    while (!failure && next < pending.length) {
-      const job = pending[next++];
-      try {
-        await record(job);
-      } catch (error) {
-        failure ??= error;
+try {
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, pending.length) }, async () => {
+      while (!failure && next < pending.length) {
+        const job = pending[next++];
+        try {
+          await record(job);
+        } catch (error) {
+          failure ??= error;
+        }
       }
-    }
-  }),
-);
+    }),
+  );
+} finally {
+  await budget.dispose();
+}
 if (failure) throw failure;

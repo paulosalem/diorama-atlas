@@ -6,6 +6,10 @@ import { chromium, expect } from "@playwright/test";
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
 import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
+import {
+  findNarrationRecording,
+  isSceneNarration,
+} from "../src/client/viewer/narration-library.js";
 
 const { values } = parseArgs({
   options: {
@@ -19,9 +23,8 @@ if (values.help) {
   console.log(`Verify bundled narration against every actual runtime view.
 Usage: node scripts/check-narration.mjs [--base-url URL] [--output-dir PATH] [--scene ID ...]
 The default selects all prerecorded scenes. Explicit scene IDs select a subset.
-Browser-speech scenes are checked through their viewer tests, not MP3 decoding.
 Uses isolated browser preferences, blocks paid API requests, decodes every selected
-MP3, and exercises actual playback, both languages, view buttons, and disposal.
+MP3, and exercises both languages in full-scale views, object details and Miniatures.
 Writes report.json and rendered screenshots under the output directory.
 Example: node scripts/check-narration.mjs --scene textile --scene newar-potters-square
 Example: node scripts/check-narration.mjs --output-dir outputs/narration-review
@@ -64,7 +67,6 @@ const startedAt = new Date().toISOString();
 const viewport = { width: 1280, height: 900 };
 const report = { startedAt, viewport, motion: "reduce", audio: [], scenes: [] };
 const browser = await chromium.launch({
-  channel: "chromium",
   args:
     process.platform === "darwin"
       ? ["--use-angle=metal"]
@@ -89,6 +91,9 @@ await context.route("**/api/**", async (route) => {
   }
 });
 await context.addInitScript(() => {
+  window.speechSynthesis.speak = () => {
+    throw new Error("The collection must use its OpenAI recordings.");
+  };
   const NativeAudio = window.Audio;
   window.narrationPlayers = [];
   window.Audio = class extends NativeAudio {
@@ -98,6 +103,25 @@ await context.addInitScript(() => {
     }
   };
 });
+async function playing(page, asset) {
+  await page.waitForFunction(
+    (file) =>
+      window.narrationPlayers.some(
+        (player) =>
+          player.getAttribute("src") === file &&
+          !player.paused &&
+          player.currentTime > 0.12,
+      ),
+    asset.file,
+  );
+  assert.equal(
+    await page.evaluate(
+      () => window.narrationPlayers.filter((player) => !player.paused).length,
+    ),
+    1,
+    `${asset.id}: overlapping narration`,
+  );
+}
 const save = () =>
   writeFile(
     resolve(output, "report.json"),
@@ -156,16 +180,19 @@ try {
       readyMs: Math.round(performance.now() - start),
       ...initial,
       playback: [],
+      details: [],
+      miniature: [],
     };
     const keys = Object.keys(initial.views).filter(
       (key) => initial.views[key].narration !== false,
     );
     const sceneAssets = assets.filter((asset) => asset.scene === scene.id);
-    assert.equal(sceneAssets.length, keys.length * 2, scene.id);
+    const viewAssets = sceneAssets.filter(isSceneNarration);
+    assert.equal(viewAssets.length, keys.length * 2, scene.id);
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const key of keys) {
-        const asset = sceneAssets.find(
+        const asset = viewAssets.find(
           (item) => item.locale === locale && (item.view ?? keys[0]) === key,
         );
         assert.ok(asset, `${scene.id}/${key}/${locale}`);
@@ -207,6 +234,21 @@ try {
             style: ".scene-narration { visibility: hidden !important; }",
           });
       }
+      await page.locator("#riadDetails").click();
+      for (let index = 0; index < scene.details.length; index++) {
+        await page
+          .locator(".hotspot-layer button")
+          .nth(index)
+          .evaluate((button) => button.click());
+        const text = await page.locator("#riadDetailBody").textContent();
+        const asset = findNarrationRecording(manifest.assets, locale, text);
+        assert.ok(asset, `${scene.id}: missing ${locale} detail ${index}`);
+        await page.locator("#listenButton").click();
+        await playing(page, asset);
+        await page.locator("#listenButton").click();
+        entry.details.push(asset.id);
+      }
+      await page.locator("#riadDetails").click();
     }
     report.audio.push(
       ...(await page.evaluate(async (tracks) => {
@@ -262,11 +304,54 @@ try {
       `${scene.id}: media retained after disposal`,
     );
     await narrator.dispose();
+    await context.clearCookies();
+    audioRequests.length = 0;
+    await page.goto(
+      `${base}/?scene=${encodeURIComponent(scene.id)}&version=miniature`,
+    );
+    await waitForViewer(page, { timeout: 120_000 });
+    assert.deepEqual(
+      audioRequests,
+      [],
+      `${scene.id}: miniature audio before consent`,
+    );
+    const miniatureViews = await page
+      .locator("#miniatureViews button")
+      .evaluateAll((buttons) => buttons.map((button) => button.dataset.view));
+    for (const locale of ["en-US", "pt-BR"]) {
+      await page.locator("#atlasLanguage").selectOption(locale);
+      for (const key of miniatureViews) {
+        await page.locator(`#miniatureViews [data-view="${key}"]`).click();
+        const text = await page.locator("#miniatureStoryText").textContent();
+        const asset = findNarrationRecording(manifest.assets, locale, text);
+        assert.ok(
+          asset,
+          `${scene.id}/${key}/${locale}: missing miniature recording`,
+        );
+        await page.locator("#miniatureListen").click();
+        await playing(page, asset);
+        await page.locator("#miniatureListen").click();
+        entry.miniature.push({ view: key, locale, asset: asset.id });
+        if (key === "whole")
+          await page.screenshot({
+            path: resolve(output, `${scene.id}--miniature--${locale}.png`),
+          });
+      }
+    }
+    await page.locator("#riadExpand").click();
+    assert.ok(
+      await page.evaluate(() =>
+        window.narrationPlayers.every(
+          (player) => player.paused && !player.getAttribute("src"),
+        ),
+      ),
+      `${scene.id}: miniature audio retained after disposal`,
+    );
     assert.deepEqual(errors, [], scene.id);
     report.scenes.push(entry);
     await save();
     console.error(
-      `${scene.id}: ${entry.playback.length} bilingual views played`,
+      `${scene.id}: ${entry.playback.length} guided views, ${entry.details.length} details and ${entry.miniature.length} miniature passages played`,
     );
     await page.close();
   }

@@ -32,6 +32,12 @@ Keep agricultural function visible and the composition spacious. Do not assign
 an invented sluice an authentic operational history, or reduce a cooperative
 tradition to a picturesque background.
 
+The realism refinement uses sampled, sloping soil banks with planted margins,
+not sheer ribbons. Preserve their water contact and the narrow walking crest.
+Palms have shaped trunks, connected fronds and leaflets; broadleaf understory
+uses folded, veined surfaces with anchored movement. Distant palm detail must
+return before close approach rather than permanently simplifying the crown.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-landscapes.js) ·
 [Regional photographs](../../public/outdoors/references.json)

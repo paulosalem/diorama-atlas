@@ -1,8 +1,9 @@
-import { sceneVersionUrl } from "../catalog/scene-versions.js";
+import { sceneVersionUrl, sceneVersions } from "../catalog/scene-versions.js";
 import { subscribeLocale, t } from "../localization/locale.js";
 
 export function mountSceneVersions(viewer, definition, selected) {
-  if (!definition.versions?.length) return () => {};
+  const versions = sceneVersions(definition);
+  if (!versions.length) return () => {};
   const panel = document.createElement("div");
   panel.className = "scene-experience";
   const navigation = document.createElement("nav");
@@ -11,7 +12,7 @@ export function mountSceneVersions(viewer, definition, selected) {
   label.className = "scene-versions-label";
   const hint = document.createElement("p");
   hint.className = "scene-experience-hint";
-  const links = definition.versions.map((version) => {
+  const links = versions.map((version) => {
     const link = document.createElement("a");
     link.href = sceneVersionUrl(location.href, version.id).href;
     link.dataset.version = version.id;
@@ -23,12 +24,12 @@ export function mountSceneVersions(viewer, definition, selected) {
   panel.append(navigation, hint);
   viewer.querySelector(".viewer-header").after(panel);
   function render() {
-    navigation.setAttribute("aria-label", t("Douro experience"));
+    navigation.setAttribute("aria-label", t("Explore as"));
     label.textContent = t("Explore as");
     hint.textContent = t(selected.description);
     links.forEach((link, index) => {
-      link.textContent = t(definition.versions[index].label);
-      link.title = t(definition.versions[index].description);
+      link.textContent = t(versions[index].label);
+      link.title = t(versions[index].description);
     });
   }
   render();

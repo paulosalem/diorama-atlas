@@ -20,11 +20,15 @@ Move from a Kyoto listening café to a Newar pottery square, from an Oaxacan loo
 to a Balinese hillside or a sunlit Douro vineyard. Look through doorways, study worn timber and printed
 pages, follow a guided voice, or linger with the sounds of a place.
 
-The collection offers **210 prerecorded passages across 105 original viewpoints**
-in two languages, alongside close-up details, gentle movement, music and local ambience.
-Douro adds a working yard and riverside railway, plus **Landscape** and
-**Miniature** experiences: step into the valley or turn two floating geological
-slices in your hands. The miniature has eleven views with optional browser narration.
+The collection offers **476 OpenAI recordings in English and Brazilian Portuguese**,
+covering original viewpoints, object details and Miniatures, alongside gentle
+movement, music and local ambience.
+Every place also has a **Miniature** experience: turn two floating landscape
+sections in your hands, or crack open an interior's architectural shell to
+reveal its rooms. Detailed roofs and facades lift up and sideways, leaving the
+furnished spaces, real passageways and signs of ordinary life below.
+Douro includes a working yard, riverside railway and eleven Miniature views.
+Every Listen control uses a local recording, never the browser's synthetic voice.
 Everything needed to visit is included: **no account, installation or API key**.
 Use a modern browser with WebGL 2 and hardware acceleration.
 
@@ -35,7 +39,7 @@ behind the scene. [Browse the collection and its briefs](docs/scenes/README.md).
 
 ## How the places are made
 
-**Three.js, Babylon.js and WebGL 2** render real, programmatically constructed 3D spaces:
+**Three.js and WebGL 2** render real, programmatically constructed 3D spaces:
 connected rooms, shaped objects, physically based materials, scanned textures,
 shadows, reflections and atmospheric light. Licensed photographs guide regional
 character; they are not flat backdrops pretending to be architecture.
@@ -53,14 +57,12 @@ With Node.js **22.13+ on 22.x, or 24+**:
 
 ```sh
 npm ci
-npx playwright install chromium
 npm start
 # Open http://127.0.0.1:4183
 ```
 
-Startup prepares the native miniature from bundled materials and authored
-geometry, then reuses it until those inputs change. The first preparation
-requires Playwright Chromium.
+Every experience, including all miniatures, builds directly from its
+authored Three.js geometry. Startup needs no scene export or headless browser.
 
 Music and ambience default to enabled; first-time playback waits for **Resume**
 in Soundscape. Saved mute choices are respected. Narration starts with **Play**.

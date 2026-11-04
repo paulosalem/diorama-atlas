@@ -44,7 +44,7 @@ try {
   const manifest = await response.json();
   manifest.study = study;
   const module = await import(
-    engine === "babylon" ? "/src/client/rendering/babylon.js" : `./${engine}.js`
+    engine === "babylon" ? "./rendering/babylon.js" : `./${engine}.js`
   );
   runtime = await module.start(canvas, manifest);
   function select(key) {

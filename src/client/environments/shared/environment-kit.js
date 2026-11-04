@@ -16,7 +16,7 @@ RectAreaLightUniformsLib.init();
 export function createEnvironmentKit(
   renderer,
   seed = 21,
-  { rustic = false } = {},
+  { rustic = false, miniature = false } = {},
 ) {
   const materials = createRiadMaterials(renderer);
   materials.glass.color.set(0xf3f5ef);
@@ -26,6 +26,15 @@ export function createEnvironmentKit(
   materials.glass.side = THREE.FrontSide;
   materials.glass.depthWrite = false;
   const group = new THREE.Group();
+  const shell = miniature ? new THREE.Group() : null;
+  if (shell) {
+    shell.name = "Lifted architectural shell";
+    group.add(shell);
+  }
+  function lift(object) {
+    if (miniature) object.userData.miniaturePart = "shell";
+    return object;
+  }
   const geometries = new Set(),
     extraMaterials = new Set(),
     textures = new Set(),
@@ -296,6 +305,7 @@ export function createEnvironmentKit(
   }
   function animateFabric(object, amplitude = 0.004) {
     const positions = object.geometry.attributes.position;
+    positions.setUsage(THREE.DynamicDrawUsage);
     const rest = positions.array.slice();
     object.geometry.computeBoundingBox();
     const { min, max } = object.geometry.boundingBox;
@@ -492,19 +502,23 @@ export function createEnvironmentKit(
           height,
           material: wall,
         });
-    box([width, 0.2, depth], [0, height + 0.1, 0], ceiling);
+    lift(box([width, 0.2, depth], [0, height + 0.1, 0], ceiling));
     // Entrance is behind the initial visitor position, so looking around stays coherent.
     const side = (width - 1.6) / 2;
     for (const sign of [-1, 1])
-      box(
-        [side, height, 0.18],
-        [sign * (width / 2 - side / 2), height / 2, depth / 2],
-        wall,
+      lift(
+        box(
+          [side, height, 0.18],
+          [sign * (width / 2 - side / 2), height / 2, depth / 2],
+          wall,
+        ),
       );
-    box([1.6, height - 2.6, 0.18], [0, (height + 2.6) / 2, depth / 2], wall);
+    lift(
+      box([1.6, height - 2.6, 0.18], [0, (height + 2.6) / 2, depth / 2], wall),
+    );
     for (const x of [-width / 2 + 0.14, width / 2 - 0.14]) {
       box([0.08, 0.19, depth], [x, 0.1, 0], m.cedar);
-      box([0.12, 0.12, depth], [x, height - 0.1, 0], m.cedar);
+      lift(box([0.12, 0.12, depth], [x, height - 0.1, 0], m.cedar));
     }
     wallPanel({
       position: [0, 0, -depth / 2 + 0.14],
@@ -514,7 +528,7 @@ export function createEnvironmentKit(
       material: m.cedar,
     });
     for (let z = -depth / 2 + 0.8; z < depth / 2; z += 1.5)
-      box([width, 0.16, 0.12], [0, height - 0.04, z], m.cedar);
+      lift(box([width, 0.16, 0.12], [0, height - 0.04, z], m.cedar));
     return layout;
   }
   function windowPanel(
@@ -776,6 +790,14 @@ export function createEnvironmentKit(
         wall.bottom,
       );
     }
+    if (shell) {
+      const parts = [];
+      group.traverse((object) => {
+        if (object.userData.miniaturePart === "shell") parts.push(object);
+      });
+      group.updateMatrixWorld(true);
+      for (const part of parts) shell.attach(part);
+    }
     const hotspotAnchors = definition.details.map((detail, index) => {
       const point = Array.isArray(anchors)
         ? anchors[index % anchors.length]
@@ -800,11 +822,16 @@ export function createEnvironmentKit(
         o.material.transparent
       )
         return;
-      const key = `${o.material.uuid}/${Boolean(o.geometry.index)}/${o.castShadow}`;
+      let parent = o.parent;
+      while (parent && parent !== shell && parent !== group)
+        parent = parent.parent;
+      const assembly = parent === shell ? shell : group;
+      const key = `${o.material.uuid}/${Boolean(o.geometry.index)}/${o.castShadow}/${assembly.uuid}`;
       if (!batches.has(key))
         batches.set(key, {
           material: o.material,
           cast: o.castShadow,
+          parent: assembly,
           pieces: [],
         });
       const geo = o.geometry.clone();
@@ -817,7 +844,7 @@ export function createEnvironmentKit(
       const geo = mergeGeometries(b.pieces, false);
       b.pieces.forEach((p) => p.dispose());
       if (!geo) throw new Error(`Could not assemble ${definition.title}.`);
-      const o = mesh(geo, b.material);
+      const o = mesh(geo, b.material, [0, 0, 0], [0, 0, 0], b.parent);
       o.castShadow = b.cast;
     }
     remove.forEach((o) => {
@@ -829,6 +856,8 @@ export function createEnvironmentKit(
     let disposed = false;
     return {
       group,
+      shell,
+      layout,
       animations,
       hotspots: hotspotAnchors,
       views,
@@ -845,6 +874,8 @@ export function createEnvironmentKit(
         orb: new THREE.Object3D(),
       },
       captureReflections(scene) {
+        reflection?.texture.dispose();
+        reflection?.dispose();
         const capture = new THREE.WebGLCubeRenderTarget(128, {
           type: THREE.HalfFloatType,
         });
@@ -883,6 +914,7 @@ export function createEnvironmentKit(
         extraMaterials.forEach((mat) => mat.dispose());
         textures.forEach((t) => t.dispose());
         group.traverse((o) => {
+          if (o.isInstancedMesh) o.dispose();
           if (o.isLight) o.dispose();
         });
         materials.dispose();
@@ -891,6 +923,9 @@ export function createEnvironmentKit(
   }
   const kit = {
     group,
+    miniature,
+    shell,
+    lift,
     m,
     random,
     range,

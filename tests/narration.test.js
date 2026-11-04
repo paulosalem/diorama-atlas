@@ -4,6 +4,11 @@ import { readFile, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { test } from "node:test";
 import { createNarrationTriggers } from "../src/client/viewer/narration-triggers.js";
+import {
+  findNarrationRecording,
+  isSceneNarration,
+} from "../src/client/viewer/narration-library.js";
+import { supplementalNarration } from "../scripts/helpers/narration-coverage.mjs";
 import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
 import {
   outdoorDraftScenes,
@@ -45,7 +50,12 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
       ),
       `${recipe.id}: recipe must belong to a bundled scene or an explicit local draft`,
     );
-  assert.equal(manifest.assets.length, 210);
+  assert.equal(manifest.assets.filter(isSceneNarration).length, 210);
+  for (const passage of supplementalNarration(scenes, recipes.assets))
+    assert.ok(
+      findNarrationRecording(manifest.assets, passage.locale, passage.text),
+      `${passage.id}: missing OpenAI recording`,
+    );
   assert.equal(
     new Set(manifest.assets.map((asset) => asset.id)).size,
     manifest.assets.length,
@@ -95,7 +105,9 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
     keys.add(key);
   }
   for (const scene of scenes) {
-    const assets = manifest.assets.filter((asset) => asset.scene === scene.id);
+    const assets = manifest.assets.filter(
+      (asset) => asset.scene === scene.id && isSceneNarration(asset),
+    );
     if (scene.narration === "browser") {
       assert.equal(
         assets.length,
@@ -178,7 +190,7 @@ test("the generation command validates selections and reuses recordings without 
     "--dry-run",
   );
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stderr, /18 selected; 18 cached; 0 new/);
+  assert.match(result.stderr, /\d+ selected; \d+ cached; 0 new/);
   const cached = run("--scene", "riad", "--locale", "en-US");
   assert.equal(cached.status, 0, cached.stderr);
   assert.match(cached.stderr, /1 selected; 1 cached; 0 new/);

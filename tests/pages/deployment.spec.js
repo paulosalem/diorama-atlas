@@ -19,6 +19,9 @@ const narration = JSON.parse(
     new URL("../../public/narration/manifest.json", import.meta.url),
   ),
 ).assets;
+const credits = JSON.parse(
+  await readFile(new URL("../../public/credits.json", import.meta.url)),
+).entries;
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/api/**", async (route) => {
@@ -73,6 +76,50 @@ test("static hosting rejects unfinished local previews", async ({ page }) => {
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 
+test("the Three.js Miniature loads directly beneath a project path", async ({
+  page,
+  baseURL,
+}) => {
+  const errors = [];
+  const obsolete = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("response", (response) => {
+    if (response.status() >= 400)
+      errors.push(`${response.status()} ${response.url()}`);
+  });
+  page.on("request", (request) => {
+    if (/babylon|public\/dioramas/.test(request.url()))
+      obsolete.push(request.url());
+  });
+  await page.goto("?scene=douro-vineyard&version=miniature&view=whole");
+  await waitForViewer(page, { timeout: 180_000 });
+  const state = await page.evaluate(async (base) => {
+    const { getActiveViewer } = await import(
+      `${base}src/client/viewer/panorama-viewer.js`
+    );
+    const viewer = getActiveViewer();
+    return {
+      ...viewer.inspection,
+      three: viewer.renderer.isWebGLRenderer,
+      views: Object.keys(viewer.runtime.views),
+    };
+  }, baseURL);
+  expect(state.three).toBe(true);
+  expect(state.finiteGeometry).toBe(true);
+  expect(state.views).toHaveLength(11);
+  expect(state.audio.contextState).toBe("closed");
+  await page.locator('[data-view="quinta"]').click();
+  await expect(page).toHaveURL(/\/diorama-atlas\/\?.*view=quinta/);
+  await page.getByRole("link", { name: "Landscape", exact: true }).click();
+  await waitForViewer(page, { timeout: 180_000 });
+  await expect(page).toHaveURL(/\/diorama-atlas\/\?.*version=landscape/);
+  expect(errors).toEqual([]);
+  expect(obsolete).toEqual([]);
+});
+
 test("the globe, preview and return navigation remain inside the project path", async ({
   page,
   baseURL,
@@ -106,6 +153,50 @@ test("the globe, preview and return navigation remain inside the project path", 
     ),
   ).toBe(1);
 });
+
+for (const id of ["textile", "naxi-canal-quarter"]) {
+  test(`${id}: collection miniature navigation and narration use the project path`, async ({
+    page,
+    baseURL,
+  }) => {
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("response", (response) => {
+      if (response.status() >= 400)
+        errors.push(`${response.status()} ${response.url()}`);
+    });
+    await page.goto(`?scene=${id}&version=miniature`);
+    await waitForViewer(page, { timeout: 180_000 });
+    await expect(
+      page.getByRole("link", { name: "Miniature", exact: true }),
+    ).toHaveAttribute("aria-current", "true");
+    await page.locator("#miniatureViews [data-view]").last().click();
+    await expect(page).toHaveURL(
+      /\/diorama-atlas\/\?.*version=miniature.*view=/,
+    );
+    const state = await page.evaluate(async (base) => {
+      const { getActiveViewer } = await import(
+        `${base}src/client/viewer/panorama-viewer.js`
+      );
+      return getActiveViewer().inspection;
+    }, baseURL);
+    expect(state.finiteGeometry).toBe(true);
+    expect(state.audio.contextState).toBe("closed");
+    if (id === "textile") expect(state.shell.open).toBe(true);
+    await page
+      .getByRole("link", {
+        name: id === "textile" ? "Interior" : "Landscape",
+        exact: true,
+      })
+      .click();
+    await waitForViewer(page, { timeout: 180_000 });
+    await expect(page.locator(".scene-narration")).toHaveAttribute(
+      "data-state",
+      "ready",
+    );
+    expect(errors).toEqual([]);
+  });
+}
 
 for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
   test(`${scene.id}: all static assets, viewpoints and bilingual playback`, async ({
@@ -199,7 +290,7 @@ for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
   });
 }
 
-test("static references, credits, soundscapes and English detail speech need no API", async ({
+test("static references, credits, soundscapes and English detail recordings need no API", async ({
   page,
   baseURL,
 }) => {
@@ -225,7 +316,7 @@ test("static references, credits, soundscapes and English detail speech need no 
   await expect(
     page.getByRole("link", { name: "Dr. Paulo Salem", exact: true }),
   ).toHaveAttribute("href", "https://www.paulosalem.com/");
-  await expect(page.locator(".credit-entry")).toHaveCount(284);
+  await expect(page.locator(".credit-entry")).toHaveCount(credits.length);
   await page.locator("#creditSearch").fill("Kloofendal");
   await expect(page.locator(".credit-entry")).toHaveCount(1);
   await expect(page.locator(".credit-note")).toContainText("South Africa");
@@ -279,20 +370,19 @@ test("static references, credits, soundscapes and English detail speech need no 
   await page.goto("?scene=kissaten");
   await waitForViewer(page, { timeout: 120_000 });
   await page.evaluate(() => {
-    window.atlasSpoken = [];
-    window.speechSynthesis.speak = (utterance) =>
-      window.atlasSpoken.push({ text: utterance.text, lang: utterance.lang });
-    window.speechSynthesis.cancel = () => {};
+    window.speechSynthesis.speak = () => {
+      throw new Error("Static narration must use the OpenAI recording.");
+    };
   });
   await page.locator("#riadDetails").click();
+  const recordedSpeech = page.waitForResponse(
+    (response) =>
+      response.url().startsWith(new URL("public/narration/", baseURL).href) &&
+      response.url().endsWith(".mp3"),
+  );
   await page.locator("#listenButton").click();
-  expect(await page.evaluate(() => window.atlasSpoken)).toEqual([
-    {
-      text: curatedScenes.find((scene) => scene.id === "kissaten").details[0]
-        .body,
-      lang: "en-US",
-    },
-  ]);
+  expect((await recordedSpeech).ok()).toBe(true);
+  await expect(page.locator("#listenButton")).toHaveText("Pause");
   await page.locator("#listenButton").click();
   await page.goto("?scene=missing-place");
   await page.getByRole("link", { name: "Return to the world" }).click();

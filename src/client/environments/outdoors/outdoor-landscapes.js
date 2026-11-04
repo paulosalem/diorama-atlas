@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createOutdoorKit, outdoorView } from "./outdoor-kit.js";
 import { WATER_FLOW_GLSL } from "../shared/water-flow.js";
+import { tropicalVegetation } from "../shared/tropical-vegetation.js";
 
 const TAU = Math.PI * 2;
 
@@ -51,6 +52,41 @@ function planarWaterGeometry(geometry, height) {
     p.setXYZ(i, p.getX(i), -p.getZ(i), p.getY(i) - height);
   flat.computeVertexNormals();
   return flat;
+}
+
+export function cultivatedBank(
+  contour,
+  height,
+  drop,
+  { start = -70, end = 70, samples = 512 } = {},
+) {
+  const positions = [],
+    indices = [],
+    uv = [];
+  const across = 8;
+  for (let i = 0; i <= samples; i++) {
+    const x = start + (i / samples) * (end - start);
+    for (let row = 0; row <= across; row++) {
+      const t = row / across;
+      const profile = t * t * (3 - 2 * t);
+      const edge = Math.sin(x * 0.47) * 0.025 + Math.sin(x * 2.1) * 0.012;
+      positions.push(
+        x,
+        height +
+          0.08 -
+          drop * profile +
+          Math.sin(t * Math.PI) * 0.016 * Math.sin(x * 15.3),
+        contour(x) + 1.1 - t * 0.85 + edge * Math.sin(t * Math.PI),
+      );
+      uv.push(x / 2, (t * drop) / 2);
+      if (i < samples && row < across) {
+        const a = i * (across + 1) + row,
+          b = a + across + 1;
+        indices.push(a, b, a + 1, a + 1, b, b + 1);
+      }
+    }
+  }
+  return geometryFrom(positions, indices, uv);
 }
 
 function batch(
@@ -113,7 +149,7 @@ function leafGeometry(width = 0.042, height = 0.85, bend = 0.24, segments = 5) {
   return geometryFrom(positions, indices, uv);
 }
 
-function riceBladeGeometry(habit) {
+export function riceBladeGeometry(habit) {
   const position = [],
     uv = [],
     indices = [],
@@ -188,7 +224,7 @@ function photographicLeafGeometry(width, height, habit = 0) {
   return geometryFrom(position, indices, uv);
 }
 
-function ricePanicleGeometry() {
+export function ricePanicleGeometry() {
   const parts = [],
     grain = new THREE.SphereGeometry(1, 6, 4);
   const rachis = new THREE.CatmullRomCurve3([
@@ -233,7 +269,7 @@ function ricePanicleGeometry() {
   return geometry;
 }
 
-function windMaterial(k, color, strength = 0.065) {
+export function windMaterial(k, color, strength = 0.065) {
   const material = k.material(color, 0.88);
   material.side = THREE.DoubleSide;
   const time = { value: 0 };
@@ -340,7 +376,7 @@ function mountain(k, { x, z, width, depth, height, color, phase, base = -28 }) {
   mesh.castShadow = false;
 }
 
-function fieldShelter(k, position) {
+export function fieldShelter(k, position) {
   const g = k.sub(position, -0.12);
   const bamboo = tintedScan(k, k.m.cedar, 0xa38b5d);
   const replacementBoard = tintedScan(k, k.m.cedar, 0xb5a17c);
@@ -459,7 +495,7 @@ function basket(k, position, parent = k.group) {
   );
 }
 
-function shelterRestingPlace(k, shelter) {
+export function shelterRestingPlace(k, shelter) {
   basket(k, [-0.76, 0.44, 0.42], shelter);
   const clay = tintedScan(k, k.m.terracotta, 0x9c8363, 0.76);
   const jar = k.sub([0.63, 0.44, -0.22], -0.16, shelter);
@@ -570,21 +606,8 @@ function shelterRestingPlace(k, shelter) {
  * tropical vegetation. Field boundaries, shelter, basket and the open channel
  * are composed examples, not a surveyed location or a model of the entire subak system.
  */
-export function buildSubakTerraces(definition, renderer) {
-  const k = createOutdoorKit(renderer, seedFor(definition, 718), {
-    sunPosition: [-45, 29, -20],
-    sunColor: 0xffe6b5,
-    sunIntensity: 2.25,
-    skyColor: 0xc4d6d3,
-    fogDensity: 0.0057,
-    exposure: 0.93,
-  });
-  const soil = tintedScan(k, k.m.ground, 0x807354, 0.98);
-  const wetSoil = tintedScan(k, k.m.ground, 0x494d35, 0.57);
-  const bank = tintedScan(k, k.m.ground, 0x76834c);
-  bank.side = THREE.DoubleSide;
-  const stone = tintedScan(k, k.m.stone, 0x77785c);
-  const rice = windMaterial(k, 0xffffff);
+export function createRiceMaterial(k, strength = 0.065) {
+  const rice = windMaterial(k, 0xffffff, strength);
   rice.map = k.texture(
     (c, size) => {
       const leaf = c.createLinearGradient(0, 0, size, 0);
@@ -609,6 +632,25 @@ export function buildSubakTerraces(definition, renderer) {
   );
   rice.bumpMap = rice.map;
   rice.bumpScale = 0.0006;
+  return rice;
+}
+
+export function buildSubakTerraces(definition, renderer) {
+  const k = createOutdoorKit(renderer, seedFor(definition, 718), {
+    sunPosition: [-45, 29, -20],
+    sunColor: 0xffe6b5,
+    sunIntensity: 2.25,
+    skyColor: 0xc4d6d3,
+    fogDensity: 0.0057,
+    exposure: 0.93,
+  });
+  const soil = tintedScan(k, k.m.ground, 0x807354, 0.98);
+  const wetSoil = tintedScan(k, k.m.ground, 0x494d35, 0.57);
+  const bank = tintedScan(k, k.m.ground, 0x76834c);
+  bank.side = THREE.DoubleSide;
+  const stone = tintedScan(k, k.m.stone, 0x77785c);
+  const tropical = tropicalVegetation(k);
+  const rice = createRiceMaterial(k);
   const grass = windMaterial(k, 0xffffff, 0.032);
   const canopy = k.material(0x49692e, 0.97);
   canopy.map = k.texture(
@@ -686,7 +728,7 @@ export function buildSubakTerraces(definition, renderer) {
   for (let level = -4; level < 23; level++) {
     const height = -level * drop;
     const near = (x) => contours(level, x) - 0.36;
-    const far = (x) => contours(level + 1, x) + 0.35;
+    const far = (x) => contours(level + 1, x) + 1.1;
     const field = landStrip(
       (x) => [height, near(x)],
       (x) => [height, far(x)],
@@ -748,11 +790,15 @@ export function buildSubakTerraces(definition, renderer) {
       soil,
     );
     k.mesh(
-      landStrip(
-        (x) => [height + 0.08, contours(level + 1, x) + 0.33],
-        (x) => [height - drop + 0.08, contours(level + 1, x) + 0.4],
-      ),
+      cultivatedBank((x) => contours(level + 1, x), height, drop),
       bank,
+    );
+    k.mesh(
+      landStrip(
+        (x) => [height + 0.075, contours(level, x) - 0.34],
+        (x) => [height - 0.06, contours(level, x) - 0.4],
+      ),
+      wetSoil,
     );
 
     const spacing =
@@ -931,7 +977,7 @@ export function buildSubakTerraces(definition, renderer) {
       }
       if (level >= 0 && level < 11)
         for (const side of [-1, 1]) {
-          for (let leaf = 0; leaf < 3; leaf++)
+          for (let leaf = 0; leaf < 10; leaf++)
             grassEntries.push({
               position: [
                 nx,
@@ -943,19 +989,35 @@ export function buildSubakTerraces(definition, renderer) {
                 k.range(0, TAU),
                 k.range(-0.5, 0.5),
               ],
-              scale: [1.6, k.range(0.1, 0.24), 0.7],
-              color: new THREE.Color().setHSL(0.22, 0.28, k.range(0.24, 0.36)),
+              scale: [1.4, k.range(0.12, 0.34), 0.8],
+              color: new THREE.Color().setHSL(0.23, 0.42, k.range(0.2, 0.36)),
             });
         }
     }
     if (level >= 0 && level < 7)
+      for (let x = -32; x < 32; x += 0.31) {
+        if (Math.sin(x * 0.29 + level * 1.7) < -0.35) continue;
+        const t = k.range(0.12, 0.94);
+        for (let blade = 0; blade < 14; blade++)
+          grassEntries.push({
+            position: [
+              x + k.range(-0.09, 0.09),
+              height + 0.08 - drop * t * t * (3 - 2 * t),
+              contours(level + 1, x) + 1.1 - t * 0.85,
+            ],
+            rotation: [
+              k.range(-0.8, 0.3),
+              k.range(0, TAU),
+              k.range(-0.65, 0.65),
+            ],
+            scale: [k.range(0.7, 1.3), k.range(0.09, 0.3), 0.9],
+            color: new THREE.Color().setHSL(0.24, 0.35, k.range(0.17, 0.29)),
+          });
+      }
+    if (level >= 0 && level < 7)
       for (let x = -28; x < 28; x += k.range(0.35, 0.8))
         pebbles.push({
-          position: [
-            x,
-            height - 0.17 + k.range(-0.1, 0.05),
-            contours(level + 1, x) + 0.38,
-          ],
+          position: [x, height - drop + 0.06, contours(level + 1, x) + 0.28],
           rotation: [k.range(0, 1), k.range(0, TAU), k.range(0, 1)],
           scale: [k.range(0.16, 0.32), k.range(0.09, 0.17), k.range(0.1, 0.2)],
           color: new THREE.Color().setHSL(0.15, 0.09, k.range(0.5, 0.76)),
@@ -965,7 +1027,9 @@ export function buildSubakTerraces(definition, renderer) {
     shadow: false,
   });
   closeRiceEntries.forEach((entries, habit) => {
-    batch(k, riceBladeGeometry(habit), rice, entries, { shadow: false });
+    batch(k, riceBladeGeometry(habit), rice, entries, {
+      shadow: false,
+    });
   });
   batch(
     k,
@@ -1071,18 +1135,15 @@ export function buildSubakTerraces(definition, renderer) {
     [-31, 12, 7],
     [15, 15, 9],
   ]) {
-    const palm = k.tree([x, -level * drop + 0.1, contours(level, x)], {
+    tropical.palm([x, -level * drop + 0.1, contours(level, x)], {
       height,
       radius: height * 0.41,
-      kind: "palm",
     });
-    palm.traverse((object) => {
-      if (object.geometry?.type !== "TorusGeometry") return;
-      const { radius, tube } = object.geometry.parameters;
-      object.geometry.dispose();
-      object.geometry = new THREE.TorusGeometry(radius, tube, 3, 14);
-      k.geometries.add(object.geometry);
-    });
+    for (let i = 0; i < 3; i++)
+      tropical.understory(
+        [x + (i - 1) * 0.68, -level * drop + 0.12, contours(level, x) + 0.02],
+        { height: k.range(0.85, 1.6) },
+      );
   }
   for (const side of [-1, 1])
     for (let i = 0; i < 4; i++) {

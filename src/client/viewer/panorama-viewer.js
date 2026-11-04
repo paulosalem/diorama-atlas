@@ -18,7 +18,11 @@ import {
 import { applySurfacePatina } from "../environments/shared/surface-patina.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createSceneNarration } from "./scene-narration.js";
-import { sitePath, staticHosting } from "../site.js";
+import {
+  findNarrationRecording,
+  loadNarrationLibrary,
+} from "./narration-library.js";
+import { sitePath } from "../site.js";
 import { resolveSceneVersion } from "../catalog/scene-versions.js";
 import { mountSceneVersions } from "./scene-versions.js";
 
@@ -33,19 +37,27 @@ export async function createViewer(
   definition,
   { audio: atlasAudio, onNavigate, version: requestedVersion, signal } = {},
 ) {
+  signal?.throwIfAborted();
   activeViewer?.dispose();
   const version = resolveSceneVersion(definition, requestedVersion);
-  if (version?.renderer === "babylon") {
+  if (version?.experience === "miniature") {
     const { createMiniatureViewer } = await import("./miniature-viewer.js");
-    activeViewer = await createMiniatureViewer(app, definition, {
+    signal?.throwIfAborted();
+    let miniature;
+    miniature = await createMiniatureViewer(app, definition, {
       audio: atlasAudio,
       onNavigate,
       version,
       signal,
       onDispose: () => {
-        activeViewer = null;
+        if (activeViewer === miniature) activeViewer = null;
       },
     });
+    if (signal?.aborted) {
+      miniature.dispose();
+      signal.throwIfAborted();
+    }
+    activeViewer = miniature;
     return activeViewer;
   }
   const events = new AbortController();
@@ -195,20 +207,20 @@ export async function createViewer(
   panorama.activate(runtime, definition);
   if (outdoor) addOutdoorReferences(viewer, definition);
   const audio = new Audio();
-  let utterance = null;
+  audio.preload = "none";
+  let detailRequest = 0;
   const listenButton = app.querySelector("#listenButton");
+  const voiceNote = document.createElement("small");
+  voiceNote.textContent = t("AI-generated voice");
+  listenButton.after(voiceNote);
   let listenState = "Listen";
   function setListenState(value) {
     listenState = value;
     listenButton.textContent = t(value);
   }
   function stopNarration() {
+    detailRequest++;
     audio.pause();
-    if (utterance) {
-      utterance.onend = utterance.onerror = null;
-      window.speechSynthesis?.cancel();
-      utterance = null;
-    }
     atlasAudio?.setDucked(false);
     setListenState("Listen");
   }
@@ -250,6 +262,7 @@ export async function createViewer(
   const unsubscribeLocale = subscribeLocale(() => {
     if (narration?.snapshot.state !== "playing") stopNarration();
     document.title = `${t(definition.title)} · Diorama Atlas`;
+    voiceNote.textContent = t("AI-generated voice");
     app.querySelector("#sceneTitle").textContent = t(definition.title);
     app.querySelector("#sceneRegion").textContent = regionLabel();
     resetButton.textContent = t("Reset view");
@@ -274,45 +287,27 @@ export async function createViewer(
     panorama.select();
   };
   app.querySelector("#listenButton").onclick = async () => {
-    if (staticHosting || outdoor || getLocale() === "pt-BR") {
-      if (!window.speechSynthesis) {
-        setListenState("Speech unavailable");
-        return;
-      }
-      if (utterance) {
-        stopNarration();
-        return;
-      }
-      utterance = new SpeechSynthesisUtterance(
+    if (!audio.paused) {
+      stopNarration();
+      return;
+    }
+    const attempt = ++detailRequest;
+    setListenState("Loading…");
+    try {
+      const recording = findNarrationRecording(
+        await loadNarrationLibrary(),
+        getLocale(),
         t(definition.details[selected].body),
       );
-      utterance.lang = getLocale();
-      utterance.rate = 0.93;
-      utterance.onend = stopNarration;
-      utterance.onerror = (event) => {
-        stopNarration();
-        if (event.error === "canceled" || event.error === "interrupted") return;
-        console.error("Detail narration failed.", event.error);
-        setListenState("Speech unavailable");
-      };
-      atlasAudio?.beginNarration();
-      window.speechSynthesis.speak(utterance);
-      setListenState("Stop");
-      return;
-    }
-    if (!audio.paused) {
-      audio.pause();
-      setListenState("Listen");
-      return;
-    }
-    setListenState("Loading…");
-    audio.src = sitePath(
-      `/api/narration/${encodeURIComponent(definition.id)}/${encodeURIComponent(definition.details[selected].id)}`,
-    );
-    try {
+      if (disposed || attempt !== detailRequest) return;
+      if (!recording)
+        throw new Error("No OpenAI recording is available for this detail.");
+      audio.src = recording.file;
       await audio.play();
+      if (disposed || attempt !== detailRequest) return;
       setListenState("Pause");
     } catch (error) {
+      if (disposed || attempt !== detailRequest) return;
       console.error("Could not play detail narration.", error);
       setListenState("Audio unavailable");
     }

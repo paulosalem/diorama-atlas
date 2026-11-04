@@ -12,7 +12,7 @@ development line.
 ```sh
 nvm use                    # Optional, if nvm is installed
 npm ci
-npx playwright install chromium
+npx playwright install chromium # Required for browser checks, not startup
 npm start                  # http://127.0.0.1:4183
 npm run dev                # Alternative: restart on imported server-source changes
 ```
@@ -20,10 +20,8 @@ npm run dev                # Alternative: restart on imported server-source chan
 Set `PORT=4300` to choose another port. The server binds to loopback.
 Browser source uses native JavaScript ES modules and an import map: refresh
 after changes; there is no frontend compilation or hot-module replacement.
-Startup runs `prepare:dioramas` to export the native Babylon miniature from local
-authored geometry and materials. It caches the result under ignored
-`public/dioramas/`; source changes invalidate the cache. This preparation is
-provider-free and requires Playwright Chromium.
+All experiences render their authored Three.js geometry directly. Startup and
+static publication require neither scene exports nor a headless browser.
 
 For the exact static hosting arrangement:
 
@@ -37,22 +35,22 @@ The bundled app needs no key, database or generated cache. See
 
 ## Repository map
 
-| Path                                 | Responsibility                                                  |
-| ------------------------------------ | --------------------------------------------------------------- |
-| `src/client/catalog/`                | Place definitions, saved-place loading and geography            |
-| `src/client/world/`                  | Earth, markers, miniatures and previews                         |
-| `src/client/viewer/`                 | Rendering, viewpoints, narration, controls and credits          |
-| `src/client/environments/shared/`    | Reusable geometry, materials, print, water and audio mechanisms |
-| `src/client/environments/riad/`      | Marrakech's dedicated environment                               |
-| `src/client/environments/interiors/` | Six room families, depth, props and everyday activity           |
-| `src/client/environments/outdoors/`  | Dedicated outdoor compositions and shared outdoor helpers       |
-| `src/client/localization/`           | Global language state and presentation dictionaries             |
-| `src/client/rendering/`              | Shared native Babylon rendering and authored-scene export       |
-| `src/server/`                        | Local HTTP, saved scenes and optional provider operations       |
-| `data/scenes/`                       | Seven versioned saved packages, including distinct variants     |
-| `public/`                            | Approved runtime assets, previews and provenance                |
-| `scripts/`, `tests/`                 | Maintenance, captures and regression checks                     |
-| `docs/`, `.github/skills/`           | Human and agent development guidance                            |
+| Path                                 | Responsibility                                                   |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| `src/client/catalog/`                | Place definitions, saved-place loading and geography             |
+| `src/client/world/`                  | Earth, markers, miniatures and previews                          |
+| `src/client/viewer/`                 | Rendering, viewpoints, narration, controls and credits           |
+| `src/client/environments/shared/`    | Reusable geometry, materials, print, water and audio mechanisms  |
+| `src/client/environments/riad/`      | Marrakech's dedicated environment                                |
+| `src/client/environments/interiors/` | Six room families, depth, props and everyday activity            |
+| `src/client/environments/outdoors/`  | Dedicated outdoor compositions and shared outdoor helpers        |
+| `src/client/localization/`           | Global language state and presentation dictionaries              |
+| `src/client/rendering/`              | Three.js Miniature presentation, cameras and geometry inspection |
+| `src/server/`                        | Local HTTP, saved scenes and optional provider operations        |
+| `data/scenes/`                       | Seven versioned saved packages, including distinct variants      |
+| `public/`                            | Approved runtime assets, previews and provenance                 |
+| `scripts/`, `tests/`                 | Maintenance, captures and regression checks                      |
+| `docs/`, `.github/skills/`           | Human and agent development guidance                             |
 
 Five original definitions, seven saved interiors and eleven outdoor definitions
 form the 23-scene collection. Preserve unique IDs and saved-package provenance.
@@ -64,11 +62,26 @@ Draft scripts do not count as completed recordings. Promotion removes the
 flag only after narration, cultural/visual review and all release checks pass.
 Related variants are deliberate entries, not duplicate files to delete.
 
-Douro's Landscape and Miniature are versions of one catalog destination, not
-separate map entries. `?scene=douro-vineyard&version=miniature` opens its native
-Babylon viewer. Original Landscape recordings remain available; its added yard
-and railway views explicitly set `narration: false`. Miniature uses requested
-browser speech for all eleven views, with the same global audio ownership.
+Every place's original visit and Miniature are versions of one catalog destination,
+not separate map entries. `?scene=<id>&version=miniature` opens its Three.js object
+viewer. Complete generated interiors use the same family-based shell mechanism.
+Routing uses experience identity, not engine names. Original recordings remain
+available; Douro's added yard and railway views explicitly set `narration: false`.
+Miniatures and object details use prerecorded OpenAI speech and bilingual text,
+with the same global audio ownership. Run `scripts/prepare-narration.mjs` to
+inventory missing passages; paid generation requires an explicit durable budget.
+
+Miniatures reuse authored meshes and instances, live cloth and foliage, water
+reflections and shared weathering. Opening interiors separate actual roof,
+entrance and ceiling assemblies before batching; landscapes physically section
+geometry and cap closed solids without filling cavities. Explicit per-place
+bounds and camera directions live in `catalog/miniature-compositions.js`.
+Never replace a real cut with a dark plane or a shader-only mask. Overview
+cameras fit current bounds; focused cameras follow their object's section.
+The `open=1` URL parameter restores an open shell. Reduced motion applies the
+same exact final positions without animation. Douro retains its accepted cameras.
+The historical Babylon, PlayCanvas and Unity comparisons remain isolated under
+`experiments/marrakech/`, with their own dependencies and exporter.
 
 Outdoor definitions may explicitly select `daylight: "summer"` for the bundled
 clear-sky profile. Omitting it retains the collection's broken-clouds baseline.
@@ -130,7 +143,10 @@ Before captures cannot be overwritten. Use identical original cameras, viewport
 and motion settings; add separate evidence for newly connected spaces.
 The same capture tool accepts an outdoor `--scene ID`; an unfinished place
 also requires `--include-drafts` and a local server. Its default collection
-remains the twelve interiors.
+remains the twelve interiors. Use `--all --version miniature` to capture all
+23 Miniatures and their named views, or `--scene ID --version miniature` for
+one place. The Whole capture begins closed; selecting an interior detail opens
+its shell. Capture the opened Whole state separately when comparing the opening.
 Serve the generated comparison directory separately: the application does not
 expose `outputs/`. See [outdoor review](outdoor-collection.md),
 [narration verification](narration.md) and the
@@ -139,6 +155,35 @@ expose `outputs/`. See [outdoor review](outdoor-collection.md),
 The three-pass realism report uses the scene IDs recorded in its input files,
 not the size of today's catalog. All passes must cover the same nonempty set.
 This keeps historical reviews reproducible when the collection grows.
+
+### Comparable rendering measurements
+
+```sh
+node scripts/measure-dioramas.mjs --scene textile --scene andean-stone-lane \
+  --base-url http://127.0.0.1:4183 --seconds 5 --output outputs/my-pass/performance.json
+```
+
+The measurement utility runs scenes sequentially at the paused original arrival,
+1280x900 and device scale 1. It records the actual rendering device, frame
+intervals, resource counts, finite attributes, original views and complete-frame
+draw/triangle totals, including reflections and postprocessing. Output is
+immutable. Use the same device, viewport and duration for the preserved source
+and the refinement; run no competing GPU tasks. Frame rate varies with machine
+load and is not a universal hardware claim.
+When navigation changes the canvas height, use `--render-height N` on both
+measurements to match the actual render area. The utility adjusts the browser
+height, verifies the requested canvas size, and records both viewport and
+canvas dimensions. Compare matching presentations and geometry; a Miniature
+overview and a full-scale arrival are different workloads, not a speedup claim.
+
+The comparison gallery accepts mixed indoor/outdoor captures. A connected-space
+panel is shown only when the capture includes a `passage` view; every scene also
+links directly to its live explorer.
+
+Publish inspected outdoor-only capture manifests with
+`npm run previews:publish -- --input PATH --environment outdoor`. Interior
+captures retain the default destination. Keep the two families in separate
+publication manifests; both retain unselected preview provenance.
 
 ## Optional generation
 

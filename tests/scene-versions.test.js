@@ -10,7 +10,8 @@ import { vineyardYardGrowth } from "../src/client/environments/outdoors/vineyard
 test("experience routing defaults to landscape and explicitly rejects unavailable versions", () => {
   const douro = outdoorScenes.find(({ id }) => id === "douro-vineyard");
   assert.equal(resolveSceneVersion(douro, null).id, "landscape");
-  assert.equal(resolveSceneVersion(douro, "miniature").renderer, "babylon");
+  assert.equal(resolveSceneVersion(douro, "miniature").experience, "miniature");
+  assert.equal(resolveSceneVersion(douro, "landscape").experience, "landscape");
   assert.throws(() => resolveSceneVersion(douro, "unknown"), /not available/);
   assert.equal(resolveSceneVersion({}, null), null);
   assert.throws(() => resolveSceneVersion({}, "miniature"), /not available/);

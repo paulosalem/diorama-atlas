@@ -1,6 +1,12 @@
 import * as THREE from "three";
 import { mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
 import { createOutdoorKit, outdoorView } from "./outdoor-kit.js";
+import {
+  dressedStoneGeometry,
+  shapedTimber,
+  shavingGeometry,
+  staticDetailLevels,
+} from "../shared/natural-forms.js";
 
 const PI = Math.PI;
 
@@ -444,7 +450,7 @@ function streetPlants(k) {
     scale,
     flowerMaterial,
     parent = k.group,
-    { scanned = false } = {},
+    { scanned = false, leafSway = false } = {},
   ) {
     const plant = k.sub(position, 0, parent);
     plant.scale.setScalar(scale);
@@ -498,6 +504,16 @@ function streetPlants(k) {
           new THREE.Vector3(Math.cos(angle), 0.35, Math.sin(angle)).normalize(),
         );
         leaf.scale.setScalar(k.range(0.65, 1.1));
+        if (leafSway && i % 4 === 0 && t === 0.73) {
+          const rest = leaf.quaternion.clone();
+          k.animated.add(leaf);
+          k.animations.push((_, elapsed) => {
+            leaf.quaternion.copy(rest);
+            leaf.rotateZ(
+              0.045 * (Math.sin(elapsed * 0.9 + angle) - Math.sin(angle)),
+            );
+          });
+        }
       }
       if (i % 2 === 0) flower(tip, 0.063, flowerMaterial, plant);
     }
@@ -2265,9 +2281,32 @@ export function buildVenetianBoatyard(definition, renderer) {
       0,
     );
   const wing = k.sub([-10.2, 0, -4.4]);
-  k.box([5.4, 3.1, 6.4], [0, 1.63, -2.4], wood[1], wing, 0);
-  for (let y = 0.22; y < 3.1; y += 0.19)
-    k.box([5.42, 0.176, 0.09], [0, y, 0.83], choose(k, wood), wing, 0);
+  wing.name = "Open oar workshop";
+  for (const x of [-2.64, 2.64])
+    k.box([0.16, 3.1, 6.4], [x, 1.63, -2.4], wood[1], wing, 0.012);
+  for (let z = -5.3; z < 0.6; z += 0.25)
+    k.box(
+      [0.035, 2.85, 0.24],
+      [-2.545, 1.58, z],
+      wood[Math.round((z + 5.3) / 0.25) % wood.length],
+      wing,
+      0.003,
+    );
+  k.box([5.4, 3.1, 0.16], [0, 1.63, -5.52], wood[1], wing, 0.012);
+  k.box([5.4, 0.12, 6.4], [0, 0.09, -2.4], wood[0], wing, 0.008);
+  for (let y = 0.22; y < 3.1; y += 0.19) {
+    if (y < 2.37) {
+      k.box(
+        [1.96, 0.176, 0.12],
+        [-1.73, y, 0.83],
+        choose(k, wood),
+        wing,
+        0.008,
+      );
+      k.box([1.68, 0.176, 0.12], [1.87, y, 0.83], choose(k, wood), wing, 0.008);
+    } else
+      k.box([5.42, 0.176, 0.12], [0, y, 0.83], choose(k, wood), wing, 0.008);
+  }
   k.mesh(
     flatPolygon(
       [
@@ -2302,9 +2341,101 @@ export function buildVenetianBoatyard(definition, renderer) {
     palette: tiles,
     axis: PI / 2,
   });
-  k.box([1.7, 2.2, 0.06], [0.15, 1.23, 0.9], k.m.dark, wing, 0);
+  for (const x of [-0.77, 1.035])
+    shapedTimber(k, [x, 0.15, 0.83], [x, 2.41, 0.83], 0.12, wood[0], wing, {
+      depth: 0.23,
+      seed: x,
+      relief: 0.001,
+    });
+  shapedTimber(
+    k,
+    [-0.86, 2.42, 0.84],
+    [1.13, 2.42, 0.84],
+    0.14,
+    wood[0],
+    wing,
+    { depth: 0.23, seed: 2, relief: 0.001 },
+  );
+  for (const [x, angle, sign] of [
+    [-0.76, -Math.PI + 0.12, 1],
+    [1.025, Math.PI - 0.1, -1],
+  ]) {
+    const door = k.sub([x, 0.16, 0.92], angle, wing);
+    for (let i = 0; i < 5; i++)
+      shapedTimber(
+        k,
+        [sign * (0.082 + i * 0.166), 0, 0],
+        [sign * (0.082 + i * 0.166), 2.18, 0],
+        0.162,
+        wood[i % wood.length],
+        door,
+        { depth: 0.055, seed: i + x, relief: 0.0007 },
+      );
+    for (const y of [0.27, 1.82]) {
+      k.box([0.77, 0.065, 0.035], [sign * 0.4, y, 0.045], wood[1], door, 0.003);
+      k.box([0.32, 0.04, 0.01], [sign * 0.16, y, 0.07], k.m.iron, door, 0.003);
+    }
+  }
+  const innerBench = k.sub([-1.66, 0.15, -1.45], Math.PI / 2, wing);
+  k.box([2.7, 0.1, 0.74], [0, 0.85, 0], wood[2], innerBench, 0.012);
+  for (const x of [-1.13, 1.13])
+    for (const z of [-0.25, 0.25])
+      shapedTimber(k, [x, 0, z], [x, 0.8, z], 0.11, wood[0], innerBench);
+  for (let i = 0; i < 3; i++)
+    shapedTimber(
+      k,
+      [-1.1, 0.92 + i * 0.045, 0],
+      [1.05, 0.92 + i * 0.045, 0],
+      0.04,
+      bare,
+      innerBench,
+      { depth: 0.14, relief: 0.0005, seed: i },
+    );
+  k.box([0.22, 0.08, 0.06], [0.15, 1.1, 0.12], wood[0], innerBench, 0.01);
+  k.cylinder(0.045, 0.14, [-0.5, 0.97, 0.2], k.m.iron, innerBench);
+  for (let i = 0; i < 6; i++) {
+    const z = -1.4 - i * 0.57;
+    k.tube(
+      [
+        [-2.35, 0.35, z],
+        [-1.75, 0.5, z],
+        [-1.37, 1.02, z],
+        [-1.21, 1.7, z],
+      ],
+      0.035,
+      bare,
+      wing,
+    );
+  }
+  for (const y of [0.8, 1.55, 2.24])
+    k.box([1.8, 0.065, 0.37], [1.55, y, -4.85], wood[0], wing, 0.004);
   for (let i = 0; i < 8; i++)
-    k.box([0.14, 1.99, 0.08], [-0.43 + i * 0.17, 1.16, 0.98], wood[0], wing, 0);
+    k.cylinder(
+      0.08,
+      0.17,
+      [1.0 + (i % 4) * 0.32, 0.93 + Math.floor(i / 4) * 0.75, -4.83],
+      i % 3 ? wood[2] : k.m.iron,
+      wing,
+    );
+  k.rod([0.2, 3.12, -1.4], [0.2, 2.55, -1.4], 0.004, k.m.iron, wing);
+  k.lathe(
+    [
+      [0.18, 0],
+      [0.16, 0.03],
+      [0.055, 0.17],
+      [0.025, 0.18],
+    ],
+    [0.2, 2.39, -1.4],
+    k.m.iron,
+    wing,
+  );
+  const lamp = new THREE.PointLight(0xffd6a2, 8, 6, 2);
+  lamp.position.set(0.2, 2.38, -1.4);
+  wing.add(lamp);
+  const bulb = k.material(0xffe1ad, 0.5);
+  bulb.emissive.set(0xffc980);
+  bulb.emissiveIntensity = 0.8;
+  k.sphere(0.035, [0.2, 2.42, -1.4], bulb, wing);
 
   for (const [x, z, width, height, depth, angle, color] of [
     [11.6, -5.2, 10.7, 7.2, 5.0, -PI / 2, 0],
@@ -2571,25 +2702,23 @@ export function buildVenetianBoatyard(definition, renderer) {
   );
   for (const x of [-9.9, -9.1, -8.3]) {
     const oar = k.sub([x, 0.12, -1.1], -0.25);
-    k.rod([0, 0, 0], [0.2, 0.11, -3.7], 0.027, bare, oar);
-    k.mesh(
-      flatPolygon(
-        [
-          [-0.1, 0],
-          [-0.115, 0.66],
-          [-0.045, 1.0],
-          [0.07, 1.02],
-          [0.12, 0.7],
-          [0.1, 0],
-        ],
-        0.025,
-        0.01,
-      ),
-      bare,
-      [0, 0, -0.4],
-      [-PI / 2, 0, -0.07],
-      oar,
-    );
+    shapedTimber(k, [0, 0.025, 0.2], [0, 0.025, -2.7], 0.052, bare, oar, {
+      round: true,
+      taper: 0.15,
+      bend: 0.005,
+      relief: 0.0003,
+      seed: x,
+    });
+    shapedTimber(k, [0, 0.025, -2.6], [0, 0.017, -3.8], 0.24, bare, oar, {
+      round: true,
+      taper: 0,
+      depth: 0.024,
+      relief: 0.00015,
+      section: (t) => [
+        0.19 + 0.81 * Math.sin(Math.PI * t) ** 0.55,
+        1 - t * 0.55,
+      ],
+    });
   }
   const workbench = k.sub([-9.1, 0.076, -2.35]);
   const benchSurface = k.surfaceMaterial("weathered-wood", {
@@ -2605,45 +2734,107 @@ export function buildVenetianBoatyard(definition, renderer) {
   k.box([0.07, 0.1, 0.085], [-0.32, 0.97, 0.1], k.m.iron, workbench);
   k.rod([0.4, 0.9, -0.2], [0.66, 0.93, -0.14], 0.02, wood[2], workbench);
   k.box([0.075, 0.06, 0.19], [0.69, 0.93, -0.14], k.m.iron, workbench);
-  k.rod([-1.48, 0.945, -0.03], [0.9, 0.965, 0.1], 0.025, bare, workbench);
-  k.mesh(
-    flatPolygon(
-      [
-        [0.75, -0.1],
-        [1.58, -0.13],
-        [1.88, -0.045],
-        [1.89, 0.055],
-        [1.65, 0.13],
-        [0.74, 0.1],
-      ],
-      0.018,
-      0.003,
-    ),
+  shapedTimber(
+    k,
+    [-1.48, 0.945, -0.03],
+    [0.83, 0.95, 0.07],
+    0.05,
     bare,
-    [0, 0.943, 0],
-    [-PI / 2, 0, 0],
     workbench,
+    { round: true, taper: 0.17, bend: 0.005, relief: 0.00025, seed: 8 },
+  );
+  shapedTimber(
+    k,
+    [0.75, 0.95, 0.07],
+    [1.89, 0.95, 0.07],
+    0.027,
+    bare,
+    workbench,
+    {
+      round: true,
+      taper: 0,
+      depth: 0.25,
+      relief: 0.00015,
+      seed: 12,
+      section: (t) => [1 - 0.45 * t, 0.2 + 0.8 * Math.sin(Math.PI * t) ** 0.5],
+    },
   );
   for (const x of [0.69, 0.84]) {
-    k.box([0.028, 0.14, 0.19], [x, 0.95, 0.035], k.m.iron, workbench, 0);
-    k.box([0.073, 0.026, 0.1], [x, 1.016, 0.035], wood[0], workbench, 0.003);
-  }
-  foldedTextile(k, [-0.76, 0.882, 0.19], 0.35, 0.25, workbench, k.m.paper);
-  for (let i = 0; i < 7; i++) {
-    const a = k.range(0, PI * 2),
-      x = k.range(-0.7, 0.7),
-      z = k.range(-0.3, 0.3);
-    k.tube(
-      [
-        [x, 0.895, z],
-        [x + Math.cos(a) * 0.045, 0.918, z + Math.sin(a) * 0.03],
-        [x + Math.cos(a) * 0.08, 0.901, z + Math.sin(a) * 0.085],
-      ],
-      0.005,
-      bare,
+    k.box([0.028, 0.24, 0.028], [x, 0.89, 0.19], k.m.iron, workbench, 0.003);
+    for (const y of [0.777, 1.006])
+      k.box([0.028, 0.025, 0.22], [x, y, 0.09], k.m.iron, workbench, 0.003);
+    k.cylinder(
+      0.006,
+      0.082,
+      [x, 1.0, 0.05],
+      palette.steel,
+      workbench,
+      0.006,
+      12,
+    );
+    for (let y = 0.983; y < 1.044; y += 0.005)
+      k.ring(0.006, 0.0012, [x, y, 0.05], palette.steel, workbench);
+    k.cylinder(0.022, 0.007, [x, 0.962, 0.05], palette.steel, workbench);
+    k.rod(
+      [x - 0.036, 1.047, 0.05],
+      [x + 0.036, 1.047, 0.05],
+      0.003,
+      palette.steel,
       workbench,
     );
   }
+  foldedTextile(k, [-0.76, 0.882, 0.19], 0.35, 0.25, workbench, k.m.paper);
+  const shaving = shavingGeometry();
+  for (let i = 0; i < 38; i++) {
+    const a = k.range(0, PI * 2),
+      x = k.range(-0.7, 0.7),
+      z = k.range(-0.3, 0.3);
+    k.mesh(shaving, bare, [x, 0.883, z], [0, a, 0], workbench);
+  }
+  for (let i = 0; i < 25; i++)
+    k.mesh(
+      shaving,
+      bare,
+      [-9.0 + k.range(-0.6, 0.4), 0.115, -1.88 + k.range(-0.13, 0.38)],
+      [0, k.range(0, PI * 2), 0],
+    );
+  const varnish = k.lathe(
+    [
+      [0.09, 0],
+      [0.09, 0.16],
+      [0.084, 0.16],
+      [0.084, 0.015],
+      [0, 0.015],
+    ],
+    [-0.86, 0.882, -0.24],
+    k.m.iron,
+    workbench,
+  );
+  varnish.name = "Open finishing tin";
+  k.cylinder(
+    0.081,
+    0.004,
+    [-0.86, 0.997, -0.24],
+    k.material(0x563b21, 0.2),
+    workbench,
+  );
+  shapedTimber(
+    k,
+    [-0.62, 0.892, -0.24],
+    [-0.46, 0.892, -0.22],
+    0.018,
+    wood[2],
+    workbench,
+    { depth: 0.035, relief: 0.0002 },
+  );
+  for (let i = 0; i < 13; i++)
+    k.rod(
+      [-0.46, 0.891, -0.237 + i * 0.0025],
+      [-0.42, 0.888, -0.237 + i * 0.0025],
+      0.001,
+      k.m.linen,
+      workbench,
+    );
   const printWidth = 0.38,
     printHeight = (printWidth * 1520) / 822;
   const print = k.sub([-8.4, 1.8, -3.48]);
@@ -2735,56 +2926,15 @@ function clipPolygon(polygon, a, b, threshold) {
   return result;
 }
 
-function polygonStone(k, points, material, parent, depth = 0.18) {
-  const center = points.reduce(
-    (sum, p) => [sum[0] + p[0] / points.length, sum[1] + p[1] / points.length],
-    [0, 0],
-  );
-  const positions = [],
-    uvs = [],
-    indices = [];
-  const perimeter = points.length;
-  // Shared boundaries survive as narrow recessed joints; a rounded shoulder catches grazing light.
-  for (const [inset, z] of [
-    [0.986, -0.08],
-    [0.971, 0.005],
-    [0.89, 0.043],
-    [0.56, 0.06],
-  ]) {
-    for (const point of points) {
-      const x = center[0] + (point[0] - center[0]) * inset;
-      const y = center[1] + (point[1] - center[1]) * inset;
-      positions.push(x, y, z + depth);
-      uvs.push(x * 0.47, y * 0.47);
-    }
-  }
-  for (let ring = 0; ring < 3; ring++)
-    for (let i = 0; i < perimeter; i++) {
-      const next = (i + 1) % perimeter;
-      const a = ring * perimeter + i,
-        b = ring * perimeter + next,
-        c = a + perimeter,
-        d = b + perimeter;
-      indices.push(a, b, c, b, d, c);
-    }
-  const face = points.map(
-    (p) =>
-      new THREE.Vector2(
-        center[0] + (p[0] - center[0]) * 0.56,
-        center[1] + (p[1] - center[1]) * 0.56,
-      ),
-  );
-  for (const triangle of THREE.ShapeUtils.triangulateShape(face, []))
-    indices.push(...triangle.map((i) => i + perimeter * 3));
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(positions, 3),
-  );
-  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geometry.setIndex(indices);
-  geometry.computeVertexNormals();
-  k.mesh(geometry, material, [0, 0, 0], [0, 0, 0], parent);
+const fittedStoneMaterials = new WeakMap();
+
+function polygonStone(points, depth, color, detail) {
+  const seed = points.reduce((sum, p) => sum + p[0] * 7.3 + p[1] * 19.1, 0);
+  const geometry = dressedStoneGeometry(points, depth, seed, detail);
+  const colors = new Float32Array(geometry.attributes.position.count * 3);
+  for (let i = 0; i < colors.length; i += 3) color.toArray(colors, i);
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  return geometry;
 }
 
 function polygonWall(
@@ -2796,6 +2946,15 @@ function polygonWall(
   palette,
   boundary = null,
 ) {
+  if (!fittedStoneMaterials.has(palette)) {
+    const material = k.ownMaterial(palette[0].clone());
+    material.color.set(0xffffff);
+    material.vertexColors = true;
+    material.onBeforeCompile = palette[0].onBeforeCompile;
+    material.customProgramCacheKey = palette[0].customProgramCacheKey;
+    fittedStoneMaterials.set(palette, material);
+  }
+  const faceMaterial = fittedStoneMaterials.get(palette);
   const wall = k.sub(position, angle);
   const outline = boundary ?? [
     [-width / 2, 0],
@@ -2804,6 +2963,7 @@ function polygonWall(
     [-width / 2, height],
   ];
   const sites = [];
+  const cells = new Map();
   for (let row = 0; row < height / 0.75 + 1; row++) {
     for (let col = 0; col < width / 1.18 + 1; col++) {
       sites.push([
@@ -2829,9 +2989,26 @@ function polygonWall(
         (b[0] ** 2 + b[1] ** 2 - a[0] ** 2 - a[1] ** 2) / 2,
       );
     }
-    if (polygon.length >= 3)
-      polygonStone(k, polygon, choose(k, palette), wall, k.range(0.16, 0.195));
+    if (polygon.length >= 3) {
+      const depth = k.range(0.177, 0.184),
+        color = choose(k, palette).color;
+      const cell = Math.floor(a[0] / 12);
+      if (!cells.has(cell)) cells.set(cell, { near: [], far: [] });
+      cells.get(cell).near.push(polygonStone(polygon, depth, color));
+      cells
+        .get(cell)
+        .far.push(
+          polygonStone(polygon, depth, color, { edgeStep: 0.24, rings: 4 }),
+        );
+    }
   }
+  for (const pieces of cells.values())
+    staticDetailLevels(k, {
+      ...pieces,
+      material: faceMaterial,
+      parent: wall,
+      distance: 12,
+    });
   return wall;
 }
 
@@ -3393,7 +3570,7 @@ export function buildAndeanLane(definition, renderer) {
     0.83,
     roseFlower,
     doorway,
-    { scanned: true },
+    { scanned: true, leafSway: true },
   );
   thresholdPlant.rotation.y = -0.18;
   const thresholdCloth = foldedTextile(

@@ -1,3 +1,5 @@
+import { landscapeVersions } from "./scene-versions.js";
+
 const places = [
   {
     id: "douro-vineyard",
@@ -7,13 +9,13 @@ const places = [
         id: "landscape",
         label: "Landscape",
         description: "Step into the valley",
-        renderer: "three",
+        experience: "landscape",
       },
       {
         id: "miniature",
         label: "Miniature",
         description: "Turn a little world in your hands",
-        renderer: "babylon",
+        experience: "miniature",
       },
     ],
     location: "douro",
@@ -136,6 +138,7 @@ const places = [
   },
   {
     id: "balinese-subak-terraces",
+    versions: landscapeVersions,
     location: "bali",
     title: "Balinese Subak Terraces",
     name: "Bali",

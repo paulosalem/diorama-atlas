@@ -20,6 +20,24 @@ details. Outdoors, four viewpoints reveal the setting at walking scale.
 **Show details** exposes object annotations. **References** on outdoor scenes
 shows credited source photographs; **About** contains the consolidated credits.
 
+## Hold a miniature
+
+Choose **Miniature** beside **Interior** or **Landscape** to see the same place
+as a floating object. Drag to turn it, scroll or pinch to zoom, and use the
+named views to look closely. **Whole miniature** returns to the complete piece.
+Your original full-scale visit remains available beside it.
+
+Landscapes have two separated sections, including the ground beneath them.
+Interiors begin enclosed: **Crack it open** lifts the roof and exterior shell
+up and sideways, revealing the rooms and passages. **Close miniature** brings
+the pieces back together. Choosing an interior detail opens the shell
+automatically; closing from a detail returns to the whole-object view.
+Reduced-motion preferences make the same change immediately.
+
+**Listen to this view** reads the accompanying passage using your browser's
+voice. It remains silent until selected, stops when you change views or hide
+the page, and shares the Soundscape mute controls.
+
 ## Listen and read
 
 The language selector changes **all interface text and guided narration**
@@ -52,6 +70,10 @@ For example:
 
 The optional `view` key is specific to the scene. The briefs list the available
 keys. English and Portuguese use the same scene IDs and links.
+Miniature links include `version=miniature`; `open=1` restores an open interior
+shell. For example:
+
+<https://paulosalem.github.io/diorama-atlas/?scene=textile&version=miniature&open=1>
 
 ## What the public edition includes
 

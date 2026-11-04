@@ -31,6 +31,14 @@ Keep the contrast between architectural layers rather than blending everything
 into a generic "ancient" street. Do not copy famous masonry arrangements or
 assign the invented lane a specific archaeological provenance.
 
+Stone faces now resolve narrow shoulders, shallow tool-like depressions and
+fine relief inside the original fitted footprints. Preserve those shapes rather
+than restoring uniform broad bevels. Spatial batches share one vertex-tinted
+material; distance-selected geometry restores the full surface before approach.
+The original lane, stair passage and named cameras remain the spatial reference.
+A few doorway leaves move subtly about their attached bases; the pot and stems
+remain still, and reduced motion freezes the movement.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-streets.js) ·
 [Regional photographs](../../public/outdoors/references.json)

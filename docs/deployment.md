@@ -2,8 +2,8 @@
 
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
 The [source repository](https://github.com/paulosalem/diorama-atlas) is maintained
-separately from the static export. GitHub Pages serves the complete
-23-scene collection, 210 prerecorded narration passages, local soundscapes,
+separately from the static export. The Pages export includes the complete
+23-scene collection, 476 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
 ## Publish
@@ -42,14 +42,11 @@ npm run preview:pages
 npm run test:pages
 ```
 
-`npm run prepare:dioramas` exports the native Douro miniature to the ignored
-`public/dioramas/` directory using a temporary, provider-disabled local server.
-It preserves authored geometry, material masks, thin instances and animation.
-`npm start`, `npm run dev` and the Pages builder run this preparation automatically.
-Use `npm run prepare:dioramas -- --force` to rebuild unchanged inputs. Export
-downloads must finish before the source-digest manifest is written; a failed
-export is not treated as ready. Raw `node src/server/index.mjs` deliberately
-bypasses preparation, so prepare first when using that entry point.
+The collection and both Douro experiences build their authored Three.js geometry
+directly in the browser. Startup and publication need no scene preparation,
+generated model cache or Playwright installation. Playwright is needed only for
+browser checks and captures. The historical multi-engine experiments and their
+exports are not part of the published site.
 
 The export is portable to a domain root or another project subdirectory.
 The HTML shell uses relative module URLs; `src/client/site.js` resolves runtime
@@ -60,7 +57,7 @@ definitions, not their storage envelopes or local cache overrides.
 `build:pages -- --output-dir outputs/pages/site` selects another output directory.
 The builder refuses source directories, symlinks and unowned nonempty output
 directories. Its allowlist publishes `src/client/`, the used public asset
-groups, the minimum Three.js and Babylon.js distributions and their licenses. It excludes
+groups, and the minimum Three.js distribution with its license. It excludes
 server source, OpenAI dependencies, credentials, caches, review screenshots and
 repository metadata. Unused models were also removed from the current
 source tree; historical copies remain outside the export allowlist, with
@@ -75,11 +72,10 @@ playback, consent, disposal, globe navigation, credits, references and sound.
 
 ## Differences from the local server
 
-All bundled guided narration is identical. Additional object-detail speech uses
-the visitor's browser speech service in either language; available voices vary
-by device, and unsupported speech produces an explicit unavailable state.
-Douro's Landscape details and Miniature view stories use this opt-in browser
-speech rather than prerecorded narration. Both experiences work under the
+All bundled guided, object-detail and Miniature narration uses the same local
+OpenAI recordings in both languages. Voice quality does not depend on the
+visitor's browser. Missing files produce an explicit, retryable unavailable state.
+Both experiences work under the
 project subdirectory without any `/lab/` or local-server dependencies.
 
 GitHub Pages cannot run Node or paid generation endpoints. It does not create

@@ -54,6 +54,7 @@ export const studies = {
 export const miniatureStudy = {
   ...douroMiniature,
   assetRoot: "/lab/assets/douro-miniature/",
+  model: "douro-miniature.glb",
 };
 
 export function getStudy(id = "marrakech") {

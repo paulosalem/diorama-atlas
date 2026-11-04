@@ -8,9 +8,6 @@
     "node": "^22.13.0 || >=24"
   },
   "scripts": {
-    "prepare:dioramas": "node scripts/prepare-dioramas.mjs",
-    "prestart": "npm run prepare:dioramas",
-    "predev": "npm run prepare:dioramas",
     "dev": "node --watch src/server/index.mjs",
     "start": "node src/server/index.mjs",
     "lint": "eslint .",
@@ -31,8 +28,6 @@
     "check": "npm run lint && npm run format:check && npm test"
   },
   "dependencies": {
-    "babylonjs": "9.33.1",
-    "babylonjs-loaders": "9.33.1",
     "openai": "^6.27.0",
     "three": "^0.183.2"
   },

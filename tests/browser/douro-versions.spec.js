@@ -17,6 +17,11 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   page,
 }, info) => {
   const errors = [];
+  const obsoleteRequests = [];
+  page.on("request", (request) => {
+    if (/babylon|public\/dioramas/.test(request.url()))
+      obsoleteRequests.push(request.url());
+  });
   page.on("pageerror", (error) => errors.push(error.message));
   await page.route("**/api/**", (route) => {
     if (new URL(route.request().url()).pathname === "/api/generated-scenes")
@@ -64,17 +69,23 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   expect(initial.audio.contextState).not.toBe("running");
   expect(initial.narration).toBe("idle");
   expect(initial.camera.mode).toBe("orbit");
+  expect(initial.renderer).toBe("three");
+  await page.waitForTimeout(300);
+  expect((await inspection(page)).reflectionCaptures).toBe(
+    initial.reflectionCaptures,
+  );
   await page.screenshot({ path: info.outputPath("miniature-whole.png") });
   const geometry = await page.evaluate(async () => {
     const { getActiveViewer } =
       await import("/src/client/viewer/panorama-viewer.js");
     const v = getActiveViewer(),
-      ray = (...args) => v.runtime.probe(...args);
-    const { miniature } = v.manifest;
+      ray = (...args) => v.probe(...args);
+    const { miniature } = v.runtime;
+    const THREE = await import("three");
     return {
       life: miniature.life,
       railway: miniature.railway,
-      cavities: v.manifest.depthProbes.map((probe) => ({
+      cavities: v.runtime.depthProbes.map((probe) => ({
         id: probe.id,
         minDistance: probe.minDistance,
         distance: ray(probe.origin, probe.direction, 8),
@@ -87,9 +98,8 @@ test("Douro versions preserve the visit, native views, clear space and silent li
         stair.steps.map(([x, y, z]) => ray([x, y + 0.25, z], [0, -1, 0], 0.5)),
       ),
       framing: (() => {
-        const B = window.BABYLON,
-          scene = B.EngineStore.Instances[0].scenes[0],
-          points = [];
+        const points = [];
+        v.camera.updateMatrixWorld();
         for (const x of [initialBound(v, "min", 0), initialBound(v, "max", 0)])
           for (const y of [
             initialBound(v, "min", 1),
@@ -100,10 +110,7 @@ test("Douro versions preserve the visit, native views, clear space and silent li
               initialBound(v, "max", 2),
             ])
               points.push(
-                B.Vector3.TransformCoordinates(
-                  new B.Vector3(x, y, z),
-                  scene.getTransformMatrix(),
-                ).asArray(),
+                new THREE.Vector3(x, y, z).project(v.camera).toArray(),
               );
         return points;
       })(),
@@ -148,8 +155,12 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   }
   await page.locator("#wholeMiniature").click();
   const before = (await inspection(page)).camera;
+  const reflectionCaptures = (await inspection(page)).reflectionCaptures;
   await page.locator("#miniatureZoomIn").click();
   expect((await inspection(page)).camera.radius).toBeLessThan(before.radius);
+  await expect
+    .poll(async () => (await inspection(page)).reflectionCaptures)
+    .toBeGreaterThan(reflectionCaptures);
   await page.locator("#resetViewButton").click();
   await page.locator("#miniatureCanvas").focus();
   await page.keyboard.press("ArrowRight", { delay: 250 });
@@ -164,6 +175,26 @@ test("Douro versions preserve the visit, native views, clear space and silent li
   await page.setViewportSize({ width: 390, height: 844 });
   await page.waitForTimeout(500);
   await page.screenshot({ path: info.outputPath("miniature-compact.png") });
+  const compactFraming = await page.evaluate(async () => {
+    const THREE = await import("three");
+    const { getActiveViewer } =
+      await import("/src/client/viewer/panorama-viewer.js");
+    const viewer = getActiveViewer(),
+      { min, max } = viewer.inspection.bounds;
+    viewer.camera.updateMatrixWorld();
+    const points = [];
+    for (const x of [min[0], max[0]])
+      for (const y of [min[1], max[1]])
+        for (const z of [min[2], max[2]])
+          points.push(
+            new THREE.Vector3(x, y, z).project(viewer.camera).toArray(),
+          );
+    return points;
+  });
+  for (const [x, y] of compactFraming) {
+    expect(Math.abs(x)).toBeLessThan(0.9);
+    expect(Math.abs(y)).toBeLessThan(0.9);
+  }
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -190,8 +221,10 @@ test("Douro versions preserve the visit, native views, clear space and silent li
     await page.evaluate(() => window.previousDouro.inspection.disposed),
   ).toBe(true);
   expect(
-    await page.evaluate(() => window.BABYLON.EngineStore.Instances.length),
-  ).toBe(0);
+    await page.evaluate(() =>
+      window.previousDouro.renderer.getContext().isContextLost(),
+    ),
+  ).toBe(true);
   await page.goBack();
   await waitForViewer(page, { timeout: 180_000 });
   expect((await inspection(page)).selected).toBe("whole");
@@ -200,24 +233,31 @@ test("Douro versions preserve the visit, native views, clear space and silent li
     JSON.stringify({ initial, geometry, errors }, null, 2),
   );
   expect(errors).toEqual([]);
+  expect(obsoleteRequests).toEqual([]);
 });
 
 test("native motion, narration, audio ownership, aborted navigation and missing assets are explicit", async ({
   page,
 }) => {
   await page.addInitScript(() => {
-    window.spoken = [];
-    window.speechSynthesis.speak = (utterance) => {
-      window.spoken.push(utterance.text);
-      utterance.onstart?.();
+    window.speechSynthesis.speak = () => {
+      throw new Error("Browser speech is not an OpenAI recording.");
     };
-    window.speechSynthesis.cancel = () => {};
   });
   await page.goto("/?scene=douro-vineyard&version=miniature&view=yard");
   await waitForViewer(page, { timeout: 180_000 });
   await page.locator("#miniatureListen").click();
-  expect(await page.evaluate(() => window.spoken.length)).toBe(1);
-  expect((await inspection(page)).narration).toBe("speaking");
+  await expect
+    .poll(async () => (await inspection(page)).narration)
+    .toBe("playing");
+  expect(
+    await page.evaluate(
+      async () =>
+        (
+          await import("/src/client/viewer/panorama-viewer.js")
+        ).getActiveViewer().narration.snapshot.file,
+    ),
+  ).toMatch(/\/public\/narration\/.*\.mp3$/);
   await page.locator('[data-view="harvest"]').click();
   expect((await inspection(page)).narration).toBe("idle");
   await page.emulateMedia({ reducedMotion: "no-preference" });
@@ -225,12 +265,15 @@ test("native motion, narration, audio ownership, aborted navigation and missing 
   await page.waitForTimeout(750);
   const moving = await inspection(page);
   expect(moving.elapsed).toBeGreaterThan(before.elapsed);
-  expect(moving.clothWeights).not.toEqual(before.clothWeights);
+  expect(moving.deformationSamples.length).toBeGreaterThan(0);
+  expect(moving.deformationSamples).not.toEqual(before.deformationSamples);
   await page.locator("#miniatureMotion").click();
   const paused = await inspection(page);
   await page.waitForTimeout(400);
   expect((await inspection(page)).elapsed).toBe(paused.elapsed);
-  expect((await inspection(page)).clothWeights).toEqual(paused.clothWeights);
+  expect((await inspection(page)).deformationSamples).toEqual(
+    paused.deformationSamples,
+  );
   await page.getByRole("button", { name: /^Soundscape,/ }).click();
   await page.locator("#ambientSound").click();
   await expect
@@ -248,7 +291,7 @@ test("native motion, narration, audio ownership, aborted navigation and missing 
   });
   await page.getByRole("link", { name: "Landscape", exact: true }).click();
   await waitForViewer(page);
-  const delayed = "**/public/dioramas/douro-miniature/scene.json";
+  const delayed = "**/public/outdoors/detail-assets/douro/soil-diff.jpg";
   await page.route(delayed, async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     await route.continue();
@@ -260,17 +303,91 @@ test("native motion, narration, audio ownership, aborted navigation and missing 
     page.getByRole("link", { name: "Landscape", exact: true }),
   ).toHaveAttribute("aria-current", "true");
   expect(
-    await page.evaluate(() => window.BABYLON.EngineStore.Instances.length),
-  ).toBe(0);
+    await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      return getActiveViewer().renderer.isWebGLRenderer;
+    }),
+  ).toBe(true);
   await page.unroute(delayed);
   await page.route(delayed, (route) =>
     route.fulfill({ status: 404, body: "Missing test asset" }),
   );
   await page.getByRole("link", { name: "Miniature", exact: true }).click();
   await expect(page.locator(".initial-loading")).toContainText(
-    "The miniature assets could not be loaded",
+    "The miniature could not be prepared",
   );
   await expect(
     page.getByRole("link", { name: "Return to the world" }),
   ).toBeVisible();
+});
+
+test("returning to Landscape cancels a cold Miniature import before mounting", async ({
+  page,
+}) => {
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  let release;
+  const gate = new Promise((resolve) => {
+    release = resolve;
+  });
+  await page.route(
+    "**/src/client/viewer/miniature-viewer.js",
+    async (route) => {
+      await gate;
+      await route.continue();
+    },
+  );
+  await page.goto("/?scene=douro-vineyard&inspect=1");
+  await waitForViewer(page, { timeout: 180_000 });
+  await page.evaluate(() => {
+    window.atlasMiniatureMounts = 0;
+    const observer = new MutationObserver((records) => {
+      for (const record of records)
+        for (const node of record.addedNodes)
+          if (
+            node instanceof Element &&
+            (node.matches("#miniatureCanvas") ||
+              node.querySelector("#miniatureCanvas"))
+          )
+            window.atlasMiniatureMounts++;
+    });
+    observer.observe(document.querySelector("#app"), {
+      childList: true,
+      subtree: true,
+    });
+    window.atlasMountObserver = observer;
+  });
+  const pending = page.waitForRequest(
+    "**/src/client/viewer/miniature-viewer.js",
+  );
+  await page.getByRole("link", { name: "Miniature", exact: true }).click();
+  await pending;
+  await page.goBack();
+  release();
+  await page.evaluate(() => import("/src/client/viewer/miniature-viewer.js"));
+  await waitForViewer(page, { timeout: 180_000 });
+  expect(
+    await page.evaluate(() => {
+      window.atlasMountObserver.disconnect();
+      return window.atlasMiniatureMounts;
+    }),
+  ).toBe(0);
+  await expect(page.locator("#miniatureCanvas")).toHaveCount(0);
+  await expect(page.locator("#canvasMount canvas")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Landscape", exact: true }),
+  ).toHaveAttribute("aria-current", "true");
+  expect(
+    await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      const viewer = getActiveViewer();
+      return (
+        viewer.renderer.isWebGLRenderer &&
+        !viewer.renderer.getContext().isContextLost()
+      );
+    }),
+  ).toBe(true);
+  expect(errors).toEqual([]);
 });

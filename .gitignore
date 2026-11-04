@@ -14,4 +14,5 @@ playwright-report/
 .DS_Store
 .codex/
 .playwright-mcp/
+.impeccable/hook.cache.json
 *.log

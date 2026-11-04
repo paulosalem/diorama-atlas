@@ -1,7 +1,7 @@
 import { parseArgs } from "node:util";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { copyFile, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 
 const { values } = parseArgs({
@@ -10,28 +10,37 @@ const { values } = parseArgs({
       type: "string",
       default: "outputs/collection-realism/after/capture.json",
     },
+    environment: { type: "string", default: "interior" },
     help: { type: "boolean", short: "h" },
   },
 });
 if (values.help) {
-  console.log(`Publish rendered interior captures as the globe's place previews.
+  console.log(`Publish rendered captures as the globe's place previews.
 
-Usage: node scripts/publish-previews.mjs [--input PATH]
+Usage: node scripts/publish-previews.mjs [--input PATH] [--environment interior|outdoor]
   --input PATH    An after/capture.json manifest
+  --environment   Destination family (default interior); all captures must belong to it
 
-Replaces each captured scene's public/previews/<id>.png with its first viewpoint
+Replaces each captured scene's preview with its first viewpoint
+under public/previews/ (interior) or public/outdoors/previews/ (outdoor)
 and updates asset provenance, retaining records for scenes not in this capture.
 Existing images should be backed up before running this command.
 `);
   process.exit(0);
 }
+if (!["interior", "outdoor"].includes(values.environment))
+  throw new Error("--environment must be interior or outdoor.");
 const input = path.resolve(values.input);
 const manifest = JSON.parse(await readFile(input, "utf8"));
 if (manifest.phase !== "after" || !manifest.scenes?.length) {
   throw new Error("Expected a nonempty after-capture manifest.");
 }
-const destinations = new URL("../public/previews/", import.meta.url);
-const creditsFile = new URL("credits.json", destinations);
+const outdoor = values.environment === "outdoor";
+const destinations = new URL(
+  outdoor ? "../public/outdoors/previews/" : "../public/previews/",
+  import.meta.url,
+);
+const creditsFile = new URL("../public/previews/credits.json", import.meta.url);
 const previous = JSON.parse(await readFile(creditsFile, "utf8"));
 const images = [];
 for (const scene of manifest.scenes) {
@@ -64,18 +73,20 @@ for (const scene of manifest.scenes) {
 if (new Set(images.map((image) => image.id)).size !== images.length) {
   throw new Error("Duplicate scene IDs in capture manifest.");
 }
+await mkdir(destinations, { recursive: true });
 for (const image of images) {
   await copyFile(image.source, image.destination);
 }
-const rendered = new Map(
-  (previous.rendered ?? []).map((entry) => [
+const bucket = outdoor ? "outdoors" : "rendered";
+const records = new Map(
+  (previous[bucket] ?? []).map((entry) => [
     entry.scene,
     { ...entry, viewport: entry.viewport ?? previous.viewport },
   ]),
 );
 for (const { id, view, width, height, bytes, sha256 } of images)
-  rendered.set(id, {
-    file: `${id}.png`,
+  records.set(id, {
+    file: outdoor ? `/public/outdoors/previews/${id}.png` : `${id}.png`,
     scene: id,
     view,
     width,
@@ -83,6 +94,7 @@ for (const { id, view, width, height, bytes, sha256 } of images)
     bytes,
     sha256,
     viewport: manifest.viewport,
+    ...(outdoor ? { reducedMotion: true } : {}),
   });
 await writeFile(
   creditsFile,
@@ -94,8 +106,8 @@ await writeFile(
       reducedMotion: true,
       capture: { target: "#canvasMount", deviceScaleFactor: 1 },
       checkedAt: new Date().toISOString(),
-      rendered: [...rendered.values()],
-      outdoors: previous.outdoors ?? [],
+      rendered: outdoor ? (previous.rendered ?? []) : [...records.values()],
+      outdoors: outdoor ? [...records.values()] : (previous.outdoors ?? []),
       drafts: previous.drafts ?? [],
       materials: [
         "../riad/materials/manifest.json",

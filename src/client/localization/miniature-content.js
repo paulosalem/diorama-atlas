@@ -60,9 +60,9 @@ const messages = {
     reduced: "Reduced motion",
     listen: "Listen to this view",
     stop: "Stop narration",
-    voiceNote: "Your browser's voice · starts only when you choose",
+    voiceNote: "OpenAI-generated voice · starts only when you choose",
     voiceUnavailable:
-      "Your browser's voice is unavailable. You can still read the story here.",
+      "The recording could not play. Try Listen again, or read the story here.",
     language: "Language",
     read: "About this view",
     loading: "Preparing your little corner of the Douro…",
@@ -128,9 +128,9 @@ const messages = {
     reduced: "Movimento reduzido",
     listen: "Ouvir esta vista",
     stop: "Parar narração",
-    voiceNote: "Voz do seu navegador · só começa quando você escolhe",
+    voiceNote: "Voz gerada pela OpenAI · só começa quando você escolhe",
     voiceUnavailable:
-      "A voz do navegador está indisponível. Você ainda pode ler a história aqui.",
+      "Não foi possível reproduzir a gravação. Tente ouvir novamente ou leia a história aqui.",
     language: "Idioma",
     read: "Sobre esta vista",
     loading: "Preparando seu pedacinho do Douro…",
@@ -154,5 +154,107 @@ export function miniatureContent(locale, view) {
     ...copy,
     heading: detail ? t(detail.title) : copy[`${view}Title`],
     body: detail ? t(detail.body) : copy[`${view}Body`],
+  };
+}
+
+const miniatureStories = {
+  riad: {
+    "en-US": {
+      heading: "An inward-looking house, opened to the afternoon.",
+      body: "The upper galleries and a seasonal shade canopy lift away together. Below them, the fountain, citrus, patterned tiles and half-finished tea remain in the courtyard. Thick portals continue into furnished salons and quieter passages; the upper rooms stay with their own architectural half. This is an imagined house of hospitality, not a model of a particular riad.",
+    },
+    "pt-BR": {
+      heading: "Uma casa voltada para dentro, aberta para a tarde.",
+      body: "As galerias superiores e uma cobertura sazonal de sombra se erguem juntas. Embaixo permanecem a fonte, as árvores cítricas, os mosaicos e o chá no pátio. Portais espessos levam a salões mobiliados e passagens mais silenciosas; os quartos superiores acompanham sua própria metade arquitetônica. É uma casa imaginada de acolhimento, não a maquete de um riad específico.",
+    },
+  },
+  "balinese-subak-terraces": {
+    "en-US": {
+      heading: "Water, work, and a pause in the shade.",
+      body: "Six planted terraces follow the hillside in two floating sections. Wet earth meets narrow bunds; fine roots show in the cut banks. A woven basket, a cup and resting tools wait under the field shelter while palm fronds and rice leaves move gently above the water. This compressed, imagined landscape draws on Balinese subak traditions; it does not represent a surveyed irrigation system or a particular community.",
+    },
+    "pt-BR": {
+      heading: "Água, trabalho e uma pausa à sombra.",
+      body: "Seis terraços cultivados acompanham a encosta em dois cortes flutuantes. A terra úmida encontra caminhos estreitos; raízes finas aparecem nas faces cortadas. Um cesto trançado, uma xícara e ferramentas em repouso esperam sob o abrigo do campo, enquanto folhas de palmeira e de arroz se movem suavemente sobre a água. Esta paisagem condensada e imaginada se inspira nas tradições subak de Bali; não representa um sistema de irrigação medido nem uma comunidade específica.",
+    },
+  },
+  textile: {
+    "en-US": {
+      heading: "A workshop, waiting for someone to return.",
+      body: "Behind an earthen facade and a roof of overlapping clay tiles, the loom holds a partly woven cloth. Bowls of dye, loose fibres and the shaded workroom remain where the afternoon left them. The roof and entrance lift together, revealing the room as one half of a floating architectural section; a small drying courtyard stays beside it. This is an imagined Oaxacan workshop, not a model of a particular address.",
+    },
+    "pt-BR": {
+      heading: "Uma oficina à espera de quem já volta.",
+      body: "Atrás da fachada de terra e do telhado de peças de barro sobrepostas, o tear sustenta um tecido ainda em trabalho. Tigelas de corante, fibras soltas e a sala sombreada continuam onde a tarde os deixou. O telhado e a entrada se erguem juntos, revelando o interior como metade de um corte arquitetônico flutuante; um pequeno pátio de secagem permanece ao lado. É uma oficina oaxaquenha imaginada, não a maquete de um endereço real.",
+    },
+  },
+};
+
+export function sceneMiniatureContent(
+  locale,
+  view,
+  definition,
+  views,
+  narration = [],
+) {
+  const common = messages[locale];
+  if (!common) throw new Error(`Unknown miniature language: ${locale}.`);
+  const shellLabels =
+    locale === "pt-BR"
+      ? { openShell: "Abrir a miniatura", closeShell: "Fechar a miniatura" }
+      : { openShell: "Crack it open", closeShell: "Close miniature" };
+  if (definition.id === "douro-vineyard")
+    return { ...miniatureContent(locale, view), ...shellLabels };
+  if (!definition.summary)
+    throw new Error(`Missing place description for ${definition.id}.`);
+  const landscape = definition.environment === "outdoor";
+  const intro = narration.find(
+    (asset) => asset.locale === locale && asset.view === undefined,
+  );
+  const firstView = Object.keys(views ?? {}).find((key) => key !== "whole");
+  const transcript = narration.find(
+    (asset) =>
+      asset.locale === locale &&
+      (view === firstView ? asset.view === undefined : asset.view === view),
+  );
+  const introduction =
+    locale === "pt-BR"
+      ? landscape
+        ? "Duas partes de uma paisagem vivida, suspensas no ar."
+        : "Uma casa de pequenas histórias, pronta para se abrir."
+      : landscape
+        ? "Two pieces of a lived-in landscape, held in the air."
+        : "A place of small stories, waiting to open.";
+  const note =
+    locale === "pt-BR"
+      ? landscape
+        ? "O corte revela o solo e a rocha sob a arquitetura, os caminhos e os sinais de trabalho. Esta miniatura é uma interpretação, não um levantamento geográfico."
+        : "O invólucro arquitetônico se ergue e se afasta, revelando os cômodos, seus objetos e as passagens. As faces cortadas mostram uma parte do lugar, não necessariamente um edifício completo."
+      : landscape
+        ? "The cut reveals the ground beneath the architecture, paths and signs of work. This miniature is an interpretation, not a geographical survey."
+        : "The architectural shell lifts aside to reveal the rooms, their objects and their connected passages. The cut faces describe a piece of the place, not necessarily a whole building.";
+  const story = miniatureStories[definition.id]?.[locale] ?? {
+    heading: intro?.title ?? introduction,
+    body: `${intro?.text ?? t(definition.summary)} ${note}`,
+  };
+  if (views && !Object.hasOwn(views, view))
+    throw new Error(`Unknown miniature viewpoint: ${view}.`);
+  const labels = { whole: common.views.whole };
+  for (const [key, value] of Object.entries(views ?? {}))
+    if (key !== "whole") labels[key] = t(value.label);
+  return {
+    ...common,
+    ...shellLabels,
+    views: labels,
+    heading:
+      view === "whole" ? story.heading : (transcript?.title ?? labels[view]),
+    body:
+      view === "whole"
+        ? story.body
+        : (transcript?.text ?? t(definition.summary)),
+    loading:
+      locale === "pt-BR"
+        ? "Preparando a miniatura…"
+        : "Preparing the miniature…",
   };
 }

@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { miniatureSurroundings } from "../miniatures/interior-miniature.js";
 
 const passageLabels = {
   cafe: "Behind the coffee bar",
@@ -75,7 +76,8 @@ export function deepenSurroundings(k, p, type, definition) {
   const streetSides = new Set(
     k.windows.map((window) => Math.sign(window.position[0])),
   );
-  for (const side of streetSides) buildSideStreet(k, p, side, theme);
+  if (k.miniature) miniatureSurroundings(k, p, theme, portalX);
+  else for (const side of streetSides) buildSideStreet(k, p, side, theme);
   for (const [index, window] of k.windows.entries()) {
     const rotation = new THREE.Quaternion().setFromAxisAngle(
       new THREE.Vector3(0, 1, 0),
@@ -98,7 +100,7 @@ export function deepenSurroundings(k, p, type, definition) {
       ),
     );
   }
-  buildEntrance(k, p, shade, theme);
+  if (!k.miniature) buildEntrance(k, p, shade, theme);
   depthProbes.push(
     probe("front-entry", "entrance", [0, 1.35, depth / 2 - 0.1], [0, 0, 1]),
   );
@@ -153,7 +155,9 @@ function buildSecondaryRoom(k, p, type, portalX, rear, shade) {
     origin,
     0,
   );
-  box([width + 0.3, 0.16, depth], [0, 3.04, -depth / 2], m.cedar, origin, 0);
+  k.lift(
+    box([width + 0.3, 0.16, depth], [0, 3.04, -depth / 2], m.cedar, origin, 0),
+  );
   for (const side of [-1, 1]) {
     box(
       [0.2, 3, depth],
@@ -202,12 +206,12 @@ function buildSecondaryRoom(k, p, type, portalX, rear, shade) {
   box([1.15, 0.1, 3.5], [0, -0.05, -1.75], m.floor, passage, 0);
   for (const side of [-1, 1])
     box([0.12, 2.65, 3.5], [side * 0.635, 1.325, -1.75], shade, passage, 0);
-  box([1.4, 0.12, 3.5], [0, 2.65, -1.75], m.cedar, passage, 0);
+  k.lift(box([1.4, 0.12, 3.5], [0, 2.65, -1.75], m.cedar, passage, 0));
   box([1.4, 2.65, 0.16], [0, 1.325, -3.5], shade, passage, 0);
   box([0.4, 0.055, 0.26], [0.22, 0.94, -3.31], m.cedar, passage);
   p.jar([0.22, 0.97, -3.27], passage, 0.8);
   for (let z = -0.3; z > -depth; z -= 0.75)
-    box([width, 0.1, 0.07], [0, 2.92, z], m.cedar, origin, 0);
+    k.lift(box([width, 0.1, 0.07], [0, 2.92, z], m.cedar, origin, 0));
 
   const contents = {
     cafe: "cups",
@@ -487,4 +491,17 @@ function buildGarden(k, p) {
   box([5.8, 0.3, 17], [-5.6, 0.03, 0], m.soil, garden, 0);
   for (const z of [-6.5, -2.8, 1.2, 5.2])
     attach(garden, p.foliage([-4.1, 0.12, z], 2.5, true, { planted: true }));
+  for (const z of [-5.9, 4.8])
+    attach(garden, p.gardenPalm([-4.9, 0.15, z], 5.4));
+  for (let i = 0; i < 28; i++) {
+    const z = -7.8 + i * 0.57;
+    const stone = k.sphere(
+      k.range(0.06, 0.12),
+      [1.0 + k.range(-0.04, 0.05), -0.015, z],
+      m.marble,
+      garden,
+      [1, 0.48, 1.35],
+    );
+    stone.rotation.y = k.range(0, Math.PI);
+  }
 }

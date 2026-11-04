@@ -15,6 +15,8 @@ const { values } = parseArgs({
     "base-url": { type: "string", default: "http://127.0.0.1:4195" },
     "output-dir": { type: "string", default: "outputs/collection-realism" },
     scene: { type: "string" },
+    all: { type: "boolean", default: false },
+    version: { type: "string" },
     "include-drafts": { type: "boolean", default: false },
     help: { type: "boolean", short: "h" },
   },
@@ -26,6 +28,8 @@ Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --base-url URL       Running local atlas (default http://127.0.0.1:4195)
   --output-dir PATH    Capture directory (default outputs/collection-realism)
   --scene ID           Capture one place; merge into an existing after manifest
+  --all                Capture interiors and outdoors
+  --version ID         Capture an experience of --scene or --all
   --include-drafts     Permit a specifically selected unfinished local scene
 
 Before captures are immutable: choose a new directory for another baseline.
@@ -39,6 +43,8 @@ if (!["before", "after"].includes(values.phase)) {
 }
 if (values["include-drafts"] && !values.scene)
   throw new Error("--include-drafts requires an explicit --scene.");
+if (values.version && !values.scene && !values.all)
+  throw new Error("--version requires --scene or --all.");
 const output = path.resolve(values["output-dir"], values.phase);
 const manifestFile = path.join(output, "capture.json");
 let previous = null;
@@ -64,13 +70,14 @@ const scenes = [
   ...outdoorScenes,
   ...(values["include-drafts"] ? outdoorDraftScenes : []),
 ].filter((scene) =>
-  values.scene ? scene.id === values.scene : scene.environment !== "outdoor",
+  values.scene
+    ? scene.id === values.scene
+    : values.all || scene.environment !== "outdoor",
 );
 if (!scenes.length)
   throw new Error("No matching place in the selected collection.");
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
-  channel: "chromium",
   args:
     process.platform === "darwin"
       ? ["--use-angle=metal"]
@@ -108,7 +115,7 @@ try {
       }
     });
     await page.goto(
-      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}`,
+      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}${values.version ? `&version=${encodeURIComponent(values.version)}` : ""}`,
     );
     await waitForViewer(page);
     await page.evaluate(() => document.fonts.ready);
@@ -123,8 +130,8 @@ try {
             requestAnimationFrame(() => requestAnimationFrame(resolve)),
           ),
       );
-      const file = `${definition.id}-${key}.png`;
-      await page.locator("#canvasMount").screenshot({
+      const file = `${definition.id}${values.version ? `-${values.version}` : ""}-${key}.png`;
+      await page.locator("#canvasMount, #miniatureCanvas").screenshot({
         path: path.join(output, file),
         style: ".scene-narration { visibility: hidden !important; }",
       });
@@ -142,8 +149,15 @@ try {
     }
     if (errors.length)
       throw new Error(`${definition.title}: ${errors.join("\n")}`);
-    const entry = { id: definition.id, title: definition.title, views };
-    const index = results.findIndex((scene) => scene.id === entry.id);
+    const entry = {
+      id: definition.id,
+      title: definition.title,
+      ...(values.version ? { version: values.version } : {}),
+      views,
+    };
+    const index = results.findIndex(
+      (scene) => scene.id === entry.id && scene.version === entry.version,
+    );
     if (index === -1) results.push(entry);
     else results[index] = entry;
     await writeFile(

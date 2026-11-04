@@ -156,6 +156,9 @@ than become independent decorative animations.
 - Supply a short serious-toned cultural introduction and view-specific narration
   in en-US and pt-BR, with the matching text in the unobtrusive floating panel.
   All UI, details and errors—not only speech—must follow the global language.
+- Use prerecorded OpenAI voices for guided passages, object details and Miniatures.
+  Reuse identical text in the same language. Never substitute browser speech or
+  make paid requests during a visit; obtain a generation budget before recording.
 
 ## 6. Integrate without reducing the standard
 
@@ -184,7 +187,27 @@ Engine changes and alternative presentations preserve the same obligations.
 An export must retain material variation, imagery, transparency, physical scale,
 motion and resource ownership, not just geometry. A miniature reveals backs,
 undersides, cut faces and gaps that must also withstand inspection. Neither a
-new engine nor a floating presentation is required for every place.
+new engine nor an export is a substitute for that quality.
+
+Every landscape and interior must also have a corresponding **Miniature**
+experience, without replacing its original visit. Landscapes are two genuinely
+separated, complete sections, following the Douro treatment with place-specific
+terrain, architecture and activity. Interiors are floating architectural
+sections with an exterior shell that closes the room, then lifts upward and
+sideways to expose the furnished interior and its connected spaces. Move the
+actual roof, relevant facade and ceiling-mounted fittings; do not leave a second
+roof or a screen of rafters obstructing the revealed room. Some faces may be
+architectural cuts rather than complete facades. Add sparse, appropriate
+surroundings, with most detail in the interior and its immediate exterior.
+
+Use thick, physically cut boundaries, real cavities and closed undersides.
+Preserve holes when capping geometry; keep clear air between sections. Retain
+genuine movement, local optional sound, material detail and evidence of use.
+Provide whole-object, detail and connected-space views, an accessible opening
+control, exact reduced-motion endpoints, persistent open state and complete
+resource disposal. Inspect the closed, opened, reversed and compact presentations
+as well as the unchanged full-scale visit. These requirements also apply to
+generated scenes handled by the supported environment families.
 
 ## 7. Demonstrate, inspect, correct
 

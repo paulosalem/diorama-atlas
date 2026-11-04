@@ -1,164 +1,211 @@
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { lookControls } from "./common.js";
 
-export function miniatureCamera(B, scene, canvas) {
-  const orbit = new B.ArcRotateCamera(
-    "Hold the miniature",
-    0,
-    1,
-    60,
-    new B.Vector3(0, -2.6, -6.4),
-    scene,
-  );
-  orbit.minZ = 0.04;
-  orbit.maxZ = 300;
-  orbit.lowerRadiusLimit = 3;
-  orbit.upperRadiusLimit = 130;
-  orbit.lowerBetaLimit = 0.12;
-  orbit.upperBetaLimit = 2.12;
-  orbit.wheelDeltaPercentage = 0.015;
-  orbit.pinchDeltaPercentage = 0.012;
-  orbit.panningSensibility = 0;
-  orbit.angularSensibilityX = orbit.angularSensibilityY = 700;
-  orbit.inertia = 0.72;
-  const eye = new B.FreeCamera("At eye level", B.Vector3.Zero(), scene);
-  eye.minZ = 0.025;
-  eye.maxZ = 300;
-  let finalInspection;
-  let fit = 1,
+export function miniatureCamera(camera, canvas) {
+  const events = new AbortController();
+  const target = new THREE.Vector3();
+  let controls, selected, bounds, snapshot;
+  let disposed = false,
+    reduced = false,
+    fit = 1,
     baseRadius = 60,
-    bounds;
-  let controls = null,
-    selected = null,
-    disposed = false;
+    maxRadius = 130;
+
   function fittedRadius() {
     if (!bounds) throw new Error("The miniature needs bounds before framing.");
-    const target = orbit.getTarget();
-    const direction = orbit.position.subtract(target).normalize();
-    const right = B.Vector3.Cross(B.Vector3.Up(), direction).normalize();
-    const up = B.Vector3.Cross(direction, right);
-    const vertical = Math.tan(orbit.fov / 2);
-    const horizontal = (vertical * canvas.clientWidth) / canvas.clientHeight;
+    const direction = camera.position.clone().sub(target).normalize();
+    const right = new THREE.Vector3()
+      .crossVectors(camera.up, direction)
+      .normalize();
+    const up = new THREE.Vector3().crossVectors(direction, right);
+    const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
+    const horizontal = vertical * camera.aspect;
     let radius = 0;
     for (const x of [bounds.min[0], bounds.max[0]])
       for (const y of [bounds.min[1], bounds.max[1]])
         for (const z of [bounds.min[2], bounds.max[2]]) {
-          const offset = new B.Vector3(x, y, z).subtract(target);
+          const offset = new THREE.Vector3(x, y, z).sub(target);
           radius = Math.max(
             radius,
-            B.Vector3.Dot(offset, direction) +
+            offset.dot(direction) +
               Math.max(
-                Math.abs(B.Vector3.Dot(offset, right)) / horizontal,
-                Math.abs(B.Vector3.Dot(offset, up)) / vertical,
+                Math.abs(offset.dot(right)) / horizontal,
+                Math.abs(offset.dot(up)) / vertical,
               ) /
                 0.84,
           );
         }
     return radius;
   }
-  function detach() {
-    orbit.detachControl();
-    controls?.dispose();
-    controls = null;
-    orbit.inertialAlphaOffset =
-      orbit.inertialBetaOffset =
-      orbit.inertialRadiusOffset =
-        0;
+  function setRadius(radius) {
+    camera.position.sub(target).setLength(radius).add(target);
+    camera.lookAt(target);
+    camera.updateMatrixWorld();
+    controls?.update?.();
   }
   function view(value) {
     if (disposed) throw new Error("The miniature camera has been disposed.");
-    detach();
+    controls?.dispose();
     selected = value;
-    const camera = value.orbit ? orbit : eye;
-    scene.activeCamera = camera;
-    camera.fov = (value.fov * Math.PI) / 180;
+    camera.fov = value.fov;
+    camera.position.fromArray(value.position);
+    target.fromArray(value.target);
+    if (value.adaptiveBounds && bounds) {
+      const center = new THREE.Vector3()
+        .fromArray(bounds.min)
+        .add(new THREE.Vector3().fromArray(bounds.max))
+        .multiplyScalar(0.5);
+      camera.position.add(center.clone().sub(target));
+      target.copy(center);
+    }
+    camera.lookAt(target);
+    camera.updateProjectionMatrix();
+    camera.updateMatrixWorld();
+    controls = null;
+    maxRadius = 130;
+    if (value.overview) {
+      baseRadius = camera.position.distanceTo(target);
+      fit = Math.max(value.adaptiveBounds ? 0 : 1, fittedRadius() / baseRadius);
+      setRadius(baseRadius * fit);
+      maxRadius = Math.max(130, baseRadius * fit * 1.3);
+    }
     if (value.orbit) {
-      orbit.lowerRadiusLimit = value.overview ? 14 : 3;
-      orbit.setTarget(B.Vector3.FromArray(value.target));
-      orbit.setPosition(B.Vector3.FromArray(value.position));
-      if (value.overview) {
-        baseRadius = orbit.radius;
-        fit = Math.max(1, fittedRadius() / baseRadius);
-        orbit.radius = baseRadius * fit;
-        orbit.upperRadiusLimit = Math.max(130, orbit.radius * 1.3);
-        orbit.getViewMatrix(true);
-      }
-      orbit.attachControl(canvas, true);
+      controls = new OrbitControls(camera, canvas);
+      controls.target.copy(target);
+      controls.enablePan = false;
+      controls.enableDamping = !reduced;
+      controls.dampingFactor = 0.28;
+      controls.minDistance = value.overview ? 14 : 3;
+      controls.maxDistance = maxRadius;
+      controls.minPolarAngle = 0.12;
+      controls.maxPolarAngle = 2.12;
+      controls.update();
     } else {
-      eye.position.copyFromFloats(...value.position);
-      eye.setTarget(B.Vector3.FromArray(value.target));
-      const base = eye.rotation.clone();
+      camera.rotation.reorder("YXZ");
+      const base = camera.rotation.clone();
       controls = lookControls(canvas, (yaw, pitch) => {
-        eye.rotation.copyFrom(base);
-        eye.rotation.y += yaw;
-        eye.rotation.x -= pitch;
+        camera.rotation.copy(base);
+        camera.rotation.y += yaw;
+        camera.rotation.x += pitch;
+        camera.updateMatrixWorld();
       });
     }
   }
-  const events = new AbortController();
   canvas.addEventListener(
     "wheel",
     (event) => {
       if (!selected || selected.orbit) return;
       event.preventDefault();
-      eye.fov = B.Scalar.Clamp(eye.fov + event.deltaY * 0.0007, 0.3, 1.5);
+      camera.fov = THREE.MathUtils.clamp(
+        camera.fov + event.deltaY * 0.04,
+        17,
+        86,
+      );
+      camera.updateProjectionMatrix();
     },
     { passive: false, signal: events.signal },
   );
+  canvas.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        !selected?.orbit ||
+        !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)
+      )
+        return;
+      event.preventDefault();
+      const sphere = new THREE.Spherical().setFromVector3(
+        camera.position.clone().sub(target),
+      );
+      if (event.key === "ArrowLeft") sphere.theta += 0.06;
+      if (event.key === "ArrowRight") sphere.theta -= 0.06;
+      if (event.key === "ArrowUp") sphere.phi -= 0.06;
+      if (event.key === "ArrowDown") sphere.phi += 0.06;
+      sphere.phi = THREE.MathUtils.clamp(sphere.phi, 0.12, 2.12);
+      camera.position.setFromSpherical(sphere).add(target);
+      controls.update();
+    },
+    { signal: events.signal },
+  );
   return {
-    cameras: [orbit, eye],
     frameBounds(value) {
       bounds = value;
+      if (selected?.adaptiveBounds) {
+        const center = new THREE.Vector3()
+          .fromArray(bounds.min)
+          .add(new THREE.Vector3().fromArray(bounds.max))
+          .multiplyScalar(0.5);
+        camera.position.add(center.clone().sub(target));
+        target.copy(center);
+        controls.target.copy(target);
+      }
     },
     view,
     reset() {
       if (selected) view(selected);
     },
+    update() {
+      controls?.update?.();
+    },
     zoom(direction) {
       if (selected?.orbit)
-        orbit.radius = B.Scalar.Clamp(
-          orbit.radius * Math.exp(direction * 0.14),
-          orbit.lowerRadiusLimit,
-          orbit.upperRadiusLimit,
+        setRadius(
+          THREE.MathUtils.clamp(
+            camera.position.distanceTo(target) * Math.exp(direction * 0.14),
+            selected.overview ? 14 : 3,
+            maxRadius,
+          ),
         );
-      else
-        eye.fov = B.Scalar.Clamp(
-          eye.fov * Math.exp(direction * 0.14),
-          0.3,
-          1.5,
+      else {
+        camera.fov = THREE.MathUtils.clamp(
+          camera.fov * Math.exp(direction * 0.14),
+          17,
+          86,
         );
+        camera.updateProjectionMatrix();
+      }
     },
     reducedMotion(value) {
-      orbit.inertia = value ? 0 : 0.72;
-      if (value)
-        orbit.inertialAlphaOffset =
-          orbit.inertialBetaOffset =
-          orbit.inertialRadiusOffset =
-            0;
+      if (reduced === value) return;
+      reduced = value;
+      if (selected?.orbit) {
+        controls.enableDamping = false;
+        controls.update();
+        controls.enableDamping = !value;
+      }
     },
     resize() {
       if (!selected?.overview || disposed) return;
-      const next = Math.max(1, fittedRadius() / baseRadius);
-      orbit.radius *= next / fit;
-      orbit.upperRadiusLimit = Math.max(130, orbit.radius * 1.3);
+      const next = Math.max(
+        selected.adaptiveBounds ? 0 : 1,
+        fittedRadius() / baseRadius,
+      );
+      maxRadius = Math.max(130, baseRadius * next * 1.3);
+      controls.maxDistance = maxRadius;
+      setRadius((camera.position.distanceTo(target) * next) / fit);
       fit = next;
-      orbit.getViewMatrix(true);
     },
     get inspection() {
-      if (disposed) return finalInspection;
-      const camera = scene.activeCamera;
+      if (disposed) return snapshot;
       return {
         mode: selected?.orbit ? "orbit" : "eye",
-        position: camera.position.asArray(),
-        target: camera.getTarget().asArray(),
-        radius: selected?.orbit ? orbit.radius : null,
-        fov: (camera.fov * 180) / Math.PI,
+        position: camera.position.toArray(),
+        target: selected?.orbit
+          ? target.toArray()
+          : camera
+              .getWorldDirection(new THREE.Vector3())
+              .add(camera.position)
+              .toArray(),
+        radius: selected?.orbit ? camera.position.distanceTo(target) : null,
+        fov: camera.fov,
       };
     },
     dispose() {
       if (disposed) return;
-      finalInspection = this.inspection;
+      snapshot = this.inspection;
       disposed = true;
-      detach();
+      controls?.dispose();
       events.abort();
     },
   };

@@ -1,11 +1,13 @@
-import { start } from "../rendering/babylon.js";
-import { douroMiniature } from "../catalog/scene-versions.js";
-import { miniatureContent } from "../localization/miniature-content.js";
+import { createMiniatureRenderer } from "../rendering/miniature-renderer.js";
+import { getMiniatureStudy } from "../catalog/scene-versions.js";
+import { sceneMiniatureContent } from "../localization/miniature-content.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { sitePath } from "../site.js";
-import { createRecordedSoundscape } from "../environments/shared/recorded-soundscape.js";
-import { getSoundscapeProfile } from "../environments/shared/soundscape-profiles.js";
-import { createBrowserNarration } from "./browser-narration.js";
+import { createRecordedNarration } from "./recorded-narration.js";
+import {
+  findNarrationRecording,
+  loadNarrationLibrary,
+} from "./narration-library.js";
 import { mountSceneVersions } from "./scene-versions.js";
 import { addAboutButton } from "./about-atlas.js";
 import { addOutdoorReferences } from "./outdoor-references.js";
@@ -15,13 +17,14 @@ export async function createMiniatureViewer(
   definition,
   { audio, onNavigate, version, signal, onDispose },
 ) {
+  signal?.throwIfAborted();
+  const study = getMiniatureStudy(definition);
   const events = new AbortController();
   const preference = matchMedia("(prefers-reduced-motion: reduce)");
-  const soundscape = createRecordedSoundscape(
-    getSoundscapeProfile(definition.id),
-  );
   let native,
-    manifest,
+    views,
+    recordings = [],
+    narration = [],
     selected = "whole",
     disposed = false,
     snapshot;
@@ -44,6 +47,7 @@ export async function createMiniatureViewer(
               <button id="wholeMiniature" disabled></button>
               <button id="miniatureZoomOut" disabled>−</button>
               <button id="miniatureZoomIn" disabled>+</button>
+              <button id="miniatureShell" aria-expanded="false" disabled hidden></button>
               <p id="miniatureGesture"></p>
             </div>
           </div>
@@ -70,14 +74,20 @@ export async function createMiniatureViewer(
   addAboutButton(viewer.querySelector(".viewer-header-actions"));
   addOutdoorReferences(viewer, definition);
   find("miniatureStory").open = !matchMedia("(max-width: 700px)").matches;
-  const narrator = createBrowserNarration({
+  const narrator = createRecordedNarration({
     onChange(state) {
-      audio?.setDucked(["preparing", "speaking"].includes(state));
+      audio?.setDucked(["loading", "playing"].includes(state));
       render();
     },
   });
   function copy() {
-    return miniatureContent(getLocale(), selected);
+    return sceneMiniatureContent(
+      getLocale(),
+      selected,
+      definition,
+      views,
+      narration,
+    );
   }
   function render() {
     if (disposed) return;
@@ -89,17 +99,22 @@ export async function createMiniatureViewer(
     find("wholeMiniature").textContent = text.home;
     find("miniatureZoomIn").setAttribute("aria-label", text.zoomIn);
     find("miniatureZoomOut").setAttribute("aria-label", text.zoomOut);
+    const open = native?.inspection.shell?.open ?? false;
+    find("miniatureShell").textContent = open
+      ? text.closeShell
+      : text.openShell;
+    find("miniatureShell").setAttribute("aria-expanded", String(open));
     find("miniatureStoryTitle").textContent = text.heading;
     find("miniatureStoryText").textContent = text.body;
     find("miniatureStory").querySelector("summary").textContent = text.read;
-    find("miniatureGesture").textContent = manifest?.views[selected].orbit
+    find("miniatureGesture").textContent = views?.[selected].orbit
       ? text.orbitHint
       : text.eyeHint;
     canvas.setAttribute(
       "aria-label",
       `${t(definition.title)}. ${find("miniatureGesture").textContent}`,
     );
-    const speaking = ["preparing", "speaking"].includes(narrator.state);
+    const speaking = ["loading", "playing"].includes(narrator.state);
     find("miniatureListen").textContent = speaking ? text.stop : text.listen;
     find("miniatureListen").setAttribute("aria-pressed", String(speaking));
     find("miniatureVoiceNote").textContent = text.voiceNote;
@@ -127,14 +142,17 @@ export async function createMiniatureViewer(
     }
   }
   function selectView(key = "whole") {
-    if (!manifest || !Object.hasOwn(manifest.views, key))
+    if (!views || !Object.hasOwn(views, key))
       throw new Error(`Unknown miniature viewpoint: ${key}`);
     narrator.stop();
     selected = key;
-    native.view(manifest.views[key]);
+    if (key !== "whole" && native.runtime.shell)
+      native.setOpen(true, preference.matches);
+    native.view(views[key]);
     native.reducedMotion(preference.matches);
     const url = new URL(location.href);
     url.searchParams.set("view", key);
+    if (native.inspection.shell?.open) url.searchParams.set("open", "1");
     history.replaceState(null, "", url);
     find("riadViewLabel").textContent = copy().views[key];
     render();
@@ -155,7 +173,7 @@ export async function createMiniatureViewer(
       paused,
       elapsed,
       disposed,
-      audio: soundscape.inspection,
+      audio: native?.runtime.soundscape?.inspection,
       narration: narrator.state,
     };
   }
@@ -170,26 +188,32 @@ export async function createMiniatureViewer(
     unsubscribeAudio?.();
     disposeVersions();
     narrator.dispose();
-    soundscape.dispose();
     native?.dispose();
     snapshot = {
       ...snapshot,
       disposed: true,
-      audio: soundscape.inspection,
+      audio: native?.runtime.soundscape?.inspection,
       narration: narrator.state,
     };
     onDispose?.();
   }
   const controller = {
     get runtime() {
-      return native;
+      return native?.runtime;
     },
     get narration() {
       return narrator;
     },
-    get manifest() {
-      return manifest;
+    get renderer() {
+      return native?.renderer;
     },
+    get scene() {
+      return native?.scene;
+    },
+    get camera() {
+      return native?.camera;
+    },
+    probe: (...args) => native.probe(...args),
     get inspection() {
       return disposed ? snapshot : inspection();
     },
@@ -206,31 +230,43 @@ export async function createMiniatureViewer(
     element.addEventListener(type, callback, { signal: events.signal });
   }
   listen(find("miniatureListen"), "click", () => {
-    if (["preparing", "speaking"].includes(narrator.state)) narrator.stop();
+    if (["loading", "playing"].includes(narrator.state)) narrator.stop();
     else {
       audio?.beginNarration();
-      narrator.play(`${copy().heading}. ${copy().body}`, getLocale());
+      void narrator.play(
+        findNarrationRecording(recordings, getLocale(), copy().body),
+      );
     }
   });
   listen(find("wholeMiniature"), "click", () => selectView());
   listen(find("resetViewButton"), "click", () => native.reset());
   listen(find("miniatureZoomIn"), "click", () => native.zoom(-1));
   listen(find("miniatureZoomOut"), "click", () => native.zoom(1));
+  listen(find("miniatureShell"), "click", () => {
+    const open = !native.inspection.shell.open;
+    if (!open && selected !== "whole") selectView("whole");
+    narrator.stop();
+    native.setOpen(open, preference.matches);
+    const url = new URL(location.href);
+    if (open) url.searchParams.set("open", "1");
+    else url.searchParams.delete("open");
+    history.replaceState(null, "", url);
+    render();
+  });
   listen(find("riadExpand"), "click", () => onNavigate(sitePath("/")));
   listen(find("miniatureMotion"), "click", () => {
     paused = !paused;
-    native.pause(paused);
     render();
   });
   listen(preference, "change", () => {
     paused = preference.matches;
-    native?.pause(paused || document.hidden);
     native?.reducedMotion(paused);
+    if (native?.runtime.shell && preference.matches)
+      native.setOpen(native.inspection.shell.open, true);
     render();
   });
   listen(document, "visibilitychange", () => {
     last = performance.now();
-    native?.pause(paused || document.hidden);
   });
   listen(canvas, "keydown", (event) => {
     if (!native || !["Home", "+", "=", "-", "_"].includes(event.key)) return;
@@ -251,37 +287,34 @@ export async function createMiniatureViewer(
   render();
   try {
     signal?.throwIfAborted();
-    const study = {
-      ...douroMiniature,
-      assetRoot: sitePath(douroMiniature.assetRoot),
-    };
-    const response = await fetch(`${study.assetRoot}scene.json`, {
+    native = await createMiniatureRenderer(canvas, definition, study, {
       signal: events.signal,
     });
-    if (!response.ok)
-      throw new Error(
-        "The miniature assets could not be loaded. Please reload or return to the world.",
-      );
-    manifest = await response.json();
-    manifest.study = study;
-    native = await start(canvas, manifest);
+    recordings = await loadNarrationLibrary();
+    narration = recordings.filter((asset) => asset.scene === definition.id);
     if (disposed) {
       native.dispose();
       throw new DOMException("Navigation changed.", "AbortError");
     }
-    native.soundscape = soundscape;
-    native.views = manifest.views;
-    for (const key of Object.keys(manifest.views)) {
+    if (!native.runtime.soundscape)
+      throw new Error(
+        "The miniature is missing its authored local soundscape.",
+      );
+    views = native.runtime.views;
+    if (native.runtime.shell) {
+      find("miniatureShell").hidden = false;
+      find("miniatureShell").disabled = false;
+      if (new URLSearchParams(location.search).get("open") === "1")
+        native.setOpen(true, true);
+    }
+    for (const key of Object.keys(views)) {
       const button = document.createElement("button");
       button.dataset.view = key;
       listen(button, "click", () => selectView(key));
       find("miniatureViews").append(button);
     }
     selectView(new URLSearchParams(location.search).get("view") ?? "whole");
-    native.pause(paused || document.hidden);
     native.resize();
-    native.render(0);
-    await native.ready(events.signal);
     native.render(0);
     for (const id of [
       "wholeMiniature",
@@ -295,12 +328,6 @@ export async function createMiniatureViewer(
     viewer.setAttribute("aria-busy", "false");
     find("riadLoading").hidden = true;
     render();
-    const listenerCamera = {
-      matrixWorld: { elements: [] },
-      updateMatrixWorld() {
-        this.matrixWorld.elements = native.cameraMatrix;
-      },
-    };
     last = performance.now();
     function frame(now) {
       if (disposed) return;
@@ -310,7 +337,7 @@ export async function createMiniatureViewer(
         if (frameDurations.length > 120) frameDurations.shift();
         if (!paused) elapsed += delta;
         native.render(elapsed);
-        audio?.update(listenerCamera);
+        audio?.update(native.camera);
       }
       last = now;
       raf = requestAnimationFrame(frame);
@@ -319,6 +346,10 @@ export async function createMiniatureViewer(
     return controller;
   } catch (error) {
     dispose();
-    throw error;
+    if (error.name === "AbortError") throw error;
+    throw new Error(
+      "The miniature could not be prepared. Please reload or return to the world.",
+      { cause: error },
+    );
   }
 }

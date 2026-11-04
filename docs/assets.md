@@ -19,8 +19,9 @@ project-wide licensing assumption.
 | Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                            | `data/scenes/`                                                                                  |
 | Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                     | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
-The collection includes 210 original AI-voiced recordings (70.92 MB), covering
-all 105 viewpoints of the 23 bundled scenes in English and Portuguese, with
+The collection includes 476 original OpenAI-voiced recordings (153.36 MB), covering
+105 guided viewpoints, 104 object details and 134 Miniature views across the
+23 bundled scenes in English and Portuguese. Identical passages share recordings, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field

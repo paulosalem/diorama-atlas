@@ -62,6 +62,7 @@ export default [
       "scripts/check-outdoors.mjs",
       "scripts/check-water-prints.mjs",
       "scripts/check-narration.mjs",
+      "scripts/measure-dioramas.mjs",
       "scripts/prepare-dioramas.mjs",
     ],
     languageOptions: { globals: globals.browser },

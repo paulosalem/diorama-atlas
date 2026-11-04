@@ -12,6 +12,9 @@ const referenceNotes = {
 export const douroPtBR = Object.freeze({
   "Douro experience": "Experiência do Douro",
   "Explore as": "Explorar como",
+  Interior: "Interior",
+  "Step inside": "Entre neste lugar",
+  "Step into the landscape": "Entre na paisagem",
   "The working yard": "O terreiro de trabalho",
   "Along the riverside railway": "Pela ferrovia à beira-rio",
   Landscape: "Paisagem",

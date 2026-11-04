@@ -1,4 +1,4 @@
-import { start } from "/src/client/rendering/babylon.js";
+import { start } from "./rendering/babylon.js";
 import { miniatureStudy } from "./scenes.js";
 import { miniatureContent } from "/src/client/localization/miniature-content.js";
 import {
@@ -10,7 +10,11 @@ import {
 } from "/src/client/localization/locale.js";
 import { createRecordedSoundscape } from "/src/client/environments/shared/recorded-soundscape.js";
 import { getSoundscapeProfile } from "/src/client/environments/shared/soundscape-profiles.js";
-import { createBrowserNarration } from "/src/client/viewer/browser-narration.js";
+import { createRecordedNarration } from "/src/client/viewer/recorded-narration.js";
+import {
+  findNarrationRecording,
+  loadNarrationLibrary,
+} from "/src/client/viewer/narration-library.js";
 
 const find = (id) => document.getElementById(id);
 const canvas = find("miniature");
@@ -22,6 +26,7 @@ const soundscape = createRecordedSoundscape(
 );
 let runtime,
   manifest,
+  recordings = [],
   selected = "whole",
   disposed = false,
   ready = false;
@@ -32,9 +37,9 @@ let paused = preference.matches,
   fps = 0,
   frames = 0,
   seconds = 0;
-const narration = createBrowserNarration({
+const narration = createRecordedNarration({
   onChange(state) {
-    soundscape.setDucked(["speaking", "preparing"].includes(state));
+    soundscape.setDucked(["playing", "loading"].includes(state));
     render();
   },
 });
@@ -66,7 +71,7 @@ function render() {
     "aria-label",
     `${text.title}. ${find("gesture").textContent}`,
   );
-  const playing = ["speaking", "preparing"].includes(narration.state);
+  const playing = ["playing", "loading"].includes(narration.state);
   find("narration").textContent = playing ? text.stop : text.listen;
   find("narration").setAttribute("aria-pressed", String(playing));
   const sound = soundscape.status;
@@ -150,8 +155,11 @@ find("language").addEventListener(
 find("narration").addEventListener(
   "click",
   () => {
-    if (["speaking", "preparing"].includes(narration.state)) narration.stop();
-    else narration.play(`${copy().heading}. ${copy().body}`, getLocale());
+    if (["playing", "loading"].includes(narration.state)) narration.stop();
+    else
+      void narration.play(
+        findNarrationRecording(recordings, getLocale(), copy().body),
+      );
   },
   { signal: events.signal },
 );
@@ -240,6 +248,7 @@ try {
   if (!response.ok)
     throw new Error(`Miniature assets: HTTP ${response.status}`);
   manifest = await response.json();
+  recordings = await loadNarrationLibrary();
   manifest.study = miniatureStudy;
   runtime = await start(canvas, manifest);
   if (disposed) runtime.dispose();

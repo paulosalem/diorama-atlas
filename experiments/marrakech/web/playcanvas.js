@@ -1,12 +1,9 @@
 import * as pc from "/lab/vendor/playcanvas/build/playcanvas.mjs";
 import { lookControls, waterNormal } from "/src/client/rendering/common.js";
-import { playcanvasPatina } from "/src/client/rendering/patina.js";
-import {
-  loadInstances,
-  playcanvasInstances,
-} from "/src/client/rendering/instances.js";
-import { playcanvasFoliage } from "/src/client/rendering/foliage.js";
-import { playcanvasMaterialScale } from "/src/client/rendering/material-scale.js";
+import { playcanvasPatina } from "./rendering/patina.js";
+import { loadInstances, playcanvasInstances } from "./rendering/instances.js";
+import { playcanvasFoliage } from "./rendering/foliage.js";
+import { playcanvasMaterialScale } from "./rendering/material-scale.js";
 import { playcanvasPlanarWater } from "./planar-water.js";
 
 function asset(app, name, type, url) {

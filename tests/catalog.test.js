@@ -130,7 +130,12 @@ test("every bundled place has an indexed brief with its narrated viewpoint keys"
           ? "arrival"
           : "room";
     const narrated = assets
-      .filter((asset) => asset.scene === scene.id && asset.locale === "en-US")
+      .filter(
+        (asset) =>
+          asset.scene === scene.id &&
+          asset.locale === "en-US" &&
+          isSceneNarration(asset),
+      )
       .map((asset) => asset.view ?? first);
     assert.equal(views[0], first, scene.id);
     assert.equal(new Set(views).size, views.length, scene.id);
@@ -193,10 +198,10 @@ test("Douro is one released place with landscape and miniature experiences", () 
   assert.equal(douro.length, 1);
   assert(!douro[0].draft);
   assert.deepEqual(
-    douro[0].versions.map(({ id, renderer }) => [id, renderer]),
+    douro[0].versions.map(({ id, experience }) => [id, experience]),
     [
-      ["landscape", "three"],
-      ["miniature", "babylon"],
+      ["landscape", "landscape"],
+      ["miniature", "miniature"],
     ],
   );
 });
@@ -219,3 +224,4 @@ test("unfinished outdoor places require explicit local preview opt-in", async (t
     assert.ok(preview.some((entry) => entry.id === scene.id));
   }
 });
+import { isSceneNarration } from "../src/client/viewer/narration-library.js";

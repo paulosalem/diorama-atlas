@@ -60,6 +60,7 @@ test("outdoor navigation releases local sound but retains the same theme player"
   );
   await page.locator("#closeSoundscape").click();
   await page.getByRole("button", { name: "Back to world" }).click();
+  await expect(page.locator(".world")).toBeVisible();
   await expect(page.locator("#worldLoading")).toBeHidden();
   await expect
     .poll(() =>
@@ -124,29 +125,20 @@ test("outdoor references and consolidated audio credits coexist with navigation"
   await expect(page).toHaveURL(/scene=central-asian-madrasa/);
 });
 
-test("outdoor browser narration participates in mute and single-tab ownership", async ({
+test("outdoor recorded narration participates in mute and single-tab ownership", async ({
   page,
 }) => {
   await page.addInitScript(() => {
-    window.narrationState = { speaking: false, cancellations: 0 };
-    Object.defineProperty(window, "speechSynthesis", {
-      value: {
-        speak() {
-          window.narrationState.speaking = true;
-        },
-        cancel() {
-          window.narrationState.speaking = false;
-          window.narrationState.cancellations++;
-        },
-      },
-    });
+    window.speechSynthesis.speak = () => {
+      throw new Error("Browser speech is not an OpenAI recording.");
+    };
   });
   await page.goto("/?scene=newar-potters-square&inspect=1");
   await expect(page.locator("#soundscapeButton")).toBeVisible();
   await expect(page.locator("#riadLoading")).toBeHidden();
   await page.getByRole("button", { name: "Show details" }).click();
   await page.locator("#listenButton").click();
-  expect(await page.evaluate(() => window.narrationState.speaking)).toBe(true);
+  await expect(page.locator("#listenButton")).toHaveText("Pause");
   expect(
     await page.evaluate(async () => {
       const { getAtlasAudio } = await import("/src/client/main.js");
@@ -155,9 +147,10 @@ test("outdoor browser narration participates in mute and single-tab ownership", 
   ).toBe(true);
   await page.locator("#soundscapeButton").click();
   await page.locator("#muteSoundscape").click();
-  expect(await page.evaluate(() => window.narrationState.speaking)).toBe(false);
+  await expect(page.locator("#listenButton")).toHaveText("Listen");
   await page.locator("#closeSoundscape").click();
   await page.locator("#listenButton").click();
+  await expect(page.locator("#listenButton")).toHaveText("Pause");
   await page.evaluate(() => {
     const other = new BroadcastChannel("diorama-atlas-audio");
     other.postMessage({
@@ -167,11 +160,5 @@ test("outdoor browser narration participates in mute and single-tab ownership", 
     });
     other.close();
   });
-  await expect
-    .poll(() => page.evaluate(() => window.narrationState.speaking))
-    .toBe(false);
   await expect(page.locator("#listenButton")).toHaveText("Listen");
-  expect(await page.evaluate(() => window.narrationState.cancellations)).toBe(
-    2,
-  );
 });

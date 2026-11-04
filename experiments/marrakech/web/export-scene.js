@@ -1,4 +1,4 @@
-import { exportScene } from "/src/client/rendering/export-scene.js";
+import { exportScene } from "./rendering/export-scene.js";
 import { getStudy } from "./scenes.js";
 
 window.exportStudy = () =>

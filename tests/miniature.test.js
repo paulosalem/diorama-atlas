@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import * as THREE from "three";
 import { buildCutawayTerrain } from "../src/client/environments/shared/cutaway-terrain.js";
-import { createBrowserNarration } from "../src/client/viewer/browser-narration.js";
+import { createRecordedNarration } from "../src/client/viewer/recorded-narration.js";
 import { vineyardViews } from "../src/client/environments/outdoors/vineyard-views.js";
 import { getStudy, studies } from "../experiments/marrakech/web/scenes.js";
 import {
@@ -125,91 +125,100 @@ test("vineyard planting keeps the contour path bare and ground pigment finite", 
   geometry.dispose();
 });
 
-test("browser narration stays silent until requested and releases its utterance on hide, stop and disposal", () => {
+class TestAudio extends EventTarget {
+  src = "";
+  paused = true;
+  loads = 0;
+  async play() {
+    this.paused = false;
+  }
+  pause() {
+    this.paused = true;
+  }
+  removeAttribute(name) {
+    if (name === "src") this.src = "";
+  }
+  load() {
+    this.loads++;
+  }
+}
+
+test("recorded narration stays silent until requested and releases audio on hide, stop and disposal", async () => {
   const target = new EventTarget();
   target.hidden = false;
-  const utterances = [];
+  const audio = new TestAudio();
   const states = [];
-  let cancellations = 0;
-  const voice = { lang: "pt-BR", localService: true };
-  const synthesis = {
-    getVoices: () => [{ lang: "pt-BR", localService: false }, voice],
-    speak: (utterance) => utterances.push(utterance),
-    cancel: () => {
-      cancellations++;
-    },
-  };
-  class Utterance {
-    constructor(text) {
-      this.text = text;
-    }
-  }
-  const narrator = createBrowserNarration({
+  const narrator = createRecordedNarration({
     target,
-    synthesis,
-    Utterance,
+    audio,
     onChange: (state) => states.push(state),
   });
-  assert.equal(utterances.length, 0);
-  narrator.play("Uma vinha sobre o rio.", "pt-BR");
-  assert.equal(narrator.state, "preparing");
-  assert.equal(utterances[0].voice, voice);
-  utterances[0].onstart();
-  assert.equal(narrator.state, "speaking");
+  const recording = {
+    id: "river",
+    file: "/public/narration/river.mp3",
+    locale: "pt-BR",
+  };
+  assert.equal(audio.src, "");
+  assert.equal(audio.preload, "none");
+  await narrator.play(recording);
+  assert.equal(audio.src, recording.file);
+  assert.equal(narrator.state, "playing");
   target.hidden = true;
   target.dispatchEvent(new Event("visibilitychange"));
   assert.equal(narrator.state, "idle");
-  assert.equal(cancellations, 1);
-  assert.equal(utterances[0].onend, null);
-  narrator.play("Not while hidden.", "en-US");
-  assert.equal(utterances.length, 1);
+  assert.equal(audio.src, "");
+  assert(audio.paused);
+  await narrator.play(recording);
+  assert.equal(audio.src, "");
   target.hidden = false;
-  narrator.play("The river.", "en-US");
+  await narrator.play(recording);
   narrator.stop();
-  assert.equal(cancellations, 2);
-  narrator.play("The roots.", "en-US");
+  assert.equal(audio.src, "");
+  await narrator.play(recording);
   narrator.dispose();
   narrator.dispose();
-  assert.equal(cancellations, 3);
+  assert.equal(audio.src, "");
   assert.equal(narrator.state, "disposed");
-  assert.throws(() => narrator.play("No.", "en-US"), /disposed/);
+  await assert.rejects(narrator.play(recording), /disposed/);
   const count = states.length;
   target.hidden = true;
   target.dispatchEvent(new Event("visibilitychange"));
   assert.equal(states.length, count);
 });
 
-test("unavailable browser voices are explicit rather than simulated playback", () => {
-  const narrator = createBrowserNarration({ synthesis: null, Utterance: null });
-  narrator.play("An imagined vineyard.", "en-US");
+test("missing or failed recordings produce an explicit recoverable state", async (t) => {
+  const errors = t.mock.method(console, "error", () => {});
+  const audio = new TestAudio();
+  const narrator = createRecordedNarration({ audio });
+  await narrator.play(null);
   assert.equal(narrator.state, "unavailable");
-  assert.throws(() => narrator.play(" ", "en-US"), /nonempty/);
+  audio.play = () => {
+    throw new DOMException("Unavailable", "NotSupportedError");
+  };
+  await narrator.play({ file: "/public/narration/river.mp3" });
+  assert.equal(narrator.state, "unavailable");
+  assert.equal(errors.mock.calls.length, 2);
+  audio.play = async () => {
+    audio.paused = false;
+  };
+  await narrator.play({ file: "/public/narration/river.mp3" });
+  assert.equal(narrator.state, "playing");
   narrator.dispose();
 });
 
-test("a synchronous browser speech failure leaves an explicit recoverable state", (t) => {
-  const errors = t.mock.method(console, "error", () => {});
-  const synthesis = {
-    getVoices: () => [],
-    speak: () => {
-      throw new DOMException("Unavailable", "NotSupportedError");
-    },
-    cancel: () => {},
-  };
-  const narrator = createBrowserNarration({
-    synthesis,
-    Utterance: class {
-      constructor(text) {
-        this.text = text;
-      }
-    },
-  });
-  narrator.play("The opposite bank.", "en-US");
-  assert.equal(narrator.state, "unavailable");
-  assert.equal(errors.mock.calls.length, 1);
-  assert.equal(errors.mock.calls[0].arguments[1], "NotSupportedError");
-  synthesis.speak = (utterance) => utterance.onstart();
-  narrator.play("The opposite bank.", "en-US");
-  assert.equal(narrator.state, "speaking");
+test("a stopped or disposed pending audio play cannot revive the narrator", async () => {
+  const audio = new TestAudio();
+  let release;
+  audio.play = () =>
+    new Promise((resolve) => {
+      release = resolve;
+    });
+  const narrator = createRecordedNarration({ audio });
+  const pending = narrator.play({ file: "/public/narration/river.mp3" });
+  narrator.dispose();
+  release();
+  await pending;
+  assert.equal(narrator.state, "disposed");
+  assert.equal(audio.src, "");
   narrator.dispose();
 });

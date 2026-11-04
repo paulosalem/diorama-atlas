@@ -1,5 +1,6 @@
 import { outdoorDraftScenes, outdoorScenes } from "./outdoor-catalog.js";
 import { sitePath, staticHosting } from "../site.js";
+import { interiorVersions } from "./scene-versions.js";
 
 export const curatedScenes = [
   {
@@ -105,6 +106,7 @@ export const curatedScenes = [
   },
   {
     id: "textile",
+    versions: interiorVersions,
     title: "Oaxaca Textile Workshop",
     region: "Oaxacan weaving and dye workspace",
     period: "Craft labor, natural dyes, and pattern memory",

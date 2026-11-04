@@ -35,10 +35,12 @@ Choose **Douro Valley** in the Place selector, or open
 
 The separate Babylon experiment is at
 **http://127.0.0.1:4307/lab/miniature.html**. It does not replace the original
-vineyard or change the four-engine comparison. The same miniature is now available
+vineyard or change the four-engine comparison. The same authored miniature is available
 in the main Atlas at `/?scene=douro-vineyard&version=miniature`, beside the
-grounded **Landscape** experience. Renderer and exporter modules live in
-`src/client/rendering/`; the main app has no experimental-server dependency.
+grounded **Landscape** experience, now rendered directly in **Three.js**.
+The historical Babylon renderer and cross-engine exporter live in this
+experiment's `web/rendering/` directory. They use this experiment's dependencies;
+the main app neither loads Babylon nor requires an export or experimental server.
 
 ```sh
 node experiments/marrakech/export.mjs --scene douro-miniature

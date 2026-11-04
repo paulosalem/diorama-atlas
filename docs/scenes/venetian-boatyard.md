@@ -31,6 +31,13 @@ Use boat references for construction and proportions, not unsupported claims of
 a surveyed historical vessel. Add repair materials only where a task explains
 them. Do not label the illustrative audio palette as a recording of the yard.
 
+The side workshop now has a real doorway and modeled interior with benches,
+timber, bent ribs, shelves and a practical lamp. Door leaves fold away from the
+opening; preserve person-scale clearance through it. Oars use changing shaft
+and blade cross-sections, clamps have jaws and screw detail, and curled ribbon
+shavings accompany a finishing tin and brush. Keep the existing hulls, slipway,
+water and all four original cameras.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-streets.js) ·
 [Regional photographs](../../public/outdoors/references.json)

@@ -38,6 +38,7 @@ export function buildVineyardHarvest(k, vines) {
   const points = canopy.attributes.position,
     resting = [],
     free = [];
+  points.setUsage(THREE.DynamicDrawUsage);
   for (let i = 0; i < points.count; i++) {
     const x = points.getX(i),
       y = points.getY(i);
