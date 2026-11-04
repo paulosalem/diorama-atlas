@@ -21,6 +21,7 @@ const publishedDirectories = [
   "public/narration",
   "public/outdoors",
   "public/previews",
+  "public/domus",
   "public/print-library",
   "public/riad",
   "node_modules/three/examples/jsm",

@@ -23,6 +23,13 @@ Its concise procedure does not replace those mandatory references. Scene briefs
 supply local cultural and compositional intent; shared standards supply the
 common quality floor.
 
+Every creation must deliver **the landscape and/or interior plus its miniature**.
+The creation and review skills explicitly require both representations to be
+integrated, inspected and shown in the handoff. A preview image or map pin is
+not a substitute for the miniature.
+Neither is the small globe-marker model: the miniature is a full interactive
+peer view, with orbit/zoom, its own link and a clear switch to the environment.
+
 To add a recurring procedure, first check for an existing skill or maintenance
 script. Keep executable mechanisms in reusable scripts, task-specific choices
 in arguments/manifests, and the skill focused on decisions, sequence, safeguards

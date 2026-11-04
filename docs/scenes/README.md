@@ -42,6 +42,15 @@ before changing it. Preserve distinct saved variants and approved cameras.
 | [Lao Temple Court](lao-temple-court.md)                     | Layered roofs and a calm precinct                   | [Open](https://paulosalem.github.io/diorama-atlas/?scene=lao-temple-court&inspect=1)           |
 | [Douro Vineyard](douro-vineyard.md)                         | Trained vines, schist terraces and a working quinta | [Open](https://paulosalem.github.io/diorama-atlas/?scene=douro-vineyard&inspect=1)             |
 
+## Unfinished local interiors
+
+[Living Roman Domus](roman-domus.md) is a separately gated, walkable Campanian
+household interpretation, circa AD 60: 21 spaces, 20 viewpoints and bilingual
+object interpretation. Preview locally with `?scene=roman-domus&inspect=1&draft=1`.
+It is **not part of the released collection or a completed historical reconstruction**.
+The brief distinguishes researched evidence, interpretive choices and remaining
+visual-quality work. Its 40 recorded passages do not imply release readiness.
+
 ## Reading and maintaining a brief
 
 The first view is `courtyard` in Marrakech, `room` in other interiors, and

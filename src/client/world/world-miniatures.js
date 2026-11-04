@@ -46,7 +46,26 @@ export function createMiniature(type) {
     new THREE.MeshStandardMaterial({ color: 0xcfb989, roughness: 0.75 }),
     [0, 0.01, 0],
   );
-  if (type === "vineyard") {
+  if (type === "domus") {
+    box([1.12, 0.04, 1.3], [0, 0.075, 0]);
+    for (const x of [-0.47, 0.47]) {
+      box([0.18, 0.32, 1.3], [x, 0.25, 0]);
+      box([0.26, 0.05, 1.36], [x, 0.435, 0], roof);
+    }
+    for (const z of [-0.56, 0, 0.56]) {
+      box([0.78, 0.28, 0.14], [0, 0.23, z]);
+      box([0.8, 0.05, 0.22], [0, 0.405, z], roof);
+    }
+    box([0.27, 0.02, 0.3], [0, 0.11, 0.3], water);
+    box([0.48, 0.02, 0.32], [0, 0.11, -0.3], green);
+    for (const x of [-0.3, 0.3])
+      for (const z of [-0.44, -0.18])
+        add(new THREE.CylinderGeometry(0.022, 0.028, 0.25, 12), cream, [
+          x,
+          0.24,
+          z,
+        ]);
+  } else if (type === "vineyard") {
     for (let row = 0; row < 4; row++) {
       box([1.2, 0.13, 0.23], [0, 0.12 + row * 0.12, 0.48 - row * 0.28], cream);
       for (let x = -0.47; x < 0.5; x += 0.18)

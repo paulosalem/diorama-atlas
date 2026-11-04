@@ -51,12 +51,36 @@ The bundled app needs no key, database or generated cache. See
 Five original definitions, seven saved interiors and eleven outdoor definitions
 form the 23-scene collection. Preserve unique IDs and saved-package provenance.
 
-Unfinished outdoor entries are explicitly marked `draft: true` and excluded
+Unfinished entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
 the header identifies the preview, and static hosting rejects this option.
 Draft scripts do not count as completed recordings. Promotion removes the
 flag only after narration, cultural/visual review and all release checks pass.
 Related variants are deliberate entries, not duplicate files to delete.
+
+The [Roman domus](scenes/roman-domus.md) uses a dedicated local interior builder
+under `src/client/environments/domus/`. Open
+`?scene=roman-domus&inspect=1&draft=1`; use W/A/S/D or the on-screen directional
+pad to walk, and drag or use arrow keys to look. Named viewpoints remain available.
+Its shared walking helper uses body-clearance tests and substepped wall sliding;
+architectural footprints also prevent detail markers appearing through walls.
+Reduced motion stops scenery, not walking. `tests/browser/domus.spec.js` checks
+physical connectivity, controls, draft gating, compact layouts and localization.
+Inspect its recorded narration with `node scripts/check-narration.mjs
+--scene roman-domus --include-drafts --base-url http://127.0.0.1:4183`.
+
+Append `&mode=miniature` for its peer miniature, or use the Miniature / Interior
+buttons. Both use one furnished runtime; orbit/zoom and cutaway controls belong
+to the miniature, while walking and recorded room passages belong to Interior.
+Switching preserves both camera poses. Static batch roots keep independently
+visible architectural layers batched without merging them into the furnishings.
+The miniature sections walls and their paintings, not household objects.
+
+Capture all miniature compositions with `node scripts/capture-interiors.mjs
+--phase after --scene roman-domus --include-drafts --mode miniature
+--output-dir outputs/domus-miniature --base-url http://127.0.0.1:4183`.
+Use a separate output directory from the environment captures. Miniature
+manifests retain their representation and cannot overwrite environment previews.
 
 Outdoor definitions may explicitly select `daylight: "summer"` for the bundled
 clear-sky profile. Omitting it retains the collection's broken-clouds baseline.

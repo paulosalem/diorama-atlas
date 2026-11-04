@@ -3,6 +3,15 @@ import { outdoorLocations } from "./outdoor-catalog.js";
 // Geographic settings, not surveyed street addresses. The bookshop is regional.
 export const locations = [
   {
+    id: "campania",
+    name: "Campania",
+    country: "Roman Italy",
+    lat: 40.75,
+    lon: 14.48,
+    type: "domus",
+    match: /roman-domus/i,
+  },
+  {
     id: "marrakech",
     name: "Marrakech",
     country: "Morocco",

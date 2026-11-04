@@ -30,6 +30,13 @@ const manifest = JSON.parse(await readFile(input, "utf8"));
 if (manifest.phase !== "after" || !manifest.scenes?.length) {
   throw new Error("Expected a nonempty after-capture manifest.");
 }
+if (
+  manifest.mode === "miniature" ||
+  manifest.scenes.some((scene) => scene.representation === "miniature")
+)
+  throw new Error(
+    "Miniature captures must not replace the environment previews.",
+  );
 const destinations = new URL("../public/previews/", import.meta.url);
 const creditsFile = new URL("credits.json", destinations);
 const previous = JSON.parse(await readFile(creditsFile, "utf8"));
@@ -54,6 +61,7 @@ for (const scene of manifest.scenes) {
     source,
     destination: new URL(`${scene.id}.png`, destinations),
     id: scene.id,
+    draft: scene.draft === true,
     view: view.key,
     width: image.readUInt32BE(16),
     height: image.readUInt32BE(20),
@@ -73,10 +81,11 @@ const rendered = new Map(
     { ...entry, viewport: entry.viewport ?? previous.viewport },
   ]),
 );
-for (const { id, view, width, height, bytes, sha256 } of images)
+for (const { id, draft, view, width, height, bytes, sha256 } of images)
   rendered.set(id, {
     file: `${id}.png`,
     scene: id,
+    ...(draft ? { draft: true } : {}),
     view,
     width,
     height,

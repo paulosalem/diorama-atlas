@@ -1,0 +1,150 @@
+[
+  {
+    "sceneId": "roman-domus",
+    "references": [
+      {
+        "label": "The peristyle of the House of Menander (Regio I), Pompeii.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:The_peristyle_of_the_House_of_Menander_(Regio_I),_Pompeii.jpg",
+        "image": "/public/domus/architecture.jpg",
+        "author": "Commonists",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "a6654278d129db176125a811cddcb2a53d9c5b9eee4d75e09c65755e9df7ed87",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/The_peristyle_of_the_House_of_Menander_%28Regio_I%29%2C_Pompeii.jpg/1280px-The_peristyle_of_the_House_of_Menander_%28Regio_I%29%2C_Pompeii.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:15.638257+00:00"
+      },
+      {
+        "label": "Fresco of a fruit basket from the Villa of Poppea in Oplontis, Italy.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fresco_of_a_fruit_basket_from_the_Villa_of_Poppea_in_Oplontis,_Italy.jpg",
+        "image": "/public/domus/paintings.jpg",
+        "author": "Creator not identified in the source metadata",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "f2629ac4228a6f3ce5e08d53e2623a4e7a397b3792f3fc8183707badac2b52a0",
+        "download": "https://upload.wikimedia.org/wikipedia/commons/3/32/Fresco_of_a_fruit_basket_from_the_Villa_of_Poppea_in_Oplontis%2C_Italy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "retrieved": "2026-11-04T15:40:15.926164+00:00"
+      },
+      {
+        "label": "Kitchen i wreath House of the Ceii Pompeii.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Kitchen_i_wreath_House_of_the_Ceii_Pompeii.jpg",
+        "image": "/public/domus/kitchen2.jpg",
+        "author": "original frescoes by unknown Roman artist; photography by Peter Grunwald",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "278bdf846bbd6ac5a2731c95c70ac6a21c000814da760cd01317396172f242a8",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Kitchen_i_wreath_House_of_the_Ceii_Pompeii.jpg/1280px-Kitchen_i_wreath_House_of_the_Ceii_Pompeii.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:16.757938+00:00"
+      },
+      {
+        "label": "Herculaneum Casa del Tramezzo di Legno Letto.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Herculaneum_Casa_del_Tramezzo_di_Legno_Letto.jpg",
+        "image": "/public/domus/furniture.jpg",
+        "author": "AlMare",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "1ad78ee7991214582c05db5af7056a72ac008b1f79b3d3bc6b51834d0b5159bf",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Herculaneum_Casa_del_Tramezzo_di_Legno_Letto.jpg/1280px-Herculaneum_Casa_del_Tramezzo_di_Legno_Letto.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:17.438265+00:00"
+      },
+      {
+        "label": "Bronze Oil Lamp from Pompeii (48446028566).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bronze_Oil_Lamp_from_Pompeii_(48446028566).jpg",
+        "image": "/public/domus/lamps.jpg",
+        "author": "Gary Todd from Xinzheng, China",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "5aa9ddf6ff98b22be1403ff305f62fc02d853a2e55eda0ec685dc99c0579fcf1",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Bronze_Oil_Lamp_from_Pompeii_%2848446028566%29.jpg/1280px-Bronze_Oil_Lamp_from_Pompeii_%2848446028566%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:17.951856+00:00"
+      },
+      {
+        "label": "Ancient roman bread Pompeii Museum Boscoreale.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ancient_roman_bread_Pompeii_Museum_Boscoreale.jpg",
+        "image": "/public/domus/food.jpg",
+        "author": "Jebulon",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "d945408432293fe4e573e1f6bd90cb7ee95ab2aad8501c8a558ce08af99ffecf",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Ancient_roman_bread_Pompeii_Museum_Boscoreale.jpg/1280px-Ancient_roman_bread_Pompeii_Museum_Boscoreale.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:18.636473+00:00"
+      },
+      {
+        "label": "Fresco showing a woman so-called Sappho holding writing implements (wax tablet and stylus), from Pompeii, Naples National Archaeological Museum (14842101892).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fresco_showing_a_woman_so-called_Sappho_holding_writing_implements_(wax_tablet_and_stylus),_from_Pompeii,_Naples_National_Archaeological_Museum_(14842101892).jpg",
+        "image": "/public/domus/writing.jpg",
+        "author": "Carole Raddato from FRANKFURT, Germany",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "77202eedaef7e6639aed424de4aec3b67377d0e1ec05c1e0d3bd3ba99f04c7d8",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Fresco_showing_a_woman_so-called_Sappho_holding_writing_implements_%28wax_tablet_and_stylus%29%2C_from_Pompeii%2C_Naples_National_Archaeological_Museum_%2814842101892%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:19.420647+00:00"
+      },
+      {
+        "label": "Boscoreale Antiquarium Cooking Utensils.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Boscoreale_Antiquarium_Cooking_Utensils.jpg",
+        "image": "/public/domus/tools.jpg",
+        "author": "AlMare",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "0af042d10d4707ec7f075ad662601eb5d1d734898d17a8e9613544c44fe1b407",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Boscoreale_Antiquarium_Cooking_Utensils.jpg/1280px-Boscoreale_Antiquarium_Cooking_Utensils.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:20.016640+00:00"
+      },
+      {
+        "label": "Lararium in the atrium of Casa del Menandro (Pompeii) (48442861451).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Lararium_in_the_atrium_of_Casa_del_Menandro_(Pompeii)_(48442861451).jpg",
+        "image": "/public/domus/religion.jpg",
+        "author": "Gary Todd from Xinzheng, China",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "3bb197469ed309614c13c0b71c7d1940389cada4b9407026f93fd6fd5df16ce4",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Lararium_in_the_atrium_of_Casa_del_Menandro_%28Pompeii%29_%2848442861451%29.jpg/1280px-Lararium_in_the_atrium_of_Casa_del_Menandro_%28Pompeii%29_%2848442861451%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:20.883292+00:00"
+      },
+      {
+        "label": "Painted plants fresco Pompeii Italy.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Painted_plants_fresco_Pompeii_Italy.jpg",
+        "image": "/public/domus/garden.jpg",
+        "author": "Jebulon",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "0b9c9e3ce9b827962c1fd94a94ad51152821d44ce1c8b79ae8d1f418c963e54c",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Painted_plants_fresco_Pompeii_Italy.jpg/1280px-Painted_plants_fresco_Pompeii_Italy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:21.874352+00:00"
+      },
+      {
+        "label": "Single latrine in the Lupanar of Pompeii, Pompeii (20471035614).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Single_latrine_in_the_Lupanar_of_Pompeii,_Pompeii_(20471035614).jpg",
+        "image": "/public/domus/toilet.jpg",
+        "author": "Carole Raddato from FRANKFURT, Germany",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "date": "Retrieved 2026-11-04",
+        "note": "",
+        "sha256": "b60bda903cebc577ce461cc66bfc176de40fde1ab6429b0463c810c5805abf35",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg/1280px-Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "retrieved": "2026-11-04T15:40:22.538673+00:00"
+      }
+    ]
+  }
+]

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { subscribeLocale, t } from "../localization/locale.js";
+import { moveInWalkingSpace } from "./walking-space.js";
 
 /** Eye-height inspection controls shared by all full-scale atlas environments. */
 export function createPanoramaControls({
@@ -32,6 +33,11 @@ export function createPanoramaControls({
     pinch = 0;
   let definition = null;
   let selectedKey = null;
+  let walking = null;
+  let walkPad = null;
+  let walkHint = null;
+  const held = new Set();
+  const walkKeys = ["w", "a", "s", "d"];
   function localize() {
     if (!definition) return;
     for (const button of viewpoints.querySelectorAll("button"))
@@ -62,6 +68,16 @@ export function createPanoramaControls({
       viewer.querySelector("#riadViewLabel").textContent = t(
         views[selectedKey].label,
       );
+    if (walking && active) {
+      const hint = t(
+        "Walk with W, A, S, D; drag or use arrow keys to look. Use the on-screen arrows on touch devices.",
+      );
+      walkHint.textContent = hint;
+      canvas.setAttribute("aria-label", `${t(definition.title)}. ${hint}`);
+      walkPad.setAttribute("aria-label", t("Walking controls"));
+      for (const button of walkPad.querySelectorAll("button"))
+        button.setAttribute("aria-label", t(button.dataset.label));
+    }
   }
   const unsubscribeLocale = subscribeLocale(localize);
   function orient() {
@@ -83,6 +99,7 @@ export function createPanoramaControls({
     const view = views[key];
     if (!view) return;
     selectedKey = key;
+    held.clear();
     camera.position.fromArray(view.position);
     camera.fov = view.fov ?? 61;
     camera.near = 0.04;
@@ -156,6 +173,11 @@ export function createPanoramaControls({
     { passive: false },
   );
   listen(canvas, "keydown", (event) => {
+    if (active && walking && walkKeys.includes(event.key.toLowerCase())) {
+      event.preventDefault();
+      held.add(event.key.toLowerCase());
+      return;
+    }
     if (
       !active ||
       ![
@@ -179,6 +201,12 @@ export function createPanoramaControls({
     pitch = THREE.MathUtils.clamp(pitch, -1.35, 1.35);
     orient();
   });
+  listen(window, "keyup", (event) => held.delete(event.key.toLowerCase()));
+  listen(window, "blur", () => held.clear());
+  listen(document, "visibilitychange", () => {
+    if (document.hidden) held.clear();
+  });
+  listen(canvas, "blur", () => held.clear());
   listen(expand, "click", () =>
     onExit
       ? onExit()
@@ -204,12 +232,56 @@ export function createPanoramaControls({
     select,
     lookAt,
     setExpanded,
+    setEnabled(value) {
+      active = value && Boolean(definition);
+      held.clear();
+      for (const id of pointers.keys())
+        if (canvas.hasPointerCapture(id)) canvas.releasePointerCapture(id);
+      pointers.clear();
+      pinch = 0;
+      canvas.classList.remove("is-looking");
+      controls.enabled = !active;
+      viewpoints.hidden = !active;
+      details.hidden = !active;
+      if (walkPad) walkPad.hidden = !active;
+      if (walkHint) walkHint.hidden = !active;
+      viewer.classList.toggle("is-walkable", active && Boolean(walking));
+      localize();
+    },
+    update(delta) {
+      if (
+        !active ||
+        !walking ||
+        !held.size ||
+        document.hidden ||
+        document.querySelector("dialog[open]")
+      )
+        return;
+      let forward = Number(held.has("w")) - Number(held.has("s"));
+      let right = Number(held.has("d")) - Number(held.has("a"));
+      const length = Math.hypot(forward, right);
+      if (!length) return;
+      forward /= length;
+      right /= length;
+      const distance = Math.min(delta, 0.05) * 1.65;
+      moveInWalkingSpace(
+        walking,
+        camera.position,
+        (Math.sin(yaw) * forward + Math.cos(yaw) * right) * distance,
+        (-Math.cos(yaw) * forward + Math.sin(yaw) * right) * distance,
+      );
+      camera.position.y = walking.eyeHeight;
+      orient();
+    },
     get active() {
       return active;
     },
     dispose() {
       active = false;
       pointers.clear();
+      held.clear();
+      walkPad?.remove();
+      walkHint?.remove();
       events.abort();
       unsubscribeLocale();
       canvas.classList.remove("is-looking");
@@ -219,6 +291,7 @@ export function createPanoramaControls({
       definition = sceneDefinition;
       active = Boolean(runtime?.views);
       views = runtime?.views ?? {};
+      walking = runtime?.walking ?? null;
       minimumFov = definition.environment === "outdoor" ? 18 : 32;
       pointers.clear();
       pinch = 0;
@@ -234,6 +307,46 @@ export function createPanoramaControls({
       );
       viewpoints.setAttribute("aria-label", `${definition.title} viewpoints`);
       viewpoints.replaceChildren();
+      if (walking) {
+        walkPad = document.createElement("nav");
+        walkPad.className = "walking-pad";
+        for (const [key, glyph, label] of [
+          ["w", "↑", "Walk forward"],
+          ["a", "←", "Step left"],
+          ["s", "↓", "Walk backward"],
+          ["d", "→", "Step right"],
+        ]) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = glyph;
+          button.dataset.key = key;
+          button.dataset.label = label;
+          listen(button, "pointerdown", (event) => {
+            event.preventDefault();
+            button.setPointerCapture(event.pointerId);
+            held.add(key);
+          });
+          for (const event of [
+            "pointerup",
+            "pointercancel",
+            "lostpointercapture",
+          ])
+            listen(button, event, () => held.delete(key));
+          listen(button, "keydown", (event) => {
+            if (event.key === " " || event.key === "Enter") {
+              event.preventDefault();
+              held.add(key);
+            }
+          });
+          listen(button, "keyup", () => held.delete(key));
+          listen(button, "blur", () => held.delete(key));
+          walkPad.append(button);
+        }
+        walkHint = document.createElement("p");
+        walkHint.className = "walking-hint";
+        viewer.querySelector(".canvas-mount").append(walkPad, walkHint);
+        viewer.classList.add("is-walkable");
+      }
       for (const [key, view] of Object.entries(views)) {
         const button = document.createElement("button");
         button.type = "button";

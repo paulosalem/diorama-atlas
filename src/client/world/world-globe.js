@@ -171,7 +171,7 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
     const link = document.createElement("a");
     link.className = "preview-main";
     link.href = sitePath(
-      `/?scene=${encodeURIComponent(definition.id)}&inspect=1`,
+      `/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}`,
     );
     link.addEventListener("click", save);
     const img = document.createElement("img");
@@ -187,7 +187,11 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
     );
     img.onerror = () => {
       img.onerror = null;
-      if (staticHosting || definition.environment === "outdoor") {
+      if (
+        staticHosting ||
+        definition.draft ||
+        definition.environment === "outdoor"
+      ) {
         img.remove();
         const notice = document.createElement("p");
         notice.className = "preview-image-notice";
@@ -317,7 +321,7 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
       }
       save();
       const destination = sitePath(
-        `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1`,
+        `/?scene=${encodeURIComponent(place.scenes[0].id)}&inspect=1${place.scenes[0].draft ? "&draft=1" : ""}`,
       );
       if (onNavigate) onNavigate(destination);
       else location.href = destination;

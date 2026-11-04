@@ -67,7 +67,11 @@ export function addOutdoorReferences(viewer, definition) {
     );
     try {
       const response = await fetch(
-        sitePath("/public/outdoors/references.json"),
+        sitePath(
+          typeof definition.references === "string"
+            ? definition.references
+            : "/public/outdoors/references.json",
+        ),
       );
       if (!response.ok)
         throw new Error("Photographic sources could not be loaded.");

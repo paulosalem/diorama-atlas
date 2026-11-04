@@ -682,8 +682,11 @@ test("all twelve interior previews have accurate rendered-capture provenance, in
       JSON.parse,
     ),
   ]);
-  assert.equal(previews.rendered.length, 12);
-  assert.equal(new Set(previews.rendered.map((entry) => entry.scene)).size, 12);
+  assert.equal(previews.rendered.filter((entry) => !entry.draft).length, 12);
+  assert.equal(
+    new Set(previews.rendered.map((entry) => entry.scene)).size,
+    previews.rendered.length,
+  );
   assert.equal(previews.unchanged, undefined);
   assert.ok(previews.viewport.width > 0 && previews.viewport.height > 0);
   assert.equal(previews.reducedMotion, true);

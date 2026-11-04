@@ -3,7 +3,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { chromium, expect } from "@playwright/test";
-import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
+import {
+  curatedScenes,
+  interiorDraftScenes,
+} from "../src/client/catalog/scene-catalog.js";
 import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
 
@@ -12,6 +15,7 @@ const { values } = parseArgs({
     "base-url": { type: "string", default: "http://127.0.0.1:4183" },
     "output-dir": { type: "string", default: "outputs/narration-collection" },
     scene: { type: "string", multiple: true },
+    "include-drafts": { type: "boolean", default: false },
     help: { type: "boolean" },
   },
 });
@@ -19,6 +23,7 @@ if (values.help) {
   console.log(`Verify bundled narration against every actual runtime view.
 Usage: node scripts/check-narration.mjs [--base-url URL] [--output-dir PATH] [--scene ID ...]
 The default selects the entire bundled collection. Explicit scene IDs select a subset.
+Pass --include-drafts with explicit scene IDs to inspect local unfinished interiors.
 Uses isolated browser preferences, blocks paid API requests, decodes every selected
 MP3, and exercises actual playback, both languages, view buttons, and disposal.
 Writes report.json and rendered screenshots under the output directory.
@@ -28,12 +33,15 @@ Progress goes to stderr; the final summary goes to stdout.`);
   process.exit(0);
 }
 const base = values["base-url"];
+if (values["include-drafts"] && !values.scene?.length)
+  throw new Error("--include-drafts requires an explicit --scene.");
 const response = await fetch(`${base}/api/generated-scenes`);
 assert.ok(response.ok, `Scene catalog: HTTP ${response.status}`);
 const collection = [
   ...curatedScenes,
   ...(await response.json()).scenes,
   ...outdoorScenes,
+  ...(values["include-drafts"] ? interiorDraftScenes : []),
 ];
 for (const id of values.scene ?? [])
   assert.ok(
@@ -112,7 +120,9 @@ try {
         audioRequests.push(request.url());
     });
     const start = performance.now();
-    await page.goto(`${base}/?scene=${encodeURIComponent(scene.id)}&inspect=1`);
+    await page.goto(
+      `${base}/?scene=${encodeURIComponent(scene.id)}&inspect=1${scene.draft ? "&draft=1" : ""}`,
+    );
     await waitForViewer(page, { timeout: 120_000 });
     const panel = page.locator(".scene-narration");
     await expect(panel).toHaveAttribute("data-state", "ready");

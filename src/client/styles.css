@@ -1,4 +1,5 @@
 @import url("./viewer/scene-narration.css");
+@import url("./viewer/miniature.css");
 
 :root {
   color-scheme: dark;
@@ -929,5 +930,76 @@ button[aria-pressed="true"] {
   *:after {
     animation: none !important;
     transition: none !important;
+  }
+}
+/* Walking is opt-in per environment; ordinary panorama controls stay unchanged. */
+.is-walkable .reference-panel {
+  z-index: 14;
+}
+.is-walkable .scene-narration,
+.is-walkable .riad-detail-caption {
+  top: 12px;
+  bottom: auto;
+  max-height: calc(100% - 156px);
+}
+.walking-pad {
+  position: absolute;
+  left: 18px;
+  bottom: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, 38px);
+  gap: 5px;
+  z-index: 12;
+  touch-action: none;
+}
+.walking-pad button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: #f4ebda;
+  background: #211c17d9;
+  border: 1px solid #e6d5b045;
+  border-radius: 8px;
+  font-size: 21px;
+  touch-action: none;
+}
+.walking-pad button[data-key="w"] {
+  grid-column: 2;
+}
+.walking-pad button[data-key="a"] {
+  grid-column: 1;
+}
+.walking-hint {
+  position: absolute;
+  left: 18px;
+  bottom: 7px;
+  max-width: min(540px, 60%);
+  color: #f2e9d7;
+  background: #211c17bb;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin: 0;
+  font-size: 11px;
+  pointer-events: none;
+}
+.is-walkable .riad-viewpoints {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.is-walkable .riad-viewpoints button {
+  flex-shrink: 0;
+}
+@media (max-width: 640px), (max-height: 540px) {
+  .is-walkable .scene-narration,
+  .is-walkable .riad-detail-caption {
+    max-height: calc(100% - 124px);
+  }
+  .walking-hint {
+    display: none;
+  }
+  .walking-pad {
+    left: 10px;
+    bottom: 12px;
   }
 }

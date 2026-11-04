@@ -25,6 +25,21 @@ export const uiPtBR = Object.freeze({
   "Places around the world": "Lugares pelo mundo",
   "Zoom in": "Aproximar",
   "Zoom out": "Afastar",
+  "View mode": "Modo de visualização",
+  "Choose Miniature or Interior.": "Escolha Miniatura ou Interior.",
+  Miniature: "Miniatura",
+  Interior: "Interior",
+  "Whole house": "Casa inteira",
+  Courtyards: "Pátios",
+  "Working household": "Trabalho doméstico",
+  "House plan": "Planta da casa",
+  Cutaway: "Vista em corte",
+  "Architectural cutaway · Drag to orbit · Scroll or pinch to zoom":
+    "Corte arquitetônico · Arraste para girar · Role ou use pinça para aproximar",
+  "Roof on · Drag to orbit · Scroll or pinch to zoom":
+    "Com telhado · Arraste para girar · Role ou use pinça para aproximar",
+  "Interactive miniature. Drag to orbit, scroll or pinch to zoom. Arrow keys pan; Shift and arrows rotate. Plus and minus zoom.":
+    "Miniatura interativa. Arraste para girar, role ou use pinça para aproximar. As setas deslocam; Shift com as setas gira. Mais e menos ajustam a aproximação.",
   "Reset globe view": "Restaurar vista do globo",
   "Drag to wander · Scroll to get closer":
     "Arraste para explorar · Role para se aproximar",

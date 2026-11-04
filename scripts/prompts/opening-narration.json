@@ -5,6 +5,334 @@
   },
   "assets": [
     {
+      "id": "roman-domus-en-US",
+      "scene": "roman-domus",
+      "locale": "en-US",
+      "title": "A house and its unequal lives",
+      "text": "This imagined house belongs to a prosperous household in Roman Campania around AD 60. Walk from the atrium into rooms for business, dining, rest and work. Pompeii and Herculaneum inform its construction and possessions, but this is not a replica of a named building. The comfortable setting also reveals unequal lives: women, children, freedpeople and enslaved workers belonged to a household in very different ways. Look beyond its owner to the people, resources and obligations that sustained the home.",
+      "references": [
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-menander/",
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-vettii/",
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-ceii/"
+      ]
+    },
+    {
+      "id": "roman-domus-pt-BR",
+      "scene": "roman-domus",
+      "locale": "pt-BR",
+      "title": "Uma casa e suas vidas desiguais",
+      "text": "Esta casa imaginária pertence a uma família próspera da Campânia romana por volta de 60 d.C. Caminhe do átrio aos cômodos de negócios, refeições, descanso e trabalho. Pompeia e Herculano informam sua construção e seus objetos, mas ela não é uma réplica de um edifício conhecido. O conforto também revela vidas desiguais: mulheres, crianças, libertos e trabalhadores escravizados integravam a casa de maneiras muito diferentes. Olhe além do proprietário para as pessoas, os recursos e as obrigações que sustentavam o lar.",
+      "references": [
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-menander/",
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-vettii/",
+        "https://pompeiisites.org/en/archaeological-site/house-of-the-ceii/"
+      ]
+    },
+    {
+      "id": "roman-domus-entrance-en-US",
+      "scene": "roman-domus",
+      "view": "entrance",
+      "locale": "en-US",
+      "title": "A controlled threshold",
+      "text": "The narrow entrance connects a Roman street to the imposing atrium. Timber doors, a threshold and the porter's place make access a daily household activity. Visitors did not all have the same permission to pass farther inside. The long view announces wealth, while the sequence of openings also lets the household control how much of its life a stranger could see."
+    },
+    {
+      "id": "roman-domus-entrance-pt-BR",
+      "scene": "roman-domus",
+      "view": "entrance",
+      "locale": "pt-BR",
+      "title": "Um limiar controlado",
+      "text": "A entrada estreita liga uma rua romana ao átrio imponente. Portas de madeira, uma soleira e o lugar do porteiro mostram que controlar o acesso fazia parte da rotina. Nem todos os visitantes tinham a mesma permissão para avançar. A vista longa anuncia riqueza, enquanto a sequência de aberturas permite controlar quanto da vida doméstica um estranho podia observar."
+    },
+    {
+      "id": "roman-domus-tablinum-en-US",
+      "scene": "roman-domus",
+      "view": "tablinum",
+      "locale": "en-US",
+      "title": "Writing and influence",
+      "text": "Wax tablets, a stylus, papyrus rolls and a strongbox suggest accounts, correspondence and property management. The house was connected to estates, trade, credit and legal obligations. This room should not be read as a modern private office reserved for one man. Women, freedpeople and enslaved specialists could also participate in the skilled work of managing an elite household."
+    },
+    {
+      "id": "roman-domus-tablinum-pt-BR",
+      "scene": "roman-domus",
+      "view": "tablinum",
+      "locale": "pt-BR",
+      "title": "Escrita e influência",
+      "text": "Tabuinhas de cera, um estilete, rolos de papiro e um cofre sugerem contas, correspondência e administração de bens. A casa estava ligada a propriedades rurais, comércio, crédito e obrigações legais. Este cômodo não deve ser entendido como um escritório moderno reservado a um homem. Mulheres, libertos e especialistas escravizados também podiam participar do trabalho especializado de administrar uma casa de elite."
+    },
+    {
+      "id": "roman-domus-shrine-en-US",
+      "scene": "roman-domus",
+      "view": "shrine",
+      "locale": "en-US",
+      "title": "Household worship",
+      "text": "The small architectural shrine places religious practice within domestic life. Its lamp, offering dish and figures suggest a material setting for worship without inventing a sacred inscription or an exact ritual. Surviving Campanian shrines guide the interpretation, but household religion varied. A prosperous home was not divided neatly into modern categories of business, family and belief."
+    },
+    {
+      "id": "roman-domus-shrine-pt-BR",
+      "scene": "roman-domus",
+      "view": "shrine",
+      "locale": "pt-BR",
+      "title": "O culto doméstico",
+      "text": "O pequeno santuário arquitetônico situa a prática religiosa dentro da vida doméstica. A lamparina, o prato de oferendas e as figuras sugerem um espaço material para o culto sem inventar uma inscrição sagrada ou um ritual exato. Santuários preservados na Campânia orientam a interpretação, mas a religião doméstica variava. Uma casa próspera não se dividia perfeitamente nas categorias modernas de negócios, família e crença."
+    },
+    {
+      "id": "roman-domus-textiles-en-US",
+      "scene": "roman-domus",
+      "view": "textiles",
+      "locale": "en-US",
+      "title": "The work inside clothing",
+      "text": "Threads, loom weights, wool, a spindle and shears connect clothing to skilled work. Spinning, weaving, washing and mending demanded time, including the labor of enslaved people. Cloth was valuable, whether made at home or obtained through exchange. This working arrangement is a plausible reconstruction, not a recovered inventory proving that a particular room was always used for weaving."
+    },
+    {
+      "id": "roman-domus-textiles-pt-BR",
+      "scene": "roman-domus",
+      "view": "textiles",
+      "locale": "pt-BR",
+      "title": "O trabalho dentro da roupa",
+      "text": "Fios, pesos do tear, lã, um fuso e tesouras ligam a roupa ao trabalho especializado. Fiar, tecer, lavar e remendar exigiam tempo, inclusive o trabalho de pessoas escravizadas. O tecido era valioso, produzido em casa ou obtido por trocas. Esta disposição é uma reconstrução plausível, não um inventário recuperado que prove que determinado cômodo sempre foi usado para tecer."
+    },
+    {
+      "id": "roman-domus-bedroom-en-US",
+      "scene": "roman-domus",
+      "view": "bedroom",
+      "locale": "en-US",
+      "title": "Rest and personal possessions",
+      "text": "A timber bed, woven support, mattress and coverlet restore the idea of usable furniture rather than copying the carbonized appearance of archaeological remains. Clothing, sandals and a storage chest suggest ordinary routines. The mirror and grooming implements reward a closer look. A cubiculum could serve more than sleeping, and room size alone cannot securely identify its ancient occupants."
+    },
+    {
+      "id": "roman-domus-bedroom-pt-BR",
+      "scene": "roman-domus",
+      "view": "bedroom",
+      "locale": "pt-BR",
+      "title": "Descanso e objetos pessoais",
+      "text": "A cama de madeira, o suporte entrelaçado, o colchão e a coberta recuperam a ideia de um móvel utilizável, em vez de copiar a aparência carbonizada dos vestígios arqueológicos. Roupas, sandálias e uma arca sugerem rotinas comuns. O espelho e os instrumentos de cuidado pessoal merecem uma observação mais próxima. Um cubículo podia ter outros usos além do sono, e seu tamanho não identifica com segurança os antigos ocupantes."
+    },
+    {
+      "id": "roman-domus-study-en-US",
+      "scene": "roman-domus",
+      "view": "study",
+      "locale": "en-US",
+      "title": "Learning and opportunity",
+      "text": "Rolls, tablets and writing implements evoke education, reading and administration. Greek literature could signal cultivation, while practical literacy supported business. Neither education nor freedom was shared equally. Enslaved teachers and secretaries might hold considerable expertise without the rights of those they served. The arrangement invites us to ask who could learn, who taught, and whose knowledge supported the household."
+    },
+    {
+      "id": "roman-domus-study-pt-BR",
+      "scene": "roman-domus",
+      "view": "study",
+      "locale": "pt-BR",
+      "title": "Aprendizado e oportunidade",
+      "text": "Rolos, tabuinhas e instrumentos de escrita evocam educação, leitura e administração. A literatura grega podia indicar erudição, enquanto a escrita prática sustentava os negócios. Nem a educação nem a liberdade eram distribuídas igualmente. Professores e secretários escravizados podiam ter grande conhecimento sem os direitos daqueles a quem serviam. Este espaço convida a perguntar quem podia aprender, quem ensinava e quais conhecimentos sustentavam a casa."
+    },
+    {
+      "id": "roman-domus-dining-en-US",
+      "scene": "roman-domus",
+      "view": "dining",
+      "locale": "en-US",
+      "title": "Dining and hierarchy",
+      "text": "Three couches surround a low table with bread, olives, figs and grapes. Formal dining could display hospitality and rank through seating, vessels, food and service. Not every meal was a banquet, and not everyone reclined. Look also toward the serving table and the route back to the kitchen: the apparent ease of this room depended on preparation, carrying, cleaning and unequal labor."
+    },
+    {
+      "id": "roman-domus-dining-pt-BR",
+      "scene": "roman-domus",
+      "view": "dining",
+      "locale": "pt-BR",
+      "title": "Refeições e hierarquia",
+      "text": "Três leitos cercam uma mesa baixa com pão, azeitonas, figos e uvas. As refeições formais podiam exibir hospitalidade e posição social por meio dos lugares, recipientes, alimentos e serviço. Nem toda refeição era um banquete, nem todos comiam reclinados. Observe também a mesa de serviço e o caminho de volta à cozinha: o conforto aparente dependia de preparo, transporte, limpeza e trabalho desigual."
+    },
+    {
+      "id": "roman-domus-garden-en-US",
+      "scene": "roman-domus",
+      "view": "garden",
+      "locale": "en-US",
+      "title": "Cultivated nature",
+      "text": "A roofed colonnade surrounds planting, paths and a basin. Garden views extended domestic display while offering shade and conversation. The arrangement here is a plausible composition, not a botanical survey of an ancient garden. Watering, pruning, sweeping and maintaining drains supported the pleasant scene. Roman leisure, like the house itself, rested on resources and work that might otherwise remain out of sight."
+    },
+    {
+      "id": "roman-domus-garden-pt-BR",
+      "scene": "roman-domus",
+      "view": "garden",
+      "locale": "pt-BR",
+      "title": "Natureza cultivada",
+      "text": "Uma colunata coberta envolve canteiros, caminhos e uma bacia. A vista do jardim ampliava a apresentação da casa, oferecendo sombra e conversa. A disposição aqui é uma composição plausível, não um levantamento botânico de um jardim antigo. Regar, podar, varrer e manter os drenos sustentavam a cena agradável. O lazer romano, como a própria casa, dependia de recursos e trabalho que poderiam permanecer fora de vista."
+    },
+    {
+      "id": "roman-domus-exedra-en-US",
+      "scene": "roman-domus",
+      "view": "exedra",
+      "locale": "en-US",
+      "title": "Art and conversation",
+      "text": "Seating, rolls, painted fruit and a lyre suggest cultivated leisure and conversation. The ancient images are reproduced from credited archaeological sources; their presence in this invented home is an interpretive choice. Roman patrons drew on Greek traditions and Mediterranean exchange. Art could offer pleasure while also communicating education, aspiration and the ability to command expensive materials and skilled work."
+    },
+    {
+      "id": "roman-domus-exedra-pt-BR",
+      "scene": "roman-domus",
+      "view": "exedra",
+      "locale": "pt-BR",
+      "title": "Arte e conversa",
+      "text": "Assentos, rolos, frutas pintadas e uma lira sugerem lazer cultivado e conversa. As imagens antigas são reproduzidas de fontes arqueológicas creditadas; sua presença nesta casa inventada é uma escolha interpretativa. Os patronos romanos recorriam às tradições gregas e às trocas mediterrâneas. A arte podia oferecer prazer e comunicar educação, aspiração e a capacidade de obter materiais caros e trabalho especializado."
+    },
+    {
+      "id": "roman-domus-family-en-US",
+      "scene": "roman-domus",
+      "view": "family",
+      "locale": "en-US",
+      "title": "Beyond the householder",
+      "text": "Smaller beds, stored cloth and gaming counters make room for children and dependents in our interpretation. Their exact allocation is reconstructed, because archaeological rooms rarely identify their users securely. The household was not just its owner. It included people of different ages, rights, duties and prospects, whose lives intersected within these walls without becoming equal."
+    },
+    {
+      "id": "roman-domus-family-pt-BR",
+      "scene": "roman-domus",
+      "view": "family",
+      "locale": "pt-BR",
+      "title": "Além do proprietário",
+      "text": "Leitos menores, tecidos guardados e peças de jogo abrem espaço para crianças e dependentes nesta interpretação. Sua distribuição exata é reconstruída, pois os cômodos arqueológicos raramente identificam seus usuários com segurança. A casa não era apenas seu proprietário. Ela reunia pessoas com diferentes idades, direitos, tarefas e perspectivas, cujas vidas se cruzavam entre estas paredes sem se tornarem iguais."
+    },
+    {
+      "id": "roman-domus-kitchen-en-US",
+      "scene": "roman-domus",
+      "view": "kitchen",
+      "locale": "en-US",
+      "title": "The meal before the table",
+      "text": "A raised masonry hearth holds fuel, supports and cooking pots. Nearby, a mortar, pestle, knife, board and ingredients suggest preparation before serving. This is not a modern kitchen with hidden appliances. Heat, smoke, water carrying and cleaning were part of its work. Food varied with season, region and means; imported luxuries were never the whole story of Roman eating."
+    },
+    {
+      "id": "roman-domus-kitchen-pt-BR",
+      "scene": "roman-domus",
+      "view": "kitchen",
+      "locale": "pt-BR",
+      "title": "A refeição antes da mesa",
+      "text": "O fogão elevado de alvenaria reúne combustível, suportes e panelas. Perto dele, almofariz, pilão, faca, tábua e ingredientes sugerem o preparo antes de servir. Esta não é uma cozinha moderna com aparelhos escondidos. Calor, fumaça, transporte de água e limpeza faziam parte do trabalho. A alimentação variava conforme a estação, a região e os recursos; os luxos importados nunca foram toda a história da comida romana."
+    },
+    {
+      "id": "roman-domus-pantry-en-US",
+      "scene": "roman-domus",
+      "view": "pantry",
+      "locale": "en-US",
+      "title": "A Mediterranean storeroom",
+      "text": "Amphorae, covered jars and sacks give storage a substantial place in the house. Wine, oil, grain, pulses and fish sauce connected domestic routines to farms, workshops and transport networks. Pointed amphora bases need support. Vessel shapes provide clues, but do not by themselves prove exact contents, origin or ownership. The provisions here are a plausible selection, not a recovered complete inventory."
+    },
+    {
+      "id": "roman-domus-pantry-pt-BR",
+      "scene": "roman-domus",
+      "view": "pantry",
+      "locale": "pt-BR",
+      "title": "Uma despensa mediterrânea",
+      "text": "Ânforas, potes tampados e sacos dão ao armazenamento um lugar importante na casa. Vinho, azeite, grãos, leguminosas e molho de peixe ligavam as rotinas domésticas às propriedades rurais, oficinas e redes de transporte. Bases pontiagudas precisam de apoio. O formato dos recipientes oferece pistas, mas não prova sozinho seu conteúdo, origem ou proprietário. As provisões aqui são uma seleção plausível, não um inventário completo recuperado."
+    },
+    {
+      "id": "roman-domus-service-en-US",
+      "scene": "roman-domus",
+      "view": "service",
+      "locale": "en-US",
+      "title": "Comfort and coercion",
+      "text": "Simple sleeping arrangements, work clothes, repair materials and a broom shift attention from display to labor. Enslaved people were individuals with skills and relationships, while Roman law denied them fundamental freedoms. This room allocation is hypothetical: they did not all sleep together in one standardized servants' room. The contrast with the reception rooms is an invitation to understand inequality, not to make it picturesque."
+    },
+    {
+      "id": "roman-domus-service-pt-BR",
+      "scene": "roman-domus",
+      "view": "service",
+      "locale": "pt-BR",
+      "title": "Conforto e coerção",
+      "text": "Leitos simples, roupas de trabalho, materiais de reparo e uma vassoura deslocam a atenção da ostentação para o trabalho. Pessoas escravizadas eram indivíduos com habilidades e relações, enquanto a lei romana lhes negava liberdades fundamentais. A distribuição deste cômodo é hipotética: nem todos dormiam juntos numa dependência padronizada. O contraste com as salas de recepção convida a compreender a desigualdade, não a torná-la pitoresca."
+    },
+    {
+      "id": "roman-domus-latrine-en-US",
+      "scene": "roman-domus",
+      "view": "latrine",
+      "locale": "en-US",
+      "title": "Waste and maintenance",
+      "text": "The seat has an actual opening above a waste cavity. Carrying water, emptying and maintenance matter as much as the visible fixture. Roman sanitation varied greatly. This interpretation does not claim modern flushing, a verified sewer connection or hygienic conditions equivalent to a modern bathroom. A complete account of domestic comfort must include the less celebrated work of dealing with waste."
+    },
+    {
+      "id": "roman-domus-latrine-pt-BR",
+      "scene": "roman-domus",
+      "view": "latrine",
+      "locale": "pt-BR",
+      "title": "Dejetos e manutenção",
+      "text": "O assento tem uma abertura real sobre uma cavidade para dejetos. Transportar água, esvaziar e manter o espaço importava tanto quanto a instalação visível. O saneamento romano variava muito. Esta interpretação não afirma a existência de descarga moderna, ligação comprovada ao esgoto ou higiene equivalente à de um banheiro atual. Compreender o conforto doméstico também exige considerar o trabalho pouco celebrado de lidar com os resíduos."
+    },
+    {
+      "id": "roman-domus-changing-en-US",
+      "scene": "roman-domus",
+      "view": "changing",
+      "locale": "en-US",
+      "title": "Preparing to bathe",
+      "text": "A bench, towels, a small flask and a curved strigil suggest changing and bathing practices involving oil and scraping the skin. This private suite is an explicit wealthy-house choice, informed by examples such as the House of Menander. Many people used public baths. A private bathing complex was not a universal feature that every Roman home should be expected to contain."
+    },
+    {
+      "id": "roman-domus-changing-pt-BR",
+      "scene": "roman-domus",
+      "view": "changing",
+      "locale": "pt-BR",
+      "title": "Preparar-se para o banho",
+      "text": "Um banco, toalhas, um pequeno frasco e um estrígil curvo sugerem a troca de roupa e práticas de banho com óleo e raspagem da pele. Esta instalação privada é uma escolha explícita para uma casa rica, informada por exemplos como a Casa do Menandro. Muitas pessoas usavam banhos públicos. Um conjunto de banhos privados não era uma característica universal que se deva esperar em toda casa romana."
+    },
+    {
+      "id": "roman-domus-warm-en-US",
+      "scene": "roman-domus",
+      "view": "warm",
+      "locale": "en-US",
+      "title": "A sequence of temperatures",
+      "text": "Benches and a basin organize a quieter room between changing and hot bathing. Warmth came from a maintained heating system rather than a modern radiator. The precise temperature and routine here are interpretive choices, not measurements recovered from this invented building. The room's comfort should always be understood together with the furnace, fuel and work behind it."
+    },
+    {
+      "id": "roman-domus-warm-pt-BR",
+      "scene": "roman-domus",
+      "view": "warm",
+      "locale": "pt-BR",
+      "title": "Uma sequência de temperaturas",
+      "text": "Bancos e uma bacia organizam um cômodo mais tranquilo entre a troca de roupa e o banho quente. O calor vinha de um sistema que precisava de manutenção, não de um radiador moderno. A temperatura e a rotina exatas são escolhas interpretativas, não medidas recuperadas desta construção inventada. O conforto deve ser entendido junto da fornalha, do combustível e do trabalho que o sustentavam."
+    },
+    {
+      "id": "roman-domus-hot-en-US",
+      "scene": "roman-domus",
+      "view": "hot",
+      "locale": "en-US",
+      "title": "Water and private luxury",
+      "text": "A small built basin and a step offer a place for hot bathing. Water and heat depended on fuel, transport, cleaning and attendants. The reconstruction shows this spatial relationship without simulating a functioning hydraulic or thermal system. Such a facility made wealth tangible, but its convenience was supported by work elsewhere in the house rather than appearing effortlessly."
+    },
+    {
+      "id": "roman-domus-hot-pt-BR",
+      "scene": "roman-domus",
+      "view": "hot",
+      "locale": "pt-BR",
+      "title": "Água e luxo privado",
+      "text": "Uma pequena piscina construída e um degrau oferecem um lugar para o banho quente. A água e o calor dependiam de combustível, transporte, limpeza e atendentes. A reconstrução mostra essa relação espacial sem simular um sistema hidráulico ou térmico em funcionamento. A instalação tornava a riqueza tangível, mas sua conveniência era sustentada pelo trabalho em outras partes da casa, não surgia sem esforço."
+    },
+    {
+      "id": "roman-domus-furnace-en-US",
+      "scene": "roman-domus",
+      "view": "furnace",
+      "locale": "en-US",
+      "title": "The cost of warmth",
+      "text": "A furnace mouth, fuel and a heating vessel reveal the working side of private bathing. A small service-side section of supported flooring explains the principle of heating beneath a floor. It is an interpretive teaching detail, not a recovered exposure in a surveyed house. Someone had to obtain fuel, tend the fire, carry water and remove ash for others to enjoy the warmth."
+    },
+    {
+      "id": "roman-domus-furnace-pt-BR",
+      "scene": "roman-domus",
+      "view": "furnace",
+      "locale": "pt-BR",
+      "title": "O custo do calor",
+      "text": "A boca da fornalha, o combustível e um recipiente de aquecimento revelam o trabalho por trás do banho privado. Um pequeno trecho de piso apoiado na área de serviço explica o princípio do aquecimento sob o chão. É um detalhe interpretativo para aprendizagem, não uma exposição recuperada numa casa documentada. Alguém precisava obter combustível, cuidar do fogo, carregar água e retirar cinzas para que outros desfrutassem do calor."
+    },
+    {
+      "id": "roman-domus-stores-en-US",
+      "scene": "roman-domus",
+      "view": "stores",
+      "locale": "en-US",
+      "title": "Measuring value",
+      "text": "A balance, weights, tablets and stored amphorae connect domestic prosperity to exchange and accounting. This room is reconstructed as household storage and administration, not automatically identified as a shop. Elite standing could draw on land, commerce, political connections and the labor of others. The small instruments of measuring and recording make those wider relationships visible inside the home."
+    },
+    {
+      "id": "roman-domus-stores-pt-BR",
+      "scene": "roman-domus",
+      "view": "stores",
+      "locale": "pt-BR",
+      "title": "Medir o valor",
+      "text": "Uma balança, pesos, tabuinhas e ânforas guardadas ligam a prosperidade doméstica às trocas e à contabilidade. Este cômodo é reconstruído como espaço de armazenamento e administração, não identificado automaticamente como loja. A posição de elite podia apoiar-se em terras, comércio, relações políticas e trabalho alheio. Os pequenos instrumentos de medir e registrar tornam essas relações mais amplas visíveis dentro da casa."
+    },
+    {
       "id": "douro-vineyard-en-US",
       "scene": "douro-vineyard",
       "locale": "en-US",

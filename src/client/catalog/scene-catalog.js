@@ -1,5 +1,8 @@
 import { outdoorDraftScenes, outdoorScenes } from "./outdoor-catalog.js";
 import { sitePath, staticHosting } from "../site.js";
+import { domusScene } from "./domus-catalog.js";
+
+export const interiorDraftScenes = [domusScene];
 
 export const curatedScenes = [
   {
@@ -524,5 +527,6 @@ export async function loadScenes({ includeDrafts = false } = {}) {
     ...(payload.scenes ?? []),
     ...outdoorScenes,
     ...(includeDrafts ? outdoorDraftScenes : []),
+    ...(includeDrafts ? interiorDraftScenes : []),
   ];
 }

@@ -64,13 +64,15 @@ test("the public artifact contains the collection but no private/server files", 
 });
 
 test("static hosting rejects unfinished local previews", async ({ page }) => {
-  await page.goto("?scene=unfinished-outdoor&inspect=1&draft=1");
-  await expect(
-    page.getByText(
-      "Unfinished places are only available on the local development server.",
-    ),
-  ).toBeVisible();
-  await expect(page.locator("canvas")).toHaveCount(0);
+  for (const scene of ["unfinished-outdoor", "roman-domus"]) {
+    await page.goto(`?scene=${scene}&inspect=1&draft=1`);
+    await expect(
+      page.getByText(
+        "Unfinished places are only available on the local development server.",
+      ),
+    ).toBeVisible();
+    await expect(page.locator("canvas")).toHaveCount(0);
+  }
 });
 
 test("the globe, preview and return navigation remain inside the project path", async ({

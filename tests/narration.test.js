@@ -4,7 +4,11 @@ import { readFile, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { test } from "node:test";
 import { createNarrationTriggers } from "../src/client/viewer/narration-triggers.js";
-import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
+import {
+  curatedScenes,
+  interiorDraftScenes,
+} from "../src/client/catalog/scene-catalog.js";
+import { domusViews } from "../src/client/environments/domus/domus-layout.js";
 import {
   outdoorDraftScenes,
   outdoorScenes,
@@ -33,7 +37,12 @@ test("every bundled scene has immutable bilingual recordings matching its writte
           JSON.parse(await readFile(new URL(file, directory), "utf8")).scene,
       ),
   );
-  const scenes = [...curatedScenes, ...saved, ...outdoorScenes];
+  const scenes = [
+    ...curatedScenes,
+    ...saved,
+    ...outdoorScenes,
+    ...interiorDraftScenes,
+  ];
   const bundledRecipes = recipes.assets.filter((asset) =>
     scenes.some((scene) => scene.id === asset.scene),
   );
@@ -45,7 +54,7 @@ test("every bundled scene has immutable bilingual recordings matching its writte
       ),
       `${recipe.id}: recipe must belong to a bundled scene or an explicit local draft`,
     );
-  assert.equal(manifest.assets.length, 210);
+  assert.equal(manifest.assets.length, 250);
   assert.equal(
     new Set(manifest.assets.map((asset) => asset.id)).size,
     manifest.assets.length,
@@ -99,7 +108,13 @@ test("every bundled scene has immutable bilingual recordings matching its writte
     const views = new Set(assets.map((asset) => asset.view ?? "intro"));
     assert.equal(
       views.size,
-      scene.id === "riad" ? 6 : scene.environment === "outdoor" ? 4 : 5,
+      scene.environment === "domus"
+        ? Object.keys(domusViews).length
+        : scene.id === "riad"
+          ? 6
+          : scene.environment === "outdoor"
+            ? 4
+            : 5,
       scene.id,
     );
     assert.ok(views.has("intro"), `${scene.id}: missing arrival`);

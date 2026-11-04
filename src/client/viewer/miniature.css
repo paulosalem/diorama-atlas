@@ -1,0 +1,88 @@
+.representation-controls {
+  display: flex;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid #ffffff25;
+  border-radius: 9px;
+}
+.viewer-header .representation-controls button {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+}
+.representation-controls button[aria-pressed="true"] {
+  background: #d7c5a6;
+  color: #211c16;
+}
+.miniature-viewpoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.miniature-roof {
+  margin-left: 8px;
+}
+.miniature-viewpoints button[aria-pressed="true"] {
+  border-color: #d7c5a6;
+  background: #463d30;
+  color: #f6eddf;
+}
+.miniature-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  max-width: calc(100% - 130px);
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #f6eddf;
+  background: #312b23dc;
+  font-size: 11px;
+  pointer-events: none;
+}
+.is-miniature .hotspot-layer,
+.is-miniature .riad-detail-caption {
+  display: none;
+}
+.is-miniature .riad-toolbar {
+  flex-wrap: wrap;
+}
+@media (max-width: 650px) {
+  .is-miniature .riad-actions {
+    width: auto;
+    margin-left: auto;
+  }
+  .miniature-viewpoints {
+    gap: 4px;
+  }
+  .miniature-hint {
+    font-size: 10px;
+  }
+}
+@media (max-height: 540px) {
+  .viewer:has(.representation-controls) {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .viewer:has(.representation-controls) .viewer-header {
+    gap: 12px;
+  }
+  .viewer:has(.representation-controls) .viewer-header h1 {
+    font-size: 18px;
+  }
+  .viewer:has(.representation-controls) .viewer-header p {
+    font-size: 7px;
+    letter-spacing: 0.04em;
+  }
+  .viewer:has(.representation-controls) .viewer-header button,
+  .is-miniature .riad-toolbar button {
+    font-size: 10px;
+    padding: 8px 7px;
+  }
+  .miniature-hint {
+    bottom: 6px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+}

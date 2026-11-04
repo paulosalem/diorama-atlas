@@ -1,6 +1,6 @@
 ---
 name: create-diorama
-description: Create a new culturally grounded Diorama Atlas interior, outdoor setting, variant or environment family. Use for a new place or generated-scene pathway; enforce the full Marrakech-level spatial, material, atmospheric and cultural quality contract.
+description: Create a culturally grounded Diorama Atlas landscape and/or interior together with its required miniature. Use for a new place, variant, environment family or generated-scene pathway; enforce the full Marrakech-level quality contract for the complete experience.
 ---
 
 # Create a diorama
@@ -8,6 +8,30 @@ description: Create a new culturally grounded Diorama Atlas interior, outdoor se
 Build a place worth lingering in, not a generic room filled with recognizable
 objects. **Beauty, regional feeling, physical plausibility and fine detail are
 joint requirements.** None may be postponed as a later realism pass.
+
+## Mandatory paired deliverables
+
+**Every new diorama must always include both its landscape and/or interior
+and its corresponding miniature.** This applies to new places, variants,
+environment families and generated-scene pathways. Neither representation is
+an optional follow-up.
+
+The miniature must be a **full interactive view, peer to the interior or
+landscape**, with its own direct link, orbit/zoom controls and a clear switch
+between representations. A small model attached to the globe marker does
+**not** satisfy this requirement.
+
+It must be an actual rendered 3D representation of the same place,
+with coherent architecture, layout, materials and cultural identity at its
+intended viewing scale. A screenshot, preview card, map pin or unrelated generic
+symbol does not replace it. Reuse shared scene information and rendering
+mechanisms rather than allowing the two representations to describe different
+places.
+
+Integrate both into the app, make both discoverable, and show the user where
+to open each in the handoff. An interior-only or landscape-only link is not
+a complete delivery. If either representation is missing or unfinished, report
+that explicitly and keep the diorama unfinished.
 
 ## Required context
 
@@ -23,6 +47,7 @@ Marrakech scene and an appropriate existing family. Read the nearest
 Write `docs/scenes/<scene-id>.md` before implementation: region, anonymous place
 type, period where relevant, ordinary activity, maintenance condition, mood,
 what the visitor should learn, spatial sequence, materials, views and sources.
+Include the miniature's composition and how visitors reach both representations.
 If choosing locations, present candidates before building when requested.
 
 Find and inspect real photographs of the architectural setting, construction
@@ -69,7 +94,8 @@ quality standard supplies the rejection criteria for every item above.
 Reuse `src/client/environments/shared/` and the relevant family helpers. Keep
 scene composition separate; a generated definition is not a bespoke builder.
 Wire the catalog, regional globe marker, preview, detail points, referenced
-sources, credit manifests and local/static paths.
+sources, credit manifests and local/static paths. Wire the miniature as well;
+do not treat the marker or preview as proof that the miniature is complete.
 
 Provide an arrival, useful close views and a connected-space view. New interior
 families ordinarily follow four primary views plus the connected-space view;
@@ -82,7 +108,7 @@ Obtain explicit approval before recording through a paid provider; preserve
 immutable recipes and asset provenance. Do not declare a bundled scene complete
 with missing narration, translations, imagery, depth or atmosphere.
 
-Keep unfinished outdoor work explicitly `draft: true`, available only through
+Keep unfinished work explicitly `draft: true`, available only through
 the local `&draft=1` preview. A blocked recording or visual review must not
 silently enter the released catalog. Retain full checks for every bundled scene;
 promote a draft only when its complete experience passes those same checks.
@@ -99,7 +125,10 @@ request, timer and listener.
 
 Preserve source and matched before captures for any revised scene. Inspect all
 affected families and variants, original cameras, close details, reverse views
-and newly connected spaces. Each review begins with an open-ended defect search
+and newly connected spaces. Inspect the miniature's actual rendered output too,
+including its agreement with the environment, legibility at its displayed size,
+navigation between representations, compact layouts and resource cleanup.
+Each review begins with an open-ended defect search
 and then applies **all** cultural, spatial, visual, atmospheric and usability
 criteria. Honor requested review counts; the original outdoor commission
 required three complete re-inspections after the initial inspection.
@@ -111,6 +140,7 @@ Measure performance against the same scene/camera/viewport baseline. Optimize
 implementation, never silently remove required richness.
 
 Correct defects and preserve failed findings rather than relabeling them.
-Publish preview images only from inspected actual renders. Hand over the running
-place, concise evidence and honest remaining limits. Do not claim photorealism,
+Publish preview images only from inspected actual renders. Hand over both the
+running environment and miniature, with explicit access instructions, concise
+evidence and honest remaining limits. Do not claim photorealism,
 cultural authority or human approval because an automated check passed.

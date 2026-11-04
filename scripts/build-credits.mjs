@@ -24,6 +24,7 @@ const [
   audio,
   previews,
   narration,
+  domusPhotographs,
 ] = await Promise.all([
   readJson("public/earth/credits.json"),
   readJson("public/riad/materials/manifest.json"),
@@ -37,6 +38,7 @@ const [
   readJson("public/audio/manifest.json"),
   readJson("public/previews/credits.json"),
   readJson("public/narration/manifest.json"),
+  readJson("public/domus/references.json"),
 ]);
 const title = (value) =>
   value
@@ -113,7 +115,7 @@ entries.push({
   licenseUrl: outdoors.licenseUrl,
   note: "Locally stored outdoor HDR environment.",
 });
-for (const scene of photographs)
+for (const scene of [...photographs, ...domusPhotographs])
   for (const photo of scene.references)
     entries.push({
       category: "Style-reference photography",

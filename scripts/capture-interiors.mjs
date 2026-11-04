@@ -3,7 +3,10 @@ import path from "node:path";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
-import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
+import {
+  curatedScenes,
+  interiorDraftScenes,
+} from "../src/client/catalog/scene-catalog.js";
 import {
   outdoorScenes,
   outdoorDraftScenes,
@@ -15,6 +18,7 @@ const { values } = parseArgs({
     "base-url": { type: "string", default: "http://127.0.0.1:4195" },
     "output-dir": { type: "string", default: "outputs/collection-realism" },
     scene: { type: "string" },
+    mode: { type: "string", default: "environment" },
     "include-drafts": { type: "boolean", default: false },
     help: { type: "boolean", short: "h" },
   },
@@ -27,6 +31,7 @@ Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --output-dir PATH    Capture directory (default outputs/collection-realism)
   --scene ID           Capture one place; merge into an existing after manifest
   --include-drafts     Permit a specifically selected unfinished local scene
+  --mode MODE          environment (default) or miniature; use separate directories
 
 Before captures are immutable: choose a new directory for another baseline.
 Screenshots and capture.json are written under <output-dir>/<phase>/.
@@ -39,6 +44,10 @@ if (!["before", "after"].includes(values.phase)) {
 }
 if (values["include-drafts"] && !values.scene)
   throw new Error("--include-drafts requires an explicit --scene.");
+if (!["environment", "miniature"].includes(values.mode))
+  throw new Error("--mode must be environment or miniature.");
+if (values.mode === "miniature" && !values.scene)
+  throw new Error("--mode miniature requires an explicit --scene.");
 const output = path.resolve(values["output-dir"], values.phase);
 const manifestFile = path.join(output, "capture.json");
 let previous = null;
@@ -50,6 +59,10 @@ try {
 if (values.phase === "before" && previous) {
   throw new Error("This baseline already exists. Choose a new --output-dir.");
 }
+if (previous && (previous.mode ?? "environment") !== values.mode)
+  throw new Error(
+    "Use separate output directories for environments and miniatures.",
+  );
 const directory = new URL("../data/scenes/", import.meta.url);
 const saved = await Promise.all(
   (await readdir(directory))
@@ -63,6 +76,7 @@ const scenes = [
   ...saved.map((entry) => entry.scene),
   ...outdoorScenes,
   ...(values["include-drafts"] ? outdoorDraftScenes : []),
+  ...(values["include-drafts"] ? interiorDraftScenes : []),
 ].filter((scene) =>
   values.scene ? scene.id === values.scene : scene.environment !== "outdoor",
 );
@@ -108,13 +122,19 @@ try {
       }
     });
     await page.goto(
-      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}`,
+      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}${values.mode === "miniature" ? "&mode=miniature" : ""}`,
     );
     await waitForViewer(page);
     await page.evaluate(() => document.fonts.ready);
     const views = [];
-    for (const button of await page.locator(".riad-viewpoints button").all()) {
-      const key = await button.getAttribute("data-view");
+    const miniature = values.mode === "miniature";
+    const selector = miniature
+      ? "[data-miniature-view]"
+      : ".riad-viewpoints button";
+    for (const button of await page.locator(selector).all()) {
+      const key = await button.getAttribute(
+        miniature ? "data-miniature-view" : "data-view",
+      );
       const label = await button.innerText();
       await button.click();
       await page.evaluate(
@@ -126,13 +146,25 @@ try {
       const file = `${definition.id}-${key}.png`;
       await page.locator("#canvasMount").screenshot({
         path: path.join(output, file),
-        style: ".scene-narration { visibility: hidden !important; }",
+        style:
+          ".scene-narration, .walking-pad, .walking-hint, .miniature-hint { visibility: hidden !important; }",
       });
-      const view = await page.evaluate(async (key) => {
-        const { getActiveViewer } =
-          await import("/src/client/viewer/panorama-viewer.js");
-        return getActiveViewer().runtime.views[key];
-      }, key);
+      const view = await page.evaluate(
+        async ({ key, miniature }) => {
+          const { getActiveViewer } =
+            await import("/src/client/viewer/panorama-viewer.js");
+          const viewer = getActiveViewer();
+          if (!miniature) return viewer.runtime.views[key];
+          return {
+            label: viewer.runtime.miniature.views[key].label,
+            position: viewer.camera.position.toArray(),
+            fov: viewer.camera.fov,
+            target: viewer.runtime.miniature.views[key].target,
+            cutaway: viewer.runtime.miniature.cutaway,
+          };
+        },
+        { key, miniature },
+      );
       views.push({ key, label, file, camera: view });
     }
     if (views.length < 4) {
@@ -142,13 +174,19 @@ try {
     }
     if (errors.length)
       throw new Error(`${definition.title}: ${errors.join("\n")}`);
-    const entry = { id: definition.id, title: definition.title, views };
+    const entry = {
+      id: definition.id,
+      title: definition.title,
+      ...(definition.draft ? { draft: true } : {}),
+      ...(miniature ? { representation: "miniature" } : {}),
+      views,
+    };
     const index = results.findIndex((scene) => scene.id === entry.id);
     if (index === -1) results.push(entry);
     else results[index] = entry;
     await writeFile(
       manifestFile,
-      `${JSON.stringify({ phase: values.phase, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
+      `${JSON.stringify({ phase: values.phase, mode: values.mode, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
     );
     console.error(
       `${definition.title}: ${views.length} ${values.phase} views saved`,

@@ -18,6 +18,11 @@ approved composition, cameras, cultural setting or unrelated scenes.
 2. Inspect actual rendered arrivals, every named view, close details and
    reverse/connected views. Ask what looks wrong broadly before applying the
    full standard. Inspect all affected variants, not a representative favorite.
+   Inspect each diorama's miniature too: it must exist, represent the same
+   place coherently, and be discoverable alongside the landscape and/or interior.
+   It must be a peer interactive view with orbit/zoom and direct navigation,
+   not merely the small model attached to a globe marker.
+   A missing miniature fails the complete-diorama requirement.
 3. Record defects concretely: location, visible consequence, likely cause and
    criterion. Check blocked apertures, unsupported objects, false cavities,
    grain scale, repetition, blanket dirt, generic print, regular water and
@@ -31,7 +36,8 @@ approved composition, cameras, cultural setting or unrelated scenes.
 6. Run relevant source/browser checks, clearance probes, compact layouts,
    navigation, motion/audio preferences and disposal. Compare frame timing and
    resource counts under matched conditions. Run GPU-heavy checks sequentially.
-7. Present the running result and evidence for human judgment. Regenerate
+7. Present both the running environment and its miniature, with access
+   instructions and evidence for human judgment. Regenerate
    distributed previews only after visual inspection; distinguish technical
    success from beauty, atmosphere and photographic-read approval.
 

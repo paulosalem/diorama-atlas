@@ -9,6 +9,7 @@ import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { buildRiadEnvironment } from "../environments/riad/riad-scene.js";
 import { buildInteriorEnvironment } from "../environments/interiors/interior-scenes.js";
 import { createPanoramaControls } from "./panorama-controls.js";
+import { createMiniatureControls } from "./miniature-controls.js";
 import { addOutdoorReferences } from "./outdoor-references.js";
 import { addAboutButton } from "./about-atlas.js";
 import {
@@ -19,6 +20,7 @@ import { applySurfacePatina } from "../environments/shared/surface-patina.js";
 import { getLocale, subscribeLocale, t } from "../localization/locale.js";
 import { createSceneNarration } from "./scene-narration.js";
 import { sitePath, staticHosting } from "../site.js";
+import { hasClearSightline } from "./walking-space.js";
 
 let activeViewer = null;
 
@@ -35,6 +37,7 @@ export async function createViewer(
   const events = new AbortController();
   let disposed = false;
   let narration = null;
+  let miniature = null;
   app.innerHTML = `<section class="viewer" id="viewer"><header class="viewer-header"><div><p id="sceneRegion"></p><h1 id="sceneTitle"></h1></div><button id="resetViewButton">Reset view</button></header><div class="canvas-mount" id="canvasMount"><div class="hotspot-layer" id="hotspotLayer"></div><aside class="riad-detail-caption"><h2 id="riadDetailTitle"></h2><p id="riadDetailBody"></p><button id="listenButton">Listen</button></aside><div class="scene-loading" id="riadLoading" role="status">Preparing the space…</div></div><div class="riad-toolbar" id="riadToolbar"><div class="riad-viewpoints"></div><div class="riad-actions"><button id="riadDetails" aria-pressed="false">Show details</button><button id="riadExpand">Back to world</button></div></div><span id="riadViewLabel" class="sr-only" aria-live="polite"></span></section>`;
   document.title = `${t(definition.title)} · Diorama Atlas`;
   const viewer = app.querySelector("#viewer"),
@@ -122,9 +125,13 @@ export async function createViewer(
       ? (
           await import("../environments/outdoors/outdoor-scenes.js")
         ).buildOutdoorEnvironment(definition, renderer)
-      : definition.id === "riad"
-        ? buildRiadEnvironment(definition, renderer)
-        : buildInteriorEnvironment(definition, renderer);
+      : definition.environment === "domus"
+        ? (
+            await import("../environments/domus/domus-scene.js")
+          ).buildDomusEnvironment(definition, renderer)
+        : definition.id === "riad"
+          ? buildRiadEnvironment(definition, renderer)
+          : buildInteriorEnvironment(definition, renderer);
   } catch (error) {
     environment.dispose();
     daylight?.texture.dispose();
@@ -155,6 +162,12 @@ export async function createViewer(
     }
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    miniature?.resize();
+  }
+  function exit() {
+    const destination = sitePath(definition.draft ? "/?draft=1" : "/");
+    if (onNavigate) onNavigate(destination);
+    else location.href = destination;
   }
   const panorama = createPanoramaControls({
     camera,
@@ -170,13 +183,11 @@ export async function createViewer(
       stopNarration();
       narration?.setDetailsVisible(show);
     },
-    onExit: () => {
-      if (onNavigate) onNavigate(sitePath("/"));
-      else location.href = sitePath("/");
-    },
+    onExit: exit,
   });
   panorama.activate(runtime, definition);
-  if (outdoor) addOutdoorReferences(viewer, definition);
+  if (outdoor || definition.references)
+    addOutdoorReferences(viewer, definition);
   const audio = new Audio();
   let utterance = null;
   const listenButton = app.querySelector("#listenButton");
@@ -254,10 +265,16 @@ export async function createViewer(
   );
   app.querySelector("#resetViewButton").onclick = () => {
     stopNarration();
-    panorama.select();
+    if (miniature?.active) miniature.select();
+    else panorama.select();
   };
   app.querySelector("#listenButton").onclick = async () => {
-    if (staticHosting || outdoor || getLocale() === "pt-BR") {
+    if (
+      staticHosting ||
+      outdoor ||
+      runtime.walking ||
+      getLocale() === "pt-BR"
+    ) {
       if (!window.speechSynthesis) {
         setListenState("Speech unavailable");
         return;
@@ -317,11 +334,13 @@ export async function createViewer(
     if (frameDurations.length > 120) frameDurations.shift();
     const delta = Math.min((now - last) / 1000, 0.05);
     last = now;
+    panorama.update(delta);
+    runtime.updateCamera?.(camera, controls.target);
     if (!motionPreference.matches) {
       elapsed += delta;
       runtime.animations.forEach((fn) => fn(delta, elapsed));
     }
-    if (viewer.classList.contains("show-riad-details"))
+    if (!miniature?.active && viewer.classList.contains("show-riad-details"))
       runtime.hotspots.forEach((anchor, i) => {
         anchor.getWorldPosition(projected);
         projected.project(camera);
@@ -330,7 +349,14 @@ export async function createViewer(
           projected.z > 1 ||
           projected.z < 0 ||
           Math.abs(projected.x) > 0.96 ||
-          Math.abs(projected.y) > 0.94;
+          Math.abs(projected.y) > 0.94 ||
+          (runtime.walking &&
+            (camera.position.distanceTo(anchor.position) > 8 ||
+              !hasClearSightline(
+                runtime.walking.walls,
+                camera.position,
+                anchor.position,
+              )));
         b.style.left = `${(projected.x * 0.5 + 0.5) * mount.clientWidth}px`;
         b.style.top = `${(-projected.y * 0.5 + 0.5) * mount.clientHeight}px`;
       });
@@ -351,6 +377,7 @@ export async function createViewer(
     audio.load();
     renderer.setAnimationLoop(null);
     observer.disconnect();
+    miniature?.dispose();
     panorama.dispose();
     controls.dispose();
     runtime.dispose?.();
@@ -371,7 +398,24 @@ export async function createViewer(
       return narration;
     },
     dispose,
-    selectView: panorama.select,
+    selectView(key) {
+      if (miniature?.active) miniature.setMode("interior");
+      panorama.select(key);
+    },
+    setMode(mode) {
+      if (!miniature)
+        throw new Error("This environment has no miniature view.");
+      miniature.setMode(mode);
+    },
+    selectMiniatureView(key) {
+      if (!miniature)
+        throw new Error("This environment has no miniature view.");
+      miniature.setMode("miniature");
+      miniature.select(key);
+    },
+    get mode() {
+      return miniature?.active ? "miniature" : "interior";
+    },
     lookAt: panorama.lookAt,
     get elapsed() {
       return elapsed;
@@ -388,7 +432,43 @@ export async function createViewer(
     const patina = applySurfacePatina(runtime.group, definition, runtime.views);
     runtime.patina = patina.stats;
     runtime.patinaController = patina;
+    runtime.miniature?.setActive(false);
     runtime.captureReflections?.(scene);
+    if (runtime.miniature) {
+      miniature = createMiniatureControls({
+        runtime,
+        camera,
+        controls,
+        canvas: renderer.domElement,
+        viewer,
+        panorama,
+        onExit: exit,
+        onChange: (active) => {
+          stopNarration();
+          narration?.setDetailsVisible(
+            active || viewer.classList.contains("show-riad-details"),
+          );
+          scene.background.set(
+            active ? runtime.miniature.background : runtime.background,
+          );
+          scene.environmentIntensity = active
+            ? runtime.miniature.environmentIntensity
+            : runtime.environmentIntensity;
+          renderer.toneMappingExposure = active
+            ? runtime.miniature.exposure
+            : runtime.exposure;
+          renderer.localClippingEnabled = active && runtime.miniature.cutaway;
+          // GTAO's normal override cannot represent per-material section planes.
+          ao.enabled = !renderer.localClippingEnabled;
+        },
+      });
+      miniature.setMode(
+        new URLSearchParams(location.search).get("mode") ?? "interior",
+        { updateUrl: false },
+      );
+      resize();
+      miniature.ready();
+    }
     composer.render();
     last = performance.now();
     renderer.setAnimationLoop(renderFrame);
@@ -407,6 +487,7 @@ export async function createViewer(
         stopNarration,
         initialView: requestedView,
       });
+      if (miniature?.active) narration.setDetailsVisible(true);
     }
   } catch (error) {
     dispose();

@@ -31,6 +31,7 @@ test("preview publishing includes Marrakech and retains unselected capture prove
       "base64",
     );
     await writeFile(path.join(root, "captures/riad-courtyard.png"), png);
+    await writeFile(path.join(root, "captures/unfinished-interior.png"), png);
     await writeFile(
       path.join(root, "captures/capture.json"),
       JSON.stringify({
@@ -40,6 +41,11 @@ test("preview publishing includes Marrakech and retains unselected capture prove
           {
             id: "riad",
             views: [{ key: "courtyard", file: "riad-courtyard.png" }],
+          },
+          {
+            id: "unfinished-interior",
+            draft: true,
+            views: [{ key: "arrival", file: "unfinished-interior.png" }],
           },
         ],
       }),
@@ -81,7 +87,12 @@ test("preview publishing includes Marrakech and retains unselected capture prove
     assert.equal(credits.unchanged, undefined);
     assert.deepEqual(credits.drafts, [draft]);
     assert.deepEqual(credits.outdoors, [outdoor]);
-    assert.equal(credits.rendered.length, 2);
+    assert.equal(credits.rendered.length, 3);
+    assert.equal(
+      credits.rendered.find((entry) => entry.scene === "unfinished-interior")
+        .draft,
+      true,
+    );
     assert.deepEqual(
       credits.rendered.find((entry) => entry.scene === "kissaten"),
       {
@@ -106,6 +117,50 @@ test("preview publishing includes Marrakech and retains unselected capture prove
       await readFile(path.join(root, "public/previews/riad.png")),
       png,
     );
+    const publishedCredits = await readFile(
+      path.join(root, "public/previews/credits.json"),
+    );
+    for (const miniature of [
+      {
+        mode: "miniature",
+        scenes: [
+          {
+            id: "riad",
+            views: [{ key: "overview", file: "riad-courtyard.png" }],
+          },
+        ],
+      },
+      {
+        scenes: [
+          {
+            id: "riad",
+            representation: "miniature",
+            views: [{ key: "overview", file: "riad-courtyard.png" }],
+          },
+        ],
+      },
+    ]) {
+      await writeFile(
+        path.join(root, "captures/capture.json"),
+        JSON.stringify({ phase: "after", ...miniature }),
+      );
+      await assert.rejects(
+        promisify(execFile)(process.execPath, [
+          path.join(root, "scripts/publish-previews.mjs"),
+          "--input",
+          path.join(root, "captures/capture.json"),
+        ]),
+        /Miniature captures must not replace/,
+      );
+      assert.deepEqual(
+        await readFile(path.join(root, "public/previews/credits.json")),
+        publishedCredits,
+      );
+      assert.deepEqual(
+        await readFile(path.join(root, "public/previews/riad.png")),
+        png,
+      );
+    }
   } finally {
     await rm(root, { recursive: true, force: true });
   }

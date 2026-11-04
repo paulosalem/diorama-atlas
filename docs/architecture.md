@@ -46,6 +46,34 @@ consolidated credits, narration controls, and navigation. Outdoor definitions us
 `environments/outdoors/`; otherwise it chooses the dedicated riad builder for
 `scene.id === "riad"` and `environments/interiors/` for the remaining places.
 
+The explicitly gated Roman draft instead loads `environments/domus/`.
+Its layout is shared by architecture, wall openings and walking collisions.
+Furniture adds its own footprints; the viewer uses wall-segment sightlines to
+hide occluded inspection points. The dedicated composition still uses the shared
+material, batching, water, narration, audio and resource-ownership mechanisms.
+Its forward renderer selects six nearby point lights from the complete fixture
+set instead of shading every pixel with all 22. Selection follows walking and
+named views even under reduced motion. Full-resolution solar shadows refresh
+at a cadence suited to the restrained foliage movement; frozen scenes reuse
+their existing shadow map.
+
+The domus also exposes `runtime.miniature`: the same furnished group, with
+independently batched roofs, sectioned architectural materials and a display
+base. `miniature-controls.js` owns reversible peer-view transitions, orbit/pan/
+zoom and aspect-aware framing. It suspends rather than recreates the walking
+controller, preserves both camera poses and updates `mode=miniature|interior`.
+Point-light selection follows the miniature's focus instead of its elevated
+camera. Cutaway views use real sun/contact shadows without GTAO, whose normal
+override does not honor per-material clipping planes; Interior restores the
+original lighting, postprocessing, architecture and narration.
+Section-only material copies are used only in cutaway mode; Interior reuses
+the original shared materials rather than paying for additional material switches.
+
+Static subgroups marked `userData.batchRoot` retain their visibility boundary
+through the shared batcher. Merged vertices are expressed in that root's local
+coordinates. This is not an animation exemption: roof and section geometry
+remain batched, owned and disposed with the single runtime.
+
 `localization/` owns the global en-US/pt-BR preference and presentation dictionaries.
 Subscriptions update text in place without replacing original definitions,
 rebuilding geometry, or disturbing camera and audio state. Original definitions

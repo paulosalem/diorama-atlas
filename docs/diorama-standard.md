@@ -11,6 +11,23 @@ Read this alongside [the philosophy](philosophy.md), the relevant
 that explain its nuances. Inspect Marrakech and a structurally relevant
 existing family before choosing an implementation.
 
+## Required representations
+
+**Every new diorama must include its landscape and/or interior plus its
+corresponding miniature.** This is a joint completion requirement for new places,
+variants, families and generated-scene pathways, not an optional enhancement.
+The miniature is a rendered 3D representation of the same place, not a screenshot,
+preview card, map pin or unrelated symbol. Its architecture, layout, materials
+and cultural identity must agree with the environment at its intended scale.
+It is a **full interactive peer view**, with orbit/zoom, its own direct link and
+a clear switch to the interior or landscape. The small model on a globe marker
+is navigation furniture, not this deliverable.
+
+Both representations must be integrated, discoverable, visually inspected and
+explicitly presented in the handoff. Verify their navigation, compact layouts
+and resource lifecycle. If either is absent or unfinished, the diorama remains
+unfinished; do not describe an environment-only handoff as complete.
+
 ## 1. Begin with a place and a reason
 
 - Identify a region, cultural practice, building/landscape type, intended era,

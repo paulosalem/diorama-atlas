@@ -800,16 +800,24 @@ export function createEnvironmentKit(
         o.material.transparent
       )
         return;
-      const key = `${o.material.uuid}/${Boolean(o.geometry.index)}/${o.castShadow}`;
+      let root = o.parent;
+      while (root !== group && !root.userData.batchRoot) root = root.parent;
+      const key = `${root.uuid}/${o.material.uuid}/${Boolean(o.geometry.index)}/${o.castShadow}`;
       if (!batches.has(key))
         batches.set(key, {
+          root,
           material: o.material,
           cast: o.castShadow,
           pieces: [],
         });
       const geo = o.geometry.clone();
       stampSurfaceVariation(geo, o.matrixWorld);
-      geo.applyMatrix4(o.matrixWorld);
+      geo.applyMatrix4(
+        new THREE.Matrix4()
+          .copy(root.matrixWorld)
+          .invert()
+          .multiply(o.matrixWorld),
+      );
       batches.get(key).pieces.push(geo);
       remove.push(o);
     });
@@ -817,7 +825,7 @@ export function createEnvironmentKit(
       const geo = mergeGeometries(b.pieces, false);
       b.pieces.forEach((p) => p.dispose());
       if (!geo) throw new Error(`Could not assemble ${definition.title}.`);
-      const o = mesh(geo, b.material);
+      const o = mesh(geo, b.material, [0, 0, 0], [0, 0, 0], b.root);
       o.castShadow = b.cast;
     }
     remove.forEach((o) => {
@@ -884,6 +892,7 @@ export function createEnvironmentKit(
         textures.forEach((t) => t.dispose());
         group.traverse((o) => {
           if (o.isLight) o.dispose();
+          if (o.isInstancedMesh) o.dispose();
         });
         materials.dispose();
       },

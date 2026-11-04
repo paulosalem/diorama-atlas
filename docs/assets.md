@@ -26,6 +26,15 @@ exact text, language, model, voice, instructions and hashes in
 These are generated outputs under the recorded provider terms, not CC0 field
 recordings or human performances. See [narration](narration.md).
 
+The separately gated [Roman domus draft](scenes/roman-domus.md) adds 40 recorded
+passages in the same narration manifest and 11 inspected archaeological photographs
+in [`public/domus/references.json`](../public/domus/references.json).
+[`public/domus/manifest.json`](../public/domus/manifest.json) preserves source,
+author, license, retrieval and hash evidence. These references include museum and
+excavation photographs, not photographs of the invented household. Two supply
+painted surfaces in the draft. Their recorded licenses also appear in About.
+These additions do not change the released collection totals above.
+
 The [Douro vineyard](scenes/douro-vineyard.md) adds four inspected Commons
 photographs, a generic CC0 ground scan, two small photographic grape-leaf
 cutouts, a higher-resolution green leaf and an inspected CC0 clear-sky HDR.
