@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { furnishDomusGarden } from "./domus-garden.js";
 
 export function furnishDomus(kit, m, architecture, o) {
   const { box, sub, cylinder, sphere, rod, tube, ring } = kit;
@@ -99,24 +100,91 @@ export function furnishDomus(kit, m, architecture, o) {
     }
   };
   const tunic = (position, parent) => {
-    const shape = new THREE.Shape();
-    shape.moveTo(-0.27, 0);
-    shape.lineTo(0.27, 0);
-    shape.lineTo(0.3, 0.61);
-    shape.lineTo(0.51, 0.7);
-    shape.lineTo(0.42, 0.93);
-    shape.lineTo(0.17, 0.88);
-    shape.quadraticCurveTo(0, 0.77, -0.17, 0.88);
-    shape.lineTo(-0.42, 0.93);
-    shape.lineTo(-0.51, 0.7);
-    shape.lineTo(-0.3, 0.61);
-    shape.closePath();
-    const geo = new THREE.ShapeGeometry(shape, 16);
-    const p = geo.attributes.position;
-    for (let i = 0; i < p.count; i++)
-      p.setZ(i, Math.sin(p.getX(i) * 32) * 0.014);
-    geo.computeVertexNormals();
-    return kit.mesh(geo, m.linen, position, [0, 0, 0], parent);
+    const garment = sub(position, 0, parent);
+    garment.name = "domus-hanging-tunic";
+    const positions = [],
+      uvs = [],
+      indices = [];
+    const rows = 36,
+      columns = 24;
+    const panelSize = (rows + 1) * (columns + 1);
+    const vertex = (row, col, side) =>
+      side * panelSize + row * (columns + 1) + col;
+    for (let side = 0; side < 2; side++)
+      for (let row = 0; row <= rows; row++) {
+        const v = row / rows;
+        const width =
+          v < 0.66
+            ? 0.28 + v * 0.03
+            : v < 0.76
+              ? 0.3 + (v - 0.66) * 1.9
+              : 0.49 - (v - 0.76) * 0.25;
+        for (let col = 0; col <= columns; col++) {
+          const u = col / columns;
+          const x = (u * 2 - 1) * width;
+          const neckline = 0.12 * Math.exp(-((x / 0.14) ** 4));
+          const y = v * 0.93 - neckline * Math.max(0, (v - 0.85) / 0.15);
+          const z =
+            (side ? -1 : 1) * (0.018 + 0.022 * Math.sin(Math.PI * u)) +
+            Math.sin(x * 43 + v * 0.7) * (0.012 + (1 - v) * 0.015);
+          positions.push(x, y, z);
+          uvs.push(u, v);
+          if (row < rows && col < columns) {
+            const a = vertex(row, col, side),
+              b = a + columns + 1;
+            if (side) indices.push(a, b, a + 1, a + 1, b, b + 1);
+            else indices.push(a, a + 1, b, a + 1, b + 1, b);
+          }
+        }
+      }
+    // Join the sides and shoulders, leaving neck, sleeves and hem open.
+    for (let row = 0; row < Math.floor(rows * 0.66); row++)
+      for (const col of [0, columns]) {
+        const a = vertex(row, col, 0),
+          b = vertex(row + 1, col, 0);
+        const c = vertex(row, col, 1),
+          d = vertex(row + 1, col, 1);
+        indices.push(a, b, c, b, d, c);
+      }
+    for (let col = 0; col < columns; col++) {
+      if (col >= 8 && col < 16) continue;
+      const a = vertex(rows, col, 0),
+        b = vertex(rows, col, 1);
+      indices.push(a, b, a + 1, a + 1, b, b + 1);
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(positions, 3),
+    );
+    geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+    geometry.setIndex(indices);
+    geometry.computeVertexNormals();
+    kit.mesh(geometry, m.linen, [0, 0, 0], [0, 0, 0], garment);
+    for (const side of [0, 1])
+      for (const row of [0, rows]) {
+        const edge = [];
+        for (let col = 0; col <= columns; col++) {
+          const offset = vertex(row, col, side) * 3;
+          edge.push(positions.slice(offset, offset + 3));
+        }
+        tube(edge, 0.002, m.linen, garment);
+      }
+    rod([-0.35, 1.05, -0.075], [0.35, 1.05, -0.075], 0.022, m.wood, garment);
+    for (const x of [-0.23, 0.23]) {
+      rod([x, 1.05, -0.15], [x, 1.05, -0.06], 0.015, m.wood, garment);
+      tube(
+        [
+          [x, 0.93, 0],
+          [x, 1.07, -0.075],
+          [x, 0.93, -0.025],
+        ],
+        0.004,
+        m.linen,
+        garment,
+      );
+    }
+    return garment;
   };
 
   // Reception and the transition from street to household.
@@ -316,8 +384,7 @@ export function furnishDomus(kit, m, architecture, o) {
   personalCare(vanity, 0.74);
   lamp([0.3, 0.75, -0.17], vanity, true);
   sandals([-10.1, 0.02, 2.6]);
-  tunic([-11.6, 1.25, 5.8]);
-  rod([-12.3, 2.3, 5.72], [-10.7, 2.3, 5.72], 0.03, m.wood);
+  tunic([-11.6, 1.25, 5.8]).rotation.y = Math.PI;
   mark("rest", [-11, 0.72, 1.8]);
   mark("grooming", [-12.1, 0.83, 3.7]);
   const study = table([-10.6, 0, -4.7], 1.8, 0.8, 0.76);
@@ -396,23 +463,7 @@ export function furnishDomus(kit, m, architecture, o) {
   basket([-9.6, 0, -15.2]);
   mark("childhood", [-9.6, 0.5, -19]);
 
-  for (const x of [-2.5, 2.5])
-    for (const z of [-8.85, -13.15]) {
-      plant([x, 0.12, z], z < -10 ? 1.8 : 1.1);
-      for (let i = 0; i < 5; i++) {
-        const a = i * 2.4;
-        plant([x + Math.cos(a) * 0.87, 0.12, z + Math.sin(a) * 0.87], 0.3);
-      }
-    }
-  const gardenBasin = furniture([0, 0, -11], 1.45, 1.1);
-  bowl([0, 0.06, 0], 0.62, 0.3, m.stone, gardenBasin);
-  mark("garden", [0, 0.5, -11]);
-  bench([-5.8, 0, -13.1], 1.8, Math.PI / 2);
-  bench([5.8, 0, -8.4], 1.7, Math.PI / 2);
-  jar([5.7, 0, -14.8], { height: 0.55, radius: 0.22 });
-  rod([6.5, 0, -14.4], [6.3, 1.35, -14.6], 0.022, m.wood);
-  box([0.16, 0.25, 0.025], [6.49, 0.15, -14.4], m.iron);
-  mark("garden-work", [6.2, 0.7, -14.6]);
+  Object.assign(points, furnishDomusGarden(kit, m, o));
   couch([-3.7, 0, -19.75], 0, { width: 2.4 });
   couch([3.7, 0, -19.75], Math.PI, { width: 2.4 });
   const exedra = table([-3.4, 0, -18.65], 0.85, 0.65, 0.58);

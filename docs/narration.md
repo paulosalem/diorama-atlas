@@ -1,11 +1,11 @@
 # Narration
 
-All **23 bundled dioramas** have original, prerecorded cultural explanations
+All **24 bundled dioramas** have original, prerecorded cultural explanations
 in **en-US** and **pt-BR**, using OpenAI's `gpt-4o-mini-tts` model and `cedar`
-voice. The collection contains **476 recordings**, totaling **153.36 MB**,
-covering 105 original guided viewpoints, 104 object details and all 134 Miniature
+voice. The collection contains **566 recordings**, totaling **189.76 MB**,
+covering 125 original guided viewpoints, 129 object details and all 139 Miniature
 views in both languages. Identical text in the same language reuses a recording:
-there are 686 playable view/detail/language combinations, not 686 duplicate files.
+there are 786 playable view/detail/language combinations, not 786 duplicate files.
 Each arrival introduces the
 place's cultural value; focused views discuss the visible architecture,
 materials, work, or connected space. The voice is explicitly disclosed as
@@ -60,6 +60,11 @@ and Stop controls. View changes, language changes, hiding, muting and navigation
 cancel pending as well as active playback. It never substitutes a browser voice.
 Recordings are not requested before consent; missing audio produces a visible
 retry message while the transcript remains readable.
+
+The domus keeps its same runtime and narration element when switching between
+Interior and Miniature. Its five miniature compositions reuse exact household
+passages; miniature orbiting does not trigger eye-level proximity narration.
+The 40 room and 50 detail recordings cover its 100 bilingual playback choices.
 
 The GitHub Pages edition serves these same prerecorded files beneath its
 project path for guided views, object details and Miniatures. Neither a browser

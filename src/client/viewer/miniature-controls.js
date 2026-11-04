@@ -36,6 +36,7 @@ export function createMiniatureControls({
   viewer,
   panorama,
   onChange,
+  onSelect,
   onExit,
 }) {
   const miniature = runtime.miniature;
@@ -46,6 +47,8 @@ export function createMiniatureControls({
   let savedInterior = null;
   let savedMiniature = null;
   let selected = "overview";
+  const opening = new URLSearchParams(location.search).get("open");
+  if (opening === "0" || opening === "1") miniature.setCutaway(opening === "1");
   let aspect = camera.aspect;
   const pointers = new Set();
   const modes = document.createElement("nav");
@@ -127,12 +130,16 @@ export function createMiniatureControls({
     camera.lookAt(controls.target);
   }
   const framingBounds = () =>
-    miniature.views[selected].bounds ?? miniature.bounds;
-  function select(key = "overview") {
+    miniature.cutaway
+      ? (miniature.views[selected].bounds ?? miniature.bounds)
+      : miniature.bounds;
+  function select(key = "overview", { notify = true, updateUrl = true } = {}) {
     const view = miniature.views[key];
     if (!view) throw new RangeError(`Unknown miniature viewpoint: ${key}`);
     selected = key;
-    controls.target.fromArray(view.target);
+    controls.target.fromArray(
+      !miniature.cutaway && view.closedTarget ? view.closedTarget : view.target,
+    );
     camera.position.fromArray(view.position);
     camera.fov = 45;
     camera.near = 0.1;
@@ -150,6 +157,12 @@ export function createMiniatureControls({
     controls.update();
     aspect = camera.aspect;
     localize();
+    if (updateUrl && active) {
+      const url = new URL(location.href);
+      url.searchParams.set("view", key);
+      history.replaceState(history.state, "", url);
+    }
+    if (notify) onSelect?.(key);
   }
   function setMode(mode, { updateUrl = true } = {}) {
     if (!Object.hasOwn(labels, mode))
@@ -181,7 +194,7 @@ export function createMiniatureControls({
       if (savedMiniature) {
         restorePose(savedMiniature);
         resize();
-      } else select();
+      } else select("overview", { notify: false, updateUrl: false });
       controls.update();
     } else {
       restorePose(savedInterior);
@@ -189,6 +202,7 @@ export function createMiniatureControls({
     }
     if (updateUrl) {
       const url = sceneVersionUrl(location.href, mode);
+      if (active) url.searchParams.set("open", miniature.cutaway ? "1" : "0");
       history.replaceState(history.state, "", url);
     }
     localize();
@@ -218,6 +232,10 @@ export function createMiniatureControls({
     listen(button, "click", () => setMode(button.dataset.mode));
   listen(roofButton, "click", () => {
     miniature.setCutaway(!miniature.cutaway);
+    select("overview");
+    const url = new URL(location.href);
+    url.searchParams.set("open", miniature.cutaway ? "1" : "0");
+    history.replaceState(history.state, "", url);
     localize();
     onChange(active);
   });
@@ -258,6 +276,9 @@ export function createMiniatureControls({
     resize,
     get active() {
       return active;
+    },
+    get selected() {
+      return selected;
     },
     ready() {
       modes.inert = false;

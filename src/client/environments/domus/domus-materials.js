@@ -92,6 +92,82 @@ export function createDomusMaterials(kit) {
   const portrait = kit.material(0xffffff, 0.98);
   portrait.map = kit.imageTexture("/public/domus/writing.jpg");
   portrait.userData.artwork = true;
+  const gardenArt = kit.material(0xffffff, 0.96);
+  gardenArt.map = kit.imageTexture("/public/domus/garden-fresco.jpg");
+  gardenArt.userData.artwork = true;
+  const soil = kit.material(0xffffff, 1);
+  soil.map = kit.texture(
+    (ctx, size) => {
+      ctx.fillStyle = "#493b29";
+      ctx.fillRect(0, 0, size, size);
+      for (let i = 0; i < 16000; i++) {
+        const value = kit.range(19, 39);
+        ctx.fillStyle = `hsl(${kit.range(22, 38)} 20% ${value}%)`;
+        ctx.fillRect(
+          kit.random() * size,
+          kit.random() * size,
+          kit.range(0.5, 2.6),
+          kit.range(0.5, 2.6),
+        );
+      }
+    },
+    [1, 1],
+    512,
+  );
+  soil.bumpMap = soil.map;
+  soil.bumpScale = 0.009;
+  soil.userData.patinaProfile = "none";
+  const writing = (background, ink, lines, fibrous) => {
+    const material = kit.material(0xffffff, 0.93);
+    material.map = kit.texture(
+      (ctx, size) => {
+        ctx.fillStyle = background;
+        ctx.fillRect(0, 0, size, size);
+        ctx.globalAlpha = fibrous ? 0.13 : 0.055;
+        ctx.strokeStyle = ink;
+        for (let i = 0; i < 700; i++) {
+          const y = kit.random() * size;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(size, y + kit.range(-2, 2));
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = ink;
+        ctx.font = `${Math.floor(size * 0.055)}px serif`;
+        lines.forEach((line, row) => {
+          for (let col = 0; col < line.length; col++) {
+            ctx.save();
+            ctx.translate(
+              size * (0.13 + col * 0.048),
+              size * (0.23 + row * 0.145) + kit.range(-1.4, 1.4),
+            );
+            ctx.rotate(kit.range(-0.055, 0.055));
+            ctx.fillText(line[col], 0, 0);
+            ctx.restore();
+          }
+        });
+      },
+      [1, 1],
+      512,
+    );
+    material.userData.artwork = true;
+    material.userData.patinaProfile = "none";
+    return material;
+  };
+  // Original illustrative accounts, not facsimiles or historical inscriptions.
+  const papyrus = writing(
+    "#cbb98c",
+    "#46362b",
+    ["AD VILICVM", "VINVM XII", "OLEVM VI", "FRVMENTVM XX", "VALE"],
+    true,
+  );
+  const writtenWax = writing(
+    "#483429",
+    "#a98a5a",
+    ["PANIS VI", "OLIVAE III", "VINVM II", "OLEVM I"],
+    false,
+  );
   return {
     red,
     ochre,
@@ -112,7 +188,10 @@ export function createDomusMaterials(kit) {
     glass,
     fruitArt,
     portrait,
-    soil: kit.material(0x625640, 1),
+    gardenArt,
+    soil,
+    papyrus,
+    writtenWax,
     leaf: kit.material(0x4f6741, 0.95),
     leafLight: kit.material(0x76835a, 0.95),
     bread: kit.material(0xae7b39, 0.94),

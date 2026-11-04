@@ -1,6 +1,6 @@
 # The collection
 
-**23 imagined places, 19 geographic settings, 105 viewpoints.** Each brief
+**24 imagined places, 20 geographic settings, 125 viewpoints.** Each brief
 records cultural intent, composition, material and atmospheric priorities,
 actual view keys and implementation entry points. The brief guides development;
 it is not evidence that an invented building exists.
@@ -42,19 +42,22 @@ before changing it. Preserve distinct saved variants and approved cameras.
 | [Lao Temple Court](lao-temple-court.md)                     | Layered roofs and a calm precinct                   | [Open](https://paulosalem.github.io/diorama-atlas/?scene=lao-temple-court&inspect=1)           |
 | [Douro Vineyard](douro-vineyard.md)                         | Trained vines, schist terraces and a working quinta | [Open](https://paulosalem.github.io/diorama-atlas/?scene=douro-vineyard&inspect=1)             |
 
-## Unfinished local interiors
+## A walkable ancient household
 
-[Living Roman Domus](roman-domus.md) is a separately gated, walkable Campanian
+[Living Roman Domus](roman-domus.md) is a walkable Campanian
 household interpretation, circa AD 60: 21 spaces, 20 viewpoints and bilingual
-object interpretation. Preview locally with `?scene=roman-domus&inspect=1&draft=1`.
-It is **not part of the released collection or a completed historical reconstruction**.
-The brief distinguishes researched evidence, interpretive choices and remaining
-visual-quality work. Its 40 recorded passages do not imply release readiness.
+object interpretation. [Walk inside](https://paulosalem.github.io/diorama-atlas/?scene=roman-domus&version=interior)
+or [turn its miniature](https://paulosalem.github.io/diorama-atlas/?scene=roman-domus&version=miniature).
+Its cultivated garden, reception rooms and working household share the same
+geometry in both representations. Ninety recordings cover room and object
+explanations in both languages, with appropriate reuse in five miniature views.
+The brief distinguishes archaeological evidence from interpretive choices;
+this is not a definitive recovered household inventory.
 
 ## Reading and maintaining a brief
 
-The first view is `courtyard` in Marrakech, `room` in other interiors, and
-`arrival` outdoors. The narration manifest represents the arrival passage with
+The first view is `courtyard` in Marrakech, `atrium` in the Roman domus,
+`room` in other interiors, and `arrival` outdoors. The narration manifest represents the arrival passage with
 an omitted `view`; this is not an extra camera named "intro."
 
 Regional source links accompany the arrival texts in the

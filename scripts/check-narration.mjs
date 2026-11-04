@@ -317,7 +317,7 @@ try {
     await context.clearCookies();
     audioRequests.length = 0;
     await page.goto(
-      `${base}/?scene=${encodeURIComponent(scene.id)}&version=miniature`,
+      `${base}/?scene=${encodeURIComponent(scene.id)}&version=miniature${scene.draft ? "&draft=1" : ""}`,
     );
     await waitForViewer(page, { timeout: 120_000 });
     assert.deepEqual(
@@ -325,24 +325,54 @@ try {
       [],
       `${scene.id}: miniature audio before consent`,
     );
+    const shared = (await page.locator("[data-miniature-view]").count()) > 0;
     const miniatureViews = await page
-      .locator("#miniatureViews button")
-      .evaluateAll((buttons) => buttons.map((button) => button.dataset.view));
+      .locator(shared ? "[data-miniature-view]" : "#miniatureViews button")
+      .evaluateAll((buttons) =>
+        buttons.map(
+          (button) => button.dataset.miniatureView ?? button.dataset.view,
+        ),
+      );
+    assert.ok(
+      miniatureViews.length >= 5,
+      `${scene.id}: incomplete miniature viewpoints`,
+    );
+    const transcript = page.locator(
+      shared ? ".narration-text" : "#miniatureStoryText",
+    );
+    const listen = page.locator(shared ? "#narrationPlay" : "#miniatureListen");
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const key of miniatureViews) {
-        await page.locator(`#miniatureViews [data-view="${key}"]`).click();
-        const text = await page.locator("#miniatureStoryText").textContent();
+        await page
+          .locator(
+            shared
+              ? `[data-miniature-view="${key}"]`
+              : `#miniatureViews [data-view="${key}"]`,
+          )
+          .click();
+        const text = await transcript.textContent();
         const asset = findNarrationRecording(manifest.assets, locale, text);
         assert.ok(
           asset,
           `${scene.id}/${key}/${locale}: missing miniature recording`,
         );
-        await page.locator("#miniatureListen").click();
+        if (shared)
+          await expect(page.locator(".scene-narration")).not.toHaveAttribute(
+            "data-state",
+            "loading",
+          );
+        if (
+          !shared ||
+          (await page
+            .locator(".scene-narration")
+            .getAttribute("data-state")) !== "playing"
+        )
+          await listen.click();
         await playing(page, asset);
-        await page.locator("#miniatureListen").click();
+        await listen.click();
         entry.miniature.push({ view: key, locale, asset: asset.id });
-        if (key === "whole")
+        if (key === miniatureViews[0])
           await page.screenshot({
             path: resolve(output, `${scene.id}--miniature--${locale}.png`),
           });

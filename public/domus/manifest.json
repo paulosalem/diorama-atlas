@@ -1,7 +1,7 @@
 {
   "version": 1,
   "scene": "roman-domus",
-  "processing": "Wikimedia imageinfo metadata and 1280-pixel thumbnails retrieved with curl. Reference images preserved without edits. paintings.jpg and writing.jpg also supply the scene's painted surfaces; their archaeological wear is not evidence of the fictional household's condition. CC0 license links are normalized to the canonical HTTPS URL. The images depict archaeological evidence, not this fictional house.",
+  "processing": "Wikimedia imageinfo metadata and thumbnails retrieved with curl. The original eleven reference images are preserved without edits. paintings.jpg, writing.jpg and the documented crop garden-fresco.jpg supply painted surfaces; their archaeological wear is not evidence of the fictional household's condition. CC0 license links are normalized to the canonical HTTPS URL. The images depict archaeological evidence, not this fictional house.",
   "references": [
     {
       "label": "The peristyle of the House of Menander (Regio I), Pompeii.jpg",
@@ -145,6 +145,21 @@
       "sha256": "b60bda903cebc577ce461cc66bfc176de40fde1ab6429b0463c810c5805abf35",
       "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg/1280px-Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "retrieved": "2026-11-04T15:40:22.538673+00:00"
+    },
+    {
+      "label": "Garden fresco from the Villa of Livia, Palazzo Massimo",
+      "url": "https://commons.wikimedia.org/wiki/File:Villa_of_Livia_-_Garden_fresco_002.jpg",
+      "image": "/public/domus/garden-fresco.jpg",
+      "author": "Gleb Simonov; ancient Roman painting",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "date": "Retrieved 2026-11-04",
+      "note": "Augustan garden painting from Prima Porta, near Rome, not Pompeii or this invented household. The photograph is a source reproduction, not newly generated imagery.",
+      "sha256": "fda8dfe3bb2808870a0382e14deb2bce66440dc8a882caf09d5899b604409396",
+      "sourceSha256": "d6e2b7c6bab8215cf392be2540039d3d3af384679487c397a70fbd21c1a63063",
+      "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Villa_of_Livia_-_Garden_fresco_002.jpg/3840px-Villa_of_Livia_-_Garden_fresco_002.jpg",
+      "retrieved": "2026-11-04",
+      "processing": "Crop [530,150,3320,1140] from the 3840x1469 photograph, removing museum railings, missing upper plaster and adjacent angled walls. Lanczos resize to 2048x727; JPEG quality 94. No repainting or generative restoration. Left and right halves are used on separate wall panels."
     }
   ]
 }

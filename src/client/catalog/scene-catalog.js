@@ -3,7 +3,7 @@ import { sitePath, staticHosting } from "../site.js";
 import { domusScene } from "./domus-catalog.js";
 import { interiorVersions } from "./scene-versions.js";
 
-export const interiorDraftScenes = [domusScene];
+export const interiorDraftScenes = [];
 
 export const curatedScenes = [
   {
@@ -512,6 +512,7 @@ export const curatedScenes = [
       colors: ["#5c8a6a", "#e7d3b7", "#6a4830", "#b78e54", "#d3c2a7"],
     },
   },
+  domusScene,
 ];
 
 export async function loadScenes({ includeDrafts = false } = {}) {

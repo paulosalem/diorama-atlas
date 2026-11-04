@@ -12,7 +12,8 @@ not the address of the anonymous modeled scene.
 
 Inside, drag or use arrow keys to look around. Scroll or press `+` / `-` to
 zoom. Named viewpoint buttons move you between authored positions; this is not
-a free-walking game. **Reset view** returns to the arrival framing.
+a free-walking game. The Roman domus additionally supports walking with W/A/S/D
+or its on-screen directional pad. **Reset view** returns to the arrival framing.
 **Back to world** returns to the globe, preserving its orientation.
 
 ## Use the whole screen
@@ -55,6 +56,12 @@ up and sideways, revealing the rooms and passages. **Close miniature** brings
 the pieces back together. Choosing an interior detail opens the shell
 automatically; closing from a detail returns to the whole-object view.
 Reduced-motion preferences make the same change immediately.
+
+The Roman domus starts as a cutaway. **Cutaway** closes or lifts its roof;
+**Whole house**, **Courtyards**, **Peristyle garden**, **Working household**
+and **House plan** reveal its organization. Switching back to **Interior**
+restores your walking position. Its familiar Play/Pause narration panel serves
+both representations.
 
 **Listen to this view** plays an OpenAI recording of the accompanying passage.
 It remains silent until selected, stops when you change views or hide
@@ -99,8 +106,8 @@ shell. For example:
 
 ## What the public edition includes
 
-All 23 bundled scenes, material imagery, references, music, ambience and
-476 OpenAI recordings are served as static files. Guided visits, Miniatures
+All 24 bundled scenes, material imagery, references, music, ambience and
+566 OpenAI recordings are served as static files. Guided visits, Miniatures
 and object-detail **Listen** use these recordings in both languages.
 The public edition cannot create scenes or generate recordings; those optional
 tools belong to the [local development environment](development.md).

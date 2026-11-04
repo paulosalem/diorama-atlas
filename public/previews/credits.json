@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-03T18:37:09.141Z",
+  "checkedAt": "2026-11-04T22:19:18.524Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -170,12 +170,11 @@
     {
       "file": "roman-domus.png",
       "scene": "roman-domus",
-      "draft": true,
       "view": "atrium",
       "width": 1232,
       "height": 734,
-      "bytes": 939923,
-      "sha256": "ba64d98048c5381a72b67bb3700083aafdcc5fd95cc80dbefc42d6d87d4bb923",
+      "bytes": 948232,
+      "sha256": "980590d268522f9c9a8df1d40c714364b5678c3a779570e26e432a1eef80da04",
       "viewport": {
         "width": 1280,
         "height": 900

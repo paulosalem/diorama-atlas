@@ -50,6 +50,34 @@ export function createDomusMiniature(kit, architecture, sun) {
       caps,
       0,
     );
+  const shellOffset = new THREE.Vector3(-37, 9, -3);
+  const upperPlane = new THREE.Plane(
+    new THREE.Vector3(0, 1, 0),
+    -sectionHeight,
+  );
+  const upper = kit.sub();
+  upper.name = "domus-lifted-envelope";
+  upper.userData.batchRoot = true;
+  upper.visible = false;
+  const upperWalls = architecture.walls.clone(true);
+  const upperMaterials = new Map();
+  upperWalls.traverse((mesh) => {
+    if (!mesh.isMesh) return;
+    const original = originals.get(mesh.material);
+    if (!upperMaterials.has(original)) {
+      const material = kit.ownMaterial(original.clone());
+      material.clippingPlanes = [upperPlane];
+      material.clipShadows = true;
+      upperMaterials.set(original, material);
+    }
+    mesh.material = upperMaterials.get(original);
+  });
+  upperWalls.name = "domus-upper-walls";
+  upper.add(upperWalls);
+  const upperCaps = caps.clone(true);
+  upperCaps.name = "domus-upper-section-caps";
+  upperCaps.visible = true;
+  upper.add(upperCaps);
   const base = kit.sub();
   base.name = "domus-miniature-base";
   base.userData.batchRoot = true;
@@ -63,7 +91,15 @@ export function createDomusMiniature(kit, architecture, sun) {
   let cutaway = true;
   function apply() {
     const sectioned = active && cutaway;
-    architecture.roofs.visible = !sectioned;
+    architecture.roofs.visible = true;
+    architecture.roofs.position.set(
+      sectioned ? shellOffset.x : 0,
+      sectioned ? shellOffset.y : 0,
+      sectioned ? shellOffset.z : 0,
+    );
+    upper.visible = sectioned;
+    upper.position.copy(shellOffset);
+    upperPlane.constant = -sectionHeight - shellOffset.y;
     caps.visible = sectioned;
     base.visible = active;
     architecture.walls.traverse((mesh) => {
@@ -85,7 +121,12 @@ export function createDomusMiniature(kit, architecture, sun) {
       overview: {
         label: "Whole house",
         position: [43, 56, 58],
-        target: [1, 0, 1],
+        target: [-16, 3.5, 0],
+        closedTarget: [1, 0, 1],
+        bounds: [
+          [-53, -1.4, -25],
+          [18, 14.5, 24],
+        ],
       },
       courts: {
         label: "Courtyards",
@@ -94,6 +135,15 @@ export function createDomusMiniature(kit, architecture, sun) {
         bounds: [
           [-7.5, 0, -17.5],
           [7.5, 4, 12.5],
+        ],
+      },
+      garden: {
+        label: "Peristyle garden",
+        position: [-12, 17, 6],
+        target: [0, 0.6, -11],
+        bounds: [
+          [-7.2, 0, -17.2],
+          [7.2, 3.6, -5],
         ],
       },
       service: {

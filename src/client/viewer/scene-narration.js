@@ -6,13 +6,15 @@ import { isSceneNarration, loadNarrationLibrary } from "./narration-library.js";
 export function createSceneNarration({
   viewer,
   sceneId,
-  views,
+  views: guidedViews,
+  additionalViews = {},
   camera,
   audio,
   atlasAudio,
   stopNarration,
   initialView,
 }) {
+  const views = { ...guidedViews, ...additionalViews };
   const panel = document.createElement("section");
   panel.className = "scene-narration";
   panel.setAttribute("aria-labelledby", "narrationTitle");
@@ -24,7 +26,7 @@ export function createSceneNarration({
   const direction = new THREE.Vector3();
   const triggers = createNarrationTriggers(
     Object.fromEntries(
-      Object.entries(views)
+      Object.entries(guidedViews)
         .slice(1)
         .filter(([, view]) => view.narration !== false),
     ),
@@ -155,11 +157,14 @@ export function createSceneNarration({
       render();
       return;
     }
+    const narrationView = views[currentKey].narrationView;
     track =
       assets.find(
         (asset) =>
           asset.locale === locale &&
-          (asset.view ?? Object.keys(views)[0]) === currentKey,
+          (narrationView
+            ? (asset.view ?? "intro") === narrationView
+            : (asset.view ?? Object.keys(guidedViews)[0]) === currentKey),
       ) ?? null;
     if (!track) {
       state = assets.length ? "error" : "loading";
@@ -178,7 +183,12 @@ export function createSceneNarration({
     render();
     try {
       assets = (await loadNarrationLibrary()).filter(
-        (asset) => asset.scene === sceneId && isSceneNarration(asset),
+        (asset) =>
+          asset.scene === sceneId &&
+          (isSceneNarration(asset) ||
+            Object.values(additionalViews).some(
+              (view) => view.narrationView === asset.view,
+            )),
       );
       if (disposed) return;
       if (!assets.length) {
@@ -264,6 +274,7 @@ export function createSceneNarration({
         document.hidden ||
         detailsVisible ||
         pausedByUser ||
+        Object.hasOwn(additionalViews, currentKey) ||
         document.querySelector("dialog[open]")
       )
         return;

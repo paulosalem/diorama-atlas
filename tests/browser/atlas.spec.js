@@ -41,7 +41,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test("the globe offers nineteen locations and opens an interior", async ({
+test("the globe offers twenty locations and opens an interior", async ({
   page,
 }) => {
   await page.goto("/");
@@ -52,10 +52,10 @@ test("the globe offers nineteen locations and opens an interior", async ({
   await expect(brand).toHaveText("Diorama Atlas");
   await expect(page).toHaveTitle("Diorama Atlas — a world of small places");
   await expect(page.locator("#worldLoading")).toBeHidden();
-  await expect(page.locator(".place-pin")).toHaveCount(19);
+  await expect(page.locator(".place-pin")).toHaveCount(20);
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await expect(page.locator("#placesPanel")).toBeVisible();
-  await expect(page.locator("#placesPanel button")).toHaveCount(19);
+  await expect(page.locator("#placesPanel button")).toHaveCount(20);
   await page
     .locator("#placesPanel button")
     .filter({ hasText: "Marrakech" })
@@ -114,13 +114,15 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
     await expect(page.locator("canvas")).toBeVisible();
     const viewpoints = page.locator(".riad-viewpoints button");
     await expect(viewpoints).toHaveCount(
-      scene.id === "douro-vineyard"
-        ? 6
-        : scene.environment === "outdoor"
-          ? 4
-          : scene.id === "riad"
-            ? 6
-            : 5,
+      scene.id === "roman-domus"
+        ? 20
+        : scene.id === "douro-vineyard"
+          ? 6
+          : scene.environment === "outdoor"
+            ? 4
+            : scene.id === "riad"
+              ? 6
+              : 5,
     );
     await expect(page.locator(".scene-narration")).toHaveAttribute(
       "data-state",

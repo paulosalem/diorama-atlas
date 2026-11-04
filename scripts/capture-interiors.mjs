@@ -25,7 +25,7 @@ const { values } = parseArgs({
   },
 });
 if (values.help) {
-  console.log(`Capture matched views of the atlas (all twelve interiors by default).
+  console.log(`Capture matched views of the atlas (all released interiors by default).
 
 Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --base-url URL       Running local atlas (default http://127.0.0.1:4195)

@@ -1,6 +1,12 @@
 import { readdir, readFile } from "node:fs/promises";
-import { curatedScenes } from "../../src/client/catalog/scene-catalog.js";
-import { outdoorScenes } from "../../src/client/catalog/outdoor-catalog.js";
+import {
+  curatedScenes,
+  interiorDraftScenes,
+} from "../../src/client/catalog/scene-catalog.js";
+import {
+  outdoorScenes,
+  outdoorDraftScenes,
+} from "../../src/client/catalog/outdoor-catalog.js";
 import {
   miniatureContent,
   sceneMiniatureContent,
@@ -12,7 +18,7 @@ import {
   SUPPORTED_LOCALES,
 } from "../../src/client/localization/locale.js";
 
-export async function bundledNarrationScenes() {
+export async function bundledNarrationScenes({ includeDrafts = false } = {}) {
   const directory = new URL("../../data/scenes/", import.meta.url);
   const saved = await Promise.all(
     (await readdir(directory))
@@ -22,7 +28,12 @@ export async function bundledNarrationScenes() {
           JSON.parse(await readFile(new URL(name, directory), "utf8")).scene,
       ),
   );
-  return [...curatedScenes, ...saved, ...outdoorScenes];
+  return [
+    ...curatedScenes,
+    ...saved,
+    ...outdoorScenes,
+    ...(includeDrafts ? [...interiorDraftScenes, ...outdoorDraftScenes] : []),
+  ];
 }
 
 export function supplementalNarration(scenes, originals) {
@@ -44,7 +55,29 @@ export function supplementalNarration(scenes, originals) {
           });
         for (const detail of scene.details)
           add(`detail-${detail.id}`, t(detail.title), t(detail.body));
-        if (scene.id === "douro-vineyard") {
+        if (scene.miniatureNarration) {
+          for (const [key, source] of Object.entries(
+            scene.miniatureNarration,
+          )) {
+            const passage = source.startsWith("detail-")
+              ? passages.find(
+                  (asset) =>
+                    asset.scene === scene.id &&
+                    asset.locale === locale &&
+                    asset.view === source,
+                )
+              : narration.find(
+                  (asset) =>
+                    asset.locale === locale &&
+                    (asset.view ?? "intro") === source,
+                );
+            if (!passage)
+              throw new Error(
+                `Missing miniature passage: ${scene.id}/${key}/${locale}`,
+              );
+            add(`miniature-${key}`, passage.title, passage.text);
+          }
+        } else if (scene.id === "douro-vineyard") {
           for (const key of Object.keys(
             miniatureContent(locale, "whole").views,
           )) {

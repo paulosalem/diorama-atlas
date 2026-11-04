@@ -281,7 +281,7 @@ export function buildDomusArchitecture(kit, m) {
     roofStrip(bounds, 3.63, 0);
   const column = (x, z) => {
     kit.box([0.58, 0.14, 0.58], [x, 0.07, z], m.stone);
-    kit.lathe(
+    const shaft = kit.lathe(
       [
         [0.28, 0],
         [0.28, 0.08],
@@ -294,8 +294,20 @@ export function buildDomusArchitecture(kit, m) {
       [x, 0.14, z],
       m.cream,
       undefined,
-      32,
+      96,
     );
+    const vertices = shaft.geometry.attributes.position;
+    for (let i = 0; i < vertices.count; i++) {
+      const y = vertices.getY(i);
+      if (y < 0.25 || y > 2.98) continue;
+      const x = vertices.getX(i),
+        z = vertices.getZ(i);
+      const radius = Math.hypot(x, z);
+      const angle = Math.atan2(z, x);
+      const flute = (0.008 * (1 + Math.cos(angle * 16))) / 2;
+      vertices.setXYZ(i, x * (1 - flute / radius), y, z * (1 - flute / radius));
+    }
+    shaft.geometry.computeVertexNormals();
     kit.cylinder(0.185, 0.9, [x, 0.85, z], m.red);
     kit.box([0.57, 0.14, 0.57], [x, 3.34, z], m.cream);
     obstacle(x, z, 0.6, 0.6);

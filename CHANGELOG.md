@@ -1,5 +1,18 @@
 # Changelog
 
+## Collection update — 2026-11-04
+
+- Added a walkable Roman domus inspired by Campanian evidence around AD 60:
+  21 connected spaces, 20 interior viewpoints and 25 bilingual object explanations.
+- Added its peer architectural miniature, with five compositions, a lift-away
+  envelope, orbit/zoom and restoration of the visitor's interior position.
+- Cultivated the peristyle with layered evergreen planting, roses, lilies,
+  garden frescoes, shaded seating and a carved fountain with a bronze bird spout.
+- Bundled 90 domus recordings, reusing appropriate passages in the miniature,
+  and 12 inspected archaeological references with consolidated attribution.
+- The collection now contains 24 places across 20 settings and 566 recordings.
+  The package remains v1.0.0; this update creates no tag or separate release.
+
 ## v1.0.0 — 2026-11-02
 
 The first named edition of Diorama Atlas: an invitation to explore cultural

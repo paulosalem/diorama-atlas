@@ -920,7 +920,6 @@ export function createEnvironmentKit(
         group.traverse((o) => {
           if (o.isInstancedMesh) o.dispose();
           if (o.isLight) o.dispose();
-          if (o.isInstancedMesh) o.dispose();
         });
         materials.dispose();
       },

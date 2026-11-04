@@ -167,7 +167,7 @@ test("the globe, preview and return navigation remain inside the project path", 
       ),
     )
     .toBe(true);
-  await expect(page.locator(".place-pin")).toHaveCount(19);
+  await expect(page.locator(".place-pin")).toHaveCount(20);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -243,6 +243,78 @@ for (const id of ["textile", "naxi-canal-quarter"]) {
     expect(errors).toEqual([]);
   });
 }
+
+test("Roman domus miniature, garden recordings and walking share the static runtime", async ({
+  page,
+}) => {
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("response", (response) => {
+    if (response.status() >= 400)
+      errors.push(`${response.status()} ${response.url()}`);
+  });
+  await page.goto("?scene=roman-domus&version=miniature&view=garden&open=1");
+  await waitForViewer(page);
+  await expect(page.locator('[data-miniature-view="garden"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  for (const locale of ["en-US", "pt-BR"]) {
+    await page.locator("#atlasLanguage").selectOption(locale);
+    await expect(page.locator(".scene-narration")).not.toHaveAttribute(
+      "data-state",
+      "loading",
+    );
+    if (
+      (await page.locator(".scene-narration").getAttribute("data-state")) !==
+      "playing"
+    )
+      await page.locator("#narrationPlay").click();
+    const asset = narration.find(
+      (entry) =>
+        entry.scene === "roman-domus" &&
+        entry.view === "detail-garden" &&
+        entry.locale === locale,
+    );
+    await expect(page.locator(".narration-text")).toHaveText(asset.text);
+    await expect
+      .poll(() =>
+        page.evaluate(
+          (file) =>
+            window.atlasTestPlayers.some(
+              (player) =>
+                player.src.endsWith(file) &&
+                !player.paused &&
+                player.currentTime > 0.1,
+            ),
+          asset.file,
+        ),
+      )
+      .toBe(true);
+    await page.locator("#narrationPlay").click();
+  }
+  await page.locator(".miniature-roof").click();
+  await expect(page).toHaveURL(/open=0/);
+  await page.reload();
+  await waitForViewer(page);
+  await expect(page.locator(".miniature-roof")).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
+  await page.locator('[data-mode="interior"]').click();
+  await expect(page.locator(".walking-pad")).toBeVisible();
+  await expect(page).toHaveURL(/version=interior/);
+  await page.locator("#riadExpand").click();
+  await expect(page.locator("#placesButton")).toBeVisible();
+  expect(
+    await page.evaluate(() =>
+      window.atlasTestPlayers.every(
+        (player) => player.paused && !player.getAttribute("src"),
+      ),
+    ),
+  ).toBe(true);
+  expect(errors).toEqual([]);
+});
 
 for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
   test(`${scene.id}: all static assets, viewpoints and bilingual playback`, async ({

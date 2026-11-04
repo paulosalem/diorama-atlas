@@ -344,8 +344,31 @@ export function createDomusObjects(kit, m, architecture) {
       const end = cylinder(0.018, 0.045, [x, 0.05, 0], m.wood, g);
       end.rotation.z = Math.PI / 2;
     }
-    if (unrolled) cloth([0, 0.009, 0.18], 0.33, 0.28, m.linen, g, { drape: 0 });
-    else ring(0.047, 0.004, [0, 0.05, 0], m.clay, g, [0, Math.PI / 2, 0]);
+    if (unrolled) {
+      const sheet = new THREE.PlaneGeometry(0.33, 0.32, 12, 24);
+      sheet.rotateX(-Math.PI / 2);
+      const vertices = sheet.attributes.position;
+      for (let i = 0; i < vertices.count; i++) {
+        const z = vertices.getZ(i);
+        const curl = Math.max(0, (Math.abs(z) - 0.11) / 0.05);
+        vertices.setY(
+          i,
+          0.007 + curl * curl * 0.028 + Math.sin(vertices.getX(i) * 29) * 0.001,
+        );
+      }
+      sheet.computeVertexNormals();
+      kit.mesh(sheet, m.papyrus, [0, 0.015, 0.2], [0, 0, 0], g);
+      for (const x of [-0.19, 0.19])
+        for (let i = 0; i < 4; i++)
+          ring(
+            0.022 + i * 0.006,
+            0.0015,
+            [x > 0 ? 0.171 : -0.171, 0.05, 0],
+            m.linen,
+            g,
+            [0, Math.PI / 2, 0],
+          );
+    } else ring(0.047, 0.004, [0, 0.05, 0], m.clay, g, [0, Math.PI / 2, 0]);
     return g;
   }
   function tablets(position, parent) {
@@ -353,14 +376,13 @@ export function createDomusObjects(kit, m, architecture) {
     for (const x of [-0.115, 0.115]) {
       box([0.22, 0.016, 0.28], [x, 0.01, 0], m.wood, g);
       box([0.19, 0.004, 0.245], [x, 0.021, 0], m.wax, g, 0);
-      for (let i = 0; i < 6; i++)
-        box(
-          [0.09 + (i % 3) * 0.02, 0.001, 0.002],
-          [x - 0.015, 0.024, -0.085 + i * 0.03],
-          m.clay,
-          g,
-          0,
-        );
+      kit.mesh(
+        new THREE.PlaneGeometry(0.185, 0.24),
+        m.writtenWax,
+        [x, 0.0235, 0],
+        [-Math.PI / 2, 0, 0],
+        g,
+      );
     }
     for (const z of [-0.09, 0.09])
       tube(
@@ -438,16 +460,25 @@ export function createDomusObjects(kit, m, architecture) {
     cylinder(radius * 0.72, 0.02, [0, 0.012, 0], m.wood, g);
     return g;
   }
-  function painting(position, width, height, material, angle = 0) {
+  function painting(
+    position,
+    width,
+    height,
+    material,
+    angle = 0,
+    uvRect = [0, 0, 1, 1],
+  ) {
     const g = sub(position, angle, architecture.walls);
     box([width + 0.1, height + 0.1, 0.016], [0, 0, 0], m.ochre, g, 0);
-    kit.mesh(
-      new THREE.PlaneGeometry(width, height),
-      material,
-      [0, 0, 0.012],
-      [0, 0, 0],
-      g,
-    );
+    const geometry = new THREE.PlaneGeometry(width, height);
+    const uv = geometry.attributes.uv;
+    for (let i = 0; i < uv.count; i++)
+      uv.setXY(
+        i,
+        uvRect[0] + uv.getX(i) * uvRect[2],
+        uvRect[1] + uv.getY(i) * uvRect[3],
+      );
+    kit.mesh(geometry, material, [0, 0, 0.012], [0, 0, 0], g);
     return g;
   }
   function plant(position, scale = 1, parent) {

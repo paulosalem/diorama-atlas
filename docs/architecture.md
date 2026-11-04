@@ -46,7 +46,7 @@ consolidated credits, narration controls, and navigation. Outdoor definitions us
 `environments/outdoors/`; otherwise it chooses the dedicated riad builder for
 `scene.id === "riad"` and `environments/interiors/` for the remaining places.
 
-The explicitly gated Roman draft instead loads `environments/domus/`.
+The Roman domus instead loads `environments/domus/`.
 Its layout is shared by architecture, wall openings and walking collisions.
 Furniture adds its own footprints; the viewer uses wall-segment sightlines to
 hide occluded inspection points. The dedicated composition still uses the shared
@@ -90,7 +90,7 @@ the Three.js runtime and local assets needed by the collection.
 
 ### Floating architectural and landscape sections
 
-All 23 bundled places have corresponding miniatures: twelve opening interiors
+All 24 bundled places have corresponding miniatures: thirteen opening interiors
 and eleven two-piece landscapes. Existing full-scale visits and their authored
 camera definitions remain unchanged. Douro retains its accepted composition and
 eleven Miniature viewpoints. Oaxaca and Bali established the shared treatment
@@ -105,6 +105,13 @@ joinery. The shell lifts before moving sideways; reduced motion applies the
 same final geometry immediately. Overview cameras follow the changing bounds,
 while close viewpoints retain their relationship to the modeled objects.
 `open=1` preserves an open miniature on reload; changing experience clears it.
+
+The walkable domus uses the same furnished runtime for both presentations.
+Its architecture is sectioned at 1.15 m with complementary upper/lower clipping
+and capped wall sections. The actual roof and matching upper enclosure move
+aside; closing restores the complete envelope. Original materials are restored
+outside cutaway mode, preserving interior batching. Named miniature views reuse
+the shared narrator without enabling walking or room-proximity triggers.
 
 Interior shells include appropriate tiled roofs or exposed upper-floor sections,
 thick entrances, roof joinery, ceiling fixtures and connected-room ceilings.
@@ -143,7 +150,7 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 23 bundled scenes retain their original bilingual entry/view recordings.
+All 24 bundled scenes retain their original bilingual entry/view recordings.
 Douro's Landscape retains its four recorded views; its additional yard and
 railway views explicitly omit the recorded guide rather than pretending a clip
 exists. Miniatures and object details use local OpenAI recordings, with authored

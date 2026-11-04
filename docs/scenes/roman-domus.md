@@ -1,6 +1,34 @@
-# A living Roman domus
+# A Living Roman Domus
 
 **Scene:** `roman-domus` · **Region:** Campania, Roman Italy · **Date:** c. AD 60
+
+[Walk inside](https://paulosalem.github.io/diorama-atlas/?scene=roman-domus&inspect=1&version=interior)
+· [Explore the miniature](https://paulosalem.github.io/diorama-atlas/?scene=roman-domus&inspect=1&version=miniature)
+
+## View sequence
+
+| Key        | Subject                                                   |
+| ---------- | --------------------------------------------------------- |
+| `atrium`   | Welcome, collected rainwater and the main reception space |
+| `entrance` | Street, threshold and controlled access                   |
+| `tablinum` | Household accounts and influence                          |
+| `shrine`   | The lararium and household worship                        |
+| `textiles` | Weaving, making and mending                               |
+| `bedroom`  | Clothing, personal possessions and rest                   |
+| `study`    | Reading, writing and unequal access to learning           |
+| `dining`   | Reclining couches, food and hospitality                   |
+| `garden`   | Cultivated nature and the peristyle                       |
+| `exedra`   | Art, conversation and leisure                             |
+| `family`   | Children and dependents                                   |
+| `kitchen`  | Meal preparation and heat                                 |
+| `pantry`   | Provisions and Mediterranean trade                        |
+| `service`  | Work and unequal lives                                    |
+| `latrine`  | Waste, water and maintenance                              |
+| `changing` | Preparing to bathe                                        |
+| `warm`     | The bath's temperature sequence                           |
+| `hot`      | Heated water and private luxury                           |
+| `furnace`  | Fuel and the cost of comfort                              |
+| `stores`   | Weights, produce and household wealth                     |
 
 ## Cultural proposition
 
@@ -28,9 +56,10 @@ disappear behind a generic male householder.
 
 ## Spatial sequence and inventory contract
 
-The following are intended modeled spaces and contents, not a claim of completed
-inspection. The release gate remains closed until implementation, bilingual
-recordings, photographic credits, walking clearance and rendered reviews pass.
+The following inventory guides the modeled spaces and their interpretation.
+It is a representative household, not an archaeologically recovered complete
+inventory. Bilingual recordings, photographic credits, walking clearance and
+rendered review accompany both representations.
 
 | Space                      | Everyday contents and relationships                                                                                                                  | Interpretation                                                                                       |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -66,23 +95,50 @@ miniature, then enter the same furnished house at eye height. Equal-status
 the house or losing the current walking position. The miniature is not the
 Campania globe-marker silhouette.
 
-The local miniature link is
-`/?scene=roman-domus&inspect=1&draft=1&version=miniature`; the interior uses
-`version=interior` (also the default). Both preserve draft gating and reload.
+The miniature link is
+`/?scene=roman-domus&inspect=1&version=miniature`; the interior uses
+`version=interior` (also the default). Both work locally and on Pages.
 The miniature opens as an explicitly labelled architectural cutaway: roofs and
-upper walls are removed for visibility, not presented as ancient ruin. Only
+upper walls lift upward and sideways for visibility, not as ancient ruin. Only
 architectural surfaces and attached paintings are sectioned; furniture, food,
 tools, textiles, vegetation and water remain the actual interior geometry.
 Finished wall sections and a restrained display base distinguish the model from
-an unsupported floating plan. A roof control restores the complete envelope.
+an unsupported floating plan. A roof control restores the complete envelope;
+`open=0` and `open=1` retain that choice on reload.
 
-Whole-house, courtyard, service-wing and plan compositions make the public,
+Whole-house, courtyard, garden, service-wing and plan compositions make the public,
 private and working routes legible. Drag, touch, keyboard, pan and zoom are
-available; the original twenty interior cameras remain unchanged. Existing
-recorded room narration stays in Interior; miniature study does not trigger
-unrelated room passages or require another player or paid recording.
+available; the original twenty interior cameras remain unchanged. Each miniature
+composition reuses an appropriate exact recorded household passage, including
+the garden and labor explanations. The same narration player serves both
+representations; orbiting must not accidentally trigger eye-level room passages.
 
 ## Materials and visual direction
+
+### The cultivated peristyle
+
+The garden is the household's principal retreat, not four sparsely planted boxes.
+Preserve the original garden camera and the circulation around all four beds.
+Low clipped evergreen borders frame layered rose and lily planting, with fuller
+laurel-like crowns in the rear beds. Deliberate differences in height, leaf shape,
+flower color and density make a tended garden rather than repeated procedural
+shrubs. These are botanical interpretations, not identified ancient cultivars.
+
+A raised marble labrum, supported on a carved pedestal, receives a modest
+bronze bird spout. Its actual basin, waterline, localized disturbance, drain and
+support must agree at walking scale. Shaded seating, a reading table, cushions,
+watering vessels and cuttings connect leisure with its maintenance. Fluted upper
+column shafts, articulated cornices and credited garden painting connect the
+planting to the architecture without importing later palace-garden styles.
+
+The House of the Vettii documents an elite garden as a fountain-and-sculpture
+focal point. The Archaeological Park's
+[House of the Garden of Hercules](https://pompeiisites.org/en/archaeological-site/house-of-the-garden-of-hercules/)
+reports pollen evidence for roses, violets and lilies in a commercial flower
+garden: evidence for available plants, **not** this elite household's exact beds.
+The garden fresco from the Villa of Livia supplies credited painted imagery,
+not a claim that this Campanian family possessed the original or lived in an
+imperial villa. Its museum railings and adjacent walls must not enter the texture.
 
 Lime plaster in warm white, iron-oxide red and ochre; restrained dark dadoes;
 black-and-white tessellated floors and opus-signinum-like service surfaces;
@@ -126,6 +182,13 @@ roof reconstruction, plumbing destinations, room assignments and daily routines
 are explicit interpretive choices. Archaeology does not authorize a definitive
 “everything a Roman home contained” claim. Modern garden planting is not direct
 evidence for ancient plant arrangements.
+
+Papyrus and wax-tablet lettering is original illustrative Latin household
+accounting, not a transcription or facsimile. “Ad vilicum” addresses an estate
+manager; the commodity lists suggest wine, oil, grain, bread and olives without
+claiming recovered quantities or an authentic ancient handwriting sample.
+The physical scrolls curl above their supports; hanging tunics have folded front
+and back panels, joined sides and shoulders, and open necks, sleeves and hems.
 
 ## Delivery gate
 

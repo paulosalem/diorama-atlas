@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 async function openDomus(page) {
-  await page.goto("/?scene=roman-domus&inspect=1&draft=1");
+  await page.goto("/?scene=roman-domus&inspect=1");
   await expect(page.locator("#riadLoading")).toBeHidden();
   await expect(page.locator(".riad-viewpoints button")).toHaveCount(20);
 }
@@ -33,6 +33,9 @@ async function miniatureState(page) {
       elapsed: viewer.elapsed,
       geometries: viewer.renderer.info.memory.geometries,
       roofs: viewer.runtime.group.getObjectByName("domus-roofs").visible,
+      roofOffset: viewer.runtime.group
+        .getObjectByName("domus-roofs")
+        .position.toArray(),
       clipping: viewer.renderer.localClippingEnabled,
     };
   });
@@ -91,15 +94,19 @@ test("miniature is a real interactive peer and restores the same furnished inter
   expect((await miniatureState(page)).mode).toBe("miniature");
   await expect(page).toHaveURL(/version=miniature/);
   await expect(page.locator(".walking-pad")).toBeHidden();
-  await expect(page.locator(".scene-narration")).toBeHidden();
+  await expect(page.locator(".scene-narration")).toBeVisible();
   await expect(page.locator(".scene-narration")).toHaveAttribute(
     "data-state",
-    "paused",
+    "playing",
   );
-  await expect(page.locator("[data-miniature-view]")).toHaveCount(4);
+  await expect(page.locator("#narrationTitle")).toHaveText(
+    "A house and its unequal lives",
+  );
+  await expect(page.locator("[data-miniature-view]")).toHaveCount(5);
   const first = await miniatureState(page);
   expect(first.position[1]).toBeGreaterThan(20);
-  expect(first.roofs).toBe(false);
+  expect(first.roofs).toBe(true);
+  expect(first.roofOffset).toEqual([-37, 9, -3]);
   expect(first.clipping).toBe(true);
   const canvas = page.locator("#canvasMount canvas");
   const box = await canvas.boundingBox();
@@ -138,6 +145,7 @@ test("miniature is a real interactive peer and restores the same furnished inter
   expect((await miniatureState(page)).elapsed).toBe(0);
   await page.locator(".miniature-roof").click();
   expect((await miniatureState(page)).roofs).toBe(true);
+  expect((await miniatureState(page)).roofOffset).toEqual([0, 0, 0]);
   expect((await miniatureState(page)).clipping).toBe(false);
   await page.locator(".miniature-roof").click();
   await frames(page);
@@ -196,7 +204,7 @@ test("miniature direct links, touch, Portuguese and compact framing survive relo
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(
-    "/?scene=roman-domus&inspect=1&draft=1&version=miniature&view=bedroom",
+    "/?scene=roman-domus&inspect=1&version=miniature&view=bedroom",
   );
   await expect(page.locator('#viewer[aria-busy="false"]')).toBeVisible();
   await expect(page.locator('[data-mode="miniature"]')).toHaveAttribute(
@@ -274,7 +282,7 @@ test("miniature direct links, touch, Portuguese and compact framing survive relo
   await expect(
     page.getByRole("button", { name: "Caminhar para a frente", exact: true }),
   ).toBeVisible();
-  await expect(page).toHaveURL(/draft=1.*version=interior/);
+  await expect(page).toHaveURL(/version=interior/);
 });
 
 test("every room and viewpoint is reachable with actual body clearance", async ({
@@ -404,7 +412,7 @@ test("walking remains usable under reduced motion and stops on loss of focus", a
   expect((await position()).z).toBeCloseTo(released.z, 5);
 });
 
-test("local draft navigation survives returning to the globe and reloading", async ({
+test("public navigation survives returning to the globe and reloading", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -412,27 +420,24 @@ test("local draft navigation survives returning to the globe and reloading", asy
   await page
     .getByRole("button", { name: "Back to world", exact: true })
     .click();
-  await expect(page).toHaveURL(/draft=1/);
+  await expect(page).not.toHaveURL(/draft=1/);
   await page.reload();
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await page.locator('[data-destination="campania"]').click();
   const link = page.locator(".preview-main");
-  await expect(link).toHaveAttribute("href", /scene=roman-domus.*draft=1/);
+  await expect(link).toHaveAttribute("href", /scene=roman-domus/);
+  await expect(link).not.toHaveAttribute("href", /draft=1/);
   await link.click();
   await expect(page.locator(".riad-viewpoints button")).toHaveCount(20);
   await page.reload();
   await expect(page.locator(".riad-viewpoints button")).toHaveCount(20);
 });
 
-test("draft gating, references, narration and compact controls stay usable", async ({
+test("public references, narration and compact controls stay usable", async ({
   page,
 }) => {
-  await page.goto("/?scene=roman-domus&inspect=1");
-  await expect(page.locator(".initial-loading")).toContainText(
-    "This place could not be found.",
-  );
   await openDomus(page);
-  await expect(page.locator("#sceneRegion")).toContainText(
+  await expect(page.locator("#sceneRegion")).not.toContainText(
     "Unfinished local preview",
   );
   await expect(page.locator(".scene-narration")).toHaveAttribute(
@@ -440,7 +445,7 @@ test("draft gating, references, narration and compact controls stay usable", asy
     "ready",
   );
   await page.getByRole("button", { name: "References", exact: true }).click();
-  await expect(page.locator("#outdoorReferences figure")).toHaveCount(11);
+  await expect(page.locator("#outdoorReferences figure")).toHaveCount(12);
   await page.locator("#outdoorReferences .reference-close").click();
   await page.getByRole("button", { name: "Show details", exact: true }).click();
   await page

@@ -188,8 +188,15 @@ export const domusPassages = passages.map(
 
 export const domusScene = {
   id: "roman-domus",
-  draft: true,
   environment: "domus",
+  defaultView: "atrium",
+  miniatureNarration: {
+    overview: "intro",
+    courts: "garden",
+    garden: "detail-garden",
+    service: "detail-labor",
+    plan: "entrance",
+  },
   title: "A Living Roman Domus",
   region: "An imagined elite household · Campania, Roman Italy",
   period: "Historical interpretation · Around AD 60",

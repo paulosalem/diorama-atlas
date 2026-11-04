@@ -58,13 +58,17 @@ test("miniature sections only architectural materials and fits every composition
     const caps = group.getObjectByName("domus-section-caps");
     assert.equal(base.visible, false);
     miniature.setActive(true);
-    assert.equal(roofs.visible, false);
+    assert.equal(roofs.visible, true);
+    assert.deepEqual(roofs.position.toArray(), [-37, 9, -3]);
+    assert.equal(group.getObjectByName("domus-lifted-envelope").visible, true);
     assert.equal(caps.visible, true);
     assert.equal(base.visible, true);
     assert.equal(walls.children[0].material.clippingPlanes.length, 1);
     assert.equal(original.clippingPlanes, null);
     miniature.setCutaway(false);
     assert.equal(roofs.visible, true);
+    assert.deepEqual(roofs.position.toArray(), [0, 0, 0]);
+    assert.equal(group.getObjectByName("domus-lifted-envelope").visible, false);
     assert.equal(caps.visible, false);
     assert.equal(walls.children[0].material.clippingPlanes, null);
     miniature.setActive(false);
@@ -126,8 +130,8 @@ test("local lighting retains fixtures while following the visitor with a fixed b
   assert.throws(() => createCameraLightCulling(group, 0), RangeError);
 });
 
-test("Roman house remains an explicit local draft with every room and bilingual view", () => {
-  assert.equal(domusScene.draft, true);
+test("Roman house is published with every room and bilingual view", () => {
+  assert.equal(domusScene.draft, undefined);
   assert.equal(domusRooms.length, 21);
   assert.equal(Object.keys(domusViews).length, 20);
   assert.equal(new Set(domusPassages.map((p) => p.id)).size, 25);
@@ -204,13 +208,13 @@ test("domus photographic sources preserve license evidence and exact local bytes
   );
   assert.equal(
     previews.rendered.find((entry) => entry.scene === domusScene.id)?.draft,
-    true,
+    undefined,
   );
   const [entry] = JSON.parse(
     await readFile(new URL("public/domus/references.json", root)),
   );
   assert.equal(entry.sceneId, domusScene.id);
-  assert.equal(entry.references.length, 11);
+  assert.equal(entry.references.length, 12);
   for (const reference of entry.references) {
     assert.match(
       reference.url,

@@ -446,6 +446,8 @@ export async function createViewer(
     runtime.miniature?.setActive(false);
     runtime.captureReflections?.(scene);
     if (runtime.miniature) {
+      let narrationMode = false;
+      let interiorNarration = requestedView ?? Object.keys(runtime.views)[0];
       miniature = createMiniatureControls({
         runtime,
         camera,
@@ -454,11 +456,24 @@ export async function createViewer(
         viewer,
         panorama,
         onExit: exit,
+        onSelect: (key) => narration?.select(`miniature-${key}`),
         onChange: (active) => {
-          stopNarration();
-          narration?.setDetailsVisible(
-            active || viewer.classList.contains("show-riad-details"),
-          );
+          if (active !== narrationMode) {
+            if (
+              active &&
+              narration &&
+              !narration.snapshot.view.startsWith("miniature-")
+            )
+              interiorNarration = narration.snapshot.view;
+            stopNarration();
+            narration?.setDetailsVisible(
+              !active && viewer.classList.contains("show-riad-details"),
+            );
+            narration?.select(
+              active ? `miniature-${miniature.selected}` : interiorNarration,
+            );
+            narrationMode = active;
+          }
           scene.background.set(
             active ? runtime.miniature.background : runtime.background,
           );
@@ -474,6 +489,11 @@ export async function createViewer(
         },
       });
       miniature.setMode(version.id, { updateUrl: false });
+      if (
+        miniature.active &&
+        Object.hasOwn(runtime.miniature.views, requestedView)
+      )
+        miniature.select(requestedView, { notify: false, updateUrl: false });
       resize();
       miniature.ready();
     }
@@ -489,13 +509,20 @@ export async function createViewer(
         viewer,
         sceneId: definition.id,
         views: runtime.views,
+        additionalViews: Object.fromEntries(
+          Object.entries(runtime.miniature?.views ?? {}).map(([key, view]) => [
+            `miniature-${key}`,
+            { ...view, narrationView: definition.miniatureNarration[key] },
+          ]),
+        ),
         camera,
         audio,
         atlasAudio,
         stopNarration,
-        initialView: requestedView,
+        initialView: miniature?.active
+          ? `miniature-${miniature.selected}`
+          : requestedView,
       });
-      if (miniature?.active) narration.setDetailsVisible(true);
     }
   } catch (error) {
     dispose();

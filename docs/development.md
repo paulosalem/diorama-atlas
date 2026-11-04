@@ -52,8 +52,8 @@ The bundled app needs no key, database or generated cache. See
 | `scripts/`, `tests/`                 | Maintenance, captures and regression checks                      |
 | `docs/`, `.github/skills/`           | Human and agent development guidance                             |
 
-Five original definitions, seven saved interiors and eleven outdoor definitions
-form the 23-scene collection. Preserve unique IDs and saved-package provenance.
+Six curated definitions, seven saved interiors and eleven outdoor definitions
+form the 24-scene collection. Preserve unique IDs and saved-package provenance.
 
 Unfinished entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
@@ -62,26 +62,27 @@ Draft scripts do not count as completed recordings. Promotion removes the
 flag only after narration, cultural/visual review and all release checks pass.
 Related variants are deliberate entries, not duplicate files to delete.
 
-The [Roman domus](scenes/roman-domus.md) uses a dedicated local interior builder
+The [Roman domus](scenes/roman-domus.md) uses a dedicated interior builder
 under `src/client/environments/domus/`. Open
-`?scene=roman-domus&inspect=1&draft=1`; use W/A/S/D or the on-screen directional
+`?scene=roman-domus&inspect=1`; use W/A/S/D or the on-screen directional
 pad to walk, and drag or use arrow keys to look. Named viewpoints remain available.
 Its shared walking helper uses body-clearance tests and substepped wall sliding;
 architectural footprints also prevent detail markers appearing through walls.
 Reduced motion stops scenery, not walking. `tests/browser/domus.spec.js` checks
-physical connectivity, controls, draft gating, compact layouts and localization.
+physical connectivity, controls, public navigation, compact layouts and localization.
 Inspect its recorded narration with `node scripts/check-narration.mjs
---scene roman-domus --include-drafts --base-url http://127.0.0.1:4183`.
+--scene roman-domus --base-url http://127.0.0.1:4183`.
 
 Append `&version=miniature` for its peer miniature, or use the Miniature / Interior
 buttons. Both use one furnished runtime; orbit/zoom and cutaway controls belong
-to the miniature, while walking and recorded room passages belong to Interior.
+to the miniature, while walking belongs to Interior. Both presentations have
+recorded narration, reusing the same player and exact household passages.
 Switching preserves both camera poses. Static batch roots keep independently
 visible architectural layers batched without merging them into the furnishings.
 The miniature sections walls and their paintings, not household objects.
 
 Capture all miniature compositions with `node scripts/capture-interiors.mjs
---phase after --scene roman-domus --include-drafts --version miniature
+--phase after --scene roman-domus --version miniature
 --output-dir outputs/domus-miniature --base-url http://127.0.0.1:4183`.
 Use a separate output directory from the environment captures. Miniature
 manifests retain their representation and cannot overwrite environment previews.
@@ -169,10 +170,12 @@ Before captures cannot be overwritten. Use identical original cameras, viewport
 and motion settings; add separate evidence for newly connected spaces.
 The same capture tool accepts an outdoor `--scene ID`; an unfinished place
 also requires `--include-drafts` and a local server. Its default collection
-remains the twelve interiors. Use `--all --version miniature` to capture all
-23 Miniatures and their named views, or `--scene ID --version miniature` for
+remains the thirteen interiors. Use `--all --version miniature` to capture all
+24 Miniatures and their named views, or `--scene ID --version miniature` for
 one place. The Whole capture begins closed; selecting an interior detail opens
 its shell. Capture the opened Whole state separately when comparing the opening.
+The domus opens in cutaway mode by default and captures its five shared-runtime
+compositions; `open=0` restores its roof for closed-envelope inspection.
 Serve the generated comparison directory separately: the application does not
 expose `outputs/`. See [outdoor review](outdoor-collection.md),
 [narration verification](narration.md) and the
@@ -188,6 +191,11 @@ This keeps historical reviews reproducible when the collection grows.
 node scripts/measure-dioramas.mjs --scene textile --scene andean-stone-lane \
   --base-url http://127.0.0.1:4183 --seconds 5 --output outputs/my-pass/performance.json
 ```
+
+Use `--view garden` or another named viewpoint for a matched detail measurement.
+`--source-ref COMMIT` serves the revision's `/src/` without changing the checkout;
+it retains current public assets, so preserve changed asset bytes separately.
+`--include-drafts` permits explicitly selected local unfinished scenes.
 
 The measurement utility runs scenes sequentially at the paused original arrival,
 1280x900 and device scale 1. It records the actual rendering device, frame

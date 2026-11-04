@@ -10,6 +10,8 @@ import { createDomusObjects } from "./domus-objects.js";
 import { furnishDomus } from "./domus-household.js";
 import { createDomusMiniature } from "./domus-miniature.js";
 import { domusViews, domusRooms, DOMUS_EYE_HEIGHT } from "./domus-layout.js";
+import { domusGardenBasin } from "./domus-garden.js";
+import { createFoliageWind } from "../outdoors/foliage-wind.js";
 
 export function buildDomusEnvironment(definition, renderer) {
   const kit = createEnvironmentKit(renderer, 6079);
@@ -79,10 +81,15 @@ export function buildDomusEnvironment(definition, renderer) {
     [-Math.PI / 2, 0, 0],
   );
   pool.castShadow = false;
+  const fountainWater = kit.ownMaterial(water.clone());
+  configureWaterMaterial(fountainWater, {
+    time,
+    disturbance: { value: new THREE.Vector4(...domusGardenBasin.impact) },
+  });
   const gardenWater = kit.mesh(
-    new THREE.CircleGeometry(0.55, 48),
-    water,
-    [0, 0.31, -11],
+    new THREE.CircleGeometry(domusGardenBasin.waterRadius, 64),
+    fountainWater,
+    [0, domusGardenBasin.waterHeight, -11],
     [-Math.PI / 2, 0, 0],
   );
   gardenWater.castShadow = false;
@@ -156,6 +163,16 @@ export function buildDomusEnvironment(definition, renderer) {
   };
   runtime.rooms = domusRooms;
   runtime.miniature = miniature;
+  const wind = createFoliageWind(runtime.group);
+  kit.animations.push((_, elapsed) => wind.update(elapsed));
+  const dispose = runtime.dispose;
+  let disposed = false;
+  runtime.dispose = () => {
+    if (disposed) return;
+    disposed = true;
+    wind.dispose();
+    dispose();
+  };
   const updateLights = createCameraLightCulling(runtime.group, 6);
   updateLights(new THREE.Vector3(...domusViews.atrium.position));
   runtime.updateCamera = (camera, target) =>

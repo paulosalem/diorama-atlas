@@ -54,7 +54,9 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-for (const scene of scenes.filter((scene) => scene.id !== "douro-vineyard")) {
+for (const scene of scenes.filter(
+  (scene) => scene.id !== "douro-vineyard" && !scene.miniatureNarration,
+)) {
   test(`${scene.id}: miniature sections, every view, compact controls and lifecycle`, async ({
     page,
   }, info) => {
@@ -268,6 +270,81 @@ for (const scene of scenes.filter((scene) => scene.id !== "douro-vineyard")) {
       info.outputPath("physical-space.json"),
       JSON.stringify(space, null, 2),
     );
+  });
+}
+
+for (const scene of scenes.filter((scene) => scene.miniatureNarration)) {
+  test(`${scene.id}: shared-runtime miniature plays every bilingual view and restores its envelope`, async ({
+    page,
+  }) => {
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    await page.goto(`/?scene=${scene.id}&version=miniature&view=garden&open=1`);
+    await waitForViewer(page);
+    await expect(
+      page.locator('[data-miniature-view="garden"]'),
+    ).toHaveAttribute("aria-pressed", "true");
+    const keys = Object.keys(scene.miniatureNarration);
+    await expect(page.locator("[data-miniature-view]")).toHaveCount(
+      keys.length,
+    );
+    for (const locale of ["en-US", "pt-BR"]) {
+      await page.locator("#atlasLanguage").selectOption(locale);
+      for (const key of keys) {
+        await page.locator(`[data-miniature-view="${key}"]`).click();
+        const asset = narrations.find(
+          (item) =>
+            item.scene === scene.id &&
+            item.locale === locale &&
+            (item.view ?? "intro") === scene.miniatureNarration[key],
+        );
+        expect(asset).toBeTruthy();
+        await expect(page.locator(".narration-text")).toHaveText(asset.text);
+        await expect(page.locator(".scene-narration")).not.toHaveAttribute(
+          "data-state",
+          "loading",
+        );
+        if (
+          (await page
+            .locator(".scene-narration")
+            .getAttribute("data-state")) !== "playing"
+        )
+          await page.locator("#narrationPlay").click();
+        await expect(page.locator(".scene-narration")).toHaveAttribute(
+          "data-state",
+          "playing",
+        );
+        await page.locator("#narrationPlay").click();
+      }
+    }
+    await page.locator(".miniature-roof").click();
+    await expect(page).toHaveURL(/open=0/);
+    await page.reload();
+    await waitForViewer(page);
+    expect(
+      await page.evaluate(async () => {
+        const { getActiveViewer } =
+          await import("/src/client/viewer/panorama-viewer.js");
+        const viewer = getActiveViewer();
+        return {
+          roof: viewer.runtime.group
+            .getObjectByName("domus-roofs")
+            .position.toArray(),
+          upper: viewer.runtime.group.getObjectByName("domus-lifted-envelope")
+            .visible,
+        };
+      }),
+    ).toEqual({ roof: [0, 0, 0], upper: false });
+    await page.locator('[data-mode="interior"]').click();
+    await expect(page.locator(".walking-pad")).toBeVisible();
+    await expect(page.locator(".scene-narration")).not.toHaveAttribute(
+      "data-state",
+      "error",
+    );
+    expect(errors).toEqual([]);
   });
 }
 

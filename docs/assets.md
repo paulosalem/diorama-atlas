@@ -19,22 +19,23 @@ project-wide licensing assumption.
 | Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                            | `data/scenes/`                                                                                  |
 | Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                     | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
-The collection includes 476 original OpenAI-voiced recordings (153.36 MB), covering
-105 guided viewpoints, 104 object details and 134 Miniature views across the
-23 bundled scenes in English and Portuguese. Identical passages share recordings, with
+The collection includes 566 original OpenAI-voiced recordings (189.76 MB), covering
+125 guided viewpoints, 129 object details and 139 Miniature views across the
+24 bundled scenes in English and Portuguese. Identical passages share recordings, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field
 recordings or human performances. See [narration](narration.md).
 
-The separately gated [Roman domus draft](scenes/roman-domus.md) adds 40 recorded
-passages in the same narration manifest and 11 inspected archaeological photographs
+The [Roman domus](scenes/roman-domus.md) contributes 90 recorded
+passages in the same narration manifest and 12 inspected archaeological photographs
 in [`public/domus/references.json`](../public/domus/references.json).
 [`public/domus/manifest.json`](../public/domus/manifest.json) preserves source,
 author, license, retrieval and hash evidence. These references include museum and
-excavation photographs, not photographs of the invented household. Two supply
-painted surfaces in the draft. Their recorded licenses also appear in About.
-These additions do not change the released collection totals above.
+excavation photographs, not photographs of the invented household. Three supply
+painted surfaces, including the public-domain garden fresco from the Villa of
+Livia near Rome. Their recorded licenses also appear in About.
+These additions are included in the collection totals above.
 
 The [Douro vineyard](scenes/douro-vineyard.md) adds four inspected Commons
 photographs, a generic CC0 ground scan, two small photographic grape-leaf
@@ -68,7 +69,7 @@ The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
 after-capture manifest and records the source scenes and material manifests.
 `npm run test:water-prints` captures the current image-based details across all
-23 environments and publishes their arrival thumbnails, including Marrakech.
+24 environments and publishes their arrival thumbnails, including Marrakech.
 
 ## What is not source
 

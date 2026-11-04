@@ -31,11 +31,11 @@ const allScenes = [
   ...outdoorScenes,
 ];
 
-test("the integrated collection contains twenty-three distinct, complete places", () => {
-  assert.equal(curatedScenes.length, 5);
+test("the integrated collection contains twenty-four distinct, complete places", () => {
+  assert.equal(curatedScenes.length, 6);
   assert.equal(bundledPackages.length, 7);
   assert.equal(outdoorScenes.length, 11);
-  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 23);
+  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 24);
   for (const scene of allScenes) {
     assert.match(scene.id, /^[a-z0-9-]+$/);
     for (const field of ["title", "region", "blurb", "summary"]) {
@@ -54,6 +54,8 @@ test("the integrated collection contains twenty-three distinct, complete places"
     if (scene.environment === "outdoor") {
       assert.equal(scene.fictional, true);
       assert.equal(scene.referenceRole, "style");
+    } else if (scene.references) {
+      assert.match(scene.references, /^\/public\/[a-z-]+\/references\.json$/);
     } else {
       assert.ok(
         scene.concept.references.some((reference) => reference.id === "hero"),
@@ -124,11 +126,12 @@ test("every bundled place has an indexed brief with its narrated viewpoint keys"
       (match) => match[1],
     );
     const first =
-      scene.id === "riad"
+      scene.defaultView ??
+      (scene.id === "riad"
         ? "courtyard"
         : scene.environment === "outdoor"
           ? "arrival"
-          : "room";
+          : "room");
     const narrated = assets
       .filter(
         (asset) =>
@@ -143,9 +146,9 @@ test("every bundled place has an indexed brief with its narrated viewpoint keys"
   }
 });
 
-test("every place belongs to exactly one of the nineteen geographic settings", () => {
+test("every place belongs to exactly one of the twenty geographic settings", () => {
   const places = locateScenes(allScenes);
-  assert.equal(places.length, 19);
+  assert.equal(places.length, 20);
   const locatedIds = places.flatMap((place) =>
     place.scenes.map((scene) => scene.id),
   );

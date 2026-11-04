@@ -144,6 +144,19 @@
         "sha256": "b60bda903cebc577ce461cc66bfc176de40fde1ab6429b0463c810c5805abf35",
         "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg/1280px-Single_latrine_in_the_Lupanar_of_Pompeii%2C_Pompeii_%2820471035614%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
         "retrieved": "2026-11-04T15:40:22.538673+00:00"
+      },
+      {
+        "label": "Garden fresco from the Villa of Livia, Palazzo Massimo",
+        "url": "https://commons.wikimedia.org/wiki/File:Villa_of_Livia_-_Garden_fresco_002.jpg",
+        "image": "/public/domus/garden-fresco.jpg",
+        "author": "Gleb Simonov; ancient Roman painting",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "date": "Retrieved 2026-11-04",
+        "note": "Augustan painting from Prima Porta, near Rome. Cropped to exclude museum railings and adjacent walls; divided between two authored peristyle panels. Not a recovered decoration of this invented Campanian house.",
+        "sha256": "fda8dfe3bb2808870a0382e14deb2bce66440dc8a882caf09d5899b604409396",
+        "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Villa_of_Livia_-_Garden_fresco_002.jpg/3840px-Villa_of_Livia_-_Garden_fresco_002.jpg",
+        "retrieved": "2026-11-04"
       }
     ]
   }

@@ -47,6 +47,7 @@ export const uiPtBR = Object.freeze({
   Miniature: "Miniatura",
   Interior: "Interior",
   "Whole house": "Casa inteira",
+  "Peristyle garden": "Jardim do peristilo",
   Courtyards: "Pátios",
   "Working household": "Trabalho doméstico",
   "House plan": "Planta da casa",
