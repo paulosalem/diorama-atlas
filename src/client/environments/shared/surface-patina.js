@@ -6,7 +6,7 @@ import {
   scatterSurfaceSampling,
 } from "./surface-variation.js";
 
-const profiles = new Set([
+export const surfacePatinaProfiles = Object.freeze([
   "plaster",
   "stone",
   "tile",
@@ -18,6 +18,7 @@ const profiles = new Set([
   "leather",
   "earth",
 ]);
+const profiles = new Set(surfacePatinaProfiles);
 
 export function surfacePatinaProfile(material) {
   if (
@@ -69,6 +70,25 @@ function seedFor(text) {
   for (const character of text)
     seed = Math.imul(seed ^ character.charCodeAt(0), 16777619);
   return ((seed >>> 0) / 4294967296) * 79;
+}
+
+export function surfacePatinaParameters(material, definition, views = {}) {
+  const profile = surfacePatinaProfile(material);
+  if (!profile) return null;
+  return {
+    profile,
+    profileIndex: [...profiles].indexOf(profile),
+    seed: seedFor(
+      `${definition.id}/${profile}/${material.name}/${material.color.getHex()}`,
+    ),
+    strength: definition.environment === "outdoor" ? 1 : 0.82,
+    floor: (Object.values(views)[0]?.position?.[1] ?? 1.62) - 1.62,
+    tileGrid: material.map?.userData.tileGrid ?? [9, 9],
+    microStrength: material.map ? 0.05 : 0.18,
+    mapTransform: material.map
+      ? [...material.map.repeat.toArray(), ...material.map.offset.toArray()]
+      : [1, 1, 0, 0],
+  };
 }
 
 const shaderLibrary = `
@@ -249,6 +269,38 @@ const treatments = {
     atlasPolish=atlasMoisture*.15;
   `,
 };
+
+/** The same metre-scaled aging masks for native GLSL and HLSL renderers. */
+export function portableSurfacePatinaShader() {
+  const branches = [...profiles]
+    .map((profile, index) => {
+      const component = ["stone", "tile", "clay"].includes(profile)
+        ? ".30"
+        : profile === "wood"
+          ? ".23"
+          : ".12";
+      return `${index ? "else " : ""}if (atlasProfile < ${index + 0.5}) {
+      diffuseColor.rgb *= 1.0 + atlasComponent * ${component} * atlasPatinaStrength;
+      ${treatments[profile].replace("#ifdef USE_MAP", "").replace("#endif", "")}
+    }`;
+    })
+    .join("\n");
+  return `${shaderLibrary.slice(shaderLibrary.indexOf("float atlasAgeHash"))}
+void atlasSurfacePatina(
+  vec3 atlasPatinaPosition, vec3 atlasPatinaNormal, float atlasPatinaObjectSeed,
+  vec2 vMapUv, float atlasProfile, float atlasPatinaStrength, float atlasPatinaSeed,
+  float atlasPatinaFloor, vec2 atlasPatinaTileGrid, float atlasPatinaMicroStrength,
+  inout vec3 albedo, out float roughnessChange, out float metalnessScale, inout vec3 shadingNormal) {
+  vec4 diffuseColor = vec4(albedo, 1.0);
+  ${commonMasks}
+  ${branches}
+  albedo = diffuseColor.rgb;
+  roughnessChange = (atlasSoil*.16 + atlasWear*.13 - atlasPolish + atlasComponent*.08) * atlasPatinaStrength;
+  metalnessScale = 1.0 - atlasOxide*.75 * atlasPatinaStrength;
+  shadingNormal = atlasReliefNormal(atlasPatinaPosition, shadingNormal, atlasRelief);
+}
+`;
+}
 
 /** Shared by interiors and outdoors; keeps masks in metres, not stretched mesh UVs. */
 export function applySurfacePatina(group, definition, views = {}) {

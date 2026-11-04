@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { buildVineyardCrate } from "./vineyard-crate.js";
 import { addQuintaPlanters } from "./vineyard-garden.js";
 
 function roofTile() {
@@ -24,7 +25,7 @@ function roofTile() {
   return geometry;
 }
 
-export function buildVineyardQuinta(k, vines) {
+export function buildVineyardQuinta(k, vines, { roofColor = 0xb47756 } = {}) {
   const origin = [-8, 0, 1.6],
     g = k.sub(origin);
   const lime = k.material(0xede7cf, 0.98);
@@ -57,7 +58,7 @@ export function buildVineyardQuinta(k, vines) {
   const stone = k.ownMaterial(k.m.stone.clone());
   stone.color.set(0xaca18c);
   const tile = k.ownMaterial(k.m.terracotta.clone());
-  tile.color.set(0xb47756);
+  tile.color.set(roofColor);
   tile.side = THREE.DoubleSide;
   const front = k.sub([0, 0, 0], 0, g);
   k.wallWithOpenings(
@@ -253,40 +254,11 @@ export function buildVineyardQuinta(k, vines) {
   k.instances(roofTile(), tile, tiles);
 
   function crate(position, filled = false, angle = 0) {
-    const c = k.sub(position, angle, g);
-    k.box([0.63, 0.035, 0.42], [0, 0.024, 0], timber, c, 0.003);
-    for (const x of [-0.3, 0.3])
-      for (const z of [-0.195, 0.195])
-        k.box([0.035, 0.3, 0.035], [x, 0.17, z], timber, c, 0.003);
-    for (let row = 0; row < 3; row++) {
-      for (const z of [-0.208, 0.208])
-        k.box(
-          [0.63, 0.06, 0.023],
-          [0, 0.07 + row * 0.083, z],
-          timber,
-          c,
-          0.002,
-        );
-      for (const x of [-0.31, 0.31])
-        k.box(
-          [0.022, 0.06, 0.39],
-          [x, 0.07 + row * 0.083, 0],
-          timber,
-          c,
-          0.002,
-        );
-    }
-    if (filled)
-      for (let i = 0; i < 10; i++)
-        vines.bunch(
-          [
-            origin[0] + position[0] + k.range(-0.22, 0.22),
-            position[1] + 0.25,
-            origin[2] + position[2] + k.range(-0.13, 0.13),
-          ],
-          0.9,
-        );
-    return c;
+    return buildVineyardCrate(k, vines, timber, position, {
+      parent: g,
+      filled,
+      angle,
+    });
   }
   crate([0.05, 0.02, 0.8], true, 0.06);
   crate([-0.58, 0.02, 1.12], false, -0.12);

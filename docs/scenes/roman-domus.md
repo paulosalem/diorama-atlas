@@ -67,8 +67,8 @@ the house or losing the current walking position. The miniature is not the
 Campania globe-marker silhouette.
 
 The local miniature link is
-`/?scene=roman-domus&inspect=1&draft=1&mode=miniature`; the interior uses
-`mode=interior` (also the default). Both preserve draft gating and reload.
+`/?scene=roman-domus&inspect=1&draft=1&version=miniature`; the interior uses
+`version=interior` (also the default). Both preserve draft gating and reload.
 The miniature opens as an explicitly labelled architectural cutaway: roofs and
 upper walls are removed for visibility, not presented as ancient ruin. Only
 architectural surfaces and attached paintings are sectioned; furniture, food,
@@ -131,6 +131,7 @@ evidence for ancient plant arrangements.
 
 The user authorized paid bilingual speech recording for this scene, but no image
 generation. Use the existing narrator, audio consent and provenance mechanisms.
-No publication, commit or push was requested. Keep the place local and explicitly
+The user subsequently authorized completion, publication and deployment, including
+a local checkpoint and merge of newer collection work. Keep the place explicitly
 unfinished until the complete experience is inspected; do not replace outstanding
 work with a declaration of historical accuracy or photorealism.

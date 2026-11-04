@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-04T18:15:46.173Z",
+  "checkedAt": "2026-11-03T18:37:09.141Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -28,13 +28,13 @@
       "file": "textile.png",
       "scene": "textile",
       "view": "room",
-      "width": 1392,
-      "height": 860,
-      "bytes": 1520434,
-      "sha256": "0424d909991f0cd78b4f8e64018968156e717302779c823e3592311ab8ec7493",
+      "width": 1232,
+      "height": 760,
+      "bytes": 1197233,
+      "sha256": "48015a382d1058736b07c392528ac396f2ec2a9be590e3a413f2ff8c518c7289",
       "viewport": {
-        "width": 1440,
-        "height": 1000
+        "width": 1280,
+        "height": 900
       }
     },
     {
@@ -106,13 +106,13 @@
       "file": "kerala-backwater-kitchen-courtyard-aadf7c.png",
       "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
       "view": "room",
-      "width": 1392,
-      "height": 860,
-      "bytes": 1213035,
-      "sha256": "0c47b1df1487dcb3198bcd8c6314902b3484421821740a307092ae08953e56ca",
+      "width": 1232,
+      "height": 760,
+      "bytes": 938312,
+      "sha256": "719405b301dc6cc96c717f6cc4e5457f6945e077ce1c3f92825db3514edb152c",
       "viewport": {
-        "width": 1440,
-        "height": 1000
+        "width": 1280,
+        "height": 900
       }
     },
     {
@@ -213,6 +213,48 @@
         "fov": 64
       },
       "note": "Actual Chromium/Metal arrival render, retained unchanged when the vineyard joined the bundled collection. Constituent photograph and material rights remain in the outdoor reference and detail manifests."
+    },
+    {
+      "file": "/public/outdoors/previews/balinese-subak-terraces.png",
+      "scene": "balinese-subak-terraces",
+      "view": "arrival",
+      "width": 1232,
+      "height": 760,
+      "bytes": 1301886,
+      "sha256": "5b8029f0bb48372d53cd7c22aa77f77d36c2457526b6c25fe48c795702b1a6fe",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
+    },
+    {
+      "file": "/public/outdoors/previews/andean-stone-lane.png",
+      "scene": "andean-stone-lane",
+      "view": "arrival",
+      "width": 1232,
+      "height": 760,
+      "bytes": 1064601,
+      "sha256": "b3f9fd2268742b2e8f23a670550dd65d9e1ecb96d0e71fa6ea5badb872579c47",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
+    },
+    {
+      "file": "/public/outdoors/previews/venetian-boatyard.png",
+      "scene": "venetian-boatyard",
+      "view": "arrival",
+      "width": 1232,
+      "height": 760,
+      "bytes": 814414,
+      "sha256": "bb442f212b2026fcdf991bcbd2892f23364d71164df71775753b02ad7dfd4b4a",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
     }
   ],
   "drafts": [],

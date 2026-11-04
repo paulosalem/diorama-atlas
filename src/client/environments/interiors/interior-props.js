@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { printThemes } from "../shared/print-catalog.js";
+import { tropicalVegetation } from "../shared/tropical-vegetation.js";
 
 /** Furniture and household objects, sized in metres and assembled from real surfaces. */
 export function createInteriorProps(k, context = "bookshop") {
@@ -47,6 +48,7 @@ export function createInteriorProps(k, context = "bookshop") {
   const drawerLabels = printTheme.labels.map((id) => prints.drawer(id));
   const leather = upholstery;
   const cavityProbes = [];
+  let gardenPlants;
   function cup(position, parent = group, scale = 1) {
     const g = sub(position, range(-0.5, 0.5), parent);
     g.scale.setScalar(scale);
@@ -348,7 +350,7 @@ export function createInteriorProps(k, context = "bookshop") {
     return g;
   }
   function pendant(position, style = "brass", parent = group) {
-    const g = sub(position, 0, parent);
+    const g = k.lift(sub(position, 0, parent));
     rod([0, 0, 0], [0, -0.43, 0], 0.009, m.iron, g);
     const shadeMat = style === "green" ? m.jade : m.brass;
     lathe(
@@ -566,34 +568,137 @@ export function createInteriorProps(k, context = "bookshop") {
     const g = sub(position, 0, parent);
     g.name = "Clay hearth with open fire chambers";
     const lining = material(0x443b30, 1);
+    const clay = material(0xffffff, 0.96);
+    clay.userData.patinaProfile = "none";
+    clay.map = k.texture(
+      (c, size) => {
+        c.fillStyle = "#987454";
+        c.fillRect(0, 0, size, size);
+        for (let i = 0; i < 11000; i++) {
+          c.fillStyle = i % 3 ? "#49392513" : "#ebd9b521";
+          c.fillRect(random() * size, random() * size, 1 + random() * 2, 1);
+        }
+      },
+      [1, 1],
+      512,
+    );
+    clay.bumpMap = clay.map;
+    clay.bumpScale = 0.0015;
     box([2.65, 0.08, 1.08], [0, 0.04, 0], lining, g, 0.012);
     box([2.65, 0.53, 0.1], [0, 0.335, -0.49], lining, g, 0);
     for (const x of [-1.265, -0.025, 1.265])
-      box([0.12, 0.54, 1.0], [x, 0.35, 0], m.pot, g, 0.018);
-    const front = sub([0, 0, 0.485], 0, g);
-    k.wallWithOpenings(
-      front,
-      2.65,
-      0.63,
-      0.11,
-      [-0.7, 0.65].map((x) => ({ x, width: 0.5, bottom: 0.12, top: 0.49 })),
-      m.pot,
+      box([0.12, 0.54, 1.0], [x, 0.35, 0], clay, g, 0.027);
+    const front = new THREE.Shape();
+    front.moveTo(-1.3, 0.08);
+    front.lineTo(1.3, 0.08);
+    front.quadraticCurveTo(1.33, 0.08, 1.33, 0.14);
+    front.lineTo(1.31, 0.58);
+    front.quadraticCurveTo(0, 0.625, -1.31, 0.58);
+    front.lineTo(-1.33, 0.14);
+    front.quadraticCurveTo(-1.33, 0.08, -1.3, 0.08);
+    for (const x of [-0.7, 0.65]) {
+      const hole = new THREE.Path();
+      hole.moveTo(x - 0.25, 0.12);
+      hole.lineTo(x - 0.25, 0.34);
+      hole.bezierCurveTo(x - 0.25, 0.54, x + 0.25, 0.54, x + 0.25, 0.34);
+      hole.lineTo(x + 0.25, 0.12);
+      hole.closePath();
+      front.holes.push(hole);
+    }
+    const frontGeometry = new THREE.ExtrudeGeometry(front, {
+      depth: 0.085,
+      bevelEnabled: true,
+      bevelSize: 0.012,
+      bevelThickness: 0.01,
+      bevelSegments: 4,
+      curveSegments: 24,
+    });
+    const frontClay = material(0xffffff, 0.96);
+    frontClay.userData.patinaProfile = "none";
+    frontClay.map = k.texture(
+      (c, size) => {
+        c.fillStyle = "#987454";
+        c.fillRect(0, 0, size, size);
+        for (let i = 0; i < 14000; i++) {
+          c.fillStyle = i % 3 ? "#483b2819" : "#e4d7b925";
+          c.fillRect(random() * size, random() * size, 1 + random() * 3, 1);
+        }
+        for (const x of [-0.7, 0.65]) {
+          const px = ((x + 1.34) / 2.68) * size;
+          const py = (1 - 0.42 / 0.65) * size;
+          c.save();
+          c.translate(px, py);
+          c.scale(1, 2.8);
+          const soot = c.createRadialGradient(0, 0, 5, 0, 0, 110);
+          soot.addColorStop(0, "#25231cd9");
+          soot.addColorStop(0.55, "#3932287a");
+          soot.addColorStop(1, "#39322800");
+          c.fillStyle = soot;
+          c.fillRect(-112, -112, 224, 224);
+          c.restore();
+        }
+      },
+      [1, 1],
+      1024,
     );
-    const top = sub([0, 0.59, 0], 0, g);
-    top.rotation.x = -Math.PI / 2;
-    k.wallWithOpenings(
-      top,
-      2.65,
-      1.08,
-      0.08,
-      [-0.7, 0.65].map((x) => ({ x, width: 0.38, bottom: -0.2, top: 0.2 })),
-      m.pot,
-      -0.54,
+    frontClay.bumpMap = frontClay.map;
+    frontClay.bumpScale = 0.001;
+    const positions = frontGeometry.attributes.position;
+    const uv = frontGeometry.attributes.uv;
+    for (let i = 0; i < positions.count; i++) {
+      const x = positions.getX(i),
+        y = positions.getY(i);
+      uv.setXY(i, (x + 1.34) / 2.68, y / 0.65);
+      positions.setZ(
+        i,
+        positions.getZ(i) +
+          0.0014 * Math.sin(x * 37 + y * 29) * Math.sin(y * 61 - x * 12),
+      );
+    }
+    frontGeometry.computeVertexNormals();
+    mesh(frontGeometry, frontClay, [0, 0, 0.435], [0, 0, 0], g);
+    const top = new THREE.Shape();
+    top.moveTo(-1.24, -0.54);
+    top.lineTo(1.24, -0.54);
+    top.quadraticCurveTo(1.33, -0.54, 1.33, -0.45);
+    top.lineTo(1.33, 0.45);
+    top.quadraticCurveTo(1.33, 0.54, 1.24, 0.54);
+    top.lineTo(-1.24, 0.54);
+    top.quadraticCurveTo(-1.33, 0.54, -1.33, 0.45);
+    top.lineTo(-1.33, -0.45);
+    top.quadraticCurveTo(-1.33, -0.54, -1.24, -0.54);
+    for (const x of [-0.7, 0.65]) {
+      const hole = new THREE.Path();
+      hole.absarc(x, 0, 0.152, 0, Math.PI * 2, true);
+      top.holes.push(hole);
+    }
+    mesh(
+      new THREE.ExtrudeGeometry(top, {
+        depth: 0.073,
+        bevelEnabled: true,
+        bevelSize: 0.008,
+        bevelThickness: 0.006,
+        bevelSegments: 3,
+        curveSegments: 32,
+      }),
+      clay,
+      [0, 0.573, 0],
+      [-Math.PI / 2, 0, 0],
+      g,
     );
     const ember = material(0x8c3f1f, 0.95);
+    const ash = material(0x8c8577, 1);
     ember.emissive.set(0xbd3712);
     ember.emissiveIntensity = 0.65;
     for (const x of [-0.7, 0.65]) {
+      for (let i = 0; i < 32; i++)
+        sphere(
+          range(0.0015, 0.0045),
+          [x + range(-0.2, 0.2), 0.006, range(0.58, 0.85)],
+          ash,
+          g,
+          [1.4, 0.25, 0.8],
+        );
       for (let i = 0; i < 6; i++)
         sphere(
           0.033,
@@ -727,6 +832,10 @@ export function createInteriorProps(k, context = "bookshop") {
     tropical = false,
     { planted = false } = {},
   ) {
+    if (tropical && planted) {
+      gardenPlants ??= tropicalVegetation(k);
+      return gardenPlants.understory(position, { height: scale * 1.65 });
+    }
     const g = sub(position);
     g.scale.setScalar(scale);
     if (planted) {
@@ -772,6 +881,10 @@ export function createInteriorProps(k, context = "bookshop") {
       mesh(geo, m.leaf, end, [range(-0.8, 0.8), a, range(-0.8, 0.8)], g);
     }
     return g;
+  }
+  function gardenPalm(position, height = 5) {
+    gardenPlants ??= tropicalVegetation(k);
+    return gardenPlants.palm(position, { height, radius: height * 0.35 });
   }
   function stool(position, width = 0.6, depth = 0.38, height = 0.48) {
     const g = sub(position);
@@ -874,7 +987,7 @@ export function createInteriorProps(k, context = "bookshop") {
     return g;
   }
   function lantern(position, parent = group) {
-    const g = sub(position, 0, parent);
+    const g = k.lift(sub(position, 0, parent));
     rod([0, 0, 0], [0, -0.32, 0], 0.008, m.iron, g);
     box([0.27, 0.055, 0.27], [0, -0.4, 0], m.iron, g);
     box([0.26, 0.04, 0.26], [0, -0.83, 0], m.iron, g);
@@ -909,6 +1022,7 @@ export function createInteriorProps(k, context = "bookshop") {
     wallPrint,
     scale,
     foliage,
+    gardenPalm,
     stool,
     glass,
     cake,

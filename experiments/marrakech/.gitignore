@@ -1,0 +1,14 @@
+node_modules/
+/assets/
+unity/Library/
+unity/Logs/
+unity/Temp/
+unity/UserSettings/
+unity/Build/
+unity/Assets/Imported/
+unity/Assets/Generated/
+unity/Assets/Resources/PerformanceTestRunInfo.json*
+unity/Assets/Resources/PerformanceTestRunSettings.json*
+unity/*.csproj
+unity/*.slnx
+unity/.vscode/

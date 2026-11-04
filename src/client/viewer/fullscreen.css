@@ -1,0 +1,128 @@
+#app {
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+    env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+
+:root dialog {
+  max-width: calc(
+    100vw - 40px - 2 *
+      max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))
+  );
+  max-height: calc(
+    100dvh - 40px - 2 *
+      max(env(safe-area-inset-top, 0px), env(safe-area-inset-bottom, 0px))
+  );
+}
+
+.fullscreen-button,
+.viewer-header .fullscreen-button,
+.world-header .fullscreen-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 12px;
+}
+
+.fullscreen-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fullscreen-button[aria-pressed="false"] .fullscreen-leave,
+.fullscreen-button[aria-pressed="true"] .fullscreen-enter {
+  display: none;
+}
+
+.fullscreen-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+#app > .fullscreen-button {
+  position: absolute;
+  top: max(24px, env(safe-area-inset-top, 0px));
+  right: calc(210px + env(safe-area-inset-right, 0px));
+  z-index: 80;
+}
+
+.fullscreen-help {
+  width: min(560px, calc(100vw - 40px));
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid #ffffff26;
+  border-radius: 16px;
+  background: #132329;
+  color: #eae6d9;
+  overscroll-behavior: contain;
+}
+
+.fullscreen-help::backdrop {
+  background: #061116b8;
+}
+
+.fullscreen-help header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.fullscreen-help h2 {
+  margin: 0;
+  font:
+    normal 26px Georgia,
+    serif;
+}
+
+.fullscreen-help h3 {
+  margin: 24px 0 8px;
+  font-size: 16px;
+}
+
+.fullscreen-help p {
+  margin: 14px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.fullscreen-help button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 900px) {
+  .fullscreen-button span {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .viewer-header {
+    position: relative;
+  }
+
+  .viewer-header > :first-child {
+    min-height: 44px;
+    padding-right: 56px;
+  }
+
+  .world-header .brand {
+    min-height: 44px;
+    max-width: calc(100% - 56px);
+  }
+
+  .world-header .fullscreen-button,
+  .viewer-header .fullscreen-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

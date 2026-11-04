@@ -1,11 +1,28 @@
 export const uiPtBR = Object.freeze({
   "Diorama Atlas": "Diorama Atlas",
   "Created by": "Criado por",
-  "This public edition includes all bundled places and prerecorded narration. Additional object-detail speech uses your browser's voices; creating new places requires the local server.":
-    "Esta edição pública inclui todos os lugares da coleção e as narrações pré-gravadas. A fala adicional sobre os objetos usa as vozes do navegador; criar novos lugares exige o servidor local.",
+  "This public edition includes all bundled places and prerecorded narration for guided visits, object details and Miniatures. Creating new places requires the local server.":
+    "Esta edição pública inclui todos os lugares e narrações pré-gravadas para visitas guiadas, detalhes de objetos e Miniaturas. Criar novos lugares requer o servidor local.",
   "Diorama Atlas — a world of small places":
     "Diorama Atlas — um mundo de pequenos lugares",
   Language: "Idioma",
+  "Full screen": "Tela cheia",
+  "Exit full screen": "Sair da tela cheia",
+  "Use the whole screen": "Use a tela inteira",
+  "Full screen could not be changed. Try the button again, or use your browser's fullscreen controls.":
+    "Não foi possível alterar o modo de tela cheia. Tente o botão novamente ou use os controles de tela cheia do navegador.",
+  "Atlas is already open as an app. This browser cannot hide the remaining system controls.":
+    "O Atlas já está aberto como aplicativo. Este navegador não pode ocultar os controles restantes do sistema.",
+  "Full screen is not available in this browser. Open Atlas as a Home Screen app instead.":
+    "A tela cheia não está disponível neste navegador. Abra o Atlas como um aplicativo da Tela de Início.",
+  "iPad and iPhone": "iPad e iPhone",
+  "In Safari, open Share, choose Add to Home Screen, and enable Open as Web App if offered.":
+    "No Safari, abra Compartilhar, escolha Adicionar à Tela de Início e ative Abrir como App da Web, se disponível.",
+  "Android and desktop": "Android e computador",
+  "Open your browser's menu and choose Install app or Add to Home screen, if available.":
+    "Abra o menu do navegador e escolha Instalar aplicativo ou Adicionar à tela inicial, se disponível.",
+  "Launch Atlas from its new icon to browse without the address bar. Internet access is still required; this does not download the collection for offline use.":
+    "Abra o Atlas pelo novo ícone para explorar sem a barra de endereço. O acesso à internet continua necessário; isso não baixa a coleção para uso offline.",
   "Language for the entire Atlas and narration":
     "Idioma de todo o Atlas e da narração",
   "The saved language could not be read. Choose your language again.":

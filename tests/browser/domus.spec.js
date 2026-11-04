@@ -89,7 +89,7 @@ test("miniature is a real interactive peer and restores the same furnished inter
   await page.getByRole("button", { name: "Miniature", exact: true }).click();
   await frames(page);
   expect((await miniatureState(page)).mode).toBe("miniature");
-  await expect(page).toHaveURL(/mode=miniature/);
+  await expect(page).toHaveURL(/version=miniature/);
   await expect(page.locator(".walking-pad")).toBeHidden();
   await expect(page.locator(".scene-narration")).toBeHidden();
   await expect(page.locator(".scene-narration")).toHaveAttribute(
@@ -196,7 +196,7 @@ test("miniature direct links, touch, Portuguese and compact framing survive relo
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(
-    "/?scene=roman-domus&inspect=1&draft=1&mode=miniature&view=bedroom",
+    "/?scene=roman-domus&inspect=1&draft=1&version=miniature&view=bedroom",
   );
   await expect(page.locator('#viewer[aria-busy="false"]')).toBeVisible();
   await expect(page.locator('[data-mode="miniature"]')).toHaveAttribute(
@@ -274,7 +274,7 @@ test("miniature direct links, touch, Portuguese and compact framing survive relo
   await expect(
     page.getByRole("button", { name: "Caminhar para a frente", exact: true }),
   ).toBeVisible();
-  await expect(page).toHaveURL(/draft=1.*mode=interior/);
+  await expect(page).toHaveURL(/draft=1.*version=interior/);
 });
 
 test("every room and viewpoint is reachable with actual body clearance", async ({

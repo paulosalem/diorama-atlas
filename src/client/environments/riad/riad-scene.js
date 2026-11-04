@@ -51,7 +51,11 @@ export const RIAD_VIEWS = {
 
 // The riad is constructed in metres. Architecture, furniture and small objects
 // share a material library; repeated static parts are batched after construction.
-export function buildRiadEnvironment(definition, renderer) {
+export function buildRiadEnvironment(
+  definition,
+  renderer,
+  { miniature = false } = {},
+) {
   const m = createRiadMaterials(renderer);
   const detail = createRiadDetailMaterials(renderer, m);
   let cushionIndex = 0;
@@ -1057,6 +1061,10 @@ export function buildRiadEnvironment(definition, renderer) {
     cushion,
     lantern,
     mosaicStrip,
+    lift(object) {
+      if (miniature) object.userData.miniaturePart = "shell";
+      return object;
+    },
   });
   addRiadCraft({
     m,
@@ -1139,6 +1147,7 @@ export function buildRiadEnvironment(definition, renderer) {
     if (
       !o.isMesh ||
       o.isInstancedMesh ||
+      o.userData.miniaturePart === "shell" ||
       dynamic.has(o) ||
       o.material.transparent
     )
@@ -1180,7 +1189,7 @@ export function buildRiadEnvironment(definition, renderer) {
     detail.tea,
   ];
   function captureReflections(scene) {
-    reflectionTarget = new THREE.WebGLCubeRenderTarget(256, {
+    reflectionTarget ??= new THREE.WebGLCubeRenderTarget(256, {
       type: THREE.HalfFloatType,
       generateMipmaps: true,
       minFilter: THREE.LinearMipmapLinearFilter,
@@ -1229,6 +1238,7 @@ export function buildRiadEnvironment(definition, renderer) {
       atmosphere.dispose();
       detail.dispose();
       reflectionTarget?.dispose();
+      reflectionTarget?.texture.dispose();
       geometries.forEach((g) => g.dispose());
       const materials = new Set();
       group.traverse((o) => {

@@ -64,6 +64,11 @@ test.beforeEach(async ({ page }) => {
   });
 
   await page.addInitScript(() => {
+    window.speechSynthesis.speak = () => {
+      throw new Error(
+        "Bundled narration must use OpenAI recordings, not browser speech.",
+      );
+    };
     const NativeAudio = window.Audio;
     window.narrationElements = [];
     window.Audio = class extends NativeAudio {
@@ -73,6 +78,97 @@ test.beforeEach(async ({ page }) => {
       }
     };
   });
+});
+
+for (const scene of [
+  "riad",
+  "textile",
+  "balinese-subak-terraces",
+  "douro-vineyard",
+]) {
+  test(`${scene}: miniature recordings are bilingual, opt-in and released on mute and navigation`, async ({
+    page,
+  }, info) => {
+    const requested = [];
+    page.on("request", (request) => {
+      if (/\/public\/narration\/.*\.mp3$/.test(request.url()))
+        requested.push(request.url());
+    });
+    await page.goto(`/?scene=${scene}&version=miniature`);
+    await expect(page.locator("#viewer")).toHaveAttribute(
+      "aria-busy",
+      "false",
+      { timeout: 120_000 },
+    );
+    expect(requested).toEqual([]);
+    for (const locale of ["en-US", "pt-BR"]) {
+      await page.locator("#atlasLanguage").selectOption(locale);
+      expect((await state(page)).state).toBe("idle");
+      await page.locator("#miniatureListen").click();
+      await expect.poll(async () => (await state(page)).state).toBe("playing");
+      const playing = await state(page);
+      expect(playing.locale).toBe(locale);
+      expect(playing.file).toMatch(/\/public\/narration\/.*\.mp3$/);
+      await page.waitForFunction(
+        (file) =>
+          window.narrationElements.some(
+            (element) =>
+              element.getAttribute("src") === file &&
+              !element.paused &&
+              element.currentTime > 0.1,
+          ),
+        playing.file,
+      );
+      await page.locator("#miniatureListen").click();
+      expect((await state(page)).state).toBe("idle");
+    }
+    await page.locator("#atlasLanguage").selectOption("en-US");
+    await page.locator("#miniatureListen").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.screenshot({ path: info.outputPath("openai-narration.png") });
+    await page.getByRole("button", { name: /^Soundscape,/ }).click();
+    await page.locator("#muteSoundscape").click();
+    await expect.poll(async () => (await state(page)).state).toBe("idle");
+    await page.locator("#closeSoundscape").click();
+    await page.locator("#miniatureListen").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.locator("#riadExpand").click();
+    expect(
+      await page.evaluate(() =>
+        window.narrationElements.every(
+          (element) => element.paused && !element.getAttribute("src"),
+        ),
+      ),
+    ).toBe(true);
+  });
+}
+
+test("missing miniature audio is explicit and retryable without browser speech", async ({
+  page,
+}) => {
+  await page.route("**/public/narration/*.mp3", (route) =>
+    route.fulfill({ status: 404, body: "Missing" }),
+  );
+  await page.goto("/?scene=riad&version=miniature");
+  await expect(page.locator("#viewer")).toHaveAttribute("aria-busy", "false", {
+    timeout: 120_000,
+  });
+  await page.locator("#miniatureListen").click();
+  await expect.poll(async () => (await state(page)).state).toBe("unavailable");
+  await expect(page.locator("#miniatureNotice")).toContainText(
+    "recording could not play",
+  );
+  await page.unroute("**/public/narration/*.mp3");
+  await page.locator("#miniatureListen").click();
+  await expect.poll(async () => (await state(page)).state).toBe("playing");
+  await page.evaluate(() => {
+    Object.defineProperty(document, "hidden", {
+      configurable: true,
+      value: true,
+    });
+    document.dispatchEvent(new Event("visibilitychange"));
+  });
+  await expect.poll(async () => (await state(page)).state).toBe("idle");
 });
 
 for (const [scene, initialView, target] of [

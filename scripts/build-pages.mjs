@@ -15,6 +15,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const markerName = ".atlas-pages-build.json";
 const publishedDirectories = [
   "src/client",
+  "public/app-icons",
   "public/audio",
   "public/earth",
   "public/interiors",
@@ -27,6 +28,7 @@ const publishedDirectories = [
   "node_modules/three/examples/jsm",
 ];
 const publishedFiles = [
+  "public/app.webmanifest",
   "public/credits.json",
   "node_modules/three/build/three.module.js",
   "node_modules/three/build/three.core.js",
@@ -144,7 +146,7 @@ if (
   if (values.help) {
     console.log(`Build the server-free Atlas for GitHub Pages or another static host.
 Usage: node scripts/build-pages.mjs [--output-dir dist]
-Copies only the browser source, approved asset directories and Three.js runtime.
+Copies browser source, approved assets and the Three.js renderer.
 Exports bundled scene definitions, not private envelopes, caches or server source.
 The result works at the domain root or a project subdirectory without rewriting assets.
 An existing output directory must carry this builder's ownership marker.

@@ -14,6 +14,7 @@ export function buildRiadRooms({
   cushion,
   lantern,
   mosaicStrip,
+  lift = (object) => object,
 }) {
   const owned = [];
   const shade = m.plaster.clone();
@@ -135,12 +136,14 @@ export function buildRiadRooms({
   ) {
     const shell = subgroup([0, floor, -recess], 0, parent);
     box([width, 0.13, depth], [0, -0.045, -depth / 2], m.floor, 0, shell);
-    box(
-      [width + 0.24, 0.18, depth + 0.15],
-      [0, height, -depth / 2],
-      wood,
-      0,
-      shell,
+    lift(
+      box(
+        [width + 0.24, 0.18, depth + 0.15],
+        [0, height, -depth / 2],
+        wood,
+        0,
+        shell,
+      ),
     );
     for (const side of [-1, 1])
       box(
@@ -161,7 +164,9 @@ export function buildRiadRooms({
     );
     // Timber ceiling joists and floor joints continue beyond the visible threshold.
     for (let z = -0.4; z > -depth; z -= 0.5)
-      box([width, 0.12, 0.065], [0, height - 0.13, z], wood, 0.004, shell);
+      lift(
+        box([width, 0.12, 0.065], [0, height - 0.13, z], wood, 0.004, shell),
+      );
     for (const side of [-1, 1])
       box(
         [0.045, 0.23, depth],

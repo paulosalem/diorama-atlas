@@ -18,7 +18,8 @@ const { values } = parseArgs({
     "base-url": { type: "string", default: "http://127.0.0.1:4195" },
     "output-dir": { type: "string", default: "outputs/collection-realism" },
     scene: { type: "string" },
-    mode: { type: "string", default: "environment" },
+    all: { type: "boolean", default: false },
+    version: { type: "string" },
     "include-drafts": { type: "boolean", default: false },
     help: { type: "boolean", short: "h" },
   },
@@ -30,8 +31,9 @@ Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --base-url URL       Running local atlas (default http://127.0.0.1:4195)
   --output-dir PATH    Capture directory (default outputs/collection-realism)
   --scene ID           Capture one place; merge into an existing after manifest
+  --all                Capture interiors and outdoors
+  --version ID         Capture an experience of --scene or --all
   --include-drafts     Permit a specifically selected unfinished local scene
-  --mode MODE          environment (default) or miniature; use separate directories
 
 Before captures are immutable: choose a new directory for another baseline.
 Screenshots and capture.json are written under <output-dir>/<phase>/.
@@ -44,10 +46,8 @@ if (!["before", "after"].includes(values.phase)) {
 }
 if (values["include-drafts"] && !values.scene)
   throw new Error("--include-drafts requires an explicit --scene.");
-if (!["environment", "miniature"].includes(values.mode))
-  throw new Error("--mode must be environment or miniature.");
-if (values.mode === "miniature" && !values.scene)
-  throw new Error("--mode miniature requires an explicit --scene.");
+if (values.version && !values.scene && !values.all)
+  throw new Error("--version requires --scene or --all.");
 const output = path.resolve(values["output-dir"], values.phase);
 const manifestFile = path.join(output, "capture.json");
 let previous = null;
@@ -59,7 +59,13 @@ try {
 if (values.phase === "before" && previous) {
   throw new Error("This baseline already exists. Choose a new --output-dir.");
 }
-if (previous && (previous.mode ?? "environment") !== values.mode)
+if (
+  previous &&
+  previous.scenes.some(
+    (scene) =>
+      (scene.version === "miniature") !== (values.version === "miniature"),
+  )
+)
   throw new Error(
     "Use separate output directories for environments and miniatures.",
   );
@@ -78,13 +84,14 @@ const scenes = [
   ...(values["include-drafts"] ? outdoorDraftScenes : []),
   ...(values["include-drafts"] ? interiorDraftScenes : []),
 ].filter((scene) =>
-  values.scene ? scene.id === values.scene : scene.environment !== "outdoor",
+  values.scene
+    ? scene.id === values.scene
+    : values.all || scene.environment !== "outdoor",
 );
 if (!scenes.length)
   throw new Error("No matching place in the selected collection.");
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
-  channel: "chromium",
   args:
     process.platform === "darwin"
       ? ["--use-angle=metal"]
@@ -122,18 +129,23 @@ try {
       }
     });
     await page.goto(
-      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}${values.mode === "miniature" ? "&mode=miniature" : ""}`,
+      `${values["base-url"]}/?scene=${encodeURIComponent(definition.id)}&inspect=1${definition.draft ? "&draft=1" : ""}${values.version ? `&version=${encodeURIComponent(values.version)}` : ""}`,
     );
     await waitForViewer(page);
     await page.evaluate(() => document.fonts.ready);
     const views = [];
-    const miniature = values.mode === "miniature";
-    const selector = miniature
+    const sharedRuntimeMiniature = await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      const viewer = getActiveViewer();
+      return Boolean(viewer.runtime.miniature && viewer.mode === "miniature");
+    });
+    const selector = sharedRuntimeMiniature
       ? "[data-miniature-view]"
       : ".riad-viewpoints button";
     for (const button of await page.locator(selector).all()) {
       const key = await button.getAttribute(
-        miniature ? "data-miniature-view" : "data-view",
+        sharedRuntimeMiniature ? "data-miniature-view" : "data-view",
       );
       const label = await button.innerText();
       await button.click();
@@ -143,18 +155,18 @@ try {
             requestAnimationFrame(() => requestAnimationFrame(resolve)),
           ),
       );
-      const file = `${definition.id}-${key}.png`;
-      await page.locator("#canvasMount").screenshot({
+      const file = `${definition.id}${values.version ? `-${values.version}` : ""}-${key}.png`;
+      await page.locator("#canvasMount, #miniatureCanvas").screenshot({
         path: path.join(output, file),
         style:
           ".scene-narration, .walking-pad, .walking-hint, .miniature-hint { visibility: hidden !important; }",
       });
       const view = await page.evaluate(
-        async ({ key, miniature }) => {
+        async ({ key, sharedRuntimeMiniature }) => {
           const { getActiveViewer } =
             await import("/src/client/viewer/panorama-viewer.js");
           const viewer = getActiveViewer();
-          if (!miniature) return viewer.runtime.views[key];
+          if (!sharedRuntimeMiniature) return viewer.runtime.views[key];
           return {
             label: viewer.runtime.miniature.views[key].label,
             position: viewer.camera.position.toArray(),
@@ -163,7 +175,7 @@ try {
             cutaway: viewer.runtime.miniature.cutaway,
           };
         },
-        { key, miniature },
+        { key, sharedRuntimeMiniature },
       );
       views.push({ key, label, file, camera: view });
     }
@@ -178,15 +190,17 @@ try {
       id: definition.id,
       title: definition.title,
       ...(definition.draft ? { draft: true } : {}),
-      ...(miniature ? { representation: "miniature" } : {}),
+      ...(values.version ? { version: values.version } : {}),
       views,
     };
-    const index = results.findIndex((scene) => scene.id === entry.id);
+    const index = results.findIndex(
+      (scene) => scene.id === entry.id && scene.version === entry.version,
+    );
     if (index === -1) results.push(entry);
     else results[index] = entry;
     await writeFile(
       manifestFile,
-      `${JSON.stringify({ phase: values.phase, mode: values.mode, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
+      `${JSON.stringify({ phase: values.phase, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
     );
     console.error(
       `${definition.title}: ${views.length} ${values.phase} views saved`,

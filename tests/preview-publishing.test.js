@@ -161,6 +161,48 @@ test("preview publishing includes Marrakech and retains unselected capture prove
         png,
       );
     }
+    const indoorRecords = credits.rendered;
+    await writeFile(
+      path.join(root, "captures/capture.json"),
+      JSON.stringify({
+        phase: "after",
+        viewport: { width: 1280, height: 900 },
+        scenes: [
+          {
+            id: "released-landscape",
+            views: [{ key: "arrival", file: "riad-courtyard.png" }],
+          },
+        ],
+      }),
+    );
+    await promisify(execFile)(process.execPath, [
+      path.join(root, "scripts/publish-previews.mjs"),
+      "--input",
+      path.join(root, "captures/capture.json"),
+      "--environment",
+      "outdoor",
+    ]);
+    const updated = JSON.parse(
+      await readFile(path.join(root, "public/previews/credits.json"), "utf8"),
+    );
+    assert.deepEqual(updated.rendered, indoorRecords);
+    assert.deepEqual(updated.drafts, [draft]);
+    assert.equal(updated.outdoors.length, 1);
+    assert.equal(updated.outdoors[0].reducedMotion, true);
+    assert.equal(
+      updated.outdoors[0].file,
+      "/public/outdoors/previews/released-landscape.png",
+    );
+    assert.equal(
+      updated.outdoors[0].sha256,
+      createHash("sha256").update(png).digest("hex"),
+    );
+    assert.deepEqual(
+      await readFile(
+        path.join(root, "public/outdoors/previews/released-landscape.png"),
+      ),
+      png,
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }

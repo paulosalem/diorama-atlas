@@ -4,6 +4,8 @@ import { createInteriorProps } from "./interior-props.js";
 import { deepenSurroundings } from "./interior-depth.js";
 import { addInteriorLife } from "./interior-life.js";
 import { printCatalog } from "../shared/print-catalog.js";
+import { shapedTimber } from "../shared/natural-forms.js";
+import { completeInteriorMiniature } from "../miniatures/interior-miniature.js";
 
 function sceneSeed(definition) {
   let n = 32;
@@ -25,7 +27,11 @@ function detailsAt(definition, rules, fallback) {
 }
 
 /** Select a purpose-built interior; saved entry descriptions and history remain intact. */
-export function buildInteriorEnvironment(definition, renderer) {
+export function buildInteriorEnvironment(
+  definition,
+  renderer,
+  { miniature = false } = {},
+) {
   const text =
     `${definition.id} ${definition.title} ${definition.requestPrompt ?? ""}`.toLowerCase();
   const type = /kerala|backwater/.test(text)
@@ -51,6 +57,7 @@ export function buildInteriorEnvironment(definition, renderer) {
                 }[definition.blueprint?.archetype] ?? "herbshop");
   const k = createEnvironmentKit(renderer, sceneSeed(definition), {
     rustic: type === "workshop" || type === "kitchen",
+    miniature,
   });
   const p = createInteriorProps(
     k,
@@ -72,6 +79,7 @@ export function buildInteriorEnvironment(definition, renderer) {
   const finish = (views, anchors, options = {}) => {
     const depth = deepenSurroundings(k, p, type, definition);
     const life = addInteriorLife(k, p, type, definition);
+    if (miniature) completeInteriorMiniature(k, p, type, definition);
     return k.finish(definition, { ...views, ...depth.views }, anchors, {
       ...options,
       ...life,
@@ -872,23 +880,99 @@ function buildWorkshop(definition, k, p, finish) {
   // Pedal loom: structural rails, warp beam, cloth beam, heddles and treadles.
   for (const x of [-0.83, 0.83])
     for (const z of [-0.9, 0.9])
-      box([0.11, 1.83, 0.11], [x, 0.915, z], m.cedar, loom, 0.012);
+      shapedTimber(k, [x, 0, z], [x, 1.83, z], 0.11, m.cedar, loom, {
+        seed: x * 4 + z,
+        relief: 0.0006,
+      });
   for (const y of [0.13, 1.77])
     for (const z of [-0.9, 0.9])
-      box([1.85, 0.1, 0.1], [0, y, z], m.cedar, loom);
+      shapedTimber(k, [-0.925, y, z], [0.925, y, z], 0.1, m.cedar, loom, {
+        seed: y + z,
+        relief: 0.0005,
+      });
   for (const x of [-0.83, 0.83])
     for (const y of [0.22, 1.47])
-      box([0.09, 0.11, 1.91], [x, y, 0], m.cedar, loom);
+      shapedTimber(k, [x, y, -0.955], [x, y, 0.955], 0.09, m.cedar, loom, {
+        depth: 0.11,
+        seed: x + y,
+        relief: 0.0006,
+      });
+  for (const x of [-0.83, 0.83])
+    for (const z of [-0.9, 0.9])
+      for (const y of [0.22, 1.47, 1.77]) {
+        const peg = cylinder(0.011, 0.012, [x, y, z + 0.06], m.cedar, loom);
+        peg.rotation.x = Math.PI / 2;
+      }
   for (const z of [-0.78, 0.84]) {
     const beam = cylinder(0.1, 1.65, [0, 0.9, z], m.cedar, loom);
     beam.rotation.z = Math.PI / 2;
+    const ratchet = cylinder(
+      0.142,
+      0.027,
+      [0.9, 0.9, z],
+      m.cedar,
+      loom,
+      0.142,
+      40,
+    );
+    ratchet.rotation.z = Math.PI / 2;
+    for (let tooth = 0; tooth < 20; tooth++) {
+      const a = (tooth * Math.PI) / 10;
+      box(
+        [0.035, 0.026, 0.034],
+        [0.9, 0.9 + Math.cos(a) * 0.14, z + Math.sin(a) * 0.14],
+        m.cedar,
+        loom,
+        0.002,
+        [a, 0, 0],
+      );
+    }
+    shapedTimber(
+      k,
+      [0.93, 1.1, z + 0.1],
+      [0.93, 0.93, z + 0.15],
+      0.025,
+      m.cedar,
+      loom,
+      { depth: 0.012, relief: 0.0002 },
+    );
+  }
+  for (const x of [-0.57, 0.57]) {
+    const wheel = cylinder(0.045, 0.025, [x, 1.71, -0.19], m.cedar, loom);
+    wheel.rotation.z = Math.PI / 2;
+    for (const dx of [-0.018, 0.018])
+      rod([x + dx, 1.77, -0.19], [x + dx, 1.71, -0.19], 0.004, m.iron, loom);
+    tube(
+      [
+        [x, 1.61, -0.32],
+        [x, 1.75, -0.22],
+        [x, 1.74, -0.16],
+        [x, 1.61, -0.1],
+      ],
+      0.0025,
+      m.linen,
+      loom,
+    );
   }
   for (const z of [-0.32, -0.1, 0.12]) {
     const frame = sub([0, 0, z], 0, loom);
     for (const y of [1.03, 1.63])
       box([1.5, 0.027, 0.026], [0, y, 0], m.cedar, frame);
     for (let x = -0.71; x < 0.72; x += 0.025)
-      rod([x, 1.03, 0], [x, 1.63, 0], 0.0016, m.linen, frame);
+      tube(
+        [
+          [x, 1.03, 0],
+          [x - 0.003, 1.16, 0],
+          [x - 0.003, 1.19, 0],
+          [x, 1.63, 0],
+          [x + 0.003, 1.19, 0],
+          [x + 0.003, 1.16, 0],
+          [x, 1.03, 0],
+        ],
+        0.0009,
+        m.linen,
+        frame,
+      );
   }
   for (let i = 0; i < 120; i++) {
     const x = -0.7 + (i / 119) * 1.4;
@@ -922,10 +1006,42 @@ function buildWorkshop(definition, k, p, finish) {
       loom,
     );
   }
-  const shuttle = sub([0.36, 1.02, 0.7], 0.33, loom);
-  box([0.3, 0.035, 0.055], [0, 0, 0], m.cedar, shuttle, 0.014);
-  for (const x of [-0.11, 0.11])
-    sphereSpool(k, [x, 0.026, 0], 0.025, threadColors[2], shuttle);
+  const shuttle = sub([0.36, 0.999, 0.7], 0.33, loom);
+  const outline = new THREE.Shape();
+  outline.moveTo(-0.15, 0);
+  outline.bezierCurveTo(-0.09, 0.06, 0.09, 0.06, 0.15, 0);
+  outline.bezierCurveTo(0.09, -0.06, -0.09, -0.06, -0.15, 0);
+  const recess = new THREE.Path();
+  recess.absellipse(0, 0, 0.092, 0.026, 0, Math.PI * 2, true);
+  outline.holes.push(recess);
+  k.mesh(
+    new THREE.ExtrudeGeometry(outline, {
+      depth: 0.028,
+      bevelEnabled: true,
+      bevelSize: 0.002,
+      bevelThickness: 0.002,
+      bevelSegments: 3,
+      curveSegments: 24,
+    }),
+    m.cedar,
+    [0, -0.014, 0],
+    [-Math.PI / 2, 0, 0],
+    shuttle,
+  );
+  box([0.18, 0.004, 0.05], [0, -0.013, 0], m.cedar, shuttle, 0.002);
+  rod([-0.095, 0.006, 0], [0.095, 0.006, 0], 0.003, m.iron, shuttle);
+  const bobbin = cylinder(
+    0.015,
+    0.13,
+    [0, 0.006, 0],
+    threadColors[2],
+    shuttle,
+    0.015,
+    28,
+  );
+  bobbin.rotation.z = Math.PI / 2;
+  for (let x = -0.065; x < 0.066; x += 0.002)
+    k.ring(0.015, 0.0007, [x, 0.006, 0], m.linen, shuttle, [0, 0, Math.PI / 2]);
   p.stool([-0.65, 0, 0.64], 1.18, 0.35, 0.48);
   // Racks of differently dyed yarn skeins, each with separate winding.
   const yarn = sub([2.92, 0, -3.45]);
@@ -933,25 +1049,52 @@ function buildWorkshop(definition, k, p, finish) {
     box([0.07, 2.85, 0.07], [x, 1.43, 0], m.cedar, yarn);
   for (const y of [1.0, 1.83, 2.65]) {
     rod([-0.96, y, 0], [0.96, y, 0], 0.025, m.cedar, yarn);
-    for (let i = 0; i < 7; i++)
+    for (let i = 0; i < 7; i++) {
+      const length = 0.45 + k.range(0, 0.19);
+      const fullness = k.range(0.8, 1.24);
       for (let j = 0; j < 30; j++) {
         const x = -0.77 + i * 0.255;
         const mat = threadColors[i % threadColors.length];
-        const dx = k.range(-0.033, 0.033),
-          dz = k.range(-0.035, 0.035);
+        const turn = (j / 30) * Math.PI * 2;
+        const dx = Math.cos(turn) * 0.028 * fullness,
+          dz = Math.sin(turn) * 0.032;
         tube(
           [
-            [x + dx - 0.035, y - 0.06, dz],
-            [x + dx - 0.06, y - 0.31, dz],
-            [x + dx, y - 0.57 - k.random() * 0.04, dz],
-            [x + dx + 0.06, y - 0.31, dz],
-            [x + dx + 0.035, y - 0.06, dz],
+            [x + dx - 0.035, y - 0.015, dz],
+            [
+              x + dx - 0.065 * fullness,
+              y - length * 0.54,
+              dz + 0.014 * Math.sin(turn),
+            ],
+            [x + dx * 0.7, y - length, dz],
+            [
+              x + dx + 0.065 * fullness,
+              y - length * 0.54,
+              dz - 0.014 * Math.sin(turn),
+            ],
+            [x + dx + 0.035, y - 0.015, dz],
+            [x + dx, y + 0.03, dz],
           ],
           0.0035,
           mat,
           yarn,
+          true,
         );
       }
+      for (const dy of [0, 0.006, 0.012])
+        tube(
+          [
+            [-0.77 + i * 0.255 - 0.055, y - length * 0.42 + dy, 0],
+            [-0.77 + i * 0.255, y - length * 0.42 + dy, 0.049],
+            [-0.77 + i * 0.255 + 0.055, y - length * 0.42 + dy, 0],
+            [-0.77 + i * 0.255, y - length * 0.42 + dy, -0.049],
+          ],
+          0.0018,
+          m.linen,
+          yarn,
+          true,
+        );
+    }
   }
   const dye = p.table([-2.72, 0, -3.5], {
     width: 1.95,
@@ -980,6 +1123,30 @@ function buildWorkshop(definition, k, p, finish) {
       dye,
     );
   }
+  const wetYarn = threadColors[2];
+  for (let strand = 0; strand < 24; strand++) {
+    const dx = strand * 0.002;
+    tube(
+      [
+        [-0.64 + dx, 0.975, 0],
+        [-0.68 + dx, 1.025, 0.14],
+        [-0.58 + dx, 0.88, 0.25],
+        [-0.5 + dx, 0.855, 0.36],
+        [-0.45 + dx, 0.66, 0.43],
+      ],
+      0.0012,
+      wetYarn,
+      dye,
+    );
+  }
+  for (let i = 0; i < 3; i++)
+    sphereSpool(
+      k,
+      [0.65 + (i % 2) * 0.15, 0.842, -0.22 + Math.floor(i / 2) * 0.15],
+      0.055,
+      threadColors[4 + (i % 2)],
+      dye,
+    );
   const stackTable = p.table([2.78, 0, 0.7], {
     width: 1.55,
     depth: 2.3,
@@ -1102,7 +1269,7 @@ function sphereSpool(k, position, radius, mat, parent = k.group) {
 }
 
 function buildKitchen(definition, k, p, finish) {
-  const { m, group, box, sub, lathe, rod, ring, sphere } = k;
+  const { m, group, box, sub, lathe, rod, tube, ring, sphere } = k;
   k.room({
     width: 8.6,
     depth: 9.3,
@@ -1125,7 +1292,7 @@ function buildKitchen(definition, k, p, finish) {
       planted: true,
     });
   for (let z = -4.4; z < 4.6; z += 0.46)
-    box([8.6, 0.13, 0.09], [0, 3.01, z], m.cedar);
+    k.lift(box([8.6, 0.13, 0.09], [0, 3.01, z], m.cedar));
   const preparation = p.table([2.78, 0, -0.18], {
     width: 1.08,
     depth: 5.2,
@@ -1171,26 +1338,61 @@ function buildKitchen(definition, k, p, finish) {
   // Clay fire hearth with recessed fire mouths and blackened pots.
   const stove = p.hearth([-1.38, 0, -3.85]);
   for (const x of [-0.7, 0.65]) {
-    lathe(
+    const profile = new THREE.SplineCurve(
       [
-        [0.12, 0],
-        [0.19, 0.04],
-        [0.23, 0.14],
-        [0.18, 0.3],
-        [0.14, 0.34],
-      ],
-      [x, 0.65, 0],
+        [0, 0.009],
+        [0.18, 0.01],
+        [0.225, 0.065],
+        [0.237, 0.16],
+        [0.2, 0.285],
+        [0.185, 0.33],
+        [0.195, 0.345],
+        [0.175, 0.347],
+        [0.168, 0.317],
+        [0.184, 0.27],
+        [0.213, 0.15],
+        [0.19, 0.062],
+        [0, 0.038],
+      ].map((point) => new THREE.Vector2(...point)),
+    );
+    lathe(
+      profile.getPoints(64).map((point) => point.toArray()),
+      [x, 0.652, 0],
       m.bronze,
       stove,
+      64,
     );
-    for (let i = 0; i < 3; i++)
-      rod(
-        [x - 0.12 + i * 0.1, 0.075, 0.36],
-        [x - 0.09 + i * 0.1, 0.08, 0.95],
-        0.028,
-        m.bark,
+    k.cylinder(0.177, 0.005, [x, 0.908, 0], m.dark, stove);
+    for (const sign of [-1, 1])
+      tube(
+        [
+          [x + sign * 0.215, 0.85, 0],
+          [x + sign * 0.285, 0.9, 0],
+          [x + sign * 0.25, 0.965, 0],
+          [x + sign * 0.19, 0.955, 0],
+        ],
+        0.014,
+        m.bronze,
         stove,
       );
+    for (let i = 0; i < 3; i++) {
+      const start = [x - 0.12 + i * 0.1, 0.085, 0.17 + i * 0.04];
+      const end = [x - 0.1 + i * 0.095, 0.09, 0.95 + i * 0.07];
+      const charEnd = [start[0], start[1], start[2] + 0.16];
+      shapedTimber(k, charEnd, end, 0.065, i === 1 ? m.cedar : m.bark, stove, {
+        round: i !== 1,
+        taper: 0.22,
+        bend: 0.015,
+        relief: 0.002,
+        seed: i + x * 4,
+      });
+      shapedTimber(k, start, charEnd, 0.065, m.dark, stove, {
+        round: i !== 1,
+        taper: 0,
+        relief: 0.002,
+        seed: i + x * 4,
+      });
+    }
   }
   const sootMap = k.texture((c, s) => {
     c.clearRect(0, 0, s, s);

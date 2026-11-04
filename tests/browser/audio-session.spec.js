@@ -49,6 +49,8 @@ test("same-tab scene changes release the previous ambience before the next place
   });
   await page.locator("#closeSoundscape").click();
   await page.getByRole("button", { name: "Back to world" }).click();
+  await expect(page.locator("#placesButton")).toBeVisible();
+  await expect(page.locator("#worldLoading")).toBeHidden();
   await page.locator("#placesButton").click();
   await expect
     .poll(() =>

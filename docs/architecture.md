@@ -4,9 +4,9 @@
 
 Diorama Atlas runs as a static browser application on GitHub Pages or with a
 local Node HTTP process for optional generation and persistence.
-There is no frontend framework, database, or production bundler. The two runtime
-dependencies are Three.js for rendering and the OpenAI SDK for optional server
-operations.
+There is no frontend framework, database, or production bundler. Three.js renders
+the globe, full-scale environments and miniatures directly from their
+authored geometry. The OpenAI SDK is used only for optional server operations.
 
 `scripts/build-pages.mjs` exports an allowlisted static site and the bundled
 scene catalog. `site.js` resolves asset/navigation paths beneath the deployment
@@ -37,7 +37,7 @@ Node: src/server/index.mjs -> createAtlasServer()
 
 ## Browser boundaries
 
-`catalog/` contains the original five place definitions, ten fictional outdoor
+`catalog/` contains the original five place definitions, eleven fictional outdoor
 settings, saved-place loading, and geographic matching. `world/` renders Earth and miniature landmarks, places
 interactive markers, and remembers camera orientation in session storage.
 
@@ -61,7 +61,8 @@ The domus also exposes `runtime.miniature`: the same furnished group, with
 independently batched roofs, sectioned architectural materials and a display
 base. `miniature-controls.js` owns reversible peer-view transitions, orbit/pan/
 zoom and aspect-aware framing. It suspends rather than recreates the walking
-controller, preserves both camera poses and updates `mode=miniature|interior`.
+controller, preserves both camera poses and uses the same
+`version=miniature|interior` routing as the collection.
 Point-light selection follows the miniature's focus instead of its elevated
 camera. Cutaway views use real sun/contact shadows without GTAO, whose normal
 override does not honor per-material clipping planes; Interior restores the
@@ -74,6 +75,65 @@ through the shared batcher. Merged vertices are expressed in that root's local
 coordinates. This is not an animation exemption: roof and section geometry
 remain batched, owned and disposed with the single runtime.
 
+Every place has a full-scale and a Miniature experience within one catalog entry.
+`catalog/scene-versions.js` derives Interior/Miniature or Landscape/Miniature
+availability for complete definitions, including generated interior families.
+`?scene=<id>&version=miniature` selects the object viewer; the original visit
+remains the default. Version links preserve the visit and deployment path but clear
+incompatible viewpoint and opening state. `rendering/` owns the direct Three.js Miniature
+presentation and cameras. It consumes the same authored geometry, material,
+water, weathering and sound mechanisms as the collection; there is no glTF
+round trip, separate scene cache, iframe or experimental-server dependency.
+Engine-study renderers and exporters live under `experiments/marrakech/web/rendering/`
+and are excluded from the public application. The Pages builder publishes only
+the Three.js runtime and local assets needed by the collection.
+
+### Floating architectural and landscape sections
+
+All 23 bundled places have corresponding miniatures: twelve opening interiors
+and eleven two-piece landscapes. Existing full-scale visits and their authored
+camera definitions remain unchanged. Douro retains its accepted composition and
+eleven Miniature viewpoints. Oaxaca and Bali established the shared treatment
+before its extension to the collection.
+
+`environments/miniatures/` owns place-specific composition and the shared
+opening-shell mechanism. The interior kit marks actual roof, entrance and
+ceiling-mounted fittings before batching, then batches the base and shell
+separately. The shell is not a duplicate enclosure over an intact room.
+Closed and open geometry share materials, ownership and physically modeled
+joinery. The shell lifts before moving sideways; reduced motion applies the
+same final geometry immediately. Overview cameras follow the changing bounds,
+while close viewpoints retain their relationship to the modeled objects.
+`open=1` preserves an open miniature on reload; changing experience clears it.
+
+Interior shells include appropriate tiled roofs or exposed upper-floor sections,
+thick entrances, roof joinery, ceiling fixtures and connected-room ceilings.
+Kyoto, Hanoi, Istanbul/Lisbon, the bookshop, Oaxaca and Kerala retain their own
+construction and sparse exterior signs of use. Marrakech lifts its real upper
+galleries and seasonal shade canopy, rather than adding a generic roof around
+the courtyard. Kerala retains its planted garden and backwater.
+
+Bali reuses the full-scale rice, tropical vegetation and field-shelter forms in
+an authored six-terrace cutaway. Its two solid soil/rock sections include modeled
+cut faces and roots. Water retains each paddy's actual contour and elevation;
+reflection captures hide the other water surfaces to prevent recursive
+reflections and framebuffer feedback.
+Architectural mirrors and local reflection probes capture the matching studio
+background rather than a black transparent void. Capture callbacks restore the
+main scene background afterward; water keeps its explicitly authored daylight
+reflection. Repeated shell transitions reuse the riad's cube target and release
+its derived reflection resources on disposal.
+
+The other landscapes use explicit composition bounds in
+`catalog/miniature-compositions.js`. `shared/section-geometry.js` physically clips
+solids and reconstructs outward cut caps, preserving holes and original vertex
+attributes. `miniatures/sectioned-environment.js` partitions meshes and instances
+while retaining live animation owners. Soil, bedrock and closed undersides
+complete both pieces. Close-view cameras and spatial probes follow their section;
+the originals remain untouched. Coastal section heights follow the modeled
+shoreline. Borrowed source assets retain their original owner; new sections own
+and dispose of their added geometry and materials.
+
 `localization/` owns the global en-US/pt-BR preference and presentation dictionaries.
 Subscriptions update text in place without replacing original definitions,
 rebuilding geometry, or disturbing camera and audio state. Original definitions
@@ -83,8 +143,17 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 23 bundled scenes have complete bilingual entry/view coverage in the local
-manifest. Additional custom scenes without recordings retain detail controls
+All 23 bundled scenes retain their original bilingual entry/view recordings.
+Douro's Landscape retains its four recorded views; its additional yard and
+railway views explicitly omit the recorded guide rather than pretending a clip
+exists. Miniatures and object details use local OpenAI recordings, with authored
+section introductions and the existing bilingual per-view transcripts. Exact text
+and locale select reusable recordings; a missing recording is an explicit error,
+never a browser-voice fallback. `recorded-narration.js` owns the Miniature's single
+audio element and cancels pending playback on stop, hide and disposal. Both presentations
+share the validated, cached `narration-library.js` loader and the same audio
+ownership, ducking and mute mechanism. Narration requests no paid service.
+Additional custom scenes without recordings retain detail controls
 without a guided panel; supported scenes report malformed or missing tracks.
 Opening object details pauses and replaces the guided panel, avoiding competing
 captions on compact screens. Playback never creates paid generation requests.

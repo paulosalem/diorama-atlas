@@ -1,8 +1,16 @@
 import * as THREE from "three";
-import { createOutdoorKit, outdoorView } from "./outdoor-kit.js";
+import { createOutdoorKit } from "./outdoor-kit.js";
 import { createVineyardVines } from "./vineyard-vines.js";
 import { buildVineyardQuinta } from "./vineyard-quinta.js";
-import { buildVineyardLandscape } from "./vineyard-landscape.js";
+import {
+  buildVineyardLandscape,
+  vineyardRiverBank,
+} from "./vineyard-landscape.js";
+import { vineyardViews } from "./vineyard-views.js";
+import { schistGeometry } from "./vineyard-stone.js";
+import { buildVineyardYard } from "./vineyard-yard.js";
+import { buildVineyardLife, vineyardYardView } from "./vineyard-life.js";
+import { buildRiversideRailway } from "./riverside-railway.js";
 import { addVineyardGroundcover } from "./vineyard-garden.js";
 
 const bend = (x) => 1.4 * Math.sin(x * 0.072) + 0.0008 * x * x;
@@ -38,27 +46,6 @@ function strip(
   geometry.setIndex(index);
   geometry.computeVertexNormals();
   return k.mesh(geometry, material);
-}
-
-function schistGeometry() {
-  const shape = new THREE.Shape();
-  shape.moveTo(-0.49, -0.43);
-  shape.lineTo(0.31, -0.5);
-  shape.lineTo(0.5, -0.25);
-  shape.lineTo(0.44, 0.38);
-  shape.lineTo(-0.19, 0.49);
-  shape.lineTo(-0.5, 0.25);
-  shape.closePath();
-  const geometry = new THREE.ExtrudeGeometry(shape, {
-    depth: 1,
-    bevelEnabled: true,
-    bevelSize: 0.025,
-    bevelThickness: 0.025,
-    bevelSegments: 1,
-    steps: 1,
-  });
-  geometry.translate(0, 0, -0.5);
-  return geometry;
 }
 
 export function buildDouroVineyard(definition, renderer) {
@@ -160,13 +147,12 @@ export function buildDouroVineyard(definition, renderer) {
     }
   }
   // Broad working terrace; the land continues both uphill and down to the river.
-  strip(
-    k,
-    earth,
-    (x) => [0.01, 9 + bend(x)],
-    (x) => [0, edge(0, x)],
-    { lo: -78, hi: 78 },
-  );
+  buildVineyardYard(k, earth, {
+    front: (x) => [0.01, 9 + bend(x)],
+    back: (x) => [0, edge(0, x)],
+    left: -78,
+    right: 78,
+  });
   for (let row = 0; row < 11; row++) {
     const y = level(row + 1);
     strip(
@@ -323,7 +309,8 @@ export function buildDouroVineyard(definition, renderer) {
     (x) => [-27.1, -73 + 10 * Math.sin(x * 0.018)],
     { lo: -750, hi: 750 },
   );
-  const landscape = buildVineyardLandscape(k, earth);
+  const railwayBounds = { left: -180, right: 180 };
+  const landscape = buildVineyardLandscape(k, earth, { railwayBounds });
   for (let layer = 0; layer < 3; layer++) {
     const mat = k.material([0x7c8a81, 0x8d9b95, 0x9eaba5][layer], 1);
     strip(
@@ -340,35 +327,21 @@ export function buildDouroVineyard(definition, renderer) {
       { lo: -900, hi: 900, samples: 160 },
     );
   }
+  const life = buildVineyardLife(k, vines);
+  const railway = buildRiversideRailway(k, {
+    center: (x) => vineyardRiverBank(x) + 0.4,
+    height: -25.7,
+    bottom: -29.5,
+    ...railwayBounds,
+  });
   const counts = vines.finish();
   const groundcover = addVineyardGroundcover(k, { edge, level });
   const runtime = k.finish(
     definition,
     {
-      arrival: outdoorView(
-        "A vineyard above the Douro",
-        [7.8, 1.72, -1.3],
-        [-3, -4.5, -18],
-        64,
-      ),
-      vines: outdoorView(
-        "Leaves, fruit and the trained vine",
-        [5.8, 1.45, 3.2],
-        [5.15, 1.02, 0.9],
-        49,
-      ),
-      terraces: outdoorView(
-        "Schist terraces and the descending path",
-        [-2.15, 0.3, -6.2],
-        [1.1, -0.55, -3.5],
-        59,
-      ),
-      quinta: outdoorView(
-        "Through the quinta doorway",
-        [-6.65, 1.62, 1.02],
-        [-9.1, 1.05, -2.1],
-        70,
-      ),
+      ...structuredClone(vineyardViews),
+      yard: { ...structuredClone(vineyardYardView), narration: false },
+      railway: { ...railway.view, narration: false },
     },
     {
       vines: [5.1, 0.85, 0.9],
@@ -378,6 +351,14 @@ export function buildDouroVineyard(definition, renderer) {
     },
     {
       depthProbes: [
+        life.barrowProbe,
+        {
+          id: "drinking-cup",
+          kind: "cavity",
+          origin: [-10.29, 1, 0.5],
+          direction: [0, -1, 0],
+          minDistance: 0.14,
+        },
         {
           id: "quinta-door",
           kind: "doorway",
@@ -399,13 +380,6 @@ export function buildDouroVineyard(definition, renderer) {
           direction: [0, -1, 0],
           minDistance: 0.25,
         },
-        {
-          id: "drinking-cup",
-          kind: "cavity",
-          origin: [-10.29, 1, 0.5],
-          direction: [0, -1, 0],
-          minDistance: 0.14,
-        },
       ],
     },
   );
@@ -415,6 +389,8 @@ export function buildDouroVineyard(definition, renderer) {
     landscape,
     terraces: 11,
     quinta,
+    life,
+    railway,
     stairs,
     mainPathWidth: 1.18,
   };

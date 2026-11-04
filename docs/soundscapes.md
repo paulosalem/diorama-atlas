@@ -47,9 +47,9 @@ and an **About the sound & credits** disclosure.
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
 - All 23 bundled scenes have [prerecorded bilingual guided narration](narration.md).
   It shares one player with detail narration and lowers ambience and music while
-  speech plays. Additional object-detail narration uses explicitly requested
-  browser speech outdoors or the narration API indoors. Both modes participate
-  in playback ownership and stop on tab handover or **Mute all**.
+  speech plays. Object details and Miniatures also play local OpenAI recordings,
+  never browser speech or runtime paid requests. All modes participate in playback
+  ownership and stop on tab handover or **Mute all**.
 - Audio does not depend on animation time. Reduced motion still permits listening
   and moving between viewpoints, without re-enabling visual animation.
 

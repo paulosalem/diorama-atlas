@@ -2,9 +2,11 @@
 
 All **23 bundled dioramas** have original, prerecorded cultural explanations
 in **en-US** and **pt-BR**, using OpenAI's `gpt-4o-mini-tts` model and `cedar`
-voice. The collection contains **210 recordings for 105 views**, totaling
-70.92 MB: six views in Marrakech, five in each of the other eleven interiors,
-and four in each of the eleven outdoor settings. Each arrival introduces the
+voice. The collection contains **476 recordings**, totaling **153.36 MB**,
+covering 105 original guided viewpoints, 104 object details and all 134 Miniature
+views in both languages. Identical text in the same language reuses a recording:
+there are 686 playable view/detail/language combinations, not 686 duplicate files.
+Each arrival introduces the
 place's cultural value; focused views discuss the visible architecture,
 materials, work, or connected space. The voice is explicitly disclosed as
 AI-generated. No new images or replacement environments were generated for
@@ -46,16 +48,22 @@ paragraph merely because the visitor looks away from a detail.
 Pausing suspends proximity triggers until another deliberate playback/view choice.
 Reduced motion freezes scenery animation, not gaze detection or sound.
 
-The viewer owns one narration `HTMLAudioElement`, reused by prerecorded scene
+The full-scale viewer owns one narration `HTMLAudioElement`, reused by prerecorded scene
 narration and existing detail narration. It coordinates with `atlas-audio`
 ownership and ducking; music and ambience soften while narration plays.
 Navigation, page hiding, another tab claiming playback and **Mute all** cancel
 the outgoing voice. Language changes stop the old recording before starting the
 new one. No playback path calls a paid provider or downloads remote audio.
 
+The Miniature viewer likewise owns one recording player, with explicit Listen
+and Stop controls. View changes, language changes, hiding, muting and navigation
+cancel pending as well as active playback. It never substitutes a browser voice.
+Recordings are not requested before consent; missing audio produces a visible
+retry message while the transcript remains readable.
+
 The GitHub Pages edition serves these same prerecorded files beneath its
-project path. Additional object-detail Listen uses browser speech in both
-languages because the static host has no narration API.
+project path for guided views, object details and Miniatures. Neither a browser
+speech service nor a narration API is needed during a visit.
 
 ## Source and generation
 
@@ -74,23 +82,41 @@ views. Religious ornaments are not assigned invented meanings, herbal shops
 do not offer medical advice, and related interior variants have distinct
 paragraphs rather than copies of one generic introduction.
 
+`prepare-narration.mjs` derives missing Miniature and object-detail recipes from
+the actual shared presentation text. Existing original view recipes remain
+unchanged. `detail-` and `miniature-` view-key prefixes distinguish supplemental
+passages from the full-scale guided sequence; playback can reuse any exact
+text/language match without manufacturing a second recording.
+
 Generation is explicit and paid:
 
 ```sh
 node scripts/generate-opening-narration.mjs \
   --scene riad --locale en-US --locale pt-BR \
-  --model gpt-4o-mini-tts --voice cedar
+  --model gpt-4o-mini-tts --voice cedar \
+  --max-cost-usd 20 --budget-file outputs/narration-budget.json
 
 node scripts/generate-opening-narration.mjs \
   --scene riad --locale en-US --locale pt-BR \
   --view fountain --view tea --view cedar --view doorway --view upstairs \
-  --model gpt-4o-mini-tts --voice cedar
+  --model gpt-4o-mini-tts --voice cedar \
+  --max-cost-usd 20 --budget-file outputs/narration-budget.json
 
 # Select several complete scenes, with a no-charge preflight first:
 node scripts/generate-opening-narration.mjs \
   --scene textile --scene newar-potters-square --all-views \
   --locale en-US --locale pt-BR \
   --model gpt-4o-mini-tts --voice cedar --dry-run
+
+# Inventory, then explicitly append missing supplemental passages:
+node scripts/prepare-narration.mjs
+node scripts/prepare-narration.mjs --write
+
+# Record the complete library within one previously authorized budget:
+node scripts/generate-opening-narration.mjs \
+  --all-scenes --all-views --locale en-US --locale pt-BR \
+  --model gpt-4o-mini-tts --voice cedar --concurrency 4 \
+  --max-cost-usd 20 --budget-file outputs/narration-budget.json
 ```
 
 Supply `OPENAI_API_KEY` only to the generation process, never to browser source.
@@ -102,6 +128,20 @@ One writer checkpoints each successful recording in the manifest. On a failure,
 no new work is dispatched, in-flight work finishes, and the command exits with
 an error. Rerunning the same selection reuses completed recordings. Run only one
 generation command at a time; do not edit scripts or rebuild credits during it.
+
+New requests use OpenAI's SSE speech transport so the final event supplies real
+input/output token usage. The budget ledger records that usage at the reviewed
+model prices, and reserves US$1 before each short passage is dispatched.
+Unresolved or failed calls retain their reservation across restarts; they are
+never assumed free. Concurrent writers to the same budget are rejected. The
+generation process stops rather than dispatching beyond the remaining budget,
+and does not automatically retry or choose another model. After a crash, inspect
+the retained lock and request reservations before resuming; never reset a spent
+ledger. The budget is a generation safeguard, not an OpenAI account billing limit.
+
+The currently used Speech API models are scheduled to shut down on January 6, 2027. Existing files and playback are independent of that service lifecycle.
+Before future generation with another API/model, review its pricing and output
+contract; the budget refuses unreviewed models.
 
 The viewer selects support from the manifest, not a Marrakech-only condition.
 An additional custom scene without recordings retains its ordinary detail
@@ -120,9 +160,9 @@ node scripts/check-narration.mjs
 node scripts/check-narration.mjs --scene textile --scene newar-potters-square
 ```
 
-The collection checker uses isolated preferences, blocks paid endpoints, plays
-every selected recording through the real viewer, checks both languages against
-every runtime viewpoint, and verifies disposal. It decodes every MP3, measures
+The collection checker uses isolated preferences, blocks paid endpoints and
+browser speech, plays both languages through every original view, object detail
+and actual Miniature viewpoint, and verifies disposal. It decodes every MP3, measures
 duration, signal level and clipping, checks finite geometry, and saves rendered
 views and timing evidence under `outputs/narration-collection/`. Unit checks
 also verify exact scripts, request fingerprints, hashes, bilingual coverage,

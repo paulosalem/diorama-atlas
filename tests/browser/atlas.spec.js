@@ -84,11 +84,11 @@ test("the globe offers nineteen locations and opens an interior", async ({
     brandBox.x + brandBox.width <= placesBox.x ||
       brandBox.y + brandBox.height <= placesBox.y,
   ).toBe(true);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    )
+    .toBe(true);
 });
 
 for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
@@ -114,17 +114,36 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
     await expect(page.locator("canvas")).toBeVisible();
     const viewpoints = page.locator(".riad-viewpoints button");
     await expect(viewpoints).toHaveCount(
-      scene.environment === "outdoor" ? 4 : scene.id === "riad" ? 6 : 5,
+      scene.id === "douro-vineyard"
+        ? 6
+        : scene.environment === "outdoor"
+          ? 4
+          : scene.id === "riad"
+            ? 6
+            : 5,
     );
     await expect(page.locator(".scene-narration")).toHaveAttribute(
       "data-state",
       "ready",
     );
     const firstKey = await viewpoints.first().getAttribute("data-view");
+    const unrecordedViews = await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      return Object.entries(getActiveViewer().runtime.views)
+        .filter(([, view]) => view.narration === false)
+        .map(([key]) => key);
+    });
     for (const locale of ["pt-BR", "en-US"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const viewpoint of await viewpoints.all()) {
         const key = await viewpoint.getAttribute("data-view");
+        await viewpoint.click();
+        await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
+        if (unrecordedViews.includes(key)) {
+          await expect(page.locator(".scene-narration")).toBeHidden();
+          continue;
+        }
         const narration = narrations.find(
           (asset) =>
             asset.scene === scene.id &&
@@ -132,8 +151,6 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
             (asset.view ?? firstKey) === key,
         );
         expect(narration, `${scene.id}/${key}/${locale}`).toBeDefined();
-        await viewpoint.click();
-        await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
         await expect(page.locator(".narration-text")).toHaveText(
           narration.text,
         );

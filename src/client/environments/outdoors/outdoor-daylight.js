@@ -18,6 +18,7 @@ const profiles = {
 export async function loadOutdoorDaylight(
   generator,
   profile = "broken-clouds",
+  { signal } = {},
 ) {
   const settings = profiles[profile];
   if (!Object.hasOwn(profiles, profile))
@@ -25,6 +26,10 @@ export async function loadOutdoorDaylight(
   const texture = await new HDRLoader().loadAsync(
     sitePath(`/public/outdoors/detail-assets/${settings.file}`),
   );
+  if (signal?.aborted) {
+    texture.dispose();
+    signal.throwIfAborted();
+  }
   texture.mapping = THREE.EquirectangularReflectionMapping;
   const { data, width, height } = texture.image;
   const value =

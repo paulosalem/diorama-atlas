@@ -1,7 +1,12 @@
 @import url("./viewer/scene-narration.css");
 @import url("./viewer/miniature.css");
+@import url("./viewer/scene-versions.css");
+@import url("./viewer/fullscreen.css");
 
 :root {
+  --app-height: calc(
+    100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+  );
   color-scheme: dark;
   font-family:
     Inter,
@@ -84,7 +89,7 @@ button[aria-pressed="true"] {
   }
 }
 .world {
-  height: 100dvh;
+  height: var(--app-height);
   background: radial-gradient(
     ellipse at 50% 48%,
     #203641 0,
@@ -357,7 +362,7 @@ button[aria-pressed="true"] {
 }
 /* Immersive destination: no landing-page content is retained behind the viewer. */
 .viewer {
-  height: 100dvh;
+  height: var(--app-height);
   display: flex;
   flex-direction: column;
   padding: 18px 24px 14px;
@@ -470,6 +475,12 @@ button[aria-pressed="true"] {
   font-size: 10px;
   margin-top: 10px;
   padding: 7px 12px;
+}
+.riad-detail-caption small {
+  flex-shrink: 0;
+  margin-top: 6px;
+  color: #c2c8bc;
+  font-size: 10px;
 }
 .scene-loading {
   position: absolute;

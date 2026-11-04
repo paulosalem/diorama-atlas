@@ -20,8 +20,15 @@ Move from a Kyoto listening café to a Newar pottery square, from an Oaxacan loo
 to a Balinese hillside or a sunlit Douro vineyard. Look through doorways, study worn timber and printed
 pages, follow a guided voice, or linger with the sounds of a place.
 
-The collection offers **105 viewpoints and 210 prerecorded passages** in two
-languages, alongside close-up details, gentle movement, music and local ambience.
+The collection offers **476 OpenAI recordings in English and Brazilian Portuguese**,
+covering original viewpoints, object details and Miniatures, alongside gentle
+movement, music and local ambience.
+Every place also has a **Miniature** experience: turn two floating landscape
+sections in your hands, or crack open an interior's architectural shell to
+reveal its rooms. Detailed roofs and facades lift up and sideways, leaving the
+furnished spaces, real passageways and signs of ordinary life below.
+Douro includes a working yard, riverside railway and eleven Miniature views.
+Every Listen control uses a local recording, never the browser's synthetic voice.
 Everything needed to visit is included: **no account, installation or API key**.
 Use a modern browser with WebGL 2 and hardware acceleration.
 
@@ -53,6 +60,9 @@ npm ci
 npm start
 # Open http://127.0.0.1:4183
 ```
+
+Every experience, including all miniatures, builds directly from its
+authored Three.js geometry. Startup needs no scene export or headless browser.
 
 Music and ambience default to enabled; first-time playback waits for **Resume**
 in Soundscape. Saved mute choices are respected. Narration starts with **Play**.

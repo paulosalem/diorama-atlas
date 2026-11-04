@@ -48,9 +48,11 @@ function leafCluster(k, count, radius) {
 }
 
 /** Contoured parcels, uncultivated drainage folds and a wooded river margin. */
-export function buildVineyardLandscape(k, earth) {
-  const bank = (x) =>
-    -242 + 27 * Math.sin(x * 0.008) + 11 * Math.sin(x * 0.022 + 0.8);
+export const vineyardRiverBank = (x) =>
+  -242 + 27 * Math.sin(x * 0.008) + 11 * Math.sin(x * 0.022 + 0.8);
+
+export function buildVineyardLandscape(k, earth, { railwayBounds } = {}) {
+  const bank = vineyardRiverBank;
   const height = (x, d) => {
     const ridge =
       0.48 +
@@ -201,6 +203,8 @@ export function buildVineyardLandscape(k, earth) {
         [tx, ty, tz] = point(px, pd),
         h = k.range(5.2, 9.5),
         spread = h * k.range(0.35, 0.48);
+      const firstBranch = branches.length,
+        firstLeaf = treeLeaves.length;
       branch([tx, ty - 0.15, tz], [tx + 0.12, ty + h * 0.78, tz], h * 0.017);
       for (let limb = 0; limb < 7; limb++) {
         const a = limb * 2.4 + k.range(-0.3, 0.3),
@@ -224,6 +228,16 @@ export function buildVineyardLandscape(k, earth) {
               k.range(0.76, 1.12),
             ),
           });
+      }
+      // Keep other seeded planting unchanged while clearing the whole crown.
+      if (
+        railwayBounds &&
+        px + spread * 1.8 > railwayBounds.left &&
+        px - spread * 1.8 < railwayBounds.right &&
+        pd - spread * 1.8 < 2.7
+      ) {
+        branches.length = firstBranch;
+        treeLeaves.length = firstLeaf;
       }
     }
   const vineCluster = leafCluster(k, 44, 0.42),

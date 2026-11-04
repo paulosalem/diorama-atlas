@@ -14,9 +14,24 @@ export default [
       ".codex/**",
       ".playwright-mcp/**",
       "public/**",
+      "experiments/**/node_modules/**",
+      "experiments/**/assets/**",
+      "experiments/**/unity/**",
     ],
   },
   js.configs.recommended,
+  {
+    files: ["experiments/**/*.mjs"],
+    languageOptions: { globals: globals.node },
+  },
+  {
+    files: [
+      "experiments/**/web/**/*.js",
+      "experiments/**/export.mjs",
+      "experiments/**/check*.mjs",
+    ],
+    languageOptions: { globals: { ...globals.browser, BABYLON: "readonly" } },
+  },
   {
     files: ["**/*.{js,mjs}"],
     languageOptions: { ecmaVersion: "latest", sourceType: "module" },
@@ -28,6 +43,10 @@ export default [
   {
     files: ["src/client/**/*.js"],
     languageOptions: { globals: globals.browser },
+  },
+  {
+    files: ["src/client/rendering/babylon.js"],
+    languageOptions: { globals: { BABYLON: "readonly" } },
   },
   {
     files: ["src/server/**/*.mjs", "scripts/**/*.mjs", "tests/**/*.js", "*.js"],
@@ -43,6 +62,8 @@ export default [
       "scripts/check-outdoors.mjs",
       "scripts/check-water-prints.mjs",
       "scripts/check-narration.mjs",
+      "scripts/measure-dioramas.mjs",
+      "scripts/prepare-dioramas.mjs",
     ],
     languageOptions: { globals: globals.browser },
   },

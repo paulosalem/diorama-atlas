@@ -3,8 +3,9 @@
 **Scene:** `douro-vineyard` · **Region:** Douro Valley, Portugal
 
 **Visit:** [Open the vineyard](https://paulosalem.github.io/diorama-atlas/?scene=douro-vineyard&inspect=1).
-Included in the globe and public collection, with four viewpoints and eight
-prerecorded English/Brazilian Portuguese passages.
+Included in the globe and public collection, with Landscape and Miniature
+experiences. The four original Landscape views retain eight prerecorded
+English/Brazilian Portuguese passages.
 
 ## Cultural intention
 
@@ -52,6 +53,25 @@ The arrival looks along the cultivated terraces toward the valley, with the
 quinta at the edge of the view. The vine view resolves
 fruit and training; the terrace view reveals dry-stone construction and the
 descending route; the quinta view looks through a working threshold.
+
+## Additional experiences
+
+Landscape also offers **The working yard** and **Along the riverside railway**.
+These two views deliberately omit the recorded-guide panel; no additional
+recordings were generated. The shared yard includes a car, bicycle, tools,
+open wheelbarrow, harvest crates and irregular grass and gravel.
+
+Miniature has eleven named views: `whole`, `arrival`, `vines`, `terraces`,
+`quinta`, `yard`, `railway`, `river`, `geology`, `hills` and `harvest`.
+Two floating geological slices expose schist, roots and the riverbed while
+preserving the original eye-level cameras, open quinta and supported paths.
+Its per-view story uses explicitly requested browser speech in both languages.
+
+Both experiences include an imagined riverside railway on a low viaduct, with
+Iberian-width track and a stationary red-and-cream regional railcar. The modeled
+seats, glazing, bogies and track construction are not a reconstruction of a
+particular train or route. Keep the railway clear of trees, and preserve the
+miniature's landing, stairs and gap between the two pieces.
 
 ## References and boundaries
 

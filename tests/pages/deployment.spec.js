@@ -19,6 +19,9 @@ const narration = JSON.parse(
     new URL("../../public/narration/manifest.json", import.meta.url),
   ),
 ).assets;
+const credits = JSON.parse(
+  await readFile(new URL("../../public/credits.json", import.meta.url)),
+).entries;
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/api/**", async (route) => {
@@ -75,12 +78,95 @@ test("static hosting rejects unfinished local previews", async ({ page }) => {
   }
 });
 
+test("Home Screen metadata and icons resolve within the project path", async ({
+  request,
+  baseURL,
+}) => {
+  const response = await request.get("public/app.webmanifest");
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toMatch(
+    /^application\/manifest\+json/,
+  );
+  const manifest = await response.json();
+  expect(manifest.display).toBe("standalone");
+  for (const key of ["start_url", "scope"])
+    expect(new URL(manifest[key], response.url()).href).toBe(baseURL);
+  const start = new URL(manifest.start_url, response.url());
+  expect((manifest.id ? new URL(manifest.id, start.origin) : start).href).toBe(
+    baseURL,
+  );
+  for (const icon of manifest.icons) {
+    const url = new URL(icon.src, response.url()).href;
+    expect(url.startsWith(`${baseURL}public/app-icons/`)).toBe(true);
+    const image = await request.get(url);
+    expect(image.ok()).toBe(true);
+    expect(image.headers()["content-type"]).toBe("image/png");
+  }
+  expect((await request.get("public/app-icons/atlas-180.png")).ok()).toBe(true);
+  const html = await (await request.get("./")).text();
+  expect(html).toContain('rel="manifest" href="./public/app.webmanifest"');
+  expect(html).toContain('name="apple-mobile-web-app-capable" content="yes"');
+});
+
+test("the Three.js Miniature loads directly beneath a project path", async ({
+  page,
+  baseURL,
+}) => {
+  const errors = [];
+  const obsolete = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("response", (response) => {
+    if (response.status() >= 400)
+      errors.push(`${response.status()} ${response.url()}`);
+  });
+  page.on("request", (request) => {
+    if (/babylon|public\/dioramas/.test(request.url()))
+      obsolete.push(request.url());
+  });
+  await page.goto("?scene=douro-vineyard&version=miniature&view=whole");
+  await waitForViewer(page, { timeout: 180_000 });
+  const state = await page.evaluate(async (base) => {
+    const { getActiveViewer } = await import(
+      `${base}src/client/viewer/panorama-viewer.js`
+    );
+    const viewer = getActiveViewer();
+    return {
+      ...viewer.inspection,
+      three: viewer.renderer.isWebGLRenderer,
+      views: Object.keys(viewer.runtime.views),
+    };
+  }, baseURL);
+  expect(state.three).toBe(true);
+  expect(state.finiteGeometry).toBe(true);
+  expect(state.views).toHaveLength(11);
+  expect(state.audio.contextState).toBe("closed");
+  await page.locator('[data-view="quinta"]').click();
+  await expect(page).toHaveURL(/\/diorama-atlas\/\?.*view=quinta/);
+  await page.getByRole("link", { name: "Landscape", exact: true }).click();
+  await waitForViewer(page, { timeout: 180_000 });
+  await expect(page).toHaveURL(/\/diorama-atlas\/\?.*version=landscape/);
+  expect(errors).toEqual([]);
+  expect(obsolete).toEqual([]);
+});
+
 test("the globe, preview and return navigation remain inside the project path", async ({
   page,
   baseURL,
 }) => {
   await page.goto("./");
+  await expect(page.locator(".world")).toBeVisible();
   await expect(page.locator("#worldLoading")).toBeHidden({ timeout: 120_000 });
+  await page.locator("#fullscreenButton").click();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.fullscreenElement === document.documentElement,
+      ),
+    )
+    .toBe(true);
   await expect(page.locator(".place-pin")).toHaveCount(19);
   await page.locator("#placesButton").click();
   await page
@@ -102,6 +188,11 @@ test("the globe, preview and return navigation remain inside the project path", 
   await page.locator("#riadExpand").click();
   await expect(page.locator("#worldLoading")).toBeHidden();
   await expect(page).toHaveURL(baseURL);
+  await expect(page.locator("#fullscreenButton")).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await page.locator("#fullscreenButton").click();
   expect(
     await page.evaluate(
       () => performance.getEntriesByType("navigation").length,
@@ -109,7 +200,51 @@ test("the globe, preview and return navigation remain inside the project path", 
   ).toBe(1);
 });
 
-for (const scene of scenes) {
+for (const id of ["textile", "naxi-canal-quarter"]) {
+  test(`${id}: collection miniature navigation and narration use the project path`, async ({
+    page,
+    baseURL,
+  }) => {
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("response", (response) => {
+      if (response.status() >= 400)
+        errors.push(`${response.status()} ${response.url()}`);
+    });
+    await page.goto(`?scene=${id}&version=miniature`);
+    await waitForViewer(page, { timeout: 180_000 });
+    await expect(
+      page.getByRole("link", { name: "Miniature", exact: true }),
+    ).toHaveAttribute("aria-current", "true");
+    await page.locator("#miniatureViews [data-view]").last().click();
+    await expect(page).toHaveURL(
+      /\/diorama-atlas\/\?.*version=miniature.*view=/,
+    );
+    const state = await page.evaluate(async (base) => {
+      const { getActiveViewer } = await import(
+        `${base}src/client/viewer/panorama-viewer.js`
+      );
+      return getActiveViewer().inspection;
+    }, baseURL);
+    expect(state.finiteGeometry).toBe(true);
+    expect(state.audio.contextState).toBe("closed");
+    if (id === "textile") expect(state.shell.open).toBe(true);
+    await page
+      .getByRole("link", {
+        name: id === "textile" ? "Interior" : "Landscape",
+        exact: true,
+      })
+      .click();
+    await waitForViewer(page, { timeout: 180_000 });
+    await expect(page.locator(".scene-narration")).toHaveAttribute(
+      "data-state",
+      "ready",
+    );
+    expect(errors).toEqual([]);
+  });
+}
+
+for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
   test(`${scene.id}: all static assets, viewpoints and bilingual playback`, async ({
     page,
     baseURL,
@@ -138,10 +273,23 @@ for (const scene of scenes) {
     expect(recordings).toEqual([]);
     const views = page.locator("[data-view]");
     const first = await views.first().getAttribute("data-view");
+    const unrecordedViews = await page.evaluate(async (base) => {
+      const { getActiveViewer } = await import(
+        `${base}src/client/viewer/panorama-viewer.js`
+      );
+      return Object.entries(getActiveViewer().runtime.views)
+        .filter(([, view]) => view.narration === false)
+        .map(([key]) => key);
+    }, baseURL);
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const view of await views.all()) {
         const key = await view.getAttribute("data-view");
+        await view.click();
+        if (unrecordedViews.includes(key)) {
+          await expect(panel).toBeHidden();
+          continue;
+        }
         const asset = narration.find(
           (asset) =>
             asset.scene === scene.id &&
@@ -149,7 +297,6 @@ for (const scene of scenes) {
             (asset.view ?? first) === key,
         );
         expect(asset).toBeDefined();
-        await view.click();
         await expect(page.locator(".narration-text")).toHaveText(asset.text);
       }
     }
@@ -189,7 +336,7 @@ for (const scene of scenes) {
   });
 }
 
-test("static references, credits, soundscapes and English detail speech need no API", async ({
+test("static references, credits, soundscapes and English detail recordings need no API", async ({
   page,
   baseURL,
 }) => {
@@ -215,7 +362,7 @@ test("static references, credits, soundscapes and English detail speech need no 
   await expect(
     page.getByRole("link", { name: "Dr. Paulo Salem", exact: true }),
   ).toHaveAttribute("href", "https://www.paulosalem.com/");
-  await expect(page.locator(".credit-entry")).toHaveCount(284);
+  await expect(page.locator(".credit-entry")).toHaveCount(credits.length);
   await page.locator("#creditSearch").fill("Kloofendal");
   await expect(page.locator(".credit-entry")).toHaveCount(1);
   await expect(page.locator(".credit-note")).toContainText("South Africa");
@@ -269,20 +416,19 @@ test("static references, credits, soundscapes and English detail speech need no 
   await page.goto("?scene=kissaten");
   await waitForViewer(page, { timeout: 120_000 });
   await page.evaluate(() => {
-    window.atlasSpoken = [];
-    window.speechSynthesis.speak = (utterance) =>
-      window.atlasSpoken.push({ text: utterance.text, lang: utterance.lang });
-    window.speechSynthesis.cancel = () => {};
+    window.speechSynthesis.speak = () => {
+      throw new Error("Static narration must use the OpenAI recording.");
+    };
   });
   await page.locator("#riadDetails").click();
+  const recordedSpeech = page.waitForResponse(
+    (response) =>
+      response.url().startsWith(new URL("public/narration/", baseURL).href) &&
+      response.url().endsWith(".mp3"),
+  );
   await page.locator("#listenButton").click();
-  expect(await page.evaluate(() => window.atlasSpoken)).toEqual([
-    {
-      text: curatedScenes.find((scene) => scene.id === "kissaten").details[0]
-        .body,
-      lang: "en-US",
-    },
-  ]);
+  expect((await recordedSpeech).ok()).toBe(true);
+  await expect(page.locator("#listenButton")).toHaveText("Pause");
   await page.locator("#listenButton").click();
   await page.goto("?scene=missing-place");
   await page.getByRole("link", { name: "Return to the world" }).click();

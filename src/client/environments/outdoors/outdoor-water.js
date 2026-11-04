@@ -3,7 +3,7 @@ import { Reflector } from "three/addons/objects/Reflector.js";
 import { WATER_FLOW_GLSL } from "../shared/water-flow.js";
 
 /** A planar reflection with water's angle-dependent reflectance, not a mirror. */
-export function createOutdoorWater({ width, depth, color }) {
+export function createOutdoorWater({ width, depth, color, geometry, hull }) {
   const shader = {
     name: "OutdoorWater",
     uniforms: {
@@ -12,6 +12,15 @@ export function createOutdoorWater({ width, depth, color }) {
       tDiffuse: { value: null },
       textureMatrix: { value: null },
       waterTime: { value: 0 },
+      hullInverse: { value: new THREE.Matrix4() },
+      hullProfile: {
+        value: new THREE.Vector4(
+          hull?.halfLength ?? 0,
+          hull?.halfWidth ?? 0,
+          hull?.floor ?? 0,
+          hull?.sideHeight ?? 1,
+        ),
+      },
       // Open sea needs metre-scale waves that remain resolved from a terrace;
       // narrow channels and paddies retain the smaller, sheltered flow.
       waterScale: {
@@ -38,6 +47,10 @@ export function createOutdoorWater({ width, depth, color }) {
       uniform sampler2D tDiffuse;
       uniform float waterTime;
       uniform float waterScale;
+      #ifdef USE_HULL_EXCLUSION
+        uniform mat4 hullInverse;
+        uniform vec4 hullProfile;
+      #endif
       varying vec4 mirrorUv;
       varying vec3 waterPosition;
       #include <common>
@@ -46,6 +59,16 @@ export function createOutdoorWater({ width, depth, color }) {
       ${WATER_FLOW_GLSL}
       void main() {
         #include <logdepthbuf_fragment>
+        #ifdef USE_HULL_EXCLUSION
+        vec3 hullPoint = (hullInverse * vec4(waterPosition, 1.0)).xyz;
+        if (abs(hullPoint.z) < hullProfile.x &&
+            hullPoint.y > hullProfile.z && hullPoint.y < hullProfile.z + hullProfile.w) {
+          float hullT = hullPoint.z / (2.0 * hullProfile.x) + 0.5;
+          float hullWidth = hullProfile.y * pow(max(0.0, sin(hullT * PI)), 0.58);
+          float hullHeight = clamp((hullPoint.y - hullProfile.z) / hullProfile.w, 0.0, 1.0);
+          if (abs(hullPoint.x) < hullWidth * (0.53 + 0.47 * hullHeight)) discard;
+        }
+        #endif
         vec3 viewDirection = normalize(cameraPosition - waterPosition);
         vec2 flowPosition = waterPosition.xz / waterScale;
         vec3 flow = waterSurface(flowPosition, waterTime * inversesqrt(waterScale),
@@ -65,14 +88,18 @@ export function createOutdoorWater({ width, depth, color }) {
         #include <fog_fragment>
       }`,
   };
-  const surface = new Reflector(new THREE.PlaneGeometry(width, depth), {
-    textureWidth: 768,
-    textureHeight: 768,
-    color,
-    clipBias: 0.003,
-    shader,
-  });
+  const surface = new Reflector(
+    geometry ?? new THREE.PlaneGeometry(width, depth),
+    {
+      textureWidth: 768,
+      textureHeight: 768,
+      color,
+      clipBias: 0.003,
+      shader,
+    },
+  );
   surface.material.fog = true;
+  if (hull) surface.material.defines.USE_HULL_EXCLUSION = 1;
   surface.rotation.x = -Math.PI / 2;
   const reflect = surface.onBeforeRender;
   surface.onBeforeRender = (renderer, scene, camera) => {

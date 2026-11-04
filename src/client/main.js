@@ -3,6 +3,7 @@ import { siteBase, sitePath } from "./site.js";
 import { createAtlasAudio } from "./environments/shared/atlas-audio.js";
 import { createSoundscapePanel } from "./viewer/soundscape-panel.js";
 import { createLanguageControl } from "./viewer/language-control.js";
+import { createFullscreenControl } from "./viewer/fullscreen-control.js";
 import { disposeAbout } from "./viewer/about-atlas.js";
 import {
   subscribeLocale,
@@ -15,6 +16,7 @@ const app = document.getElementById("app");
 const audio = createAtlasAudio();
 const soundPanel = createSoundscapePanel(audio);
 const languageControl = createLanguageControl();
+const fullscreenControl = createFullscreenControl();
 const unsubscribeLocale = subscribeLocale(() => {
   translateUI(document);
   if (!new URL(location.href).searchParams.has("scene"))
@@ -27,6 +29,7 @@ let scenes;
 let active = null;
 let pending = null;
 let rendering = false;
+let preparation;
 
 function showError(error) {
   console.error(error);
@@ -44,16 +47,24 @@ function showError(error) {
   panel.append(message, retry);
   app.append(panel);
   languageControl.mount(app);
+  fullscreenControl.mount(app);
 }
 
 async function render() {
   pending = new URL(location.href);
-  if (rendering) return;
+  if (rendering) {
+    preparation?.abort();
+    return;
+  }
   rendering = true;
   try {
     while (pending) {
       const url = pending;
       pending = null;
+      preparation = new AbortController();
+      const focusVersion = Boolean(
+        document.activeElement?.closest(".scene-versions"),
+      );
       audio.leaveEnvironment();
       active?.dispose();
       active = null;
@@ -62,6 +73,7 @@ async function render() {
         '<div class="initial-loading" role="status"><div data-i18n="Opening the world"></div><span></span></div>';
       translateUI(app);
       languageControl.mount(app);
+      fullscreenControl.mount(app);
       try {
         const id = url.searchParams.get("scene");
         if (id) {
@@ -71,6 +83,8 @@ async function render() {
           active = await createViewer(app, definition, {
             audio,
             onNavigate: navigate,
+            version: url.searchParams.get("version"),
+            signal: preparation.signal,
           });
           if (!pending)
             audio.attachEnvironment(active.runtime, definition.title);
@@ -83,13 +97,16 @@ async function render() {
         if (!pending) {
           soundPanel.mount(app);
           languageControl.mount(app);
+          fullscreenControl.mount(app);
           translateUI(app);
+          if (focusVersion)
+            app.querySelector('.scene-versions [aria-current="true"]')?.focus();
         }
       } catch (error) {
         active?.dispose();
         active = null;
         audio.attachEnvironment(null);
-        showError(error);
+        if (!pending) showError(error);
       }
     }
   } finally {
@@ -140,6 +157,7 @@ window.addEventListener("pagehide", () => {
   audio.dispose();
   soundPanel.dispose();
   languageControl.dispose();
+  fullscreenControl.dispose();
   unsubscribeLocale();
   disposeAbout();
 });

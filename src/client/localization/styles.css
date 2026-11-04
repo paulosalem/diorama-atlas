@@ -8,8 +8,8 @@
 
 #app > .language-control {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: max(24px, env(safe-area-inset-top, 0px));
+  right: calc(24px + env(safe-area-inset-right, 0px));
   z-index: 80;
 }
 

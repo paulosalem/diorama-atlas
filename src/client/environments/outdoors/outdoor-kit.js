@@ -510,9 +510,6 @@ export function createOutdoorKit(renderer, seed = 73, options = {}) {
       geometries.forEach((geometry) => geometry.dispose());
       owned.forEach((resource) => resource.dispose());
       imageBitmaps.forEach((image) => image.close());
-      k.group.traverse((object) => {
-        if (object.isInstancedMesh) object.dispose();
-      });
       dispose();
     };
     return runtime;

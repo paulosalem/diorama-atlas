@@ -5,11 +5,76 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import {
   surfacePatinaProfile,
   applySurfacePatina,
+  surfacePatinaParameters,
+  portableSurfacePatinaShader,
 } from "../src/client/environments/shared/surface-patina.js";
 import {
   stampSurfaceVariation,
   canScatterSurfaceMap,
 } from "../src/client/environments/shared/surface-variation.js";
+
+test("native material parameters match the original renderer's aging uniforms", () => {
+  for (const profile of [
+    "plaster",
+    "stone",
+    "tile",
+    "terracotta",
+    "clay",
+    "wood",
+    "metal",
+    "fabric",
+    "leather",
+    "earth",
+  ]) {
+    const material = new THREE.MeshStandardMaterial({ color: 0xc9a577 });
+    material.name = "Preserved material identity";
+    material.userData.patinaProfile = profile;
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const group = new THREE.Group();
+    group.add(new THREE.Mesh(geometry, material));
+    const definition = { id: "riad" };
+    const views = { courtyard: { position: [2, 1.65, 3] } };
+    const parameters = surfacePatinaParameters(material, definition, views);
+    applySurfacePatina(group, definition, views);
+    const shader = {
+      uniforms: {},
+      vertexShader: "#include <project_vertex>",
+      fragmentShader: "#include <color_fragment>",
+    };
+    material.onBeforeCompile(shader, null);
+    for (const [parameter, uniform] of [
+      ["seed", "atlasPatinaSeed"],
+      ["strength", "atlasPatinaStrength"],
+      ["floor", "atlasPatinaFloor"],
+      ["tileGrid", "atlasPatinaTileGrid"],
+      ["microStrength", "atlasPatinaMicroStrength"],
+    ])
+      assert.deepEqual(parameters[parameter], shader.uniforms[uniform].value);
+    assert(parameters.profileIndex >= 0);
+    material.dispose();
+    geometry.dispose();
+  }
+  const protectedMaterial = new THREE.MeshStandardMaterial({
+    transparent: true,
+  });
+  assert.equal(
+    surfacePatinaParameters(protectedMaterial, { id: "riad" }),
+    null,
+  );
+  protectedMaterial.dispose();
+});
+
+test("portable weathering retains color, roughness, oxidation and geometric relief", () => {
+  const shader = portableSurfacePatinaShader();
+  assert.match(shader, /atlasSurfacePatina/);
+  assert.match(shader, /atlasCrack/);
+  assert.match(shader, /atlasRing/);
+  assert.match(shader, /atlasTileInside/);
+  assert.match(shader, /roughnessChange/);
+  assert.match(shader, /metalnessScale/);
+  assert.match(shader, /shadingNormal = atlasReliefNormal/);
+  assert.doesNotMatch(shader, /\b(uniform|varying|USE_MAP)\b/);
+});
 
 test("material meaning survives clones and copied scan textures", () => {
   const texture = new THREE.Texture();

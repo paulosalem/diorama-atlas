@@ -5,6 +5,11 @@ description: Inspect or refine existing Diorama Atlas environments, including re
 
 # Review and refine dioramas
 
+For an implementation request to deepen realism, including repeated passes,
+use [improve-diorama-realism](../improve-diorama-realism/SKILL.md). This skill
+also supports inspection-only requests; those do not authorize edits or invoke
+the improvement loop automatically.
+
 Read the [quality standard](../../../docs/diorama-standard.md), affected
 [briefs](../../../docs/scenes/README.md), and
 [capture instructions](../../../docs/development.md). Determine whether the

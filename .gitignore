@@ -2,6 +2,7 @@ node_modules/
 dist/
 .cache/
 outputs/
+public/dioramas/
 coverage/
 test-results/
 playwright-report/
@@ -13,4 +14,5 @@ playwright-report/
 .DS_Store
 .codex/
 .playwright-mcp/
+.impeccable/hook.cache.json
 *.log

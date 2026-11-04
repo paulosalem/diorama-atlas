@@ -2,8 +2,8 @@
 
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
 The [source repository](https://github.com/paulosalem/diorama-atlas) is maintained
-separately from the static export. GitHub Pages serves the complete
-23-scene collection, 210 prerecorded narration passages, local soundscapes,
+separately from the static export. The Pages export includes the complete
+23-scene collection, 476 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
 ## Publish
@@ -34,12 +34,19 @@ are retained as workflow artifacts for seven days.
 
 ```sh
 npm ci
+npx playwright install chromium
 npm run build:pages
 npm run preview:pages
 # Open http://127.0.0.1:4196/diorama-atlas/
 
 npm run test:pages
 ```
+
+The collection and both Douro experiences build their authored Three.js geometry
+directly in the browser. Startup and publication need no scene preparation,
+generated model cache or Playwright installation. Playwright is needed only for
+browser checks and captures. The historical multi-engine experiments and their
+exports are not part of the published site.
 
 The export is portable to a domain root or another project subdirectory.
 The HTML shell uses relative module URLs; `src/client/site.js` resolves runtime
@@ -50,7 +57,7 @@ definitions, not their storage envelopes or local cache overrides.
 `build:pages -- --output-dir outputs/pages/site` selects another output directory.
 The builder refuses source directories, symlinks and unowned nonempty output
 directories. Its allowlist publishes `src/client/`, the used public asset
-groups, the minimum Three.js module distribution and its license. It excludes
+groups, and the minimum Three.js distribution with its license. It excludes
 server source, OpenAI dependencies, credentials, caches, review screenshots and
 repository metadata. Unused models were also removed from the current
 source tree; historical copies remain outside the export allowlist, with
@@ -65,9 +72,11 @@ playback, consent, disposal, globe navigation, credits, references and sound.
 
 ## Differences from the local server
 
-All bundled guided narration is identical. Additional object-detail speech uses
-the visitor's browser speech service in either language; available voices vary
-by device, and unsupported speech produces an explicit unavailable state.
+All bundled guided, object-detail and Miniature narration uses the same local
+OpenAI recordings in both languages. Voice quality does not depend on the
+visitor's browser. Missing files produce an explicit, retryable unavailable state.
+Both experiences work under the
+project subdirectory without any `/lab/` or local-server dependencies.
 
 GitHub Pages cannot run Node or paid generation endpoints. It does not create
 new scenes, generate concept images, synthesize new recordings, serve local

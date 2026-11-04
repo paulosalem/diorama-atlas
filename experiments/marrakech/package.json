@@ -1,0 +1,16 @@
+{
+  "name": "marrakech-engine-comparison",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node serve.mjs",
+    "export": "node export.mjs",
+    "build:unity": "node build-unity.mjs",
+    "check": "node check.mjs"
+  },
+  "dependencies": {
+    "babylonjs": "9.33.1",
+    "babylonjs-loaders": "9.33.1",
+    "playcanvas": "2.23.3"
+  }
+}

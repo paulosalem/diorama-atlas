@@ -28,6 +28,12 @@ explicitly presented in the handoff. Verify their navigation, compact layouts
 and resource lifecycle. If either is absent or unfinished, the diorama remains
 unfinished; do not describe an environment-only handoff as complete.
 
+The target is photographic believability **and** a convincing feeling of being
+there, not merely recognizable objects. Plan depth, construction, material truth,
+evidence of life, lighting, motion, sound and close-view inspection together
+from the start. A reference image, detailed description or higher polygon count
+does not establish those qualities in the running scene.
+
 ## 1. Begin with a place and a reason
 
 - Identify a region, cultural practice, building/landscape type, intended era,
@@ -39,6 +45,10 @@ unfinished; do not describe an environment-only handoff as complete.
 - Study real photographs at three scales: spatial organization, construction
   and materials, and small working details. Inspect the actual images, not only
   captions or search thumbnails. Keep their real source locations and licenses.
+- Expand the photographic references when needed, including later improvement
+  passes. Seek close-ups, reverse/oblique angles, cross-sections and grazing-light
+  views that reveal construction and fine relief missing from the initial set.
+  Record the new observations and distinguish evidence from inference.
 - Regional references guide a coherent original composition. Artistic freedom
   may add atmosphere and charm, but cannot excuse incompatible architecture,
   fabricated cultural claims or an implausible object arrangement.
@@ -67,6 +77,25 @@ grain, fine relief and finish. Neither a high polygon count nor a high-resolutio
 image compensates for the wrong physical relationship. Small visible features
 must remain resolved at the closest supported views, not merely at thumbnail
 scale. Preserve approved existing cameras when extending a scene.
+
+Primitives are approximations, not a permanent ceiling on shape complexity.
+Actively refine them with sufficient polygon density, shaped topology and
+geometric relief to capture the observed material. A wooden stick may need
+taper, subtle bends, changing cross-sections, knots, splits, chips and fine grain
+relief; a textured box cannot supply the same silhouette, parallax, contact or
+self-shadow. Many small faces may be appropriate. Subdividing an unchanged box
+or applying random noise is not the same as modeling these relationships.
+Use normal/roughness maps where they faithfully carry fine finish, not as a
+replacement for depth that supported close and oblique views expose. Preserve
+sound construction and maintenance rather than making every object crooked or
+broken. Optimize richer geometry through reuse, instancing and faithful distance
+detail; do not reduce the available close views to hide coarse forms.
+
+Resolve the parts that explain an object's function: rims, handles, hinges,
+blades, stitches and bindings. Textiles need folds, weight and support; a cloth
+should drape over edges and meet objects placed on it without intersection.
+Introduce tools, furnishings or infrastructure as a coherent activity and
+construction relationship, not isolated evidence that more props were added.
 
 ## 3. Make materials varied, not arbitrarily damaged
 
@@ -115,6 +144,11 @@ irrigation channel or open sea. Respect banks, depth cues, contact and occlusion
 Do not stack duplicate water surfaces or solve a reflection defect with another
 unrelated animated layer.
 
+Reflections must respect banks and crossings, and water must remain outside
+open hull interiors even while a boat moves. Wet margins, spill streams and
+submerged caustics should follow the same physical setting and flow rather
+than become independent decorative animations.
+
 ## 5. Build an atmosphere, not a display room
 
 - Let lighting express the architecture: daylight through real openings, credible
@@ -125,6 +159,11 @@ unrelated animated layer.
 - Use motivated, restrained movement: foliage, fabric, steam, embers, water or
   a working object. Avoid synchronized motion and activity added merely to prove
   the scene is animated. Respect reduced motion.
+- Shape terrain and planting together. Resolve connected stems, curved leaves,
+  varied crowns, ground cover, stones and soil at appropriate viewing distances.
+  Let ground pigment, grass patches and worn routes describe the same land use;
+  do not replace working terrain with a lawn or use solid green masses as trees.
+  Leaf motion must preserve attachment, and planting must not block circulation.
 - Compose context-appropriate sound through shared recorded profiles. Never claim
   an illustrative recording documents the modeled place, or substitute an
   unrelated fountain for sea, canal or locally specific wildlife.
@@ -134,6 +173,9 @@ unrelated animated layer.
 - Supply a short serious-toned cultural introduction and view-specific narration
   in en-US and pt-BR, with the matching text in the unobtrusive floating panel.
   All UI, details and errors—not only speech—must follow the global language.
+- Use prerecorded OpenAI voices for guided passages, object details and Miniatures.
+  Reuse identical text in the same language. Never substitute browser speech or
+  make paid requests during a visit; obtain a generation budget before recording.
 
 ## 6. Integrate without reducing the standard
 
@@ -151,6 +193,38 @@ Wire catalog, regional marker, preview, details, viewpoints, references, credits
 localization, narration and both local/static navigation. Missing assets and
 malformed content must fail visibly, never disappear behind a plausible fallback.
 No public feature may depend on a developer's cache or a paid request.
+
+Apply this standard to generated-scene instructions as well as authored builders.
+Use supported schemas and geometry mechanisms; a generated packet or image
+cannot create a bespoke room, real cavity or animation that its builder lacks.
+Extend the implementation or report the missing capability explicitly. Do not
+equate deeper recursive structure with more clutter.
+
+Engine changes and alternative presentations preserve the same obligations.
+An export must retain material variation, imagery, transparency, physical scale,
+motion and resource ownership, not just geometry. A miniature reveals backs,
+undersides, cut faces and gaps that must also withstand inspection. Neither a
+new engine nor an export is a substitute for that quality.
+
+Every landscape and interior must also have a corresponding **Miniature**
+experience, without replacing its original visit. Landscapes are two genuinely
+separated, complete sections, following the Douro treatment with place-specific
+terrain, architecture and activity. Interiors are floating architectural
+sections with an exterior shell that closes the room, then lifts upward and
+sideways to expose the furnished interior and its connected spaces. Move the
+actual roof, relevant facade and ceiling-mounted fittings; do not leave a second
+roof or a screen of rafters obstructing the revealed room. Some faces may be
+architectural cuts rather than complete facades. Add sparse, appropriate
+surroundings, with most detail in the interior and its immediate exterior.
+
+Use thick, physically cut boundaries, real cavities and closed undersides.
+Preserve holes when capping geometry; keep clear air between sections. Retain
+genuine movement, local optional sound, material detail and evidence of use.
+Provide whole-object, detail and connected-space views, an accessible opening
+control, exact reduced-motion endpoints, persistent open state and complete
+resource disposal. Inspect the closed, opened, reversed and compact presentations
+as well as the unchanged full-scale visit. These requirements also apply to
+generated scenes handled by the supported environment families.
 
 ## 7. Demonstrate, inspect, correct
 
@@ -180,3 +254,30 @@ screenshot, numerical score or agent verdict alone does not establish visual
 quality. Never call the scene photorealistic merely because it renders. Preserve
 historical failed judgments and disclose remaining shortcomings; let human
 judgment assess the finished experience.
+
+## 8. Improve again without declaring a realism ceiling
+
+Use [/improve-diorama-realism](../.github/skills/improve-diorama-realism/SKILL.md)
+for repeated passes on one scene, several scenes, a family or the collection.
+Its [examples](../.github/skills/improve-diorama-realism/references/examples.md)
+generalize the Marrakech, interior, outdoor and Douro work without imposing the
+same decorations or props everywhere.
+
+Every invocation treats the latest result as a new baseline, even after approval.
+Re-examine the actual render and references; find the next most consequential
+physical or perceptual weakness and implement a demonstrable gain. Do not
+return "already realistic enough," replay the same cosmetic fix, fabricate
+defects, or blindly increase clutter, weathering, effects and geometry.
+
+Creation incorporates the same correction discipline from its first inspectable
+build. The creation and improvement skills default to an initial complete
+inspection plus three complete correction/re-inspection rounds, unless the user
+sets a different scope or limit. Each round covers all criteria and affected
+views/variants. Other inspection requests retain their explicitly requested scope.
+
+Keep successive evidence, unresolved shortcomings and the next improvement
+frontier. A bounded invocation may finish with a verified improvement; that is
+not a declaration that the scene is finally photorealistic or cannot improve.
+If improvement or inspection cannot be demonstrated within available resources
+and permissions, report a partial/blocked result, not invented success. Preserve
+beauty, cultural coherence and previous gains while raising fidelity further.

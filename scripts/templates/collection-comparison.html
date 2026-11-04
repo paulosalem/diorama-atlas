@@ -163,6 +163,9 @@
           serif;
         margin: 0;
       }
+      .connected[hidden] {
+        display: none;
+      }
       .connected img {
         width: 100%;
         border-radius: 8px;
@@ -226,6 +229,7 @@
       />
       More before</label
     >
+    <p><a id="sceneLink">Explore this place ↗</a></p>
     <section class="connected">
       <div>
         <p class="eyebrow">Beyond the original room</p>
@@ -240,10 +244,7 @@
     </section>
     <p id="error" class="error" role="alert" hidden></p>
     <footer>
-      <span
-        >Eleven interiors · original cameras preserved · movement paused for
-        comparison</span
-      ><span>Marrakech remains the reference, unchanged.</span>
+      <span id="captureSummary"></span>
     </footer>
     <script>
       const data = /* CAPTURE_DATA */ null;
@@ -254,8 +255,13 @@
       const passage = document.getElementById("passageImage");
       const error = document.getElementById("error");
       document.getElementById("worldLink").href = data.appUrl;
+      document.getElementById("captureSummary").textContent =
+        `${data.scenes.length} places · original cameras preserved · movement paused for comparison`;
       for (const scene of data.scenes) {
-        const option = new Option(scene.title, scene.id);
+        const option = new Option(
+          scene.title + (scene.version ? ` · ${scene.version}` : ""),
+          scene.key,
+        );
         select.add(option);
       }
       for (const image of [before, after, passage]) {
@@ -276,7 +282,7 @@
           );
       }
       function showScene() {
-        const scene = data.scenes.find((entry) => entry.id === select.value);
+        const scene = data.scenes.find((entry) => entry.key === select.value);
         views.replaceChildren();
         for (const view of scene.views) {
           const button = document.createElement("button");
@@ -285,18 +291,23 @@
           button.onclick = () => showView(scene, view);
           views.append(button);
         }
-        document.getElementById("passageTitle").textContent =
-          scene.passage.label;
         const url = new URL("/", data.appUrl);
         url.search = new URLSearchParams({
           scene: scene.id,
-          view: "passage",
           inspect: "1",
+          ...(scene.version ? { version: scene.version } : {}),
         });
-        document.getElementById("passageLink").href = url.href;
-        document.getElementById("passageImageLink").href = url.href;
-        passage.src = scene.passage.file;
-        passage.alt = `${scene.title}: ${scene.passage.label}`;
+        document.getElementById("sceneLink").href = url.href;
+        document.querySelector(".connected").hidden = !scene.passage;
+        if (scene.passage) {
+          document.getElementById("passageTitle").textContent =
+            scene.passage.label;
+          url.searchParams.set("view", "passage");
+          document.getElementById("passageLink").href = url.href;
+          document.getElementById("passageImageLink").href = url.href;
+          passage.src = scene.passage.file;
+          passage.alt = `${scene.title}: ${scene.passage.label}`;
+        } else passage.removeAttribute("src");
         showView(scene, scene.views[0]);
       }
       select.onchange = showScene;

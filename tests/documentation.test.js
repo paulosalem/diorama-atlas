@@ -49,7 +49,11 @@ test("public documentation and repository skills have resolvable local links", a
 test("repository skills have matching names and descriptive frontmatter", async () => {
   const directory = new URL(".github/skills/", root);
   const entries = await readdir(directory, { withFileTypes: true });
-  assert.ok(entries.some((entry) => entry.name === "create-diorama"));
+  for (const name of ["create-diorama", "improve-diorama-realism"])
+    assert.ok(
+      entries.some((entry) => entry.name === name),
+      name,
+    );
   for (const entry of entries.filter((entry) => entry.isDirectory())) {
     assert.match(entry.name, /^[a-z][a-z0-9-]*$/);
     const source = await readFile(
@@ -67,6 +71,17 @@ test("repository skills have matching names and descriptive frontmatter", async 
   );
   assert.ok(creation.includes("docs/diorama-standard.md"));
   assert.ok(creation.includes("docs/history/design-decisions.md"));
+  assert.ok(creation.includes("../improve-diorama-realism/SKILL.md"));
+  const improvement = await readFile(
+    new URL("improve-diorama-realism/SKILL.md", directory),
+    "utf8",
+  );
+  assert.ok(improvement.includes("docs/diorama-standard.md"));
+  assert.ok(improvement.includes("references/examples.md"));
+  for (const path of ["AGENTS.md", "docs/agent-skills.md"]) {
+    const source = await readFile(new URL(path, root), "utf8");
+    assert.ok(source.includes("improve-diorama-realism/SKILL.md"), path);
+  }
 });
 
 test("the public edition agrees with both package version entries", async () => {

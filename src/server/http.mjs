@@ -20,6 +20,7 @@ const mimeTypes = {
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
   ".woff2": "font/woff2",
 };
 

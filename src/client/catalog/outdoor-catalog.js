@@ -1,7 +1,23 @@
+import { landscapeVersions } from "./scene-versions.js";
+
 const places = [
   {
     id: "douro-vineyard",
     daylight: "summer",
+    versions: [
+      {
+        id: "landscape",
+        label: "Landscape",
+        description: "Step into the valley",
+        experience: "landscape",
+      },
+      {
+        id: "miniature",
+        label: "Miniature",
+        description: "Turn a little world in your hands",
+        experience: "miniature",
+      },
+    ],
     location: "douro",
     title: "Douro Vineyard",
     name: "Douro Valley",
@@ -122,6 +138,7 @@ const places = [
   },
   {
     id: "balinese-subak-terraces",
+    versions: landscapeVersions,
     location: "bali",
     title: "Balinese Subak Terraces",
     name: "Bali",

@@ -32,6 +32,13 @@ Preparation materials should indicate real actions and plausible reach.
 Keep the sound palette illustrative and the architectural ventilation legible.
 Avoid assigning the invented home a real address, community or ritual history.
 
+The refined hearth has rounded thick fire mouths, circular pot seats and
+localized heat staining. Cookware uses continuous outer/inner profiles and
+loop handles; split and round fuel have taper, bending and separate charred
+ends. Keep ash restrained and both fire chambers clear. The garden's connected,
+curved leaves and coconut palms replace angular foliage rather than overlap it;
+the original single canal, pantry passage and cameras remain unchanged.
+
 [Saved definition](../../data/scenes/kerala-backwater-kitchen-courtyard-aadf7c.json) ·
 [Kitchen builder](../../src/client/environments/interiors/interior-scenes.js) ·
 [Depth and garden](../../src/client/environments/interiors/interior-depth.js)

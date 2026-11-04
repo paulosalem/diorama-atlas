@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { subscribeLocale, t } from "../localization/locale.js";
+import { sceneVersionUrl } from "../catalog/scene-versions.js";
 
 export function miniatureFitDistance(
   camera,
@@ -187,8 +188,7 @@ export function createMiniatureControls({
       panorama.lookAt(savedInterior.target.toArray());
     }
     if (updateUrl) {
-      const url = new URL(location.href);
-      url.searchParams.set("mode", mode);
+      const url = sceneVersionUrl(location.href, mode);
       history.replaceState(history.state, "", url);
     }
     localize();

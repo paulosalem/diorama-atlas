@@ -6,6 +6,10 @@ test-results/
 playwright-report/
 .codex/
 .playwright-mcp/
+.impeccable/hook.cache.json
 package-lock.json
 public/
 data/scenes/
+experiments/**/node_modules/
+experiments/**/assets/
+experiments/**/unity/

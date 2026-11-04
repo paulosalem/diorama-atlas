@@ -36,6 +36,12 @@ changes, and do not hand-edit it.
 
 ## Adding or changing a place
 
+Use [create-diorama](.github/skills/create-diorama/SKILL.md) for new places and
+[improve-diorama-realism](.github/skills/improve-diorama-realism/SKILL.md) for
+repeatable refinement. Both require the full sensory and physical standard;
+creation must not defer realism until a later pass, and previous approval must
+not exempt an existing scene from deeper scrutiny.
+
 Create or revise `docs/scenes/<scene-id>.md` first. State the cultural purpose,
 anonymous setting, distinctive composition, actual viewpoint keys, material and
 atmospheric direction, references, implementation entry points and boundaries
