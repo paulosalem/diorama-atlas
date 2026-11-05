@@ -15,6 +15,8 @@ Read the [quality standard](../../../docs/diorama-standard.md), affected
 [capture instructions](../../../docs/development.md). Determine whether the
 request is inspection-only or authorizes changes. Do not silently redesign
 approved composition, cameras, cultural setting or unrelated scenes.
+Apply the shared [construction-to-experience checks](../improve-diorama-realism/references/examples.md#construction-to-experience-checks)
+as questions, not a mandatory style or list of objects.
 
 1. Preserve the current source and before images **before editing**. Name the
    scope, original cameras, viewport, motion setting and comparison baseline.
@@ -32,6 +34,11 @@ approved composition, cameras, cultural setting or unrelated scenes.
    criterion. Check blocked apertures, unsupported objects, false cavities,
    grain scale, repetition, blanket dirt, generic print, regular water and
    unmotivated light or motion. Examine cultural coherence and atmosphere too.
+   Audit route topology and adjacency, not just individual objects: accidental
+   gaps in attached construction, impossible stair corners, thin roof infills
+   and courses detached from their supports. Inspect surface variation within
+   pieces, everyday activity/access and functional prop construction. A user-
+   identified defect is a reason to check sibling instances and the shared rule.
 4. Fix causes in shared helpers when appropriate, retaining scene-specific
    intent and real animated geometry. Do not hide failures with a camera change,
    darker lighting, extra surfaces, weaker assertions or a lower detail level.
@@ -41,6 +48,12 @@ approved composition, cameras, cultural setting or unrelated scenes.
 6. Run relevant source/browser checks, clearance probes, compact layouts,
    navigation, motion/audio preferences and disposal. Compare frame timing and
    resource counts under matched conditions. Run GPU-heavy checks sequentially.
+   Separate human-clearance, boundary-contact, footprint and cavity probes;
+   a clear centerline does not validate stair margins or nearby props. Apply
+   miniature section transforms and verify probes hit their intended surfaces.
+   Record settled camera transforms, not only requested poses. Check actual
+   assembly after attribute/batching changes and preserve unrelated procedural
+   arrangements when adding detail.
 7. Present both the running environment and its miniature, with access
    instructions and evidence for human judgment. Regenerate
    distributed previews only after visual inspection; distinguish technical

@@ -108,7 +108,8 @@ export async function createMiniatureRenderer(
     const sun = runtime.sun;
     sun.position.fromArray(study.sunPosition);
     sun.target.position.fromArray(study.sunTarget);
-    sun.color.setRGB(1, 0.87, 0.68);
+    if (study.sunColor === undefined) sun.color.setRGB(1, 0.87, 0.68);
+    else sun.color.set(study.sunColor);
     sun.intensity = study.sunIntensity ?? 3.5;
     const sky = runtime.group.children.find((light) => light.isHemisphereLight);
     if (!sky) throw new Error("The miniature requires authored daylight.");

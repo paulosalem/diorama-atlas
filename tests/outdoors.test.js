@@ -19,8 +19,43 @@ import { curatedScenes } from "../src/client/catalog/scene-catalog.js";
 import { locateScenes } from "../src/client/catalog/place-locations.js";
 import { outdoorBuilders } from "../src/client/environments/outdoors/outdoor-scenes.js";
 import { createMiniature } from "../src/client/world/world-miniatures.js";
+import { configureOutdoorMaterialScale } from "../src/client/environments/outdoors/outdoor-material-scale.js";
 
 const registeredScenes = [...outdoorScenes, ...outdoorDraftScenes];
+
+test("scan contrast preserves existing defaults and permits restrained painted surfaces", () => {
+  const material = new THREE.MeshStandardMaterial({ map: new THREE.Texture() });
+  material.userData = {
+    metresPerRepeat: 0.5,
+    diffuseDetailMode: "tinted-grain",
+  };
+  configureOutdoorMaterialScale(material);
+  assert.match(material.customProgramCacheKey(), /\/true\/1$/);
+  const painted = material.clone();
+  painted.userData.diffuseDetailStrength = 0.14;
+  configureOutdoorMaterialScale(painted);
+  const shader = {
+    uniforms: {},
+    vertexShader: "#include <project_vertex>",
+    fragmentShader: "#include <map_fragment>\n#include <color_fragment>",
+  };
+  painted.onBeforeCompile(shader);
+  assert.match(
+    shader.fragmentShader,
+    /mix\(1\.0, clamp\(grain, 0\.35, 1\.65\), 0\.14000\)/,
+  );
+  for (const strength of [-0.1, 1.1, NaN, Infinity]) {
+    const invalid = material.clone();
+    invalid.userData.diffuseDetailStrength = strength;
+    assert.throws(() => configureOutdoorMaterialScale(invalid), /strength/);
+    invalid.userData.diffuseDetailStrength = 0;
+    assert.doesNotThrow(() => configureOutdoorMaterialScale(invalid));
+    invalid.dispose();
+  }
+  material.map.dispose();
+  material.dispose();
+  painted.dispose();
+});
 
 test("daylight profiles preserve the collection baseline and align the selected sky with its sun", async (t) => {
   const paths = [];
@@ -69,18 +104,21 @@ test("daylight profiles preserve the collection baseline and align the selected 
   assert.equal(paths.length, 3);
   assert.ok(
     outdoorScenes
-      .filter((scene) => scene.id !== "douro-vineyard")
+      .filter(
+        (scene) => !["douro-vineyard", "alfama-hillside"].includes(scene.id),
+      )
       .every((scene) => scene.daylight === undefined),
   );
-  assert.equal(
-    outdoorScenes.find((scene) => scene.id === "douro-vineyard").daylight,
-    "summer",
-  );
+  for (const id of ["douro-vineyard", "alfama-hillside"])
+    assert.equal(
+      outdoorScenes.find((scene) => scene.id === id).daylight,
+      "summer",
+    );
 });
 
 test("all released and explicitly staged outdoor settings have distinct builders and four details", () => {
-  assert.equal(outdoorScenes.length, 11);
-  assert.equal(new Set(outdoorScenes.map((scene) => scene.id)).size, 11);
+  assert.equal(outdoorScenes.length, 12);
+  assert.equal(new Set(outdoorScenes.map((scene) => scene.id)).size, 12);
   assert.deepEqual(
     Object.keys(outdoorBuilders).sort(),
     registeredScenes.map((scene) => scene.id).sort(),
@@ -122,7 +160,7 @@ test("outdoors are mapped once and never leak into an indoor location", () => {
     assert.equal(matches.length, 1, scene.id);
     assert.equal(matches[0].sceneId, scene.id);
   }
-  assert.equal(places.filter((place) => place.sceneId).length, 11);
+  assert.equal(places.filter((place) => place.sceneId).length, 12);
   for (const place of places.filter((place) => !place.sceneId))
     assert.ok(place.scenes.every((scene) => scene.environment !== "outdoor"));
 });

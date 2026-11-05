@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-04T22:19:18.524Z",
+  "checkedAt": "2026-11-05T19:01:32.395Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -249,6 +249,20 @@
       "height": 760,
       "bytes": 814414,
       "sha256": "bb442f212b2026fcdf991bcbd2892f23364d71164df71775753b02ad7dfd4b4a",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
+    },
+    {
+      "file": "/public/outdoors/previews/alfama-hillside.png",
+      "scene": "alfama-hillside",
+      "view": "arrival",
+      "width": 1232,
+      "height": 664,
+      "bytes": 765545,
+      "sha256": "70141fc10311c93583c69f5a9e1e8fa958ee7ddcabce004a245a2f6cd873a2a7",
       "viewport": {
         "width": 1280,
         "height": 900

@@ -1,6 +1,11 @@
 import * as THREE from "three";
 
-export function buildWorkCar(k, position, angle = 0) {
+export function buildWorkCar(
+  k,
+  position,
+  angle = 0,
+  { hatchback = false, registration } = {},
+) {
   const g = k.sub(position, angle);
   const paint = k.material(0x688477, 0.48, 0.35);
   const rubber = k.material(0x252825, 0.92);
@@ -14,7 +19,14 @@ export function buildWorkCar(k, position, angle = 0) {
   glass.userData.patinaProfile = "none";
   k.box([1.37, 0.12, 3.35], [0, 0.38, 0], rubber, g, 0.04);
   k.box([1.52, 0.26, 0.94], [0, 0.79, -1.22], paint, g, 0.07);
-  k.box([1.5, 0.18, 0.48], [0, 0.76, 1.48], paint, g, 0.045);
+  k.box(
+    [1.5, hatchback ? 0.48 : 0.18, hatchback ? 0.1 : 0.48],
+    [0, hatchback ? 0.7 : 0.76, hatchback ? 1.69 : 1.48],
+    paint,
+    g,
+    0.045,
+  );
+  if (hatchback) k.box([1.48, 0.23, 0.1], [0, 0.55, -1.65], paint, g, 0.035);
   for (const x of [-0.76, 0.76]) {
     k.box([0.06, 0.43, 1.48], [x, 0.67, 0], paint, g, 0.018);
     for (const z of [-1.12, 1.12]) {
@@ -74,7 +86,7 @@ export function buildWorkCar(k, position, angle = 0) {
         g,
       );
     }
-    for (const z of [-0.84, 0.08, 1.03])
+    for (const z of [-0.84, 0.08, hatchback ? 1.64 : 1.03])
       k.rod(
         [x, 0.9, z],
         [x * 0.88, 1.5, z === -0.84 ? -0.55 : z * 0.95],
@@ -82,7 +94,31 @@ export function buildWorkCar(k, position, angle = 0) {
         paint,
         g,
       );
-    k.rod([x, 0.91, -0.84], [x, 0.91, 1.07], 0.019, trim, g);
+    k.rod([x, 0.91, -0.84], [x, 0.91, hatchback ? 1.64 : 1.07], 0.019, trim, g);
+    if (hatchback) {
+      k.box([0.06, 0.17, 0.83], [x, 0.84, 1.12], paint, g, 0.025);
+      k.tube(
+        [
+          [x * 1.01, 0.48, -0.72],
+          [x * 1.01, 0.9, -0.72],
+          [x * 1.01, 0.9, 0.07],
+          [x * 1.01, 0.48, 0.07],
+        ],
+        0.003,
+        rubber,
+        g,
+      );
+      k.tube(
+        [
+          [x * 1.01, 0.48, 0.1],
+          [x * 1.01, 0.9, 0.1],
+          [x * 1.01, 0.9, 0.72],
+        ],
+        0.003,
+        rubber,
+        g,
+      );
+    }
     for (const z of [-0.36, 0.63])
       k.box(
         [0.024, 0.04, 0.14],
@@ -101,7 +137,19 @@ export function buildWorkCar(k, position, angle = 0) {
     k.rod([x, 1.02, -0.74], [x * 1.23, 1.03, -0.68], 0.018, trim, g);
     k.box([0.15, 0.11, 0.05], [x * 1.26, 1.04, -0.68], trim, g, 0.025);
   }
-  k.box([1.38, 0.085, 1.92], [0, 1.53, 0.2], paint, g, 0.06);
+  const roof = k.box(
+    [1.38, 0.085, hatchback ? 2.3 : 1.92],
+    [0, 1.53, hatchback ? 0.38 : 0.2],
+    paint,
+    g,
+    0.06,
+  );
+  if (hatchback) {
+    const p = roof.geometry.attributes.position;
+    for (let i = 0; i < p.count; i++)
+      p.setY(i, p.getY(i) + 0.04 * (1 - (p.getX(i) / 0.69) ** 2));
+    roof.geometry.computeVertexNormals();
+  }
   function pane(points) {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
@@ -116,6 +164,9 @@ export function buildWorkCar(k, position, angle = 0) {
     geometry.computeVertexNormals();
     const mesh = k.mesh(geometry, glass, [0, 0, 0], [0, 0, 0], g);
     mesh.castShadow = false;
+    if (hatchback)
+      for (let i = 0; i < points.length; i++)
+        k.rod(points[i], points[(i + 1) % points.length], 0.015, rubber, g);
   }
   pane([
     [-0.72, 0.94, -0.84],
@@ -124,10 +175,10 @@ export function buildWorkCar(k, position, angle = 0) {
     [-0.65, 1.49, -0.55],
   ]);
   pane([
-    [-0.72, 0.94, 1.04],
-    [0.72, 0.94, 1.04],
-    [0.65, 1.49, 0.98],
-    [-0.65, 1.49, 0.98],
+    [-0.72, 0.94, hatchback ? 1.64 : 1.04],
+    [0.72, 0.94, hatchback ? 1.64 : 1.04],
+    [0.65, 1.49, hatchback ? 1.558 : 0.98],
+    [-0.65, 1.49, hatchback ? 1.558 : 0.98],
   ]);
   for (const side of [-1, 1]) {
     pane([
@@ -138,8 +189,8 @@ export function buildWorkCar(k, position, angle = 0) {
     ]);
     pane([
       [side * 0.75, 0.94, 0.13],
-      [side * 0.75, 0.94, 1.0],
-      [side * 0.67, 1.48, 0.94],
+      [side * 0.75, 0.94, hatchback ? 1.6 : 1.0],
+      [side * 0.67, 1.48, hatchback ? 1.52 : 0.94],
       [side * 0.67, 1.48, 0.13],
     ]);
     for (const z of [-0.19, 0.62]) {
@@ -186,6 +237,67 @@ export function buildWorkCar(k, position, angle = 0) {
     k.box([0.04, 0.04, 1.6], [x, 1.61, 0.22], trim, g, 0.01);
   for (const z of [-0.35, 0.85])
     k.box([1.16, 0.04, 0.045], [0, 1.62, z], trim, g, 0.01);
+  if (hatchback) {
+    k.box([0.13, 0.035, 0.035], [0, 0.86, 1.75], rubber, g, 0.006);
+    k.rod([0.02, 1.0, 1.648], [0.29, 1.23, 1.615], 0.008, rubber, g);
+    for (const x of [-0.51, 0.51])
+      for (const z of [-0.35, 0.85])
+        k.box([0.05, 0.055, 0.08], [x, 1.579, z], rubber, g, 0.008);
+    k.tube(
+      [
+        [-0.67, 0.51, 1.746],
+        [-0.67, 0.89, 1.746],
+        [0.67, 0.89, 1.746],
+        [0.67, 0.51, 1.746],
+      ],
+      0.0025,
+      rubber,
+      g,
+    );
+    for (const x of [-0.55, 0.55])
+      for (let rib = 0; rib < 5; rib++)
+        k.box(
+          [0.12, 0.004, 0.004],
+          [x, 0.635 + rib * 0.025, 1.745],
+          lamp,
+          g,
+          0.001,
+        );
+  }
+  if (registration) {
+    const plate = k.material(0xffffff, 0.52);
+    plate.name = "Original fictional vehicle registration";
+    plate.userData.patinaProfile = "none";
+    plate.map = k.texture(
+      (c, size) => {
+        c.fillStyle = "#eceadf";
+        c.fillRect(0, 0, size, size);
+        c.fillStyle = "#294e77";
+        c.fillRect(0, 0, size * 0.1, size);
+        c.fillStyle = "#ffffff";
+        c.font = `bold ${size * 0.3}px sans-serif`;
+        c.fillText(registration.country, size * 0.02, size * 0.8, size * 0.06);
+        c.fillStyle = "#202320";
+        c.font = `bold ${size * 0.68}px monospace`;
+        c.fillText(registration.number, size * 0.14, size * 0.76, size * 0.82);
+      },
+      [1, 1],
+      512,
+    );
+    for (const side of [-1, 1]) {
+      const z = side < 0 ? -1.712 : 1.748;
+      k.box([0.53, 0.12, 0.015], [0, 0.58, z], rubber, g, 0.008);
+      k.mesh(
+        new THREE.PlaneGeometry(0.51, 0.105),
+        plate,
+        [0, 0.58, z + side * 0.009],
+        [0, side < 0 ? Math.PI : 0, 0],
+        g,
+      );
+      for (const x of [-0.225, 0.225])
+        k.sphere(0.004, [x, 0.58, z + side * 0.011], trim, g, [1, 1, 0.5]);
+    }
+  }
   return g;
 }
 

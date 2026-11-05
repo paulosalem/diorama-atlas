@@ -5,23 +5,23 @@ the included collection works without network downloads or paid generation.
 Existing attribution manifests are preserved rather than replaced with a
 project-wide licensing assumption.
 
-| Asset group                 | Source and status                                                                                                                 | Manifest                                                                                        |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Earth texture               | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                                                  | [`public/earth/credits.json`](../public/earth/credits.json)                                     |
-| Shared scanned materials    | Poly Haven; recorded as CC0 in the imported manifest                                                                              | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)                 |
-| Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                                              | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json)       |
-| Place previews              | Local renders of all current interiors, including Marrakech; outdoor thumbnails are also actual renders                           | [`public/previews/credits.json`](../public/previews/credits.json)                               |
-| Outdoor photographs         | Twenty-five credited regional style references, including four for the Douro vineyard; none depicts the fictional modeled setting | [`public/outdoors/references.json`](../public/outdoors/references.json)                         |
-| Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                                                   | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)         |
-| Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                                    | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json) |
-| Generated cover artwork     | One explicitly requested Image 2.5 Field Notes cover, with prompt/model/usage evidence                                            | [`public/outdoors/generated/manifest.json`](../public/outdoors/generated/manifest.json)         |
-| Printed objects             | Original fictional layouts composed locally from licensed real artwork; five additional botanical sources                         | [`public/print-library/manifest.json`](../public/print-library/manifest.json)                   |
-| Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                            | `data/scenes/`                                                                                  |
-| Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                     | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
+| Asset group                 | Source and status                                                                                                                                          | Manifest                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Earth texture               | NASA Earth Observatory, Blue Marble Next Generation, August 2004                                                                                           | [`public/earth/credits.json`](../public/earth/credits.json)                                     |
+| Shared scanned materials    | Poly Haven; recorded as CC0 in the imported manifest                                                                                                       | [`public/riad/materials/manifest.json`](../public/riad/materials/manifest.json)                 |
+| Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                                                                       | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json)       |
+| Place previews              | Local renders of all current interiors, including Marrakech; outdoor thumbnails are also actual renders                                                    | [`public/previews/credits.json`](../public/previews/credits.json)                               |
+| Outdoor photographs         | Thirty-eight credited regional style references, including four for the Douro vineyard and thirteen for Alfama; none depicts the fictional modeled setting | [`public/outdoors/references.json`](../public/outdoors/references.json)                         |
+| Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                                                                            | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)         |
+| Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                                                             | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json) |
+| Generated cover artwork     | One explicitly requested Image 2.5 Field Notes cover, with prompt/model/usage evidence                                                                     | [`public/outdoors/generated/manifest.json`](../public/outdoors/generated/manifest.json)         |
+| Printed objects             | Original fictional layouts composed locally from licensed real artwork; five additional botanical sources                                                  | [`public/print-library/manifest.json`](../public/print-library/manifest.json)                   |
+| Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                                                     | `data/scenes/`                                                                                  |
+| Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                                              | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
-The collection includes 566 original OpenAI-voiced recordings (189.76 MB), covering
-125 guided viewpoints, 129 object details and 139 Miniature views across the
-24 bundled scenes in English and Portuguese. Identical passages share recordings, with
+The collection includes 580 original OpenAI-voiced recordings (195.09 MB), covering
+guided visits, 133 object details and narrated Miniature views across the
+25 bundled scenes in English and Portuguese. Identical passages share recordings, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field
@@ -36,6 +36,12 @@ excavation photographs, not photographs of the invented household. Three supply
 painted surfaces, including the public-domain garden fresco from the Villa of
 Livia near Rome. Their recorded licenses also appear in About.
 These additions are included in the collection totals above.
+
+The [Alfama hillside](scenes/alfama-hillside.md) adds thirteen inspected Commons
+photographs and fourteen bilingual recordings. The photographs guide an invented
+neighborhood, not a reconstruction of their addresses. Additional object and
+construction studies remain research-only. The car's fictional registration
+plate is original program-drawn lettering, not a photograph of a real vehicle.
 
 The [Douro vineyard](scenes/douro-vineyard.md) adds four inspected Commons
 photographs, a generic CC0 ground scan, two small photographic grape-leaf
@@ -69,7 +75,7 @@ The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
 after-capture manifest and records the source scenes and material manifests.
 `npm run test:water-prints` captures the current image-based details across all
-24 environments and publishes their arrival thumbnails, including Marrakech.
+25 environments and publishes their arrival thumbnails, including Marrakech.
 
 ## What is not source
 

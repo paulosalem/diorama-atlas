@@ -45,7 +45,7 @@ and an **About the sound & credits** disclosure.
   playback went. A handover does not disable the shared saved preferences.
 - **Mute all** saves ambience, music and narration as off. Disposal and page hiding only stop
   playback; they never rewrite saved choices. Cookie failures are shown explicitly.
-- All 24 bundled scenes have [prerecorded bilingual guided narration](narration.md).
+- All 25 bundled scenes have [prerecorded bilingual guided narration](narration.md).
   It shares one player with detail narration and lowers ambience and music while
   speech plays. Object details and Miniatures also play local OpenAI recordings,
   never browser speech or runtime paid requests. All modes participate in playback

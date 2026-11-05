@@ -1,4 +1,15 @@
 export const landscapeSections = {
+  "alfama-hillside": {
+    sunColor: 0xffc58a,
+    sunIntensity: 3.8,
+    overview: [29, 29, 37],
+    bounds: [-11.2, -13.6, 13.6, 10.6],
+    axis: 2,
+    split: 3.1,
+    bottom: -2.6,
+    ground: -0.5,
+    color: 0xb5a991,
+  },
   "newar-potters-square": {
     bounds: [-13, -15, 13, 9],
     axis: 2,

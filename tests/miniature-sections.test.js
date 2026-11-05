@@ -13,6 +13,16 @@ import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
 import { sceneMiniatureContent } from "../src/client/localization/miniature-content.js";
 import { probeGeometry } from "../src/client/rendering/scene-inspection.js";
 
+test("Alfama opts into warmer miniature sunlight without recoloring other places", () => {
+  for (const scene of [...curatedScenes, ...outdoorScenes]) {
+    const study = getMiniatureStudy(scene);
+    if (scene.id === "alfama-hillside") {
+      assert.equal(study.sunColor, 0xffc58a);
+      assert.equal(study.sunIntensity, 3.8);
+    } else assert.equal(study.sunColor, undefined);
+  }
+});
+
 function volume(geometry) {
   const p = geometry.attributes.position;
   const index = geometry.index;
@@ -177,6 +187,7 @@ test("miniature narratives reuse the selected view and locale, not a repeated sc
     whole: { label: "The whole piece" },
     arrival: { label: "The room" },
     coffee: { label: "Coffee" },
+    preparation: { label: "Coffee", narrationView: "coffee" },
   };
   const narration = [
     { locale: "en-US", title: "Arrival title", text: "Arrival passage." },
@@ -207,6 +218,14 @@ test("miniature narratives reuse the selected view and locale, not a repeated sc
   );
   assert.equal(
     sceneMiniatureContent("pt-BR", "coffee", scene, views, narration).body,
+    "Cafe passage.",
+  );
+  assert.equal(
+    sceneMiniatureContent("en-US", "preparation", scene, views, narration).body,
+    "Coffee passage.",
+  );
+  assert.equal(
+    sceneMiniatureContent("pt-BR", "preparation", scene, views, narration).body,
     "Cafe passage.",
   );
   const whole = sceneMiniatureContent(

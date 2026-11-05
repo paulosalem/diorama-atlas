@@ -5,6 +5,108 @@
   },
   "assets": [
     {
+      "id": "alfama-hillside-en-US",
+      "scene": "alfama-hillside",
+      "locale": "en-US",
+      "title": "A neighborhood discovered on foot",
+      "text": "In this imagined corner of Alfama, the hillside becomes a sequence of stairs, doorsteps and small discoveries. A turn hides the next landing; washing and flower pots bring domestic life close to the lane. The layout is invented, but its narrow passages and layered buildings draw on photographs of Lisbon. Modest homes and repaired surfaces deserve attention without turning hardship into an ornament. Look for the care that keeps a neighborhood inhabited.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/alfama",
+        "https://commons.wikimedia.org/wiki/Category:Streets_in_Alfama,_Lisbon"
+      ]
+    },
+    {
+      "id": "alfama-hillside-pt-BR",
+      "scene": "alfama-hillside",
+      "locale": "pt-BR",
+      "title": "Um bairro descoberto a pé",
+      "text": "Neste recanto imaginado de Alfama, a encosta se transforma em uma sequência de escadas, soleiras e pequenas descobertas. Uma curva esconde o próximo patamar; roupas no varal e vasos aproximam a vida doméstica do beco. O traçado é inventado, mas as passagens estreitas e os edifícios sobrepostos se inspiram em fotografias de Lisboa. Casas modestas e superfícies reparadas merecem atenção sem transformar dificuldades em ornamento. Observe o cuidado que mantém um bairro habitado.",
+      "references": [
+        "https://www.visitlisboa.com/en/places/alfama",
+        "https://commons.wikimedia.org/wiki/Category:Streets_in_Alfama,_Lisbon"
+      ]
+    },
+    {
+      "id": "alfama-hillside-stairs-en-US",
+      "scene": "alfama-hillside",
+      "view": "stairs",
+      "locale": "en-US",
+      "title": "A hill negotiated on foot",
+      "text": "Stone risers alternate with small cobbled landings. The route narrows, turns and branches; a destination can be close in plan yet hidden behind a wall. This invented sequence draws on Alfama's pedestrian lanes without reproducing a real address."
+    },
+    {
+      "id": "alfama-hillside-stairs-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "stairs",
+      "locale": "pt-BR",
+      "title": "Uma encosta percorrida a pé",
+      "text": "Degraus de pedra se alternam com pequenos patamares de calçada. O caminho se estreita, muda de direção e se divide; um destino pode estar perto no mapa, mas escondido atrás de um muro. Esta sequência inventada se inspira nos caminhos de pedestres de Alfama sem reproduzir um endereço real."
+    },
+    {
+      "id": "alfama-hillside-passage-en-US",
+      "scene": "alfama-hillside",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A room above a route",
+      "text": "The passage continues beneath an occupied building. Thick masonry, an arched opening and a low ceiling compress the view before the small court opens beyond. Light changes across the threshold, making the depth perceptible. This authored connection is informed by Alfama's covered passages, not a reconstruction of a named arch or an assertion about a particular household."
+    },
+    {
+      "id": "alfama-hillside-passage-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Um cômodo sobre o caminho",
+      "text": "A passagem continua por baixo de um edifício habitado. Alvenaria espessa, uma abertura em arco e um teto baixo comprimem a vista antes que o pequeno pátio se abra adiante. A luz muda ao atravessar a soleira, tornando a profundidade perceptível. Esta ligação criada se inspira nas passagens cobertas de Alfama, sem reconstruir um arco conhecido nem fazer afirmações sobre uma família específica."
+    },
+    {
+      "id": "alfama-hillside-courtyard-en-US",
+      "scene": "alfama-hillside",
+      "view": "courtyard",
+      "locale": "en-US",
+      "title": "A corner kept with care",
+      "text": "Washing hangs above a small court, flowers grow in reused space and a chair waits beside the wall. Through another doorway, dishes suggest an ordinary meal. These authored details evoke domestic life without claiming to document a particular family or romanticizing hardship."
+    },
+    {
+      "id": "alfama-hillside-courtyard-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "courtyard",
+      "locale": "pt-BR",
+      "title": "Um recanto cuidado com atenção",
+      "text": "Roupas secam sobre um pequeno pátio, flores crescem em espaços aproveitados e uma cadeira espera junto ao muro. Em outra porta, pratos sugerem uma refeição comum. Esses detalhes criados evocam a vida doméstica sem pretender documentar uma família específica nem romantizar dificuldades."
+    },
+    {
+      "id": "alfama-hillside-tiles-en-US",
+      "scene": "alfama-hillside",
+      "view": "tiles",
+      "locale": "en-US",
+      "title": "Different doors, different levels",
+      "text": "Deep limestone surrounds and short thresholds negotiate the hillside one home at a time. Tiles, timber panels, hinges and repaired plaster record construction and maintenance. Wear is concentrated where feet, rain and hands reach, rather than spread evenly over every surface."
+    },
+    {
+      "id": "alfama-hillside-tiles-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "tiles",
+      "locale": "pt-BR",
+      "title": "Portas diferentes, níveis diferentes",
+      "text": "Molduras profundas de calcário e pequenas soleiras se ajustam à encosta, casa por casa. Azulejos, painéis de madeira, dobradiças e reboco reparado registram construção e manutenção. O desgaste se concentra onde chegam os pés, a chuva e as mãos, em vez de cobrir todas as superfícies por igual."
+    },
+    {
+      "id": "alfama-hillside-roofs-en-US",
+      "scene": "alfama-hillside",
+      "view": "roofs",
+      "locale": "en-US",
+      "title": "The neighborhood above the lane",
+      "text": "Overlapping clay tiles, ridge caps, chimney openings and varied building heights form another view of the same neighborhood. From below, the roofs narrow the sky; from above, they reveal how closely homes fit together. The layout is imagined, not a measured model of Alfama."
+    },
+    {
+      "id": "alfama-hillside-roofs-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "roofs",
+      "locale": "pt-BR",
+      "title": "O bairro acima do beco",
+      "text": "Telhas de barro sobrepostas, cumeeiras, aberturas de chaminés e edifícios de alturas variadas formam outra vista do mesmo bairro. De baixo, os telhados estreitam o céu; de cima, revelam como as casas se encaixam. O traçado é imaginado, não um modelo medido de Alfama."
+    },
+    {
       "id": "roman-domus-en-US",
       "scene": "roman-domus",
       "locale": "en-US",
@@ -4573,6 +4675,22 @@
       "locale": "pt-BR",
       "title": "Medir o valor",
       "text": "Uma balança, pesos, tabuinhas e ânforas guardadas ligam a prosperidade doméstica às trocas e à contabilidade. O cômodo é reconstruído como espaço de armazenamento e administração, não identificado automaticamente como loja. A posição de elite podia apoiar-se em terras, comércio, relações políticas e no trabalho alheio."
+    },
+    {
+      "id": "alfama-hillside-miniature-whole-en-US",
+      "scene": "alfama-hillside",
+      "view": "miniature-whole",
+      "locale": "en-US",
+      "title": "A neighborhood discovered one turn at a time.",
+      "text": "Two sections reveal the same imagined Alfama hillside: narrow stair lanes, thick thresholds, overlapping roofs and a sheltered domestic court. Turn the miniature to follow routes hidden from street level, or choose a close view beside the washing and flower pots. The separation is an interpretive display, not a real fault in the ground. Modest homes and evidence of care are the subject, not a celebration of deprivation."
+    },
+    {
+      "id": "alfama-hillside-miniature-whole-pt-BR",
+      "scene": "alfama-hillside",
+      "view": "miniature-whole",
+      "locale": "pt-BR",
+      "title": "Um bairro descoberto a cada curva.",
+      "text": "Dois cortes revelam a mesma encosta imaginada de Alfama: becos com escadas, soleiras espessas, telhados sobrepostos e um pátio doméstico abrigado. Gire a miniatura para seguir caminhos escondidos ao nível da rua ou escolha uma vista próxima do varal e dos vasos. A separação é um recurso de apresentação, não uma falha real no terreno. O tema são casas modestas e sinais de cuidado, não uma celebração da privação."
     }
   ]
 }

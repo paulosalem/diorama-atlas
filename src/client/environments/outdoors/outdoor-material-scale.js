@@ -44,10 +44,15 @@ export function configureOutdoorMaterialScale(material) {
     throw new Error(
       `Invalid physical texture scale on ${material.name || "an outdoor material"}.`,
     );
-  configured.add(material);
   const compile = material.onBeforeCompile;
   const cacheKey = material.customProgramCacheKey();
   const normalizeGrain = material.userData.diffuseDetailMode === "tinted-grain";
+  const grainStrength = material.userData.diffuseDetailStrength ?? 1;
+  if (!Number.isFinite(grainStrength) || grainStrength < 0 || grainStrength > 1)
+    throw new Error(
+      "Outdoor diffuse detail strength must be between zero and one.",
+    );
+  configured.add(material);
   const gain = { value: 1 };
   material.onBeforeCompile = (shader, renderer) => {
     compile.call(material, shader, renderer);
@@ -112,7 +117,7 @@ export function configureOutdoorMaterialScale(material) {
       #include <map_fragment>
       #ifdef USE_MAP
         float grain = dot(sampledDiffuseColor.rgb, vec3(0.2126, 0.7152, 0.0722)) * outdoorGrainGain;
-        diffuseColor.rgb = min(outdoorPigment * clamp(grain, 0.35, 1.65), vec3(0.88));
+        diffuseColor.rgb = min(outdoorPigment * mix(1.0, clamp(grain, 0.35, 1.65), ${grainStrength.toFixed(5)}), vec3(0.88));
       #endif
     `,
       );
@@ -126,7 +131,7 @@ export function configureOutdoorMaterialScale(material) {
     );
   };
   material.customProgramCacheKey = () =>
-    `${cacheKey}/outdoor-world-material-${scale}/${normalizeGrain}`;
+    `${cacheKey}/outdoor-world-material-${scale}/${normalizeGrain}/${grainStrength}`;
   material.needsUpdate = true;
   if (normalizeGrain)
     return () => {

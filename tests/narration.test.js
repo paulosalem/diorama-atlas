@@ -9,6 +9,7 @@ import {
   interiorDraftScenes,
 } from "../src/client/catalog/scene-catalog.js";
 import { domusViews } from "../src/client/environments/domus/domus-layout.js";
+import { alfamaViews } from "../src/client/environments/outdoors/alfama-hillside.js";
 import {
   findNarrationRecording,
   isSceneNarration,
@@ -47,6 +48,9 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
     ...saved,
     ...outdoorScenes,
     ...interiorDraftScenes,
+    ...outdoorDraftScenes.filter((scene) =>
+      manifest.assets.some((asset) => asset.scene === scene.id),
+    ),
   ];
   const bundledRecipes = recipes.assets.filter((asset) =>
     scenes.some((scene) => scene.id === asset.scene),
@@ -59,7 +63,14 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
       ),
       `${recipe.id}: recipe must belong to a bundled scene or an explicit local draft`,
     );
-  assert.equal(manifest.assets.filter(isSceneNarration).length, 250);
+  assert.equal(
+    manifest.assets.filter(
+      (asset) =>
+        isSceneNarration(asset) &&
+        !outdoorDraftScenes.some((scene) => scene.id === asset.scene),
+    ).length,
+    262,
+  );
   for (const passage of supplementalNarration(
     scenes.filter((scene) => !scene.draft),
     recipes.assets,
@@ -137,9 +148,15 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
         ? Object.keys(domusViews).length
         : scene.id === "riad"
           ? 6
-          : scene.environment === "outdoor"
-            ? 4
-            : 5,
+          : scene.id === "alfama-hillside"
+            ? new Set(
+                Object.entries(alfamaViews)
+                  .filter(([, view]) => view.narration !== false)
+                  .map(([key, view]) => view.narrationView ?? key),
+              ).size
+            : scene.environment === "outdoor"
+              ? 4
+              : 5,
       scene.id,
     );
     assert.ok(views.has("intro"), `${scene.id}: missing arrival`);
@@ -149,26 +166,25 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
           keys.has(`${scene.id}/${view}/${locale}`),
           `${scene.id}/${view}/${locale}`,
         );
-    for (const scene of outdoorDraftScenes) {
-      const drafts = recipes.assets.filter((asset) => asset.scene === scene.id);
-      assert.equal(
-        drafts.length,
-        8,
-        `${scene.id}: four bilingual draft passages`,
-      );
-      const views = new Set(drafts.map((asset) => asset.view ?? "intro"));
-      assert.equal(views.size, 4);
-      assert.ok(views.has("intro"));
-      for (const view of views)
-        for (const locale of ["en-US", "pt-BR"])
-          assert.equal(
-            drafts.filter(
-              (asset) =>
-                (asset.view ?? "intro") === view && asset.locale === locale,
-            ).length,
-            1,
-          );
-    }
+  }
+  for (const scene of outdoorDraftScenes) {
+    const drafts = recipes.assets.filter((asset) => asset.scene === scene.id);
+    assert.ok(
+      drafts.length >= 8,
+      `${scene.id}: at least four bilingual draft passages`,
+    );
+    const views = new Set(drafts.map((asset) => asset.view ?? "intro"));
+    assert.ok(views.size >= 4);
+    assert.ok(views.has("intro"));
+    for (const view of views)
+      for (const locale of ["en-US", "pt-BR"])
+        assert.equal(
+          drafts.filter(
+            (asset) =>
+              (asset.view ?? "intro") === view && asset.locale === locale,
+          ).length,
+          1,
+        );
   }
   const files = await readdir(new URL("../public/narration/", import.meta.url));
   assert.deepEqual(

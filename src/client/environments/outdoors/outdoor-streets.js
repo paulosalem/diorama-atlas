@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
+import { clipPolygon } from "../shared/polygon-geometry.js";
 import { createOutdoorKit, outdoorView } from "./outdoor-kit.js";
 import {
   dressedStoneGeometry,
@@ -2905,25 +2906,6 @@ export function buildVenetianBoatyard(definition, renderer) {
       [-4.0, -0.38, 6.4],
     ],
   );
-}
-
-function clipPolygon(polygon, a, b, threshold) {
-  const result = [];
-  for (let i = 0; i < polygon.length; i++) {
-    const start = polygon[i],
-      end = polygon[(i + 1) % polygon.length];
-    const ds = a * start[0] + b * start[1] - threshold;
-    const de = a * end[0] + b * end[1] - threshold;
-    if (ds <= 1e-8) result.push(start);
-    if (ds < 0 !== de < 0) {
-      const t = ds / (ds - de);
-      result.push([
-        start[0] + t * (end[0] - start[0]),
-        start[1] + t * (end[1] - start[1]),
-      ]);
-    }
-  }
-  return result;
 }
 
 const fittedStoneMaterials = new WeakMap();

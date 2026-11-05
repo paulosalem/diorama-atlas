@@ -52,8 +52,8 @@ The bundled app needs no key, database or generated cache. See
 | `scripts/`, `tests/`                 | Maintenance, captures and regression checks                      |
 | `docs/`, `.github/skills/`           | Human and agent development guidance                             |
 
-Six curated definitions, seven saved interiors and eleven outdoor definitions
-form the 24-scene collection. Preserve unique IDs and saved-package provenance.
+Six curated definitions, seven saved interiors and twelve outdoor definitions
+form the 25-scene collection. Preserve unique IDs and saved-package provenance.
 
 Unfinished entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
@@ -91,7 +91,9 @@ Every place's original visit and Miniature are versions of one catalog destinati
 not separate map entries. `?scene=<id>&version=miniature` opens its Three.js object
 viewer. Complete generated interiors use the same family-based shell mechanism.
 Routing uses experience identity, not engine names. Original recordings remain
-available; Douro's added yard and railway views explicitly set `narration: false`.
+available; Douro's added yard and railway views and Alfama's street/bicycle
+inspection views explicitly set `narration: false`. Miniature inspection views
+with that flag do not offer a playback button or voice disclosure.
 Miniatures and object details use prerecorded OpenAI speech and bilingual text,
 with the same global audio ownership. Run `scripts/prepare-narration.mjs` to
 inventory missing passages; paid generation requires an explicit durable budget.
@@ -171,7 +173,7 @@ and motion settings; add separate evidence for newly connected spaces.
 The same capture tool accepts an outdoor `--scene ID`; an unfinished place
 also requires `--include-drafts` and a local server. Its default collection
 remains the thirteen interiors. Use `--all --version miniature` to capture all
-24 Miniatures and their named views, or `--scene ID --version miniature` for
+25 Miniatures and their named views, or `--scene ID --version miniature` for
 one place. The Whole capture begins closed; selecting an interior detail opens
 its shell. Capture the opened Whole state separately when comparing the opening.
 The domus opens in cutaway mode by default and captures its five shared-runtime

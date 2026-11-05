@@ -45,6 +45,16 @@ Evidence and remaining limitations carry forward without overwriting old runs.
 The creation skill applies this same discipline from the first inspectable build.
 Use `review-dioramas` when only an inspection, rather than changes, is wanted.
 
+Creation, improvement and review share
+[construction-to-experience checks](../.github/skills/improve-diorama-realism/references/examples.md#construction-to-experience-checks):
+connected route/elevation layouts, context-appropriate shared construction,
+intentional negative space, fitted roof and stair junctions, multiscale material
+variation, physically possible everyday activity and motivated light.
+These generalize causes and acceptance evidence, not a particular place's
+architecture, props or palette. Asset curation supplies varied photographic
+viewpoints and targeted follow-up research whenever an unresolved relationship
+needs better evidence.
+
 To add a recurring procedure, first check for an existing skill or maintenance
 script. Keep executable mechanisms in reusable scripts, task-specific choices
 in arguments/manifests, and the skill focused on decisions, sequence, safeguards

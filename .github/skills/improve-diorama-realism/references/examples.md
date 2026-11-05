@@ -26,6 +26,121 @@ Read the [scene briefs](../../../../docs/scenes/README.md) for local intent.
 | Douro's supported riverside line and detailed stationary railcar                     | A new infrastructure element creates obligations for terrain, clearance, scale and construction                               | Are rails, sleepers, ballast, supports, seats and glazing credible? Are trees and routes clear? Do not imply a functioning train simulation when only a stationary vehicle exists. |
 | Native Three.js/Babylon/PlayCanvas/Unity comparisons                                 | An engine change is not an automatic realism gain; shaders and animation can be lost during export                            | Are patina, alpha masks, grain scale, cloth, leaf wind, water, shadows and reflections actually preserved? Compare independent same-camera runs, not competing panes.              |
 
+## Construction-to-experience checks
+
+These are general acceptance questions, not a prescribed neighborhood style,
+prop inventory or instruction to add weathering everywhere. Use photographic
+evidence to decide which relationships belong in the requested place.
+
+### Compose a connected layout, not a collection of rotated objects
+
+- Establish a route network with elevations, landings, thresholds and destinations
+  before placing buildings. Where the place grew incrementally, let parcel edges,
+  slope and access produce changing orientations, branching alleys, offset stairs,
+  courts and concealed corners. Random rotations and noise do not create this
+  topology. A planned settlement may correctly remain regular.
+- Check the journey from inside the setting as well as from above: approaching
+  and leaving a turn, ascending and descending, entering a court, and looking
+  back through a passage. The next destination need not all be visible at once.
+- Align frontages and usable thresholds with the routes that serve them.
+  Stairs need plausible rises, runs, widths and supported landings, not merely
+  a visual connection between two elevations.
+
+### Fit adjoining construction and explain the empty space
+
+- Classify boundaries: detached, attached/shared, intentional joint, route,
+  drainage, service access or light well. In dense attached fabric, independent
+  boxes separated by hairline daylight gaps often contradict the reference.
+  Elsewhere, deliberate separation may be essential. Do not close every gap.
+- Model a shared boundary coherently rather than duplicating coincident walls.
+  Fit nonparallel parcels with actual infill volumes; reconcile floors,
+  foundations, exposed returns and roofs. Covered wall faces must not retain
+  impossible windows into solid neighboring construction.
+- Audit negative space at the edges, not only walking centerlines: triangular
+  notches behind stairs, strips beside landings, gaps beneath roof edges and
+  inaccessible trenches between walls and terrain. Either explain a void's
+  function and construction or close it with a fitted, supported solid.
+  A pot, shadow, black plane or overlapping box is not a geometric repair.
+- Inspect roof and infill junctions from above, below and reverse angles.
+  Supports need thickness and closed edges; courses and caps must follow the
+  actual supporting surface, including unequal slopes, rather than a convenient
+  rectangle or a single assumed pitch.
+- Verify overlaps and contacts without sealing intended apertures. Architectural
+  credibility is not a claim of structural, drainage or seismic certification.
+
+### Give matter variation at several scales
+
+- Separate broad exposure and pigment variation, differences between pieces,
+  and fine grain or relief within each piece. A different flat color per building,
+  tile or pot still leaves each object unnaturally smooth.
+- Let manufacturing and use explain the variation: ceramic firing and throwing,
+  stone bedding and worn edges, limewash repairs and pigment loss, runoff below
+  actual sill ends, splash near ground and sheltered areas under eaves.
+  Vary color, roughness and normal response together where appropriate.
+- Cracks and chipped edges that change silhouette, parallax or self-shadow need
+  geometry. Subdivide in the direction and at the scale needed to resolve the
+  deformation; a displacement formula sampled only at a few distant vertices
+  cannot produce its promised fine relief.
+- Avoid periodic color bands, identical distress masks and arbitrary vertex
+  noise. Preserve mortar alignment, ornament, readable imagery and the intended
+  maintenance condition. Modest means are not a license to romanticize deprivation
+  or make all buildings dirty and unstable.
+
+### Make everyday activity physically possible
+
+- Spread a few related activities through suitable spaces rather than decorating
+  every empty patch or concentrating all life in one showcase corner. Shopping,
+  meals, washing, repairs and plant care imply different tools, storage, pauses
+  and circulation. Use only activities appropriate to the place.
+- Check how an object could arrive and be used there. A vehicle needs a plausible
+  access route and parking footprint; a stair-only terrace does not become
+  vehicle-accessible because four tyres touch its surface. Hand-carried objects
+  and bicycles have different access requirements.
+- Ground wheels, feet and vessel bases; inspect the full object envelope against
+  walls, crates, doors, steps and other existing props. Correct a collision
+  without silently removing earlier useful detail. Preserve walking and working
+  clearances as well as camera sightlines.
+- Refine functional shape, not just recognition: a vehicle's body, cabin, glazing
+  and supports must agree; a bicycle needs connected frame, wheels and useful
+  attachments; baskets and buckets need real interiors. A familiar shared
+  builder can still reveal unfinished sides when reused from a new angle.
+- Vary containers by function and construction, not only scale or tint: an
+  appropriate mix of jars, troughs, bowls or reused vessels can support different
+  plants. Give them actual rims, thickness, handles, soil and connected growth.
+  Check compound rotations so radial foliage remains radial in the render.
+- Keep visual evidence of ongoing life distinct from simulation. A parked
+  vehicle, a shopping bag or a partly cleared table can imply occupation without
+  new characters, traffic or paid assets.
+
+### Let light create emotion without concealing construction
+
+Adjust a motivated source, its direction and its relationship to fill and shade,
+not merely overall saturation or a warm screen filter. Warmer direct light can
+coexist with cooler recesses and readable material colors; another climate,
+time or brief may call for entirely different light. Preserve physical sky/sun
+alignment where used. Compare the same cameras and exposure unless the change
+explicitly calls for an exposure adjustment, which must be recorded. A pleasing
+mood is not evidence that geometry defects have disappeared.
+
+### Carry improvement through both representations and the implementation
+
+Retain original cameras, useful prior details and stable procedural variation.
+New geometry must not accidentally reshuffle existing plants or finishes by
+consuming a shared random sequence. New vertex attributes must remain compatible
+with their batching groups. Render the complete scene after changes: a unit test
+of an unbatched shape cannot catch a failed scene assembly.
+
+Check shared-builder consumers and all affected variants. For sectioned
+miniatures, transform probes and viewpoints into the displayed sections, inspect
+cut faces and preserve genuinely clear gaps. Record actual settled cameras;
+requested targets can be overridden by interactive controls. Add useful detail
+views without replacing the original comparison views or concealing bad sides.
+
+Distinguish a capture from an inspection and an automated pass from visual
+approval. Preserve failures, correct their causes and re-inspect the affected
+views. A new warm-light approval or one repaired corner never exempts the next
+scale of construction, material or daily-life detail from scrutiny.
+
 ## How repeated invocations go deeper
 
 - A wooden stick initially represented by a box needs more than a better wood
@@ -55,7 +170,9 @@ Read the [scene briefs](../../../../docs/scenes/README.md) for local intent.
 
 The [Douro brief](../../../../docs/scenes/douro-vineyard.md) and
 [engine study](../../../../experiments/marrakech/README.md) describe particular
-experiences. A miniature, geological cutaway, railway or new engine is not a
-universal requirement. Characters were considered, not delivered. Transfer
+experiences. A geological cutaway, railway or new engine is not a universal
+requirement. Every diorama still requires its peer interactive miniature; its
+place-specific presentation must follow the quality contract. Characters were
+considered, not delivered. Transfer
 the principle of believable life and deeper inspection, not a compulsory list
 of Moroccan ornaments, vineyard props, water features or moving people.

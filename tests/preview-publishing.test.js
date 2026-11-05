@@ -203,6 +203,43 @@ test("preview publishing includes Marrakech and retains unselected capture prove
       ),
       png,
     );
+    for (const draftState of [true, false]) {
+      await writeFile(
+        path.join(root, "captures/capture.json"),
+        JSON.stringify({
+          phase: "after",
+          viewport: { width: 1280, height: 900 },
+          scenes: [
+            {
+              id: "unfinished-landscape",
+              draft: draftState,
+              views: [{ key: "arrival", file: "unfinished-interior.png" }],
+            },
+          ],
+        }),
+      );
+      await promisify(execFile)(process.execPath, [
+        path.join(root, "scripts/publish-previews.mjs"),
+        "--input",
+        path.join(root, "captures/capture.json"),
+        "--environment",
+        "outdoor",
+      ]);
+      const current = JSON.parse(
+        await readFile(path.join(root, "public/previews/credits.json"), "utf8"),
+      );
+      assert.deepEqual(current.rendered, indoorRecords);
+      assert.equal(current.drafts.length, draftState ? 1 : 0);
+      assert.equal(current.outdoors.length, draftState ? 1 : 2);
+      const selected = (draftState ? current.drafts : current.outdoors).find(
+        (entry) => entry.scene === "unfinished-landscape",
+      );
+      assert.equal(
+        selected.sha256,
+        createHash("sha256").update(png).digest("hex"),
+      );
+      assert.equal(selected.draft === true, draftState);
+    }
   } finally {
     await rm(root, { recursive: true, force: true });
   }

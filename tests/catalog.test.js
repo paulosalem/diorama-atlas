@@ -31,11 +31,11 @@ const allScenes = [
   ...outdoorScenes,
 ];
 
-test("the integrated collection contains twenty-four distinct, complete places", () => {
+test("the integrated collection contains twenty-five distinct, complete places", () => {
   assert.equal(curatedScenes.length, 6);
   assert.equal(bundledPackages.length, 7);
-  assert.equal(outdoorScenes.length, 11);
-  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 24);
+  assert.equal(outdoorScenes.length, 12);
+  assert.equal(new Set(allScenes.map((scene) => scene.id)).size, 25);
   for (const scene of allScenes) {
     assert.match(scene.id, /^[a-z0-9-]+$/);
     for (const field of ["title", "region", "blurb", "summary"]) {
@@ -146,9 +146,9 @@ test("every bundled place has an indexed brief with its narrated viewpoint keys"
   }
 });
 
-test("every place belongs to exactly one of the twenty geographic settings", () => {
+test("every place belongs to exactly one of the twenty-one geographic settings", () => {
   const places = locateScenes(allScenes);
-  assert.equal(places.length, 20);
+  assert.equal(places.length, 21);
   const locatedIds = places.flatMap((place) =>
     place.scenes.map((scene) => scene.id),
   );

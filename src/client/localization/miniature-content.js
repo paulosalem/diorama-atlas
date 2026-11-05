@@ -158,6 +158,16 @@ export function miniatureContent(locale, view) {
 }
 
 const miniatureStories = {
+  "alfama-hillside": {
+    "en-US": {
+      heading: "A neighborhood discovered one turn at a time.",
+      body: "Two sections reveal the same imagined Alfama hillside: narrow stair lanes, thick thresholds, overlapping roofs and a sheltered domestic court. Turn the miniature to follow routes hidden from street level, or choose a close view beside the washing and flower pots. The separation is an interpretive display, not a real fault in the ground. Modest homes and evidence of care are the subject, not a celebration of deprivation.",
+    },
+    "pt-BR": {
+      heading: "Um bairro descoberto a cada curva.",
+      body: "Dois cortes revelam a mesma encosta imaginada de Alfama: becos com escadas, soleiras espessas, telhados sobrepostos e um pátio doméstico abrigado. Gire a miniatura para seguir caminhos escondidos ao nível da rua ou escolha uma vista próxima do varal e dos vasos. A separação é um recurso de apresentação, não uma falha real no terreno. O tema são casas modestas e sinais de cuidado, não uma celebração da privação.",
+    },
+  },
   riad: {
     "en-US": {
       heading: "An inward-looking house, opened to the afternoon.",
@@ -212,10 +222,13 @@ export function sceneMiniatureContent(
     (asset) => asset.locale === locale && asset.view === undefined,
   );
   const firstView = Object.keys(views ?? {}).find((key) => key !== "whole");
+  const narrationView = views?.[view]?.narrationView ?? view;
   const transcript = narration.find(
     (asset) =>
       asset.locale === locale &&
-      (view === firstView ? asset.view === undefined : asset.view === view),
+      (view === firstView
+        ? asset.view === undefined
+        : asset.view === narrationView),
   );
   const introduction =
     locale === "pt-BR"

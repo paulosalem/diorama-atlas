@@ -7,7 +7,10 @@ import {
   curatedScenes,
   interiorDraftScenes,
 } from "../src/client/catalog/scene-catalog.js";
-import { outdoorScenes } from "../src/client/catalog/outdoor-catalog.js";
+import {
+  outdoorScenes,
+  outdoorDraftScenes,
+} from "../src/client/catalog/outdoor-catalog.js";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
 import {
   findNarrationRecording,
@@ -27,7 +30,7 @@ if (values.help) {
   console.log(`Verify bundled narration against every actual runtime view.
 Usage: node scripts/check-narration.mjs [--base-url URL] [--output-dir PATH] [--scene ID ...]
 The default selects all prerecorded scenes. Explicit scene IDs select a subset.
-Pass --include-drafts with explicit scene IDs to inspect local unfinished interiors.
+Pass --include-drafts with explicit scene IDs to inspect local unfinished scenes.
 Uses isolated browser preferences, blocks paid API requests, decodes every selected
 MP3, and exercises both languages in full-scale views, object details and Miniatures.
 Writes report.json and rendered screenshots under the output directory.
@@ -45,7 +48,9 @@ const collection = [
   ...curatedScenes,
   ...(await response.json()).scenes,
   ...outdoorScenes,
-  ...(values["include-drafts"] ? interiorDraftScenes : []),
+  ...(values["include-drafts"]
+    ? [...interiorDraftScenes, ...outdoorDraftScenes]
+    : []),
 ];
 for (const id of values.scene ?? [])
   assert.ok(
@@ -198,12 +203,20 @@ try {
     );
     const sceneAssets = assets.filter((asset) => asset.scene === scene.id);
     const viewAssets = sceneAssets.filter(isSceneNarration);
-    assert.equal(viewAssets.length, keys.length * 2, scene.id);
+    const narrationKey = (key) =>
+      initial.views[key].narrationView ?? (key === keys[0] ? "intro" : key);
+    assert.equal(
+      viewAssets.length,
+      new Set(keys.map(narrationKey)).size * 2,
+      scene.id,
+    );
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const key of keys) {
         const asset = viewAssets.find(
-          (item) => item.locale === locale && (item.view ?? keys[0]) === key,
+          (item) =>
+            item.locale === locale &&
+            (item.view ?? "intro") === narrationKey(key),
         );
         assert.ok(asset, `${scene.id}/${key}/${locale}`);
         await page.locator(`[data-view="${key}"]`).click();
@@ -341,6 +354,13 @@ try {
       shared ? ".narration-text" : "#miniatureStoryText",
     );
     const listen = page.locator(shared ? "#narrationPlay" : "#miniatureListen");
+    const silentMiniatureViews = await page.evaluate(async () => {
+      const { getActiveViewer } =
+        await import("/src/client/viewer/panorama-viewer.js");
+      return Object.entries(getActiveViewer().runtime.views)
+        .filter(([, view]) => view.narration === false)
+        .map(([key]) => key);
+    });
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const key of miniatureViews) {
@@ -351,6 +371,10 @@ try {
               : `#miniatureViews [data-view="${key}"]`,
           )
           .click();
+        if (silentMiniatureViews.includes(key)) {
+          await expect(listen).toBeHidden();
+          continue;
+        }
         const text = await transcript.textContent();
         const asset = findNarrationRecording(manifest.assets, locale, text);
         assert.ok(

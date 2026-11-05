@@ -1,5 +1,19 @@
 # Changelog
 
+## Collection update — 2026-11-05
+
+- Added Alfama, an imagined Lisbon hillside with winding stair lanes, attached
+  houses, fitted masonry junctions, domestic courts and warmer daylight.
+- Included its peer sectioned miniature, ten landscape viewpoints, eleven
+  miniature viewpoints and fourteen bilingual recordings with exact-text reuse.
+  Two additional inspection views are deliberately non-narrated.
+- Added everyday street activity: two bicycles, a small parked car on the
+  accessible lower street, varied planting vessels and household equipment.
+- Generalized photographic research, construction, material and verification
+  lessons in the creation, improvement, review and asset-curation skills.
+- The collection now contains 25 places across 21 geographic settings and
+  580 recordings. The package remains v1.0.0; no tag or separate release is created.
+
 ## Collection update — 2026-11-04
 
 - Added a walkable Roman domus inspired by Campanian evidence around AD 60:

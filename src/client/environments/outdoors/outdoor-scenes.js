@@ -11,8 +11,10 @@ import {
 import { buildSubakTerraces, buildNaxiCanal } from "./outdoor-landscapes.js";
 import { buildBahianSquare, buildTunisianCafe } from "./outdoor-coasts.js";
 import { buildDouroVineyard } from "./douro-vineyard.js";
+import { buildAlfamaHillside } from "./alfama-hillside.js";
 
 export const outdoorBuilders = {
+  "alfama-hillside": buildAlfamaHillside,
   "douro-vineyard": buildDouroVineyard,
   "newar-potters-square": buildNewarPottersSquare,
   "central-asian-madrasa": buildMadrasaCourtyard,

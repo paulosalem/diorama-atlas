@@ -113,6 +113,15 @@ visible defect, physical or perceptual cause, proposed correction, expected
 visible gain, evidence and status. Rank by effect on presence and correctness;
 fix broken space or lighting before spending the pass on tiny hidden props.
 
+When a user identifies one impossible junction or repetitive surface, treat it
+as evidence of a possible construction or material rule failure. Audit its
+siblings and the shared mechanism, not only the circled pixels. Use the
+[construction-to-experience checks](references/examples.md#construction-to-experience-checks)
+to examine layout, shared boundaries, negative space, roofs, finish, activity
+and light together. Apply only the relationships appropriate to the setting;
+irregularity, attached buildings, distressed paint and warm sun are not universal
+requirements.
+
 Even when the old checklist passes, examine the next weaker scale or relationship:
 an open room may still be empty, varied wood may still have oversized grain,
 and moving water may still have unrelated reflections. Do not invent defects
@@ -124,6 +133,14 @@ For each target, choose corrections that will produce an identifiable improvemen
 in the supported experience. State the intended before/after difference before
 editing. Address interacting causes together: a tool implies a task, a surface,
 ground contact, lighting and perhaps a sound source.
+
+Work from dependencies outward: route and elevation logic; adjoining solids
+and intentional voids; functional object shapes; material variation; activity
+and atmosphere. Fix a generic layout or unclosed stair margin before disguising
+it with pots. Fit shared walls, unequal parcels and roof junctions explicitly;
+increasing polygon density cannot correct disconnected construction by itself.
+Retain purposeful openings and distinguish architectural plausibility from
+any claim of engineering safety.
 
 ### Refine actual shape, not only its material
 
@@ -166,6 +183,14 @@ Preserve truly animated objects and printed/transparent materials when batching
 or exporting. Optimize visibility and redundant render work, not away the detail
 the user is meant to inspect.
 
+Preserve unrelated procedural results as well as authored placements: adding
+geometry or assigning texture scale must not inadvertently advance a shared
+random sequence and rearrange existing plants, paving or props. Prefer stable,
+independent variation inputs when extending shared mechanisms. Group meshes by
+compatible geometry attributes and material behavior; a new vertex-color
+attribute can invalidate an otherwise familiar batch. Verify actual assembly,
+the affected shared consumers and resource disposal after such changes.
+
 ## 4. Correct and re-inspect completely
 
 The default invocation includes the initial inspection followed by **three
@@ -192,6 +217,21 @@ and static-path checks when affected. Verify real motion and freezing, sound
 opt-in/mute/hide/ownership, repeated navigation and disposal. Update focused
 regressions for the defects actually corrected. Automated checks do not judge
 the sound mix, beauty or photographic believability.
+
+Separate route-clearance, construction-contact, support and cavity evidence.
+Probe across a person's width and height, around stair/landing margins, at
+shared boundaries and at the actual footprints of new objects. Check against
+existing props, not only terrain. Ensure a probe hits the intended surface,
+not the tested object's own geometry. Apply representation transforms before
+probing sectioned miniatures, and visually inspect the same relationships.
+
+Record the actual camera position, orientation and field of view after controls
+settle, not just the requested pose; orbit controls can override manual framing.
+Keep original comparison views and add discoverable bilingual close views where
+new detail would otherwise remain inaccessible. Respect the narration contract:
+reuse only genuinely matching passages, explicitly mark supported non-narrated
+inspection views, or leave unapproved recording work pending. Do not silently
+drop required narration or spend a prior recording budget again.
 
 Inspect matched after captures and the running result. Every requested target
 must have a demonstrable perceptual or physical improvement; an untouched target

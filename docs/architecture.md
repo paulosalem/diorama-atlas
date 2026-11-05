@@ -37,7 +37,7 @@ Node: src/server/index.mjs -> createAtlasServer()
 
 ## Browser boundaries
 
-`catalog/` contains the original five place definitions, eleven fictional outdoor
+`catalog/` contains six curated place definitions, twelve fictional outdoor
 settings, saved-place loading, and geographic matching. `world/` renders Earth and miniature landmarks, places
 interactive markers, and remembers camera orientation in session storage.
 
@@ -90,8 +90,8 @@ the Three.js runtime and local assets needed by the collection.
 
 ### Floating architectural and landscape sections
 
-All 24 bundled places have corresponding miniatures: thirteen opening interiors
-and eleven two-piece landscapes. Existing full-scale visits and their authored
+All 25 bundled places have corresponding miniatures: thirteen opening interiors
+and twelve two-piece landscapes. Existing full-scale visits and their authored
 camera definitions remain unchanged. Douro retains its accepted composition and
 eleven Miniature viewpoints. Oaxaca and Bali established the shared treatment
 before its extension to the collection.
@@ -150,7 +150,7 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 24 bundled scenes retain their original bilingual entry/view recordings.
+All 25 bundled scenes retain their original bilingual entry/view recordings.
 Douro's Landscape retains its four recorded views; its additional yard and
 railway views explicitly omit the recorded guide rather than pretending a clip
 exists. Miniatures and object details use local OpenAI recordings, with authored

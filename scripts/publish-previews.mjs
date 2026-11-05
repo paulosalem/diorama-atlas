@@ -95,8 +95,16 @@ const records = new Map(
     { ...entry, viewport: entry.viewport ?? previous.viewport },
   ]),
 );
-for (const { id, draft, view, width, height, bytes, sha256 } of images)
-  records.set(id, {
+const draftRecords = new Map(
+  (previous.drafts ?? []).map((entry) => [entry.scene, entry]),
+);
+for (const { id, draft, view, width, height, bytes, sha256 } of images) {
+  if (outdoor) {
+    records.delete(id);
+    draftRecords.delete(id);
+  }
+  const destination = outdoor && draft ? draftRecords : records;
+  destination.set(id, {
     file: outdoor ? `/public/outdoors/previews/${id}.png` : `${id}.png`,
     scene: id,
     ...(draft ? { draft: true } : {}),
@@ -108,6 +116,7 @@ for (const { id, draft, view, width, height, bytes, sha256 } of images)
     viewport: manifest.viewport,
     ...(outdoor ? { reducedMotion: true } : {}),
   });
+}
 await writeFile(
   creditsFile,
   `${JSON.stringify(
@@ -120,7 +129,7 @@ await writeFile(
       checkedAt: new Date().toISOString(),
       rendered: outdoor ? (previous.rendered ?? []) : [...records.values()],
       outdoors: outdoor ? [...records.values()] : (previous.outdoors ?? []),
-      drafts: previous.drafts ?? [],
+      drafts: [...draftRecords.values()],
       materials: [
         "../riad/materials/manifest.json",
         "../interiors/materials/manifest.json",

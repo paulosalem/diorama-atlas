@@ -94,7 +94,10 @@ export async function createMiniatureViewer(
     const text = copy();
     document.title = `${t(definition.title)} · ${t(version.label)} · Diorama Atlas`;
     find("sceneTitle").textContent = t(definition.title);
-    find("sceneRegion").textContent = t(definition.region);
+    find("sceneRegion").textContent = [
+      t(definition.region),
+      ...(definition.draft ? [t("Unfinished local preview")] : []),
+    ].join(" · ");
     find("resetViewButton").textContent = text.reset;
     find("wholeMiniature").textContent = text.home;
     find("miniatureZoomIn").setAttribute("aria-label", text.zoomIn);
@@ -115,9 +118,13 @@ export async function createMiniatureViewer(
       `${t(definition.title)}. ${find("miniatureGesture").textContent}`,
     );
     const speaking = ["loading", "playing"].includes(narrator.state);
+    const narrated = views?.[selected]?.narration !== false;
+    find("miniatureListen").hidden = !narrated;
+    find("miniatureListen").disabled = !views || !narrated;
     find("miniatureListen").textContent = speaking ? text.stop : text.listen;
     find("miniatureListen").setAttribute("aria-pressed", String(speaking));
     find("miniatureVoiceNote").textContent = text.voiceNote;
+    find("miniatureVoiceNote").hidden = !narrated;
     find("miniatureNotice").textContent =
       narrator.state === "unavailable" ? text.voiceUnavailable : "";
     find("miniatureMotion").textContent = preference.matches

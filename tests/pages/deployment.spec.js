@@ -167,7 +167,7 @@ test("the globe, preview and return navigation remain inside the project path", 
       ),
     )
     .toBe(true);
-  await expect(page.locator(".place-pin")).toHaveCount(20);
+  await expect(page.locator(".place-pin")).toHaveCount(21);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -200,7 +200,7 @@ test("the globe, preview and return navigation remain inside the project path", 
   ).toBe(1);
 });
 
-for (const id of ["textile", "naxi-canal-quarter"]) {
+for (const id of ["textile", "naxi-canal-quarter", "alfama-hillside"]) {
   test(`${id}: collection miniature navigation and narration use the project path`, async ({
     page,
     baseURL,
@@ -229,6 +229,32 @@ for (const id of ["textile", "naxi-canal-quarter"]) {
     expect(state.finiteGeometry).toBe(true);
     expect(state.audio.contextState).toBe("closed");
     if (id === "textile") expect(state.shell.open).toBe(true);
+    if (id === "alfama-hillside") {
+      for (const key of ["street", "daily"]) {
+        await page.locator(`[data-view="${key}"]`).click();
+        await expect(page.locator("#miniatureListen")).toBeHidden();
+        await expect(page.locator("#miniatureVoiceNote")).toBeHidden();
+      }
+      await page.locator('[data-view="whole"]').click();
+      for (const locale of ["en-US", "pt-BR"]) {
+        await page.locator("#atlasLanguage").selectOption(locale);
+        await page.locator("#miniatureListen").click();
+        await expect
+          .poll(() =>
+            page.evaluate(() =>
+              window.atlasTestPlayers.some(
+                (player) => !player.paused && player.currentTime > 0.1,
+              ),
+            ),
+          )
+          .toBe(true);
+        await page.locator("#miniatureListen").click();
+      }
+      await page.screenshot({
+        path: test.info().outputPath("alfama-miniature.png"),
+      });
+      await page.locator("#atlasLanguage").selectOption("en-US");
+    }
     await page
       .getByRole("link", {
         name: id === "textile" ? "Interior" : "Landscape",
@@ -345,20 +371,23 @@ for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
     expect(recordings).toEqual([]);
     const views = page.locator("[data-view]");
     const first = await views.first().getAttribute("data-view");
-    const unrecordedViews = await page.evaluate(async (base) => {
+    const viewNarration = await page.evaluate(async (base) => {
       const { getActiveViewer } = await import(
         `${base}src/client/viewer/panorama-viewer.js`
       );
-      return Object.entries(getActiveViewer().runtime.views)
-        .filter(([, view]) => view.narration === false)
-        .map(([key]) => key);
+      return Object.fromEntries(
+        Object.entries(getActiveViewer().runtime.views).map(([key, view]) => [
+          key,
+          view.narration === false ? false : (view.narrationView ?? key),
+        ]),
+      );
     }, baseURL);
     for (const locale of ["en-US", "pt-BR"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
       for (const view of await views.all()) {
         const key = await view.getAttribute("data-view");
         await view.click();
-        if (unrecordedViews.includes(key)) {
+        if (viewNarration[key] === false) {
           await expect(panel).toBeHidden();
           continue;
         }
@@ -366,7 +395,7 @@ for (const scene of scenes.filter((scene) => scene.narration !== "browser")) {
           (asset) =>
             asset.scene === scene.id &&
             asset.locale === locale &&
-            (asset.view ?? first) === key,
+            (asset.view ?? first) === viewNarration[key],
         );
         expect(asset).toBeDefined();
         await expect(page.locator(".narration-text")).toHaveText(asset.text);

@@ -42,6 +42,7 @@ These are part of this skill, not optional background. Inspect the running
 Marrakech scene and an appropriate existing family. Read the nearest
 [scene briefs](../../../docs/scenes/README.md), architecture and asset guidance.
 Read the [generalized realism examples](../improve-diorama-realism/references/examples.md)
+and their [construction-to-experience checks](../improve-diorama-realism/references/examples.md#construction-to-experience-checks)
 for transferable lessons, not a list of props to copy.
 
 ## 1. Define the cultural proposition
@@ -52,14 +53,32 @@ what the visitor should learn, spatial sequence, materials, views and sources.
 Include the miniature's composition and how visitors reach both representations.
 If choosing locations, present candidates before building when requested.
 
-Find and inspect real photographs of the architectural setting, construction
-and smallest meaningful objects. Record exact sources and rights. Prefer
-suitable licensed downloads or approved existing assets. Supplement references
-with generation only when needed and explicitly authorized for this task.
-Seek additional photographs whenever the initial set leaves shape, construction
-or fine relief uncertain. Include close-ups, oblique/reverse angles and
-grazing-light views; record what each reveals rather than freezing the reference
-set before the smallest details have been understood.
+**Search for and inspect many, many real photographic references, not just a
+handful of representative images.** Build a broad, varied reference set across
+the architectural setting, construction, ordinary activity and smallest
+meaningful objects. Seek genuinely different viewpoints rather than many
+near-duplicates: distant and exterior views, views from within buildings,
+courtyards, streets and alleys, and views looking both inward and outward
+through thresholds. Include eye-level approaches, turns, reverse and oblique
+angles, upper/lower levels, close-ups and grazing-light details. Aerial views
+and attractive facade photographs alone cannot establish what being inside
+the place feels like or how its spaces connect.
+
+Inspect the actual photographs, not just captions or search thumbnails. Record
+exact sources and rights, what each useful image reveals, and which questions
+remain unanswered. Prefer suitable licensed downloads or approved existing
+assets. Supplement references with generation only when needed and explicitly
+authorized for this task; generated imagery does not replace photographic
+evidence.
+
+**Keep searching for more photographs whenever doubts remain**, before and
+during implementation and every correction round. Revisit uncertain spatial
+relationships, hidden sides, proportions, materials, construction and fine
+relief with targeted new searches. Do not freeze the reference set after initial
+research, infer an unseen arrangement as fact, or treat a large image count as
+proof that a specific question is answered. If adequate evidence remains
+unavailable, record the uncertainty and distinguish an authored interpretation
+from an observed feature.
 
 Invent a plausible neighborhood, building or landscape—not a poor replica of a
 named landmark. Add charm without mixing incompatible traditions, fabricating
@@ -78,6 +97,17 @@ a blank cover, sealed doorway or generic furnished box in the delivered result.
 Start with the spatial and lighting relationships, then construction, objects,
 surface variation and microdetail. Do not let detailing disguise a weak layout.
 
+- **Layout:** plan routes, elevations, thresholds, parcels and courts before
+  placing repeated buildings. Where the references show incremental growth,
+  use connected turns, changes of width and direction, concealed destinations
+  and differently oriented frontages. Random rotation is not an irregular
+  neighborhood; neither is a grid decorated with extra stairs. Preserve regular
+  planning where that is what the place actually has.
+- **Adjacency:** decide which structures are detached, share a wall or meet at
+  an intentional joint. Model attached fabric as fitted construction, not a row
+  of freestanding boxes with accidental slits. Reconcile unequal footprints,
+  floor levels, foundations and roofs without duplicate boundary surfaces or
+  windows opening into a neighbor's solid wall.
 - **Depth:** thick walls, real apertures and recessed joinery; modeled rooms,
   passages, streets or gardens beyond them; clear sightlines and walk-scale
   clearance. Test that skirting, glazing and furniture do not secretly seal doors.
@@ -86,6 +116,9 @@ surface variation and microdetail. Do not let detailing disguise a weak layout.
   depth; textures carry grain and fine finish. Resolve rims, bindings, hinges,
   seams and functional tool parts; cloth has weight, folds and contact with the
   objects resting on it.
+  Audit the negative spaces too: every wedge behind a stair, strip beside a
+  landing and notch between a wall and terrain needs a plausible purpose or
+  a fitted solid closure. Do not fill genuine routes, drainage or light wells.
 - **Shape complexity:** primitives are a starting approximation, not a finished
   realism target. Refine taper, cross-sections, bends, edge wear, splits and
   fine relief with actual geometry and sufficient local polygon density.
@@ -120,6 +153,11 @@ surface variation and microdetail. Do not let detailing disguise a weak layout.
 
 Judge these at the closest supported views, not only the hero framing. The full
 quality standard supplies the rejection criteria for every item above.
+Judge surface variation both within and between pieces; one flat tint per house,
+roof or vessel is not sufficient. Compose everyday activity in several useful
+places without obstructing circulation. Equipment needs a plausible route to
+its location, containers need distinct functional forms, and mood should come
+from motivated light rather than a global color wash.
 Marrakech establishes care, not universal Moroccan decoration. Douro demonstrates
 working terrain, life and inspectable construction, not a requirement for every
 scene to contain a car, train, river or floating geological cutaway.
@@ -163,6 +201,9 @@ and page-hide cancellation. Reduced motion must stop scenery motion, not control
 Batch compatible static geometry while retaining animated objects. Explicitly
 own and dispose of every geometry, material, texture, render target, audio graph,
 request, timer and listener.
+Keep unrelated procedural arrangements stable when adding detail. Verify
+attribute compatibility when batching richer meshes, and check actual scene
+assembly; isolated geometry tests do not establish that the full builder works.
 
 ## 4. Prove the place, not just the build
 
@@ -190,6 +231,9 @@ the current scene exempt from further scrutiny.
 Follow [development verification](../../../docs/development.md): source checks,
 real browser and static-path checks, relevant image/narration/water studies,
 clearance probes, reduced motion, audio controls, repeated navigation and cleanup.
+Probe route width and height, stair margins, construction contacts, object
+footprints and cavities separately. A clear route centerline does not rule out
+an impossible stair corner or a bicycle intersecting an existing doorstep object.
 Measure performance against the same scene/camera/viewport baseline. Optimize
 implementation, never silently remove required richness.
 

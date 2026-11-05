@@ -1,16 +1,22 @@
 # Narration
 
-All **24 bundled dioramas** have original, prerecorded cultural explanations
+All **25 bundled dioramas** have original, prerecorded cultural explanations
 in **en-US** and **pt-BR**, using OpenAI's `gpt-4o-mini-tts` model and `cedar`
-voice. The collection contains **566 recordings**, totaling **189.76 MB**,
-covering 125 original guided viewpoints, 129 object details and all 139 Miniature
-views in both languages. Identical text in the same language reuses a recording:
-there are 786 playable view/detail/language combinations, not 786 duplicate files.
+voice. The collection contains **580 recordings**, totaling **195.09 MB**,
+covering guided visits, 133 object details and narrated Miniature views in both
+languages. Identical text in the same language reuses a recording; explicitly
+non-narrated inspection views do not offer playback.
 Each arrival introduces the
 place's cultural value; focused views discuss the visible architecture,
 materials, work, or connected space. The voice is explicitly disclosed as
 AI-generated. No new images or replacement environments were generated for
 this narration expansion.
+
+Alfama contributes 14 recordings in the same two languages, covering eight
+guided landscape views, four details and nine narrated miniature views through
+exact-text reuse. Its two additional street/bicycle inspection views are silent
+in both representations. These recordings are included in the collection totals
+above; their original generation used an explicitly approved US$2 ceiling.
 
 The global language selector changes both interface text and the recording,
 without rebuilding the scene or moving the camera. The compact floating panel

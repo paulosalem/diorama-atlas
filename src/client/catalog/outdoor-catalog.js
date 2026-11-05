@@ -1,6 +1,8 @@
 import { landscapeVersions } from "./scene-versions.js";
+import { alfamaPlace } from "./alfama-catalog.js";
 
 const places = [
+  alfamaPlace,
   {
     id: "douro-vineyard",
     daylight: "summer",

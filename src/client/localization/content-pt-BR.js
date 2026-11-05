@@ -1,7 +1,9 @@
 import { douroPtBR } from "./douro-pt-BR.js";
+import { alfamaPtBR } from "./alfama-pt-BR.js";
 
 export const contentPtBR = Object.freeze({
   ...douroPtBR,
+  ...alfamaPtBR,
   "Marrakech Riad Courtyard": "Pátio de um riad em Marrakech",
   "Marrakech medina domestic courtyard":
     "Pátio doméstico na medina de Marrakech",

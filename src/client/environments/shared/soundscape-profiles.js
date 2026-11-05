@@ -15,6 +15,14 @@ const event = (asset, level, position, interval, extra = {}) => ({
 });
 
 export const SOUNDSCAPES = {
+  "alfama-hillside": {
+    label: "Distant conversation, dishes and birds in an imagined Alfama court",
+    layers: [
+      loop("room-murmur", 0.15, [-3.8, 3.5, -0.6], { cutoff: 1800 }),
+      event("service-dishes", 0.2, [-4.2, 3.2, -0.6], [24, 43]),
+      loop("garden-birds", 0.12, [9, 5, -4], { refDistance: 4 }),
+    ],
+  },
   "roman-domus": {
     label:
       "Quiet garden birds and household work; illustrative modern recordings",
