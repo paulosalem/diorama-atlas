@@ -2,6 +2,9 @@
 
 ## Collection update — 2026-11-05
 
+- Fixed touch interaction on globe markers: a tap keeps the preview card open,
+  and its entry link opens the diorama. Desktop hover, click and keyboard
+  behavior are unchanged, including on devices that also support touch.
 - Added Alfama, an imagined Lisbon hillside with winding stair lanes, attached
   houses, fitted masonry junctions, domestic courts and warmer daylight.
 - Included its peer sectioned miniature, ten landscape viewpoints, eleven

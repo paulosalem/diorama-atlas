@@ -314,8 +314,20 @@ export async function createWorld(app, scenes, { onNavigate } = {}) {
       if (e.pointerType === "mouse") scheduleHide();
     });
     button.addEventListener("focus", () => showPreview(entry, 0, true));
+    let touchActivation = false;
+    // Safari can dispatch a MouseEvent for a touch-generated click.
+    button.addEventListener("pointerdown", (e) => {
+      touchActivation = e.pointerType === "touch";
+    });
+    button.addEventListener("pointercancel", () => {
+      touchActivation = false;
+    });
     button.addEventListener("click", (e) => {
-      if (e.pointerType === "touch") {
+      const touched =
+        e.pointerType === "touch" ||
+        (!e.pointerType && e.detail > 0 && touchActivation);
+      touchActivation = false;
+      if (touched) {
         showPreview(entry, 0, true);
         return;
       }

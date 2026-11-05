@@ -7,8 +7,12 @@ WebGL 2 and hardware acceleration; these are substantial real-time 3D scenes.
 ## Find a place
 
 Drag the globe, scroll to zoom, or open **Places** to choose a region. Preview
-its settings and enter one. Regional markers identify the source of inspiration,
-not the address of the anonymous modeled scene.
+its settings and enter one. With a mouse, hover over a marker to preview it or
+click to enter directly. On a touch screen, tap a marker to keep its preview card
+open, then choose **Step inside** or **Explore this place** in the card to enter.
+Close the card with its close button or touch the globe to continue exploring.
+Regional markers identify the source of inspiration, not the address of the
+anonymous modeled scene.
 
 Inside, drag or use arrow keys to look around. Scroll or press `+` / `-` to
 zoom. Named viewpoint buttons move you between authored positions; this is not
