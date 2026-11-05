@@ -41,7 +41,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test("the globe offers twenty locations and opens an interior", async ({
+test("the globe offers twenty-one locations and opens an interior", async ({
   page,
 }) => {
   await page.goto("/");
@@ -52,10 +52,10 @@ test("the globe offers twenty locations and opens an interior", async ({
   await expect(brand).toHaveText("Diorama Atlas");
   await expect(page).toHaveTitle("Diorama Atlas — a world of small places");
   await expect(page.locator("#worldLoading")).toBeHidden();
-  await expect(page.locator(".place-pin")).toHaveCount(20);
+  await expect(page.locator(".place-pin")).toHaveCount(21);
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await expect(page.locator("#placesPanel")).toBeVisible();
-  await expect(page.locator("#placesPanel button")).toHaveCount(20);
+  await expect(page.locator("#placesPanel button")).toHaveCount(21);
   await page
     .locator("#placesPanel button")
     .filter({ hasText: "Marrakech" })
@@ -118,23 +118,28 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
         ? 20
         : scene.id === "douro-vineyard"
           ? 6
-          : scene.environment === "outdoor"
-            ? 4
-            : scene.id === "riad"
-              ? 6
-              : 5,
+          : scene.id === "alfama-hillside"
+            ? 10
+            : scene.environment === "outdoor"
+              ? 4
+              : scene.id === "riad"
+                ? 6
+                : 5,
     );
     await expect(page.locator(".scene-narration")).toHaveAttribute(
       "data-state",
       "ready",
     );
     const firstKey = await viewpoints.first().getAttribute("data-view");
-    const unrecordedViews = await page.evaluate(async () => {
+    const viewNarration = await page.evaluate(async () => {
       const { getActiveViewer } =
         await import("/src/client/viewer/panorama-viewer.js");
-      return Object.entries(getActiveViewer().runtime.views)
-        .filter(([, view]) => view.narration === false)
-        .map(([key]) => key);
+      return Object.fromEntries(
+        Object.entries(getActiveViewer().runtime.views).map(([key, view]) => [
+          key,
+          view.narration === false ? false : (view.narrationView ?? key),
+        ]),
+      );
     });
     for (const locale of ["pt-BR", "en-US"]) {
       await page.locator("#atlasLanguage").selectOption(locale);
@@ -142,7 +147,7 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
         const key = await viewpoint.getAttribute("data-view");
         await viewpoint.click();
         await expect(viewpoint).toHaveAttribute("aria-pressed", "true");
-        if (unrecordedViews.includes(key)) {
+        if (viewNarration[key] === false) {
           await expect(page.locator(".scene-narration")).toBeHidden();
           continue;
         }
@@ -150,7 +155,7 @@ for (const scene of [...curatedScenes, ...bundledScenes, ...outdoorScenes]) {
           (asset) =>
             asset.scene === scene.id &&
             asset.locale === locale &&
-            (asset.view ?? firstKey) === key,
+            (asset.view ?? firstKey) === viewNarration[key],
         );
         expect(narration, `${scene.id}/${key}/${locale}`).toBeDefined();
         await expect(page.locator(".narration-text")).toHaveText(
