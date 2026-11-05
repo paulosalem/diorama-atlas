@@ -335,8 +335,8 @@ test("the vineyard supports both languages, compact controls, sound consent and 
   await expect(page.locator("#outdoorReferences")).toContainText("socalcos");
   await page.keyboard.press("Escape");
   await page.locator(".about-button").click();
-  await page.locator("#creditSearch").fill("Douro");
-  await expect(page.locator(".credit-entry")).toHaveCount(5);
+  await page.locator("#creditSearch").fill("Douro:");
+  await expect(page.locator(".credit-entry")).toHaveCount(4);
   await expect(page.locator(".credit-note").first()).toContainText(
     "Fotografia real",
   );

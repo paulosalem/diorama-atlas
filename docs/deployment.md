@@ -24,7 +24,7 @@ and rejects software rendering in CI before loading the collection. The
 standard Linux runner's software GPU stalls these scenes, even at a much lower
 pixel ratio; reducing the published geometry or materials is not a solution.
 Node checks and the deployment job remain on Linux. Local-server CI checks are
-split into four complete, nonoverlapping shards on separate GPU runners, with one
+split into six complete, nonoverlapping shards on separate GPU runners, with one
 browser worker per runner. Browser jobs stop at the first failure and have a
 20-minute bound; the sharded test step stops at 18 minutes to leave time for
 failure artifacts. Failed traces and Pages scene captures

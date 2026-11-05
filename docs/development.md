@@ -135,8 +135,8 @@ Use hardware-accelerated Chromium. The shared preflight logs its renderer;
 CI rejects software GPUs and runs browser jobs on Apple Silicon with Metal.
 Do not reduce scene detail or weaken checks to make a software runner pass.
 Run GPU-heavy suites sequentially rather than competing for one device.
-CI distributes the local-server suite over four isolated runners with Playwright's
-`--fully-parallel --workers=1 --shard=N/4`. Test-level sharding balances the expanded
+CI distributes the local-server suite over six isolated runners with Playwright's
+`--fully-parallel --workers=1 --shard=N/6`. Test-level sharding balances the expanded
 collection while the single worker keeps GPU use sequential on each runner.
 All assertions and the 20-minute job limit remain. Local `npm run test:browser`
 still runs the entire suite.
