@@ -38,6 +38,7 @@ export function deepenSurroundings(k, p, type, definition) {
     type === "kitchen" || type === "workshop" ? 0xa99c82 : 0xb8a68b,
     0.98,
   );
+  shade.color.multiply(k.m.plaster.color);
   shade.map = k.m.plaster.map;
   shade.normalMap = k.m.plaster.normalMap;
   shade.normalScale.set(0.26, 0.26);

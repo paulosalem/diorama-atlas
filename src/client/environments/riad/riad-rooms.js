@@ -135,6 +135,14 @@ export function buildRiadRooms({
     { width, depth, floor = 0, height = 3.8, backDoor = false, recess = 0.65 },
   ) {
     const shell = subgroup([0, floor, -recess], 0, parent);
+    if (floor === 0)
+      box(
+        [width + 0.36, 0.42, depth + 0.22],
+        [0, -0.26, -depth / 2],
+        m.grout,
+        0,
+        shell,
+      );
     box([width, 0.13, depth], [0, -0.045, -depth / 2], m.floor, 0, shell);
     lift(
       box(
@@ -453,6 +461,51 @@ export function buildRiadRooms({
     wall(11, 7.3, 0.65, windows, facade);
     group.updateMatrixWorld(true);
     windows.forEach((opening, i) => upperRoom(facade, opening, i + 1));
+    const service = room(facade, {
+      width: 11,
+      depth: 3.05,
+      height: 4.82,
+      backDoor: true,
+    });
+    service.name = "Grounded service wing beneath the upper chambers";
+    for (const x of [-3.6, 3.6]) {
+      box([1.7, 0.1, 0.62], [x, 0.73, -2.54], wood, 0.008, service);
+      for (const dx of [-0.66, 0.66])
+        for (const z of [-2.75, -2.33])
+          box([0.075, 0.68, 0.075], [x + dx, 0.34, z], wood, 0.004, service);
+      books(service, [x, 1.64, -2.82], 6);
+      for (const [dx, radius, height] of [
+        [-0.48, 0.13, 0.28],
+        [0.08, 0.18, 0.38],
+        [0.48, 0.11, 0.23],
+      ])
+        lathe(
+          [
+            [0, 0],
+            [radius * 0.65, 0],
+            [radius, height * 0.45],
+            [radius * 0.7, height],
+            [radius * 0.58, height],
+            [radius * 0.86, height * 0.45],
+            [radius * 0.52, 0.03],
+            [0, 0.03],
+          ],
+          detail.ceramic,
+          [x + dx, 0.78, -2.51],
+          service,
+          32,
+        );
+    }
+    box([1.12, 0.12, 0.42], [0.78, -0.02, -3.15], m.marble, 0.008, service);
+    for (const sign of [-1, 1])
+      box(
+        [0.09, 2.57, 0.32],
+        [0.78 + sign * 0.535, 1.285, -3.12],
+        wood,
+        0.005,
+        service,
+      );
+    box([1.18, 0.11, 0.32], [0.78, 2.57, -3.12], wood, 0.005, service);
   }
   return {
     openings,

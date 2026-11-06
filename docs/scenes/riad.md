@@ -34,6 +34,12 @@ This scene establishes the collection's level of care, not a palette or ornament
 kit for unrelated cultures. Improve physical relationships and visible detail
 without burying the main composition in decorative additions.
 
+The side upper chambers stand over grounded service wings, with thick outer
+doorways, workbenches, shelves and storage jars. Their floors and plinths join
+the miniature foundation; they are not floating rooms behind a courtyard
+facade. Preserve the original courtyard and salon routes, all six cameras and
+the intentionally lifted upper section when inspecting the model from behind.
+
 [Definition](../../src/client/catalog/scene-catalog.js) ·
 [Dedicated builder](../../src/client/environments/riad/riad-scene.js) ·
 [Quality contract](../diorama-standard.md)

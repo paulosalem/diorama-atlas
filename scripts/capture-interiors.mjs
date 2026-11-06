@@ -1,8 +1,15 @@
 import { parseArgs } from "node:util";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
+import {
+  captureMiniatureSurvey,
+  captureState,
+  restoreCaptureCamera,
+  settleCapture,
+} from "./helpers/miniature-survey.mjs";
 import {
   curatedScenes,
   interiorDraftScenes,
@@ -20,6 +27,8 @@ const { values } = parseArgs({
     scene: { type: "string" },
     all: { type: "boolean", default: false },
     version: { type: "string" },
+    survey: { type: "boolean", default: false },
+    match: { type: "string" },
     "include-drafts": { type: "boolean", default: false },
     help: { type: "boolean", short: "h" },
   },
@@ -33,6 +42,8 @@ Usage: node scripts/capture-interiors.mjs --phase before|after [options]
   --scene ID           Capture one place; merge into an existing after manifest
   --all                Capture interiors and outdoors
   --version ID         Capture an experience of --scene or --all
+  --survey             Add miniature reverse/open/underside/compact/motion views
+  --match PATH         Match actual cameras from a previous capture.json
   --include-drafts     Permit a specifically selected unfinished local scene
 
 Before captures are immutable: choose a new directory for another baseline.
@@ -48,6 +59,18 @@ if (values["include-drafts"] && !values.scene)
   throw new Error("--include-drafts requires an explicit --scene.");
 if (values.version && !values.scene && !values.all)
   throw new Error("--version requires --scene or --all.");
+if (values.survey && values.version !== "miniature")
+  throw new Error("--survey requires --version miniature.");
+const matched = values.match
+  ? JSON.parse(await readFile(values.match, "utf8"))
+  : null;
+const source = {
+  head: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+  status: execFileSync("git", ["status", "--porcelain=v1"], {
+    encoding: "utf8",
+  }),
+};
+const capturedAt = new Date().toISOString();
 const output = path.resolve(values["output-dir"], values.phase);
 const manifestFile = path.join(output, "capture.json");
 let previous = null;
@@ -134,6 +157,31 @@ try {
     await waitForViewer(page);
     await page.evaluate(() => document.fonts.ready);
     const views = [];
+    async function capture(key, label, { fullPage = false } = {}) {
+      const reference = matched?.scenes
+        .find((scene) => scene.id === definition.id)
+        ?.views.find((view) => view.key === key);
+      if (matched && !reference)
+        throw new Error(`${definition.id}/${key}: missing comparison camera.`);
+      if (reference) {
+        const viewport = reference.viewport ?? matched.viewport;
+        await page.setViewportSize(viewport);
+        await restoreCaptureCamera(page, reference.camera);
+      }
+      await settleCapture(page);
+      const file = `${definition.id}${values.version ? `-${values.version}` : ""}-${key}.png`;
+      const options = {
+        path: path.join(output, file),
+        style:
+          ".scene-narration, .walking-pad, .walking-hint, .miniature-hint { visibility: hidden !important; }",
+      };
+      if (fullPage) await page.screenshot(options);
+      else
+        await page
+          .locator("#canvasMount, #miniatureCanvas")
+          .screenshot(options);
+      views.push({ key, label, file, ...(await captureState(page)) });
+    }
     const sharedRuntimeMiniature = await page.evaluate(async () => {
       const { getActiveViewer } =
         await import("/src/client/viewer/panorama-viewer.js");
@@ -149,36 +197,9 @@ try {
       );
       const label = await button.innerText();
       await button.click();
-      await page.evaluate(
-        () =>
-          new Promise((resolve) =>
-            requestAnimationFrame(() => requestAnimationFrame(resolve)),
-          ),
-      );
-      const file = `${definition.id}${values.version ? `-${values.version}` : ""}-${key}.png`;
-      await page.locator("#canvasMount, #miniatureCanvas").screenshot({
-        path: path.join(output, file),
-        style:
-          ".scene-narration, .walking-pad, .walking-hint, .miniature-hint { visibility: hidden !important; }",
-      });
-      const view = await page.evaluate(
-        async ({ key, sharedRuntimeMiniature }) => {
-          const { getActiveViewer } =
-            await import("/src/client/viewer/panorama-viewer.js");
-          const viewer = getActiveViewer();
-          if (!sharedRuntimeMiniature) return viewer.runtime.views[key];
-          return {
-            label: viewer.runtime.miniature.views[key].label,
-            position: viewer.camera.position.toArray(),
-            fov: viewer.camera.fov,
-            target: viewer.runtime.miniature.views[key].target,
-            cutaway: viewer.runtime.miniature.cutaway,
-          };
-        },
-        { key, sharedRuntimeMiniature },
-      );
-      views.push({ key, label, file, camera: view });
+      await capture(key, label);
     }
+    if (values.survey) await captureMiniatureSurvey(page, capture);
     if (views.length < 4) {
       throw new Error(
         `${definition.title}: expected at least four viewpoints, found ${views.length}`,
@@ -200,7 +221,7 @@ try {
     else results[index] = entry;
     await writeFile(
       manifestFile,
-      `${JSON.stringify({ phase: values.phase, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
+      `${JSON.stringify({ phase: values.phase, capturedAt, source, matchedTo: values.match ?? null, viewport: { width: 1280, height: 900 }, scenes: results }, null, 2)}\n`,
     );
     console.error(
       `${definition.title}: ${views.length} ${values.phase} views saved`,

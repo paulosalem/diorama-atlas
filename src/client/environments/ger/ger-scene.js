@@ -51,6 +51,12 @@ function grounds(k, m, miniature) {
     k.mesh(land, m.ground);
   }
   if (miniature) {
+    const soil = k.ownMaterial(m.ground.clone());
+    soil.vertexColors = false;
+    soil.color.set(0xa08c6b);
+    soil.userData.patinaProfile = "earth";
+    const subsoil = k.ownMaterial(soil.clone());
+    subsoil.color.set(0xb6a084);
     buildCutawayTerrain(k, {
       boundary: Array.from({ length: 160 }, (_, i) => {
         const a = (i * Math.PI * 2) / 160;
@@ -60,8 +66,8 @@ function grounds(k, m, miniature) {
       }).reverse(),
       bottom: -0.65,
       soilDepth: 0.18,
-      soil: k.material(0x7d7155, 1),
-      rock: k.material(0x736b5b, 1),
+      soil,
+      rock: subsoil,
     });
   }
   for (let i = 0; i < 7200; i++) {

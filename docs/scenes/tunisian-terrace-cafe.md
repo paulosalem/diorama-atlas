@@ -21,6 +21,12 @@ tea service, seat construction and appropriate printed detail at close range.
 The coastal water should have a different scale and character from sheltered
 canals; avoid giant regular waves or reflections unrelated to the scene.
 
+The miniature keeps a continuous ground section beneath the terraces and coast,
+with metric mineral grain, roughness and irregular fine relief rather than
+repeating horizontal ripples. Trim its sea to the actual wet shoreline: water
+must not extend through the exposed geological face beneath dry inland ground.
+Keep the original full-scale sea and outlook unchanged.
+
 ## View sequence
 
 `arrival` → `tea` → `steps` → `outlook`.

@@ -1,6 +1,7 @@
 import { parseArgs } from "node:util";
 import path from "node:path";
 import { readFile, writeFile } from "node:fs/promises";
+import { assertCaptureCamera } from "./helpers/miniature-survey.mjs";
 
 const { values } = parseArgs({
   options: {
@@ -48,11 +49,15 @@ for (const original of before.scenes) {
     if (!beforeImage.subarray(16, 24).equals(afterImage.subarray(16, 24))) {
       throw new Error(`${original.id}/${view.key}: image sizes differ.`);
     }
-    if (
-      previous.camera &&
-      JSON.stringify(previous.camera) !== JSON.stringify(view.camera)
-    ) {
-      throw new Error(`${original.id}/${view.key}: comparison cameras differ.`);
+    if (previous.camera) {
+      try {
+        assertCaptureCamera(view.camera, previous.camera);
+      } catch (cause) {
+        throw new Error(
+          `${original.id}/${view.key}: comparison cameras differ.`,
+          { cause },
+        );
+      }
     }
     views.push({
       key: view.key,

@@ -22,22 +22,29 @@ export function buildDomusArchitecture(kit, m) {
       z + depth / 2,
     ]);
   const floor = (x1, x2, z1, z2, mat, y = 0) => {
-    const geometry = new THREE.PlaneGeometry(x2 - x1, z2 - z1);
-    const uv = geometry.attributes.uv;
-    for (let i = 0; i < uv.count; i++)
+    const thickness = y > 0 ? y : y + 0.3;
+    const geometry = new THREE.BoxGeometry(x2 - x1, thickness, z2 - z1);
+    const { position, normal, uv } = geometry.attributes;
+    for (let i = 0; i < uv.count; i++) {
+      const side = Math.abs(normal.getX(i)) > 0.5;
+      const horizontal = Math.abs(normal.getY(i)) > 0.5;
       uv.setXY(
         i,
-        (x1 + uv.getX(i) * (x2 - x1)) / 4,
-        (z2 - uv.getY(i) * (z2 - z1)) / 4,
+        ((side ? position.getZ(i) : position.getX(i)) +
+          (side ? (z1 + z2) / 2 : (x1 + x2) / 2)) /
+          4,
+        (horizontal
+          ? position.getZ(i) + (z1 + z2) / 2
+          : position.getY(i) + y - thickness / 2) / 4,
       );
-    return kit.mesh(
-      geometry,
-      mat,
-      [(x1 + x2) / 2, y, (z1 + z2) / 2],
-      [-Math.PI / 2, 0, 0],
-    );
+    }
+    return kit.mesh(geometry, mat, [
+      (x1 + x2) / 2,
+      y - thickness / 2,
+      (z1 + z2) / 2,
+    ]);
   };
-  kit.box([28.5, 0.2, 38.5], [1, -0.4, -2], m.stone, undefined, 0);
+  kit.box([32.2, 0.2, 45.2], [1, -0.4, 1], m.stone, undefined, 0);
   for (const room of domusRooms) {
     const [x1, x2, z1, z2] = room.bounds;
     const mat = room.floor === "red" ? m.signinum : m.mosaic;
@@ -341,16 +348,22 @@ export function buildDomusArchitecture(kit, m) {
   floor(15, 16.8, -21, 17, m.signinum);
   for (const x of [-14.85, 16.85])
     kit.box([0.22, 3.8, 39], [x, 1.9, -2], m.cream, walls, 0);
-  floor(-15, 17, 17, 23, m.signinum, -0.04);
+  floor(-15, 17, 17, 18.275, m.signinum, -0.04);
+  floor(-15, 17, 18.275, 23.4, m.signinum, -0.185);
   for (let x = -15; x < 17; x += 0.75)
-    for (let z = 18.4; z < 23; z += 0.85)
+    for (let z = 18.4; z < 23; z += 0.85) {
+      const left = x + 0.005,
+        right = Math.min(17, x + 0.715),
+        back = Math.max(18.275, z + (Math.floor(x) % 2) * 0.06 - 0.4),
+        front = z + (Math.floor(x) % 2) * 0.06 + 0.4;
       kit.box(
-        [0.71, 0.13, 0.8],
-        [x + 0.36, -0.12, z + (Math.floor(x) % 2) * 0.06],
+        [right - left, 0.13, front - back],
+        [(left + right) / 2, -0.12, (back + front) / 2],
         m.black,
         undefined,
         0.045,
       );
+    }
   kit.box([32, 0.2, 0.25], [1, -0.05, 18.15], m.stone);
   for (const x of [-1.25, 1.25]) {
     const sign = Math.sign(x);

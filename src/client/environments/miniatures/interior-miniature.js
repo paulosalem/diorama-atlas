@@ -17,8 +17,8 @@ function foundationOutline({ width, depth }, portal = 0, garden = false) {
     [portal + 0.05, rear - 4.7],
     [portal - 2.12, rear - 4.7],
     [portal - 2.12, garden ? -8.7 : rear - 1.6],
-    [garden ? -12.2 : -half - 3.9, garden ? -8.7 : rear - 1.6],
-    [garden ? -12.2 : -half - 3.9, garden ? 8.7 : depth / 2 + 0.7],
+    [garden ? -16.2 : -half - 3.9, garden ? -8.7 : rear - 1.6],
+    [garden ? -16.2 : -half - 3.9, garden ? 8.7 : depth / 2 + 0.7],
     [-half, garden ? 8.7 : depth / 2 + 0.7],
   ];
 }
@@ -27,8 +27,9 @@ export function miniatureSurroundings(k, p, theme, portal = 0) {
   const { width, depth } = k.layout;
   const left = -width / 2;
   const earthen = k.material(0xa99b7d, 0.98);
-  earthen.map = k.m.plaster.map;
-  earthen.normalMap = k.m.plaster.normalMap;
+  earthen.userData.patinaProfile = "earth";
+  earthen.map = k.m.pot.map;
+  earthen.normalMap = k.m.pot.normalMap;
   earthen.normalScale.set(0.34, 0.34);
   const outline = foundationOutline(k.layout, portal, theme === "tropical");
   const top = new THREE.ShapeGeometry(
@@ -37,8 +38,9 @@ export function miniatureSurroundings(k, p, theme, portal = 0) {
   top.rotateX(-Math.PI / 2);
   k.mesh(top, earthen, [0, -0.09, 0]);
   const cutStone = k.material(0x8f8370, 0.98);
-  cutStone.map = k.m.plaster.map;
-  cutStone.normalMap = k.m.plaster.normalMap;
+  cutStone.userData.patinaProfile = "stone";
+  cutStone.map = k.m.pot.map;
+  cutStone.normalMap = k.m.pot.normalMap;
   buildCutawayTerrain(k, {
     boundary: outline.map(([x, z]) => [x, -0.09, z]).reverse(),
     bottom: -1.3,
@@ -61,7 +63,7 @@ export function miniatureSurroundings(k, p, theme, portal = 0) {
       );
   p.foliage([left - 2.5, -0.07, -3.1], 1.25);
   p.foliage([left - 2.7, -0.07, 3.2], 0.85);
-  p.foliage([3.4, 0, depth / 2 + 1.7], 0.82);
+  p.foliage([Math.min(3.4, width / 2 - 0.4), -0.07, depth / 2 + 1.7], 0.82);
   p.jar([left - 0.75, -0.05, -3.3], k.group, 1.3, false);
   p.jar([left - 1.26, -0.05, -3.55], k.group, 0.95, false);
   p.stool([-2.6, -0.03, depth / 2 + 1.5]);
@@ -133,7 +135,9 @@ function clayRoof(k, { width, depth, height }, dark = false) {
       ? [0x565957, 0x666964, 0x71706a, 0x55554f]
       : [0xa77959, 0xb4805c, 0x936b52, 0xb28a6b]
   ).map((color) => {
-    const mat = k.ownMaterial(k.m.plaster.clone());
+    const mat = k.ownMaterial(k.m.pot.clone());
+    mat.map = null;
+    mat.userData.patinaProfile = "tile";
     mat.color.set(color);
     mat.roughness = 0.95;
     mat.normalScale.set(0.2, 0.2);
@@ -173,17 +177,20 @@ function clayRoof(k, { width, depth, height }, dark = false) {
       );
   }
   const gable = new THREE.Shape();
+  const eaveRise = rise * (1 - width / 2 / half);
   gable.moveTo(-width / 2, 0);
   gable.lineTo(width / 2, 0);
-  gable.lineTo(0, rise);
+  gable.lineTo(width / 2, 0.2 + eaveRise);
+  gable.lineTo(0, 0.2 + rise);
+  gable.lineTo(-width / 2, 0.2 + eaveRise);
   gable.closePath();
   const clay = k.ownMaterial(k.m.plaster.clone());
-  clay.color.set(0xb6a083);
+  clay.color.multiply(new THREE.Color(0xb6a083));
   for (const z of [-depth / 2, depth / 2 - 0.18])
     k.mesh(
       new THREE.ExtrudeGeometry(gable, { depth: 0.18, bevelEnabled: false }),
       clay,
-      [0, height + 0.2, z],
+      [0, height, z],
       [0, 0, 0],
       roof,
     );
@@ -328,7 +335,7 @@ function completeStreetExterior(k, p, type, definition) {
   const front = k.lift(k.sub([0, 0, depth / 2 + 0.12]));
   front.name = `${definition.title} entrance and joinery`;
   const paint = k.ownMaterial(k.m.plaster.clone());
-  paint.color.set(style.color);
+  paint.color.multiply(new THREE.Color(style.color));
   const trim = k.ownMaterial(k.m.cedar.clone());
   trim.color.set(
     type === "herbshop"

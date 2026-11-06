@@ -32,6 +32,11 @@ Keep the making-and-neighborhood relationship primary. Add culturally supported
 working detail rather than generic market clutter. Do not invent meanings for
 religious elements or copy a recognizable monument to increase specificity.
 
+The miniature crop includes the full depth of both side buildings and the
+ground beneath them. Do not reduce those buildings to thin frontage strips
+to tighten the overview. The drying court, shrine route, original cameras
+and separation between the two supported sections remain unchanged.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-streets.js) ·
 [Regional photographs](../../public/outdoors/references.json)

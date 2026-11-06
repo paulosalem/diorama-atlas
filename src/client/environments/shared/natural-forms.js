@@ -246,6 +246,7 @@ export function staticDetailLevels(
   const center = geometries[0].boundingSphere.center.clone();
   const radius = geometries[0].boundingSphere.radius;
   const lod = new THREE.LOD();
+  lod.userData.staticDetail = true;
   lod.position.copy(center);
   geometries.forEach((geometry, index) => {
     geometry.translate(-center.x, -center.y, -center.z);

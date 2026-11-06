@@ -11,7 +11,7 @@ export const landscapeSections = {
     color: 0xb5a991,
   },
   "newar-potters-square": {
-    bounds: [-13, -15, 13, 9],
+    bounds: [-17.3, -15.6, 17.4, 9.6],
     axis: 2,
     split: -2,
     bottom: -3.4,

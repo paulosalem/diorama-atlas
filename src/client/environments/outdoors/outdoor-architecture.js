@@ -3111,6 +3111,8 @@ export function buildLaoTempleCourt(definition, renderer) {
     ],
   });
   const gate = sub([0, 0, 19.35]);
+  gate.userData.batchRoot = true;
+  gate.userData.sectionFootprint = [-3.8, -0.5, 3.8, 0.5];
   curvedRoof(k, gate, {
     width: 8.7,
     length: 3.1,

@@ -256,7 +256,7 @@
       const error = document.getElementById("error");
       document.getElementById("worldLink").href = data.appUrl;
       document.getElementById("captureSummary").textContent =
-        `${data.scenes.length} places · original cameras preserved · movement paused for comparison`;
+        `${data.scenes.length} places · original cameras preserved · matched before and after views`;
       for (const scene of data.scenes) {
         const option = new Option(
           scene.title + (scene.version ? ` · ${scene.version}` : ""),

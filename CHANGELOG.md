@@ -1,5 +1,23 @@
 # Changelog
 
+## Miniature solidity and realism — 2026-11-06
+
+- Refined all 28 miniatures, including seven saved variants, with complete
+  supporting construction, continuous foundations and preserved intentional
+  openings, courtyards and furnished cutaways.
+- Added grounded Andean lower storeys, furnished riad service wings, deeper
+  Newar buildings, supported Kerala garden ground and curved Naxi roof ends.
+- Kept tree assemblies with their roots and roof sections with their bearing
+  footprints, removing unsupported fragments without changing full-scale routes.
+- Added solid domus floor bedding and visible supported street paving; retained
+  scanned-material color compensation in connected interior rooms.
+- Refined cut-ground relief, mineral grain and roughness, and restricted the
+  Tunisian miniature's sea to its actual wet coastal footprint.
+- Added repeatable rotation surveys, exact-camera comparisons, matched
+  performance measurements and physical construction regressions. Refreshed
+  inspected previews and aligned the affected scene briefs.
+- The package remains v1.0.0; this is not a new tagged release.
+
 ## Collection expansion — Samoan fale — 2026-11-06
 
 - Added an imagined contemporary Upolu household: an open timber pavilion,

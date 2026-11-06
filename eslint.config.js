@@ -57,6 +57,7 @@ export default [
       "tests/browser/**/*.js",
       "tests/pages/**/*.js",
       "scripts/helpers/browser-setup.mjs",
+      "scripts/helpers/miniature-survey.mjs",
       "scripts/capture-interiors.mjs",
       "scripts/capture-patina.mjs",
       "scripts/check-outdoors.mjs",

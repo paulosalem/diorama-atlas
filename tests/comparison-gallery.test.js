@@ -35,7 +35,12 @@ test("mixed scene comparisons retain every camera without requiring a passage", 
       key,
       label: key,
       file: "view.png",
-      camera: { position: [1, 2, 3] },
+      camera: {
+        position: [1, 2, 3],
+        target: [1, 2, 2],
+        quaternion: [0, 0, 0, 1],
+        fov: 40,
+      },
     })),
   }));
   const capture = { viewport: { width: 1280, height: 900 }, scenes };
@@ -65,12 +70,20 @@ test("mixed scene comparisons retain every camera without requiring a passage", 
       ),
     );
     assert.ok(!html.includes("Eleven interiors"));
+    assert.ok(!html.includes("movement paused for comparison"));
     const data = JSON.parse(html.match(/const data = (.+);/)[1]);
     assert.deepEqual(
       data.scenes.map(({ key }) => key),
       ["outdoor", "interior", "outdoor:miniature"],
     );
     assert.equal(data.scenes[2].version, "miniature");
+    capture.scenes[0].views[0].camera.quaternion[3] = -1;
+    capture.scenes[0].views[0].camera.position[0] += 1e-14;
+    await writeFile(
+      path.join(root, "after/capture.json"),
+      JSON.stringify(capture),
+    );
+    await promisify(execFile)(process.execPath, command);
     capture.scenes[0].views[0].camera.position[0] = 9;
     await writeFile(
       path.join(root, "after/capture.json"),

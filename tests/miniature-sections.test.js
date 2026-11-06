@@ -160,6 +160,115 @@ test("shell transitions reverse continuously and reduced motion reaches exact en
   material.dispose();
 });
 
+test("nested static detail levels are cut in world space without retaining hidden geometry", () => {
+  const group = new THREE.Group(),
+    wall = new THREE.Group(),
+    lod = new THREE.LOD(),
+    material = new THREE.MeshBasicMaterial(),
+    near = new THREE.BoxGeometry(4, 2, 2),
+    far = new THREE.BoxGeometry(40, 20, 20);
+  wall.position.set(1, 0, 0);
+  wall.rotation.y = Math.PI / 2;
+  lod.position.z = 1;
+  lod.userData.staticDetail = true;
+  lod.addLevel(new THREE.Mesh(near, material), 0);
+  lod.addLevel(new THREE.Mesh(far, material), 20);
+  wall.add(lod);
+  group.add(wall);
+  const partition = sectionEnvironment({ group }, [
+    { min: [2, -2, -3], max: [4, 2, 3], name: "cut stone" },
+  ]);
+  assert.equal(lod.parent, null);
+  const meshes = partition.sections[0].group.children.filter(
+    (object) => object.isMesh,
+  );
+  assert.equal(meshes.length, 1);
+  assert(Math.abs(volume(meshes[0].geometry) - 8) < 1e-6);
+  assert.equal(meshes[0].geometry.boundingBox.min.x, 2);
+  assert.equal(meshes[0].geometry.boundingBox.max.x, 3);
+  let disposed = 0;
+  meshes[0].geometry.addEventListener("dispose", () => disposed++);
+  partition.dispose();
+  assert.equal(disposed, 1);
+  near.dispose();
+  far.dispose();
+  material.dispose();
+});
+
+test("anchored vegetation keeps crown and trunk together and excludes ungrounded fragments", () => {
+  const group = new THREE.Group(),
+    material = new THREE.MeshBasicMaterial(),
+    geometry = new THREE.BoxGeometry(1, 1, 1);
+  const tree = (x) => {
+    const parent = new THREE.Group();
+    parent.position.set(x, 0, 0);
+    parent.userData.sectionAnchor = true;
+    const trunk = new THREE.Mesh(geometry, material);
+    trunk.scale.set(0.1, 3, 0.1);
+    trunk.position.y = 1.5;
+    const leaves = new THREE.InstancedMesh(geometry, material, 1);
+    leaves.setMatrixAt(0, new THREE.Matrix4().makeTranslation(-1, 3, 0));
+    parent.add(trunk, leaves);
+    group.add(parent);
+    return { parent, leaves };
+  };
+  const retained = tree(0.3),
+    excluded = tree(4.2);
+  let disposed = 0;
+  excluded.leaves.addEventListener("dispose", () => disposed++);
+  const partition = sectionEnvironment({ group }, [
+    { min: [-3, -1, -3], max: [0, 5, 3], name: "left" },
+    {
+      min: [0, -1, -3],
+      max: [4, 5, 3],
+      offset: [2, 0, 0],
+      name: "right",
+    },
+  ]);
+  assert.equal(retained.parent.parent, partition.sections[1].group);
+  assert.equal(retained.leaves.parent, retained.parent);
+  assert.equal(retained.parent.children.length, 2);
+  assert.equal(retained.parent.getWorldPosition(new THREE.Vector3()).x, 2.3);
+  assert.equal(excluded.parent.parent, null);
+  assert.equal(disposed, 1);
+  partition.dispose();
+  retained.leaves.dispose();
+  geometry.dispose();
+  material.dispose();
+});
+
+test("roof sections require retained bearing footprints, including transformed assemblies", () => {
+  const group = new THREE.Group(),
+    material = new THREE.MeshBasicMaterial(),
+    geometry = new THREE.BoxGeometry(4, 0.2, 4);
+  const roof = (z, name) => {
+    const parent = new THREE.Group();
+    parent.position.set(0, 3, z);
+    parent.rotation.y = Math.PI / 2;
+    parent.userData.sectionFootprint = [-0.3, -1, 0.3, 1];
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.name = name;
+    parent.add(mesh);
+    group.add(parent);
+    return parent;
+  };
+  const excluded = roof(2, "Unsupported eaves"),
+    retained = roof(0.8, "Roof with retained walls");
+  const partition = sectionEnvironment({ group }, [
+    { min: [-2, -1, -1], max: [2, 6, 1.5], name: "Building slice" },
+  ]);
+  const [mesh] = partition.sections[0].group.children;
+  assert.equal(partition.sections[0].group.children.length, 1);
+  assert.equal(mesh.name, "Roof with retained walls");
+  assert(Math.abs(volume(mesh.geometry) - 2) < 1e-5);
+  assert.equal(mesh.geometry.boundingBox.max.z, 1.5);
+  assert.equal(retained.parent, null);
+  assert.equal(excluded.parent, null);
+  partition.dispose();
+  geometry.dispose();
+  material.dispose();
+});
+
 test("every curated landscape and interior has an authored miniature route", () => {
   for (const definition of [...curatedScenes, ...outdoorScenes]) {
     assert(

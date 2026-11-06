@@ -91,3 +91,24 @@ environment sources remain unchanged.
 This is a completed implementation pass, not a claim of photorealism or a
 substitute for the user's visual judgement. The comparison is ready for that
 walkthrough; experience-specific regression rubrics should follow their feedback.
+
+## Complete miniature sections
+
+A miniature is a complete slice of the same inhabited place, not a set of
+front-facing props. Preserve its intentional architectural cutaways while giving
+every retained floor, planted edge, roof and upper storey credible support.
+Review closed rotations and undersides as well as open rooms and original
+close views. A roof's bearing footprint and a tree's root are explicit assembly
+ownership, not interchangeable with their visible bounding boxes.
+
+The shared terrain builder closes each underside, keeps soil and bedrock
+adjacent, retains vertical terrace risers and samples real side relief along the
+boundary. Its UV distance follows the perimeter rather than collapsing at
+diagonal corners. Fine nonperiodic mineral relief and physically scaled scans
+avoid regular corrugated cut faces; landscape foundation tints retain the local
+palette rather than copying the broad mottling of a repeated photograph.
+
+Sectioning must preserve functional negative space. Opened rooms, canals,
+courtyards, doorways and roof controls remain deliberate openings; they are not
+defects to fill. Shore water must end at actual wet terrain, not extend through
+the freshly exposed geological section.

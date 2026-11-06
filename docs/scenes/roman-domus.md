@@ -106,6 +106,12 @@ Finished wall sections and a restrained display base distinguish the model from
 an unsupported floating plan. A roof control restores the complete envelope;
 `open=0` and `open=1` retain that choice on reload.
 
+Floor finishes have solid bedding, not unsupported single-sided planes. The
+site foundation continues beneath the street and both sidewalks and meets the
+miniature base. Exposed basalt paving rests on a lower bed rather than being
+buried beneath a continuous surface; the impluvium retains its actual recessed
+floor below the water.
+
 Whole-house, courtyard, garden, service-wing and plan compositions make the public,
 private and working routes legible. Drag, touch, keyboard, pan and zoom are
 available; the original twenty interior cameras remain unchanged. Each miniature

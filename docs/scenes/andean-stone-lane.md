@@ -39,6 +39,13 @@ The original lane, stair passage and named cameras remain the spatial reference.
 A few doorway leaves move subtly about their attached bases; the pot and stems
 remain still, and reduced motion freezes the movement.
 
+The miniature retains real lower-storey back walls, returns and floors beneath
+the upper houses. Gable profiles meet the roof pitch and the roofs sit over
+their bearing walls. Preserve these complete volumes on reverse and underside
+views without closing the lane or the stepped side passage. Detailed masonry
+must be physically sectioned with its building, not left projecting beyond
+the ground after a distance-detail group is cropped.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-streets.js) ·
 [Regional photographs](../../public/outdoors/references.json)

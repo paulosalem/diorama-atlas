@@ -38,6 +38,11 @@ and blade cross-sections, clamps have jaws and screw detail, and curled ribbon
 shavings accompany a finishing tin and brush. Keep the existing hulls, slipway,
 water and all four original cameras.
 
+Background-house roofs belong to their actual bearing footprints. Miniature
+cropping must not leave roof strips suspended beyond an omitted house; retain
+the supported roof and complete building sections without narrowing the canal
+or sacrificing the boatyard's useful close views.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-streets.js) ·
 [Regional photographs](../../public/outdoors/references.json)

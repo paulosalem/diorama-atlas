@@ -1,6 +1,10 @@
 import * as THREE from "three";
 import { buildOutdoorEnvironment } from "../outdoors/outdoor-scenes.js";
-import { buildCutawayTerrain } from "../shared/cutaway-terrain.js";
+import { configureOutdoorMaterialScale } from "../outdoors/outdoor-material-scale.js";
+import {
+  buildCutawayTerrain,
+  buildTerrainStrip,
+} from "../shared/cutaway-terrain.js";
 import { sectionEnvironment } from "./sectioned-environment.js";
 import { landscapeSections } from "../../catalog/miniature-compositions.js";
 
@@ -21,6 +25,56 @@ function coastline(x, z) {
       THREE.MathUtils.smoothstep(base, -35.8, -29) -
     0.16
   );
+}
+
+function trimCoastalWater(section, ownership) {
+  const water = [];
+  section.group.traverse((mesh) => {
+    if (mesh.material?.userData.nativeWater) water.push(mesh);
+  });
+  for (const mesh of water) {
+    mesh.geometry.computeBoundingBox();
+    const height = mesh.geometry.boundingBox.min.y;
+    const { min, max } = section.box;
+    const shore = (x) => {
+      let back = min.z,
+        front = max.z;
+      if (coastline(x, back) + 0.16 >= height) return back;
+      if (coastline(x, front) + 0.16 <= height) return front;
+      for (let i = 0; i < 32; i++) {
+        const middle = (back + front) / 2;
+        if (coastline(x, middle) + 0.16 < height) back = middle;
+        else front = middle;
+      }
+      return (back + front) / 2;
+    };
+    const samples = Math.ceil((max.x - min.x) / 0.35);
+    if (
+      !Array.from(
+        { length: samples + 1 },
+        (_, i) => shore(min.x + ((max.x - min.x) * i) / samples) > min.z + 1e-6,
+      ).some(Boolean)
+    ) {
+      mesh.removeFromParent();
+      continue;
+    }
+    buildTerrainStrip(
+      {
+        mesh(geometry) {
+          mesh.geometry = ownership.own(geometry);
+          return mesh;
+        },
+      },
+      mesh.material,
+      (x) => [height, shore(x)],
+      () => [height, min.z],
+      {
+        left: min.x,
+        right: max.x,
+        samples,
+      },
+    );
+  }
 }
 
 function foundation(section, composition, ownership, sampleMaterial) {
@@ -54,11 +108,23 @@ function foundation(section, composition, ownership, sampleMaterial) {
       roughness: 0.98,
       map: sampleMaterial?.map ?? null,
       normalMap: sampleMaterial?.normalMap ?? null,
+      roughnessMap: sampleMaterial?.roughnessMap ?? null,
       normalScale: new THREE.Vector2(0.3, 0.3),
     }),
   );
   const soil = ownership.own(rock.clone());
   soil.color.multiplyScalar(0.73);
+  for (const [material, profile] of [
+    [rock, "stone"],
+    [soil, "earth"],
+  ]) {
+    material.userData.patinaProfile = profile;
+    material.userData.metresPerRepeat = 2;
+    material.userData.diffuseDetailMode = "tinted-grain";
+    material.userData.diffuseDetailStrength = 0.45;
+    const normalize = configureOutdoorMaterialScale(material);
+    normalize?.();
+  }
   const kit = {
     mesh(geometry, material, position = [0, 0, 0]) {
       const mesh = new THREE.Mesh(ownership.own(geometry), material);
@@ -74,8 +140,6 @@ function foundation(section, composition, ownership, sampleMaterial) {
     soilDepth: 0.32,
     soil,
     rock,
-    relief: (x, y, z) =>
-      0.055 * Math.sin(x * 3.1 + z * 2.2 + y * 4) * Math.sin(y * 7 + x),
   });
 }
 
@@ -145,9 +209,10 @@ export function buildLandscapeMiniature(definition, renderer, study) {
         name: "Second complete landscape section",
       },
     ]);
-    ownership.sections.forEach((section) =>
-      foundation(section, composition, ownership, stone),
-    );
+    ownership.sections.forEach((section) => {
+      if (composition.ground === null) trimCoastalWater(section, ownership);
+      foundation(section, composition, ownership, stone);
+    });
     runtime.sections = ownership.sections.map(({ box, offset: shift }) => ({
       min: box.min.toArray(),
       max: box.max.toArray(),

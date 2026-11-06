@@ -1424,11 +1424,31 @@ function latticeWindow(k, parent, x, y, z, width, height, wood, detail = true) {
 function tiledRoof(
   k,
   parent,
-  { width, depth, eave, rise, tiles, tileMaterial, wood },
+  { width, depth, eave, rise, tiles, tileMaterial, wood, gables = false },
 ) {
   const overhang = 0.45,
     halfDepth = depth / 2 + overhang;
   const roofHeight = (t) => eave + rise * (1 - t) ** 1.25 + 0.23 * t ** 9;
+  if (gables) {
+    const profile = new THREE.Shape();
+    profile.moveTo(-depth / 2, eave - 0.26);
+    profile.lineTo(depth / 2, eave - 0.26);
+    for (let i = 0; i <= 32; i++) {
+      const z = depth / 2 - (i * depth) / 32;
+      profile.lineTo(z, roofHeight(Math.abs(z) / halfDepth) - 0.04);
+    }
+    profile.closePath();
+    const geometry = new THREE.ExtrudeGeometry(profile, {
+      depth: 0.18,
+      bevelEnabled: false,
+    });
+    const uv = geometry.attributes.uv;
+    for (let i = 0; i < uv.count; i++)
+      uv.setXY(i, uv.getX(i) / 2, uv.getY(i) / 2);
+    for (const x of [-width / 2, width / 2 - 0.18])
+      k.mesh(geometry, wood, [x, 0, 0], [0, Math.PI / 2, 0], parent).name =
+        "Timber gable fitted beneath the curved roof";
+  }
   // Curved roof surfaces, individual half-round tiles, and lifted corner ridges are all geometry.
   const positions = [],
     uv = [],
@@ -1772,6 +1792,7 @@ function canalBuilding(
     tiles,
     tileMaterial,
     wood,
+    gables: true,
   });
   if (veranda)
     tiledRoof(k, k.sub([0, 0, front + 0.37], 0, g), {
@@ -2092,6 +2113,8 @@ function teaOnBench(k, bench, timber) {
 function willow(k, position) {
   const g = k.sub(position),
     leaves = [];
+  g.userData.batchRoot = true;
+  g.userData.sectionAnchor = true;
   k.tube(
     [
       [0, 0, 0],
@@ -2256,6 +2279,7 @@ export function buildNaxiCanal(definition, renderer) {
         ? (z - 9) * 0.08
         : 0;
   const canalWidth = (z) => 2.22 + 0.14 * Math.sin(z * 0.13);
+  const willowRoot = [-3.35, 0.06, -15.25];
   k.box([120, 0.4, 110], [0, -1.65, -4], dampStone, k.group, 0);
   const waterOrigin = -4;
   const water = k.water({
@@ -2334,6 +2358,13 @@ export function buildNaxiCanal(definition, renderer) {
           (side > 0 && ((z === 2 && col === 1) || (z === -5.5 && col === 0)));
         const repaired =
           side > 0 && col === 2 && (z === 5 || z === 5.5 || z === 6);
+        if (
+          Math.hypot(
+            entry.position[0] - willowRoot[0],
+            entry.position[2] - willowRoot[2],
+          ) < 0.78
+        )
+          continue;
         (fractured ? fracturedPavers : repaired ? repairedPavers : pavers).push(
           entry,
         );
@@ -2573,7 +2604,16 @@ export function buildNaxiCanal(definition, renderer) {
   shrubEntries.forEach((entries, habit) =>
     batch(k, smallLeaves[habit], shrubMaterial, entries),
   );
-  willow(k, [-0.35, -0.03, -15.25]);
+  k.cylinder(
+    0.81,
+    1.92,
+    [willowRoot[0], -0.9, willowRoot[2]],
+    k.m.soil,
+    k.group,
+    0.81,
+    32,
+  );
+  willow(k, willowRoot);
   k.tree([-4.1, 0.05, 2.8], { height: 8.4, radius: 3.7 });
   k.tree([4.55, 0.02, 1.8], { height: 5.5, radius: 2.5 });
   k.tree([-4.55, 0.04, -20.5], { height: 6.5, radius: 2.8 });

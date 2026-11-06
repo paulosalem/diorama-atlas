@@ -110,6 +110,9 @@ The definition and translations live in `src/client/catalog/ger-catalog.js`.
 through the shared environment kit, material, terrain, wind and sound helpers.
 Both representations share that builder; the miniature crops the same sampled
 near-field terrain rather than substituting a separate ground surface.
+The closed soil section uses the same bundled ground scan with distinct earth
+and subsoil tones, metric cut-face mapping and fine irregular mineral relief.
+Keep the soil horizon continuous with the rooted grass and worn approach.
 `tests/ger.test.js` checks closed textile sections and provenance;
 `tests/browser/ger.spec.js` checks doorway width/height, firebox depth and shell
 behavior alongside the collection-wide browser and static checks.

@@ -192,9 +192,13 @@ function flatPolygon(points, depth = 0.04, bevel = 0, bevelSegments = 1) {
 function roofTiles(
   k,
   parent,
-  { width, depth, height, rise, palette, axis = 0, tileScale = 1 },
+  { width, depth, height, rise, palette, axis = 0, tileScale = 1, support },
 ) {
   const roof = k.sub([0, height, 0], axis, parent);
+  if (support) {
+    roof.userData.batchRoot = true;
+    roof.userData.sectionFootprint = support;
+  }
   const angle = Math.atan2(rise, depth / 2);
   const slope = Math.hypot(depth / 2, rise);
   const tileGeometry = new THREE.CylinderGeometry(
@@ -2509,6 +2513,7 @@ export function buildVenetianBoatyard(definition, renderer) {
       rise: 1.15,
       palette: tiles,
       tileScale: distant ? 1.35 : 1,
+      support: [-width / 2, -depth / 2, width / 2, depth / 2],
     });
     k.tube(
       [
@@ -3070,15 +3075,68 @@ function colonialUpper(
       }
     }
   }
-  roofTiles(k, k.sub([0, 0, -1.3], 0, house), {
+  roofTiles(k, k.sub([0, 0, -1.8], 0, house), {
     width: width + 0.6,
     depth: 4.2,
     height,
     rise: 0.8,
     palette: tiles,
+    support: [-width / 2, -1.7, width / 2, 1.7],
   });
+  for (const x of [-width / 2, width / 2 - 0.18])
+    k.mesh(
+      flatPolygon(
+        [
+          [-1.7, 0],
+          [1.7, 0],
+          [1.7, 0.8 * (1 - 1.7 / 2.1)],
+          [0, 0.8],
+          [-1.7, 0.8 * (1 - 1.7 / 2.1)],
+        ],
+        0.18,
+      ),
+      plaster,
+      [x, height, -1.8],
+      [0, PI / 2, 0],
+      house,
+    );
   for (let x = -width / 2 + 0.15; x < width / 2; x += 0.4)
     k.box([0.08, 0.09, 0.74], [x, height - 0.035, 0.08], wood, house, 0);
+  const lowerHeight = position[1] + 0.11;
+  const masonry = k.m.stone;
+  const scale = masonry.userData.metresPerRepeat;
+  for (const [size, center] of [
+    [
+      [width, lowerHeight, 0.42],
+      [0, -lowerHeight / 2, -3.29],
+    ],
+    ...[-1, 1].map((side) => [
+      [0.42, lowerHeight, 2.98],
+      [side * (width / 2 - 0.21), -lowerHeight / 2, -1.59],
+    ]),
+    [
+      [width, 0.2, 3.4],
+      [0, -lowerHeight + 0.1, -1.8],
+    ],
+  ]) {
+    // Independent UV placement leaves the established street's random sequence intact.
+    const geometry = new THREE.BoxGeometry(...size);
+    const { position: vertices, normal, uv } = geometry.attributes;
+    for (let i = 0; i < vertices.count; i++) {
+      const horizontal = Math.abs(normal.getY(i)) > 0.5;
+      const side = Math.abs(normal.getX(i)) > 0.5;
+      uv.setXY(
+        i,
+        ((side ? vertices.getZ(i) : vertices.getX(i)) + center[side ? 2 : 0]) /
+          scale,
+        ((horizontal ? vertices.getZ(i) : vertices.getY(i)) +
+          center[horizontal ? 2 : 1]) /
+          scale,
+      );
+    }
+    k.mesh(geometry, masonry, center, [0, 0, 0], house).name =
+      "Continuous lower-storey masonry and foundation";
+  }
   return house;
 }
 

@@ -32,6 +32,11 @@ Do not fabricate sacred inscriptions, meanings, ritual objects or monastic
 endorsement. Verify any added cultural explanation against appropriate sources.
 Avoid turning the scene into a collection of generic Southeast Asian motifs.
 
+Miniature trees retain whole rooted trunk, branch and foliage assemblies.
+The distant entrance gate remains in the landscape, but its overhanging roof
+and ornaments must not survive alone when the miniature crop excludes its
+supports. Keep the portico, pavilion and open working court intact.
+
 [Definition](../../src/client/catalog/outdoor-catalog.js) ·
 [Builder](../../src/client/environments/outdoors/outdoor-architecture.js) ·
 [Regional photographs](../../public/outdoors/references.json)

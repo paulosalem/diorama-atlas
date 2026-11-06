@@ -54,6 +54,8 @@ export function createOutdoorTree(
   const palm = kind === "palm",
     shrub = kind === "shrub";
   const g = k.sub(position);
+  g.userData.batchRoot = true;
+  g.userData.sectionAnchor = true;
   const trunkHeight = height * (palm ? 1 : 0.78);
   if (!shrub) {
     const geometryHeight = trunkHeight + 0.1;

@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-06T03:39:12.482Z",
+  "checkedAt": "2026-11-06T17:31:06.699Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -29,9 +29,9 @@
       "scene": "textile",
       "view": "room",
       "width": 1232,
-      "height": 760,
-      "bytes": 1197233,
-      "sha256": "48015a382d1058736b07c392528ac396f2ec2a9be590e3a413f2ff8c518c7289",
+      "height": 707,
+      "bytes": 1131785,
+      "sha256": "54845b1ea82b733826c342588ca3f57306dde75b8b2801d267fcc2dca5fa8bbd",
       "viewport": {
         "width": 1280,
         "height": 900
@@ -107,9 +107,9 @@
       "scene": "kerala-backwater-kitchen-courtyard-aadf7c",
       "view": "room",
       "width": 1232,
-      "height": 760,
-      "bytes": 938312,
-      "sha256": "719405b301dc6cc96c717f6cc4e5457f6945e077ce1c3f92825db3514edb152c",
+      "height": 707,
+      "bytes": 884068,
+      "sha256": "9a4d41219bdd26cb2f88ad7832177fdda1ab7426e2f82e1bfe5b0e69b7b0c52c",
       "viewport": {
         "width": 1280,
         "height": 900
@@ -267,20 +267,6 @@
       "reducedMotion": true
     },
     {
-      "file": "/public/outdoors/previews/andean-stone-lane.png",
-      "scene": "andean-stone-lane",
-      "view": "arrival",
-      "width": 1232,
-      "height": 760,
-      "bytes": 1064601,
-      "sha256": "b3f9fd2268742b2e8f23a670550dd65d9e1ecb96d0e71fa6ea5badb872579c47",
-      "viewport": {
-        "width": 1280,
-        "height": 900
-      },
-      "reducedMotion": true
-    },
-    {
       "file": "/public/outdoors/previews/venetian-boatyard.png",
       "scene": "venetian-boatyard",
       "view": "arrival",
@@ -302,6 +288,34 @@
       "height": 664,
       "bytes": 765545,
       "sha256": "70141fc10311c93583c69f5a9e1e8fa958ee7ddcabce004a245a2f6cd873a2a7",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
+    },
+    {
+      "file": "/public/outdoors/previews/andean-stone-lane.png",
+      "scene": "andean-stone-lane",
+      "view": "arrival",
+      "width": 1232,
+      "height": 707,
+      "bytes": 994014,
+      "sha256": "90b4e71e49535a57b31f52d19656eb217606517c6dbf3aae5e78d3be9d8e0a64",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "reducedMotion": true
+    },
+    {
+      "file": "/public/outdoors/previews/naxi-canal-quarter.png",
+      "scene": "naxi-canal-quarter",
+      "view": "arrival",
+      "width": 1232,
+      "height": 707,
+      "bytes": 1095093,
+      "sha256": "87e59e95b16557afccc38633ac15783dcf4ac5bc497e3468cda484be5e18d09d",
       "viewport": {
         "width": 1280,
         "height": 900

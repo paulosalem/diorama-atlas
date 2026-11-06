@@ -129,6 +129,12 @@ geometry and cap closed solids without filling cavities. Explicit per-place
 bounds and camera directions live in `catalog/miniature-compositions.js`.
 Never replace a real cut with a dark plane or a shader-only mask. Overview
 cameras fit current bounds; focused cameras follow their object's section.
+Static-detail LODs contribute their detailed geometry to the physical cut.
+Trees mark their root group with `sectionAnchor` and `batchRoot`, so branches
+and foliage stay with the retained trunk instead of surviving as orphan fragments.
+Roof assemblies can declare a local `[left, back, right, front]`
+`sectionFootprint`; a roof is retained only in sections that also contain its
+bearing footprint. Keep those assemblies separate during static batching.
 The `open=1` URL parameter restores an open shell. Reduced motion applies the
 same exact final positions without animation. Douro retains its accepted cameras.
 The historical Babylon, PlayCanvas and Unity comparisons remain isolated under
@@ -202,6 +208,37 @@ one place. The Whole capture begins closed; selecting an interior detail opens
 its shell. Capture the opened Whole state separately when comparing the opening.
 The domus opens in cutaway mode by default and captures its five shared-runtime
 compositions; `open=0` restores its roof for closed-envelope inspection.
+
+For a complete miniature rotation survey and exact camera matching:
+
+```sh
+node scripts/capture-interiors.mjs --phase before --all --version miniature --survey \
+  --base-url http://127.0.0.1:4183 --output-dir outputs/my-miniature-pass/baseline
+# After a coherent correction, preserve a separate iteration:
+node scripts/capture-interiors.mjs --phase after --all --version miniature --survey \
+  --base-url http://127.0.0.1:4183 \
+  --match outputs/my-miniature-pass/baseline/before/capture.json \
+  --output-dir outputs/my-miniature-pass/round-1
+python scripts/helpers/capture-sheets.py \
+  --input outputs/my-miniature-pass/round-1/after/capture.json \
+  --output-dir outputs/my-miniature-pass/round-1-sheets \
+  --columns 4 --rows 6 --tile-width 650
+```
+
+`--survey` adds closed and supported open rotations, underside views, portrait
+and short-landscape layouts, and two time-separated motion frames. Manifests
+record actual settled camera poses, viewport, motion state, shell, renderer,
+resource counts and source identity. `--match` restores those cameras and fails
+on missing views or a pose that orbit controls cannot reproduce; it does not
+silently reframe a changed model. Keep the original screenshots for close review.
+The Pillow-based contact-sheet helper accepts `--views REGEX` for focused sets
+and requires a new output directory. Neither tool replaces visual inspection.
+
+`tests/browser/miniature-construction.spec.js` separately probes bearing walls,
+retained building depth, room apertures, foundations, root-bed contact and the
+domus basin. Its rays account for miniature section offsets and begin outside
+the object being supported; a clear route is not evidence of physical contact.
+
 Serve the generated comparison directory separately: the application does not
 expose `outputs/`. See [outdoor review](outdoor-collection.md),
 [narration verification](narration.md) and the
@@ -222,6 +259,24 @@ Use `--view garden` or another named viewpoint for a matched detail measurement.
 `--source-ref COMMIT` serves the revision's `/src/` without changing the checkout;
 it retains current public assets, so preserve changed asset bytes separately.
 `--include-drafts` permits explicitly selected local unfinished scenes.
+
+When geometry changes an adaptive whole-model fit, a named view alone is not
+an identical camera. Use the same preserved capture on both measurements:
+
+```sh
+node scripts/measure-dioramas.mjs --scene andean-stone-lane --version miniature \
+  --match outputs/my-miniature-pass/baseline/before/capture.json \
+  --view survey-closed-0 --source-ref COMMIT \
+  --output outputs/my-miniature-pass/performance-matched-before.json
+# Repeat without --source-ref, with a new output path, for the current source.
+```
+
+`--match` restores the captured camera, viewport, motion preference and shell
+state, then verifies them again after sampling. Per-scene `capture` records the
+settled state; top-level viewport/motion defaults are null for matched runs.
+It rejects a changed rendering device or a missing scene/view, and cannot be
+combined with `--render-height`. Quaternion signs may differ while describing
+the same orientation; compare rotations rather than their raw components.
 
 The measurement utility runs scenes sequentially at the paused original arrival,
 1280x900 and device scale 1. It records the actual rendering device, frame

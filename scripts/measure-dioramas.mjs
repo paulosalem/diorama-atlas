@@ -1,9 +1,14 @@
 import { parseArgs } from "node:util";
 import { execFileSync } from "node:child_process";
-import { mkdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "@playwright/test";
 import { waitForViewer } from "./helpers/browser-viewer.mjs";
+import {
+  assertCaptureCamera,
+  captureState,
+  restoreCaptureState,
+} from "./helpers/miniature-survey.mjs";
 
 const { values } = parseArgs({
   options: {
@@ -13,6 +18,7 @@ const { values } = parseArgs({
     seconds: { type: "string", default: "5" },
     version: { type: "string" },
     view: { type: "string" },
+    match: { type: "string" },
     "include-drafts": { type: "boolean", default: false },
     "source-ref": { type: "string" },
     "render-height": { type: "string" },
@@ -26,7 +32,9 @@ node scripts/measure-dioramas.mjs --scene ID [--scene ID] --output PATH
   --base-url URL  Running Atlas, default http://127.0.0.1:4183
   --seconds N     Sampling duration per scene, default 5 (range 1-30)
   --version ID    Select an experience, such as miniature
-  --view ID       Select a named viewpoint rather than the arrival
+  --view ID       Select a named viewpoint (or a captured view with --match)
+  --match PATH    Restore camera, viewport, motion and shell from capture.json
+                 Uses --view or each scene's first captured view
   --include-drafts  Permit explicitly selected local drafts
   --source-ref REF  Serve /src/ from a Git revision without changing the checkout
   --render-height N  Match CSS canvas height across differing navigation layouts
@@ -35,6 +43,9 @@ Records frame intervals, renderer resources, finite geometry and original views.
 Source-reference comparisons retain current public assets; preserve those separately
 when a comparison also changes asset bytes.
 The 1280x900 viewport, reduced motion and rendering device are recorded.
+With --match, the capture's viewport and motion setting replace those defaults;
+the settled camera is checked again after sampling. Do not combine with
+--render-height. Use the same capture for both sides of a source comparison.
 Provider requests are blocked. Existing results are never overwritten.`);
   process.exit(0);
 }
@@ -56,6 +67,11 @@ if (
   (!Number.isInteger(renderHeight) || renderHeight < 190 || renderHeight > 2000)
 )
   throw new Error("--render-height must be an integer between 190 and 2000.");
+if (values.match && renderHeight !== null)
+  throw new Error("--match preserves its viewport; omit --render-height.");
+const matched = values.match
+  ? JSON.parse(await readFile(values.match, "utf8"))
+  : null;
 
 const exists = await stat(values.output).then(
   () => true,
@@ -112,16 +128,23 @@ await context.route("**/api/**", async (route) => {
 });
 const result = {
   capturedAt: new Date().toISOString(),
-  viewport: { width: 1280, height: 900 },
-  reducedMotion: "reduce",
+  viewport: matched ? null : { width: 1280, height: 900 },
+  reducedMotion: matched ? null : "reduce",
   seconds,
   renderHeight,
   sourceRef,
   view: values.view ?? null,
+  matchedTo: values.match ?? null,
   scenes: [],
 };
 try {
   for (const id of values.scene) {
+    const referenceScene = matched?.scenes.find((scene) => scene.id === id);
+    const reference = values.view
+      ? referenceScene?.views.find((view) => view.key === values.view)
+      : referenceScene?.views[0];
+    if (matched && !reference)
+      throw new Error(`${id}: missing comparison capture.`);
     const page = await context.newPage();
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -139,7 +162,7 @@ try {
       ).href,
     );
     await waitForViewer(page);
-    if (values.view)
+    if (values.view && !reference)
       await page.evaluate(
         async ({ view, viewerModule }) => {
           const { getActiveViewer } = await import(viewerModule);
@@ -151,6 +174,7 @@ try {
         { view: values.view, viewerModule },
       );
     await page.evaluate(() => document.fonts.ready);
+    if (reference) await restoreCaptureState(page, reference);
     if (renderHeight !== null) {
       const height = await page
         .locator("#canvasMount canvas, #miniatureCanvas")
@@ -263,10 +287,23 @@ try {
       throw new Error(
         `${id}: ${errors.join("; ")}; invalid=${metrics.invalid}`,
       );
+    const state = await captureState(page);
+    if (reference) {
+      assertCaptureCamera(state.camera, reference.camera);
+      if (
+        state.shellOpen !== reference.shellOpen ||
+        state.reducedMotion !== reference.reducedMotion ||
+        JSON.stringify(state.viewport) !== JSON.stringify(reference.viewport)
+      )
+        throw new Error(`${id}: comparison state changed while sampling.`);
+      if (state.renderer !== reference.renderer)
+        throw new Error(`${id}: comparison rendering device changed.`);
+    }
     result.scenes.push({
       id,
       ...(values.version ? { version: values.version } : {}),
       ...metrics,
+      capture: state,
     });
     console.error(`${id}: ${metrics.fps.toFixed(1)} FPS`);
     await page.close();

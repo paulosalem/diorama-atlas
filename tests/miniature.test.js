@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import * as THREE from "three";
-import { buildCutawayTerrain } from "../src/client/environments/shared/cutaway-terrain.js";
+import {
+  buildCutawayTerrain,
+  cutawayRockRelief,
+} from "../src/client/environments/shared/cutaway-terrain.js";
 import { createRecordedNarration } from "../src/client/viewer/recorded-narration.js";
 import { vineyardViews } from "../src/client/environments/outdoors/vineyard-views.js";
 import { getStudy, studies } from "../experiments/marrakech/web/scenes.js";
@@ -70,6 +73,36 @@ test("terrain cutaways close the actual asymmetric footprint without mirrored un
     () => buildCutawayTerrain(k, { ...specification, bottom: 1 }),
     /finite boundary/,
   );
+  assert.throws(
+    () => buildCutawayTerrain(k, { ...specification, bottom: -1.32 }),
+    /finite boundary/,
+  );
+  const side = meshes[0].geometry;
+  const rows = 129;
+  const columns = side.attributes.position.count / rows;
+  assert(columns > specification.boundary.length + 1);
+  for (let column = 1; column < columns; column++) {
+    const du =
+      side.attributes.uv.getX(column * rows) -
+      side.attributes.uv.getX((column - 1) * rows);
+    assert(du > 0 && du <= 0.35 * 0.35 + 1e-6);
+  }
+  for (let row = 0; row < rows; row++)
+    for (const axis of ["X", "Y", "Z"])
+      assert.equal(
+        side.attributes.position[`get${axis}`](row),
+        side.attributes.position[`get${axis}`]((columns - 1) * rows + row),
+        "the texture seam must not open the physical terrain",
+      );
+  const explicitlyClosed = buildCutawayTerrain(k, {
+    ...specification,
+    boundary: [...specification.boundary, specification.boundary[0]],
+  });
+  assert.deepEqual(
+    explicitlyClosed[0].geometry.attributes.position.array,
+    side.attributes.position.array,
+  );
+  explicitlyClosed.forEach((mesh) => mesh.geometry.dispose());
   meshes.forEach((mesh) => mesh.geometry.dispose());
   soil.dispose();
   rock.dispose();
@@ -89,6 +122,86 @@ test("the opposite bank rises from its river half to real hills without bridging
       assert(
         Math.abs(oppositeBankHeight(x, profile[i][0]) - profile[i][1]) < 1e-10,
       );
+    }
+  }
+});
+
+test("terrain layers remain adjacent when soil and rock share a material, including terrace risers", () => {
+  const material = new THREE.MeshStandardMaterial();
+  const boundary = [
+    [-2, 0, 3],
+    [-2, 0, 0],
+    [-2, -1.35, 0],
+    [-2, -1.35, -3],
+    [2, -1.35, -3],
+    [2, -1.35, 0],
+    [2, 0, 0],
+    [2, 0, 3],
+  ];
+  const k = {
+    mesh: (geometry, material) => new THREE.Mesh(geometry, material),
+  };
+  const meshes = buildCutawayTerrain(k, {
+    boundary,
+    bottom: -3,
+    soil: material,
+    rock: material,
+  });
+  const bedrock = meshes[0].geometry.attributes.position;
+  const soil = meshes[1].geometry.attributes.position;
+  const columns = soil.count / 4;
+  assert.equal(bedrock.count / 129, columns);
+  for (let column = 0; column < columns; column++) {
+    const rockTop = column * 129 + 128;
+    const soilBottom = column * 4;
+    for (const axis of ["X", "Y", "Z"])
+      assert.equal(
+        bedrock[`get${axis}`](rockTop),
+        soil[`get${axis}`](soilBottom),
+        "soil meets bedrock without a gap or duplicate side",
+      );
+    assert(soil.getY(soilBottom + 3) > soil.getY(soilBottom));
+    assert.equal(bedrock.getY(column * 129), -3);
+  }
+  for (const point of boundary)
+    assert(
+      Array.from({ length: columns }, (_, column) => column * 4 + 3).some(
+        (i) =>
+          Math.abs(soil.getX(i) - point[0]) < 1e-6 &&
+          Math.abs(soil.getY(i) - point[1]) < 1e-6 &&
+          Math.abs(soil.getZ(i) - point[2]) < 1e-6,
+      ),
+      "preserve each terrace step instead of smoothing its vertical edge",
+    );
+  assert.throws(
+    () =>
+      buildCutawayTerrain(k, {
+        boundary: boundary.map((point) => [0, point[1], point[2]]),
+        bottom: -3,
+        soil: material,
+        rock: material,
+      }),
+    /nonzero horizontal footprint/,
+  );
+  meshes.forEach((mesh) => mesh.geometry.dispose());
+  material.dispose();
+});
+
+test("mineral cut relief is bounded, continuous and does not repeat at a metre", () => {
+  for (const point of [
+    [0, 0, 0],
+    [-4.3, -9.1, 2.8],
+    [12.4, -35.6, -72.3],
+  ]) {
+    const value = cutawayRockRelief(...point);
+    assert(Number.isFinite(value) && Math.abs(value) <= 0.044);
+    assert.equal(value, cutawayRockRelief(...point));
+    for (let axis = 0; axis < 3; axis++) {
+      const nearby = [...point];
+      nearby[axis] += 1e-5;
+      assert(Math.abs(cutawayRockRelief(...nearby) - value) < 1e-5);
+      nearby[axis] += 1;
+      assert(Math.abs(cutawayRockRelief(...nearby) - value) > 1e-6);
     }
   }
 });

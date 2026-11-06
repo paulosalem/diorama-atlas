@@ -22,6 +22,12 @@ irregular flow rather than repeated sine stripes. Give timber and paving
 piece-level variation; plants soften edges without hiding construction.
 Check benches and other small structures for actual support and ground contact.
 
+In the miniature, retain the willow as one rooted trunk/branch/crown assembly.
+Its planting bed replaces the paving at the actual bank and continues to the
+section foundation; a retained crown alone is not evidence of ground contact.
+The main roof's timber end gables follow its curved profile. Keep the lower
+veranda eaves open rather than filling them with generic end panels.
+
 ## View sequence
 
 `arrival` → `bridge` → `stream` → `lattice`.

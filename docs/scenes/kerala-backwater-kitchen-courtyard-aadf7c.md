@@ -39,6 +39,12 @@ ends. Keep ash restrained and both fire chambers clear. The garden's connected,
 curved leaves and coconut palms replace angular foliage rather than overlap it;
 the original single canal, pantry passage and cameras remain unchanged.
 
+The miniature foundation follows the complete planted garden footprint, including
+its outer western edge. Preserve that support in underside and reverse views,
+with roof gables fitted to their actual pitch rather than covering gaps with
+dark panels. Garden growth and the open kitchen remain distinct from an
+accidentally unsupported slice.
+
 [Saved definition](../../data/scenes/kerala-backwater-kitchen-courtyard-aadf7c.json) ·
 [Kitchen builder](../../src/client/environments/interiors/interior-scenes.js) ·
 [Depth and garden](../../src/client/environments/interiors/interior-depth.js)

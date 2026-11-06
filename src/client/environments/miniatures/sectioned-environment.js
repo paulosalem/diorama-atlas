@@ -19,17 +19,54 @@ export function sectionEnvironment(
   });
   const root = runtime.group;
   root.updateMatrixWorld(true);
-  const drawables = [];
+  const supportBounds = new Map();
   root.traverse((object) => {
-    if (object.isLOD)
+    const footprint = object.userData.sectionFootprint;
+    if (!footprint) return;
+    const [left, back, right, front] = footprint;
+    const bounds = new THREE.Box3().setFromPoints(
+      [
+        [left, 0, back],
+        [right, 0, back],
+        [right, 0, front],
+        [left, 0, front],
+      ].map((point) =>
+        new THREE.Vector3(...point).applyMatrix4(object.matrixWorld),
+      ),
+    );
+    supportBounds.set(object, bounds);
+  });
+  const anchored = [];
+  root.traverse((object) => {
+    if (object.userData.sectionAnchor) anchored.push(object);
+  });
+  for (const object of anchored) {
+    const anchor = object.getWorldPosition(new THREE.Vector3());
+    const section = sections.find(({ box }) => box.containsPoint(anchor));
+    if (section) section.group.attach(object);
+    else {
+      object.traverse((child) => {
+        if (child.isInstancedMesh) child.dispose();
+      });
+      object.removeFromParent();
+    }
+  }
+  const drawables = [],
+    staticDetails = [];
+  root.traverse((object) => {
+    if (object.isLOD) {
       object.levels.forEach((level, index) => {
         level.object.visible = index === 0;
       });
+      if (object.userData.staticDetail) staticDetails.push(object);
+    }
   });
   root.traverseVisible((object) => {
     if (
       object.isMesh &&
       (object.parent === root ||
+        object.parent.userData.staticDetail ||
+        supportBounds.has(object.parent) ||
         object.isInstancedMesh ||
         object.isReflector ||
         placement(object) !== null)
@@ -81,9 +118,19 @@ export function sectionEnvironment(
     if (object.isReflector && !convertWater) continue;
     if (object.geometry.attributes.position.usage === THREE.DynamicDrawUsage)
       continue;
+    const support = supportBounds.get(object.parent);
+    const supportedSections = support
+      ? sections.filter(
+          ({ box }) =>
+            support.max.x > box.min.x &&
+            support.min.x < box.max.x &&
+            support.max.z > box.min.z &&
+            support.min.z < box.max.z,
+        )
+      : sections;
     if (object.isInstancedMesh) {
       object.geometry.computeBoundingBox();
-      for (const section of sections) {
+      for (const section of supportedSections) {
         const entries = [],
           colors = [];
         for (let i = 0; i < object.count; i++) {
@@ -147,7 +194,7 @@ export function sectionEnvironment(
           );
           geometry.setIndex(indices);
           geometry.clearGroups();
-          for (const section of sections)
+          for (const section of supportedSections)
             cut(
               geometry,
               material[group.materialIndex],
@@ -158,13 +205,15 @@ export function sectionEnvironment(
           geometry.dispose();
         }
       } else {
-        for (const section of sections)
+        for (const section of supportedSections)
           cut(object.geometry, material, object.matrixWorld, section, object);
       }
     }
     object.removeFromParent();
     if (object.isInstancedMesh) object.dispose();
   }
+  staticDetails.forEach((object) => object.removeFromParent());
+  supportBounds.forEach((_, object) => object.removeFromParent());
   for (const object of [...root.children]) {
     if (object.isLight || (!object.isGroup && !object.isMesh)) continue;
     const bounds = new THREE.Box3().setFromObject(object);
