@@ -26,6 +26,9 @@ const [
   narration,
   domusPhotographs,
   gerPhotographs,
+  saunaPhotographs,
+  saunaMaterials,
+  saunaForest,
 ] = await Promise.all([
   readJson("public/earth/credits.json"),
   readJson("public/riad/materials/manifest.json"),
@@ -41,6 +44,9 @@ const [
   readJson("public/narration/manifest.json"),
   readJson("public/domus/references.json"),
   readJson("public/ger/references.json"),
+  readJson("public/sauna/references.json"),
+  readJson("public/sauna/materials/manifest.json"),
+  readJson("public/sauna/forest/manifest.json"),
 ]);
 const title = (value) =>
   value
@@ -117,7 +123,12 @@ entries.push({
   licenseUrl: outdoors.licenseUrl,
   note: "Locally stored outdoor HDR environment.",
 });
-for (const scene of [...photographs, ...domusPhotographs, ...gerPhotographs])
+for (const scene of [
+  ...photographs,
+  ...domusPhotographs,
+  ...gerPhotographs,
+  ...saunaPhotographs,
+])
   for (const photo of scene.references)
     entries.push({
       category: "Style-reference photography",
@@ -133,7 +144,11 @@ for (const scene of [...photographs, ...domusPhotographs, ...gerPhotographs])
         "Real source photograph used to study a regional tradition, not a photograph of the fictional environment. " +
         photo.note,
     });
-for (const asset of details?.assets ?? [])
+for (const asset of [
+  ...(details?.assets ?? []),
+  ...saunaMaterials.assets,
+  ...saunaForest.assets,
+])
   entries.push({
     category:
       asset.kind === "photographic-foliage"

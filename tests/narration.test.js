@@ -10,6 +10,7 @@ import {
 } from "../src/client/catalog/scene-catalog.js";
 import { domusViews } from "../src/client/environments/domus/domus-layout.js";
 import { gerViews } from "../src/client/catalog/ger-catalog.js";
+import { saunaViews } from "../src/client/catalog/sauna-catalog.js";
 import { alfamaViews } from "../src/client/environments/outdoors/alfama-hillside.js";
 import {
   findNarrationRecording,
@@ -70,7 +71,7 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
         isSceneNarration(asset) &&
         !outdoorDraftScenes.some((scene) => scene.id === asset.scene),
     ).length,
-    274,
+    286,
   );
   for (const passage of supplementalNarration(
     scenes.filter((scene) => !scene.draft),
@@ -149,17 +150,19 @@ test("every prerecorded scene has immutable bilingual recordings matching its wr
         ? Object.keys(domusViews).length
         : scene.environment === "ger"
           ? Object.keys(gerViews).length
-          : scene.id === "riad"
-            ? 6
-            : scene.id === "alfama-hillside"
-              ? new Set(
-                  Object.entries(alfamaViews)
-                    .filter(([, view]) => view.narration !== false)
-                    .map(([key, view]) => view.narrationView ?? key),
-                ).size
-              : scene.environment === "outdoor"
-                ? 4
-                : 5,
+          : scene.environment === "sauna"
+            ? Object.keys(saunaViews).length
+            : scene.id === "riad"
+              ? 6
+              : scene.id === "alfama-hillside"
+                ? new Set(
+                    Object.entries(alfamaViews)
+                      .filter(([, view]) => view.narration !== false)
+                      .map(([key, view]) => view.narrationView ?? key),
+                  ).size
+                : scene.environment === "outdoor"
+                  ? 4
+                  : 5,
       scene.id,
     );
     assert.ok(views.has("intro"), `${scene.id}: missing arrival`);

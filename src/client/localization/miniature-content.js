@@ -193,6 +193,16 @@ const miniatureStories = {
       heading: "A portable home, opened to the light.",
       body: "The actual roof, radial poles and front enclosure lift aside, revealing the same furnished household as the interior visit. The crown, lattice, felt and bands explain a portable building; beds, storage and a tea setting make it a home. A small piece of grassland remains around the open doorway. This miniature is an authored interpretation near Kharkhorin, not a surveyed household or an instruction for assembly.",
     },
+    "finnish-lakeside-sauna": {
+      "en-US": {
+        heading: "Warmth, timber and a way to the water.",
+        body: "The actual roof and selected outer walls lift aside to reveal the same bathing room and changing room as the full-size visit. Benches, heater stones, a water bucket and a birch whisk remain in place. Beyond the porch, a worn path reaches the small timber jetty. This imagined Finnish household is an architectural interpretation, not a measured building or an installation guide.",
+      },
+      "pt-BR": {
+        heading: "Calor, madeira e um caminho até a água.",
+        body: "A cobertura real e parte das paredes externas se afastam para revelar a mesma sala de banho e o mesmo vestiário da visita em escala humana. Bancos, pedras do aquecedor, um balde de água e um feixe de bétula permanecem no lugar. Além da varanda, um caminho marcado pelo uso chega ao pequeno píer de madeira. Esta casa finlandesa imaginada é uma interpretação arquitetônica, não um edifício medido nem um guia de instalação.",
+      },
+    },
     "pt-BR": {
       heading: "Uma moradia portátil, aberta à luz.",
       body: "A cobertura, os caibros radiais e a parte frontal se erguem e se afastam, revelando a mesma casa mobiliada da visita ao interior. O anel, a treliça, o feltro e as faixas explicam uma construção portátil; camas, armários e uma mesa de chá fazem dela um lar. Um pequeno trecho de estepe permanece junto à porta aberta. Esta miniatura é uma interpretação criada perto de Kharkhorin, não um levantamento de uma casa nem uma instrução de montagem.",

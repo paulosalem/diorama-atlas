@@ -1,0 +1,61 @@
+{
+  "assets": [
+    {
+      "id": "raw_plank_wall",
+      "title": "Raw Plank Wall",
+      "author": "Dimitrios Savva",
+      "source": "https://polyhaven.com/a/raw_plank_wall",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved": "2026-11-06T01:20:22.869Z",
+      "kind": "pbr-surface",
+      "resolution": [
+        2400,
+        168
+      ],
+      "files": {
+        "diff": "/public/sauna/materials/diff.jpg",
+        "nor_gl": "/public/sauna/materials/nor_gl.jpg",
+        "rough": "/public/sauna/materials/rough.jpg"
+      },
+      "sourceFiles": {
+        "diff": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/raw_plank_wall/raw_plank_wall_diff_4k.jpg",
+          "sha256": "7b04b2939c4d43b0004f5dfbd82e40609dafc76833d51606e86139a2b3be396b"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/raw_plank_wall/raw_plank_wall_nor_gl_4k.jpg",
+          "sha256": "657142d8946523b2930f81bd029c05977f8f6ea9824d1efeae75b4101000c100"
+        },
+        "rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/raw_plank_wall/raw_plank_wall_rough_4k.jpg",
+          "sha256": "0da5dddc78104002206abad3a3dd7dc3ef792b621e40af0bd4845e5d52842054"
+        }
+      },
+      "fileIntegrity": {
+        "diff": {
+          "bytes": 138414,
+          "sha256": "7a313d46ba196d77d88982d9c015490e3774003139d7837c48f588c564605dd5"
+        },
+        "nor_gl": {
+          "bytes": 239674,
+          "sha256": "290788d7e0314a2cef352995d0d4ab370c29e3762b13c2f0affa037b5d693aa3"
+        },
+        "rough": {
+          "bytes": 82698,
+          "sha256": "6f89064f0cbf85507001a1239cc762c56d54b3e305c59f0c0bd709f35b2835c9"
+        }
+      },
+      "processing": {
+        "cropPixels": [
+          720,
+          540,
+          2400,
+          168
+        ],
+        "encoding": "JPEG quality 95, subsampling 0; no colour adjustment or rotation"
+      },
+      "note": "An aligned crop within one clean board from a generic timber surface. Modeled pieces provide joints and edges. This is not a measured Finnish timber species or building scan."
+    }
+  ]
+}

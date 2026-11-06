@@ -46,7 +46,21 @@ export function createMiniature(type) {
     new THREE.MeshStandardMaterial({ color: 0xcfb989, roughness: 0.75 }),
     [0, 0.01, 0],
   );
-  if (type === "ger") {
+  if (type === "sauna") {
+    box([1.2, 0.025, 0.55], [0, 0.06, 0.38], water);
+    box([0.75, 0.37, 0.64], [-0.08, 0.25, -0.15], wood);
+    for (const sign of [-1, 1])
+      add(
+        new THREE.BoxGeometry(0.48, 0.035, 0.78),
+        roof,
+        [-0.08 + sign * 0.205, 0.5, -0.15],
+        [0, 0, -sign * 0.42],
+      );
+    box([0.075, 0.28, 0.075], [-0.24, 0.66, -0.2], cream);
+    box([0.2, 0.03, 0.5], [0.2, 0.09, 0.46], wood);
+    tree(-0.57, -0.3, 0.7);
+    tree(0.5, -0.3, 0.65);
+  } else if (type === "ger") {
     add(new THREE.CylinderGeometry(0.58, 0.58, 0.37, 48), cream, [0, 0.23, 0]);
     add(new THREE.CylinderGeometry(0.12, 0.61, 0.25, 48), cream, [0, 0.54, 0]);
     add(

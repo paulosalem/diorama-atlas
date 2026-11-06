@@ -1,0 +1,94 @@
+{
+  "assets": [
+    {
+      "id": "fir_sapling",
+      "kind": "3d-model",
+      "title": "Fir Sapling",
+      "author": "Rob Tuytel (photography); Rico Cilliers (modeling)",
+      "source": "https://polyhaven.com/a/fir_sapling",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseEvidence": "https://polyhaven.com/license",
+      "retrieved": "2026-11-06T01:31:53.593Z",
+      "files": {
+        "model.gltf": "/public/sauna/forest/model.gltf",
+        "textures/fir_sapling_twigs_nor_gl_1k.jpg": "/public/sauna/forest/textures/fir_sapling_twigs_nor_gl_1k.jpg",
+        "textures/fir_sapling_branches_diff_1k.jpg": "/public/sauna/forest/textures/fir_sapling_branches_diff_1k.jpg",
+        "textures/fir_sapling_twigs_diff_1k.jpg": "/public/sauna/forest/textures/fir_sapling_twigs_diff_1k.jpg",
+        "textures/fir_sapling_branches_nor_gl_1k.jpg": "/public/sauna/forest/textures/fir_sapling_branches_nor_gl_1k.jpg",
+        "textures/fir_sapling_twigs_arm_1k.jpg": "/public/sauna/forest/textures/fir_sapling_twigs_arm_1k.jpg",
+        "textures/fir_sapling_branches_arm_1k.jpg": "/public/sauna/forest/textures/fir_sapling_branches_arm_1k.jpg",
+        "fir_sapling.bin": "/public/sauna/forest/fir_sapling.bin"
+      },
+      "fileIntegrity": {
+        "model.gltf": {
+          "bytes": 10979,
+          "sha256": "a9466ca9d8c5b9b2eeeeafd3ce426f8912dcbd98a7281bad8c734833eb35b186"
+        },
+        "textures/fir_sapling_twigs_nor_gl_1k.jpg": {
+          "bytes": 474717,
+          "sha256": "34928b2a9d1f722d2f64a7da468c790ecaca9b89c00ac0878a9e0bad26748368"
+        },
+        "textures/fir_sapling_branches_diff_1k.jpg": {
+          "bytes": 776633,
+          "sha256": "46d216526b6203dbd5dc3cfce5e49d7a4cc1770da2420faab45adf33671c7de4"
+        },
+        "textures/fir_sapling_twigs_diff_1k.jpg": {
+          "bytes": 252678,
+          "sha256": "a9900fafad850deeb5f79b928fd7590bca9e8ec8734d2368d4c64bba8b0c5b22"
+        },
+        "textures/fir_sapling_branches_nor_gl_1k.jpg": {
+          "bytes": 1137599,
+          "sha256": "dbe474f6cd593d51a19fb92a627ad900b9ab47dabd1bf60117a2cf9d110f79ea"
+        },
+        "textures/fir_sapling_twigs_arm_1k.jpg": {
+          "bytes": 300249,
+          "sha256": "d1ec27a55bb67bfe5fa2c8a41a545dc71769934b142db56ad7c703d4146e1770"
+        },
+        "textures/fir_sapling_branches_arm_1k.jpg": {
+          "bytes": 793567,
+          "sha256": "44c32b056b78c1046aeeb44c973a1d1352ea12d0d7ef2425527555f1256a0964"
+        },
+        "fir_sapling.bin": {
+          "bytes": 21677180,
+          "sha256": "efdebfae6ee4b3ea20c7a85eb9f798ff4953259a3616bcff0b7e580b00f34f40"
+        }
+      },
+      "sourceFiles": {
+        "model.gltf": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/fir_sapling/fir_sapling_1k.gltf",
+          "md5": "7b1a5ceae7be69954510b5a5c719b4fb"
+        },
+        "textures/fir_sapling_twigs_nor_gl_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_twigs_nor_gl_1k.jpg",
+          "md5": "764771b717c54b86fa7d3eadc4a1ada5"
+        },
+        "textures/fir_sapling_branches_diff_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_branches_diff_1k.jpg",
+          "md5": "84f1d40b80a015d65c0ded042a10765b"
+        },
+        "textures/fir_sapling_twigs_diff_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_twigs_diff_1k.jpg",
+          "md5": "cd218269e0b34bd1bdb48a8daf21be67"
+        },
+        "textures/fir_sapling_branches_nor_gl_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_branches_nor_gl_1k.jpg",
+          "md5": "db70c4595cf207cc04a02b49c195b78d"
+        },
+        "textures/fir_sapling_twigs_arm_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_twigs_arm_1k.jpg",
+          "md5": "cf97b5de863ebad9a48cb187ef3c3e74"
+        },
+        "textures/fir_sapling_branches_arm_1k.jpg": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/fir_sapling/fir_sapling_branches_arm_1k.jpg",
+          "md5": "29a9ff22b8f7f224069b1254db171c05"
+        },
+        "fir_sapling.bin": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/fir_sapling/fir_sapling.bin",
+          "md5": "b329143a90d95201891afc52daeb9698"
+        }
+      },
+      "note": "Original glTF model and 1k material images. Runtime instances normalize each authored variant to its chosen height. A generic botanical model, not a survey of the fictional Finnish site or an independently identified local species."
+    }
+  ]
+}

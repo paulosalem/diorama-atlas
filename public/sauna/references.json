@@ -1,0 +1,72 @@
+[
+  {
+    "sceneId": "finnish-lakeside-sauna",
+    "references": [
+      {
+        "label": "Timber and touch",
+        "note": "Bench levels, pale timber and ordinary equipment in a photographed Finnish sauna; not the fictional building.",
+        "image": "/public/sauna/interior.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Finnish_sauna_20170826.jpg",
+        "author": "Santeri Viinamäki",
+        "date": "2017-08-26",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "retrieved": "2026-11-06T00:51:35.031Z",
+        "sha256": "8c3ff16d82b5224a0f965687d3d0cb144f7fd69990f1111e0a5579b796e56979",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Stones and löyly",
+        "note": "A close view of angular heater stones, their air spaces and the metal rim; branding is not reproduced in the model.",
+        "image": "/public/sauna/stones.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Sauna_stones_on_heater_20170625.jpg",
+        "author": "Santeri Viinamäki",
+        "date": "2017-06-25",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "retrieved": "2026-11-06T00:51:34.557Z",
+        "sha256": "a28d2270afe4e6f9b5d1dfb0bb62ca7dcbf3bd9c93d7226652766e169bcba065",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Birch, water and choice",
+        "note": "A bucket, ladle and birch whisk show the construction and handling of everyday bathing objects.",
+        "image": "/public/sauna/bucket.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Sauna_bucket_and_vihta_20180814.jpg",
+        "author": "Santeri Viinamäki",
+        "date": "2018-08-14",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "retrieved": "2026-11-06T00:53:06.659Z",
+        "sha256": "07ad91b246f94f9d9d2392d8183cf2d1d8516618fc03588a3720ca630c1b7a6c",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "The cooling shore",
+        "note": "A camp-centre sauna by Lake Ätäskö informs the timber envelope and shore adjacency, not the imagined household's plan.",
+        "image": "/public/sauna/shore.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Sauna_building_in_R%C3%B6sk%C3%B6n_leirikeskus,_R%C3%B6sk%C3%B6,_Kitee,_North_Karelia,_Finland,_2025_August_-_4.jpg",
+        "author": "Ximonic (Simo Räsänen)",
+        "date": "2025-08-15",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "retrieved": "2026-11-06T00:51:38.849Z",
+        "sha256": "074a7b513654f3dca7dd2f1aa047df9c619b1459dacfed7923fa63cc6db7b37d",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Birch bark",
+        "note": "A Swedish birch macro informs the modeled trees and is also mapped onto their trunks; it is not a measured Finnish material scan.",
+        "image": "/public/sauna/birch-bark.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Part_of_birch_trunk_in_Norrkila.jpg",
+        "author": "W.carter",
+        "date": "2018-04-29",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "retrieved": "2026-11-06T00:53:05.907Z",
+        "sha256": "1236d99eb62e0efc9c3bb75bbdfaba5afb1092424966b44ec8ef159c8c5012f7",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional image edits. Repeated over authored trunk geometry."
+      }
+    ]
+  }
+]

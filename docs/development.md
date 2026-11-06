@@ -52,8 +52,8 @@ The bundled app needs no key, database or generated cache. See
 | `scripts/`, `tests/`                 | Maintenance, captures and regression checks                      |
 | `docs/`, `.github/skills/`           | Human and agent development guidance                             |
 
-Seven curated definitions, seven saved interiors and twelve outdoor definitions
-form the 26-scene collection. Preserve unique IDs and saved-package provenance.
+Eight curated definitions, seven saved interiors and twelve outdoor definitions
+form the 27-scene collection. Preserve unique IDs and saved-package provenance.
 
 Unfinished entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
@@ -68,6 +68,15 @@ Its full-scale visitor can look through the doorway and inspect the camp outside
 Miniature viewpoints may set `shellOpen: false` when the roof or doorway is
 their subject; other focused views retain the shared open-shell behavior.
 Grass uses the existing anchored wind shader and follows the shared reduced-motion clock.
+
+The [Finnish sauna](scenes/finnish-lakeside-sauna.md) shares its building,
+furnishings, shoreline and jetty between both representations under
+`environments/sauna/`. Shared helpers own physical timber mapping, supported
+stairs, birch foliage, vapor and instanced botanical assets. The full-scale grove
+joins runtime readiness and explicitly releases its resources on navigation;
+the miniature retains the immediate birches and a closed terrain/water section.
+`tests/browser/sauna.spec.js` probes door widths and heights, stair treads,
+resource disposal, shell endpoints, orbit/zoom and representation switching.
 
 The [Roman domus](scenes/roman-domus.md) uses a dedicated interior builder
 under `src/client/environments/domus/`. Open
@@ -179,8 +188,8 @@ Before captures cannot be overwritten. Use identical original cameras, viewport
 and motion settings; add separate evidence for newly connected spaces.
 The same capture tool accepts an outdoor `--scene ID`; an unfinished place
 also requires `--include-drafts` and a local server. Its default collection
-remains the thirteen interiors. Use `--all --version miniature` to capture all
-25 Miniatures and their named views, or `--scene ID --version miniature` for
+remains the fifteen interiors. Use `--all --version miniature` to capture all
+27 Miniatures and their named views, or `--scene ID --version miniature` for
 one place. The Whole capture begins closed; selecting an interior detail opens
 its shell. Capture the opened Whole state separately when comparing the opening.
 The domus opens in cutaway mode by default and captures its five shared-runtime

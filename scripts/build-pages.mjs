@@ -23,8 +23,10 @@ const publishedDirectories = [
   "public/outdoors",
   "public/previews",
   "public/domus",
+  "public/ger",
   "public/print-library",
   "public/riad",
+  "public/sauna",
   "node_modules/three/examples/jsm",
 ];
 const publishedFiles = [

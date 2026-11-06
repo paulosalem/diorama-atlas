@@ -85,6 +85,7 @@ for (const scene of [
   "textile",
   "balinese-subak-terraces",
   "douro-vineyard",
+  "finnish-lakeside-sauna",
 ]) {
   test(`${scene}: miniature recordings are bilingual, opt-in and released on mute and navigation`, async ({
     page,
@@ -228,6 +229,7 @@ for (const [scene, initialView, target] of [
 for (const [scene, detailView] of [
   ["textile", "dyes"],
   ["douro-vineyard", "quinta"],
+  ["finnish-lakeside-sauna", "heater"],
 ])
   for (const viewport of [
     { width: 320, height: 800 },
@@ -510,60 +512,64 @@ test("saved narration consent survives blocked autoplay without changing existin
   await expect.poll(async () => (await state(page)).state).toBe("playing");
 });
 
-test("ownership, page hiding, mute and leaving the scene stop the narrator", async ({
-  page,
-  context,
-}) => {
-  await open(page);
-  await page.locator("#narrationPlay").click();
-  await expect.poll(async () => (await state(page)).state).toBe("playing");
-  await page.evaluate(() => {
-    const other = new BroadcastChannel("diorama-atlas-audio");
-    other.postMessage({
-      type: "claim",
-      time: Date.now() + 1,
-      id: "narration-handover",
+for (const scene of ["riad", "finnish-lakeside-sauna"])
+  test(`${scene}: ownership, page hiding, mute and leaving the scene stop the narrator`, async ({
+    page,
+    context,
+  }) => {
+    await open(page, scene);
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.evaluate(() => {
+      const other = new BroadcastChannel("diorama-atlas-audio");
+      other.postMessage({
+        type: "claim",
+        time: Date.now() + 1,
+        id: "narration-handover",
+      });
+      other.close();
     });
-    other.close();
-  });
-  await expect.poll(async () => (await state(page)).state).toBe("paused");
-  await page.locator("#narrationPlay").click();
-  await expect.poll(async () => (await state(page)).state).toBe("playing");
-  await page.evaluate(() => {
-    Object.defineProperty(document, "hidden", {
-      configurable: true,
-      get: () => true,
+    await expect.poll(async () => (await state(page)).state).toBe("paused");
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.evaluate(() => {
+      Object.defineProperty(document, "hidden", {
+        configurable: true,
+        get: () => true,
+      });
+      document.dispatchEvent(new Event("visibilitychange"));
     });
-    document.dispatchEvent(new Event("visibilitychange"));
+    await expect.poll(async () => (await state(page)).state).toBe("paused");
+    await page.evaluate(() => {
+      delete document.hidden;
+      document.dispatchEvent(new Event("visibilitychange"));
+    });
+    expect((await state(page)).state).toBe("paused");
+    await page.locator("#narrationPlay").click();
+    await expect.poll(async () => (await state(page)).state).toBe("playing");
+    await page.locator("#soundscapeButton").click();
+    await page.locator("#muteSoundscape").click();
+    await expect.poll(async () => (await state(page)).state).toBe("paused");
+    const cookie = (await context.cookies()).find(
+      (c) => c.name === "atlas-audio-preferences",
+    );
+    expect(JSON.parse(decodeURIComponent(cookie.value)).narrationEnabled).toBe(
+      false,
+    );
+    await page.locator("#closeSoundscape").click();
+    const narrator = await page.evaluateHandle(
+      async () =>
+        (
+          await import("/src/client/viewer/panorama-viewer.js")
+        ).getActiveViewer().narration,
+    );
+    await page.locator("#riadExpand").click();
+    await expect(page.locator("#placesButton")).toBeVisible();
+    expect(await narrator.evaluate((n) => n.snapshot.state)).toBe("disposed");
+    expect(
+      await page.evaluate(() =>
+        window.narrationElements[0].getAttribute("src"),
+      ),
+    ).toBeNull();
+    await narrator.dispose();
   });
-  await expect.poll(async () => (await state(page)).state).toBe("paused");
-  await page.evaluate(() => {
-    delete document.hidden;
-    document.dispatchEvent(new Event("visibilitychange"));
-  });
-  expect((await state(page)).state).toBe("paused");
-  await page.locator("#narrationPlay").click();
-  await expect.poll(async () => (await state(page)).state).toBe("playing");
-  await page.locator("#soundscapeButton").click();
-  await page.locator("#muteSoundscape").click();
-  await expect.poll(async () => (await state(page)).state).toBe("paused");
-  const cookie = (await context.cookies()).find(
-    (c) => c.name === "atlas-audio-preferences",
-  );
-  expect(JSON.parse(decodeURIComponent(cookie.value)).narrationEnabled).toBe(
-    false,
-  );
-  await page.locator("#closeSoundscape").click();
-  const narrator = await page.evaluateHandle(
-    async () =>
-      (await import("/src/client/viewer/panorama-viewer.js")).getActiveViewer()
-        .narration,
-  );
-  await page.locator("#riadExpand").click();
-  await expect(page.locator("#placesButton")).toBeVisible();
-  expect(await narrator.evaluate((n) => n.snapshot.state)).toBe("disposed");
-  expect(
-    await page.evaluate(() => window.narrationElements[0].getAttribute("src")),
-  ).toBeNull();
-  await narrator.dispose();
-});

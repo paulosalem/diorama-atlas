@@ -1,6 +1,6 @@
 # The collection
 
-**26 imagined places, 22 geographic settings.** Each brief
+**27 imagined places, 23 geographic settings.** Each brief
 records cultural intent, composition, material and atmospheric priorities,
 actual view keys and implementation entry points. The brief guides development;
 it is not evidence that an invented building exists.
@@ -10,6 +10,11 @@ All briefs inherit the [philosophy](../philosophy.md) and
 before changing it. Preserve distinct saved variants and approved cameras.
 
 ## Interiors and domestic courtyards
+
+[Finnish Lakeside Sauna](finnish-lakeside-sauna.md) follows the rhythm of
+heating, bathing, resting and cooling near Saimaa:
+[enter the sauna](https://paulosalem.github.io/diorama-atlas/?scene=finnish-lakeside-sauna&version=interior)
+or [open its miniature](https://paulosalem.github.io/diorama-atlas/?scene=finnish-lakeside-sauna&version=miniature).
 
 [Mongolian Ger Household](mongolian-ger.md) explores portable construction and
 ordinary domestic care near Kharkhorin:

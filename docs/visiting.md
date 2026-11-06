@@ -110,8 +110,8 @@ shell. For example:
 
 ## What the public edition includes
 
-All 25 bundled scenes, material imagery, references, music, ambience and
-580 OpenAI recordings are served as static files. Guided visits, Miniatures
+All 27 bundled scenes, material imagery, references, music, ambience and
+624 OpenAI recordings are served as static files. Guided visits, Miniatures
 and object-detail **Listen** use these recordings in both languages.
 The public edition cannot create scenes or generate recordings; those optional
 tools belong to the [local development environment](development.md).

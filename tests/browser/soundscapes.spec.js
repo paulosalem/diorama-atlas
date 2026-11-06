@@ -120,85 +120,88 @@ test("looping stays bounded and spatial audio follows the camera without a frame
   });
 });
 
-test("default-on channels wait for explicit playback, then mix independently and release", async ({
-  page,
-}) => {
-  const audioRequests = [];
-  page.on("request", (request) => {
-    if (/\.(mp3|ogg|wav)$/.test(request.url()))
-      audioRequests.push(request.url());
-  });
-  await panel(page, "riad");
-  expect(audioRequests).toEqual([]);
-  expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
-  expect(
-    await page.evaluate(
-      async () =>
-        (await import("/src/client/main.js")).getAtlasAudio().snapshot,
-    ),
-  ).toMatchObject({
-    ambienceEnabled: true,
-    musicEnabled: true,
-    narrationEnabled: false,
-  });
-  await page
-    .getByRole("button", { name: "Resume ambience", exact: true })
-    .click();
-  await expect(page.locator("#ambientSound")).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await page.getByRole("button", { name: "Resume music", exact: true }).click();
-  await expect(page.locator("#musicSound")).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await expect
-    .poll(() =>
-      page.evaluate(() =>
-        window.audioMeters
-          .map((meter) => {
-            const values = new Float32Array(meter.fftSize);
-            meter.getFloatTimeDomainData(values);
-            return Math.sqrt(
-              values.reduce((sum, value) => sum + value * value, 0) /
-                values.length,
-            );
-          })
-          .every((rms) => rms > 0.0001),
+for (const scene of ["riad", "finnish-lakeside-sauna"])
+  test(`${scene}: default-on channels wait for explicit playback, then mix independently and release`, async ({
+    page,
+  }) => {
+    const audioRequests = [];
+    page.on("request", (request) => {
+      if (/\.(mp3|ogg|wav)$/.test(request.url()))
+        audioRequests.push(request.url());
+    });
+    await panel(page, scene);
+    expect(audioRequests).toEqual([]);
+    expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
+    expect(
+      await page.evaluate(
+        async () =>
+          (await import("/src/client/main.js")).getAtlasAudio().snapshot,
       ),
-    )
-    .toBe(true);
-  const playing = await inspect(page);
-  expect(playing.ambience.contextState).toBe("running");
-  expect(playing.music.contextState).toBe("running");
-  expect(playing.ambience.bufferBytes).toBeGreaterThan(1000);
-  expect(playing.ambience.bufferBytes + playing.music.bufferBytes).toBeLessThan(
-    130 * 1024 * 1024,
-  );
-  await page.locator("#musicVolume").fill("10");
-  await expect(page.locator("output[for=musicVolume]")).toHaveText("10%");
-  await page.getByText("About the sound & credits", { exact: true }).click();
-  await expect(page.locator("#audioCredits a")).not.toHaveCount(0);
-  await expect(page.locator("#audioCredits")).toContainText("CC");
-  await page
-    .getByRole("button", { name: "Mute ambience", exact: true })
-    .click();
-  expect((await inspect(page)).ambience.nodes).toBe(0);
-  expect((await inspect(page)).music.state).toBe("playing");
-  await page.getByRole("button", { name: "Mute all", exact: true }).click();
-  const stopped = await inspect(page);
-  expect(stopped.ambience.bufferBytes).toBe(0);
-  expect(stopped.music.sources).toBe(0);
-  expect(stopped.ownsPlayback).toBe(false);
-  await expect
-    .poll(() =>
-      page.evaluate(() =>
-        window.audioContexts.every((c) => c.state === "closed"),
-      ),
-    )
-    .toBe(true);
-});
+    ).toMatchObject({
+      ambienceEnabled: true,
+      musicEnabled: true,
+      narrationEnabled: false,
+    });
+    await page
+      .getByRole("button", { name: "Resume ambience", exact: true })
+      .click();
+    await expect(page.locator("#ambientSound")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    await page
+      .getByRole("button", { name: "Resume music", exact: true })
+      .click();
+    await expect(page.locator("#musicSound")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          window.audioMeters
+            .map((meter) => {
+              const values = new Float32Array(meter.fftSize);
+              meter.getFloatTimeDomainData(values);
+              return Math.sqrt(
+                values.reduce((sum, value) => sum + value * value, 0) /
+                  values.length,
+              );
+            })
+            .every((rms) => rms > 0.0001),
+        ),
+      )
+      .toBe(true);
+    const playing = await inspect(page);
+    expect(playing.ambience.contextState).toBe("running");
+    expect(playing.music.contextState).toBe("running");
+    expect(playing.ambience.bufferBytes).toBeGreaterThan(1000);
+    expect(
+      playing.ambience.bufferBytes + playing.music.bufferBytes,
+    ).toBeLessThan(130 * 1024 * 1024);
+    await page.locator("#musicVolume").fill("10");
+    await expect(page.locator("output[for=musicVolume]")).toHaveText("10%");
+    await page.getByText("About the sound & credits", { exact: true }).click();
+    await expect(page.locator("#audioCredits a")).not.toHaveCount(0);
+    await expect(page.locator("#audioCredits")).toContainText("CC");
+    await page
+      .getByRole("button", { name: "Mute ambience", exact: true })
+      .click();
+    expect((await inspect(page)).ambience.nodes).toBe(0);
+    expect((await inspect(page)).music.state).toBe("playing");
+    await page.getByRole("button", { name: "Mute all", exact: true }).click();
+    const stopped = await inspect(page);
+    expect(stopped.ambience.bufferBytes).toBe(0);
+    expect(stopped.music.sources).toBe(0);
+    expect(stopped.ownsPlayback).toBe(false);
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          window.audioContexts.every((c) => c.state === "closed"),
+        ),
+      )
+      .toBe(true);
+  });
 
 test("the shared theme survives internal navigation and reload preserves choices", async ({
   page,

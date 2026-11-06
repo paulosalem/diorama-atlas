@@ -90,7 +90,7 @@ the Three.js runtime and local assets needed by the collection.
 
 ### Floating architectural and landscape sections
 
-All 25 bundled places have corresponding miniatures: thirteen opening interiors
+All 27 bundled places have corresponding miniatures: fifteen opening interiors
 and twelve two-piece landscapes. Existing full-scale visits and their authored
 camera definitions remain unchanged. Douro retains its accepted composition and
 eleven Miniature viewpoints. Oaxaca and Bali established the shared treatment
@@ -150,7 +150,7 @@ The collection-wide `scene-narration.js` panel reuses the viewer's single narrat
 element. Local prerecorded clips are chosen by global language and named view;
 `narration-triggers.js` also requires physical proximity and sustained gaze.
 The shared audio controller coordinates consent, ownership, ducking and mute.
-All 25 bundled scenes retain their original bilingual entry/view recordings.
+All 27 bundled scenes retain their original bilingual entry/view recordings.
 Douro's Landscape retains its four recorded views; its additional yard and
 railway views explicitly omit the recorded guide rather than pretending a clip
 exists. Miniatures and object details use local OpenAI recordings, with authored

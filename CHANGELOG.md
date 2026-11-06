@@ -1,5 +1,23 @@
 # Changelog
 
+## Collection expansion — Finnish lakeside sauna — 2026-11-05
+
+- Added an imagined household sauna near Saimaa, with a heated-stone stove,
+  slatted benches, hollow vessels, changing room, sheltered porch and a worn
+  route to a supported lakeside jetty.
+- Added its peer opening miniature, sharing the furnished rooms, birches,
+  shoreline and complete terrain/water section, with orbit, zoom and direct
+  switching between representations.
+- Included six environment views, seven miniature views, four bilingual object
+  explanations, 22 prerecorded passages, five licensed photographic references
+  and credited timber and botanical assets.
+- Spatially clustered forest instances retain botanical detail while reducing
+  unnecessary rendering. Shared particle defaults preserve existing interiors.
+- Included the sauna and ger asset directories in the static export allowlist;
+  neither experience requires a provider or an external asset service.
+- The collection now contains 27 places across 23 geographic settings and
+  624 recordings. The package remains v1.0.0; this is not a new tagged release.
+
 ## Collection expansion — Mongolian ger — 2026-11-05
 
 - Added an imagined contemporary ger household near Kharkhorin, with a circular

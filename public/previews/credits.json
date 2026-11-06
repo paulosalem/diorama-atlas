@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-06T00:49:20.623Z",
+  "checkedAt": "2026-11-06T02:18:33.869Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -188,6 +188,19 @@
       "height": 707,
       "bytes": 1201233,
       "sha256": "9fc786739f42dff614604cec9c85bea9c1fa3ff799c168bb09fd1fc44b21e547",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "file": "finnish-lakeside-sauna.png",
+      "scene": "finnish-lakeside-sauna",
+      "view": "room",
+      "width": 1232,
+      "height": 707,
+      "bytes": 1071506,
+      "sha256": "ab58b6640bc1b18747d310eac099aa31d99d37cc7adc97baeb0148bdfb1b7ad2",
       "viewport": {
         "width": 1280,
         "height": 900

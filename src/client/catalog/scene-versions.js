@@ -51,6 +51,29 @@ export const landscapeVersions = Object.freeze([
 ]);
 
 const miniatureStudies = {
+  "finnish-lakeside-sauna": {
+    id: "sauna-miniature",
+    sceneId: "finnish-lakeside-sauna",
+    defaultView: "whole",
+    farClip: 180,
+    sunPosition: [-14, 25, 28],
+    sunTarget: [0, 0, 0],
+    sunIntensity: 3,
+    environmentIntensity: 0.32,
+    exposure: 1.12,
+    floorY: -2.4,
+    planarReflections: 1,
+    openOffset: [10, 7, -2],
+    whole: {
+      label: "The whole piece",
+      position: [24, 21, 28],
+      target: [0, 1, 2],
+      fov: 40,
+      orbit: true,
+      overview: true,
+      adaptiveBounds: true,
+    },
+  },
   "mongolian-ger": {
     id: "ger-miniature",
     sceneId: "mongolian-ger",

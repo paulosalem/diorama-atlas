@@ -15,6 +15,14 @@ const event = (asset, level, position, interval, extra = {}) => ({
 });
 
 export const SOUNDSCAPES = {
+  "finnish-lakeside-sauna": {
+    label:
+      "Quiet fire and garden ambience; illustrative recordings, not Finnish field recordings",
+    layers: [
+      loop("cooking-fire", 0.16, [-2.05, 0.7, 0.1], { refDistance: 2 }),
+      loop("garden-birds", 0.1, [-5, 3, 5], { refDistance: 4 }),
+    ],
+  },
   "mongolian-ger": {
     label:
       "Quiet household handling; illustrative recordings, not a Mongolian field recording",

@@ -3,6 +3,7 @@ import { sitePath, staticHosting } from "../site.js";
 import { domusScene } from "./domus-catalog.js";
 import { interiorVersions } from "./scene-versions.js";
 import { gerScene } from "./ger-catalog.js";
+import { saunaScene } from "./sauna-catalog.js";
 
 export const interiorDraftScenes = [];
 
@@ -515,6 +516,7 @@ export const curatedScenes = [
   },
   domusScene,
   gerScene,
+  saunaScene,
 ];
 
 export async function loadScenes({ includeDrafts = false } = {}) {

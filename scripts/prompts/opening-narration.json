@@ -5,6 +5,108 @@
   },
   "assets": [
     {
+      "id": "finnish-lakeside-sauna-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "locale": "en-US",
+      "title": "Warmth, water and quiet company",
+      "text": "Sauna culture in Finland belongs to everyday life as well as special occasions. Here, an imagined household near Lake Saimaa links a warm timber room to a changing space, porch and lakeshore. The heated stones, benches and water vessels explain a rhythm of preparation, bathing and rest. This is one contemporary wood-fired interpretation, not a model for every Finnish sauna or a guide to installing a heater.",
+      "references": [
+        "https://ich.unesco.org/en/RL/sauna-culture-in-finland-01596",
+        "https://sauna.fi/en/sauna-house-at-vaskiniemi/sauna-bathing-and-customs/"
+      ]
+    },
+    {
+      "id": "finnish-lakeside-sauna-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "locale": "pt-BR",
+      "title": "Calor, água e companhia tranquila",
+      "text": "A cultura da sauna na Finlândia faz parte do cotidiano e também de ocasiões especiais. Aqui, uma casa imaginada perto do lago Saimaa liga um cômodo de madeira aquecido ao vestiário, à varanda e à margem do lago. Pedras quentes, bancos e recipientes de água revelam um ritmo de preparação, banho e descanso. Esta é uma interpretação contemporânea a lenha, não um modelo para toda sauna finlandesa nem um guia de instalação de aquecedores.",
+      "references": [
+        "https://ich.unesco.org/en/RL/sauna-culture-in-finland-01596",
+        "https://sauna.fi/en/sauna-house-at-vaskiniemi/sauna-bathing-and-customs/"
+      ]
+    },
+    {
+      "id": "finnish-lakeside-sauna-heater-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "heater",
+      "locale": "en-US",
+      "title": "Heat held in the stones",
+      "text": "Water cast onto hot stones produces löyly, the vapor and sensation of heat central to the sauna experience. Look closely at the angular stones, the spaces between them and the flue rising above the firebox. A protective rail separates this working area from the benches. The details make the heater understandable, but its fictional construction is not installation or fire-safety advice."
+    },
+    {
+      "id": "finnish-lakeside-sauna-heater-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "heater",
+      "locale": "pt-BR",
+      "title": "Calor guardado nas pedras",
+      "text": "A água lançada sobre pedras quentes produz o löyly, o vapor e a sensação de calor centrais à experiência da sauna. Observe as pedras angulosas, os espaços entre elas e o tubo que sobe acima da fornalha. Uma proteção de madeira separa essa área de trabalho dos bancos. Os detalhes ajudam a compreender o aquecedor, mas esta construção fictícia não orienta instalações nem cuidados contra incêndio."
+    },
+    {
+      "id": "finnish-lakeside-sauna-benches-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "benches",
+      "locale": "en-US",
+      "title": "Timber within reach",
+      "text": "The slatted benches, small steps and curved headrest are made for the body, not just for appearance. Their smooth timber contrasts with the stone and metal of the heater. Beside the bucket rests a tied birch whisk, often called vasta in eastern Finland and vihta elsewhere. Its use varies; no single sequence of objects or actions defines how everyone must bathe."
+    },
+    {
+      "id": "finnish-lakeside-sauna-benches-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "benches",
+      "locale": "pt-BR",
+      "title": "Madeira ao alcance das mãos",
+      "text": "Os bancos ripados, os pequenos degraus e o apoio de cabeça curvo foram pensados para o corpo, não apenas para a aparência. A madeira lisa contrasta com a pedra e o metal do aquecedor. Perto do balde repousa um feixe de bétula, muitas vezes chamado de vasta no leste da Finlândia e vihta em outras regiões. Seu uso varia; uma única sequência de objetos ou gestos não define como todos devem tomar banho."
+    },
+    {
+      "id": "finnish-lakeside-sauna-changing-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "changing",
+      "locale": "en-US",
+      "title": "An ordinary pause",
+      "text": "The changing room gives the visit a quieter interval. A towel hangs from a timber peg, shoes wait beneath the seat, and drinking vessels sit within reach. These ordinary things connect the heated room to the rest of household life. Daylight enters through a recessed window, while the open doorway keeps the next space visible. The arrangement belongs to this imagined family, not a prescribed national ritual."
+    },
+    {
+      "id": "finnish-lakeside-sauna-changing-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "changing",
+      "locale": "pt-BR",
+      "title": "Uma pausa cotidiana",
+      "text": "O vestiário oferece um intervalo mais tranquilo. Uma toalha pende de um pino de madeira, sapatos esperam sob o assento e recipientes para beber ficam à mão. Essas coisas comuns ligam o cômodo aquecido ao restante da vida doméstica. A luz entra por uma janela recuada, enquanto a porta aberta mantém visível o espaço seguinte. A disposição pertence a esta família imaginada, não a um ritual nacional obrigatório."
+    },
+    {
+      "id": "finnish-lakeside-sauna-passage-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "From warmth to open air",
+      "text": "The doorway leads through a sheltered porch toward a worn path and timber jetty. This succession of spaces gives cooling and resting a place alongside bathing. Going into the lake is a choice, not a requirement; sitting outside can be enough. The open view also reveals the building's scale, with a threshold, shallow steps and supported deck rather than a doorway pasted onto a closed wall."
+    },
+    {
+      "id": "finnish-lakeside-sauna-passage-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Do calor ao ar livre",
+      "text": "A porta conduz por uma varanda abrigada até um caminho gasto e um píer de madeira. Essa sequência dá ao descanso e ao resfriamento um lugar ao lado do banho. Entrar no lago é uma escolha, não uma obrigação; sentar ao ar livre pode bastar. A vista aberta também revela a escala do edifício, com soleira, degraus baixos e piso apoiado, e não uma porta aplicada sobre uma parede fechada."
+    },
+    {
+      "id": "finnish-lakeside-sauna-shore-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "shore",
+      "locale": "en-US",
+      "title": "A household beside the lake",
+      "text": "Seen from the water's edge, the sauna is a modest timber building among birches. Its porch offers shelter, a seat and a place for fuel, while the jetty rests on beams and posts above the water. Finnish lakeside photographs informed these relationships. The cottage, shoreline and planting remain an authored setting, intended to make ordinary care and shared leisure visible rather than reproduce a named property."
+    },
+    {
+      "id": "finnish-lakeside-sauna-shore-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "shore",
+      "locale": "pt-BR",
+      "title": "Uma casa junto ao lago",
+      "text": "Vista da margem, a sauna é um modesto edifício de madeira entre bétulas. A varanda oferece abrigo, um assento e lugar para a lenha, enquanto o píer se apoia em vigas e postes sobre a água. Fotografias finlandesas à beira de lagos orientaram essas relações. A casa, a margem e a vegetação formam um cenário criado para tornar visíveis o cuidado cotidiano e o lazer compartilhado, sem reproduzir uma propriedade conhecida."
+    },
+    {
       "id": "mongolian-ger-en-US",
       "scene": "mongolian-ger",
       "locale": "en-US",
@@ -4871,6 +4973,86 @@
       "locale": "pt-BR",
       "title": "Uma moradia portátil, aberta à luz.",
       "text": "A cobertura, os caibros radiais e a parte frontal se erguem e se afastam, revelando a mesma casa mobiliada da visita ao interior. O anel, a treliça, o feltro e as faixas explicam uma construção portátil; camas, armários e uma mesa de chá fazem dela um lar. Um pequeno trecho de estepe permanece junto à porta aberta. Esta miniatura é uma interpretação criada perto de Kharkhorin, não um levantamento de uma casa nem uma instrução de montagem."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-stones-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-stones",
+      "locale": "en-US",
+      "title": "Heat held in stone",
+      "text": "Water cast onto heated stones produces löyly. Angular stones leave air spaces around the heater, while a firebox and flue carry combustion below and away from them. This imagined wood-fired heater is one of many sauna types, not an installation guide."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-benches-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-benches",
+      "locale": "en-US",
+      "title": "A place to settle",
+      "text": "Slatted benches offer different heights, while smooth edges and a headrest make contact with timber comfortable. A folded cloth and the darker traces of recent water suggest care and use, not a room kept untouched for display."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-whisk-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-whisk",
+      "locale": "en-US",
+      "title": "Birch, water and choice",
+      "text": "A tied bundle of leafy birch twigs rests near the water bucket. Often called vasta in eastern Finland and vihta elsewhere, the whisk belongs to a varied bathing tradition. Not everyone uses one; quiet consideration for other bathers matters more than a prescribed ritual."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-threshold-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-threshold",
+      "locale": "en-US",
+      "title": "A rhythm of rooms",
+      "text": "A changing room and sheltered porch connect the heated room to the lakeshore. Cooling can mean sitting in fresh air rather than swimming. The fictional household makes that everyday sequence visible without treating all Finnish sauna customs as identical."
+    },
+    {
+      "id": "finnish-lakeside-sauna-miniature-whole-en-US",
+      "scene": "finnish-lakeside-sauna",
+      "view": "miniature-whole",
+      "locale": "en-US",
+      "title": "Warmth, water and quiet company",
+      "text": "Sauna culture in Finland belongs to everyday life as well as special occasions. Here, an imagined household near Lake Saimaa links a warm timber room to a changing space, porch and lakeshore. The heated stones, benches and water vessels explain a rhythm of preparation, bathing and rest. This is one contemporary wood-fired interpretation, not a model for every Finnish sauna or a guide to installing a heater. The architectural shell lifts aside to reveal the rooms, their objects and their connected passages. The cut faces describe a piece of the place, not necessarily a whole building."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-stones-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-stones",
+      "locale": "pt-BR",
+      "title": "Calor guardado na pedra",
+      "text": "A água lançada sobre pedras aquecidas produz o löyly. As pedras angulosas deixam espaços para o ar, enquanto a fornalha e a chaminé conduzem a combustão por baixo delas e para fora. Este aquecedor a lenha imaginado é um entre muitos tipos de sauna, não um guia de instalação."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-benches-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-benches",
+      "locale": "pt-BR",
+      "title": "Um lugar para se acomodar",
+      "text": "Bancos ripados oferecem alturas diferentes, enquanto bordas suaves e um apoio de cabeça tornam confortável o contato com a madeira. Um pano dobrado e marcas mais escuras de água recente sugerem cuidado e uso, não um cômodo intocado para exposição."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-whisk-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-whisk",
+      "locale": "pt-BR",
+      "title": "Bétula, água e escolha",
+      "text": "Um feixe amarrado de ramos de bétula repousa perto do balde de água. Muitas vezes chamado de vasta no leste da Finlândia e vihta em outras regiões, faz parte de uma tradição de banho variada. Nem todos o usam; a consideração por quem compartilha a sauna importa mais do que um ritual obrigatório."
+    },
+    {
+      "id": "finnish-lakeside-sauna-detail-threshold-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "detail-threshold",
+      "locale": "pt-BR",
+      "title": "Um ritmo de espaços",
+      "text": "Um vestiário e uma varanda abrigada ligam o cômodo aquecido à margem do lago. Refrescar-se pode significar sentar ao ar livre, e não necessariamente nadar. Esta casa imaginada torna visível essa sequência cotidiana sem tratar todos os costumes finlandeses de sauna como idênticos."
+    },
+    {
+      "id": "finnish-lakeside-sauna-miniature-whole-pt-BR",
+      "scene": "finnish-lakeside-sauna",
+      "view": "miniature-whole",
+      "locale": "pt-BR",
+      "title": "Calor, água e companhia tranquila",
+      "text": "A cultura da sauna na Finlândia faz parte do cotidiano e também de ocasiões especiais. Aqui, uma casa imaginada perto do lago Saimaa liga um cômodo de madeira aquecido ao vestiário, à varanda e à margem do lago. Pedras quentes, bancos e recipientes de água revelam um ritmo de preparação, banho e descanso. Esta é uma interpretação contemporânea a lenha, não um modelo para toda sauna finlandesa nem um guia de instalação de aquecedores. O invólucro arquitetônico se ergue e se afasta, revelando os cômodos, seus objetos e as passagens. As faces cortadas mostram uma parte do lugar, não necessariamente um edifício completo."
     }
   ]
 }
