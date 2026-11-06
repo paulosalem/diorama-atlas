@@ -52,8 +52,8 @@ The bundled app needs no key, database or generated cache. See
 | `scripts/`, `tests/`                 | Maintenance, captures and regression checks                      |
 | `docs/`, `.github/skills/`           | Human and agent development guidance                             |
 
-Six curated definitions, seven saved interiors and twelve outdoor definitions
-form the 25-scene collection. Preserve unique IDs and saved-package provenance.
+Seven curated definitions, seven saved interiors and twelve outdoor definitions
+form the 26-scene collection. Preserve unique IDs and saved-package provenance.
 
 Unfinished entries are explicitly marked `draft: true` and excluded
 from the bundled collection. Opt in locally with `&draft=1` on a scene URL;
@@ -61,6 +61,13 @@ the header identifies the preview, and static hosting rejects this option.
 Draft scripts do not count as completed recordings. Promotion removes the
 flag only after narration, cultural/visual review and all release checks pass.
 Related variants are deliberate entries, not duplicate files to delete.
+
+The [Mongolian ger](scenes/mongolian-ger.md) has a dedicated builder under
+`src/client/environments/ger/`, shared by its interior and opening miniature.
+Its full-scale visitor can look through the doorway and inspect the camp outside.
+Miniature viewpoints may set `shellOpen: false` when the roof or doorway is
+their subject; other focused views retain the shared open-shell behavior.
+Grass uses the existing anchored wind shader and follows the shared reduced-motion clock.
 
 The [Roman domus](scenes/roman-domus.md) uses a dedicated interior builder
 under `src/client/environments/domus/`. Open

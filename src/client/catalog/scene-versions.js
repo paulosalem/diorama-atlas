@@ -51,6 +51,29 @@ export const landscapeVersions = Object.freeze([
 ]);
 
 const miniatureStudies = {
+  "mongolian-ger": {
+    id: "ger-miniature",
+    sceneId: "mongolian-ger",
+    defaultView: "whole",
+    farClip: 160,
+    sunPosition: [-14, 23, 18],
+    sunTarget: [0, 0, 0],
+    sunIntensity: 3,
+    environmentIntensity: 0.35,
+    exposure: 1.15,
+    floorY: -1.4,
+    planarReflections: 0,
+    openOffset: [8, 5, -1],
+    whole: {
+      label: "The whole piece",
+      position: [15, 12, 17],
+      target: [0, 0.7, 0],
+      fov: 40,
+      orbit: true,
+      overview: true,
+      adaptiveBounds: true,
+    },
+  },
   "douro-vineyard": douroMiniature,
   textile: {
     id: "textile-miniature",

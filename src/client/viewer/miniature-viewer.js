@@ -154,12 +154,13 @@ export async function createMiniatureViewer(
     narrator.stop();
     selected = key;
     if (key !== "whole" && native.runtime.shell)
-      native.setOpen(true, preference.matches);
+      native.setOpen(views[key].shellOpen !== false, preference.matches);
     native.view(views[key]);
     native.reducedMotion(preference.matches);
     const url = new URL(location.href);
     url.searchParams.set("view", key);
     if (native.inspection.shell?.open) url.searchParams.set("open", "1");
+    else url.searchParams.delete("open");
     history.replaceState(null, "", url);
     find("riadViewLabel").textContent = copy().views[key];
     render();

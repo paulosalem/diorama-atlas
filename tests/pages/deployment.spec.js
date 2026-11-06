@@ -167,7 +167,7 @@ test("the globe, preview and return navigation remain inside the project path", 
       ),
     )
     .toBe(true);
-  await expect(page.locator(".place-pin")).toHaveCount(21);
+  await expect(page.locator(".place-pin")).toHaveCount(22);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -200,7 +200,12 @@ test("the globe, preview and return navigation remain inside the project path", 
   ).toBe(1);
 });
 
-for (const id of ["textile", "naxi-canal-quarter", "alfama-hillside"]) {
+for (const id of [
+  "textile",
+  "naxi-canal-quarter",
+  "alfama-hillside",
+  "mongolian-ger",
+]) {
   test(`${id}: collection miniature navigation and narration use the project path`, async ({
     page,
     baseURL,
@@ -229,12 +234,14 @@ for (const id of ["textile", "naxi-canal-quarter", "alfama-hillside"]) {
     expect(state.finiteGeometry).toBe(true);
     expect(state.audio.contextState).toBe("closed");
     if (id === "textile") expect(state.shell.open).toBe(true);
-    if (id === "alfama-hillside") {
-      for (const key of ["street", "daily"]) {
-        await page.locator(`[data-view="${key}"]`).click();
-        await expect(page.locator("#miniatureListen")).toBeHidden();
-        await expect(page.locator("#miniatureVoiceNote")).toBeHidden();
-      }
+    if (id === "mongolian-ger") expect(state.shell.open).toBe(false);
+    if (["alfama-hillside", "mongolian-ger"].includes(id)) {
+      if (id === "alfama-hillside")
+        for (const key of ["street", "daily"]) {
+          await page.locator(`[data-view="${key}"]`).click();
+          await expect(page.locator("#miniatureListen")).toBeHidden();
+          await expect(page.locator("#miniatureVoiceNote")).toBeHidden();
+        }
       await page.locator('[data-view="whole"]').click();
       for (const locale of ["en-US", "pt-BR"]) {
         await page.locator("#atlasLanguage").selectOption(locale);
@@ -251,13 +258,15 @@ for (const id of ["textile", "naxi-canal-quarter", "alfama-hillside"]) {
         await page.locator("#miniatureListen").click();
       }
       await page.screenshot({
-        path: test.info().outputPath("alfama-miniature.png"),
+        path: test.info().outputPath(`${id}-miniature.png`),
       });
       await page.locator("#atlasLanguage").selectOption("en-US");
     }
     await page
       .getByRole("link", {
-        name: id === "textile" ? "Interior" : "Landscape",
+        name: curatedScenes.some((scene) => scene.id === id)
+          ? "Interior"
+          : "Landscape",
         exact: true,
       })
       .click();

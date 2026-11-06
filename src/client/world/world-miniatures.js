@@ -46,7 +46,22 @@ export function createMiniature(type) {
     new THREE.MeshStandardMaterial({ color: 0xcfb989, roughness: 0.75 }),
     [0, 0.01, 0],
   );
-  if (type === "domus") {
+  if (type === "ger") {
+    add(new THREE.CylinderGeometry(0.58, 0.58, 0.37, 48), cream, [0, 0.23, 0]);
+    add(new THREE.CylinderGeometry(0.12, 0.61, 0.25, 48), cream, [0, 0.54, 0]);
+    add(
+      new THREE.TorusGeometry(0.585, 0.009, 6, 48),
+      wood,
+      [0, 0.3, 0],
+      [Math.PI / 2, 0, 0],
+    );
+    box([0.19, 0.3, 0.04], [0, 0.21, 0.58], roof);
+    add(
+      new THREE.CylinderGeometry(0.015, 0.015, 0.2, 12),
+      wood,
+      [0, 0.69, 0.03],
+    );
+  } else if (type === "domus") {
     box([1.12, 0.04, 1.3], [0, 0.075, 0]);
     for (const x of [-0.47, 0.47]) {
       box([0.18, 0.32, 1.3], [x, 0.25, 0]);

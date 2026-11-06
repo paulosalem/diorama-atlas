@@ -5,6 +5,106 @@
   },
   "assets": [
     {
+      "id": "mongolian-ger-en-US",
+      "scene": "mongolian-ger",
+      "locale": "en-US",
+      "title": "A home that can travel",
+      "text": "A ger is a complete home built to be taken apart and carried. An expandable timber lattice supports radial poles, a roof crown and layers of felt and canvas. Inside, warmth, storage, rest and hospitality share a circular room. This imagined contemporary household near Kharkhorin draws on Mongolian construction and daily life without reproducing a particular family's home.",
+      "references": [
+        "https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872"
+      ]
+    },
+    {
+      "id": "mongolian-ger-pt-BR",
+      "scene": "mongolian-ger",
+      "locale": "pt-BR",
+      "title": "Uma casa que pode viajar",
+      "text": "O ger é uma casa completa, construída para ser desmontada e transportada. Uma treliça expansível de madeira sustenta caibros radiais, um anel de cobertura e camadas de feltro e lona. Dentro, calor, armazenamento, descanso e acolhimento compartilham um cômodo circular. Esta casa contemporânea imaginada perto de Kharkhorin se inspira na construção e no cotidiano mongóis sem reproduzir o lar de uma família específica.",
+      "references": [
+        "https://ich.unesco.org/en/RL/traditional-craftsmanship-of-the-mongol-ger-and-its-associated-customs-00872"
+      ]
+    },
+    {
+      "id": "mongolian-ger-hearth-en-US",
+      "scene": "mongolian-ger",
+      "view": "hearth",
+      "locale": "en-US",
+      "title": "Warmth at the working center",
+      "text": "The stove brings cooking and heating into the room's center. A kettle rests on concentric stove rings; the firebox, legs and protective metal plate make its construction visible. The flue rises through the crown. Clear working space matters as much as the equipment. This modeled arrangement is an interpretation, not guidance for installing a real stove."
+    },
+    {
+      "id": "mongolian-ger-hearth-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "hearth",
+      "locale": "pt-BR",
+      "title": "Calor no centro do trabalho",
+      "text": "O fogão reúne preparo de alimentos e aquecimento no centro do cômodo. Uma chaleira repousa sobre anéis concêntricos; a fornalha, os pés e a chapa metálica de proteção tornam sua construção visível. O tubo sobe pelo anel da cobertura. O espaço livre para trabalhar importa tanto quanto o equipamento. Esta disposição modelada é uma interpretação, não uma orientação para instalar um fogão real."
+    },
+    {
+      "id": "mongolian-ger-framework-en-US",
+      "scene": "mongolian-ger",
+      "view": "framework",
+      "locale": "en-US",
+      "title": "Strength through connected parts",
+      "text": "The crossing laths form an expandable wall. Above them, slender roof poles converge on a crown supported by two posts. Felt and canvas enclose the frame, while external bands hold the assembly together. Construction knowledge lives in making, maintaining and assembling these parts. The modest painted decoration here is original, not a claim about sacred symbols."
+    },
+    {
+      "id": "mongolian-ger-framework-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "framework",
+      "locale": "pt-BR",
+      "title": "Resistência por meio de peças conectadas",
+      "text": "As ripas cruzadas formam uma parede expansível. Acima, caibros delgados convergem para um anel sustentado por dois pilares. Feltro e lona envolvem a estrutura, enquanto faixas externas mantêm o conjunto unido. O conhecimento construtivo vive na fabricação, na manutenção e na montagem dessas peças. A decoração pintada e discreta foi criada para esta cena, sem atribuir significados sagrados."
+    },
+    {
+      "id": "mongolian-ger-hospitality-en-US",
+      "scene": "mongolian-ger",
+      "view": "hospitality",
+      "locale": "en-US",
+      "title": "A place for daily care",
+      "text": "A low table, bowls and a thermos suggest tea shared in an ordinary home. Bedding is folded at the room's edge, close to the chests that hold household belongings. Nothing about portability requires a home to be empty. This arrangement is an authored possibility, not a universal rule for Mongolian households."
+    },
+    {
+      "id": "mongolian-ger-hospitality-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "hospitality",
+      "locale": "pt-BR",
+      "title": "Um lugar para o cuidado cotidiano",
+      "text": "Uma mesa baixa, tigelas e uma garrafa térmica sugerem um chá compartilhado numa casa comum. A roupa de cama está dobrada na borda do cômodo, perto das arcas que guardam pertences domésticos. Ser portátil não exige que uma casa seja vazia. Esta disposição é uma possibilidade criada para a cena, não uma regra universal para as famílias mongóis."
+    },
+    {
+      "id": "mongolian-ger-passage-en-US",
+      "scene": "mongolian-ger",
+      "view": "passage",
+      "locale": "en-US",
+      "title": "A low threshold, an open landscape",
+      "text": "The doorway compresses the view before the grassland opens beyond it. Its frame joins the circular lattice to a rigid timber entrance. The worn approach connects the household to work outside. Light changes sharply across this threshold: a sheltered room and an expansive landscape belong to the same inhabited place."
+    },
+    {
+      "id": "mongolian-ger-passage-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "passage",
+      "locale": "pt-BR",
+      "title": "Uma soleira baixa, uma paisagem aberta",
+      "text": "A porta comprime a vista antes que a estepe se abra adiante. Seu marco liga a treliça circular a uma entrada rígida de madeira. O caminho gasto conecta a casa ao trabalho do lado de fora. A luz muda intensamente ao atravessar a soleira: um cômodo protegido e uma paisagem ampla pertencem ao mesmo lugar habitado."
+    },
+    {
+      "id": "mongolian-ger-camp-en-US",
+      "scene": "mongolian-ger",
+      "view": "camp",
+      "locale": "en-US",
+      "title": "Layers against the weather",
+      "text": "From outside, the ger reads as a low enclosure of fabric, bands and a timber door. Small folds and seams reveal a layered covering rather than a solid wall. The opening at the crown and the stove pipe connect the household to the air above. These grounds are an imagined central-Mongolian setting, not a mapped campsite."
+    },
+    {
+      "id": "mongolian-ger-camp-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "camp",
+      "locale": "pt-BR",
+      "title": "Camadas contra as intempéries",
+      "text": "Por fora, o ger aparece como um abrigo baixo de tecido, faixas e uma porta de madeira. Pequenas dobras e costuras revelam uma cobertura em camadas, não uma parede maciça. A abertura do anel e o tubo do fogão ligam a casa ao ar acima. O terreno é uma paisagem imaginada da Mongólia central, não um acampamento mapeado."
+    },
+    {
       "id": "alfama-hillside-en-US",
       "scene": "alfama-hillside",
       "locale": "en-US",
@@ -4691,6 +4791,86 @@
       "locale": "pt-BR",
       "title": "Um bairro descoberto a cada curva.",
       "text": "Dois cortes revelam a mesma encosta imaginada de Alfama: becos com escadas, soleiras espessas, telhados sobrepostos e um pátio doméstico abrigado. Gire a miniatura para seguir caminhos escondidos ao nível da rua ou escolha uma vista próxima do varal e dos vasos. A separação é um recurso de apresentação, não uma falha real no terreno. O tema são casas modestas e sinais de cuidado, não uma celebração da privação."
+    },
+    {
+      "id": "mongolian-ger-detail-lattice-en-US",
+      "scene": "mongolian-ger",
+      "view": "detail-lattice",
+      "locale": "en-US",
+      "title": "A wall that can travel",
+      "text": "Crossing timber laths are tied into an expandable lattice. Together with the roof poles, felt and tension bands, they make a dwelling that can be dismantled and carried. These visible joints express portable construction, not a smaller version of a masonry house."
+    },
+    {
+      "id": "mongolian-ger-detail-crown-en-US",
+      "scene": "mongolian-ger",
+      "view": "detail-crown",
+      "locale": "en-US",
+      "title": "The roof crown",
+      "text": "Radial poles meet a timber crown carried by two posts. The opening admits daylight, while a movable cover helps manage the weather. The painted borders here are original decoration; they are not presented as sacred signs or a complete account of Mongolian ornament."
+    },
+    {
+      "id": "mongolian-ger-detail-stove-en-US",
+      "scene": "mongolian-ger",
+      "view": "detail-stove",
+      "locale": "en-US",
+      "title": "Heat and daily preparation",
+      "text": "A metal stove, kettle, flue and protective floor plate connect warmth to domestic work. The modeled firebox has real depth, and the pipe exits through the crown. This is an interpretation of visible household equipment, not installation guidance."
+    },
+    {
+      "id": "mongolian-ger-detail-table-en-US",
+      "scene": "mongolian-ger",
+      "view": "detail-table",
+      "locale": "en-US",
+      "title": "Room for hospitality",
+      "text": "Bowls, a thermos and a folded cloth suggest tea recently shared. Beds and storage follow the room's edge, leaving working space around the stove. The arrangement belongs to this imagined household; Mongolian homes and their occupants are not interchangeable."
+    },
+    {
+      "id": "mongolian-ger-miniature-whole-en-US",
+      "scene": "mongolian-ger",
+      "view": "miniature-whole",
+      "locale": "en-US",
+      "title": "A portable home, opened to the light.",
+      "text": "The actual roof, radial poles and front enclosure lift aside, revealing the same furnished household as the interior visit. The crown, lattice, felt and bands explain a portable building; beds, storage and a tea setting make it a home. A small piece of grassland remains around the open doorway. This miniature is an authored interpretation near Kharkhorin, not a surveyed household or an instruction for assembly."
+    },
+    {
+      "id": "mongolian-ger-detail-lattice-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "detail-lattice",
+      "locale": "pt-BR",
+      "title": "Uma parede que pode viajar",
+      "text": "Ripas de madeira cruzadas e amarradas formam uma treliça expansível. Com os caibros, o feltro e as faixas de tensão, permitem desmontar e transportar a moradia. As juntas visíveis mostram uma construção portátil, não uma versão menor de uma casa de alvenaria."
+    },
+    {
+      "id": "mongolian-ger-detail-crown-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "detail-crown",
+      "locale": "pt-BR",
+      "title": "O anel da cobertura",
+      "text": "Caibros radiais encontram um anel de madeira sustentado por dois pilares. A abertura admite luz natural, enquanto uma cobertura móvel ajuda a lidar com o tempo. As bordas pintadas são decoração criada para esta cena, não sinais sagrados nem um panorama completo da ornamentação mongol."
+    },
+    {
+      "id": "mongolian-ger-detail-stove-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "detail-stove",
+      "locale": "pt-BR",
+      "title": "Calor e preparo cotidiano",
+      "text": "Fogão metálico, chaleira, chaminé e chapa de proteção no piso ligam o calor ao trabalho doméstico. A fornalha modelada tem profundidade real, e o tubo sai pelo anel da cobertura. Esta é uma interpretação de equipamentos domésticos observados, não uma orientação de instalação."
+    },
+    {
+      "id": "mongolian-ger-detail-table-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "detail-table",
+      "locale": "pt-BR",
+      "title": "Espaço para acolher",
+      "text": "Tigelas, uma garrafa térmica e um pano dobrado sugerem um chá compartilhado há pouco. Camas e armários acompanham a borda do cômodo, deixando espaço de trabalho ao redor do fogão. A disposição pertence a esta casa imaginada; as moradias mongóis e seus habitantes não são intercambiáveis."
+    },
+    {
+      "id": "mongolian-ger-miniature-whole-pt-BR",
+      "scene": "mongolian-ger",
+      "view": "miniature-whole",
+      "locale": "pt-BR",
+      "title": "Uma moradia portátil, aberta à luz.",
+      "text": "A cobertura, os caibros radiais e a parte frontal se erguem e se afastam, revelando a mesma casa mobiliada da visita ao interior. O anel, a treliça, o feltro e as faixas explicam uma construção portátil; camas, armários e uma mesa de chá fazem dela um lar. Um pequeno trecho de estepe permanece junto à porta aberta. Esta miniatura é uma interpretação criada perto de Kharkhorin, não um levantamento de uma casa nem uma instrução de montagem."
     }
   ]
 }

@@ -102,7 +102,8 @@ export async function createViewer(
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   mount.prepend(renderer.domElement);
   const outdoor = definition.environment === "outdoor";
-  if (outdoor) renderer.toneMapping = THREE.AgXToneMapping;
+  const photographicDaylight = outdoor || Boolean(definition.daylight);
+  if (photographicDaylight) renderer.toneMapping = THREE.AgXToneMapping;
   viewer.classList.toggle("is-outdoor", outdoor);
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(57, 1, 0.04, outdoor ? 3000 : 120),
@@ -111,7 +112,7 @@ export async function createViewer(
   const generator = new THREE.PMREMGenerator(renderer);
   let environment, daylight;
   try {
-    if (outdoor) {
+    if (photographicDaylight) {
       daylight = await loadOutdoorDaylight(generator, definition.daylight);
       environment = daylight.environment;
     } else {
@@ -157,13 +158,17 @@ export async function createViewer(
       ? (
           await import("../environments/outdoors/outdoor-scenes.js")
         ).buildOutdoorEnvironment(definition, renderer)
-      : definition.environment === "domus"
+      : definition.environment === "ger"
         ? (
-            await import("../environments/domus/domus-scene.js")
-          ).buildDomusEnvironment(definition, renderer)
-        : definition.id === "riad"
-          ? buildRiadEnvironment(definition, renderer)
-          : buildInteriorEnvironment(definition, renderer);
+            await import("../environments/ger/ger-scene.js")
+          ).buildGerEnvironment(definition, renderer)
+        : definition.environment === "domus"
+          ? (
+              await import("../environments/domus/domus-scene.js")
+            ).buildDomusEnvironment(definition, renderer)
+          : definition.id === "riad"
+            ? buildRiadEnvironment(definition, renderer)
+            : buildInteriorEnvironment(definition, renderer);
   } catch (error) {
     environment.dispose();
     daylight?.texture.dispose();

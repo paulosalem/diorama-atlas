@@ -1,5 +1,18 @@
 # Changelog
 
+## Collection expansion — Mongolian ger — 2026-11-05
+
+- Added an imagined contemporary ger household near Kharkhorin, with a circular
+  lattice, layered felt and canvas, roof crown, stove, beds, storage, tea setting
+  and a real doorway leading into modeled grassland.
+- Added its peer interactive miniature, sharing the furnished environment and
+  lifting its actual roof and front enclosure. Architectural views can close the
+  shell to keep their subjects visible.
+- Included six environment views, seven miniature views, four bilingual object
+  explanations, 22 prerecorded passages and four credited photographic references.
+- The collection now contains 26 places across 22 geographic settings and
+  602 recordings. The package remains v1.0.0; this is not a new tagged release.
+
 ## Collection update — 2026-11-05
 
 - Fixed touch interaction on globe markers: a tap keeps the preview card open,

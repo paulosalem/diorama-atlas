@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-05T19:01:32.395Z",
+  "checkedAt": "2026-11-06T00:49:20.623Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -175,6 +175,19 @@
       "height": 734,
       "bytes": 948232,
       "sha256": "980590d268522f9c9a8df1d40c714364b5678c3a779570e26e432a1eef80da04",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "file": "mongolian-ger.png",
+      "scene": "mongolian-ger",
+      "view": "room",
+      "width": 1232,
+      "height": 707,
+      "bytes": 1201233,
+      "sha256": "9fc786739f42dff614604cec9c85bea9c1fa3ff799c168bb09fd1fc44b21e547",
       "viewport": {
         "width": 1280,
         "height": 900

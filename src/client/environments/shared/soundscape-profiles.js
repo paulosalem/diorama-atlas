@@ -15,6 +15,14 @@ const event = (asset, level, position, interval, extra = {}) => ({
 });
 
 export const SOUNDSCAPES = {
+  "mongolian-ger": {
+    label:
+      "Quiet household handling; illustrative recordings, not a Mongolian field recording",
+    layers: [
+      event("service-dishes", 0.16, [0, 0.6, -1.6], [24, 46]),
+      event("wood-work", 0.1, [3.6, 0.3, 1.7], [32, 57]),
+    ],
+  },
   "alfama-hillside": {
     label: "Distant conversation, dishes and birds in an imagined Alfama court",
     layers: [

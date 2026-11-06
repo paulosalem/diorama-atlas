@@ -1,0 +1,59 @@
+[
+  {
+    "sceneId": "mongolian-ger",
+    "references": [
+      {
+        "label": "Ger frame and reverse interior",
+        "note": "An exhibited frame shows the lattice, radial poles and crown supports; it is not this household.",
+        "image": "/public/ger/frame.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:20230626_2_Mongolian_yurt_inside_view.jpg",
+        "author": "Orgio89",
+        "date": "2023-06-26",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "retrieved": "2026-11-06T00:05:16.571Z",
+        "sha256": "4e25eb07a91b7750eeb0cfdfcb18c2f5e90090da570cacd513f9fb73e999a6d2",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Crown and roof connections",
+        "note": "Ornate exhibition joinery informs construction, not the simpler decoration of the imagined home.",
+        "image": "/public/ger/crown.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:20230626_18a_Mongolian_yurt_roof_section.jpg",
+        "author": "Orgio89",
+        "date": "2023-06-26",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "retrieved": "2026-11-06T00:05:17.356Z",
+        "sha256": "caeed340f6bf22a0ca699cb53ab6f73a1e391f66f7414663d5fc70538c50357c",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Stove and everyday equipment",
+        "note": "A photographed interior informs the stove, thermos, bedding and storage; its arrangement is not copied.",
+        "image": "/public/ger/household.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Dentro_del_Ger_-_panoramio.jpg",
+        "author": "Raul P",
+        "date": "2008-07-31",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "retrieved": "2026-11-06T00:05:14.580Z",
+        "sha256": "379ea98914e78f9b75162a398264ac67aa9cb12e25f0411d3f0b63546ab3af74",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Canvas and external bands",
+        "note": "A western Mongolian example informs canvas folds and ground contact, not the central-Mongolian roof profile.",
+        "image": "/public/ger/exterior.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Traditional_ger_housing_for_a_nomadic_herding_family,_Western_Mongolia.jpg",
+        "author": "Bfreeproductions",
+        "date": "2022-07-30",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "retrieved": "2026-11-06T00:05:15.185Z",
+        "sha256": "97cbce16924c97b33d82da1c4f0aa523874e4227dd3f94c2d1156f8adcc1aa60",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      }
+    ]
+  }
+]

@@ -188,6 +188,16 @@ const miniatureStories = {
       body: "Seis terraços cultivados acompanham a encosta em dois cortes flutuantes. A terra úmida encontra caminhos estreitos; raízes finas aparecem nas faces cortadas. Um cesto trançado, uma xícara e ferramentas em repouso esperam sob o abrigo do campo, enquanto folhas de palmeira e de arroz se movem suavemente sobre a água. Esta paisagem condensada e imaginada se inspira nas tradições subak de Bali; não representa um sistema de irrigação medido nem uma comunidade específica.",
     },
   },
+  "mongolian-ger": {
+    "en-US": {
+      heading: "A portable home, opened to the light.",
+      body: "The actual roof, radial poles and front enclosure lift aside, revealing the same furnished household as the interior visit. The crown, lattice, felt and bands explain a portable building; beds, storage and a tea setting make it a home. A small piece of grassland remains around the open doorway. This miniature is an authored interpretation near Kharkhorin, not a surveyed household or an instruction for assembly.",
+    },
+    "pt-BR": {
+      heading: "Uma moradia portátil, aberta à luz.",
+      body: "A cobertura, os caibros radiais e a parte frontal se erguem e se afastam, revelando a mesma casa mobiliada da visita ao interior. O anel, a treliça, o feltro e as faixas explicam uma construção portátil; camas, armários e uma mesa de chá fazem dela um lar. Um pequeno trecho de estepe permanece junto à porta aberta. Esta miniatura é uma interpretação criada perto de Kharkhorin, não um levantamento de uma casa nem uma instrução de montagem.",
+    },
+  },
   textile: {
     "en-US": {
       heading: "A workshop, waiting for someone to return.",

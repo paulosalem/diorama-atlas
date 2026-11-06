@@ -162,8 +162,8 @@ test("gettext translates known first-party messages and preserves external metad
   }
 });
 
-test("all 21 registered geographic names and countries have deliberate dictionary entries", () => {
-  assert.equal(locations.length, 21);
+test("all registered geographic names and countries have deliberate dictionary entries", () => {
+  assert.equal(locations.length, 22);
   for (const location of locations)
     for (const value of [location.name, location.country])
       assert.ok(Object.hasOwn(translations["pt-BR"], value), value);

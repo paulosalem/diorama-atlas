@@ -12,6 +12,7 @@ project-wide licensing assumption.
 | Interior plastered stone    | Poly Haven; recorded as CC0 in the imported manifest                                                                                                       | [`public/interiors/materials/manifest.json`](../public/interiors/materials/manifest.json)       |
 | Place previews              | Local renders of all current interiors, including Marrakech; outdoor thumbnails are also actual renders                                                    | [`public/previews/credits.json`](../public/previews/credits.json)                               |
 | Outdoor photographs         | Thirty-eight credited regional style references, including four for the Douro vineyard and thirteen for Alfama; none depicts the fictional modeled setting | [`public/outdoors/references.json`](../public/outdoors/references.json)                         |
+| Mongolian ger photographs   | Four licensed Commons references for frame, crown, domestic equipment and exterior fabric; not photographs of the invented household                       | [`public/ger/references.json`](../public/ger/references.json)                                   |
 | Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                                                                            | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)         |
 | Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                                                             | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json) |
 | Generated cover artwork     | One explicitly requested Image 2.5 Field Notes cover, with prompt/model/usage evidence                                                                     | [`public/outdoors/generated/manifest.json`](../public/outdoors/generated/manifest.json)         |
@@ -19,9 +20,9 @@ project-wide licensing assumption.
 | Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                                                     | `data/scenes/`                                                                                  |
 | Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                                              | [`public/audio/manifest.json`](../public/audio/manifest.json)                                   |
 
-The collection includes 580 original OpenAI-voiced recordings (195.09 MB), covering
-guided visits, 133 object details and narrated Miniature views across the
-25 bundled scenes in English and Portuguese. Identical passages share recordings, with
+The collection includes 602 original OpenAI-voiced recordings (203.28 MB), covering
+guided visits, 137 object details and narrated Miniature views across the
+26 bundled scenes in English and Portuguese. Identical passages share recordings, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field
@@ -36,6 +37,14 @@ excavation photographs, not photographs of the invented household. Three supply
 painted surfaces, including the public-domain garden fresco from the Villa of
 Livia near Rome. Their recorded licenses also appear in About.
 These additions are included in the collection totals above.
+
+The [Mongolian ger](scenes/mongolian-ger.md) contributes 22 bilingual recordings.
+Its four bundled photographs retain individual CC0 or CC BY-SA licenses,
+source URLs, creator credits and SHA-256 hashes. Exhibition, tourist and
+western-Mongolian examples are identified as construction or material evidence,
+not interchangeable household surveys. Ground and timber scans reuse already
+licensed atlas assets; illustrative household sound is not identified as a
+Mongolian field recording.
 
 The [Alfama hillside](scenes/alfama-hillside.md) adds thirteen inspected Commons
 photographs and fourteen bilingual recordings. The photographs guide an invented
@@ -75,7 +84,7 @@ The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
 after-capture manifest and records the source scenes and material manifests.
 `npm run test:water-prints` captures the current image-based details across all
-25 environments and publishes their arrival thumbnails, including Marrakech.
+26 environments and publishes their arrival thumbnails, including Marrakech.
 
 ## What is not source
 

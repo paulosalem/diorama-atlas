@@ -165,7 +165,14 @@ for (const scene of scenes.filter(
       await settled(page);
       const state = await inspection(page);
       expect(state.selected).toBe(key);
-      if (interior) expect(state.shell.progress).toBe(1);
+      if (interior) {
+        const opensShell = await page.evaluate(async (key) => {
+          const { getActiveViewer } =
+            await import("/src/client/viewer/panorama-viewer.js");
+          return getActiveViewer().runtime.views[key].shellOpen !== false;
+        }, key);
+        expect(state.shell.progress).toBe(opensShell ? 1 : 0);
+      }
       const alignment = await page.evaluate(async (key) => {
         const THREE = await import("three");
         const { getActiveViewer } =
@@ -215,9 +222,17 @@ for (const scene of scenes.filter(
     await page.locator("#atlasLanguage").selectOption("en-US");
     await page.locator("#wholeMiniature").click();
     if (interior) {
-      await shell.click();
+      if ((await inspection(page)).shell.open) await shell.click();
       expect((await inspection(page)).shell.offset).toEqual([0, 0, 0]);
-      await page.locator(`[data-view="${keys.at(-1)}"]`).click();
+      const openView = await page.evaluate(async () => {
+        const { getActiveViewer } =
+          await import("/src/client/viewer/panorama-viewer.js");
+        return Object.entries(getActiveViewer().runtime.views).find(
+          ([key, view]) => key !== "whole" && view.shellOpen !== false,
+        )?.[0];
+      });
+      expect(openView).toBeDefined();
+      await page.locator(`[data-view="${openView}"]`).click();
       expect((await inspection(page)).shell.open).toBe(true);
       await shell.click();
       expect((await inspection(page)).selected).toBe("whole");

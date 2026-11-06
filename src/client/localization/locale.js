@@ -1,12 +1,18 @@
 import { uiPtBR } from "./ui-pt-BR.js";
 import { contentPtBR } from "./content-pt-BR.js";
 import { domusTranslations } from "../catalog/domus-catalog.js";
+import { gerTranslations } from "../catalog/ger-catalog.js";
 
 export const LOCALE_COOKIE = "atlas-language";
 export const SUPPORTED_LOCALES = Object.freeze(["en-US", "pt-BR"]);
 export const translations = Object.freeze({
   "en-US": Object.freeze({}),
-  "pt-BR": Object.freeze({ ...contentPtBR, ...uiPtBR, ...domusTranslations }),
+  "pt-BR": Object.freeze({
+    ...contentPtBR,
+    ...uiPtBR,
+    ...domusTranslations,
+    ...gerTranslations,
+  }),
 });
 
 export function createLocaleStore({

@@ -3,8 +3,14 @@ import { buildInteriorEnvironment } from "../interiors/interior-scenes.js";
 import { buildSubakMiniature } from "./subak-miniature.js";
 import { buildLandscapeMiniature } from "./landscape-miniatures.js";
 import { buildRiadMiniature } from "./riad-miniature.js";
+import { buildGerEnvironment } from "../ger/ger-scene.js";
 
 export function buildMiniatureEnvironment(definition, renderer, study) {
+  if (definition.environment === "ger")
+    return buildGerEnvironment(definition, renderer, {
+      miniature: true,
+      study,
+    });
   if (definition.id === "douro-vineyard")
     return buildDouroMiniature(definition, renderer);
   if (definition.id === "balinese-subak-terraces")
