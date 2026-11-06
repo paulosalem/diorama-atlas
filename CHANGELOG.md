@@ -1,5 +1,21 @@
 # Changelog
 
+## Collection expansion — Samoan fale — 2026-11-06
+
+- Added an imagined contemporary Upolu household: an open timber pavilion,
+  woven pola screens and utility baskets, a separate cooking shelter, a
+  furnished private room and planted grounds connected by clear routes.
+- Added its peer interactive miniature, sharing the full household assembly,
+  with a lifting metal roof, orbit, zoom and direct representation switching.
+- Included six environment views, seven miniature views, four bilingual object
+  explanations, 22 prerecorded passages and four credited photographic references.
+- Added shared woven-strip and rooted-grass geometry, physical contact and
+  clearance coverage, reduced-motion handling and explicit resource ownership.
+- Integrated the Upolu globe marker, rendered preview, credits and static assets;
+  corrected the sauna miniature story placement without changing recorded text.
+- The collection now contains 28 places across 24 geographic settings and
+  646 recordings. The package remains v1.0.0; this is not a new tagged release.
+
 ## Collection expansion — Finnish lakeside sauna — 2026-11-05
 
 - Added an imagined household sauna near Saimaa, with a heated-stone stove,
