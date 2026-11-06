@@ -51,6 +51,29 @@ export const landscapeVersions = Object.freeze([
 ]);
 
 const miniatureStudies = {
+  "samoan-fale": {
+    id: "fale-miniature",
+    sceneId: "samoan-fale",
+    defaultView: "whole",
+    farClip: 180,
+    sunPosition: [-15, 25, 20],
+    sunTarget: [0, 0, -2],
+    sunIntensity: 3,
+    environmentIntensity: 0.4,
+    exposure: 1.1,
+    floorY: -1.9,
+    planarReflections: 0,
+    openOffset: [10, 7, 2],
+    whole: {
+      label: "The whole piece",
+      position: [28, 23, 31],
+      target: [0, 1.5, -1.5],
+      fov: 40,
+      orbit: true,
+      overview: true,
+      adaptiveBounds: true,
+    },
+  },
   "finnish-lakeside-sauna": {
     id: "sauna-miniature",
     sceneId: "finnish-lakeside-sauna",

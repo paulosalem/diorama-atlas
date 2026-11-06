@@ -3,6 +3,7 @@ import { contentPtBR } from "./content-pt-BR.js";
 import { domusTranslations } from "../catalog/domus-catalog.js";
 import { gerTranslations } from "../catalog/ger-catalog.js";
 import { saunaTranslations } from "../catalog/sauna-catalog.js";
+import { faleTranslations } from "../catalog/fale-catalog.js";
 
 export const LOCALE_COOKIE = "atlas-language";
 export const SUPPORTED_LOCALES = Object.freeze(["en-US", "pt-BR"]);
@@ -14,6 +15,7 @@ export const translations = Object.freeze({
     ...domusTranslations,
     ...gerTranslations,
     ...saunaTranslations,
+    ...faleTranslations,
   }),
 });
 

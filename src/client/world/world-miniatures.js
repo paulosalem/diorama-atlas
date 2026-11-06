@@ -46,7 +46,49 @@ export function createMiniature(type) {
     new THREE.MeshStandardMaterial({ color: 0xcfb989, roughness: 0.75 }),
     [0, 0.01, 0],
   );
-  if (type === "sauna") {
+  if (type === "fale") {
+    const metal = new THREE.MeshStandardMaterial({
+      color: 0x7d9392,
+      roughness: 0.65,
+      metalness: 0.25,
+    });
+    add(
+      new THREE.CylinderGeometry(0.52, 0.52, 0.07, 32),
+      cream,
+      [0, 0.08, 0],
+    ).scale.set(1.3, 1, 0.8);
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2;
+      add(new THREE.CylinderGeometry(0.017, 0.02, 0.38, 8), wood, [
+        Math.cos(a) * 0.59,
+        0.3,
+        Math.sin(a) * 0.35,
+      ]);
+    }
+    const canopy = add(
+      new THREE.SphereGeometry(0.6, 32, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+      metal,
+      [0, 0.49, 0],
+    );
+    canopy.scale.set(1.2, 0.65, 0.75);
+    metal.side = THREE.DoubleSide;
+    box([0.24, 0.04, 0.16], [0, 0.07, 0.46]);
+    add(
+      new THREE.CylinderGeometry(0.018, 0.028, 0.9, 8),
+      wood,
+      [-0.55, 0.49, -0.42],
+    );
+    for (let i = 0; i < 6; i++) {
+      const a = (i / 6) * Math.PI * 2;
+      const frond = add(
+        new THREE.SphereGeometry(0.22, 8, 6),
+        green,
+        [-0.55 + Math.cos(a) * 0.14, 0.95, -0.42 + Math.sin(a) * 0.14],
+        [0, Math.PI / 2 - a, 0],
+      );
+      frond.scale.set(0.3, 0.08, 1.15);
+    }
+  } else if (type === "sauna") {
     box([1.2, 0.025, 0.55], [0, 0.06, 0.38], water);
     box([0.75, 0.37, 0.64], [-0.08, 0.25, -0.15], wood);
     for (const sign of [-1, 1])

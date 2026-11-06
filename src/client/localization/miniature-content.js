@@ -158,6 +158,26 @@ export function miniatureContent(locale, view) {
 }
 
 const miniatureStories = {
+  "samoan-fale": {
+    "en-US": {
+      heading: "A household held together by open space.",
+      body: "The main roof lifts to reveal the same timber frame, woven screens and ordinary mats as the full-scale visit. Paths connect the open fale to a cooking shelter and a quieter furnished room. Turn the whole compound to see how its spaces belong together. This is an imagined contemporary Upolu household, not a surveyed family home or a ceremonial seating plan.",
+    },
+    "pt-BR": {
+      heading: "Uma casa unida pelos espaços abertos.",
+      body: "O telhado principal se ergue para revelar a mesma estrutura de madeira, telas trançadas e esteiras cotidianas da visita em escala humana. Caminhos ligam o fale aberto a um abrigo de cozinha e a um cômodo mobiliado mais reservado. Gire o conjunto para perceber como esses espaços se relacionam. É uma casa contemporânea imaginada em Upolu, não o levantamento de uma residência real nem uma disposição cerimonial de assentos.",
+    },
+  },
+  "finnish-lakeside-sauna": {
+    "en-US": {
+      heading: "Warmth, timber and a way to the water.",
+      body: "Sauna culture in Finland belongs to everyday life as well as special occasions. Here, an imagined household near Lake Saimaa links a warm timber room to a changing space, porch and lakeshore. The heated stones, benches and water vessels explain a rhythm of preparation, bathing and rest. This is one contemporary wood-fired interpretation, not a model for every Finnish sauna or a guide to installing a heater. The architectural shell lifts aside to reveal the rooms, their objects and their connected passages. The cut faces describe a piece of the place, not necessarily a whole building.",
+    },
+    "pt-BR": {
+      heading: "Calor, madeira e um caminho até a água.",
+      body: "A cultura da sauna na Finlândia faz parte do cotidiano e também de ocasiões especiais. Aqui, uma casa imaginada perto do lago Saimaa liga um cômodo de madeira aquecido ao vestiário, à varanda e à margem do lago. Pedras quentes, bancos e recipientes de água revelam um ritmo de preparação, banho e descanso. Esta é uma interpretação contemporânea a lenha, não um modelo para toda sauna finlandesa nem um guia de instalação de aquecedores. O invólucro arquitetônico se ergue e se afasta, revelando os cômodos, seus objetos e as passagens. As faces cortadas mostram uma parte do lugar, não necessariamente um edifício completo.",
+    },
+  },
   "alfama-hillside": {
     "en-US": {
       heading: "A neighborhood discovered one turn at a time.",
@@ -192,16 +212,6 @@ const miniatureStories = {
     "en-US": {
       heading: "A portable home, opened to the light.",
       body: "The actual roof, radial poles and front enclosure lift aside, revealing the same furnished household as the interior visit. The crown, lattice, felt and bands explain a portable building; beds, storage and a tea setting make it a home. A small piece of grassland remains around the open doorway. This miniature is an authored interpretation near Kharkhorin, not a surveyed household or an instruction for assembly.",
-    },
-    "finnish-lakeside-sauna": {
-      "en-US": {
-        heading: "Warmth, timber and a way to the water.",
-        body: "The actual roof and selected outer walls lift aside to reveal the same bathing room and changing room as the full-size visit. Benches, heater stones, a water bucket and a birch whisk remain in place. Beyond the porch, a worn path reaches the small timber jetty. This imagined Finnish household is an architectural interpretation, not a measured building or an installation guide.",
-      },
-      "pt-BR": {
-        heading: "Calor, madeira e um caminho até a água.",
-        body: "A cobertura real e parte das paredes externas se afastam para revelar a mesma sala de banho e o mesmo vestiário da visita em escala humana. Bancos, pedras do aquecedor, um balde de água e um feixe de bétula permanecem no lugar. Além da varanda, um caminho marcado pelo uso chega ao pequeno píer de madeira. Esta casa finlandesa imaginada é uma interpretação arquitetônica, não um edifício medido nem um guia de instalação.",
-      },
     },
     "pt-BR": {
       heading: "Uma moradia portátil, aberta à luz.",

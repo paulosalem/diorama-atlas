@@ -29,6 +29,7 @@ const [
   saunaPhotographs,
   saunaMaterials,
   saunaForest,
+  falePhotographs,
 ] = await Promise.all([
   readJson("public/earth/credits.json"),
   readJson("public/riad/materials/manifest.json"),
@@ -47,6 +48,7 @@ const [
   readJson("public/sauna/references.json"),
   readJson("public/sauna/materials/manifest.json"),
   readJson("public/sauna/forest/manifest.json"),
+  readJson("public/fale/references.json"),
 ]);
 const title = (value) =>
   value
@@ -128,6 +130,7 @@ for (const scene of [
   ...domusPhotographs,
   ...gerPhotographs,
   ...saunaPhotographs,
+  ...falePhotographs,
 ])
   for (const photo of scene.references)
     entries.push({

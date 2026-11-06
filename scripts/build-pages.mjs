@@ -18,6 +18,7 @@ const publishedDirectories = [
   "public/app-icons",
   "public/audio",
   "public/earth",
+  "public/fale",
   "public/interiors",
   "public/narration",
   "public/outdoors",

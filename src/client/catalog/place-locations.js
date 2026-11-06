@@ -3,6 +3,15 @@ import { outdoorLocations } from "./outdoor-catalog.js";
 // Geographic settings, not surveyed street addresses. The bookshop is regional.
 export const locations = [
   {
+    id: "upolu",
+    name: "Upolu",
+    country: "Samoa",
+    lat: -13.9,
+    lon: -171.75,
+    type: "fale",
+    match: /samoan-fale/i,
+  },
+  {
     id: "finnish-lakeland",
     name: "Finnish Lakeland",
     country: "Finland",

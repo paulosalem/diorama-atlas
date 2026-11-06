@@ -167,7 +167,7 @@ test("the globe, preview and return navigation remain inside the project path", 
       ),
     )
     .toBe(true);
-  await expect(page.locator(".place-pin")).toHaveCount(23);
+  await expect(page.locator(".place-pin")).toHaveCount(24);
   await page.locator("#placesButton").click();
   await page
     .locator("#placesPanel button")
@@ -206,6 +206,7 @@ for (const id of [
   "alfama-hillside",
   "mongolian-ger",
   "finnish-lakeside-sauna",
+  "samoan-fale",
 ]) {
   test(`${id}: collection miniature navigation and narration use the project path`, async ({
     page,
@@ -235,12 +236,15 @@ for (const id of [
     expect(state.finiteGeometry).toBe(true);
     expect(state.audio.contextState).toBe("closed");
     if (id === "textile") expect(state.shell.open).toBe(true);
-    if (["mongolian-ger", "finnish-lakeside-sauna"].includes(id))
+    if (["mongolian-ger", "finnish-lakeside-sauna", "samoan-fale"].includes(id))
       expect(state.shell.open).toBe(false);
     if (
-      ["alfama-hillside", "mongolian-ger", "finnish-lakeside-sauna"].includes(
-        id,
-      )
+      [
+        "alfama-hillside",
+        "mongolian-ger",
+        "finnish-lakeside-sauna",
+        "samoan-fale",
+      ].includes(id)
     ) {
       if (id === "alfama-hillside")
         for (const key of ["street", "daily"]) {

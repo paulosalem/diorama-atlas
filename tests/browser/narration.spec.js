@@ -86,6 +86,7 @@ for (const scene of [
   "balinese-subak-terraces",
   "douro-vineyard",
   "finnish-lakeside-sauna",
+  "samoan-fale",
 ]) {
   test(`${scene}: miniature recordings are bilingual, opt-in and released on mute and navigation`, async ({
     page,
@@ -230,6 +231,7 @@ for (const [scene, detailView] of [
   ["textile", "dyes"],
   ["douro-vineyard", "quinta"],
   ["finnish-lakeside-sauna", "heater"],
+  ["samoan-fale", "weaving"],
 ])
   for (const viewport of [
     { width: 320, height: 800 },
@@ -512,7 +514,7 @@ test("saved narration consent survives blocked autoplay without changing existin
   await expect.poll(async () => (await state(page)).state).toBe("playing");
 });
 
-for (const scene of ["riad", "finnish-lakeside-sauna"])
+for (const scene of ["riad", "finnish-lakeside-sauna", "samoan-fale"])
   test(`${scene}: ownership, page hiding, mute and leaving the scene stop the narrator`, async ({
     page,
     context,

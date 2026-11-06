@@ -1,6 +1,6 @@
 # The collection
 
-**27 imagined places, 23 geographic settings.** Each brief
+**28 imagined places, 24 geographic settings.** Each brief
 records cultural intent, composition, material and atmospheric priorities,
 actual view keys and implementation entry points. The brief guides development;
 it is not evidence that an invented building exists.
@@ -10,6 +10,11 @@ All briefs inherit the [philosophy](../philosophy.md) and
 before changing it. Preserve distinct saved variants and approved cameras.
 
 ## Interiors and domestic courtyards
+
+[Samoan Fale and Household Grounds](samoan-fale.md) explores open shelter,
+woven materials and the connected spaces of an imagined Upolu household:
+[enter the household](https://paulosalem.github.io/diorama-atlas/?scene=samoan-fale&version=interior)
+or [open its miniature](https://paulosalem.github.io/diorama-atlas/?scene=samoan-fale&version=miniature).
 
 [Finnish Lakeside Sauna](finnish-lakeside-sauna.md) follows the rhythm of
 heating, bathing, resting and cooling near Saimaa:

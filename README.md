@@ -10,7 +10,7 @@ how we understand the world—and the places we call our own.
 
 **[Enter the Atlas →](https://paulosalem.github.io/diorama-atlas/)**
 
-**v1.0.0 · 27 dioramas · 23 geographic settings · English & Brazilian Portuguese**
+**v1.0.0 · 28 dioramas · 24 geographic settings · English & Brazilian Portuguese**
 
 [![Rendered Marrakech courtyard with carved arches, citrus trees, a fountain and a doorway into the home.](public/previews/riad.png)](https://paulosalem.github.io/diorama-atlas/?scene=riad&inspect=1)
 
@@ -20,7 +20,7 @@ Move from a Kyoto listening café to a Newar pottery square, from an Oaxacan loo
 to a Balinese hillside or a sunlit Douro vineyard. Look through doorways, study worn timber and printed
 pages, follow a guided voice, or linger with the sounds of a place.
 
-The collection offers **624 OpenAI recordings in English and Brazilian Portuguese**,
+The collection offers **646 OpenAI recordings in English and Brazilian Portuguese**,
 covering original viewpoints, object details and Miniatures, alongside gentle
 movement, music and local ambience.
 Every place also has a **Miniature** experience: turn two floating landscape
@@ -42,6 +42,10 @@ The [Finnish lakeside sauna](https://paulosalem.github.io/diorama-atlas/?scene=f
 connects heated stones and timber benches to a changing room, sheltered porch and lake.
 Its [opening miniature](https://paulosalem.github.io/diorama-atlas/?scene=finnish-lakeside-sauna&version=miniature)
 reveals the same rooms, birches, worn route and supported jetty.
+The [Samoan fale](https://paulosalem.github.io/diorama-atlas/?scene=samoan-fale&version=interior)
+connects an open household pavilion to a cooking shelter and a quieter furnished room.
+Its [opening miniature](https://paulosalem.github.io/diorama-atlas/?scene=samoan-fale&version=miniature)
+shares the timber frame, woven screens, utility baskets and planted household grounds.
 Every Listen control uses a local recording, never the browser's synthetic voice.
 Everything needed to visit is included: **no account, installation or API key**.
 Use a modern browser with WebGL 2 and hardware acceleration.

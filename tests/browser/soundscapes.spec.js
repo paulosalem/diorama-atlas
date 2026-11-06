@@ -120,7 +120,7 @@ test("looping stays bounded and spatial audio follows the camera without a frame
   });
 });
 
-for (const scene of ["riad", "finnish-lakeside-sauna"])
+for (const scene of ["riad", "finnish-lakeside-sauna", "samoan-fale"])
   test(`${scene}: default-on channels wait for explicit playback, then mix independently and release`, async ({
     page,
   }) => {

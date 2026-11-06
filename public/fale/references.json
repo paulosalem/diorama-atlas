@@ -1,0 +1,55 @@
+[
+  {
+    "sceneId": "samoan-fale",
+    "references": [
+      {
+        "label": "An open household room",
+        "note": "A contemporary Upolu fale with a metal roof and cared-for planting; not the fictional household.",
+        "image": "/public/fale/upolu.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fale_Upolu.JPG",
+        "author": "Roundtheworld (Wikivoyage)",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "retrieved": "2026-11-06T02:30:34.109Z",
+        "sha256": "4bcc36768f4d5dad73c9942ad3d43e1a36c5710efa37d3cfd366e3d16bdde171",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Shelter without a sealed wall",
+        "note": "Folded pola screens, steps and a stone platform at a round fale in Lelepa, Savai'i; not the modeled long-house plan.",
+        "image": "/public/fale/screens.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Samoan_fale,_Lelepa_village,_Savaii,_Samoa_2009.JPG",
+        "author": "Teinesavaii",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "retrieved": "2026-11-06T02:30:30.785Z",
+        "sha256": "5928ae9d0ff9fbbc4d4e258f21c92d1f775d47dc510bc5f5b3d42d1d8a6a84d2",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Leaves become a useful container",
+        "note": "Broad leaf strips, open basket mouths and different stages of drying inform the utility baskets.",
+        "image": "/public/fale/baskets.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Woven_coconut_baskets_-_panoramio.jpg",
+        "author": "Peter Gill / UK",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "retrieved": "2026-11-06T02:33:19.852Z",
+        "sha256": "45b2bbb31996ac459d9c29b0ec1c9c6f86249335c5e33800a7bbb03a9cb1eee4",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      },
+      {
+        "label": "Cooking belongs to the grounds",
+        "note": "Ground-level stones and prepared leaf packets inform the cooking area, not cooking instructions.",
+        "image": "/public/fale/umu.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Umu_in_Samoa_-_removing_rocks.jpeg",
+        "author": "Polynesian Xplorer",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "retrieved": "2026-11-06T02:32:34.800Z",
+        "sha256": "d31bac2267d58c8611b215cf2d5966f4d4a4fb56e1f5d269a8564a72f1b30199",
+        "processing": "Wikimedia 1280-pixel thumbnail; no additional edits."
+      }
+    ]
+  }
+]

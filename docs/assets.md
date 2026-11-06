@@ -14,6 +14,7 @@ project-wide licensing assumption.
 | Outdoor photographs         | Thirty-eight credited regional style references, including four for the Douro vineyard and thirteen for Alfama; none depicts the fictional modeled setting | [`public/outdoors/references.json`](../public/outdoors/references.json)                                                                                        |
 | Mongolian ger photographs   | Four licensed Commons references for frame, crown, domestic equipment and exterior fabric; not photographs of the invented household                       | [`public/ger/references.json`](../public/ger/references.json)                                                                                                  |
 | Finnish sauna photographs   | Five licensed Commons references for bathing rooms, stones, vessels, shoreline architecture and birch bark                                                 | [`public/sauna/references.json`](../public/sauna/references.json)                                                                                              |
+| Samoan fale photographs     | Four licensed Commons references for contemporary shelter, woven screens, utility baskets and the umu                                                      | [`public/fale/references.json`](../public/fale/references.json)                                                                                                |
 | Sauna timber and forest     | CC0 Poly Haven timber maps and three instanced fir-sapling model variants; generic materials and botany, not a surveyed Finnish site                       | [`public/sauna/materials/manifest.json`](../public/sauna/materials/manifest.json), [`public/sauna/forest/manifest.json`](../public/sauna/forest/manifest.json) |
 | Outdoor base materials      | Licensed local scanned surfaces and sky imagery                                                                                                            | [`public/outdoors/materials/manifest.json`](../public/outdoors/materials/manifest.json)                                                                        |
 | Outdoor detail assets       | Attributed artwork, CC0 scans, foliage, PureSky daylight and licensed 3D props                                                                             | [`public/outdoors/detail-assets/manifest.json`](../public/outdoors/detail-assets/manifest.json)                                                                |
@@ -22,9 +23,9 @@ project-wide licensing assumption.
 | Saved scene packages        | Imported generated definitions, retaining model, timestamp, prompt, and review metadata where supplied                                                     | `data/scenes/`                                                                                                                                                 |
 | Recorded ambience and music | Wikimedia Commons recordings with public-domain dedications or CC BY 4.0; Kevin MacLeod music under CC BY 4.0                                              | [`public/audio/manifest.json`](../public/audio/manifest.json)                                                                                                  |
 
-The collection includes 624 original OpenAI-voiced recordings (212.47 MB), covering
-guided visits, 141 object details and narrated Miniature views across the
-27 bundled scenes in English and Portuguese. Identical passages share recordings, with
+The collection includes 646 original OpenAI-voiced recordings (221.13 MB), covering
+guided visits, 145 object details and narrated Miniature views across the
+28 bundled scenes in English and Portuguese. Identical passages share recordings, with
 exact text, language, model, voice, instructions and hashes in
 [`public/narration/manifest.json`](../public/narration/manifest.json).
 These are generated outputs under the recorded provider terms, not CC0 field
@@ -55,6 +56,13 @@ their species and growth are not independently verified as Saimaa vegetation.
 Original asset URLs, authors, licenses, processing and file hashes remain in
 the manifests above. Illustrative recorded fire and outdoor ambience are not
 presented as Finnish field recordings.
+
+The [Samoan fale](scenes/samoan-fale.md) contributes 22 recordings and four
+licensed Commons photographs with exact source URLs, authors and hashes.
+Historical construction plates and additional contemporary photographs remain
+research-only. Existing timber, ground and foliage imagery provides generic
+material evidence, not measured Samoan timber or a botanical survey.
+Illustrative household and garden recordings are not Samoan field recordings.
 
 The [Alfama hillside](scenes/alfama-hillside.md) adds thirteen inspected Commons
 photographs and fourteen bilingual recordings. The photographs guide an invented
@@ -94,7 +102,7 @@ The rendered previews are captured from each interior's original main viewpoint
 with reduced motion enabled. `npm run previews:publish` updates them from an
 after-capture manifest and records the source scenes and material manifests.
 `npm run test:water-prints` captures the current image-based details across all
-27 environments and publishes their arrival thumbnails, including Marrakech.
+28 environments and publishes their arrival thumbnails, including Marrakech.
 
 ## What is not source
 

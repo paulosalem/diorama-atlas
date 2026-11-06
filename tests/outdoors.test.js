@@ -710,7 +710,7 @@ for (const reviewedScenes of [
     }
   });
 
-test("all fifteen interior previews have accurate rendered-capture provenance, including the riad", async () => {
+test("all sixteen interior previews have accurate rendered-capture provenance, including the riad", async () => {
   const [previews, credits] = await Promise.all([
     readFile(
       new URL("../public/previews/credits.json", import.meta.url),
@@ -720,7 +720,7 @@ test("all fifteen interior previews have accurate rendered-capture provenance, i
       JSON.parse,
     ),
   ]);
-  assert.equal(previews.rendered.filter((entry) => !entry.draft).length, 15);
+  assert.equal(previews.rendered.filter((entry) => !entry.draft).length, 16);
   assert.equal(
     new Set(previews.rendered.map((entry) => entry.scene)).size,
     previews.rendered.length,

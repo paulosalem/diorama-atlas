@@ -2,9 +2,12 @@ import * as THREE from "three";
 import { laminaGeometry, shapedTimber } from "./natural-forms.js";
 
 /** Connected pinnate crowns and broad understory leaves, shared by fields and gardens. */
-export function tropicalVegetation(k) {
+export function tropicalVegetation(
+  k,
+  { leafColor = 0xffffff, bark = k.m.bark } = {},
+) {
   const time = { value: 0 };
-  const leaf = k.material(0xffffff, 0.83);
+  const leaf = k.material(leafColor, 0.83);
   leaf.side = THREE.DoubleSide;
   leaf.userData.patinaProfile = "none";
   leaf.map = k.texture(
@@ -122,7 +125,7 @@ export function tropicalVegetation(k) {
       [0, -0.09, 0],
       [0, height, 0],
       height * 0.052,
-      k.m.bark,
+      bark,
       group,
       {
         round: true,
@@ -144,7 +147,7 @@ export function tropicalVegetation(k) {
             Math.sin((y / height) * Math.PI) *
             Math.sin((y / height) * Math.PI * 0.7),
         ],
-        k.m.bark,
+        bark,
         group,
       );
     const entries = [];

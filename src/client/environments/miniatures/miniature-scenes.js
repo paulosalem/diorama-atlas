@@ -5,8 +5,14 @@ import { buildLandscapeMiniature } from "./landscape-miniatures.js";
 import { buildRiadMiniature } from "./riad-miniature.js";
 import { buildGerEnvironment } from "../ger/ger-scene.js";
 import { buildSaunaEnvironment } from "../sauna/sauna-scene.js";
+import { buildFaleEnvironment } from "../fale/fale-scene.js";
 
 export function buildMiniatureEnvironment(definition, renderer, study) {
+  if (definition.environment === "fale")
+    return buildFaleEnvironment(definition, renderer, {
+      miniature: true,
+      study,
+    });
   if (definition.environment === "sauna")
     return buildSaunaEnvironment(definition, renderer, {
       miniature: true,

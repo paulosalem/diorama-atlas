@@ -1,9 +1,9 @@
 # Narration
 
-All **27 bundled dioramas** have original, prerecorded cultural explanations
+All **28 bundled dioramas** have original, prerecorded cultural explanations
 in **en-US** and **pt-BR**, using OpenAI's `gpt-4o-mini-tts` model and `cedar`
-voice. The collection contains **624 recordings**, totaling **212.47 MB**,
-covering guided visits, 141 object details and narrated Miniature views in both
+voice. The collection contains **646 recordings**, totaling **221.13 MB**,
+covering guided visits, 145 object details and narrated Miniature views in both
 languages. Identical text in the same language reuses a recording; explicitly
 non-narrated inspection views do not offer playback.
 Each arrival introduces the
@@ -18,7 +18,7 @@ exact-text reuse. Its two additional street/bicycle inspection views are silent
 in both representations. These recordings are included in the collection totals
 above; their original generation used an explicitly approved US$2 ceiling.
 
-The Mongolian ger and Finnish lakeside sauna each contribute 22 recordings:
+The Mongolian ger, Finnish lakeside sauna and Samoan fale each contribute 22 recordings:
 six guided passages, four object details and a whole-miniature introduction in
 both languages. Their focused miniature views reuse the matching guided text.
 These are included in the collection totals, not additional recordings beyond them.

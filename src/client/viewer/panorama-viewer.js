@@ -158,21 +158,25 @@ export async function createViewer(
       ? (
           await import("../environments/outdoors/outdoor-scenes.js")
         ).buildOutdoorEnvironment(definition, renderer)
-      : definition.environment === "sauna"
+      : definition.environment === "fale"
         ? (
-            await import("../environments/sauna/sauna-scene.js")
-          ).buildSaunaEnvironment(definition, renderer)
-        : definition.environment === "ger"
+            await import("../environments/fale/fale-scene.js")
+          ).buildFaleEnvironment(definition, renderer)
+        : definition.environment === "sauna"
           ? (
-              await import("../environments/ger/ger-scene.js")
-            ).buildGerEnvironment(definition, renderer)
-          : definition.environment === "domus"
+              await import("../environments/sauna/sauna-scene.js")
+            ).buildSaunaEnvironment(definition, renderer)
+          : definition.environment === "ger"
             ? (
-                await import("../environments/domus/domus-scene.js")
-              ).buildDomusEnvironment(definition, renderer)
-            : definition.id === "riad"
-              ? buildRiadEnvironment(definition, renderer)
-              : buildInteriorEnvironment(definition, renderer);
+                await import("../environments/ger/ger-scene.js")
+              ).buildGerEnvironment(definition, renderer)
+            : definition.environment === "domus"
+              ? (
+                  await import("../environments/domus/domus-scene.js")
+                ).buildDomusEnvironment(definition, renderer)
+              : definition.id === "riad"
+                ? buildRiadEnvironment(definition, renderer)
+                : buildInteriorEnvironment(definition, renderer);
   } catch (error) {
     environment.dispose();
     daylight?.texture.dispose();

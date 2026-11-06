@@ -9,7 +9,7 @@
     "target": "#canvasMount",
     "deviceScaleFactor": 1
   },
-  "checkedAt": "2026-11-06T02:18:33.869Z",
+  "checkedAt": "2026-11-06T03:39:12.482Z",
   "rendered": [
     {
       "file": "riad.png",
@@ -201,6 +201,19 @@
       "height": 707,
       "bytes": 1071506,
       "sha256": "ab58b6640bc1b18747d310eac099aa31d99d37cc7adc97baeb0148bdfb1b7ad2",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "file": "samoan-fale.png",
+      "scene": "samoan-fale",
+      "view": "room",
+      "width": 1232,
+      "height": 694,
+      "bytes": 1056869,
+      "sha256": "948c2dd27995aeb0b115f5ae088abf9305f094c6bcc8586f5966856034179152",
       "viewport": {
         "width": 1280,
         "height": 900

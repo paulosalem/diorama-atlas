@@ -3,7 +3,7 @@
 The public Atlas is hosted at **https://paulosalem.github.io/diorama-atlas/**.
 The [source repository](https://github.com/paulosalem/diorama-atlas) is maintained
 separately from the static export. The Pages export includes the complete
-27-scene collection, 624 prerecorded narration passages, local soundscapes,
+28-scene collection, 646 prerecorded narration passages, local soundscapes,
 material maps, photographs and their credits over HTTPS.
 
 ## Publish

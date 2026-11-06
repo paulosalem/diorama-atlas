@@ -5,6 +5,110 @@
   },
   "assets": [
     {
+      "id": "samoan-fale-en-US",
+      "scene": "samoan-fale",
+      "locale": "en-US",
+      "title": "A household connected by open space",
+      "text": "An open-sided fale can be a room without enclosing walls. In this imagined contemporary household on Upolu, its timber frame and woven screens sit alongside a painted-metal roof, a private living room and a separate cooking shelter. Ordinary mats and baskets suggest everyday work and rest. The arrangement is an authored interpretation, not a surveyed family home or a chiefly ceremonial setting.",
+      "references": [
+        "https://archive.org/details/samoanhousebuild00hand",
+        "https://commons.wikimedia.org/wiki/File:Fale_Upolu.JPG",
+        "https://ich.unesco.org/en/RL/ie-samoa-fine-mat-and-its-cultural-value-01499"
+      ]
+    },
+    {
+      "id": "samoan-fale-pt-BR",
+      "scene": "samoan-fale",
+      "locale": "pt-BR",
+      "title": "Uma casa conectada pelo espaço aberto",
+      "text": "Um fale aberto nas laterais pode ser um cômodo sem paredes fechadas. Nesta casa contemporânea imaginada em Upolu, a estrutura de madeira e as telas trançadas convivem com um telhado metálico pintado, um cômodo reservado e um abrigo de cozinha separado. Esteiras e cestos cotidianos sugerem trabalho e descanso. A disposição é uma interpretação criada, não o levantamento de uma residência real nem um ambiente cerimonial de chefes.",
+      "references": [
+        "https://archive.org/details/samoanhousebuild00hand",
+        "https://commons.wikimedia.org/wiki/File:Fale_Upolu.JPG",
+        "https://ich.unesco.org/en/RL/ie-samoa-fine-mat-and-its-cultural-value-01499"
+      ]
+    },
+    {
+      "id": "samoan-fale-joinery-en-US",
+      "scene": "samoan-fale",
+      "view": "joinery",
+      "locale": "en-US",
+      "title": "A roof held together",
+      "text": "Look upward from the substantial inner posts to the beams, curved supporting members and closely spaced rafters. Coconut-fibre sennit, called ‘afa, belongs to the Samoan tradition of binding timber joints. This elongated frame draws on long-house construction rather than the central-post arrangement of a round fale tele. Its precise proportions and contemporary metal covering are an interpretation, not an engineering specification."
+    },
+    {
+      "id": "samoan-fale-joinery-pt-BR",
+      "scene": "samoan-fale",
+      "view": "joinery",
+      "locale": "pt-BR",
+      "title": "Um telhado unido",
+      "text": "Observe os pilares internos robustos, as vigas, os apoios curvos e os caibros próximos uns dos outros. O cordame de fibra de coco, chamado ‘afa, faz parte da tradição samoana de unir peças de madeira. Esta estrutura alongada se inspira na casa comprida, não nos pilares centrais de um fale tele circular. As proporções e a cobertura metálica contemporânea são uma interpretação, não uma especificação de engenharia."
+    },
+    {
+      "id": "samoan-fale-weaving-en-US",
+      "scene": "samoan-fale",
+      "view": "weaving",
+      "locale": "en-US",
+      "title": "Useful things from woven leaves",
+      "text": "Fresh coconut-leaf strips, an open shell and two baskets suggest a pause in household work. Follow a strip over and under its neighbors, then notice how the weave turns upward to form a container. These everyday baskets and floor mats are not the ceremonial fine mats of pandanus, whose cultural value rests in relationships, exchange and skilled making."
+    },
+    {
+      "id": "samoan-fale-weaving-pt-BR",
+      "scene": "samoan-fale",
+      "view": "weaving",
+      "locale": "pt-BR",
+      "title": "Objetos úteis feitos de folhas trançadas",
+      "text": "Tiras frescas de folhas de coqueiro, uma casca aberta e dois cestos sugerem uma pausa no trabalho doméstico. Siga uma tira por cima e por baixo das vizinhas e perceba como a trama sobe para formar um recipiente. Estes cestos e esteiras cotidianos não são as esteiras cerimoniais finas de pandano, cujo valor cultural envolve relações, trocas e habilidade na fabricação."
+    },
+    {
+      "id": "samoan-fale-cooking-en-US",
+      "scene": "samoan-fale",
+      "view": "cooking",
+      "locale": "en-US",
+      "title": "Preparation has its own place",
+      "text": "A short path brings us to the separate cooking shelter. Beneath its roof, a low bed of heated stones and overlapping leaves represents an umu at ground level, not a deep underground pit. Bowls, coconut shells and a small fuel basket give preparation its own working area. This is a household interpretation, not a recipe or a demonstration of every Samoan cooking practice."
+    },
+    {
+      "id": "samoan-fale-cooking-pt-BR",
+      "scene": "samoan-fale",
+      "view": "cooking",
+      "locale": "pt-BR",
+      "title": "O preparo tem seu próprio lugar",
+      "text": "Um caminho curto nos leva ao abrigo separado da cozinha. Sob a cobertura, pedras aquecidas e folhas sobrepostas representam um umu ao nível do chão, não uma cova profunda. Tigelas, cascas de coco e um pequeno cesto de lenha dão ao preparo uma área de trabalho própria. Esta é uma interpretação doméstica, não uma receita nem uma demonstração de todas as práticas culinárias samoanas."
+    },
+    {
+      "id": "samoan-fale-home-en-US",
+      "scene": "samoan-fale",
+      "view": "home",
+      "locale": "en-US",
+      "title": "A quieter room beyond the fale",
+      "text": "The open pavilion is only one part of this imagined household. Across the grounds, a real doorway leads into a more enclosed room with a bed, a stool and water vessels. Glass louvers admit daylight beside the entrance. The transition from shared shade to a quieter interior makes domestic variety visible, without suggesting that all Samoan families organize their homes alike."
+    },
+    {
+      "id": "samoan-fale-home-pt-BR",
+      "scene": "samoan-fale",
+      "view": "home",
+      "locale": "pt-BR",
+      "title": "Um cômodo mais tranquilo além do fale",
+      "text": "O pavilhão aberto é apenas uma parte desta casa imaginada. Do outro lado do terreno, uma porta verdadeira leva a um cômodo mais fechado, com cama, banco e recipientes de água. Lâminas de vidro deixam entrar luz ao lado da entrada. A passagem da sombra compartilhada para um interior mais reservado torna visível a variedade doméstica, sem sugerir que todas as famílias samoanas organizam suas casas da mesma maneira."
+    },
+    {
+      "id": "samoan-fale-grounds-en-US",
+      "scene": "samoan-fale",
+      "view": "grounds",
+      "locale": "en-US",
+      "title": "A house extends into its grounds",
+      "text": "From outside, the raised platform and broad roof define a sheltered room while leaving the sides open. Folded and lowered woven screens make some edges more protected than others. Paths connect the pavilion, cooking area and enclosed room through maintained planting. Metal roofing and older construction traditions appear together here: a contemporary setting need not be frozen into an imagined past."
+    },
+    {
+      "id": "samoan-fale-grounds-pt-BR",
+      "scene": "samoan-fale",
+      "view": "grounds",
+      "locale": "pt-BR",
+      "title": "A casa se estende pelo terreno",
+      "text": "Do lado de fora, a plataforma elevada e o telhado amplo definem um cômodo abrigado, mantendo as laterais abertas. Telas trançadas dobradas ou abaixadas protegem alguns lados mais que outros. Caminhos ligam o pavilhão, a cozinha e o cômodo fechado entre plantas bem cuidadas. A cobertura metálica convive com tradições construtivas mais antigas: um lugar contemporâneo não precisa ficar preso a um passado imaginado."
+    },
+    {
       "id": "finnish-lakeside-sauna-en-US",
       "scene": "finnish-lakeside-sauna",
       "locale": "en-US",
@@ -5053,6 +5157,86 @@
       "locale": "pt-BR",
       "title": "Calor, água e companhia tranquila",
       "text": "A cultura da sauna na Finlândia faz parte do cotidiano e também de ocasiões especiais. Aqui, uma casa imaginada perto do lago Saimaa liga um cômodo de madeira aquecido ao vestiário, à varanda e à margem do lago. Pedras quentes, bancos e recipientes de água revelam um ritmo de preparação, banho e descanso. Esta é uma interpretação contemporânea a lenha, não um modelo para toda sauna finlandesa nem um guia de instalação de aquecedores. O invólucro arquitetônico se ergue e se afasta, revelando os cômodos, seus objetos e as passagens. As faces cortadas mostram uma parte do lugar, não necessariamente um edifício completo."
+    },
+    {
+      "id": "samoan-fale-detail-bindings-en-US",
+      "scene": "samoan-fale",
+      "view": "detail-bindings",
+      "locale": "en-US",
+      "title": "Timber and coconut fibre",
+      "text": "Samoan builders use coconut-fibre sennit, called ‘afa, to bind timber joints. This long-house-inspired frame has two rows of substantial supports, distinct from the central posts of a round fale tele. Its precise dimensions and metal-roof assembly are an authored interpretation."
+    },
+    {
+      "id": "samoan-fale-detail-pola-en-US",
+      "scene": "samoan-fale",
+      "view": "detail-pola",
+      "locale": "en-US",
+      "title": "Shelter without a sealed wall",
+      "text": "Woven coconut-leaf screens, called pola, can shelter selected sides while others remain open. Their overlapping panels and suspension cords make the boundary adjustable. They are working parts of the house, not wallpaper or ceremonial fine mats."
+    },
+    {
+      "id": "samoan-fale-detail-basket-en-US",
+      "scene": "samoan-fale",
+      "view": "detail-basket",
+      "locale": "en-US",
+      "title": "Leaves become a useful container",
+      "text": "Broad coconut-leaf strips cross over and under one another to make a carrying basket. Fresh strips, a hollow coconut shell and a second basket suggest work paused nearby. These ordinary objects should not be confused with the finely woven pandanus mats valued in ceremonial exchange."
+    },
+    {
+      "id": "samoan-fale-detail-umu-en-US",
+      "scene": "samoan-fale",
+      "view": "detail-umu",
+      "locale": "en-US",
+      "title": "Cooking belongs to the grounds",
+      "text": "The separate shelter gives food preparation its own working space. In this interpretation, an umu uses heated stones at ground level beneath a cover of leaves. The connected rooms and paths describe a household, not a cooking demonstration or a claim that every family lives in the same way."
+    },
+    {
+      "id": "samoan-fale-miniature-whole-en-US",
+      "scene": "samoan-fale",
+      "view": "miniature-whole",
+      "locale": "en-US",
+      "title": "A household held together by open space.",
+      "text": "The main roof lifts to reveal the same timber frame, woven screens and ordinary mats as the full-scale visit. Paths connect the open fale to a cooking shelter and a quieter furnished room. Turn the whole compound to see how its spaces belong together. This is an imagined contemporary Upolu household, not a surveyed family home or a ceremonial seating plan."
+    },
+    {
+      "id": "samoan-fale-detail-bindings-pt-BR",
+      "scene": "samoan-fale",
+      "view": "detail-bindings",
+      "locale": "pt-BR",
+      "title": "Madeira e fibra de coco",
+      "text": "Construtores samoanos usam cordame de fibra de coco, chamado ‘afa, para unir peças de madeira. Esta estrutura inspirada na casa alongada tem duas fileiras de apoios robustos, diferentes dos pilares centrais de um fale tele circular. As dimensões e a montagem do telhado metálico são uma interpretação."
+    },
+    {
+      "id": "samoan-fale-detail-pola-pt-BR",
+      "scene": "samoan-fale",
+      "view": "detail-pola",
+      "locale": "pt-BR",
+      "title": "Abrigo sem uma parede fechada",
+      "text": "Telas de folhas de coqueiro trançadas, chamadas pola, podem abrigar alguns lados enquanto outros permanecem abertos. Painéis sobrepostos e cordões de suspensão tornam ajustável esse limite. São partes funcionais da casa, não papel de parede nem esteiras cerimoniais finas."
+    },
+    {
+      "id": "samoan-fale-detail-basket-pt-BR",
+      "scene": "samoan-fale",
+      "view": "detail-basket",
+      "locale": "pt-BR",
+      "title": "Folhas se tornam um recipiente útil",
+      "text": "Tiras largas de folhas de coqueiro passam por cima e por baixo umas das outras para formar um cesto. Tiras frescas, uma casca de coco aberta e outro cesto sugerem uma pausa no trabalho. Esses objetos cotidianos não devem ser confundidos com as esteiras finas de pandano valorizadas nas trocas cerimoniais."
+    },
+    {
+      "id": "samoan-fale-detail-umu-pt-BR",
+      "scene": "samoan-fale",
+      "view": "detail-umu",
+      "locale": "pt-BR",
+      "title": "A cozinha faz parte do terreno",
+      "text": "O abrigo separado oferece um espaço próprio ao preparo dos alimentos. Nesta interpretação, um umu usa pedras aquecidas ao nível do chão sob uma cobertura de folhas. Cômodos e caminhos conectados descrevem uma casa, não uma demonstração culinária nem a ideia de que todas as famílias vivem da mesma forma."
+    },
+    {
+      "id": "samoan-fale-miniature-whole-pt-BR",
+      "scene": "samoan-fale",
+      "view": "miniature-whole",
+      "locale": "pt-BR",
+      "title": "Uma casa unida pelos espaços abertos.",
+      "text": "O telhado principal se ergue para revelar a mesma estrutura de madeira, telas trançadas e esteiras cotidianas da visita em escala humana. Caminhos ligam o fale aberto a um abrigo de cozinha e a um cômodo mobiliado mais reservado. Gire o conjunto para perceber como esses espaços se relacionam. É uma casa contemporânea imaginada em Upolu, não o levantamento de uma residência real nem uma disposição cerimonial de assentos."
     }
   ]
 }
